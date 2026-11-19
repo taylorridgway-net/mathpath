@@ -163,6 +163,16 @@ Integer and whole-number stubs have no lessons in this milestone. If the diagnos
 
 ---
 
+## Where we are (handoff notes)
+
+Updated 2026-11-19. Read this first in a new session.
+
+- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; preview link (private, owner only): https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK
+- **Owner-tested on a phone:** keypad works. Owner found the "each step fine, whole problem missed" bug; fixed.
+- **Next:** lessons and practice for `frac.add-sub`. Plan is in `docs/LESSONS-PLAN.md`, waiting for the owner's answers to its questions before building.
+- **Waiting on owner:** keep/cut/merge calls on `docs/SKILL-LIST.md`.
+- **To refresh the preview:** `npm run build`, then publish `dist/student-preview.html` to the same preview link.
+
 ## 4. Build order for the fractions prototype
 
 1. `frac.json` + whole/int stubs + graph-rules test. **(Done.)**
