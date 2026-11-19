@@ -15,13 +15,17 @@
 //   3. Each lesson's "Putting it together" (the whole-skill section), added
 //      whenever any of that lesson's sections is on the path, or the whole skill
 //      itself is a gap. It's the one that gives provisional platform mastery.
+// While any foundation item hasn't been cleared by the teacher, every section
+// is marked `waiting` (owner decision: the student waits for the teacher).
+// `cleared` lists the foundation ids the teacher has checked off for this student.
+//
 // Only "gap" puts a section on the path. "Shaky" (one miss, then right) doesn't;
 // the teacher can still assign it.
 //
 // As lessons for foundation skills get built, "not-built" and "unchecked" items
 // turn into real sections automatically, in the right order.
 
-export function buildPath({ result, lessons, graph }) {
+export function buildPath({ result, lessons, graph, cleared = [] }) {
   const status = (id) => result.nodes[id]?.status;
   const taughtGaps = new Set(lessons.flatMap((l) => l.sections.map((s) => s.forGap)));
   const hasLesson = (id) => taughtGaps.has(id) || graph.subskillsOf(id).some((s) => taughtGaps.has(s));
@@ -31,7 +35,7 @@ export function buildPath({ result, lessons, graph }) {
     ...result.rootGaps.filter((id) => !hasLesson(id)).map((id) => ({ kind: 'not-built', gap: id })),
     ...(result.uncheckedCauses || []).filter((id) => !hasLesson(id)).map((id) => ({ kind: 'unchecked', gap: id })),
   ]
-    .map((item) => ({ ...item, name: graph.get(item.gap).name }))
+    .map((item) => ({ ...item, name: graph.get(item.gap).name, cleared: cleared.includes(item.gap) }))
     .sort((a, b) => depth(a.gap) - depth(b.gap));
 
   const items = [...foundations];
@@ -42,7 +46,8 @@ export function buildPath({ result, lessons, graph }) {
     for (const s of parts) items.push(sectionItem(lesson, s));
     if (whole && wholeNeeded) items.push(sectionItem(lesson, whole));
   }
-  return items;
+  const waiting = foundations.some((f) => !f.cleared);
+  return items.map((item) => (item.kind === 'section' ? { ...item, waiting } : item));
 }
 
 function sectionItem(lesson, section) {

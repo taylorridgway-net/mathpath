@@ -75,37 +75,9 @@ Adaptive, short (target roughly 15-25 questions). Start mid-graph; a correct ans
 - "Putting it together" guided problems: one box per step (common denominator, rewrite each fraction, combine, simplify). Later steps use the student's own common denominator. A step missed twice is filled in for them; only the final answer counts toward the practice session.
 - Learning path: foundations first (owner's requirement: practising fractions won't fix a multiplication gap). Order: foundations with no lesson yet (confirmed gaps, and possible causes the diagnostic can't check yet, shown as "Check with your teacher first"), then lessons in skill-graph order, sections within a lesson in lesson order, then "Putting it together". As foundation lessons get built they take those first slots automatically. Claude's proposal, owner to confirm: "shaky" doesn't put a section on the path.
 - Student app layout: phones get one column; screens 900px and wider get two (keypad beside the problem, picture beside the lesson text). Owner asked for desktop to use the space.
-
-## Working style
-
-Lessons learned building this (follow them):
-
-- The owner testing on a real phone finds bugs the tests don't. After every student-facing change, rebuild, republish the preview link (see docs/PLAN.md, "Where we are"), and suggest 1-2 specific things to try.
-- Before writing a test that locks in a teaching judgment (e.g. "a miss here is just a slip"), ask the owner. A wrong test is worse than none.
-- Look at sample generated problems by eye, not just at passing tests (that's how oversized common denominators like 132 were caught).
-- For important logic, plant a deliberate bug once and confirm the tests fail, then restore.
-- A subskill's problems must only need that subskill. If they also need another, declare it in the generator's `alsoUses` (and `covers` / `ifNotSimplified` where relevant) so the diagnostic doesn't blame the wrong subskill.
-- Skill and subskill IDs can still be renamed or removed freely: no real student data exists yet. Once real data exists, IDs are permanent (mark `retired` instead).
-- Keep docs/PLAN.md "Where we are" current at the end of every session, and put every decision made in chat into this file. The owner starts new sessions when context fills up, and only the repository carries over.
-- Claude can't create GitHub repositories from a session; the owner does that step.
-
-- Plan before coding on anything non-trivial; propose structure and schemas for review first.
-- Write Node tests for every generator and for diagnostic/mastery logic. Math bugs are the main risk.
-- Keep generators deterministic given a seed. Never use Math.random() in the engine; use engine/random.js.
-- If a generator's output changes on purpose, bump its `version` and run `npm run update-golden`. The golden test exists because the server re-creates problems from saved seeds.
-- Generator tests must re-compute answers independently from the displayed problem, never trust the generator's own answer.
-- The owner is a teacher, not a professional developer: explain decisions briefly in plain language, keep code readable, and ask before adding dependencies.
-- The owner wants Claude to handle git, setup, building and deployment. When the owner must do something themselves (e.g. a click in GitHub or Google), give exact step-by-step instructions.
-- Where CLAUDE.md and docs/BRIEF.md disagree, CLAUDE.md wins (it is newer).
-- Interactives (fraction bars, number lines, algebra tiles, etc.) only where they genuinely improve understanding.
-- Open-source license is undecided (AGPL-3.0 vs MIT). Don't add a license file until told.
-
-## Suggested build order
-
-1. Skill graph JSON schema and the fractions skill map.
-2. Fraction question generators with Node tests.
-3. Adaptive diagnostic logic (testable in Node, then a bare page).
-4. Student UI, including math input.
-5. Teacher dashboard and printable assessments.
-6. Apps Script wrapper (clasp), save endpoint with LockService and seed validation.
-7. Simulated-class load test before any real use.
+- Sections wait for the teacher: while any "with your teacher first" foundation is uncleared, the student's lessons stay locked; the teacher marks it checked in the dashboard (owner decision 2026-11-19).
+- Paper tests (teacher verification): 6 items, 5 of 6 suggests "verified"; the teacher makes the final call and both the suggestion and the decision are stored (owner decision). Rule lives in `curriculum/mastery.json` ("verification"). Paper items live in `curriculum/paper/`, authored separately, answer keys checked by a test.
+- Dashboard heatmap opens on the 8 whole fraction skills; clicking a skill's heading shows its subskills (owner decision).
+- Class sizes to support: 1-6 periods, 20-45 students each (owner). The pretend class and the load test use that range.
+- Printable login-code slips: not now (owner unsure what they're for; revisit with the Apps Script login).
+- Build order after the prototype (Claude's recommendation, owner considering): once the fractions prototype works end to end (dashboard, Apps Script, load test), build whole-number skills (multiplication facts, factors and multiples) before the rest of the fractions map, so foundations come from real diagnostic questions and lessons instead of "check with your teacher".

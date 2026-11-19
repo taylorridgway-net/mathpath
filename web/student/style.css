@@ -329,3 +329,7 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
   .done-block { padding: 20px 24px; }
 }
 .path-text .plain-list { font-size: 0.9375rem; margin-top: 2px; }
+.path-why { color: var(--muted); font-size: 0.8125rem; }
+.is-cleared { color: var(--muted); }
+.button:disabled { opacity: 0.5; cursor: not-allowed; }
+.preview-only { margin-top: 8px; min-height: 40px; font-size: 0.8125rem; border-style: dashed; }

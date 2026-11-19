@@ -13,20 +13,20 @@ import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
-import { generators, generateProblem } from '../../engine/generators/index.js';
+import { generators } from '../../engine/generators/index.js';
 import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
-import { toText } from '../../engine/problem/text.js';
 import { buildPath } from '../../engine/lessons/path.js';
 import { renderMath } from '../components/render-math.js';
 import { createKeypad } from '../components/keypad.js';
-import { rawToText } from '../components/answer-editor.js';
 import { loadLocal, saveLocal, removeLocal } from '../storage/local.js';
 import { loadProgress, finishedRecords, clearAllSections, outboxCount } from '../storage/sections.js';
 import { openSection } from './lesson.js';
-import { h, section, btn, pill, list, split, swap as swapInto } from './dom.js';
+import { diagnosticReport } from '../components/diagnostic-report.js';
+import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
 const STORE_KEY = 'mathpath.preview.diagnostic.v1';
 const LESSON_SEED_KEY = 'mathpath.preview.lesson-seed.v1';
+const CLEARED_KEY = 'mathpath.preview.cleared.v1'; // foundations the teacher checked off (preview: this device)
 const lessons = [addSubLesson];
 let previewOpen = false; // keep the teacher-preview list open after visiting a section
 
@@ -133,7 +133,7 @@ function showDone() {
   const name = (id) => graph.get(id).name;
   const shown = Object.keys(result.nodes)
     .filter((id) => result.nodes[id].status === 'known' && graph.get(id).kind === 'subskill');
-  const path = buildPath({ result, lessons, graph });
+  const path = buildPath({ result, lessons, graph, cleared: loadLocal(CLEARED_KEY) || [] });
 
   const screen = section('screen screen-done');
   screen.append(h('p', 'eyebrow', 'Fractions'), h('h1', 'title', 'Your path'));
@@ -153,6 +153,7 @@ function showDone() {
   actions.append(btn('button', 'Start over (new check, clears lesson progress)', () => {
     removeLocal(STORE_KEY);
     removeLocal(LESSON_SEED_KEY);
+    removeLocal(CLEARED_KEY);
     clearAllSections();
     showStart();
   }));
@@ -175,28 +176,50 @@ function pathList(path) {
   if (!path.length) return h('p', 'empty', 'Nothing to work on here right now.');
   const ol = h('ol', 'path');
   let nextMarked = false;
-  // Foundations the app can't check yet are shown together as one item.
-  const unchecked = path.filter((item) => item.kind === 'unchecked');
-  if (unchecked.length) {
+
+  // Foundations the teacher handles (no lesson yet, or can't be checked yet), as one item.
+  const foundations = path.filter((item) => item.kind !== 'section');
+  if (foundations.length) {
+    const allCleared = foundations.every((f) => f.cleared);
     const li = h('li', 'path-item');
     const text = h('div', 'path-text');
     text.append(
-      h('span', 'path-title', 'Check with your teacher first'),
-      h('span', 'path-note', 'One of these might be what makes the next steps hard. The app can’t check them yet, so your teacher will.'),
-      list(unchecked.map((item) => item.name)),
+      h('span', 'path-title', 'With your teacher first'),
+      h('span', 'path-note', allCleared
+        ? 'Your teacher has checked these. You can go on.'
+        : 'One of these might be what makes the next steps hard. The app can’t teach or check them yet, so your teacher will. The lessons below open after that.'),
     );
-    li.append(text, pill('Teacher', 'warn'));
+    const ul = h('ul', 'plain-list');
+    for (const f of foundations) {
+      const row = h('li', f.cleared ? 'is-cleared' : '', f.name);
+      if (f.kind === 'not-built') row.append(h('span', 'path-why', ' (missed in the check)'));
+      if (f.cleared) row.append(h('span', 'path-why', ' ✓ checked'));
+      ul.append(row);
+    }
+    text.append(ul);
+    if (!allCleared) {
+      // PREVIEW ONLY: in the real app the teacher clears these in the dashboard.
+      text.append(btn('button preview-only', 'Teacher (preview only): mark these checked', () => {
+        saveLocal(CLEARED_KEY, foundations.map((f) => f.gap));
+        showDone();
+      }));
+    }
+    li.append(text, pill(allCleared ? 'Checked' : 'Teacher', allCleared ? 'good' : 'warn'));
     ol.append(li);
   }
-  path.filter((item) => item.kind !== 'unchecked').forEach((item) => {
+
+  path.filter((item) => item.kind === 'section').forEach((item) => {
     const li = h('li', 'path-item');
     const text = h('div', 'path-text');
-    if (item.kind === 'not-built') {
-      text.append(h('span', 'path-title', item.name), h('span', 'path-note', 'Your teacher will help with this one. (No lesson for it yet.)'));
-      li.append(text, pill('Teacher', 'muted'));
+    const [label, tone, action] = sectionState(item.section);
+    text.append(h('span', 'path-title', item.title));
+    if (item.waiting) {
+      text.append(pill('Waiting for your teacher', 'muted'));
+      const b = btn('button', action, () => {});
+      b.disabled = true;
+      li.append(text, b);
     } else {
-      const [label, tone, action] = sectionState(item.section);
-      text.append(h('span', 'path-title', item.title), pill(label, tone));
+      text.append(pill(label, tone));
       const primary = !nextMarked && tone !== 'good';
       if (primary) nextMarked = true;
       li.append(text, btn(primary ? 'button button-primary' : 'button', action, () => goToSection(item.section)));
@@ -253,81 +276,10 @@ function lessonSeed() {
 
 // ---------- the teacher's view of the result (preview: shown under the student's) ----------
 
-const STATUS = {
-  known: ['Answered correctly', 'good'],
-  'known-inferred': ['Credited, not asked', 'info'],
-  shaky: ['Shaky: one miss, then right', 'warn'],
-  gap: ['Gap: missed twice', 'bad'],
-  unchecked: ['Possible cause, can’t check yet', 'muted'],
-  'not-tested': ['Not tested', 'muted'],
-};
-
-const RESULT_WORDS = {
-  correct: 'Right',
-  'not-simplified': 'Right, not simplified',
-  'wrong-form': 'Right, wrong form',
-  wrong: 'Wrong',
-  invalid: 'Skipped',
-};
-
 function teacherView(result) {
   const details = h('details', 'teacher');
   details.append(h('summary', 'teacher-summary', 'Teacher view of this result (preview)'));
-
-  const misconceptionText = new Map(misconceptions.map((m) => [m.id, m.description]));
-
-  // Skill by skill, subskills underneath.
-  const table = h('div', 'status-table');
-  const skillIds = [...new Set(Object.keys(result.nodes).map((id) => graph.get(id).skillId))];
-  for (const skillId of skillIds) {
-    const group = h('div', 'status-group');
-    group.append(h('h3', 'status-skill', graph.get(skillId).name));
-    const ids = [skillId, ...graph.subskillsOf(skillId)].filter((id) => result.nodes[id]);
-    for (const id of ids) {
-      const r = result.nodes[id];
-      const row = h('div', 'status-row');
-      let [label, tone] = r.blockedBy ? ['Blocked', 'muted'] : STATUS[r.status];
-      if (id === skillId && r.status === 'gap') label = 'Gap: each step fine, whole problem missed twice';
-      const nameCell = h('span', 'status-name', id === skillId ? '(whole skill)' : graph.get(id).name);
-      if (r.blockedBy) {
-        const needs = r.blockedBy.map((b) => `“${graph.get(b).name}”`).join(', ');
-        nameCell.append(h('span', 'status-why', `Can’t check yet: these problems also need ${needs}`));
-      }
-      row.append(nameCell, pill(label, tone));
-      group.append(row);
-    }
-    table.append(group);
-  }
-  details.append(h('h3', 'teacher-heading', 'Skills'), table);
-
-  const seen = Object.entries(result.misconceptions);
-  if (seen.length) {
-    details.append(h('h3', 'teacher-heading', 'Wrong-answer patterns seen'));
-    details.append(list(seen.map(([id, n]) => `${misconceptionText.get(id)} (${n}×)`)));
-  }
-
-  details.append(h('h3', 'teacher-heading', 'Every question'));
-  const log = h('div', 'log');
-  const head = h('div', 'log-row log-head');
-  ['#', 'Problem', 'Answer', 'Result', 'Time'].forEach((t) => head.append(h('span', '', t)));
-  log.append(head);
-  result.questions.forEach((q, i) => {
-    // Re-created from the saved seed, the same way the server will check it.
-    const problem = toText(generateProblem(q.generator, q.seed, q.difficulty).expression);
-    const row = h('div', 'log-row');
-    row.append(
-      h('span', 'num', String(i + 1)),
-      h('span', 'log-problem', problem),
-      h('span', 'num', rawToText(q.answer)),
-      h('span', '', RESULT_WORDS[q.status] + (q.misconception ? ` (${q.misconception.replace('frac.', '')})` : '')),
-      h('span', 'num', `${Math.round((session.times[i] || 0) / 1000)}s`),
-    );
-    log.append(row);
-  });
-  const scroller = h('div', 'log-scroll');
-  scroller.append(log);
-  details.append(scroller);
-  details.append(h('p', 'fine', `Seed ${result.seed} · ${result.questionCount} questions · curriculum ${result.curriculumVersion}`));
+  details.append(diagnosticReport(result, { graph, misconceptions, times: session.times }));
   return details;
 }
 

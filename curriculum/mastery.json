@@ -1,8 +1,16 @@
 {
   "schemaVersion": 1,
   "default": {
-    "guided": { "rightNeeded": 2, "maxProblems": 6, "difficulty": 1 },
-    "sectionCheck": { "rightInARow": 3, "maxProblems": 12, "difficulty": 2 },
+    "guided": {
+      "rightNeeded": 2,
+      "maxProblems": 6,
+      "difficulty": 1
+    },
+    "sectionCheck": {
+      "rightInARow": 3,
+      "maxProblems": 12,
+      "difficulty": 2
+    },
     "skill": {
       "window": 5,
       "rightOnFirstTry": 4,
@@ -11,6 +19,17 @@
       "hardestDifficulty": 3,
       "maxProblemsPerSitting": 20
     },
-    "retention": { "afterDays": [14, 28], "problems": 3 }
+    "retention": {
+      "afterDays": [
+        14,
+        28
+      ],
+      "problems": 3
+    },
+    "verification": {
+      "minScore": 5,
+      "outOf": 6,
+      "note": "Paper test: 5 of 6 suggests verified (owner decision 2026-11-19). The teacher makes the final call."
+    }
   }
 }

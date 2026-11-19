@@ -1,6 +1,6 @@
 # Teacher Dashboard and Paper Assessments — Plan (draft for owner review)
 
-Status: **draft, waiting for owner review.** Build step 5 in `docs/PLAN.md`.
+Status: **approved and built (2026-11-19)**, except assignments, exemptions and path reordering, which need the server. Owner's answers: 5 of 6 suggests verified; heatmap opens on whole skills, click for subskills; sections wait for the teacher's check; code slips not now; 1-6 periods of 20-45 students. Build step 5 in `docs/PLAN.md`.
 Scope: everything a teacher needs for the fractions prototype. Built against a
 **synthetic class** (pretend students run through the real engine), so it can be
 tried before any server or real student exists.

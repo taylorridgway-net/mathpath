@@ -23,7 +23,7 @@ import { renderLessonText } from '../components/lesson-text.js';
 import { createFractionBars } from '../components/fraction-bars.js';
 import { createKeypad } from '../components/keypad.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished, finishedRecords } from '../storage/sections.js';
-import { h, section as screenEl, btn, swap, split } from './dom.js';
+import { h, section as screenEl, btn, swap, split } from '../components/dom.js';
 
 const PHASE_NAMES = {
   guided: 'Practice with help',

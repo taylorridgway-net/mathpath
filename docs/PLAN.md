@@ -165,18 +165,24 @@ Integer and whole-number stubs have no lessons in this milestone. If the diagnos
 
 ## Where we are (handoff notes)
 
-Updated 2026-11-19 (end of session 2, part 2). Read this first in a new session.
+Updated 2026-11-19 (end of session 2). Read this first in a new session.
 
-- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; worked solutions; practice session logic with feedback rules and mastery; lesson text draft; **lesson screens** (session 2): learning path after the diagnostic (`engine/lessons/path.js`), lesson player (`web/student/lesson.js`: learn -> step-by-step worked example -> guided practice with hints -> check / mastery -> done), `{a/b}` text markup (`web/components/lesson-text.js`), fraction-bars interactive (`web/components/fraction-bars.js`, three tasks), one-box-per-step guided problems for "Putting it together" (`engine/practice/scaffold.js`), worked solution + similar problem after a miss, one save per finished section to local storage plus an outbox for the future server (`web/storage/sections.js`), resume mid-section from (seed, answers). Path is foundations first: things the diagnostic followed a gap down to but can't check yet (e.g. multiplication facts) show as "Check with your teacher first"; lessons are ordered by the skill graph. Two-column layout on screens 900px and wider (keypad beside the problem, picture beside the text). 149 tests pass (`npm test`).
-- **Preview link** (private, owner only): https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK. Shows the diagnostic, then the student's path and lesson sections. A "Teacher preview: open any lesson section" list (start screen and path screen) opens any section without taking the diagnostic. To refresh: `npm run build`, then publish `dist/student-preview.html` to that same link (Artifact tool, pass the URL).
-- **Owner-tested on a phone:** keypad works; "each step fine, whole problem missed" bug found and fixed. Lesson screens not yet tested by the owner.
+- **Done:**
+  - Engine: skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic; worked solutions; practice sessions with feedback and mastery; step boxes for "Putting it together" (`engine/practice/scaffold.js`); learning path, foundations first, lessons in skill-graph order, sections wait while a teacher check is open (`engine/lessons/path.js`).
+  - Student app (`web/student/`): diagnostic, path, lesson sections (explanation, fraction bars, worked example, guided practice, check / mastery), local save + outbox, resume. Two columns on wide screens.
+  - Teacher dashboard (`web/teacher/`, logic in `engine/teacher/`, all tested): class overview with per-skill bars and a heatmap (8 skills, click for subskills), teach-together groups (same next step / same mistake), participation (effort only, no ranking), paper tests (versions A/B, print view, answer key, score entry with the 5-of-6 rule, teacher's final call), roster (private names, code reset), student profile (platform vs verified mastery, path with "mark checked", every practice problem re-created from its seed, diagnostic report, change log).
+  - Pretend class (`tools/synthetic-class.js`): 1-6 periods of 20-45 made-up students run through the real engine. Also the seed of the step 7 load test.
+  - 165 tests pass (`npm test`).
+- **Preview links** (private, owner only). Refresh: `npm run build`, then publish the file to the same link with the Artifact tool (pass the URL).
+  - Student: https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK, from `dist/student-preview.html`.
+  - Teacher dashboard: see the link added below once published, from `dist/teacher-preview.html`.
+  - In the claude.ai viewer the print dialog and pop-ups are blocked, so the dashboard shows an on-screen print view and uses a second tap to confirm a code reset.
 - **Waiting on owner:**
-  - Review `docs/DASHBOARD-PLAN.md` (teacher dashboard + paper tests) and answer its 5 questions. Build starts after that.
-  - Try the lesson sections on a phone and a computer; review the lesson text (now visible).
-  - Confirm the path rules (proposed by Claude, see `engine/lessons/path.js`): only "gap" puts a section on the path ("shaky" doesn't); "Putting it together" is added whenever any add/subtract section is on the path.
-  - In "Putting it together" guided problems, when one denominator divides the other (e.g. 1/2 + 1/6), step 3 asks to rewrite 1/6 over 6 (a "do nothing" step). Keep it, or skip it automatically?
-  - Keep/cut/merge calls on `docs/SKILL-LIST.md`.
-- **Next:** fix whatever the owner finds in the preview; build step 5 from `docs/DASHBOARD-PLAN.md` once approved.
+  - Try the dashboard; review the paper-test items (`curriculum/paper/frac.add-sub.json`, also visible on the Paper tests tab).
+  - Decide the build order after the prototype (see CLAUDE.md "Build order after the prototype").
+  - Still open from before: confirm "shaky" doesn't put a section on the path; the "rewrite 1/6 over 6" do-nothing step; review lesson text; `docs/SKILL-LIST.md`.
+- **Not built yet from the dashboard plan:** teacher assignments and exemptions, reordering a student's path, due dates. These need the server (step 6) to reach students, so they come with the Apps Script layer.
+- **Next:** build step 6, the Apps Script layer (deploy, code login, teacher Google login, one save per section with LockService, server-chosen seeds, server re-grading). Plan it first (structure, sheet layout) for owner review.
 
 ## 4. Build order for the fractions prototype
 
@@ -184,7 +190,7 @@ Updated 2026-11-19 (end of session 2, part 2). Read this first in a new session.
 2. Exact fraction math + seeded random + generators for `frac.add-sub`, with Node tests. **(Done.)**
 3. Adaptive diagnostic logic (Node), then a bare test page. **(Logic done; the test page comes with the student UI.)**
 4. Student UI: math keypad, lesson player, practice, local save/retry. **(Done for `frac.add-sub`; sending saves to the server comes with step 6.)**
-5. Teacher dashboard: class view, heatmap, student profile, printable paper tests, verification entry.
+5. Teacher dashboard: class view, heatmap, student profile, printable paper tests, verification entry. **(Done against a pretend class; assignments/exemptions come with step 6.)**
 6. Apps Script layer: deploy, code login, teacher Google login, batched save with LockService, server-chosen seeds, server re-grading.
 7. Simulated-class load test with synthetic students.
 8. Fill in the remaining fraction skills (1-4, 6-8) end to end.

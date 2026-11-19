@@ -76,3 +76,19 @@ test('lessons come in prerequisite order, whatever order they are listed in', ()
     'frac.add-sub.combine', 'frac.add-sub.whole', 'signed.add-sub', 'signed.whole',
   ]);
 });
+
+test('sections wait until the teacher clears every foundation item (owner decision)', () => {
+  const r = {
+    ...result({ 'frac.add-sub.common-denom': 'gap' }, ['frac.add-sub.common-denom']),
+    uncheckedCauses: ['whole.mult-div.mult-facts', 'whole.factors-multiples'],
+  };
+  const sections = (cleared) => buildPath({ result: r, lessons: [lesson], graph, cleared }).filter((p) => p.kind === 'section');
+  assert.ok(sections([]).every((s) => s.waiting));
+  assert.ok(sections(['whole.mult-div.mult-facts']).every((s) => s.waiting), 'one cleared is not enough');
+  assert.ok(sections(['whole.mult-div.mult-facts', 'whole.factors-multiples']).every((s) => !s.waiting));
+});
+
+test('no foundation items: nothing waits', () => {
+  const r = result({ 'frac.add-sub.combine': 'gap' }, ['frac.add-sub.combine']);
+  assert.ok(buildPath({ result: r, lessons: [lesson], graph }).every((s) => !s.waiting));
+});
