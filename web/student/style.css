@@ -333,3 +333,20 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .is-cleared { color: var(--muted); }
 .button:disabled { opacity: 0.5; cursor: not-allowed; }
 .preview-only { margin-top: 8px; min-height: 40px; font-size: 0.8125rem; border-style: dashed; }
+
+/* ---------- sign in, account bar, nickname ---------- */
+.login, .nickname { display: flex; flex-direction: column; gap: 8px; max-width: 24rem; }
+.nickname { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+.login-label, .nickname-label { font-weight: 600; }
+.login-input {
+  min-height: 48px; padding: 0 12px; border-radius: var(--radius-sm); border: 2px solid var(--line);
+  background: var(--surface); color: var(--ink); font: inherit; font-size: 1.125rem;
+}
+.login-input:focus { outline: none; border-color: var(--mark); }
+.login .button { align-self: flex-start; }
+.nickname .button { align-self: flex-start; min-height: 40px; }
+.login-error { margin: 0; color: var(--bad); min-height: 1.5em; }
+.account { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 0.8125rem; color: var(--muted); margin-top: -6px; }
+.account-out { border: 0; background: none; color: var(--accent); font-weight: 600; min-height: 36px; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+.save-status { flex-basis: 100%; }
+.save-status.is-waiting { color: var(--warn); font-weight: 600; }

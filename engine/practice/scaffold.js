@@ -101,7 +101,7 @@ export function startScaffold(problem) {
   // the practice session takes over.
   function current() {
     const step = stepAt(done.length);
-    const last = attempts.at(-1);
+    const last = attempts[attempts.length - 1];
     return { index: done.length, ...step, attempt: attempts.length + 1, feedback: last ? last.feedback : null };
   }
 

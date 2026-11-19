@@ -7,11 +7,15 @@
 //                              private claude.ai preview link
 //   dist/teacher.html          teacher dashboard (preview: with a pretend class)
 //   dist/teacher-preview.html  same, for its own preview link
+//   dist/apps-script/          everything Google Apps Script needs: Code.js (server,
+//                              engine and curriculum), student.html, teacher.html,
+//                              appsscript.json. Upload this folder (see docs/SETUP-GOOGLE.md).
 //
 // Run with: npm run build
 
 import { build } from 'esbuild';
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { bundleServer } from './bundle-server.js';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 
 const root = new URL('../', import.meta.url);
 const read = (path) => readFileSync(new URL(path, root), 'utf8');
@@ -71,3 +75,12 @@ for (const page of PAGES) {
   );
   console.log(`Built dist/${page.name}.html (${Math.round((head.length + body.length) / 1024)} KB)`);
 }
+
+// ---------- the Apps Script project ----------
+const code = await bundleServer();
+mkdirSync(new URL('dist/apps-script/', root), { recursive: true });
+writeFileSync(new URL('dist/apps-script/Code.js', root), code);
+copyFileSync(new URL('dist/student.html', root), new URL('dist/apps-script/student.html', root));
+copyFileSync(new URL('dist/teacher.html', root), new URL('dist/apps-script/teacher.html', root));
+copyFileSync(new URL('server/apps-script/appsscript.json', root), new URL('dist/apps-script/appsscript.json', root));
+console.log(`Built dist/apps-script/ (Code.js ${Math.round(code.length / 1024)} KB)`);

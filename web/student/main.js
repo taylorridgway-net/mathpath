@@ -1,8 +1,9 @@
-// The student page (preview version): diagnostic -> path -> lesson sections.
+// The student page: sign in -> diagnostic -> path -> lesson sections.
 //
-// PREVIEW ONLY: there is no server yet, so this page picks a demo seed itself
-// and keeps everything in this browser. In the real app the server hands out
-// the seed and receives one save at the end. The engine code is identical.
+// The same page runs on Google Apps Script (the real app) and in the claude.ai
+// preview (web/api/client.js runs the server code in the browser there).
+// Work is saved in this browser first, then uploaded once per finished
+// diagnostic or section; anything not uploaded yet is retried on the next load.
 
 import domainsIndex from '../../curriculum/graph/domains.json';
 import wholeGraph from '../../curriculum/graph/whole.json';
@@ -16,41 +17,178 @@ import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
 import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { buildPath } from '../../engine/lessons/path.js';
+import { seedFor } from '../../engine/seeds.js';
 import { renderMath } from '../components/render-math.js';
 import { createKeypad } from '../components/keypad.js';
 import { loadLocal, saveLocal, removeLocal } from '../storage/local.js';
-import { loadProgress, finishedRecords, clearAllSections, outboxCount } from '../storage/sections.js';
+import {
+  setStudent, loadMine, saveMine, loadProgress, finishedRecords, clearAllSections,
+  saveFinished, outbox, removeFromOutbox, setAside,
+} from '../storage/sections.js';
+import { createApi, PREVIEW_CODE } from '../api/client.js';
 import { openSection } from './lesson.js';
 import { diagnosticReport } from '../components/diagnostic-report.js';
 import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
-const STORE_KEY = 'mathpath.preview.diagnostic.v1';
-const LESSON_SEED_KEY = 'mathpath.preview.lesson-seed.v1';
-const CLEARED_KEY = 'mathpath.preview.cleared.v1'; // foundations the teacher checked off (preview: this device)
+const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of the signed-in student
 const lessons = [addSubLesson];
-let previewOpen = false; // keep the teacher-preview list open after visiting a section
 
-const graph = buildGraphIndex(domainsIndex, {
-  'whole.json': wholeGraph,
-  'int.json': intGraph,
-  'frac.json': fracGraph,
-});
+const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
 const misconceptions = fracMisconceptions.misconceptions;
+const api = createApi({
+  setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default },
+});
 const setupFor = (seed) => ({ graph, generators, misconceptions, config: fracDiagnostic, seed });
 
 const app = document.getElementById('app');
-let session = null; // { seed, answers, times, startedAt }
+let profile = null;
+let session = null; // the diagnostic: { attemptNo, seed, saveId, answers, times, startedAt, finished }
 let diagnostic = null;
 let keypad = null;
 let shownAt = 0;
+let previewOpen = false;
+let uploadState = 'idle'; // idle | uploading | offline
 
-// ---------- screens ----------
+if (!api.preview) document.querySelector('.preview-banner')?.remove();
+
+// ---------- sign in ----------
+
+function showLogin(message) {
+  const screen = section('screen screen-start');
+  screen.append(h('p', 'eyebrow', 'MathPath'), h('h1', 'title', 'Sign in'));
+  screen.append(h('p', 'lede', 'Type the code your teacher gave you. This device will remember it.'));
+  const form = h('form', 'login');
+  const label = h('label', 'login-label', 'Your code');
+  label.htmlFor = 'code';
+  const input = h('input', 'login-input');
+  Object.assign(input, { id: 'code', name: 'code', autocomplete: 'off', spellcheck: false, placeholder: 'e.g. maple-tiger-42' });
+  input.setAttribute('autocapitalize', 'none');
+  const submit = h('button', 'button button-primary', 'Sign in');
+  submit.type = 'submit';
+  const error = h('p', 'login-error', message || '');
+  error.setAttribute('role', 'alert');
+  form.append(label, input, submit, error);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!input.value.trim()) return;
+    submit.disabled = true;
+    submit.textContent = 'Signing in…';
+    const res = await api.student('login', input.value);
+    if (res.error) {
+      submit.disabled = false;
+      submit.textContent = 'Sign in';
+      error.textContent = res.error === 'network'
+        ? 'Can’t reach MathPath right now. Check the Wi-Fi and try again.'
+        : res.message;
+      return;
+    }
+    signedIn({ code: input.value.trim().toLowerCase(), ...res.student, summary: res.summary });
+  });
+  screen.append(form);
+  if (api.preview) screen.append(h('p', 'fine', `Preview: sign in with the pretend student’s code, ${PREVIEW_CODE}.`));
+  swap(screen);
+  input.focus();
+}
+
+function signedIn(p) {
+  profile = p;
+  saveLocal(PROFILE_KEY, profile);
+  setStudent(profile.id);
+  loadDiagnostic();
+  route();
+  upload();
+}
+
+function signOut() {
+  // Nothing is deleted: unsent work stays on this device (under this student)
+  // and uploads the next time they sign in here.
+  removeLocal(PROFILE_KEY);
+  profile = null;
+  session = null;
+  diagnostic = null;
+  showLogin();
+}
+
+function accountBar() {
+  const bar = h('div', 'account');
+  const who = profile.nickname ? `Signed in as ${profile.nickname}` : `Signed in with code ${profile.code}`;
+  bar.append(h('span', 'account-who', who), btn('account-out', 'Not you? Sign out', signOut));
+  bar.append(saveStatus());
+  return bar;
+}
+
+// "All your work is saved" / "2 finished parts waiting to upload".
+function saveStatus() {
+  const n = outbox().length;
+  const el = h('span', 'save-status');
+  el.setAttribute('aria-live', 'polite');
+  if (!n) el.textContent = 'All your work is saved.';
+  else if (uploadState === 'uploading') el.textContent = 'Saving…';
+  else el.textContent = `${n} finished part${n === 1 ? '' : 's'} saved on this device, waiting to upload. It will try again automatically.`;
+  el.classList.toggle('is-waiting', n > 0);
+  return el;
+}
+
+// Send queued records in order. Stop at a dropped connection; retry on next load.
+async function upload() {
+  if (!profile || uploadState === 'uploading') return;
+  uploadState = 'uploading';
+  for (const record of outbox()) {
+    const res = await api.student('saveRecord', profile.code, record);
+    if (res.ok) {
+      removeFromOutbox(record.saveId);
+      profile.summary = res.summary;
+      saveLocal(PROFILE_KEY, profile);
+    } else if (['network', 'busy', 'server'].includes(res.error)) {
+      uploadState = 'offline';
+      refreshStatus();
+      return;
+    } else if (res.error === 'unknown-code') {
+      uploadState = 'idle';
+      return showLogin('Your code has changed. Ask your teacher for your new one. Your work is still saved on this device.');
+    } else {
+      setAside(record, res.error);
+    }
+  }
+  uploadState = 'idle';
+  refreshStatus();
+}
+
+function refreshStatus() {
+  const old = document.querySelector('.save-status');
+  if (old) old.replaceWith(saveStatus());
+}
+
+// ---------- the diagnostic ----------
+
+// The diagnostic to show: the one in progress or finished on this device, or the
+// one the server has (e.g. on a new Chromebook), whichever is newer.
+function loadDiagnostic() {
+  session = loadMine('diagnostic');
+  const server = profile.summary.diagnostic;
+  if (server && (!session || session.attemptNo < server.attemptNo || (session.attemptNo === server.attemptNo && !session.finished))) {
+    session = { attemptNo: server.attemptNo, seed: server.seed, answers: server.answers, times: [], finished: true };
+    saveMine('diagnostic', session);
+  }
+  diagnostic = null;
+  if (session) {
+    try {
+      diagnostic = replayDiagnostic(setupFor(session.seed), session.answers);
+    } catch {
+      session = null; // doesn't fit the current questions (the app changed); start again
+    }
+  }
+}
+
+function route() {
+  if (session?.finished) showDone();
+  else showStart();
+}
 
 function showStart() {
-  const saved = loadLocal(STORE_KEY);
-  const canResume = saved && Array.isArray(saved.answers) && saved.answers.length > 0 && !saved.finished;
-
+  const canResume = session && session.answers.length > 0 && !session.finished;
   const screen = section('screen screen-start');
+  screen.append(accountBar());
   screen.append(
     h('p', 'eyebrow', 'Fractions check'),
     h('h1', 'title', 'Let’s see what you already know'),
@@ -58,40 +196,31 @@ function showStart() {
     h('p', 'lede', 'If you don’t know an answer, tap “I’m not sure”. That helps too.'),
   );
   const actions = h('div', 'actions');
-  if (canResume) {
-    actions.append(
-      btn('button button-primary', `Continue from question ${saved.answers.length + 1}`, () => begin(saved)),
-      btn('button', 'Start over', () => begin(null)),
-    );
-  } else {
-    actions.append(btn('button button-primary', 'Start', () => begin(null)));
-  }
-  screen.append(actions, previewSections());
+  actions.append(btn('button button-primary', canResume ? `Continue from question ${session.answers.length + 1}` : 'Start', begin));
+  screen.append(actions);
+  if (api.preview) screen.append(previewSections());
   swap(screen);
 }
 
-function begin(saved) {
-  session = saved || { seed: demoSeed(), answers: [], times: [], startedAt: new Date().toISOString() };
-  try {
-    diagnostic = replayDiagnostic(setupFor(session.seed), session.answers);
-  } catch {
-    // Saved progress doesn't fit the current questions (e.g. the app was updated). Start fresh.
-    session = { seed: demoSeed(), answers: [], times: [], startedAt: new Date().toISOString() };
-    diagnostic = replayDiagnostic(setupFor(session.seed), []);
+function begin() {
+  if (!session || session.finished) {
+    const attemptNo = (profile.summary.diagnosticAttempts || 0) + 1;
+    const seed = seedFor(profile.id, 'diagnostic', attemptNo);
+    session = { attemptNo, seed, saveId: `${seed}|${new Date().toISOString()}`, answers: [], times: [], startedAt: new Date().toISOString(), finished: false };
   }
-  saveLocal(STORE_KEY, session);
+  diagnostic = replayDiagnostic(setupFor(session.seed), session.answers);
+  saveMine('diagnostic', session);
   showQuestion();
 }
 
 function showQuestion() {
   const q = diagnostic.nextQuestion();
-  if (!q) return showDone();
+  if (!q) return finishDiagnostic();
 
   const screen = section('screen screen-question');
   const top = h('div', 'question-top');
   top.append(h('span', 'counter', `Question ${q.index + 1}`), h('span', 'counter-note', 'No grades'));
   const cols = split();
-
   const card = h('div', 'question-card');
   const instruction = h('p', 'instruction', q.problem.instruction);
   instruction.id = 'instruction';
@@ -99,7 +228,6 @@ function showQuestion() {
   math.append(renderMath(q.problem.expression));
   card.append(instruction, math);
   card.setAttribute('aria-labelledby', 'instruction');
-
   const answerHost = h('div', '');
   cols.main.append(card);
   cols.side.append(answerHost);
@@ -121,54 +249,97 @@ function answer(raw) {
   diagnostic.submit(raw);
   session.answers.push(raw);
   session.times.push(Math.round(performance.now() - shownAt));
-  saveLocal(STORE_KEY, session);
+  saveMine('diagnostic', session);
   showQuestion();
 }
 
+function finishDiagnostic() {
+  if (!session.finished) {
+    session.finished = true;
+    session.finishedAt = new Date().toISOString();
+    saveMine('diagnostic', session);
+    saveFinished({
+      type: 'diagnostic', saveId: session.saveId, studentId: profile.id, attemptNo: session.attemptNo, seed: session.seed,
+      answers: session.answers, times: session.times, startedAt: session.startedAt, finishedAt: session.finishedAt,
+      curriculumVersion: graph.curriculumVersion,
+    });
+    upload();
+  }
+  showDone();
+}
+
+// ---------- the path ----------
+
 function showDone() {
   const result = diagnostic.result();
-  session.finished = true;
-  saveLocal(STORE_KEY, session);
-
   const name = (id) => graph.get(id).name;
   const shown = Object.keys(result.nodes)
     .filter((id) => result.nodes[id].status === 'known' && graph.get(id).kind === 'subskill');
-  const path = buildPath({ result, lessons, graph, cleared: loadLocal(CLEARED_KEY) || [] });
+  const path = buildPath({ result, lessons, graph, cleared: profile.summary.cleared || [] });
 
   const screen = section('screen screen-done');
-  screen.append(h('p', 'eyebrow', 'Fractions'), h('h1', 'title', 'Your path'));
+  screen.append(accountBar());
+  screen.append(h('p', 'eyebrow', 'Fractions'), h('h1', 'title', profile.nickname ? `${profile.nickname}’s path` : 'Your path'));
 
   const strong = h('div', 'done-block');
   strong.append(h('h2', 'block-title', 'You showed you can'));
   strong.append(list(shown.map(name), 'Nothing yet in this part. That’s fine: this is where we start.'));
-
+  strong.append(nicknameForm());
   const next = h('div', 'done-block');
   next.append(h('h2', 'block-title', 'What to work on, in order'));
   next.append(pathList(path));
   const grid = h('div', 'path-grid');
   grid.append(next, strong);
-  screen.append(grid, teacherView(result), previewSections());
+  screen.append(grid);
 
-  const actions = h('div', 'actions');
-  actions.append(btn('button', 'Start over (new check, clears lesson progress)', () => {
-    removeLocal(STORE_KEY);
-    removeLocal(LESSON_SEED_KEY);
-    removeLocal(CLEARED_KEY);
-    clearAllSections();
-    showStart();
-  }));
-  screen.append(actions);
+  if (api.preview) {
+    screen.append(teacherView(result), previewSections());
+    const actions = h('div', 'actions');
+    actions.append(btn('button', 'Start over (preview: forget everything)', () => {
+      api.reset();
+      clearAllSections();
+      signOut();
+    }));
+    screen.append(actions);
+  }
   swap(screen);
 }
 
-// ---------- the path: one row per section, with its status ----------
+function nicknameForm() {
+  const form = h('form', 'nickname');
+  const label = h('label', 'nickname-label', 'Nickname (optional)');
+  label.htmlFor = 'nickname';
+  const input = h('input', 'login-input');
+  Object.assign(input, { id: 'nickname', maxLength: 20, value: profile.nickname || '', placeholder: 'What should we call you?' });
+  const save = h('button', 'button', 'Save');
+  save.type = 'submit';
+  const note = h('span', 'fine', 'Don’t use your real name. Your teacher already knows it’s you.');
+  form.append(label, input, save, note);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const res = await api.student('setNickname', profile.code, input.value);
+    if (res.ok) {
+      profile.nickname = res.nickname;
+      saveLocal(PROFILE_KEY, profile);
+      showDone();
+    } else {
+      note.textContent = res.error === 'network' ? 'Couldn’t save right now. Try again later.' : res.message;
+    }
+  });
+  return form;
+}
 
+// A section's state, from this device's records and what the server knows.
 function sectionState(sectionId) {
+  const sec = lessons.flatMap((l) => l.sections.map((s) => ({ ...s, lesson: l.skill }))).find((s) => s.id === sectionId);
   const records = finishedRecords(sectionId);
-  if (records.some((r) => r.provisionalMastery)) return ['Platform mastery (provisional)', 'good', 'Practice again'];
-  if (records.some((r) => r.passed)) return ['Done', 'good', 'Practice again'];
+  const s = profile.summary;
+  if (sec.mode === 'skill' && (records.some((r) => r.provisionalMastery) || s.mastered?.includes(sec.lesson))) {
+    return ['Platform mastery (provisional)', 'good', 'Practice again'];
+  }
+  if (records.some((r) => r.passed) || s.sectionsPassed?.includes(sectionId)) return ['Done', 'good', 'Practice again'];
   if (loadProgress(sectionId)) return ['In progress', 'warn', 'Continue'];
-  if (records.length) return ['Tried, not finished', 'warn', 'Try again'];
+  if (records.length || s.sectionAttempts?.[sectionId]) return ['Tried, not finished', 'warn', 'Try again'];
   return ['Not started', 'muted', 'Start'];
 }
 
@@ -197,12 +368,17 @@ function pathList(path) {
       ul.append(row);
     }
     text.append(ul);
-    if (!allCleared) {
+    if (!allCleared && api.preview) {
       // PREVIEW ONLY: in the real app the teacher clears these in the dashboard.
-      text.append(btn('button preview-only', 'Teacher (preview only): mark these checked', () => {
-        saveLocal(CLEARED_KEY, foundations.map((f) => f.gap));
+      text.append(btn('button preview-only', 'Teacher (preview only): mark these checked', async () => {
+        for (const f of foundations) await api.teacher('clearFoundation', profile.id, f.gap);
+        const res = await api.student('login', profile.code);
+        if (res.summary) profile.summary = res.summary;
+        saveLocal(PROFILE_KEY, profile);
         showDone();
       }));
+    } else if (!allCleared) {
+      text.append(btn('button', 'Check again', refreshFromServer));
     }
     li.append(text, pill(allCleared ? 'Checked' : 'Teacher', allCleared ? 'good' : 'warn'));
     ol.append(li);
@@ -229,7 +405,37 @@ function pathList(path) {
   return ol;
 }
 
-// PREVIEW ONLY: every section, so the owner can read all the lesson text.
+// Ask the server for the latest (e.g. the teacher just cleared a check).
+async function refreshFromServer() {
+  const res = await api.student('login', profile.code);
+  if (res.error === 'unknown-code') return showLogin('Your code has changed. Ask your teacher for your new one. Your work is still saved on this device.');
+  if (res.summary) {
+    profile.summary = res.summary;
+    profile.nickname = res.student.nickname;
+    saveLocal(PROFILE_KEY, profile);
+    loadDiagnostic();
+  }
+  route();
+}
+
+function goToSection(sectionId) {
+  const lesson = lessons.find((l) => l.sections.some((s) => s.id === sectionId));
+  openSection({
+    app,
+    lesson,
+    sectionId,
+    rules: masteryRules.default,
+    curriculumVersion: graph.curriculumVersion,
+    studentId: profile.id,
+    // The server counts attempts; this device may have finished some it hasn't uploaded yet.
+    nextAttempt: (id) => Math.max(profile.summary.sectionAttempts?.[id] || 0, finishedRecords(id).length) + 1,
+    onFinished: () => upload(),
+    onExit: route,
+  });
+}
+
+// ---------- preview only ----------
+
 function previewSections() {
   const details = h('details', 'teacher');
   details.append(h('summary', 'teacher-summary', 'Teacher preview: open any lesson section'));
@@ -247,34 +453,8 @@ function previewSections() {
     }
   }
   details.append(ol);
-  const waiting = outboxCount();
-  if (waiting) details.append(h('p', 'fine', `${waiting} finished section${waiting === 1 ? '' : 's'} saved on this device, waiting for the server (not built yet).`));
   return details;
 }
-
-function goToSection(sectionId) {
-  const lesson = lessons.find((l) => l.sections.some((s) => s.id === sectionId));
-  openSection({
-    app,
-    lesson,
-    sectionId,
-    rules: masteryRules.default,
-    curriculumVersion: graph.curriculumVersion,
-    baseSeed: lessonSeed(),
-    onExit: () => (diagnostic && session?.finished ? showDone() : showStart()),
-  });
-}
-
-function lessonSeed() {
-  let seed = loadLocal(LESSON_SEED_KEY);
-  if (!seed) {
-    seed = session?.seed || demoSeed();
-    saveLocal(LESSON_SEED_KEY, seed);
-  }
-  return seed;
-}
-
-// ---------- the teacher's view of the result (preview: shown under the student's) ----------
 
 function teacherView(result) {
   const details = h('details', 'teacher');
@@ -288,24 +468,30 @@ function teacherView(result) {
 function swap(screen) {
   swapInto(app, screen);
 }
-function demoSeed() {
-  const bytes = new Uint32Array(2);
-  crypto.getRandomValues(bytes);
-  return `demo-${bytes[0].toString(36)}${bytes[1].toString(36)}`;
+
+// ---------- start ----------
+
+profile = loadLocal(PROFILE_KEY);
+if (!profile) {
+  showLogin();
+} else {
+  setStudent(profile.id);
+  loadDiagnostic();
+  route();
+  upload().then(() => (outbox().length ? null : refreshFromServerQuietly()));
 }
 
-const finishedBefore = loadLocal(STORE_KEY);
-let resumed = false;
-if (finishedBefore?.finished) {
-  try {
-    session = finishedBefore;
-    diagnostic = replayDiagnostic(setupFor(session.seed), session.answers);
-    resumed = true;
-  } catch {
-    // The saved check doesn't fit the current questions (the app changed). Start fresh.
-    session = null;
-    diagnostic = null;
+// On load: pick up anything the teacher changed, without moving the student off their screen.
+async function refreshFromServerQuietly() {
+  const res = await api.student('login', profile.code);
+  if (res.error === 'unknown-code') return showLogin('Your code has changed. Ask your teacher for your new one. Your work is still saved on this device.');
+  if (!res.summary) return;
+  const changed = JSON.stringify(res.summary) !== JSON.stringify(profile.summary) || res.student.nickname !== profile.nickname;
+  profile.summary = res.summary;
+  profile.nickname = res.student.nickname;
+  saveLocal(PROFILE_KEY, profile);
+  if (changed && document.querySelector('.screen-done, .screen-start')) {
+    loadDiagnostic();
+    route();
   }
 }
-if (resumed) showDone();
-else showStart();

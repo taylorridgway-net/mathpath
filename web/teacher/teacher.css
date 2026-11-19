@@ -177,3 +177,9 @@
 .p-onscreen .p-q, .p-onscreen .p-a { margin: 0; }
 .p-onscreen .p-a { font-weight: 700; }
 .p-onscreen .m-top { border-bottom-color: #111; }
+.t-problem { margin: 0; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--bad-soft); color: var(--bad); border: 1px solid var(--bad); font-weight: 600; }
+.t-wide { width: 14rem; }
+.t-names {
+  width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink); font: inherit; resize: vertical;
+}

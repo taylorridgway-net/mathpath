@@ -20,7 +20,8 @@ export function participation({ diagnostic, sections = [], hasWork = true }, { n
     return t >= start && t <= end;
   });
   const days = new Set(inWindow.map((e) => String(e.at).slice(0, 10)));
-  const last = events.map((e) => e.at).sort().at(-1) || null;
+  const sorted = events.map((e) => e.at).sort();
+  const last = sorted[sorted.length - 1] || null;
   const sectionsFinished = inWindow.filter((e) => e.section).length;
   return {
     daysActive: days.size,

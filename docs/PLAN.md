@@ -181,8 +181,10 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
   - Try the dashboard; review the paper-test items (`curriculum/paper/frac.add-sub.json`, also visible on the Paper tests tab).
   - Decide the build order after the prototype (see CLAUDE.md "Build order after the prototype").
   - Still open from before: confirm "shaky" doesn't put a section on the path; the "rewrite 1/6 over 6" do-nothing step; review lesson text; `docs/SKILL-LIST.md`.
-- **Not built yet from the dashboard plan:** teacher assignments and exemptions, reordering a student's path, due dates. These need the server (step 6) to reach students, so they come with the Apps Script layer.
-- **Next:** build step 6, the Apps Script layer. Plan drafted in `docs/APPS-SCRIPT-PLAN.md`; approved with the owner's answers (see the plan's status line). Start building it.
+- **Google layer (step 6) built:** `server/core/` (sign-in, saving with re-grading and no rerolls, teacher actions, teachers see only their classes), `server/apps-script/` (entry points, Sheets store with LockService), `web/api/client.js`, sign-in screen, "Not you? Sign out", nickname, upload status and retry, live dashboard (loads from the server; add classes and students; all actions saved and logged). Tested with fake Google services, including the real built `Code.js`, and an end-to-end browser run of the real Google files (teacher adds students, student signs in, diagnostic, teacher clears checks, section done offline then uploaded, teacher sees it).
+- **Waiting on owner:** follow `docs/SETUP-GOOGLE.md` (about 15 minutes) with made-up names, then try it on a Chromebook. Tell Claude what happens, especially anything that looks different from the instructions.
+- **Not built yet:** teacher assignments and exemptions, path reordering, due dates; retention checks; the simulated-class load test (step 7, next after the owner's first deploy).
+- **Next:** fix whatever the first real deploy turns up; then step 7, the load test (a pretend class of up to 6 x 45 students saving at once against the Sheets store).
 
 ## 4. Build order for the fractions prototype
 
@@ -191,7 +193,7 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
 3. Adaptive diagnostic logic (Node), then a bare test page. **(Logic done; the test page comes with the student UI.)**
 4. Student UI: math keypad, lesson player, practice, local save/retry. **(Done for `frac.add-sub`; sending saves to the server comes with step 6.)**
 5. Teacher dashboard: class view, heatmap, student profile, printable paper tests, verification entry. **(Done against a pretend class; assignments/exemptions come with step 6.)**
-6. Apps Script layer: deploy, code login, teacher Google login, batched save with LockService, server-chosen seeds, server re-grading.
+6. Apps Script layer: deploy, code login, teacher Google login, batched save with LockService, server-chosen seeds, server re-grading. **(Built and tested here; owner's first deploy pending.)**
 7. Simulated-class load test with synthetic students.
 8. Fill in the remaining fraction skills (1-4, 6-8) end to end.
 

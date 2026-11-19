@@ -10,8 +10,9 @@
 // In "Putting it together", guided problems get one answer box per step
 // (engine/practice/scaffold.js).
 //
-// PREVIEW: the seed is made in the browser. In the real app the server hands it
-// out (student code + attempt number), so students can't reroll for easy problems.
+// Seeds come from the student's server-issued id and the attempt number the
+// server has on record (engine/seeds.js); the server rejects any other seed,
+// so students can't reroll for easy problems.
 
 import { generators, generateProblem } from '../../engine/generators/index.js';
 import { startPractice } from '../../engine/practice/practice.js';
@@ -22,7 +23,8 @@ import { renderMath } from '../components/render-math.js';
 import { renderLessonText } from '../components/lesson-text.js';
 import { createFractionBars } from '../components/fraction-bars.js';
 import { createKeypad } from '../components/keypad.js';
-import { loadProgress, saveProgress, clearProgress, saveFinished, finishedRecords } from '../storage/sections.js';
+import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
+import { seedFor } from '../../engine/seeds.js';
 import { h, section as screenEl, btn, swap, split } from '../components/dom.js';
 
 const PHASE_NAMES = {
@@ -31,17 +33,19 @@ const PHASE_NAMES = {
   mastery: 'Mastery check',
 };
 
-export function openSection({ app, lesson, sectionId, rules, curriculumVersion, baseSeed, onExit }) {
+// studentId: from sign-in. nextAttempt(sectionId): the attempt number to use.
+// onFinished(record): called once with the finished record (already queued for upload).
+export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit }) {
   const sec = lesson.sections.find((s) => s.id === sectionId);
   if (!sec) throw new Error(`No section "${sectionId}"`);
 
   let run = loadProgress(sectionId);
   if (!run) {
-    const attemptNo = finishedRecords(sectionId).length + 1;
+    const attemptNo = nextAttempt(sectionId);
     run = {
       lesson: lesson.skill,
       section: sectionId,
-      seed: `${baseSeed}:${sectionId}:${attemptNo}`,
+      seed: seedFor(studentId, sectionId, attemptNo),
       attemptNo,
       stage: 'learn',
       answers: [],
@@ -440,6 +444,8 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     const result = practice.result();
     const record = {
       type: 'lesson-section',
+      saveId: `${run.seed}|${run.startedAt}`,
+      studentId,
       lesson: lesson.skill,
       section: sectionId,
       gap: sec.forGap,
@@ -463,6 +469,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       saveFinished(record);
       clearProgress(sectionId);
       run.stage = 'done';
+      onFinished?.(record);
     }
 
     const screen = frame('Done');

@@ -1,10 +1,12 @@
-// The teacher dashboard (preview version, with a pretend class).
+// The teacher dashboard.
 //
-// PREVIEW ONLY: there is no server yet. The class is made up (tools/synthetic-class.js:
-// pretend students run through the real diagnostic and practice engine), and the
-// teacher's own changes (paper-test scores, checks, code resets) are kept in this
-// browser. In the real app all of this comes from and goes to the server, and a
-// teacher sees only their own classes.
+// On Google Apps Script ("live"): the teacher's own classes come from the server
+// (which checks their Google account), and every change (paper-test scores,
+// checks, code resets, new students) is sent to the server and logged there.
+//
+// In the claude.ai preview: a pretend class (tools/synthetic-class.js: made-up
+// students run through the real diagnostic and practice engine), and the
+// teacher's changes are kept in this browser.
 //
 // All the thinking is in engine/teacher/ (tested); this file draws.
 
@@ -31,6 +33,7 @@ import { diagnosticReport } from '../components/diagnostic-report.js';
 import { renderLessonText } from '../components/lesson-text.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadLocal, saveLocal } from '../storage/local.js';
+import { createApi } from '../api/client.js';
 import { h, btn, pill, list, swap } from '../components/dom.js';
 
 // ---------- curriculum and engine ----------
@@ -45,6 +48,10 @@ const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id,
 const misconceptionInfo = new Map(misconceptions.map((m) => [m.id, m]));
 const FRACTION_SKILLS = fracGraph.skills.map((s) => s.id);
 const ME = 'you (preview)';
+const api = createApi({ setup });
+const live = !api.preview;
+let serverData = null; // live: what the server sent
+if (live) document.querySelector('.preview-banner')?.remove();
 
 // ---------- the teacher's saved changes (preview: this browser only) ----------
 
@@ -69,8 +76,8 @@ function periodSizes(count, seed) {
   return Array.from({ length: count }, () => ({ size: rng.int(20, 45) }));
 }
 
-function buildClass() {
-  data = syntheticClass({ periods: periodSizes(store.periods, store.classSeed), seed: store.classSeed, now, setup });
+function buildClass(then = render) {
+  data = live ? serverData : syntheticClass({ periods: periodSizes(store.periods, store.classSeed), seed: store.classSeed, now, setup });
   const nameOf = new Map(data.roster.map((r) => [r.code, r.realName]));
   students = data.students.map((s) => {
     const diagnostic = data.diagnostics.find((d) => d.code === s.code) || null;
@@ -80,22 +87,23 @@ function buildClass() {
       : null;
     return {
       ...s,
-      name: nameOf.get(s.code),
+      id: s.id || s.code,
+      name: nameOf.get(s.code) || s.nickname || s.code,
       diagnostic: diagnostic && { ...diagnostic, result },
       result,
       sections: data.sections.filter((r) => r.code === s.code),
     };
   });
   refresh();
-  render();
+  then();
 }
 
 // Re-work-out every student's status after the teacher changes something.
 function refresh() {
   for (const s of students) {
-    s.shownCode = store.codeChanges[s.code] || s.code;
-    s.verifications = [...data.verifications, ...store.verifications].filter((v) => v.code === s.code);
-    s.cleared = [...data.clearances, ...store.clearances].filter((c) => c.code === s.code).map((c) => c.gap);
+    s.shownCode = live ? s.code : store.codeChanges[s.code] || s.code;
+    s.verifications = [...data.verifications, ...(live ? [] : store.verifications)].filter((v) => v.code === s.code);
+    s.cleared = [...data.clearances, ...(live ? [] : store.clearances)].filter((c) => c.code === s.code).map((c) => c.gap);
     s.status = studentStatus({ diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, graph, lessons });
     const hasWork = Boolean(s.status.next) && !s.status.waiting;
     s.part = participation({ diagnostic: s.diagnostic, sections: s.sections, hasWork }, { now, expectedSections: store.expected });
@@ -369,12 +377,7 @@ function groups() {
     }
     card.append(chips(group.students));
     if (group.foundation) {
-      card.append(btn('button', `I’ve checked this for all ${group.students.length}`, () => {
-        for (const code of group.students) clearFoundation(code, group.target);
-        persist();
-        refresh();
-        render();
-      }));
+      card.append(btn('button', `I’ve checked this for all ${group.students.length}`, () => clearFoundations(group.students, group.target, render)));
     }
     nextCol.append(card);
   }
@@ -408,10 +411,44 @@ function chips(codes) {
   return wrap;
 }
 
-function clearFoundation(code, gap) {
-  if (store.clearances.some((c) => c.code === code && c.gap === gap)) return;
-  store.clearances.push({ code, gap, by: ME, at: new Date().toISOString() });
-  logChange(code, `Marked “${graph.get(gap).name}” as checked`, 'waiting', 'checked');
+// The teacher checked a foundation for these students; their lessons open.
+async function clearFoundations(codes, gap, then) {
+  if (live) {
+    for (const code of codes) {
+      const res = await api.teacher('clearFoundation', idOf(code), gap);
+      if (res.error) return problem(res);
+    }
+    return reload(then);
+  }
+  for (const code of codes) {
+    if (store.clearances.some((c) => c.code === code && c.gap === gap)) continue;
+    store.clearances.push({ code, gap, by: ME, at: new Date().toISOString() });
+    logChange(code, `Marked “${graph.get(gap).name}” as checked`, 'waiting', 'checked');
+  }
+  persist();
+  refresh();
+  then();
+}
+
+const idOf = (code) => students.find((s) => s.code === code).id;
+
+// Live: ask the server for everything again, then redraw with `then`.
+async function reload(then = render) {
+  const res = await api.teacher('teacherData');
+  if (res.error) return problem(res);
+  serverData = res;
+  buildClass(then);
+}
+
+// Something went wrong on the server: say so plainly, keep the page usable.
+function problem(res) {
+  const msg = res.error === 'network'
+    ? 'Couldn’t reach MathPath. Check the connection and try again. Nothing was changed.'
+    : res.message || res.error;
+  const bar = h('p', 't-problem', msg);
+  bar.setAttribute('role', 'alert');
+  app.querySelector('.t-problem')?.remove();
+  app.firstElementChild?.prepend(bar);
 }
 
 // ---------- Participation ----------
@@ -553,7 +590,13 @@ function scoreCard(s, skillId, version) {
     const { score, outOf, suggested } = scorePaperTest(marks, rules.verification);
     card.append(h('p', 't-card-sub', `${score} of ${outOf}. Suggested: ${suggested === 'verified' ? 'verified' : 'not yet'}.`));
     const actions = h('div', 'actions');
-    const save = (decision) => () => {
+    const save = (decision) => async () => {
+      if (live) {
+        const res = await api.teacher('verify', { studentId: s.id, skillId, version: version.id, marks, decision });
+        if (res.error) return problem(res);
+        delete marksDraft[s.code];
+        return reload();
+      }
       const rec = verificationRecord({
         code: s.code, skillId, assessmentId: skillId, version: version.id, marks, rule: rules.verification,
         decision, by: ME, at: new Date().toISOString(), previous: s.verifications,
@@ -619,6 +662,9 @@ function roster() {
   const screen = frame('Roster');
   screen.append(h('p', 'lede', 'Real names live only here, in your private roster. Students sign in with their code and may pick a nickname; the app stores no names, emails or birthdates.'));
 
+  if (live) {
+    screen.append(addStudentsCard());
+  } else {
   const settings = h('div', 't-card t-pretend');
   settings.append(h('h2', 't-h2', 'Pretend class (preview only)'));
   settings.append(h('p', 't-card-sub', 'Everyone here is made up and was run through the real diagnostic and practice code. Change the number of periods to see a bigger or smaller class (20–45 students each).'));
@@ -636,6 +682,7 @@ function roster() {
   }));
   settings.append(row);
   screen.append(settings);
+  }
 
   const scroller = h('div', 't-scroll');
   const table = h('table', 't-table');
@@ -657,6 +704,10 @@ function roster() {
         reset.textContent = `Tap again: ${s.shownCode} stops working`;
         return;
       }
+      if (live) {
+        api.teacher('resetCode', s.id).then((res) => (res.error ? problem(res) : reload()));
+        return;
+      }
       const fresh = newCode(s.code);
       logChange(s.code, 'Code reset', s.shownCode, fresh);
       store.codeChanges[s.code] = fresh;
@@ -672,6 +723,50 @@ function roster() {
   scroller.append(table);
   screen.append(scroller);
   swap(app, screen);
+}
+
+// Live only: make a class, and add students to it (codes are made by the server).
+function addStudentsCard() {
+  const card = h('div', 't-card');
+  card.append(h('h2', 't-h2', 'Add students'));
+  card.append(h('p', 't-card-sub', 'Paste names, one per line. Each student gets a code to sign in with. Names stay in your private roster; students never see them.'));
+  const row = h('div', 't-controls');
+  const pick = h('select', 't-select');
+  pick.id = 'add-class';
+  for (const c of data.classes) pick.append(new Option(c.name, c.id));
+  pick.append(new Option('+ New class…', 'new'));
+  const newName = h('input', 't-number t-wide');
+  Object.assign(newName, { id: 'new-class-name', placeholder: 'e.g. Period 3' });
+  newName.hidden = data.classes.length > 0;
+  if (!data.classes.length) pick.value = 'new';
+  pick.addEventListener('change', () => { newName.hidden = pick.value !== 'new'; });
+  row.append(pick, newName);
+  const names = h('textarea', 't-names');
+  Object.assign(names, { id: 'add-names', rows: 6, placeholder: 'One name per line' });
+  const go = btn('button button-primary', 'Add students', async () => {
+    const wanted = names.value.split('\n').map((n) => n.trim()).filter(Boolean);
+    if (!wanted.length) return;
+    go.disabled = true;
+    let classId = pick.value;
+    if (classId === 'new') {
+      const made = await api.teacher('addClass', newName.value || 'New class');
+      if (made.error) { go.disabled = false; return problem(made); }
+      classId = made.class.id;
+    }
+    const res = await api.teacher('addStudents', classId, wanted);
+    go.disabled = false;
+    if (res.error) return problem(res);
+    reload(() => {
+      tab = 'roster';
+      roster();
+      const done = h('div', 't-card');
+      done.append(h('h2', 't-h2', `Added ${res.students.length} students. Their codes:`));
+      done.append(list(res.students.map((x) => `${x.realName || '(no name)'}: ${x.code}`)));
+      app.querySelector('.t-screen').insertBefore(done, app.querySelector('.t-screen .t-card'));
+    });
+  });
+  card.append(row, names, go);
+  return card;
 }
 
 function newCode(code) {
@@ -735,12 +830,7 @@ function showStudent(code) {
       li.append(h('span', '', `${item.kind === 'unchecked' ? 'Check first' : 'Gap, no lesson yet'}: ${item.name}`));
       if (item.cleared) li.append(pill('Checked', 'good'));
       else {
-        li.append(btn('t-link', 'Mark checked', () => {
-          clearFoundation(s.code, item.gap);
-          persist();
-          refresh();
-          showStudent(code);
-        }));
+        li.append(btn('t-link', 'Mark checked', () => clearFoundations([s.code], item.gap, () => showStudent(code))));
       }
     }
     ol.append(li);
@@ -756,7 +846,7 @@ function showStudent(code) {
   left.append(partCard);
 
   // Change log.
-  const mine = store.log.filter((l) => l.code === s.code);
+  const mine = (live ? data.log || [] : store.log).filter((l) => l.code === s.code);
   const logCard = h('div', 't-card');
   logCard.append(h('h2', 't-h2', 'Changes'));
   logCard.append(list(mine.map((l) => `${day(l.at)}: ${l.what} (${l.before} → ${l.after}), by ${l.by}`), 'No changes yet.'));
@@ -822,4 +912,25 @@ function day(iso) {
   return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 }
 
-buildClass();
+// ---------- start ----------
+
+if (live) {
+  const loading = h('section', 'screen t-screen');
+  loading.append(h('p', 'lede', 'Loading your classes…'));
+  swap(app, loading);
+  api.teacher('teacherData').then((res) => {
+    if (res.error) {
+      const screen = h('section', 'screen t-screen');
+      screen.append(h('h1', 'title t-title', 'Can’t open the dashboard'), h('p', 'lede', res.error === 'network'
+        ? 'Couldn’t reach MathPath. Check the connection and reload the page.'
+        : res.message));
+      swap(app, screen);
+      return;
+    }
+    serverData = res;
+    if (!res.classes.length) tab = 'roster';
+    buildClass();
+  });
+} else {
+  buildClass();
+}

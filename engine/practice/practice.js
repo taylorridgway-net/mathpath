@@ -104,7 +104,7 @@ export function startPractice({ generators, plan, rules, seed }) {
   // The problem to show now (with feedback from the last try, if retrying), or null when done.
   function currentProblem() {
     if (!current) return null;
-    const last = current.attempts.at(-1);
+    const last = current.attempts[current.attempts.length - 1];
     return {
       index: current.index,
       phase: current.phase,
