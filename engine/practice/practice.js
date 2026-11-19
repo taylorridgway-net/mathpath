@@ -33,12 +33,16 @@ export function startPractice({ generators, plan, rules, seed }) {
   const skillRule = { ...rules.skill, ...plan.skill };
 
   const problems = []; // { index, phase, generator, seed, difficulty, problem, attempts: [], outcome }
-  let phase = 'guided';
+  // Quick review (a "shaky" subskill, owner decision): no guided problems, straight
+  // to the check. Any problem not right on the first try ends the review, and the
+  // student then does the full section.
+  const review = Boolean(plan.review) && mode === 'section';
+  let phase = review ? 'check' : 'guided';
   let current = null;
   let endedBy = null;
   let skillDifficulty = skillRule.startDifficulty;
 
-  newProblem(guidedRule.difficulty);
+  newProblem(review ? checkRule.difficulty : guidedRule.difficulty);
 
   function newProblem(difficulty) {
     const index = problems.length;
@@ -73,6 +77,7 @@ export function startPractice({ generators, plan, rules, seed }) {
     }
 
     if (phase === 'check') {
+      if (review && outcome !== 'right-first') return end('review-missed');
       if (rightInARow(inPhase) >= checkRule.rightInARow) return end('passed');
       if (inPhase.length >= checkRule.maxProblems) return end('limit');
       return newProblem(checkRule.difficulty); // after a miss this is the "similar problem"
@@ -158,6 +163,7 @@ export function startPractice({ generators, plan, rules, seed }) {
     return {
       generator: generatorId,
       mode,
+      review,
       seed,
       finished: Boolean(endedBy),
       endedBy,

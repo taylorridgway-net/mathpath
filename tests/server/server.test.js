@@ -165,3 +165,21 @@ test('nickname: kept short, no email-looking characters', () => {
   assert.equal(server.student.setNickname(kid.code, 'Ace <script>@gmail.com').nickname, 'Ace scriptgmail.com');
   assert.equal(server.student.setNickname(kid.code, 'A really long nickname here ok').nickname.length, 20);
 });
+
+test('a quick review is re-graded as a review: a slip ends it, not passed; the next attempt is the full section', () => {
+  const { server, kid } = fresh();
+  const section = 'frac.add-sub.combine';
+  const seed = seedFor(kid.id, section, 1);
+  const p = startPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: section, mode: 'section', review: true } });
+  const answers = [];
+  for (let c = p.currentProblem(), i = 0; c; c = p.currentProblem(), i++) {
+    const a = i === 0 ? {} : right(c.problem);
+    answers.push(a);
+    p.submit(a);
+  }
+  const res = server.student.saveRecord(kid.code, { type: 'lesson-section', saveId: 'rv1', section, attemptNo: 1, seed, answers, review: true });
+  assert.equal(res.result.endedBy, 'review-missed');
+  assert.equal(res.summary.sectionAttempts[section], 1);
+  const full = sectionRecord(kid.id, section, 2);
+  assert.equal(server.student.saveRecord(kid.code, full).result.passed, true);
+});

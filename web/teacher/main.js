@@ -823,7 +823,7 @@ function showStudent(code) {
   for (const item of s.status.path) {
     const li = h('li', 't-path-item');
     if (item.kind === 'section') {
-      li.append(h('span', '', item.title));
+      li.append(h('span', '', item.review ? `Quick review: ${item.title}` : item.title));
       const look = { done: ['Done', 'good'], tried: ['Started', 'warn'], 'not-started': [item.waiting ? 'Waiting' : 'Not started', 'muted'] }[item.progress];
       li.append(pill(...look));
     } else {

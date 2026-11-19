@@ -155,3 +155,25 @@ test('problems match what the server regenerates from each saved seed', () => {
     assert.deepEqual(generateProblem(row.generator, row.seed, row.difficulty), p.problemAt(row.index));
   }
 });
+
+// ---- quick review (shaky subskill) ----
+const reviewSetup = (generator) => ({ generators, rules, seed: 'r1', plan: { generator, mode: 'section', review: true } });
+
+test('quick review: no guided problems; 3 right in a row passes', () => {
+  const { result } = run(reviewSetup('frac.add-sub.combine'), (pr) => right(pr));
+  assert.equal(result.endedBy, 'passed');
+  assert.equal(result.review, true);
+  assert.deepEqual(result.problems.map((x) => x.phase), ['check', 'check', 'check']);
+});
+
+test('quick review: one problem not right on the first try ends it (then the full section)', () => {
+  const { result } = run(reviewSetup('frac.add-sub.combine'), (pr, attempt, i) => (i === 1 && attempt === 1 ? wrong(pr) : right(pr)));
+  assert.equal(result.endedBy, 'review-missed');
+  assert.equal(result.passed, false);
+  assert.equal(result.problems.length, 2);
+});
+
+test('quick review only applies to one-step sections, not "Putting it together"', () => {
+  const p = startPractice({ generators, rules, seed: 'r2', plan: { generator: 'frac.add-sub', mode: 'skill', review: true } });
+  assert.equal(p.currentProblem().phase, 'guided');
+});

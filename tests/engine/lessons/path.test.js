@@ -92,3 +92,17 @@ test('no foundation items: nothing waits', () => {
   const r = result({ 'frac.add-sub.combine': 'gap' }, ['frac.add-sub.combine']);
   assert.ok(buildPath({ result: r, lessons: [lesson], graph }).every((s) => !s.waiting));
 });
+
+test('shaky: a quick review of that section, in lesson order; shaky alone adds no "Putting it together" (owner decision)', () => {
+  const r = result({ 'frac.add-sub.rewrite': 'shaky', 'frac.add-sub.common-denom': 'known' }, []);
+  const path = buildPath({ result: r, lessons: [lesson], graph });
+  assert.deepEqual(path.map((p) => [p.section, p.review]), [['frac.add-sub.rewrite', true]]);
+});
+
+test('shaky and gap together: review and full sections in lesson order, then "Putting it together"', () => {
+  const r = result({ 'frac.add-sub.combine': 'gap', 'frac.add-sub.common-denom': 'shaky' }, ['frac.add-sub.combine']);
+  const path = buildPath({ result: r, lessons: [lesson], graph });
+  assert.deepEqual(path.map((p) => [p.section, p.review]), [
+    ['frac.add-sub.common-denom', true], ['frac.add-sub.combine', false], ['frac.add-sub.whole', false],
+  ]);
+});

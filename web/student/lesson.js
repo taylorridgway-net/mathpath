@@ -35,7 +35,9 @@ const PHASE_NAMES = {
 
 // studentId: from sign-in. nextAttempt(sectionId): the attempt number to use.
 // onFinished(record): called once with the finished record (already queued for upload).
-export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit }) {
+// review: a quick review (the diagnostic marked this subskill "shaky"): straight to
+// the check; a miss ends it, and openFull() starts the full section.
+export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit, review = false, openFull }) {
   const sec = lesson.sections.find((s) => s.id === sectionId);
   if (!sec) throw new Error(`No section "${sectionId}"`);
 
@@ -47,7 +49,8 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       section: sectionId,
       seed: seedFor(studentId, sectionId, attemptNo),
       attemptNo,
-      stage: 'learn',
+      review: review && sec.mode === 'section',
+      stage: review && sec.mode === 'section' ? 'practice' : 'learn',
       answers: [],
       times: [],
       scaffolds: {}, // practice problem index -> step answers
@@ -60,7 +63,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     generators,
     rules,
     seed: run.seed,
-    plan: { generator: sec.generator, mode: sec.mode },
+    plan: { generator: sec.generator, mode: sec.mode, review: Boolean(run.review) },
   };
   let practice;
   try {
@@ -222,7 +225,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     }
     if (!scaffolded) scaffold = null;
 
-    const screen = frame(PHASE_NAMES[cur.phase]);
+    const screen = frame(run.review ? 'Quick review' : PHASE_NAMES[cur.phase]);
     screen.append(progressBar(cur));
 
     if (scaffold) {
@@ -330,7 +333,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
   }
 
   function showRight(cur, response) {
-    const screen = frame(PHASE_NAMES[cur.phase]);
+    const screen = frame(run.review ? 'Quick review' : PHASE_NAMES[cur.phase]);
     screen.append(progressBar(cur));
     const cols = split();
     cols.main.append(problemCard(cur.problem));
@@ -451,6 +454,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       gap: sec.forGap,
       generator: sec.generator,
       mode: sec.mode,
+      review: Boolean(run.review),
       seed: run.seed,
       attemptNo: run.attemptNo,
       curriculumVersion,
@@ -477,6 +481,12 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     if (result.provisionalMastery) {
       screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'You showed you can do the whole thing'));
       screen.append(h('p', 'lede', 'This counts as platform mastery for now. Your teacher will check it with a short problem set on paper.'));
+    } else if (result.passed && run.review) {
+      screen.append(h('p', 'eyebrow', `Quick review: ${sec.title}`), h('h1', 'title', 'You’ve got this one'));
+      screen.append(h('p', 'lede', `${rules.sectionCheck.rightInARow} right in a row. No need for the full section.`));
+    } else if (result.endedBy === 'review-missed') {
+      screen.append(h('p', 'eyebrow', `Quick review: ${sec.title}`), h('h1', 'title', 'Let’s go through this one properly'));
+      screen.append(h('p', 'lede', 'That one tripped you up, so the full section is next: a short explanation, an example, and practice with help.'));
     } else if (result.passed) {
       screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Section done'));
       screen.append(h('p', 'lede', `${rules.sectionCheck.rightInARow} right in a row. This step is ready to use in whole problems.`));
@@ -486,7 +496,11 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     }
     screen.append(h('p', 'fine', `${result.problemCount} problems · ${firstTry} right on the first try`));
     const actions = h('div', 'actions');
-    actions.append(btn('button button-primary', 'Back to your path', onExit));
+    if (result.endedBy === 'review-missed' && openFull) {
+      actions.append(btn('button button-primary', 'Start the full section', openFull), btn('button', 'Back to your path', onExit));
+    } else {
+      actions.append(btn('button button-primary', 'Back to your path', onExit));
+    }
     screen.append(actions);
     swap(app, screen);
   }

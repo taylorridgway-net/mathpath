@@ -180,9 +180,9 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
 - **Waiting on owner:**
   - Try the dashboard; review the paper-test items (`curriculum/paper/frac.add-sub.json`, also visible on the Paper tests tab).
   - Decide the build order after the prototype (see CLAUDE.md "Build order after the prototype").
-  - Still open from before: confirm "shaky" doesn't put a section on the path; the "rewrite 1/6 over 6" do-nothing step; review lesson text; `docs/SKILL-LIST.md`.
+  - Still open from before: the "rewrite 1/6 over 6" do-nothing step; review lesson text; `docs/SKILL-LIST.md`.
 - **Google layer (step 6) built:** `server/core/` (sign-in, saving with re-grading and no rerolls, teacher actions, teachers see only their classes), `server/apps-script/` (entry points, Sheets store with LockService), `web/api/client.js`, sign-in screen, "Not you? Sign out", nickname, upload status and retry, live dashboard (loads from the server; add classes and students; all actions saved and logged). Tested with fake Google services, including the real built `Code.js`, and an end-to-end browser run of the real Google files (teacher adds students, student signs in, diagnostic, teacher clears checks, section done offline then uploaded, teacher sees it).
-- **Waiting on owner:** follow `docs/SETUP-GOOGLE.md` (about 15 minutes) with made-up names, then try it on a Chromebook. Tell Claude what happens, especially anything that looks different from the instructions.
+- **Owner deployed it** to the school Google account and tested as a student (2026-11-20). That test found that a "shaky" result left the path empty; fixed with the Quick review (CLAUDE.md). The owner pastes updated files and makes a new deployment version after each change (docs/SETUP-GOOGLE.md, "Updating later").
 - **Not built yet:** teacher assignments and exemptions, path reordering, due dates; retention checks; the simulated-class load test (step 7, next after the owner's first deploy).
 - **Next:** fix whatever the first real deploy turns up; then step 7, the load test (a pretend class of up to 6 x 45 students saving at once against the Sheets store).
 

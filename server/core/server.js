@@ -129,7 +129,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     if (record.seed !== seed) return fail('wrong-seed', 'Seed doesn’t match.');
     let result;
     try {
-      result = replayPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: sec.generator, mode: sec.mode } }, record.answers || []).result();
+      result = replayPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: sec.generator, mode: sec.mode, review: record.review === true } }, record.answers || []).result();
     } catch (e) {
       return fail('regrade-failed', String(e.message || e));
     }
@@ -142,7 +142,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       result: { endedBy: result.endedBy, passed: result.passed, provisionalMastery: result.provisionalMastery },
       row: {
         studentId: student.id, saveId: record.saveId, lesson: sec.lesson, section: sec.id, gap: sec.forGap, generator: sec.generator,
-        mode: sec.mode, seed, attemptNo, answers: record.answers, times: record.times || [], scaffolds: record.scaffolds || {},
+        mode: sec.mode, review: record.review === true, seed, attemptNo, answers: record.answers, times: record.times || [], scaffolds: record.scaffolds || {},
         hintsShown: record.hintsShown || [], startedAt: record.startedAt, finishedAt: record.finishedAt, receivedAt: now(),
         curriculumVersion: setup.graph.curriculumVersion,
         // The server's own grading:

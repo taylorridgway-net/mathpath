@@ -388,7 +388,10 @@ function pathList(path) {
     const li = h('li', 'path-item');
     const text = h('div', 'path-text');
     const [label, tone, action] = sectionState(item.section);
-    text.append(h('span', 'path-title', item.title));
+    // A "shaky" subskill starts as a quick review, until the student has tried it once.
+    const review = item.review && !triedBefore(item.section);
+    text.append(h('span', 'path-title', review ? `Quick review: ${item.title}` : item.title));
+    if (review && tone === 'muted') text.append(h('span', 'path-note', 'You were close on this in the check. Get 3 right in a row and it’s done.'));
     if (item.waiting) {
       text.append(pill('Waiting for your teacher', 'muted'));
       const b = btn('button', action, () => {});
@@ -398,11 +401,15 @@ function pathList(path) {
       text.append(pill(label, tone));
       const primary = !nextMarked && tone !== 'good';
       if (primary) nextMarked = true;
-      li.append(text, btn(primary ? 'button button-primary' : 'button', action, () => goToSection(item.section)));
+      li.append(text, btn(primary ? 'button button-primary' : 'button', action, () => goToSection(item.section, { review })));
     }
     ol.append(li);
   });
   return ol;
+}
+
+function triedBefore(sectionId) {
+  return finishedRecords(sectionId).length > 0 || (profile.summary.sectionAttempts?.[sectionId] || 0) > 0;
 }
 
 // Ask the server for the latest (e.g. the teacher just cleared a check).
@@ -418,7 +425,7 @@ async function refreshFromServer() {
   route();
 }
 
-function goToSection(sectionId) {
+function goToSection(sectionId, { review = false } = {}) {
   const lesson = lessons.find((l) => l.sections.some((s) => s.id === sectionId));
   openSection({
     app,
@@ -431,6 +438,8 @@ function goToSection(sectionId) {
     nextAttempt: (id) => Math.max(profile.summary.sectionAttempts?.[id] || 0, finishedRecords(id).length) + 1,
     onFinished: () => upload(),
     onExit: route,
+    review,
+    openFull: () => goToSection(sectionId, { review: false }),
   });
 }
 

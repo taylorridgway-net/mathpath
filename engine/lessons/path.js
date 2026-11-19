@@ -19,8 +19,10 @@
 // is marked `waiting` (owner decision: the student waits for the teacher).
 // `cleared` lists the foundation ids the teacher has checked off for this student.
 //
-// Only "gap" puts a section on the path. "Shaky" (one miss, then right) doesn't;
-// the teacher can still assign it.
+// "Gap" puts the full section on the path. "Shaky" (one miss, then right) puts a
+// quick review of that section on the path instead (owner decision 2026-11-20):
+// straight to the check; a miss there sends the student through the full section.
+// Shaky alone doesn't add "Putting it together".
 //
 // As lessons for foundation skills get built, "not-built" and "unchecked" items
 // turn into real sections automatically, in the right order.
@@ -40,10 +42,10 @@ export function buildPath({ result, lessons, graph, cleared = [] }) {
 
   const items = [...foundations];
   for (const lesson of [...lessons].sort((a, b) => depth(a.skill) - depth(b.skill))) {
-    const parts = lesson.sections.filter((s) => s.mode === 'section' && status(s.forGap) === 'gap');
+    const parts = lesson.sections.filter((s) => s.mode === 'section' && ['gap', 'shaky'].includes(status(s.forGap)));
     const whole = lesson.sections.find((s) => s.mode === 'skill');
-    const wholeNeeded = parts.length > 0 || status(lesson.skill) === 'gap';
-    for (const s of parts) items.push(sectionItem(lesson, s));
+    const wholeNeeded = parts.some((s) => status(s.forGap) === 'gap') || status(lesson.skill) === 'gap';
+    for (const s of parts) items.push({ ...sectionItem(lesson, s), review: status(s.forGap) === 'shaky' });
     if (whole && wholeNeeded) items.push(sectionItem(lesson, whole));
   }
   const waiting = foundations.some((f) => !f.cleared);
@@ -51,7 +53,7 @@ export function buildPath({ result, lessons, graph, cleared = [] }) {
 }
 
 function sectionItem(lesson, section) {
-  return { kind: 'section', lesson: lesson.skill, section: section.id, gap: section.forGap, title: section.title };
+  return { kind: 'section', lesson: lesson.skill, section: section.id, gap: section.forGap, title: section.title, review: false };
 }
 
 // How far down the essential-prerequisite chain a skill or subskill sits:
