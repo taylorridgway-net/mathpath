@@ -102,7 +102,7 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
           "id": "frac.add-sub.common-denom",
           "name": "Find a common denominator",
           "prerequisites": [
-            { "id": "whole.mult-div.facts", "strength": "essential" },
+            { "id": "whole.mult-div.mult-facts", "strength": "essential" },
             { "id": "whole.factors-multiples.lcm", "strength": "supporting",
               "why": "Multiplying the denominators always works; the LCM just keeps numbers smaller." }
           ]
@@ -144,7 +144,7 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
 | ID | Skill | Subskills |
 |---|---|---|
 | `whole.add-sub` | Whole-number add/subtract | (assumed) |
-| `whole.mult-div` | Multiplication and division | `.facts` (to 12x12), `.remainders` |
+| `whole.mult-div` | Multiplication and division | `.mult-facts` (to 12x12), `.div-facts`, `.remainders` |
 | `whole.factors-multiples` | Factors and multiples | `.factors`, `.gcf`, `.lcm` |
 | `int.add-sub` | Integer add/subtract | (designed with integers area) |
 | `int.mult-div` | Integer multiply/divide | (designed with integers area) |
@@ -154,11 +154,11 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
 | # | Skill | Diagnostic subskills | Prerequisites |
 |---|---|---|---|
 | 1 | `frac.meaning` Understand fractions | `.read-models` name a fraction from a picture; `.number-line` place on a number line incl. >1; `.division` fraction as division, wholes as fractions | `whole.mult-div` S |
-| 2 | `frac.equivalent` Equivalent fractions and simplest form | `.scale`; `.missing` (3/4 = ?/20); `.simplify` | `frac.meaning` E; `whole.mult-div.facts` E; `.simplify` <- `whole.factors-multiples` E |
+| 2 | `frac.equivalent` Equivalent fractions and simplest form | `.scale`; `.missing` (3/4 = ?/20); `.simplify` | `frac.meaning` E; `whole.mult-div.mult-facts` E; `.simplify` <- `whole.factors-multiples` E |
 | 3 | `frac.compare` Compare and order | `.like`; `.benchmark` (0, 1/2, 1); `.unlike` | `frac.meaning` E; `.unlike` <- `frac.equivalent` E |
 | 4 | `frac.mixed` Mixed numbers and improper fractions | `.to-improper`; `.to-mixed` | `frac.meaning` E; `.to-mixed` <- `whole.mult-div.remainders` E |
 | 5 | `frac.add-sub` Add and subtract | `.common-denom`; `.rewrite`; `.combine`; `.simplify-result`; `.mixed` | see example above |
-| 6 | `frac.multiply` Multiply | `.by-whole` (incl. "2/3 of 12"); `.by-fraction`; `.simplify`; `.mixed` (catches 2 1/2 x 3 1/2 = 6 1/4) | `frac.meaning` E; `whole.mult-div.facts` E; `.simplify` <- `frac.equivalent.simplify` E; `.mixed` <- `frac.mixed` E |
+| 6 | `frac.multiply` Multiply | `.by-whole` (incl. "2/3 of 12"); `.by-fraction`; `.simplify`; `.mixed` (catches 2 1/2 x 3 1/2 = 6 1/4) | `frac.meaning` E; `whole.mult-div.mult-facts` E; `.simplify` <- `frac.equivalent.simplify` E; `.mixed` <- `frac.mixed` E |
 | 7 | `frac.divide` Divide | `.meaning` (how many 1/2s in 3?); `.reciprocal`; `.multiply-reciprocal` (catches flipping the wrong one); `.mixed` | `frac.multiply` E; `frac.meaning` E; `.mixed` <- `frac.mixed` E |
 | 8 | `frac.signed` Negative fractions | `.sign-placement` (-3/4 = (-3)/4 = 3/(-4)); `.add-sub`; `.mult-div` | `.add-sub` <- `int.add-sub` E, `frac.add-sub` E; `.mult-div` <- `int.mult-div` E, `frac.multiply` E, `frac.divide` E |
 

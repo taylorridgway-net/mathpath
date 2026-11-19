@@ -35,7 +35,9 @@ test('a student who knows everything: no gaps, very few questions', () => {
   }
   // Credited without asking, because add/subtract depends on them.
   assert.equal(statusOf(result, 'frac.equivalent.simplify'), 'known-inferred');
-  assert.equal(statusOf(result, 'whole.mult-div.facts'), 'known-inferred');
+  assert.equal(statusOf(result, 'whole.mult-div.mult-facts'), 'known-inferred');
+  // Owner decision: adding fractions shows multiplication facts, not division facts.
+  assert.equal(statusOf(result, 'whole.mult-div.div-facts'), 'not-tested');
   assert.equal(result.skills['frac.add-sub'], 'known');
 });
 
@@ -70,11 +72,11 @@ test('only mixed numbers are missing', () => {
 });
 
 test('missing multiplication facts: many add/subtract gaps, all traced to the same possible cause', () => {
-  const { result } = diagnose({ lacks: ['whole.mult-div.facts'] });
+  const { result } = diagnose({ lacks: ['whole.mult-div.mult-facts'] });
   assert.ok(withStatus(result, 'gap').includes(SUB('common-denom')));
   assert.ok(withStatus(result, 'gap').includes(SUB('rewrite')));
   assert.equal(statusOf(result, SUB('combine')), 'known');
-  assert.ok(result.uncheckedCauses.includes('whole.mult-div.facts'));
+  assert.ok(result.uncheckedCauses.includes('whole.mult-div.mult-facts'));
 });
 
 test('one careless slip on the first question does not create a gap', () => {
@@ -148,7 +150,7 @@ test('a blank answer counts as a miss, not a crash', () => {
 test('random students: never claims a gap the student does not have; finds every real gap it can check', () => {
   const candidates = [
     SUB('common-denom'), SUB('rewrite'), SUB('combine'), SUB('simplify-result'), SUB('mixed'),
-    'frac.equivalent.simplify', 'frac.equivalent', 'frac.mixed', 'whole.mult-div.facts',
+    'frac.equivalent.simplify', 'frac.equivalent', 'frac.mixed', 'whole.mult-div.mult-facts',
     'whole.factors-multiples', 'whole.add-sub', 'frac.meaning',
   ];
   const allMisconceptions = fractions.misconceptions.map((m) => m.id);

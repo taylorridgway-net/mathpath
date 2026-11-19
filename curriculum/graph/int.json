@@ -19,7 +19,10 @@
       "typicalGrade": 7,
       "standards": ["7.NS.A.2"],
       "status": "stub",
-      "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "essential" } ],
+      "prerequisites": [
+        { "id": "whole.mult-div.mult-facts", "strength": "essential" },
+        { "id": "whole.mult-div.div-facts", "strength": "essential" }
+      ],
       "subskills": []
     }
   ]

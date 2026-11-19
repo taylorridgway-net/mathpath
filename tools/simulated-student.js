@@ -3,7 +3,7 @@
 //
 // The model: a student can do a skill or subskill only if they haven't been
 // told they lack it AND they can do everything it essentially depends on.
-// So a student who lacks "whole.mult-div.facts" also fails everything built on it.
+// So a student who lacks "whole.mult-div.mult-facts" also fails everything built on it.
 //
 //   lacks            ids the student doesn't know
 //   misconceptions   misconception ids they hold (they give that wrong answer when it fits)

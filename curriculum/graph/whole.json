@@ -21,9 +21,11 @@
       "status": "stub",
       "prerequisites": [],
       "subskills": [
-        { "id": "whole.mult-div.facts", "name": "Multiplication and division facts to 12 x 12", "prerequisites": [] },
+        { "id": "whole.mult-div.mult-facts", "name": "Multiplication facts to 12 x 12", "prerequisites": [] },
+        { "id": "whole.mult-div.div-facts", "name": "Division facts to 144 / 12",
+          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
         { "id": "whole.mult-div.remainders", "name": "Divide with a remainder",
-          "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "essential" } ] }
+          "prerequisites": [ { "id": "whole.mult-div.div-facts", "strength": "essential" } ] }
       ]
     },
     {
@@ -33,7 +35,7 @@
       "typicalGrade": 6,
       "standards": ["4.OA.B.4", "6.NS.B.4"],
       "status": "stub",
-      "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "essential" } ],
+      "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ],
       "subskills": [
         { "id": "whole.factors-multiples.factors", "name": "List factors and test divisibility", "prerequisites": [] },
         { "id": "whole.factors-multiples.gcf", "name": "Find the greatest common factor",

@@ -17,7 +17,7 @@
         { "id": "frac.meaning.read-models", "name": "Name a fraction from a bar, area, or set picture", "prerequisites": [] },
         { "id": "frac.meaning.number-line", "name": "Place a fraction on a number line, including fractions greater than 1", "prerequisites": [] },
         { "id": "frac.meaning.division", "name": "Read a fraction as division; write whole numbers as fractions (5 = 5/1, 4/4 = 1)",
-          "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "supporting" } ] }
+          "prerequisites": [ { "id": "whole.mult-div.div-facts", "strength": "supporting" } ] }
       ]
     },
     {
@@ -29,7 +29,7 @@
       "status": "draft",
       "prerequisites": [
         { "id": "frac.meaning", "strength": "essential" },
-        { "id": "whole.mult-div.facts", "strength": "essential" }
+        { "id": "whole.mult-div.mult-facts", "strength": "essential" }
       ],
       "subskills": [
         { "id": "frac.equivalent.scale", "name": "Make an equivalent fraction by multiplying top and bottom by the same number", "prerequisites": [] },
@@ -63,7 +63,7 @@
       "prerequisites": [ { "id": "frac.meaning", "strength": "essential" } ],
       "subskills": [
         { "id": "frac.mixed.to-improper", "name": "Write a mixed number as an improper fraction",
-          "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "essential" } ] },
+          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
         { "id": "frac.mixed.to-mixed", "name": "Write an improper fraction as a mixed number",
           "prerequisites": [ { "id": "whole.mult-div.remainders", "strength": "essential" } ] }
       ]
@@ -83,7 +83,7 @@
       "subskills": [
         { "id": "frac.add-sub.common-denom", "name": "Find a common denominator",
           "prerequisites": [
-            { "id": "whole.mult-div.facts", "strength": "essential" },
+            { "id": "whole.mult-div.mult-facts", "strength": "essential" },
             { "id": "whole.factors-multiples.lcm", "strength": "supporting",
               "why": "Multiplying the denominators always works; the LCM just keeps numbers smaller." }
           ] },
@@ -106,7 +106,7 @@
       "status": "draft",
       "prerequisites": [
         { "id": "frac.meaning", "strength": "essential" },
-        { "id": "whole.mult-div.facts", "strength": "essential" }
+        { "id": "whole.mult-div.mult-facts", "strength": "essential" }
       ],
       "subskills": [
         { "id": "frac.multiply.by-whole", "name": "Multiply a fraction by a whole number, including 'fraction of' a quantity", "prerequisites": [] },
