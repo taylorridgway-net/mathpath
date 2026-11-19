@@ -172,7 +172,7 @@ Integer and whole-number stubs have no lessons in this milestone. If the diagnos
 
 1. `frac.json` + whole/int stubs + graph-rules test. **(Done.)**
 2. Exact fraction math + seeded random + generators for `frac.add-sub`, with Node tests. **(Done.)**
-3. Adaptive diagnostic logic (Node), then a bare test page.
+3. Adaptive diagnostic logic (Node), then a bare test page. **(Logic done; the test page comes with the student UI.)**
 4. Student UI: math keypad, lesson player, practice, local save/retry.
 5. Teacher dashboard: class view, heatmap, student profile, printable paper tests, verification entry.
 6. Apps Script layer: deploy, code login, teacher Google login, batched save with LockService, server-chosen seeds, server re-grading.

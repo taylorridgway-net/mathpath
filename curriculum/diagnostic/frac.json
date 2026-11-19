@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "frac-diagnostic",
+  "name": "Fractions diagnostic",
+  "targets": ["frac.add-sub", "frac.multiply", "frac.divide", "frac.signed", "frac.compare"],
+  "maxQuestions": 25,
+  "difficulty": { "screen": 2, "probe": 2, "confirm": 1 }
+}

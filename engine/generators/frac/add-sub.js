@@ -4,6 +4,13 @@
 // unlike-denominator problems (the diagnostic's starting question).
 //
 // Every generator: generate(rng, difficulty) -> problem, where difficulty is 1, 2 or 3.
+// Optional facts the diagnostic uses:
+//   covers           (whole-skill generators) the subskills one problem exercises
+//   ifNotSimplified  which subskill a right-but-unsimplified answer points to;
+//                    if it's the generator's own subskill, that counts as a miss
+//   alsoUses         other subskills a student needs to solve these problems
+//                    (the diagnostic checks those first, so a miss isn't blamed
+//                    on the wrong subskill)
 // A problem contains:
 //   instruction      what the student is asked to do
 //   expression       the math to display (see engine/problem/text.js)
@@ -152,6 +159,7 @@ const COMBINE = {
 
 const combine = {
   version: 1,
+  ifNotSimplified: 'frac.add-sub.simplify-result',
   generate(rng, difficulty) {
     const [d, a, b] = rng.pick(COMBINE[difficulty]);
     const subtract = difficulty === 3;
@@ -178,6 +186,8 @@ const SIMPLIFY = {
 
 const simplifyResult = {
   version: 1,
+  alsoUses: ['frac.add-sub.combine'],
+  ifNotSimplified: 'frac.add-sub.simplify-result',
   generate(rng, difficulty) {
     const [d, a, b] = rng.pick(SIMPLIFY[difficulty]);
     const subtract = difficulty === 2;
@@ -206,6 +216,9 @@ const MIXED = {
 
 const mixedNumbers = {
   version: 1,
+  alsoUses: ['frac.add-sub.combine'],
+  // An unsimplified answer here is usually 3 5/4: not finishing the regrouping.
+  ifNotSimplified: 'frac.add-sub.mixed',
   generate(rng, difficulty) {
     const [d, a, b] = rng.pick(MIXED[difficulty]);
     const subtract = difficulty === 3;
@@ -245,6 +258,13 @@ const mixedNumbers = {
 
 const full = {
   version: 1,
+  covers: [
+    'frac.add-sub.common-denom',
+    'frac.add-sub.rewrite',
+    'frac.add-sub.combine',
+    'frac.add-sub.simplify-result',
+  ],
+  ifNotSimplified: 'frac.add-sub.simplify-result',
   generate(rng, difficulty) {
     const [b, d] = pickDenominatorPair(rng, difficulty);
     let x = fraction(rng.pick(properNumerators(b)), b);
