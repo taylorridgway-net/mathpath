@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "curriculumVersion": "0.1.0",
+  "domains": [
+    { "id": "whole", "name": "Whole numbers", "file": "whole.json" },
+    { "id": "int", "name": "Integers", "file": "int.json" },
+    { "id": "frac", "name": "Fractions", "file": "frac.json" }
+  ]
+}

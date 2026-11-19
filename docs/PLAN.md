@@ -137,7 +137,7 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
 
 ## 3. Fractions skill map
 
-8 instructional skills, 28 subskills. Each lesson has one section per subskill, so a student missing one subskill gets just that section.
+8 instructional skills, 27 subskills. Each lesson has one section per subskill, so a student missing one subskill gets just that section.
 
 ### Prerequisite stubs from other areas
 
@@ -189,5 +189,5 @@ See the "Decided details" section of `CLAUDE.md`. In short: simplest form requir
 
 - Improper vs mixed answers (7/4 vs 1 3/4): assumed both accepted unless the question asks for a form. Owner to confirm.
 - Which Google account hosts the Apps Script project. Fine to use a personal account during synthetic-data development; must be settled (and the admin told) before any real student data.
-- Full skill list across all domains, for the owner to keep/cut/merge (includes combining like terms). Planned as a separate document.
+- Full skill list across all domains: drafted in `docs/SKILL-LIST.md`, waiting for the owner to keep/cut/merge.
 - License (AGPL-3.0 vs MIT). No license file until decided.

@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "domain": { "id": "frac", "name": "Fractions" },
+  "skills": [
+    {
+      "id": "frac.meaning",
+      "name": "Understand fractions",
+      "summary": "Read fractions from pictures, place them on a number line, and see a fraction as division.",
+      "typicalGrade": 3,
+      "standards": ["3.NF.A.1", "3.NF.A.2", "5.NF.B.3"],
+      "status": "draft",
+      "prerequisites": [
+        { "id": "whole.mult-div", "strength": "supporting",
+          "why": "Fraction as division and 'how many parts' questions lean on division sense." }
+      ],
+      "subskills": [
+        { "id": "frac.meaning.read-models", "name": "Name a fraction from a bar, area, or set picture", "prerequisites": [] },
+        { "id": "frac.meaning.number-line", "name": "Place a fraction on a number line, including fractions greater than 1", "prerequisites": [] },
+        { "id": "frac.meaning.division", "name": "Read a fraction as division; write whole numbers as fractions (5 = 5/1, 4/4 = 1)",
+          "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "supporting" } ] }
+      ]
+    },
+    {
+      "id": "frac.equivalent",
+      "name": "Equivalent fractions and simplest form",
+      "summary": "Make equivalent fractions, fill in missing parts, and reduce to simplest form.",
+      "typicalGrade": 4,
+      "standards": ["3.NF.A.3", "4.NF.A.1"],
+      "status": "draft",
+      "prerequisites": [
+        { "id": "frac.meaning", "strength": "essential" },
+        { "id": "whole.mult-div.facts", "strength": "essential" }
+      ],
+      "subskills": [
+        { "id": "frac.equivalent.scale", "name": "Make an equivalent fraction by multiplying top and bottom by the same number", "prerequisites": [] },
+        { "id": "frac.equivalent.missing", "name": "Find the missing number in an equivalence (3/4 = ?/20)", "prerequisites": [] },
+        { "id": "frac.equivalent.simplify", "name": "Reduce a fraction to simplest form",
+          "prerequisites": [ { "id": "whole.factors-multiples", "strength": "essential" } ] }
+      ]
+    },
+    {
+      "id": "frac.compare",
+      "name": "Compare and order fractions",
+      "summary": "Compare fractions using like denominators, benchmarks, and common denominators.",
+      "typicalGrade": 4,
+      "standards": ["3.NF.A.3", "4.NF.A.2"],
+      "status": "draft",
+      "prerequisites": [ { "id": "frac.meaning", "strength": "essential" } ],
+      "subskills": [
+        { "id": "frac.compare.like", "name": "Compare fractions with the same denominator", "prerequisites": [] },
+        { "id": "frac.compare.benchmark", "name": "Compare a fraction to 0, 1/2, and 1", "prerequisites": [] },
+        { "id": "frac.compare.unlike", "name": "Compare fractions with different denominators",
+          "prerequisites": [ { "id": "frac.equivalent", "strength": "essential" } ] }
+      ]
+    },
+    {
+      "id": "frac.mixed",
+      "name": "Mixed numbers and improper fractions",
+      "summary": "Convert between mixed numbers and improper fractions.",
+      "typicalGrade": 4,
+      "standards": ["4.NF.B.3"],
+      "status": "draft",
+      "prerequisites": [ { "id": "frac.meaning", "strength": "essential" } ],
+      "subskills": [
+        { "id": "frac.mixed.to-improper", "name": "Write a mixed number as an improper fraction",
+          "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "essential" } ] },
+        { "id": "frac.mixed.to-mixed", "name": "Write an improper fraction as a mixed number",
+          "prerequisites": [ { "id": "whole.mult-div.remainders", "strength": "essential" } ] }
+      ]
+    },
+    {
+      "id": "frac.add-sub",
+      "name": "Add and subtract fractions",
+      "summary": "Add and subtract fractions and mixed numbers with like and unlike denominators.",
+      "typicalGrade": 5,
+      "standards": ["4.NF.B.3", "5.NF.A.1", "5.NF.A.2"],
+      "status": "draft",
+      "prerequisites": [
+        { "id": "frac.meaning", "strength": "essential" },
+        { "id": "frac.compare", "strength": "supporting",
+          "why": "Helps students judge whether an answer is a reasonable size." }
+      ],
+      "subskills": [
+        { "id": "frac.add-sub.common-denom", "name": "Find a common denominator",
+          "prerequisites": [
+            { "id": "whole.mult-div.facts", "strength": "essential" },
+            { "id": "whole.factors-multiples.lcm", "strength": "supporting",
+              "why": "Multiplying the denominators always works; the LCM just keeps numbers smaller." }
+          ] },
+        { "id": "frac.add-sub.rewrite", "name": "Rewrite fractions over the common denominator",
+          "prerequisites": [ { "id": "frac.equivalent", "strength": "essential" } ] },
+        { "id": "frac.add-sub.combine", "name": "Add or subtract numerators, keep the denominator",
+          "prerequisites": [ { "id": "whole.add-sub", "strength": "essential" } ] },
+        { "id": "frac.add-sub.simplify-result", "name": "Simplify the result",
+          "prerequisites": [ { "id": "frac.equivalent.simplify", "strength": "essential" } ] },
+        { "id": "frac.add-sub.mixed", "name": "Add and subtract mixed numbers, including regrouping",
+          "prerequisites": [ { "id": "frac.mixed", "strength": "essential" } ] }
+      ]
+    },
+    {
+      "id": "frac.multiply",
+      "name": "Multiply fractions",
+      "summary": "Multiply fractions by whole numbers, fractions, and mixed numbers.",
+      "typicalGrade": 5,
+      "standards": ["4.NF.B.4", "5.NF.B.4", "5.NF.B.6"],
+      "status": "draft",
+      "prerequisites": [
+        { "id": "frac.meaning", "strength": "essential" },
+        { "id": "whole.mult-div.facts", "strength": "essential" }
+      ],
+      "subskills": [
+        { "id": "frac.multiply.by-whole", "name": "Multiply a fraction by a whole number, including 'fraction of' a quantity", "prerequisites": [] },
+        { "id": "frac.multiply.by-fraction", "name": "Multiply two fractions", "prerequisites": [] },
+        { "id": "frac.multiply.simplify", "name": "Simplify the product, or cancel common factors first",
+          "prerequisites": [ { "id": "frac.equivalent.simplify", "strength": "essential" } ] },
+        { "id": "frac.multiply.mixed", "name": "Multiply mixed numbers by converting them first",
+          "prerequisites": [ { "id": "frac.mixed", "strength": "essential" } ] }
+      ]
+    },
+    {
+      "id": "frac.divide",
+      "name": "Divide fractions",
+      "summary": "Understand and carry out division with fractions, whole numbers, and mixed numbers.",
+      "typicalGrade": 6,
+      "standards": ["5.NF.B.7", "6.NS.A.1"],
+      "status": "draft",
+      "prerequisites": [
+        { "id": "frac.meaning", "strength": "essential" },
+        { "id": "frac.multiply", "strength": "essential" }
+      ],
+      "subskills": [
+        { "id": "frac.divide.meaning", "name": "Explain division as 'how many groups' (how many 1/2s in 3?)", "prerequisites": [] },
+        { "id": "frac.divide.reciprocal", "name": "Write the reciprocal of a fraction or whole number", "prerequisites": [] },
+        { "id": "frac.divide.multiply-reciprocal", "name": "Divide by multiplying by the reciprocal of the divisor", "prerequisites": [] },
+        { "id": "frac.divide.mixed", "name": "Divide with whole and mixed numbers by converting them first",
+          "prerequisites": [ { "id": "frac.mixed", "strength": "essential" } ] }
+      ]
+    },
+    {
+      "id": "frac.signed",
+      "name": "Negative fractions",
+      "summary": "Place the negative sign correctly and do all four operations with negative fractions.",
+      "typicalGrade": 7,
+      "standards": ["7.NS.A.1", "7.NS.A.2"],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        { "id": "frac.signed.sign-placement", "name": "Recognize that -3/4, (-3)/4, and 3/(-4) are equal",
+          "prerequisites": [ { "id": "int.mult-div", "strength": "supporting",
+            "why": "The rule comes from 'negative divided by positive is negative'." } ] },
+        { "id": "frac.signed.add-sub", "name": "Add and subtract negative fractions",
+          "prerequisites": [
+            { "id": "int.add-sub", "strength": "essential" },
+            { "id": "frac.add-sub", "strength": "essential" }
+          ] },
+        { "id": "frac.signed.mult-div", "name": "Multiply and divide negative fractions",
+          "prerequisites": [
+            { "id": "int.mult-div", "strength": "essential" },
+            { "id": "frac.multiply", "strength": "essential" },
+            { "id": "frac.divide", "strength": "essential" }
+          ] }
+      ]
+    }
+  ]
+}

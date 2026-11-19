@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "domain": { "id": "int", "name": "Integers" },
+  "skills": [
+    {
+      "id": "int.add-sub",
+      "name": "Add and subtract integers",
+      "summary": "Stub: prerequisite for negative fractions. Not built yet.",
+      "typicalGrade": 7,
+      "standards": ["7.NS.A.1"],
+      "status": "stub",
+      "prerequisites": [ { "id": "whole.add-sub", "strength": "essential" } ],
+      "subskills": []
+    },
+    {
+      "id": "int.mult-div",
+      "name": "Multiply and divide integers",
+      "summary": "Stub: prerequisite for negative fractions. Not built yet.",
+      "typicalGrade": 7,
+      "standards": ["7.NS.A.2"],
+      "status": "stub",
+      "prerequisites": [ { "id": "whole.mult-div.facts", "strength": "essential" } ],
+      "subskills": []
+    }
+  ]
+}
