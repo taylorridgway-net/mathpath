@@ -175,7 +175,7 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
   - 165 tests pass (`npm test`).
 - **Preview links** (private, owner only). Refresh: `npm run build`, then publish the file to the same link with the Artifact tool (pass the URL).
   - Student: https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK, from `dist/student-preview.html`.
-  - Teacher dashboard: see the link added below once published, from `dist/teacher-preview.html`.
+  - Teacher dashboard: https://claude.ai/artifact/Y7xWDhWLsAPqZp4aYuqgCd, from `dist/teacher-preview.html`.
   - In the claude.ai viewer the print dialog and pop-ups are blocked, so the dashboard shows an on-screen print view and uses a second tap to confirm a code reset.
 - **Waiting on owner:**
   - Try the dashboard; review the paper-test items (`curriculum/paper/frac.add-sub.json`, also visible on the Paper tests tab).
