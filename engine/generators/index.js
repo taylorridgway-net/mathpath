@@ -1,0 +1,35 @@
+// The list of every problem generator, and the one function the rest of the
+// app uses to make problems.
+
+import { createRng } from '../random.js';
+import { addSubGenerators } from './frac/add-sub.js';
+
+export const generators = {
+  ...addSubGenerators,
+};
+
+export const DIFFICULTIES = [1, 2, 3];
+
+// Make one problem. Same (generatorId, difficulty, seed) -> same problem, always.
+export function generateProblem(generatorId, seed, difficulty = 1) {
+  const generator = generators[generatorId];
+  if (!generator) throw new Error(`No generator for "${generatorId}"`);
+  if (!DIFFICULTIES.includes(difficulty)) throw new Error(`Difficulty must be 1, 2 or 3 (got ${difficulty})`);
+
+  // The generator ID and difficulty are mixed into the seed so that different
+  // generators given the same seed don't produce look-alike numbers.
+  const rng = createRng(`${generatorId}|${difficulty}|${seed}`);
+  return {
+    generator: generatorId,
+    version: generator.version,
+    difficulty,
+    seed,
+    ...generator.generate(rng, difficulty),
+  };
+}
+
+// Make a set of problems from one seed (e.g. a practice round).
+// Question i uses the seed "<seed>#<i>".
+export function generateSet(generatorId, seed, count, difficulty = 1) {
+  return Array.from({ length: count }, (_, i) => generateProblem(generatorId, `${seed}#${i}`, difficulty));
+}

@@ -71,7 +71,9 @@ Adaptive, short (target roughly 15-25 questions). Start mid-graph; a correct ans
 
 - Plan before coding on anything non-trivial; propose structure and schemas for review first.
 - Write Node tests for every generator and for diagnostic/mastery logic. Math bugs are the main risk.
-- Keep generators deterministic given a seed.
+- Keep generators deterministic given a seed. Never use Math.random() in the engine; use engine/random.js.
+- If a generator's output changes on purpose, bump its `version` and run `npm run update-golden`. The golden test exists because the server re-creates problems from saved seeds.
+- Generator tests must re-compute answers independently from the displayed problem, never trust the generator's own answer.
 - The owner is a teacher, not a professional developer: explain decisions briefly in plain language, keep code readable, and ask before adding dependencies.
 - The owner wants Claude to handle git, setup, building and deployment. When the owner must do something themselves (e.g. a click in GitHub or Google), give exact step-by-step instructions.
 - Where CLAUDE.md and docs/BRIEF.md disagree, CLAUDE.md wins (it is newer).
