@@ -182,7 +182,7 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
   - Decide the build order after the prototype (see CLAUDE.md "Build order after the prototype").
   - Still open from before: confirm "shaky" doesn't put a section on the path; the "rewrite 1/6 over 6" do-nothing step; review lesson text; `docs/SKILL-LIST.md`.
 - **Not built yet from the dashboard plan:** teacher assignments and exemptions, reordering a student's path, due dates. These need the server (step 6) to reach students, so they come with the Apps Script layer.
-- **Next:** build step 6, the Apps Script layer (deploy, code login, teacher Google login, one save per section with LockService, server-chosen seeds, server re-grading). Plan it first (structure, sheet layout) for owner review.
+- **Next:** build step 6, the Apps Script layer. Plan drafted in `docs/APPS-SCRIPT-PLAN.md`; owner to review it and answer its 3 questions before building.
 
 ## 4. Build order for the fractions prototype
 
