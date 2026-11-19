@@ -14,7 +14,7 @@ const result = (statuses, rootGaps) => ({
   nodes: Object.fromEntries(Object.entries(statuses).map(([id, status]) => [id, { status }])),
   rootGaps,
 });
-const ids = (path) => path.map((p) => p.section ?? `not-built:${p.gap}`);
+const ids = (path) => path.map((p) => p.section ?? `not-built:${p.gap}`); // not-built and unchecked both show as "not-built:"
 
 test('subskill gaps come in the lesson\'s order, then "Putting it together"', () => {
   const r = result({
@@ -45,4 +45,34 @@ test('a gap with no lesson yet comes first, flagged for the teacher', () => {
 test('a student who knows add/subtract gets no add/subtract sections', () => {
   const r = result({ 'frac.add-sub': 'known', 'frac.multiply': 'gap' }, ['frac.multiply']);
   assert.deepEqual(ids(buildPath({ result: r, lessons: [lesson], graph })), ['not-built:frac.multiply']);
+});
+
+test('a possible cause the diagnostic couldn\'t check (no questions yet) comes first, deepest first', () => {
+  // Common denominators missed twice; the diagnostic followed it down to
+  // multiplication facts and factors but has no questions for them yet.
+  const r = {
+    ...result({ 'frac.add-sub.common-denom': 'gap', 'frac.add-sub.combine': 'known' }, ['frac.add-sub.common-denom']),
+    uncheckedCauses: ['whole.factors-multiples', 'whole.mult-div.mult-facts'],
+  };
+  const path = buildPath({ result: r, lessons: [lesson], graph });
+  assert.deepEqual(ids(path), [
+    'not-built:whole.mult-div.mult-facts', 'not-built:whole.factors-multiples',
+    'frac.add-sub.common-denom', 'frac.add-sub.whole',
+  ]);
+  assert.deepEqual(path.slice(0, 2).map((p) => p.kind), ['unchecked', 'unchecked']);
+});
+
+test('lessons come in prerequisite order, whatever order they are listed in', () => {
+  // A pretend lesson for negative fractions, which needs add/subtract.
+  const signed = {
+    skill: 'frac.signed',
+    sections: [
+      { id: 'signed.add-sub', forGap: 'frac.signed.add-sub', mode: 'section', title: 'Add and subtract negative fractions' },
+      { id: 'signed.whole', forGap: 'frac.signed', mode: 'skill', title: 'Putting it together' },
+    ],
+  };
+  const r = result({ 'frac.signed.add-sub': 'gap', 'frac.add-sub.combine': 'gap' }, ['frac.add-sub.combine']);
+  assert.deepEqual(ids(buildPath({ result: r, lessons: [signed, lesson], graph })), [
+    'frac.add-sub.combine', 'frac.add-sub.whole', 'signed.add-sub', 'signed.whole',
+  ]);
 });

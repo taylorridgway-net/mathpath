@@ -23,7 +23,7 @@ import { renderLessonText } from '../components/lesson-text.js';
 import { createFractionBars } from '../components/fraction-bars.js';
 import { createKeypad } from '../components/keypad.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished, finishedRecords } from '../storage/sections.js';
-import { h, section as screenEl, btn, swap } from './dom.js';
+import { h, section as screenEl, btn, swap, split } from './dom.js';
 
 const PHASE_NAMES = {
   guided: 'Practice with help',
@@ -154,24 +154,27 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     run.stage = 'learn';
     save();
     const screen = frame('Learn');
-    screen.append(h('p', 'eyebrow', sec.mode === 'skill' ? 'All the steps' : 'One step'));
-    screen.append(h('h1', 'title', sec.title));
-    screen.append(h('p', 'lede', sec.objective));
+    const cols = split('even');
+    const main = sec.visual ? cols.main : screen;
+    main.append(h('p', 'eyebrow', sec.mode === 'skill' ? 'All the steps' : 'One step'));
+    main.append(h('h1', 'title', sec.title));
+    main.append(h('p', 'lede', sec.objective));
     const body = h('div', 'lesson-body');
     for (const p of sec.explain) body.append(say(p));
-    screen.append(body);
+    main.append(body);
 
     if (sec.visual?.widget === 'fraction-bars') {
       const box = h('figure', 'visual');
       const cap = renderLessonText(sec.visual.caption, { tag: 'figcaption', className: 'visual-caption', autoFractions: true });
       box.append(cap);
       createFractionBars({ host: box, params: sec.visual.params });
-      screen.append(box);
+      cols.side.append(box);
+      screen.append(cols.el);
     }
 
     const actions = h('div', 'actions');
     actions.append(btn('button button-primary', 'See an example', showExample));
-    screen.append(actions);
+    main.append(actions);
     swap(app, screen);
   }
 
@@ -183,14 +186,15 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     const difficulty = sec.example?.difficulty ?? rules.guided.difficulty;
     const problem = generateProblem(sec.generator, `${run.seed}:example`, difficulty);
     const screen = frame('Example');
-    screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Watch one first'));
-    screen.append(problemCard(problem));
+    const cols = split('even');
+    cols.main.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Watch one first'), problemCard(problem));
     const actions = h('div', 'actions');
     const go = btn('button button-primary', 'Try some with help', startPracticeStage);
     go.hidden = true;
-    screen.append(solutionSteps(problem, { stepByStep: true, onDone: () => { go.hidden = false; } }));
+    cols.side.append(solutionSteps(problem, { stepByStep: true, onDone: () => { go.hidden = false; } }));
     actions.append(btn('button', 'Back to the explanation', showLearn), go);
-    screen.append(actions);
+    cols.side.append(actions);
+    screen.append(cols.el);
     swap(app, screen);
   }
 
@@ -220,11 +224,13 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     if (scaffold) {
       drawScaffold(screen, cur);
     } else {
-      screen.append(problemCard(cur.problem));
-      screen.append(feedbackBox(cur.feedback, sec.generator, run.answers.at(-1)));
-      if (cur.phase === 'guided') screen.append(hintToggle(cur.index, lesson.hints[sec.generator]));
+      const cols = split();
+      cols.main.append(problemCard(cur.problem));
+      cols.main.append(feedbackBox(cur.feedback, sec.generator, run.answers.at(-1)));
+      if (cur.phase === 'guided') cols.main.append(hintToggle(cur.index, lesson.hints[sec.generator]));
       const answerHost = h('div', '');
-      screen.append(answerHost);
+      cols.side.append(answerHost);
+      screen.append(cols.el);
       swap(app, screen);
       mountKeypad(answerHost, cur.problem.answer.type === 'fraction', (raw) => answerPractice(raw));
     }
@@ -322,19 +328,21 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
   function showRight(cur, response) {
     const screen = frame(PHASE_NAMES[cur.phase]);
     screen.append(progressBar(cur));
-    screen.append(problemCard(cur.problem));
+    const cols = split();
+    cols.main.append(problemCard(cur.problem));
+    screen.append(cols.el);
     const box = h('div', 'feedback feedback-right');
     box.setAttribute('aria-live', 'polite');
     const title = h('p', 'feedback-title instruction', response.outcome === 'right-first' ? 'Right.' : 'Right on the second try.');
     box.append(title);
-    screen.append(box);
+    cols.side.append(box);
     const actions = h('div', 'actions');
     const next = btn('button button-primary', practice.currentProblem() ? 'Next problem' : 'Finish', () => {
       document.removeEventListener('keydown', onEnter);
       showPractice();
     });
     actions.append(next);
-    screen.append(actions);
+    cols.side.append(actions);
     swap(app, screen, { focus: '.feedback-title' });
     // Enter goes on, as on the keypad. (Waits a moment so the Enter that submitted doesn't also skip this.)
     const onEnter = (e) => {
@@ -348,20 +356,25 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
 
   function showSolution(problem) {
     const screen = frame('Worked solution');
-    screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Worked solution'));
+    const cols = split('even');
+    cols.main.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Worked solution'));
     const more = practice.currentProblem();
-    if (more) screen.append(say(lesson.similarProblemIntro, 'lede'));
-    screen.append(problemCard(problem));
-    screen.append(solutionSteps(problem));
+    if (more) cols.main.append(say(lesson.similarProblemIntro, 'lede'));
+    cols.main.append(problemCard(problem));
+    cols.side.append(solutionSteps(problem));
     const actions = h('div', 'actions');
     actions.append(btn('button button-primary', more ? 'Try one like it' : 'Finish', showPractice));
-    screen.append(actions);
+    cols.side.append(actions);
+    screen.append(cols.el);
     swap(app, screen);
   }
 
   // ---------- one box per step ("Putting it together", guided) ----------
 
-  function drawScaffold(screen, cur) {
+  function drawScaffold(outer, cur) {
+    const cols = split();
+    outer.append(cols.el);
+    const screen = cols.main;
     screen.append(problemCard(cur.problem));
 
     const steps = h('ol', 'steps');
@@ -397,8 +410,8 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     screen.append(hintToggle(cur.index, lesson.hints[STEP_HINTS[step.id]]));
 
     const answerHost = h('div', '');
-    screen.append(answerHost);
-    swap(app, screen);
+    cols.side.append(answerHost);
+    swap(app, outer);
     if (step.isFinal) {
       mountKeypad(answerHost, true, (raw) => answerPractice(raw));
     } else {

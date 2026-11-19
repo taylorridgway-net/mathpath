@@ -2,29 +2,40 @@
 // Pure logic: the browser uses it to show the path, the server can use it to
 // check which sections a student was given.
 //
-// Rules:
-//   - Foundations first: root gaps that have no lesson yet (e.g. multiplication
-//     facts) come first, flagged "not built yet", so the teacher can step in.
-//   - Then, for each lesson, the sections whose subskill the diagnostic marked as
-//     a gap, in the lesson's own order (common denominator before rewriting, ...).
-//   - "Putting it together" (the whole-skill section) is added whenever any of
-//     that lesson's sections is on the path, or the whole skill itself is a gap.
-//     It's the one that gives provisional platform mastery.
-//   - Only "gap" counts. "Shaky" (one miss, then right) doesn't put a section on
-//     the path; the teacher can still assign it.
+// Foundations first. The order is:
+//   1. Foundations with no lesson yet, flagged for the teacher:
+//        "not-built"  a confirmed gap (missed twice) the app can't teach yet
+//        "unchecked"  a possible cause the diagnostic followed a gap down to but
+//                     has no questions for yet (e.g. multiplication facts under a
+//                     common-denominator gap). The teacher should check it first.
+//      Deeper foundations come first (multiplication facts before factors).
+//   2. Lesson sections for "gap" subskills. Lessons are ordered by the skill
+//      graph, so a skill comes after the skills it depends on; inside a lesson,
+//      sections keep the lesson's own order.
+//   3. Each lesson's "Putting it together" (the whole-skill section), added
+//      whenever any of that lesson's sections is on the path, or the whole skill
+//      itself is a gap. It's the one that gives provisional platform mastery.
+// Only "gap" puts a section on the path. "Shaky" (one miss, then right) doesn't;
+// the teacher can still assign it.
+//
+// As lessons for foundation skills get built, "not-built" and "unchecked" items
+// turn into real sections automatically, in the right order.
 
 export function buildPath({ result, lessons, graph }) {
   const status = (id) => result.nodes[id]?.status;
-  const items = [];
-  const taught = new Set(lessons.flatMap((l) => l.sections.map((s) => s.forGap)));
+  const taughtGaps = new Set(lessons.flatMap((l) => l.sections.map((s) => s.forGap)));
+  const hasLesson = (id) => taughtGaps.has(id) || graph.subskillsOf(id).some((s) => taughtGaps.has(s));
+  const depth = depthFinder(graph);
 
-  // A root gap is "taught" if a lesson section is for it, or (for a skill) for one of its subskills.
-  const hasLesson = (id) => taught.has(id) || graph.subskillsOf?.(id)?.some((s) => taught.has(s));
-  for (const id of result.rootGaps) {
-    if (!hasLesson(id)) items.push({ kind: 'not-built', gap: id, name: graph.get(id).name });
-  }
+  const foundations = [
+    ...result.rootGaps.filter((id) => !hasLesson(id)).map((id) => ({ kind: 'not-built', gap: id })),
+    ...(result.uncheckedCauses || []).filter((id) => !hasLesson(id)).map((id) => ({ kind: 'unchecked', gap: id })),
+  ]
+    .map((item) => ({ ...item, name: graph.get(item.gap).name }))
+    .sort((a, b) => depth(a.gap) - depth(b.gap));
 
-  for (const lesson of lessons) {
+  const items = [...foundations];
+  for (const lesson of [...lessons].sort((a, b) => depth(a.skill) - depth(b.skill))) {
     const parts = lesson.sections.filter((s) => s.mode === 'section' && status(s.forGap) === 'gap');
     const whole = lesson.sections.find((s) => s.mode === 'skill');
     const wholeNeeded = parts.length > 0 || status(lesson.skill) === 'gap';
@@ -36,4 +47,27 @@ export function buildPath({ result, lessons, graph }) {
 
 function sectionItem(lesson, section) {
   return { kind: 'section', lesson: lesson.skill, section: section.id, gap: section.forGap, title: section.title };
+}
+
+// How far down the essential-prerequisite chain a skill or subskill sits:
+// 0 = needs nothing; otherwise 1 + the deepest thing it needs. A subskill also
+// needs whatever its whole skill needs.
+function depthFinder(graph) {
+  const memo = new Map();
+  return function depth(id) {
+    if (memo.has(id)) return memo.get(id);
+    memo.set(id, 0); // guards against loops (the graph checker forbids them)
+    const node = graph.get(id);
+    const needs = [...graph.essentialPrereqs(id), ...(node.kind === 'skill' ? subskillNeeds(graph, id) : [])];
+    const d = needs.length ? 1 + Math.max(...needs.map(depth)) : 0;
+    memo.set(id, d);
+    return d;
+  };
+}
+
+// A skill also depends on whatever its subskills depend on (outside the skill itself).
+function subskillNeeds(graph, skillId) {
+  return graph.subskillsOf(skillId)
+    .flatMap((s) => graph.essentialPrereqs(s))
+    .filter((p) => p !== skillId && graph.get(p).skillId !== skillId);
 }

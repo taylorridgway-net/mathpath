@@ -73,7 +73,8 @@ Adaptive, short (target roughly 15-25 questions). Start mid-graph; a correct ans
 - Practice feedback: wrong with a known misconception -> that message + one retry; wrong otherwise -> hint + one retry; wrong twice or "I'm not sure" -> show the worked solution, then a similar problem.
 - Platform mastery of a skill: 4 of the last 5 whole problems right on the first try, at least 2 at the hardest difficulty. A right answer after the "simplify" hint counts as first-try right if the student then simplifies correctly. Section checks: 3 right in a row.
 - "Putting it together" guided problems: one box per step (common denominator, rewrite each fraction, combine, simplify). Later steps use the student's own common denominator. A step missed twice is filled in for them; only the final answer counts toward the practice session.
-- Learning path (Claude's proposal, owner to confirm): foundations with no lesson yet first (flagged for the teacher), then the lesson's sections for "gap" subskills in lesson order, then "Putting it together". "Shaky" doesn't put a section on the path.
+- Learning path: foundations first (owner's requirement: practising fractions won't fix a multiplication gap). Order: foundations with no lesson yet (confirmed gaps, and possible causes the diagnostic can't check yet, shown as "Check with your teacher first"), then lessons in skill-graph order, sections within a lesson in lesson order, then "Putting it together". As foundation lessons get built they take those first slots automatically. Claude's proposal, owner to confirm: "shaky" doesn't put a section on the path.
+- Student app layout: phones get one column; screens 900px and wider get two (keypad beside the problem, picture beside the lesson text). Owner asked for desktop to use the space.
 
 ## Working style
 

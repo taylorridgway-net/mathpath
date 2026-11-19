@@ -40,3 +40,16 @@ export function swap(app, screen, { focus = 'h1, .instruction' } = {}) {
     heading.focus({ preventScroll: true });
   }
 }
+
+// Two columns on a wide screen (computer, Chromebook), one on a phone.
+// `main` holds the problem or explanation; `side` the keypad or picture.
+// On a phone the side column comes after the main one, as before.
+//   variant 'keypad'  side column is keypad-width
+//   variant 'even'    two equal columns
+export function split(variant = 'keypad') {
+  const el = h('div', `split split-${variant}`);
+  const main = h('div', 'split-main');
+  const side = h('div', 'split-side');
+  el.append(main, side);
+  return { el, main, side };
+}

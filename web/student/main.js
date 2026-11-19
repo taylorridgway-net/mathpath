@@ -23,7 +23,7 @@ import { rawToText } from '../components/answer-editor.js';
 import { loadLocal, saveLocal, removeLocal } from '../storage/local.js';
 import { loadProgress, finishedRecords, clearAllSections, outboxCount } from '../storage/sections.js';
 import { openSection } from './lesson.js';
-import { h, section, btn, pill, list, swap as swapInto } from './dom.js';
+import { h, section, btn, pill, list, split, swap as swapInto } from './dom.js';
 
 const STORE_KEY = 'mathpath.preview.diagnostic.v1';
 const LESSON_SEED_KEY = 'mathpath.preview.lesson-seed.v1';
@@ -90,6 +90,7 @@ function showQuestion() {
   const screen = section('screen screen-question');
   const top = h('div', 'question-top');
   top.append(h('span', 'counter', `Question ${q.index + 1}`), h('span', 'counter-note', 'No grades'));
+  const cols = split();
 
   const card = h('div', 'question-card');
   const instruction = h('p', 'instruction', q.problem.instruction);
@@ -100,7 +101,9 @@ function showQuestion() {
   card.setAttribute('aria-labelledby', 'instruction');
 
   const answerHost = h('div', '');
-  screen.append(top, card, answerHost);
+  cols.main.append(card);
+  cols.side.append(answerHost);
+  screen.append(top, cols.el);
   swap(screen);
 
   keypad = createKeypad({
@@ -142,7 +145,9 @@ function showDone() {
   const next = h('div', 'done-block');
   next.append(h('h2', 'block-title', 'What to work on, in order'));
   next.append(pathList(path));
-  screen.append(next, strong, teacherView(result), previewSections());
+  const grid = h('div', 'path-grid');
+  grid.append(next, strong);
+  screen.append(grid, teacherView(result), previewSections());
 
   const actions = h('div', 'actions');
   actions.append(btn('button', 'Start over (new check, clears lesson progress)', () => {
@@ -170,12 +175,25 @@ function pathList(path) {
   if (!path.length) return h('p', 'empty', 'Nothing to work on here right now.');
   const ol = h('ol', 'path');
   let nextMarked = false;
-  path.forEach((item) => {
+  // Foundations the app can't check yet are shown together as one item.
+  const unchecked = path.filter((item) => item.kind === 'unchecked');
+  if (unchecked.length) {
+    const li = h('li', 'path-item');
+    const text = h('div', 'path-text');
+    text.append(
+      h('span', 'path-title', 'Check with your teacher first'),
+      h('span', 'path-note', 'One of these might be what makes the next steps hard. The app can’t check them yet, so your teacher will.'),
+      list(unchecked.map((item) => item.name)),
+    );
+    li.append(text, pill('Teacher', 'warn'));
+    ol.append(li);
+  }
+  path.filter((item) => item.kind !== 'unchecked').forEach((item) => {
     const li = h('li', 'path-item');
     const text = h('div', 'path-text');
     if (item.kind === 'not-built') {
       text.append(h('span', 'path-title', item.name), h('span', 'path-note', 'Your teacher will help with this one. (No lesson for it yet.)'));
-      li.append(text, pill('Not built yet', 'muted'));
+      li.append(text, pill('Teacher', 'muted'));
     } else {
       const [label, tone, action] = sectionState(item.section);
       text.append(h('span', 'path-title', item.title), pill(label, tone));

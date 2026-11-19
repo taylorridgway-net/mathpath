@@ -299,3 +299,33 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .math-inline .m-blank { font-size: 0.6em; min-width: 1.1em; padding: 0 0.1em; border-width: 1.5px; }
 .stepper-unit:empty { display: none; }
 .feedback-yours { margin: 2px 0 0; font-size: 0.875rem; color: var(--muted); }
+
+/* ---------- wider screens (Chromebooks, computers) ----------
+   Phones get one column. From 900px wide, screens with a problem put the
+   keypad in a column beside it, and lessons put the picture beside the text. */
+.split { display: flex; flex-direction: column; gap: 16px; }
+.split-main, .split-side { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.path-grid { display: flex; flex-direction: column; gap: 16px; }
+
+@media (min-width: 900px) {
+  .app, .preview-banner { max-width: 68rem; }
+  .app { padding-block: 28px 48px; }
+  .title { font-size: 2rem; }
+  .screen-start, .screen-done .teacher { max-width: 46rem; }
+
+  .split { display: grid; gap: 32px; align-items: start; }
+  .split-keypad { grid-template-columns: minmax(0, 1fr) 24rem; }
+  .split-even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+  /* The problem (or picture) stays in view while the other column scrolls. */
+  .split-keypad .split-side, .split-even .split-side { position: sticky; top: 16px; }
+  .split-even:has(.solution-wrap) .split-side { position: static; }
+  .split-even:has(.solution-wrap) .split-main { position: sticky; top: 16px; }
+
+  .question-card { padding: 28px 28px 32px; }
+  .question-math .math { font-size: 2.5rem; }
+  .lesson-p { font-size: 1.125rem; }
+
+  .path-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); align-items: start; gap: 24px; }
+  .done-block { padding: 20px 24px; }
+}
+.path-text .plain-list { font-size: 0.9375rem; margin-top: 2px; }

@@ -165,17 +165,18 @@ Integer and whole-number stubs have no lessons in this milestone. If the diagnos
 
 ## Where we are (handoff notes)
 
-Updated 2026-11-19 (end of session 2). Read this first in a new session.
+Updated 2026-11-19 (end of session 2, part 2). Read this first in a new session.
 
-- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; worked solutions; practice session logic with feedback rules and mastery; lesson text draft; **lesson screens** (session 2): learning path after the diagnostic (`engine/lessons/path.js`), lesson player (`web/student/lesson.js`: learn -> step-by-step worked example -> guided practice with hints -> check / mastery -> done), `{a/b}` text markup (`web/components/lesson-text.js`), fraction-bars interactive (`web/components/fraction-bars.js`, three tasks), one-box-per-step guided problems for "Putting it together" (`engine/practice/scaffold.js`), worked solution + similar problem after a miss, one save per finished section to local storage plus an outbox for the future server (`web/storage/sections.js`), resume mid-section from (seed, answers). 147 tests pass (`npm test`).
+- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; worked solutions; practice session logic with feedback rules and mastery; lesson text draft; **lesson screens** (session 2): learning path after the diagnostic (`engine/lessons/path.js`), lesson player (`web/student/lesson.js`: learn -> step-by-step worked example -> guided practice with hints -> check / mastery -> done), `{a/b}` text markup (`web/components/lesson-text.js`), fraction-bars interactive (`web/components/fraction-bars.js`, three tasks), one-box-per-step guided problems for "Putting it together" (`engine/practice/scaffold.js`), worked solution + similar problem after a miss, one save per finished section to local storage plus an outbox for the future server (`web/storage/sections.js`), resume mid-section from (seed, answers). Path is foundations first: things the diagnostic followed a gap down to but can't check yet (e.g. multiplication facts) show as "Check with your teacher first"; lessons are ordered by the skill graph. Two-column layout on screens 900px and wider (keypad beside the problem, picture beside the text). 149 tests pass (`npm test`).
 - **Preview link** (private, owner only): https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK. Shows the diagnostic, then the student's path and lesson sections. A "Teacher preview: open any lesson section" list (start screen and path screen) opens any section without taking the diagnostic. To refresh: `npm run build`, then publish `dist/student-preview.html` to that same link (Artifact tool, pass the URL).
 - **Owner-tested on a phone:** keypad works; "each step fine, whole problem missed" bug found and fixed. Lesson screens not yet tested by the owner.
 - **Waiting on owner:**
-  - Try the lesson sections on a phone; review the lesson text (now visible).
+  - Review `docs/DASHBOARD-PLAN.md` (teacher dashboard + paper tests) and answer its 5 questions. Build starts after that.
+  - Try the lesson sections on a phone and a computer; review the lesson text (now visible).
   - Confirm the path rules (proposed by Claude, see `engine/lessons/path.js`): only "gap" puts a section on the path ("shaky" doesn't); "Putting it together" is added whenever any add/subtract section is on the path.
   - In "Putting it together" guided problems, when one denominator divides the other (e.g. 1/2 + 1/6), step 3 asks to rewrite 1/6 over 6 (a "do nothing" step). Keep it, or skip it automatically?
   - Keep/cut/merge calls on `docs/SKILL-LIST.md`.
-- **Next:** fix whatever the owner finds in the preview; then build step 5 (teacher dashboard and printable paper tests).
+- **Next:** fix whatever the owner finds in the preview; build step 5 from `docs/DASHBOARD-PLAN.md` once approved.
 
 ## 4. Build order for the fractions prototype
 
