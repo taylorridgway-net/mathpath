@@ -79,5 +79,8 @@ Adaptive, short (target roughly 15-25 questions). Start mid-graph; a correct ans
 - Paper tests (teacher verification): 6 items, 5 of 6 suggests "verified"; the teacher makes the final call and both the suggestion and the decision are stored (owner decision). Rule lives in `curriculum/mastery.json` ("verification"). Paper items live in `curriculum/paper/`, authored separately, answer keys checked by a test.
 - Dashboard heatmap opens on the 8 whole fraction skills; clicking a skill's heading shows its subskills (owner decision).
 - Class sizes to support: 1-6 periods, 20-45 students each (owner). The pretend class and the load test use that range.
+- Apps Script project is owned by the owner's school Google account (owner decision). Tell the school admin before any real student data.
+- Students each have their own Chromebook; still include a "Not you? Sign out" link on the student page (owner).
+- The teacher page may show real names from the private roster tab (only the teacher can open it) (owner).
 - Printable login-code slips: not now (owner unsure what they're for; revisit with the Apps Script login).
 - Build order after the prototype (Claude's recommendation, owner considering): once the fractions prototype works end to end (dashboard, Apps Script, load test), build whole-number skills (multiplication facts, factors and multiples) before the rest of the fractions map, so foundations come from real diagnostic questions and lessons instead of "check with your teacher".

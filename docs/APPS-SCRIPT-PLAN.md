@@ -1,6 +1,6 @@
 # Apps Script Layer — Plan (draft for owner review)
 
-Status: **draft, waiting for owner review.** Build step 6 in `docs/PLAN.md`.
+Status: **approved by the owner (2026-11-19).** Answers: school Google account owns the project; add a "Not you? Sign out" link (students have their own Chromebooks, but the option is good); the teacher page may show real names from the private roster. Build step 6 in `docs/PLAN.md`.
 Goal: the same student page and dashboard, but served by Google Apps Script and
 saving to a Google Sheet, so work is no longer stuck on one device.
 
