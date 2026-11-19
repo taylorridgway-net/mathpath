@@ -8,7 +8,9 @@ run one setup step, and publish it as a web app. No installing anything.
 ## What you need
 
 The four files from the `dist/apps-script/` folder (Claude sends them to you, or
-they're rebuilt any time with `npm run build`):
+they're rebuilt any time with `npm run build`). If your app won't open `.js` or
+`.html` files, use the `.txt` copies (`Code.js.txt` and so on, in `deploy-copy/`):
+same contents, they just open as text.
 
 | File | What it is |
 |---|---|

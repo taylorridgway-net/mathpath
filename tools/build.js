@@ -84,3 +84,11 @@ copyFileSync(new URL('dist/student.html', root), new URL('dist/apps-script/stude
 copyFileSync(new URL('dist/teacher.html', root), new URL('dist/apps-script/teacher.html', root));
 copyFileSync(new URL('server/apps-script/appsscript.json', root), new URL('dist/apps-script/appsscript.json', root));
 console.log(`Built dist/apps-script/ (Code.js ${Math.round(code.length / 1024)} KB)`);
+
+// Plain-text copies for pasting into the Apps Script editor: some apps (like the
+// Claude app) won't open .js or .html files as text, but will open .txt.
+mkdirSync(new URL('deploy-copy/', root), { recursive: true });
+for (const f of ['Code.js', 'student.html', 'teacher.html', 'appsscript.json']) {
+  copyFileSync(new URL(`dist/apps-script/${f}`, root), new URL(`deploy-copy/${f}.txt`, root));
+}
+console.log('Built deploy-copy/ (.txt copies to paste into Apps Script)');
