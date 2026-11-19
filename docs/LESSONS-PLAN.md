@@ -68,8 +68,12 @@ curriculum/mastery.json                mastery rules (data)
 engine/solutions/frac-add-sub.js       step-by-step worked solutions (tested)
 engine/practice/practice.js            practice session: feedback rules, retries, mastery check
                                        (pure logic, replayable from seed + answers, like the diagnostic)
+engine/practice/scaffold.js            one answer box per step ("Putting it together", guided)
+engine/lessons/path.js                 the student's path from the diagnostic result
 web/components/fraction-bars.js        the one interactive
+web/components/lesson-text.js          {a/b} markup -> stacked fractions
 web/student/lesson.js                  lesson screens
+web/storage/sections.js                section progress, finished records, outbox
 ```
 
 Lesson text uses a tiny markup for math: `{3/4}` shows as a stacked fraction, `{1 3/4}` as a mixed number.
@@ -81,7 +85,7 @@ Saving: one save per section (seed, answers, timing, attempt count, curriculum v
 1. Worked-solution code + tests. **(Done.)**
 2. Practice session logic (feedback rules, retries, mastery) + tests with simulated students. **(Done.)**
 3. Lesson data file for `frac.add-sub` (Claude drafts the text; owner reviews it in the preview). **(Drafted; owner review pending.)**
-4. Lesson screens + fraction bars; add to the preview link after the diagnostic.
+4. Lesson screens + fraction bars; add to the preview link after the diagnostic. **(Done; owner phone test pending.)**
 
 ## 7. Owner's answers (2026-11-19)
 

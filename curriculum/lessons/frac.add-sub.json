@@ -12,6 +12,7 @@
       "objective": "Find a number both denominators divide into.",
       "mode": "section",
       "generator": "frac.add-sub.common-denom",
+      "example": { "difficulty": 2 },
       "explain": [
         "To add or subtract fractions, the pieces have to be the same size. {1/2} and {1/3} are different-size pieces, so you can't count them together yet.",
         "A common denominator is a number both denominators divide into evenly. Then both fractions can be cut into pieces of that size.",
@@ -80,6 +81,7 @@
       "objective": "Add and subtract fractions with different denominators, start to finish.",
       "mode": "skill",
       "generator": "frac.add-sub",
+      "example": { "difficulty": 2 },
       "explain": [
         "Adding or subtracting fractions with different denominators takes four steps.",
         "1. Find a common denominator. 2. Rewrite both fractions with it. 3. Add or subtract the numerators and keep the denominator. 4. Simplify.",

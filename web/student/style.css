@@ -176,3 +176,126 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 @media (prefers-reduced-motion: reduce) { .key:active { transform: none; } }
+
+/* ---------- lessons ---------- */
+.math-inline { font-size: 1.25em; vertical-align: middle; margin-inline: 0.08em; }
+.math-inline .m-frac { font-size: 0.78em; }
+.math-inline .m-top { border-bottom-width: 1.5px; }
+.math-inline .m-row { gap: 0.25em; }
+
+.lesson-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: -8px; }
+.back-link {
+  min-height: 44px; padding: 0 4px; border: 0; background: none; color: var(--accent); font-weight: 600;
+}
+.lesson-stage { font-size: 0.8125rem; color: var(--muted); font-weight: 600; }
+.lesson-body { display: flex; flex-direction: column; gap: 14px; }
+.lesson-p { margin: 0; font-size: 1.0625rem; line-height: 1.75; max-width: 60ch; }
+
+.visual {
+  margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px; display: flex; flex-direction: column; gap: 14px;
+}
+.visual-caption { margin: 0; font-weight: 600; line-height: 1.6; }
+
+/* fraction bars */
+.fbars { display: flex; flex-direction: column; gap: 14px; }
+.fbars-rows { display: flex; flex-direction: column; gap: 12px; }
+.fbar-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; }
+.fbar {
+  position: relative; height: 44px; border: 2px solid var(--ink); border-radius: 6px;
+  background: var(--bg); overflow: hidden;
+}
+.fbar-fill { position: absolute; top: 0; bottom: 0; left: 0; transition: width 0.2s; }
+.fbar-tone-1 { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+.fbar-tone-2 { background: color-mix(in srgb, var(--mark) 70%, transparent); }
+.fbar-cuts { position: absolute; inset: 0; }
+.fbar-cut { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1.5px solid var(--ink); opacity: 0.55; }
+.fbar-cut-major { border-left-width: 3px; opacity: 1; }
+.fbar-label { min-width: 5.5rem; display: flex; align-items: center; gap: 6px; font-size: 1.1rem; }
+.fbar-mark { font-weight: 700; font-size: 1.1rem; }
+.fbar-mark.is-yes { color: var(--good); }
+.fbar-mark.is-no { color: var(--bad); }
+.fbars-status { margin: 0; color: var(--ink); min-height: 3em; }
+.fbars-found { margin: 0; color: var(--good); font-weight: 600; }
+.fbars-found:empty { display: none; }
+.fbars-action { align-self: flex-start; }
+
+.stepper { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.stepper-label { font-weight: 600; }
+.stepper-btn {
+  width: 48px; height: 48px; border-radius: var(--radius-sm); border: 1px solid var(--line);
+  background: var(--accent-soft); color: var(--accent); font-size: 1.5rem; font-weight: 700;
+}
+.stepper-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.stepper-value { min-width: 2.2em; text-align: center; font-family: var(--font-math); font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+.stepper-unit { color: var(--muted); }
+
+/* practice */
+.progress { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.875rem; color: var(--muted); }
+.dots { display: inline-flex; gap: 6px; }
+.dot {
+  width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); background: var(--surface);
+  font-size: 0.7rem; line-height: 14px; text-align: center; color: var(--accent-ink);
+}
+.dot-yes, .dot-star { background: var(--good); border-color: var(--good); }
+.dot-no { background: var(--bad-soft); border-color: var(--bad); }
+
+.feedback:empty { display: none; }
+.feedback { border-radius: var(--radius); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.feedback-title { margin: 0; font-weight: 700; }
+.feedback-title:empty { display: none; }
+.feedback-text { margin: 0; line-height: 1.7; }
+.feedback-try { background: var(--warn-soft); border: 1px solid var(--warn); }
+.feedback-near { background: var(--info-soft); border: 1px solid var(--info); }
+.feedback-info { background: var(--info-soft); border: 1px solid var(--info); }
+.feedback-right { background: var(--good-soft); border: 1px solid var(--good); }
+.feedback-right .feedback-title { color: var(--good); font-size: 1.25rem; }
+
+.hint { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.hint-button {
+  min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--accent); font-weight: 600; font-size: 0.875rem;
+}
+.hint-text { margin: 0; padding: 10px 12px; background: var(--surface); border-left: 3px solid var(--accent); line-height: 1.7; }
+
+.solution-wrap { display: flex; flex-direction: column; gap: 12px; }
+.solution { margin: 0; padding-left: 1.4em; display: flex; flex-direction: column; gap: 14px; }
+.solution-step::marker { font-weight: 700; color: var(--accent); }
+.solution-say { margin: 0; line-height: 1.75; }
+.solution-math { margin-top: 8px; overflow-x: auto; }
+.solution-math .math { font-size: 1.6rem; }
+.solution-wrap > .button { align-self: flex-start; }
+
+/* one box per step */
+.steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; counter-reset: step; }
+.step {
+  counter-increment: step; display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px;
+  padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface);
+  font-size: 0.9375rem;
+}
+.step::before { content: counter(step); font-weight: 700; color: var(--muted); min-width: 1em; }
+.step-done::before { content: "✓"; color: var(--good); }
+.step-revealed::before { content: "•"; color: var(--info); }
+.step-now { border-color: var(--mark); background: var(--mark-soft); font-weight: 600; }
+.step-label { flex: 1; min-width: 10rem; }
+.step-answer .math-inline { font-size: 1.15rem; }
+.step-note { width: 100%; padding-left: 1.6em; font-size: 0.75rem; color: var(--info); }
+.step-card .question-math .math { font-size: 1.75rem; }
+
+/* path */
+.path { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.path-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.path-item:last-child { border-bottom: 0; }
+.path-text { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+.path-title { font-weight: 600; }
+.path-note { font-size: 0.8125rem; color: var(--muted); }
+.path-text .pill { max-width: none; }
+.path-item .button { flex-shrink: 0; }
+
+@media (prefers-reduced-motion: reduce) { .fbar-fill { transition: none; } }
+.math-inline .m-blank { font-size: 0.6em; min-width: 1.1em; padding: 0 0.1em; border-width: 1.5px; }
+.stepper-unit:empty { display: none; }
+.feedback-yours { margin: 2px 0 0; font-size: 0.875rem; color: var(--muted); }

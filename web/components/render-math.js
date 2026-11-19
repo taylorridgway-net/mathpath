@@ -1,11 +1,13 @@
 // Draws a problem's expression (see engine/problem/text.js) as real math:
 // stacked fractions, mixed numbers, and a box where a blank is.
 // The plain-text version is attached as a label for screen readers.
+// inline: true draws it at text size, for math inside a sentence.
 
 import { toText } from '../../engine/problem/text.js';
 
-export function renderMath(node) {
-  const root = el('span', 'math');
+export function renderMath(node, { inline = false } = {}) {
+  const root = el('span', inline ? 'math math-inline' : 'math');
+  root.removeAttribute('aria-hidden'); // the parts are hidden; the whole is read via its label
   root.setAttribute('role', 'math');
   root.setAttribute('aria-label', spoken(toText(node)));
   root.append(build(node));

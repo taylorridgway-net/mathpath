@@ -165,20 +165,24 @@ Integer and whole-number stubs have no lessons in this milestone. If the diagnos
 
 ## Where we are (handoff notes)
 
-Updated 2026-11-19 (end of session 1). Read this first in a new session.
+Updated 2026-11-19 (end of session 2). Read this first in a new session.
 
-- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; worked solutions (`engine/solutions/`); practice session logic with feedback rules and mastery (`engine/practice/`, rules in `curriculum/mastery.json`); lesson text draft (`curriculum/lessons/frac.add-sub.json`). 132 tests pass (`npm test`).
-- **Preview link** (private, owner only): https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK. Currently shows the diagnostic only. To refresh: `npm run build`, then publish `dist/student-preview.html` to that same link (Artifact tool, pass the URL).
-- **Owner-tested on a phone:** keypad works. Owner found the "each step fine, whole problem missed" bug; fixed.
-- **Next (build step 4 of docs/LESSONS-PLAN.md):** lesson screens. Render the lesson JSON (explain text with `{a/b}` markup -> stacked fractions, worked example from `solveAddSub`, guided practice, check / mastery via `startPractice`, feedback messages from the lesson file, worked solution + similar problem after a miss). Build the fraction-bars interactive (three sections use it; params are in the lesson file). For "Putting it together" guided problems, one answer box per step. After the diagnostic, show the student's path (root gaps -> sections) in the preview. Save each finished section to local storage (seed, answers, timing, attempts, curriculum version). Then republish the preview and ask the owner to try a section.
-- **Waiting on owner:** review of the lesson text (once it's visible in the preview); keep/cut/merge calls on `docs/SKILL-LIST.md`.
+- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; worked solutions; practice session logic with feedback rules and mastery; lesson text draft; **lesson screens** (session 2): learning path after the diagnostic (`engine/lessons/path.js`), lesson player (`web/student/lesson.js`: learn -> step-by-step worked example -> guided practice with hints -> check / mastery -> done), `{a/b}` text markup (`web/components/lesson-text.js`), fraction-bars interactive (`web/components/fraction-bars.js`, three tasks), one-box-per-step guided problems for "Putting it together" (`engine/practice/scaffold.js`), worked solution + similar problem after a miss, one save per finished section to local storage plus an outbox for the future server (`web/storage/sections.js`), resume mid-section from (seed, answers). 147 tests pass (`npm test`).
+- **Preview link** (private, owner only): https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK. Shows the diagnostic, then the student's path and lesson sections. A "Teacher preview: open any lesson section" list (start screen and path screen) opens any section without taking the diagnostic. To refresh: `npm run build`, then publish `dist/student-preview.html` to that same link (Artifact tool, pass the URL).
+- **Owner-tested on a phone:** keypad works; "each step fine, whole problem missed" bug found and fixed. Lesson screens not yet tested by the owner.
+- **Waiting on owner:**
+  - Try the lesson sections on a phone; review the lesson text (now visible).
+  - Confirm the path rules (proposed by Claude, see `engine/lessons/path.js`): only "gap" puts a section on the path ("shaky" doesn't); "Putting it together" is added whenever any add/subtract section is on the path.
+  - In "Putting it together" guided problems, when one denominator divides the other (e.g. 1/2 + 1/6), step 3 asks to rewrite 1/6 over 6 (a "do nothing" step). Keep it, or skip it automatically?
+  - Keep/cut/merge calls on `docs/SKILL-LIST.md`.
+- **Next:** fix whatever the owner finds in the preview; then build step 5 (teacher dashboard and printable paper tests).
 
 ## 4. Build order for the fractions prototype
 
 1. `frac.json` + whole/int stubs + graph-rules test. **(Done.)**
 2. Exact fraction math + seeded random + generators for `frac.add-sub`, with Node tests. **(Done.)**
 3. Adaptive diagnostic logic (Node), then a bare test page. **(Logic done; the test page comes with the student UI.)**
-4. Student UI: math keypad, lesson player, practice, local save/retry. **(Keypad, diagnostic page and local save/resume done; lessons and practice next.)**
+4. Student UI: math keypad, lesson player, practice, local save/retry. **(Done for `frac.add-sub`; sending saves to the server comes with step 6.)**
 5. Teacher dashboard: class view, heatmap, student profile, printable paper tests, verification entry.
 6. Apps Script layer: deploy, code login, teacher Google login, batched save with LockService, server-chosen seeds, server re-grading.
 7. Simulated-class load test with synthetic students.

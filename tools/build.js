@@ -28,7 +28,7 @@ const js = bundle.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
 const css = read('web/student/style.css');
 
 const head = [
-  '<title>MathPath Fractions Check</title>',
+  '<title>MathPath Fractions</title>',
   '<meta name="claude:viewport-fit-sides" content="cover">',
   `<style>\n${css}</style>`,
 ].join('\n');

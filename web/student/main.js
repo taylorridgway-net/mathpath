@@ -1,4 +1,4 @@
-// The student diagnostic page (preview version).
+// The student page (preview version): diagnostic -> path -> lesson sections.
 //
 // PREVIEW ONLY: there is no server yet, so this page picks a demo seed itself
 // and keeps everything in this browser. In the real app the server hands out
@@ -10,16 +10,25 @@ import intGraph from '../../curriculum/graph/int.json';
 import fracGraph from '../../curriculum/graph/frac.json';
 import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
+import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
+import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
 import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { toText } from '../../engine/problem/text.js';
+import { buildPath } from '../../engine/lessons/path.js';
 import { renderMath } from '../components/render-math.js';
 import { createKeypad } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadLocal, saveLocal, removeLocal } from '../storage/local.js';
+import { loadProgress, finishedRecords, clearAllSections, outboxCount } from '../storage/sections.js';
+import { openSection } from './lesson.js';
+import { h, section, btn, pill, list, swap as swapInto } from './dom.js';
 
 const STORE_KEY = 'mathpath.preview.diagnostic.v1';
+const LESSON_SEED_KEY = 'mathpath.preview.lesson-seed.v1';
+const lessons = [addSubLesson];
+let previewOpen = false; // keep the teacher-preview list open after visiting a section
 
 const graph = buildGraphIndex(domainsIndex, {
   'whole.json': wholeGraph,
@@ -57,7 +66,7 @@ function showStart() {
   } else {
     actions.append(btn('button button-primary', 'Start', () => begin(null)));
   }
-  screen.append(actions);
+  screen.append(actions, previewSections());
   swap(screen);
 }
 
@@ -121,27 +130,107 @@ function showDone() {
   const name = (id) => graph.get(id).name;
   const shown = Object.keys(result.nodes)
     .filter((id) => result.nodes[id].status === 'known' && graph.get(id).kind === 'subskill');
+  const path = buildPath({ result, lessons, graph });
 
   const screen = section('screen screen-done');
-  screen.append(h('p', 'eyebrow', 'Fractions check'), h('h1', 'title', 'All done. Thanks!'));
+  screen.append(h('p', 'eyebrow', 'Fractions'), h('h1', 'title', 'Your path'));
 
-  const grid = h('div', 'done-grid');
   const strong = h('div', 'done-block');
   strong.append(h('h2', 'block-title', 'You showed you can'));
   strong.append(list(shown.map(name), 'Nothing yet in this part. That’s fine: this is where we start.'));
+
   const next = h('div', 'done-block');
-  next.append(h('h2', 'block-title', 'What we’ll work on first'));
-  next.append(list(result.rootGaps.map(name), 'Nothing to work on here right now.'));
-  grid.append(strong, next);
-  screen.append(grid, teacherView(result));
+  next.append(h('h2', 'block-title', 'What to work on, in order'));
+  next.append(pathList(path));
+  screen.append(next, strong, teacherView(result), previewSections());
 
   const actions = h('div', 'actions');
-  actions.append(btn('button', 'Start over (new questions)', () => {
+  actions.append(btn('button', 'Start over (new check, clears lesson progress)', () => {
     removeLocal(STORE_KEY);
+    removeLocal(LESSON_SEED_KEY);
+    clearAllSections();
     showStart();
   }));
   screen.append(actions);
   swap(screen);
+}
+
+// ---------- the path: one row per section, with its status ----------
+
+function sectionState(sectionId) {
+  const records = finishedRecords(sectionId);
+  if (records.some((r) => r.provisionalMastery)) return ['Platform mastery (provisional)', 'good', 'Practice again'];
+  if (records.some((r) => r.passed)) return ['Done', 'good', 'Practice again'];
+  if (loadProgress(sectionId)) return ['In progress', 'warn', 'Continue'];
+  if (records.length) return ['Tried, not finished', 'warn', 'Try again'];
+  return ['Not started', 'muted', 'Start'];
+}
+
+function pathList(path) {
+  if (!path.length) return h('p', 'empty', 'Nothing to work on here right now.');
+  const ol = h('ol', 'path');
+  let nextMarked = false;
+  path.forEach((item) => {
+    const li = h('li', 'path-item');
+    const text = h('div', 'path-text');
+    if (item.kind === 'not-built') {
+      text.append(h('span', 'path-title', item.name), h('span', 'path-note', 'Your teacher will help with this one. (No lesson for it yet.)'));
+      li.append(text, pill('Not built yet', 'muted'));
+    } else {
+      const [label, tone, action] = sectionState(item.section);
+      text.append(h('span', 'path-title', item.title), pill(label, tone));
+      const primary = !nextMarked && tone !== 'good';
+      if (primary) nextMarked = true;
+      li.append(text, btn(primary ? 'button button-primary' : 'button', action, () => goToSection(item.section)));
+    }
+    ol.append(li);
+  });
+  return ol;
+}
+
+// PREVIEW ONLY: every section, so the owner can read all the lesson text.
+function previewSections() {
+  const details = h('details', 'teacher');
+  details.append(h('summary', 'teacher-summary', 'Teacher preview: open any lesson section'));
+  details.open = previewOpen;
+  details.addEventListener('toggle', () => { previewOpen = details.open; });
+  const ol = h('ol', 'path');
+  for (const lesson of lessons) {
+    for (const s of lesson.sections) {
+      const li = h('li', 'path-item');
+      const text = h('div', 'path-text');
+      const [label, tone, action] = sectionState(s.id);
+      text.append(h('span', 'path-title', s.title), pill(label, tone));
+      li.append(text, btn('button', action, () => goToSection(s.id)));
+      ol.append(li);
+    }
+  }
+  details.append(ol);
+  const waiting = outboxCount();
+  if (waiting) details.append(h('p', 'fine', `${waiting} finished section${waiting === 1 ? '' : 's'} saved on this device, waiting for the server (not built yet).`));
+  return details;
+}
+
+function goToSection(sectionId) {
+  const lesson = lessons.find((l) => l.sections.some((s) => s.id === sectionId));
+  openSection({
+    app,
+    lesson,
+    sectionId,
+    rules: masteryRules.default,
+    curriculumVersion: graph.curriculumVersion,
+    baseSeed: lessonSeed(),
+    onExit: () => (diagnostic && session?.finished ? showDone() : showStart()),
+  });
+}
+
+function lessonSeed() {
+  let seed = loadLocal(LESSON_SEED_KEY);
+  if (!seed) {
+    seed = session?.seed || demoSeed();
+    saveLocal(LESSON_SEED_KEY, seed);
+  }
+  return seed;
 }
 
 // ---------- the teacher's view of the result (preview: shown under the student's) ----------
@@ -224,40 +313,10 @@ function teacherView(result) {
   return details;
 }
 
-// ---------- tiny DOM helpers ----------
+// ---------- helpers ----------
 
-function h(tag, className, text) {
-  const e = document.createElement(tag);
-  if (className) e.className = className;
-  if (text !== undefined) e.textContent = text;
-  return e;
-}
-function section(className) {
-  return h('section', className);
-}
-function btn(className, text, onClick) {
-  const b = h('button', className, text);
-  b.type = 'button';
-  b.addEventListener('click', onClick);
-  return b;
-}
-function pill(text, tone) {
-  return h('span', `pill pill-${tone}`, text);
-}
-function list(items, emptyText) {
-  if (!items.length) return h('p', 'empty', emptyText);
-  const ul = h('ul', 'plain-list');
-  for (const item of items) ul.append(h('li', '', item));
-  return ul;
-}
 function swap(screen) {
-  app.replaceChildren(screen);
-  window.scrollTo(0, 0);
-  const heading = screen.querySelector('h1, .instruction');
-  if (heading) {
-    heading.tabIndex = -1;
-    heading.focus({ preventScroll: true });
-  }
+  swapInto(app, screen);
 }
 function demoSeed() {
   const bytes = new Uint32Array(2);
@@ -265,4 +324,18 @@ function demoSeed() {
   return `demo-${bytes[0].toString(36)}${bytes[1].toString(36)}`;
 }
 
-showStart();
+const finishedBefore = loadLocal(STORE_KEY);
+let resumed = false;
+if (finishedBefore?.finished) {
+  try {
+    session = finishedBefore;
+    diagnostic = replayDiagnostic(setupFor(session.seed), session.answers);
+    resumed = true;
+  } catch {
+    // The saved check doesn't fit the current questions (the app changed). Start fresh.
+    session = null;
+    diagnostic = null;
+  }
+}
+if (resumed) showDone();
+else showStart();
