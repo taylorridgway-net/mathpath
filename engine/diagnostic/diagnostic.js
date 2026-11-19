@@ -14,6 +14,9 @@
 //      - Right but not simplified: credit the rest, check the simplify subskill.
 //      - Wrong: if the wrong answer matches a known misconception, check the
 //        subskill it points to first; then check the other covered subskills.
+//      - Not right, but every step checks out on its own: ask one more whole
+//        problem. Right -> the first miss was a slip. Missed again -> a gap on
+//        the whole skill: the student can do each step but not put them together.
 //   3. Checking a subskill ("probe"): one question.
 //      - Right: known. Credit everything it depends on.
 //      - Wrong: one easier question to rule out a slip.
@@ -35,7 +38,7 @@
 //   known           answered correctly
 //   known-inferred  not asked, but credited because the student did something that needs it
 //   shaky           missed once, then got an easier one right
-//   gap             missed twice
+//   gap             missed twice (on a whole skill: each step fine, whole problem missed twice)
 //   unchecked       a possible cause of a gap, but no problems exist for it yet
 //   not-tested      never reached (or question limit hit); `blockedBy` lists
 //                   gaps that made it impossible to check
@@ -116,6 +119,13 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       return null;
     }
 
+    if (task.kind === 'recheck') {
+      // Only needed if the steps don't explain the miss on the whole problem.
+      const explained = (generators[task.id].covers || [])
+        .some((s) => statusOf(s) === 'gap' || nodes.get(s)?.blockedBy);
+      return explained ? null : ask(task, task.id, difficulty.screen);
+    }
+
     // probe
     const id = task.id;
     if (task.stage === 1 && isSettled(id)) return null;
@@ -168,14 +178,29 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       covered.forEach(markKnown);
       credit(skillId);
       doNext(uncovered.map(probe));
-    } else if (result.status === 'not-simplified') {
+      return;
+    }
+
+    // Not right. Check the steps, then (if the steps all check out) the whole
+    // problem once more. The recheck comes after any root-cause searching.
+    const recheck = { kind: 'recheck', id: skillId };
+    if (result.status === 'not-simplified') {
       const suspect = generator.ifNotSimplified;
       covered.filter((s) => s !== suspect).forEach(markKnown);
-      doNext([...(suspect ? [probe(suspect)] : []), ...uncovered.map(probe)]);
+      doNext([...(suspect ? [probe(suspect)] : []), ...uncovered.map(probe), recheck]);
     } else {
       const first = result.misconception && pointsTo.get(result.misconception);
       const order = first && covered.includes(first) ? [first, ...covered.filter((s) => s !== first)] : covered;
-      doNext([...order, ...uncovered].map(probe));
+      doNext([...[...order, ...uncovered].map(probe), recheck]);
+    }
+  }
+
+  function onRecheckAnswer(skillId, result) {
+    if (result.status === 'correct') {
+      credit(skillId);
+    } else {
+      // Each step is fine on its own, but the whole problem was missed twice.
+      record(skillId).status = 'gap';
     }
   }
 
@@ -244,6 +269,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
     }
 
     if (task.kind === 'skill') onScreenerAnswer(task.id, result);
+    else if (task.kind === 'recheck') onRecheckAnswer(task.id, result);
     else onProbeAnswer(task, result);
     advance();
     return result;
@@ -288,6 +314,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   function summarizeSkill(skillId) {
     const subs = graph.subskillsOf(skillId).map(statusOf);
     const own = statusOf(skillId);
+    if (own === 'gap') return 'gap';
     for (const s of ['gap', 'shaky']) if (subs.includes(s)) return s;
     if (subs.length && subs.every((s) => s === 'known' || s === 'known-inferred')) {
       return subs.includes('known') ? 'known' : 'known-inferred';

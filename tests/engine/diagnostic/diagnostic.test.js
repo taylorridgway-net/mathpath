@@ -78,11 +78,43 @@ test('missing multiplication facts: many add/subtract gaps, all traced to the sa
   assert.ok(result.uncheckedCauses.includes('whole.mult-div.mult-facts'));
 });
 
-test('one careless slip on the first question does not create a gap', () => {
+test('a slip on the first question: steps check out, a second whole problem is right, no gap', () => {
   const { result } = diagnose({ slipsOn: ['frac.add-sub'] });
   assert.deepEqual(withStatus(result, 'gap'), []);
   assert.deepEqual(withStatus(result, 'shaky'), []);
   assert.equal(result.questions[0].status, 'wrong');
+  const last = result.questions.at(-1);
+  assert.equal(last.generator, 'frac.add-sub', 'should finish with a second whole problem');
+  assert.equal(last.status, 'correct');
+  assert.equal(result.skills['frac.add-sub'], 'known');
+});
+
+test('owner\'s case: can do every step on its own, but not the whole problem -> gap on the whole skill', () => {
+  // Found by the owner testing on a phone: "I'm not sure" on the full problem, then every
+  // step right, and the diagnostic reported nothing to work on. It must report the skill.
+  const { result } = diagnose({ failsWhole: ['frac.add-sub'] });
+  for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result']) {
+    assert.equal(statusOf(result, SUB(s)), 'known', s);
+  }
+  assert.equal(statusOf(result, 'frac.add-sub'), 'gap');
+  assert.deepEqual(result.rootGaps, ['frac.add-sub']);
+  assert.equal(result.skills['frac.add-sub'], 'gap');
+  // Full problem, four steps, full problem again.
+  assert.equal(result.questionCount, 6);
+});
+
+test('the same case with blank answers ("I\'m not sure") on both whole problems', () => {
+  const d = startDiagnostic({ ...fractions, seed: 'not-sure' });
+  const student = simulatedStudent({ graph: fractions.graph, generators: fractions.generators });
+  for (let q = d.nextQuestion(); q; q = d.nextQuestion()) {
+    d.submit(q.problem.generator === 'frac.add-sub' ? {} : student.answer(q.problem));
+  }
+  assert.deepEqual(d.result().rootGaps, ['frac.add-sub']);
+});
+
+test('no extra whole problem when a step already explains the miss', () => {
+  const { result } = diagnose({ lacks: [SUB('combine')], misconceptions: ['frac.add-across'] });
+  assert.equal(result.questions.filter((q) => q.generator === 'frac.add-sub').length, 1);
 });
 
 test('a slip on a subskill makes it "shaky", not a gap', () => {
@@ -160,8 +192,9 @@ test('random students: never claims a gap the student does not have; finds every
     const lacks = candidates.filter(() => rng.chance(0.2));
     const misconceptions = allMisconceptions.filter(() => rng.chance(0.3));
     const slipsOn = rng.chance(0.3) ? [rng.pick([...candidates.slice(0, 4), 'frac.add-sub'])] : [];
-    const { result, student } = diagnose({ lacks, misconceptions, slipsOn }, { seed: `student-${i}` });
-    const who = `student ${i} lacks [${lacks}] slips [${slipsOn}]`;
+    const failsWhole = rng.chance(0.2) ? ['frac.add-sub'] : [];
+    const { result, student } = diagnose({ lacks, misconceptions, slipsOn, failsWhole }, { seed: `student-${i}` });
+    const who = `student ${i} lacks [${lacks}] slips [${slipsOn}] failsWhole [${failsWhole}]`;
 
     assert.ok(result.finished, who);
     assert.ok(result.questionCount <= 25, `${who}: ${result.questionCount} questions`);
@@ -180,6 +213,12 @@ test('random students: never claims a gap the student does not have; finds every
         const r = result.nodes[s];
         assert.ok(r && (r.status === 'gap' || r.blockedBy), `${who}: missed gap on ${s} (status ${r?.status})`);
       }
+    }
+    // ...and a student who can't do the whole problem is caught even when every step is fine.
+    if (!student.canDo('frac.add-sub')) {
+      const someStepFound = ['common-denom', 'rewrite', 'combine', 'simplify-result']
+        .some((s) => statusOf(result, SUB(s)) === 'gap' || result.nodes[SUB(s)]?.blockedBy);
+      assert.ok(someStepFound || statusOf(result, 'frac.add-sub') === 'gap', `${who}: missed whole-skill gap`);
     }
   }
 });

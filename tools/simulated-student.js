@@ -8,10 +8,12 @@
 //   lacks            ids the student doesn't know
 //   misconceptions   misconception ids they hold (they give that wrong answer when it fits)
 //   slipsOn          ids where they make one careless mistake the first time they're asked
+//   failsWhole       skill ids where they can do every step when asked separately,
+//                    but can't do a whole problem (they don't know the procedure)
 
 import { reduce } from '../engine/math/fraction.js';
 
-export function simulatedStudent({ graph, generators, lacks = [], misconceptions = [], slipsOn = [] }) {
+export function simulatedStudent({ graph, generators, lacks = [], misconceptions = [], slipsOn = [], failsWhole = [] }) {
   const lacking = new Set(lacks);
   const slipsLeft = new Set(slipsOn);
   const memo = new Map();
@@ -20,7 +22,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (memo.has(id)) return memo.get(id);
     memo.set(id, true); // guards against loops (the graph has none, but be safe)
     const node = graph.get(id);
-    const ok = !lacking.has(id)
+    const ok = !lacking.has(id) && !failsWhole.includes(id)
       && !(node.kind === 'subskill' && lacking.has(node.skillId))
       && graph.essentialPrereqs(id).every(canDo);
     memo.set(id, ok);
@@ -46,7 +48,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
   function answer(problem) {
     const id = problem.generator;
     const generator = generators[id];
-    const needed = generator.covers ? [...generator.covers] : [id, ...(generator.alsoUses || [])];
+    const needed = generator.covers ? [id, ...generator.covers] : [id, ...(generator.alsoUses || [])];
     const missing = needed.filter((n) => !canDo(n));
 
     if (missing.length === 0) {

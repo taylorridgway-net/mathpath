@@ -179,7 +179,8 @@ function teacherView(result) {
     for (const id of ids) {
       const r = result.nodes[id];
       const row = h('div', 'status-row');
-      const [label, tone] = r.blockedBy ? ['Blocked', 'muted'] : STATUS[r.status];
+      let [label, tone] = r.blockedBy ? ['Blocked', 'muted'] : STATUS[r.status];
+      if (id === skillId && r.status === 'gap') label = 'Gap: each step fine, whole problem missed twice';
       const nameCell = h('span', 'status-name', id === skillId ? '(whole skill)' : graph.get(id).name);
       if (r.blockedBy) {
         const needs = r.blockedBy.map((b) => `“${graph.get(b).name}”`).join(', ');
