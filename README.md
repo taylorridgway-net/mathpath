@@ -14,3 +14,13 @@ Needs Node.js 20 or newer. Nothing to install.
 ```bash
 npm test
 ```
+
+## Building the student page
+
+```bash
+npm install
+npm run build
+```
+
+This writes `dist/student.html`: one self-contained page (engine, curriculum and styles inlined), which is what Apps Script will serve. Open it in a browser to try the fractions diagnostic. It's a preview: nothing is sent anywhere, and progress is saved only on that device.
+

@@ -21,8 +21,8 @@
       "status": "stub",
       "prerequisites": [],
       "subskills": [
-        { "id": "whole.mult-div.mult-facts", "name": "Multiplication facts to 12 x 12", "prerequisites": [] },
-        { "id": "whole.mult-div.div-facts", "name": "Division facts to 144 / 12",
+        { "id": "whole.mult-div.mult-facts", "name": "Multiplication facts to 12 × 12", "prerequisites": [] },
+        { "id": "whole.mult-div.div-facts", "name": "Division facts to 144 ÷ 12",
           "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
         { "id": "whole.mult-div.remainders", "name": "Divide with a remainder",
           "prerequisites": [ { "id": "whole.mult-div.div-facts", "strength": "essential" } ] }
