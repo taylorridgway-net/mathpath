@@ -1,6 +1,6 @@
 # Lessons and Practice — Plan (draft for owner review)
 
-Status: **proposed, not yet approved.** Nothing in this file is built yet. Open questions are at the bottom; answers go into CLAUDE.md ("Decided details") once made.
+Status: **approved by the owner (2026-11-19).** Answers to the open questions are at the bottom and in CLAUDE.md ("Decided details").
 
 Scope: lessons and practice for `frac.add-sub` only. Everything is designed to be reused for the other fraction skills.
 
@@ -46,15 +46,15 @@ Each section follows the brief's sequence, with scaffolding that fades:
 | Right but not simplified | "Right value. Can you simplify it?" One more try (already decided) |
 | Wrong, matches a known misconception | That misconception's message (e.g. for 2/5: "The bottom number is the size of the pieces...") and one more try |
 | Wrong, no known pattern | A hint for this step, and one more try |
-| Wrong twice, or "I'm not sure" | Show the full worked solution, step by step, then next problem |
+| Wrong twice, or "I'm not sure" | Show the full worked solution, step by step, then a similar problem (same kind, same difficulty) |
 
 Worked solutions are produced by code from the problem itself (common denominator, rewrite, add, simplify), with Node tests, so every solution shown is guaranteed to match the problem.
 
 ## 4. Mastery (provisional, platform only)
 
-Proposal, to be confirmed:
+Approved:
 
-- **Section check passed:** 3 of 3 right (a right answer after the "simplify" hint counts).
+- **Section check passed:** 3 right in a row (a right answer after the "simplify" hint counts; a miss starts the count again, after the worked solution and a similar problem).
 - **Skill platform mastery:** in "Putting it together", 4 of the last 5 whole problems right **on the first try**, with at least 2 at the hardest difficulty.
 - **Retention check:** 2-4 weeks after mastery, 3 whole problems. (Built later, with the dashboard.)
 - Platform mastery is always labelled provisional. Verified mastery only comes from the teacher's paper assessment.
@@ -78,12 +78,19 @@ Saving: one save per section (seed, answers, timing, attempt count, curriculum v
 
 ## 6. Build order
 
-1. Worked-solution code + tests.
-2. Practice session logic (feedback rules, retries, mastery) + tests with simulated students.
-3. Lesson data file for `frac.add-sub` (Claude drafts the text; owner reviews it in the preview).
+1. Worked-solution code + tests. **(Done.)**
+2. Practice session logic (feedback rules, retries, mastery) + tests with simulated students. **(Done.)**
+3. Lesson data file for `frac.add-sub` (Claude drafts the text; owner reviews it in the preview). **(Drafted; owner review pending.)**
 4. Lesson screens + fraction bars; add to the preview link after the diagnostic.
 
-## 7. Questions for the owner
+## 7. Owner's answers (2026-11-19)
+
+1. Mastery bar: approved as written.
+2. Simplify retry: counts toward mastery, as long as the student simplifies correctly on the retry.
+3. After two misses: show the worked solution, then a similar problem to try.
+4. Lesson voice: no special phrases; Claude drafts, owner reviews in the preview.
+
+## 8. Original questions
 
 1. **Mastery bar.** Is "4 of the last 5 whole problems right on the first try, at least 2 at the hardest level" right? Too easy, too hard?
 2. **Simplify retry.** Should a right answer after the "simplify" hint count toward mastery, or only toward finishing a section?

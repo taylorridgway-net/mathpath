@@ -1,0 +1,45 @@
+// Checks lesson data files: every reference is real, every misconception has a
+// student message, and the {a/b} math markup is well formed.
+
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { generators } from '../../engine/generators/index.js';
+import { loadFractions } from '../helpers/fractions-setup.js';
+
+const lesson = JSON.parse(readFileSync(new URL('../../curriculum/lessons/frac.add-sub.json', import.meta.url), 'utf8'));
+const { graph, misconceptions } = loadFractions();
+const MARKUP = /\{([^}]*)\}/g;
+const VALID = /^\d+( \d+)?\/(\d+|\?)$|^\?\/\d+$/;
+
+test('sections point at real skills and real problem generators', () => {
+  for (const s of lesson.sections) {
+    assert.ok(graph.has(s.forGap), `${s.id}: unknown gap ${s.forGap}`);
+    assert.ok(generators[s.generator], `${s.id}: no generator ${s.generator}`);
+    assert.ok(['section', 'skill'].includes(s.mode), s.id);
+    assert.ok(s.explain.length > 0 && s.title && s.objective, s.id);
+  }
+});
+
+test('every subskill of the skill has a section, plus one for the whole skill', () => {
+  const gaps = lesson.sections.map((s) => s.forGap).sort();
+  assert.deepEqual(gaps, [lesson.skill, ...graph.subskillsOf(lesson.skill)].sort());
+});
+
+test('every hint is for a generator used here, and every generator used has a hint', () => {
+  const used = new Set(lesson.sections.map((s) => s.generator));
+  assert.deepEqual(Object.keys(lesson.hints).sort(), [...used].sort());
+});
+
+test('every wrong-answer pattern for this skill has a student message', () => {
+  const ids = misconceptions.filter((m) => m.pointsTo.startsWith(`${lesson.skill}.`)).map((m) => m.id).sort();
+  assert.deepEqual(Object.keys(lesson.misconceptionMessages).sort(), ids);
+});
+
+test('math markup is well formed', () => {
+  const texts = [...lesson.sections.flatMap((s) => s.explain), ...Object.values(lesson.hints), ...Object.values(lesson.misconceptionMessages)];
+  for (const t of texts) {
+    assert.equal((t.match(/\{/g) || []).length, (t.match(/\}/g) || []).length, `unbalanced braces: ${t}`);
+    for (const [, inner] of t.matchAll(MARKUP)) assert.ok(VALID.test(inner), `bad math markup {${inner}} in: ${t}`);
+  }
+});

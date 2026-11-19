@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "default": {
+    "guided": { "rightNeeded": 2, "maxProblems": 6, "difficulty": 1 },
+    "sectionCheck": { "rightInARow": 3, "maxProblems": 12, "difficulty": 2 },
+    "skill": {
+      "window": 5,
+      "rightOnFirstTry": 4,
+      "minAtHardest": 2,
+      "startDifficulty": 2,
+      "hardestDifficulty": 3,
+      "maxProblemsPerSitting": 20
+    },
+    "retention": { "afterDays": [14, 28], "problems": 3 }
+  }
+}

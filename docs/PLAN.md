@@ -165,13 +165,13 @@ Integer and whole-number stubs have no lessons in this milestone. If the diagnos
 
 ## Where we are (handoff notes)
 
-Updated 2026-11-19. Read this first in a new session.
+Updated 2026-11-19 (end of session 1). Read this first in a new session.
 
-- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; preview link (private, owner only): https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK
+- **Done:** skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic (with simulated-student tests); math keypad and diagnostic page; worked solutions (`engine/solutions/`); practice session logic with feedback rules and mastery (`engine/practice/`, rules in `curriculum/mastery.json`); lesson text draft (`curriculum/lessons/frac.add-sub.json`). 132 tests pass (`npm test`).
+- **Preview link** (private, owner only): https://claude.ai/artifact/X3HD7LBaGbrzS8gPPWmWBK. Currently shows the diagnostic only. To refresh: `npm run build`, then publish `dist/student-preview.html` to that same link (Artifact tool, pass the URL).
 - **Owner-tested on a phone:** keypad works. Owner found the "each step fine, whole problem missed" bug; fixed.
-- **Next:** lessons and practice for `frac.add-sub`. Plan is in `docs/LESSONS-PLAN.md`, waiting for the owner's answers to its questions before building.
-- **Waiting on owner:** keep/cut/merge calls on `docs/SKILL-LIST.md`.
-- **To refresh the preview:** `npm run build`, then publish `dist/student-preview.html` to the same preview link.
+- **Next (build step 4 of docs/LESSONS-PLAN.md):** lesson screens. Render the lesson JSON (explain text with `{a/b}` markup -> stacked fractions, worked example from `solveAddSub`, guided practice, check / mastery via `startPractice`, feedback messages from the lesson file, worked solution + similar problem after a miss). Build the fraction-bars interactive (three sections use it; params are in the lesson file). For "Putting it together" guided problems, one answer box per step. After the diagnostic, show the student's path (root gaps -> sections) in the preview. Save each finished section to local storage (seed, answers, timing, attempts, curriculum version). Then republish the preview and ask the owner to try a section.
+- **Waiting on owner:** review of the lesson text (once it's visible in the preview); keep/cut/merge calls on `docs/SKILL-LIST.md`.
 
 ## 4. Build order for the fractions prototype
 

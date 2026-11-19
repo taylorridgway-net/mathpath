@@ -67,8 +67,24 @@ Adaptive, short (target roughly 15-25 questions). Start mid-graph; a correct ans
 - Dev-only tooling: esbuild (bundles the engine for Apps Script) and Node's built-in test runner. Nothing else without asking.
 - Course mapping (Integrated Math 1/2/3 units -> skills they rely on) lives in its own file, never inside the skill graph. Course never drives a student's path.
 - Every saved record stores per-subskill diagnostic verdicts, timestamps, attempt counts, and the curriculum version, so success metrics (diagnostic accuracy, time to mastery, retention) can be measured later.
+- Passing fraction add/subtract credits multiplication facts but not division facts (owner decision; that's why they are separate subskills).
+- Diagnostic: no retry for an unsimplified answer (it's evidence about simplifying). A blank / "I'm not sure" counts as a miss.
+- Diagnostic: if a whole-skill problem is missed but every step checks out, ask one more whole problem. Missed again = gap on the whole skill ("each step fine, whole problem missed"). Found by the owner; never treat that pattern as a slip.
+- Practice feedback: wrong with a known misconception -> that message + one retry; wrong otherwise -> hint + one retry; wrong twice or "I'm not sure" -> show the worked solution, then a similar problem.
+- Platform mastery of a skill: 4 of the last 5 whole problems right on the first try, at least 2 at the hardest difficulty. A right answer after the "simplify" hint counts as first-try right if the student then simplifies correctly. Section checks: 3 right in a row.
 
 ## Working style
+
+Lessons learned building this (follow them):
+
+- The owner testing on a real phone finds bugs the tests don't. After every student-facing change, rebuild, republish the preview link (see docs/PLAN.md, "Where we are"), and suggest 1-2 specific things to try.
+- Before writing a test that locks in a teaching judgment (e.g. "a miss here is just a slip"), ask the owner. A wrong test is worse than none.
+- Look at sample generated problems by eye, not just at passing tests (that's how oversized common denominators like 132 were caught).
+- For important logic, plant a deliberate bug once and confirm the tests fail, then restore.
+- A subskill's problems must only need that subskill. If they also need another, declare it in the generator's `alsoUses` (and `covers` / `ifNotSimplified` where relevant) so the diagnostic doesn't blame the wrong subskill.
+- Skill and subskill IDs can still be renamed or removed freely: no real student data exists yet. Once real data exists, IDs are permanent (mark `retired` instead).
+- Keep docs/PLAN.md "Where we are" current at the end of every session, and put every decision made in chat into this file. The owner starts new sessions when context fills up, and only the repository carries over.
+- Claude can't create GitHub repositories from a session; the owner does that step.
 
 - Plan before coding on anything non-trivial; propose structure and schemas for review first.
 - Write Node tests for every generator and for diagnostic/mastery logic. Math bugs are the main risk.
