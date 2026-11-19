@@ -28,9 +28,9 @@ test('a student who knows everything: no gaps, very few questions', () => {
   assert.deepEqual(result.rootGaps, []);
   assert.deepEqual(withStatus(result, 'gap'), []);
   assert.equal(result.finishedReason, 'complete');
-  // One full add/subtract problem, plus one mixed-number problem (the full problem doesn't cover mixed numbers).
-  assert.equal(result.questionCount, 2);
-  for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result', 'mixed']) {
+  // One full add/subtract problem covers every add/subtract subskill.
+  assert.equal(result.questionCount, 1);
+  for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result']) {
     assert.equal(statusOf(result, SUB(s)), 'known', s);
   }
   // Credited without asking, because add/subtract depends on them.
@@ -41,14 +41,13 @@ test('a student who knows everything: no gaps, very few questions', () => {
   assert.equal(result.skills['frac.add-sub'], 'known');
 });
 
-test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simplifying or mixed numbers', () => {
+test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simplifying', () => {
   const { result } = diagnose({ lacks: [SUB('combine')], misconceptions: ['frac.add-across'] });
   assert.deepEqual(result.rootGaps, [SUB('combine')]);
   assert.equal(statusOf(result, SUB('common-denom')), 'known');
   assert.equal(statusOf(result, SUB('rewrite')), 'known');
   // These problems also need combining, so they can't be checked yet (not falsely called gaps).
   assert.deepEqual(result.nodes[SUB('simplify-result')].blockedBy, [SUB('combine')]);
-  assert.deepEqual(result.nodes[SUB('mixed')].blockedBy, [SUB('combine')]);
   assert.equal(statusOf(result, SUB('simplify-result')), 'not-tested');
   assert.ok(result.misconceptions['frac.add-across'] >= 2);
   // Possible deeper causes that don't have problems yet:
@@ -59,16 +58,16 @@ test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simp
 test('can do everything but simplify: finds the simplifying gap and points below it', () => {
   const { result } = diagnose({ lacks: ['frac.equivalent.simplify'] });
   assert.deepEqual(result.rootGaps, [SUB('simplify-result')]);
-  for (const s of ['common-denom', 'rewrite', 'combine', 'mixed']) assert.equal(statusOf(result, SUB(s)), 'known', s);
+  for (const s of ['common-denom', 'rewrite', 'combine']) assert.equal(statusOf(result, SUB(s)), 'known', s);
   assert.ok(result.uncheckedCauses.includes('frac.equivalent.simplify'));
   assert.equal(result.questions[0].status, 'not-simplified');
 });
 
-test('only mixed numbers are missing', () => {
-  const { result } = diagnose({ lacks: [SUB('mixed')] });
-  assert.deepEqual(result.rootGaps, [SUB('mixed')]);
-  assert.deepEqual(withStatus(result, 'gap'), [SUB('mixed')]);
-  assert.ok(result.uncheckedCauses.includes('frac.mixed'));
+test('mixed numbers never come up in the diagnostic (owner decision: supporting skill only)', () => {
+  const { result } = diagnose({ lacks: ['frac.mixed'] });
+  assert.deepEqual(result.rootGaps, []);
+  assert.equal(statusOf(result, 'frac.mixed'), 'not-tested');
+  assert.ok(!fractions.config.targets.includes('frac.mixed'));
 });
 
 test('missing multiplication facts: many add/subtract gaps, all traced to the same possible cause', () => {
@@ -87,9 +86,10 @@ test('one careless slip on the first question does not create a gap', () => {
 });
 
 test('a slip on a subskill makes it "shaky", not a gap', () => {
-  const { result } = diagnose({ slipsOn: [SUB('mixed')] });
-  assert.equal(statusOf(result, SUB('mixed')), 'shaky');
-  assert.deepEqual(result.rootGaps, []);
+  // The combine gap makes the diagnostic check each subskill; a slip on one of them is "shaky".
+  const { result } = diagnose({ lacks: [SUB('combine')], slipsOn: [SUB('rewrite')] });
+  assert.equal(statusOf(result, SUB('rewrite')), 'shaky');
+  assert.deepEqual(result.rootGaps, [SUB('combine')]);
 });
 
 // ---------- replay, resume, limits ----------
@@ -149,7 +149,7 @@ test('a blank answer counts as a miss, not a crash', () => {
 
 test('random students: never claims a gap the student does not have; finds every real gap it can check', () => {
   const candidates = [
-    SUB('common-denom'), SUB('rewrite'), SUB('combine'), SUB('simplify-result'), SUB('mixed'),
+    SUB('common-denom'), SUB('rewrite'), SUB('combine'), SUB('simplify-result'),
     'frac.equivalent.simplify', 'frac.equivalent', 'frac.mixed', 'whole.mult-div.mult-facts',
     'whole.factors-multiples', 'whole.add-sub', 'frac.meaning',
   ];
@@ -159,7 +159,7 @@ test('random students: never claims a gap the student does not have; finds every
   for (let i = 0; i < 300; i++) {
     const lacks = candidates.filter(() => rng.chance(0.2));
     const misconceptions = allMisconceptions.filter(() => rng.chance(0.3));
-    const slipsOn = rng.chance(0.3) ? [rng.pick([...candidates.slice(0, 5), 'frac.add-sub'])] : [];
+    const slipsOn = rng.chance(0.3) ? [rng.pick([...candidates.slice(0, 4), 'frac.add-sub'])] : [];
     const { result, student } = diagnose({ lacks, misconceptions, slipsOn }, { seed: `student-${i}` });
     const who = `student ${i} lacks [${lacks}] slips [${slipsOn}]`;
 
@@ -175,7 +175,7 @@ test('random students: never claims a gap the student does not have; finds every
     }
     // Completeness: every add/subtract subskill the student can't do is caught
     // as a gap, or honestly reported as blocked by another gap.
-    for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result', 'mixed'].map(SUB)) {
+    for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result'].map(SUB)) {
       if (!student.canDo(s)) {
         const r = result.nodes[s];
         assert.ok(r && (r.status === 'gap' || r.blockedBy), `${who}: missed gap on ${s} (status ${r?.status})`);

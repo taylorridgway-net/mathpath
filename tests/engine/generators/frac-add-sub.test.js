@@ -194,26 +194,6 @@ test('simplify-result problems always need simplifying', () => {
   }
 });
 
-test('mixed-number problems: difficulty 2 carries, difficulty 3 must regroup', () => {
-  for (const difficulty of DIFFICULTIES) for (const seed of SEEDS) {
-    const p = generateProblem('frac.add-sub.mixed', seed, difficulty);
-    const { left, right, op } = p.expression;
-    assert.equal(left.type, 'mixed');
-    assert.equal(left.d, right.d);
-    if (difficulty === 1) assert.ok(op === '+' && left.n + right.n < left.d);
-    if (difficulty === 2) {
-      assert.ok(op === '+' && left.n + right.n > left.d);
-      // Not carrying (e.g. 3 5/4) should be "not-simplified", not "wrong".
-      const uncarried = { whole: left.whole + right.whole, num: left.n + right.n, den: left.d };
-      assert.equal(checkAnswer(p, uncarried).status, 'not-simplified', toText(p.expression));
-    }
-    if (difficulty === 3) {
-      assert.ok(op === '-' && left.n < right.n, `${toText(p.expression)} doesn't need regrouping`);
-      assert.ok(left.whole - right.whole >= 2, 'answer whole part should be at least 1');
-    }
-  }
-});
-
 test('full problems use unlike denominators and match difficulty', () => {
   for (const difficulty of DIFFICULTIES) for (const seed of SEEDS) {
     const p = generateProblem('frac.add-sub', seed, difficulty);

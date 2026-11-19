@@ -59,7 +59,8 @@ Adaptive, short (target roughly 15-25 questions). Start mid-graph; a correct ans
 ## Decided details
 
 - Answers must be in simplest form. If an answer is correct but not simplified, don't mark it wrong: give one more try with a hint to simplify.
-- Improper fractions and mixed numbers (7/4 vs 1 3/4) are both accepted unless the question asks for a specific form. (Assumption; owner to confirm.)
+- Improper fractions and mixed numbers (7/4 vs 1 3/4) are both accepted as answers unless the question asks for a specific form. (Owner confirmed.)
+- Mixed-number arithmetic is out of the fractions map (owner decision). `frac.mixed` (converting mixed <-> improper) stays as a supporting skill: never in the diagnostic, teacher-assignable.
 - Decimals are out of the fractions map for now; they come later as their own area.
 - Problem seeds are chosen by the server (e.g. from student code + attempt number), never picked by the browser, so students can't reroll for easy problems.
 - No front-end framework (no React). Plain HTML/CSS/JS. Use the device's system fonts; no font files.

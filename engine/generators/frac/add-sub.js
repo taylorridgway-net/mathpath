@@ -38,7 +38,6 @@ const MAX_DEN = 12;
 const range = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => from + i);
 const coprime = (a, b) => gcd(a, b) === 1;
 const frac = (n, d) => ({ type: 'frac', n, d });
-const mixed = (whole, n, d) => ({ type: 'mixed', whole, n, d });
 const op = (sym, left, right) => ({ type: 'op', op: sym, left, right });
 
 // Numerators that make a proper fraction in simplest form with denominator d.
@@ -203,54 +202,6 @@ const simplifyResult = {
   },
 };
 
-// ---------- subskill: mixed numbers, including regrouping ----------
-//   1: add, no regrouping (1 1/5 + 2 2/5)
-//   2: add, fractions make more than a whole (1 3/5 + 2 4/5)
-//   3: subtract, must regroup (3 1/4 - 1 3/4)
-
-const MIXED = {
-  1: likeDenominatorTriples(range(3, MAX_DEN), (d, a, b) => a + b < d && coprime(a + b, d)),
-  2: likeDenominatorTriples(range(3, MAX_DEN), (d, a, b) => a + b > d && coprime(a + b - d, d)),
-  3: likeDenominatorTriples(range(3, MAX_DEN), (d, a, b) => a < b && coprime(d + a - b, d)),
-};
-
-const mixedNumbers = {
-  version: 1,
-  alsoUses: ['frac.add-sub.combine'],
-  // An unsimplified answer here is usually 3 5/4: not finishing the regrouping.
-  ifNotSimplified: 'frac.add-sub.mixed',
-  generate(rng, difficulty) {
-    const [d, a, b] = rng.pick(MIXED[difficulty]);
-    const subtract = difficulty === 3;
-    let w1;
-    let w2;
-    if (subtract) {
-      w1 = rng.int(3, 9);
-      w2 = rng.int(1, w1 - 2); // keeps the answer's whole-number part at least 1
-    } else {
-      w1 = rng.int(1, 6);
-      w2 = rng.int(1, 6);
-    }
-    const first = fraction(w1 * d + a, d);
-    const second = fraction(w2 * d + b, d);
-    const value = subtract ? sub(first, second) : add(first, second);
-
-    const candidates = subtract
-      ? [
-          { id: 'frac.mixed-subtract-reversed', value: fraction((w1 - w2) * d + (b - a), d) },
-          d === 10 ? null : { id: 'frac.mixed-borrow-ten', value: fraction((w1 - w2 - 1) * d + (10 + a - b), d) },
-        ].filter(Boolean)
-      : [];
-
-    return {
-      instruction: `${subtract ? 'Subtract' : 'Add'}. Write your answer in simplest form.`,
-      expression: op(subtract ? '-' : '+', mixed(w1, a, d), mixed(w2, b, d)),
-      answer: fractionAnswer(value),
-      misconceptions: misconceptionList((x) => equals(x, value), candidates),
-    };
-  },
-};
-
 // ---------- whole skill: unlike denominators, start to finish ----------
 //   1: one denominator divides the other, add
 //   2: no common factor, add or subtract
@@ -300,5 +251,4 @@ export const addSubGenerators = {
   'frac.add-sub.rewrite': rewrite,
   'frac.add-sub.combine': combine,
   'frac.add-sub.simplify-result': simplifyResult,
-  'frac.add-sub.mixed': mixedNumbers,
 };

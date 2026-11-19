@@ -35,16 +35,6 @@
       "id": "frac.numerators-not-scaled",
       "description": "Finds a common denominator but doesn't rewrite the numerators (1/2 + 1/3 -> 2/6).",
       "pointsTo": "frac.add-sub.rewrite"
-    },
-    {
-      "id": "frac.mixed-subtract-reversed",
-      "description": "Subtracts the smaller fraction from the larger instead of regrouping (3 1/4 - 1 3/4 -> 2 2/4).",
-      "pointsTo": "frac.add-sub.mixed"
-    },
-    {
-      "id": "frac.mixed-borrow-ten",
-      "description": "Regroups as if a whole were 10 parts instead of the denominator (3 1/4 - 1 3/4 -> 1 8/4).",
-      "pointsTo": "frac.add-sub.mixed"
     }
   ]
 }

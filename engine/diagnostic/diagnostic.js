@@ -10,7 +10,7 @@
 //   1. Work through the target skills in the config (e.g. frac.add-sub first).
 //   2. If a skill has a whole-skill "screener" problem, ask it.
 //      - Right: credit the subskills it covers, plus everything they depend on.
-//        Then check any subskills the screener doesn't cover (e.g. mixed numbers).
+//        Then check any subskills the screener doesn't cover.
 //      - Right but not simplified: credit the rest, check the simplify subskill.
 //      - Wrong: if the wrong answer matches a known misconception, check the
 //        subskill it points to first; then check the other covered subskills.

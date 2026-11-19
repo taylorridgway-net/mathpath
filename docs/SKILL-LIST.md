@@ -57,7 +57,7 @@ That gives **13 domains**. The tables below use that structure.
 | `frac.meaning` | Understand fractions | — | 1 | — | |
 | `frac.equivalent` | Equivalent fractions and simplest form | frac.meaning, whole.mult-div | 1 | — | |
 | `frac.compare` | Compare and order fractions | frac.meaning | 2 | — | |
-| `frac.mixed` | Mixed numbers and improper fractions | frac.meaning | 1 | — | |
+| `frac.mixed` | Mixed numbers and improper fractions (supporting only, not diagnosed) | frac.meaning | 3 | — | keep as supporting |
 | `frac.add-sub` | Add and subtract fractions | frac.equivalent | 1 | IM1 | |
 | `frac.multiply` | Multiply fractions | frac.meaning | 1 | IM1 | |
 | `frac.divide` | Divide fractions | frac.multiply | 1 | IM1 | |

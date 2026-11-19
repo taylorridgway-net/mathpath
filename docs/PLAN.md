@@ -88,7 +88,7 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
     {
       "id": "frac.add-sub",
       "name": "Add and subtract fractions",
-      "summary": "Add and subtract fractions and mixed numbers with like and unlike denominators.",
+      "summary": "Add and subtract fractions with like and unlike denominators.",
       "typicalGrade": 5,
       "standards": ["5.NF.A.1", "5.NF.A.2"],
       "status": "draft",
@@ -121,11 +121,6 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
           "id": "frac.add-sub.simplify-result",
           "name": "Simplify the result",
           "prerequisites": [ { "id": "frac.equivalent.simplify", "strength": "essential" } ]
-        },
-        {
-          "id": "frac.add-sub.mixed",
-          "name": "Add and subtract mixed numbers, including regrouping",
-          "prerequisites": [ { "id": "frac.mixed", "strength": "essential" } ]
         }
       ]
     }
@@ -137,7 +132,7 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
 
 ## 3. Fractions skill map
 
-8 instructional skills, 27 subskills. Each lesson has one section per subskill, so a student missing one subskill gets just that section.
+8 instructional skills, 24 subskills. (Mixed-number arithmetic removed by owner decision; `frac.mixed` is a supporting skill outside the diagnostic.) Each lesson has one section per subskill, so a student missing one subskill gets just that section.
 
 ### Prerequisite stubs from other areas
 
@@ -156,10 +151,10 @@ One file per domain. Each file holds that domain's skills; each skill holds its 
 | 1 | `frac.meaning` Understand fractions | `.read-models` name a fraction from a picture; `.number-line` place on a number line incl. >1; `.division` fraction as division, wholes as fractions | `whole.mult-div` S |
 | 2 | `frac.equivalent` Equivalent fractions and simplest form | `.scale`; `.missing` (3/4 = ?/20); `.simplify` | `frac.meaning` E; `whole.mult-div.mult-facts` E; `.simplify` <- `whole.factors-multiples` E |
 | 3 | `frac.compare` Compare and order | `.like`; `.benchmark` (0, 1/2, 1); `.unlike` | `frac.meaning` E; `.unlike` <- `frac.equivalent` E |
-| 4 | `frac.mixed` Mixed numbers and improper fractions | `.to-improper`; `.to-mixed` | `frac.meaning` E; `.to-mixed` <- `whole.mult-div.remainders` E |
-| 5 | `frac.add-sub` Add and subtract | `.common-denom`; `.rewrite`; `.combine`; `.simplify-result`; `.mixed` | see example above |
-| 6 | `frac.multiply` Multiply | `.by-whole` (incl. "2/3 of 12"); `.by-fraction`; `.simplify`; `.mixed` (catches 2 1/2 x 3 1/2 = 6 1/4) | `frac.meaning` E; `whole.mult-div.mult-facts` E; `.simplify` <- `frac.equivalent.simplify` E; `.mixed` <- `frac.mixed` E |
-| 7 | `frac.divide` Divide | `.meaning` (how many 1/2s in 3?); `.reciprocal`; `.multiply-reciprocal` (catches flipping the wrong one); `.mixed` | `frac.multiply` E; `frac.meaning` E; `.mixed` <- `frac.mixed` E |
+| 4 | `frac.mixed` Mixed numbers and improper fractions (supporting only, not in the diagnostic) | `.to-improper`; `.to-mixed` | `frac.meaning` E; `.to-mixed` <- `whole.mult-div.remainders` E |
+| 5 | `frac.add-sub` Add and subtract | `.common-denom`; `.rewrite`; `.combine`; `.simplify-result` | see example above |
+| 6 | `frac.multiply` Multiply | `.by-whole` (incl. "2/3 of 12"); `.by-fraction`; `.simplify` | `frac.meaning` E; `whole.mult-div.mult-facts` E; `.simplify` <- `frac.equivalent.simplify` E |
+| 7 | `frac.divide` Divide | `.meaning` (how many 1/2s in 3?); `.reciprocal`; `.multiply-reciprocal` (catches flipping the wrong one) | `frac.multiply` E; `frac.meaning` E |
 | 8 | `frac.signed` Negative fractions | `.sign-placement` (-3/4 = (-3)/4 = 3/(-4)); `.add-sub`; `.mult-div` | `.add-sub` <- `int.add-sub` E, `frac.add-sub` E; `.mult-div` <- `int.mult-div` E, `frac.multiply` E, `frac.divide` E |
 
 The diagnostic starts at `frac.add-sub` with an unlike-denominator problem. Right: skills 1-4 get provisional credit; move on to multiply/divide/signed. Wrong: the shape of the wrong answer decides where to go (1/2 + 1/3 = 2/5 points at `.combine`; a bad common denominator goes down to equivalence and multiples).
@@ -187,7 +182,6 @@ See the "Decided details" section of `CLAUDE.md`. In short: simplest form requir
 
 ## 6. Still open
 
-- Improper vs mixed answers (7/4 vs 1 3/4): assumed both accepted unless the question asks for a form. Owner to confirm.
 - Which Google account hosts the Apps Script project. Fine to use a personal account during synthetic-data development; must be settled (and the admin told) before any real student data.
 - Full skill list across all domains: drafted in `docs/SKILL-LIST.md`, waiting for the owner to keep/cut/merge.
 - License (AGPL-3.0 vs MIT). No license file until decided.

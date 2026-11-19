@@ -56,7 +56,7 @@
     {
       "id": "frac.mixed",
       "name": "Mixed numbers and improper fractions",
-      "summary": "Convert between mixed numbers and improper fractions.",
+      "summary": "Convert between mixed numbers and improper fractions. Supporting skill only (owner decision): useful for word problems and measurement, never in the diagnostic, teacher can assign it.",
       "typicalGrade": 4,
       "standards": ["4.NF.B.3"],
       "status": "draft",
@@ -71,7 +71,7 @@
     {
       "id": "frac.add-sub",
       "name": "Add and subtract fractions",
-      "summary": "Add and subtract fractions and mixed numbers with like and unlike denominators.",
+      "summary": "Add and subtract fractions with like and unlike denominators.",
       "typicalGrade": 5,
       "standards": ["4.NF.B.3", "5.NF.A.1", "5.NF.A.2"],
       "status": "draft",
@@ -92,15 +92,13 @@
         { "id": "frac.add-sub.combine", "name": "Add or subtract numerators, keep the denominator",
           "prerequisites": [ { "id": "whole.add-sub", "strength": "essential" } ] },
         { "id": "frac.add-sub.simplify-result", "name": "Simplify the result",
-          "prerequisites": [ { "id": "frac.equivalent.simplify", "strength": "essential" } ] },
-        { "id": "frac.add-sub.mixed", "name": "Add and subtract mixed numbers, including regrouping",
-          "prerequisites": [ { "id": "frac.mixed", "strength": "essential" } ] }
+          "prerequisites": [ { "id": "frac.equivalent.simplify", "strength": "essential" } ] }
       ]
     },
     {
       "id": "frac.multiply",
       "name": "Multiply fractions",
-      "summary": "Multiply fractions by whole numbers, fractions, and mixed numbers.",
+      "summary": "Multiply fractions by whole numbers and by fractions.",
       "typicalGrade": 5,
       "standards": ["4.NF.B.4", "5.NF.B.4", "5.NF.B.6"],
       "status": "draft",
@@ -112,15 +110,13 @@
         { "id": "frac.multiply.by-whole", "name": "Multiply a fraction by a whole number, including 'fraction of' a quantity", "prerequisites": [] },
         { "id": "frac.multiply.by-fraction", "name": "Multiply two fractions", "prerequisites": [] },
         { "id": "frac.multiply.simplify", "name": "Simplify the product, or cancel common factors first",
-          "prerequisites": [ { "id": "frac.equivalent.simplify", "strength": "essential" } ] },
-        { "id": "frac.multiply.mixed", "name": "Multiply mixed numbers by converting them first",
-          "prerequisites": [ { "id": "frac.mixed", "strength": "essential" } ] }
+          "prerequisites": [ { "id": "frac.equivalent.simplify", "strength": "essential" } ] }
       ]
     },
     {
       "id": "frac.divide",
       "name": "Divide fractions",
-      "summary": "Understand and carry out division with fractions, whole numbers, and mixed numbers.",
+      "summary": "Understand and carry out division with fractions and whole numbers.",
       "typicalGrade": 6,
       "standards": ["5.NF.B.7", "6.NS.A.1"],
       "status": "draft",
@@ -131,9 +127,7 @@
       "subskills": [
         { "id": "frac.divide.meaning", "name": "Explain division as 'how many groups' (how many 1/2s in 3?)", "prerequisites": [] },
         { "id": "frac.divide.reciprocal", "name": "Write the reciprocal of a fraction or whole number", "prerequisites": [] },
-        { "id": "frac.divide.multiply-reciprocal", "name": "Divide by multiplying by the reciprocal of the divisor", "prerequisites": [] },
-        { "id": "frac.divide.mixed", "name": "Divide with whole and mixed numbers by converting them first",
-          "prerequisites": [ { "id": "frac.mixed", "strength": "essential" } ] }
+        { "id": "frac.divide.multiply-reciprocal", "name": "Divide by multiplying by the reciprocal of the divisor", "prerequisites": [] }
       ]
     },
     {
