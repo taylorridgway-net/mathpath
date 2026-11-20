@@ -42,6 +42,10 @@ function build(node) {
       });
       return wrap;
     }
+    case 'model':
+      return modelSvg(node);
+    case 'numberline':
+      return numberLineSvg(node);
     default:
       throw new Error(`renderMath: unknown expression type "${node.type}"`);
   }
@@ -77,4 +81,54 @@ function spoken(text) {
     .replace(/ × /g, ' times ')
     .replace(/ ÷ /g, ' divided by ')
     .replace(/ = /g, ' equals ');
+}
+
+// ---------- pictures (understand fractions) ----------
+// Drawn as SVG with the theme's colours (classes in style.css).
+
+const SVG = 'http://www.w3.org/2000/svg';
+function svg(tag, attrs) {
+  const e = document.createElementNS(SVG, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, String(v));
+  return e;
+}
+
+function modelSvg({ shape, parts, shaded, rows, cols }) {
+  if (shape === 'set') {
+    const perRow = Math.min(parts, 6);
+    const lines = Math.ceil(parts / perRow);
+    const root = svg('svg', { viewBox: `0 0 ${perRow * 40} ${lines * 40}`, width: perRow * 40, class: 'm-pic', 'aria-hidden': 'true' });
+    for (let i = 0; i < parts; i++) {
+      root.append(svg('circle', { cx: (i % perRow) * 40 + 20, cy: Math.floor(i / perRow) * 40 + 20, r: 14, class: i < shaded ? 'pic-on' : 'pic-off' }));
+    }
+    return root;
+  }
+  const [r, c] = shape === 'area' ? [rows, cols] : [1, parts];
+  const w = shape === 'area' ? c * 34 : 260;
+  const h = shape === 'area' ? r * 34 : 48;
+  const root = svg('svg', { viewBox: `-2 -2 ${w + 4} ${h + 4}`, width: w + 4, class: 'm-pic', 'aria-hidden': 'true' });
+  const cw = w / c;
+  const ch = h / r;
+  for (let i = 0; i < r * c; i++) {
+    root.append(svg('rect', { x: (i % c) * cw, y: Math.floor(i / c) * ch, width: cw, height: ch, class: i < shaded ? 'pic-on' : 'pic-off' }));
+  }
+  return root;
+}
+
+function numberLineSvg({ max, perUnit, point }) {
+  const w = 300;
+  const step = w / (max * perUnit);
+  const root = svg('svg', { viewBox: `-14 0 ${w + 28} 64`, width: w + 28, class: 'm-pic', 'aria-hidden': 'true' });
+  root.append(svg('line', { x1: 0, y1: 24, x2: w, y2: 24, class: 'pic-line' }));
+  for (let t = 0; t <= max * perUnit; t++) {
+    const whole = t % perUnit === 0;
+    root.append(svg('line', { x1: t * step, y1: whole ? 12 : 17, x2: t * step, y2: whole ? 36 : 31, class: 'pic-line' }));
+    if (whole) {
+      const label = svg('text', { x: t * step, y: 58, 'text-anchor': 'middle', class: 'pic-label' });
+      label.textContent = String(t / perUnit);
+      root.append(label);
+    }
+  }
+  root.append(svg('circle', { cx: point * step, cy: 24, r: 7, class: 'pic-dot' }));
+  return root;
 }

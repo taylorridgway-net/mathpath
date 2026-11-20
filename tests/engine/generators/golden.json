@@ -3115,6 +3115,1306 @@
    }
   ]
  },
+ "frac.meaning": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write the division as a fraction.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 9
+     },
+     "right": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 10
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 10,
+       "d": 9
+      }
+     }
+    ],
+    "part": "frac.meaning.division"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What fraction of the bar is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "bar",
+     "parts": 6,
+     "shaded": 5
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 1,
+       "d": 6
+      }
+     }
+    ],
+    "part": "frac.meaning.read-models"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 3,
+     "point": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     }
+    ],
+    "part": "frac.meaning.number-line"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What fraction of the rectangle is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "area",
+     "rows": 2,
+     "cols": 2,
+     "parts": 4,
+     "shaded": 3
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     }
+    ],
+    "part": "frac.meaning.read-models"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 10,
+     "point": 9
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 10
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 9,
+       "d": 11
+      }
+     }
+    ],
+    "part": "frac.meaning.number-line"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What whole number is this fraction equal to?",
+    "expression": {
+     "type": "frac",
+     "n": 16,
+     "d": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.whole-subtracted",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 4,
+       "d": 16
+      }
+     }
+    ],
+    "part": "frac.meaning.division"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What number is at the dot? Write it as a fraction or a mixed number.",
+    "expression": {
+     "type": "numberline",
+     "max": 2,
+     "perUnit": 4,
+     "point": 7
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 7,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.nl-whole-line",
+      "value": {
+       "n": 7,
+       "d": 8
+      }
+     }
+    ],
+    "part": "frac.meaning.number-line"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What number is at the dot? Write it as a fraction or a mixed number.",
+    "expression": {
+     "type": "numberline",
+     "max": 2,
+     "perUnit": 3,
+     "point": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 4,
+       "d": 4
+      }
+     },
+     {
+      "id": "frac.nl-whole-line",
+      "value": {
+       "n": 4,
+       "d": 6
+      }
+     }
+    ],
+    "part": "frac.meaning.number-line"
+   },
+   {
+    "generator": "frac.meaning",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What number is at the dot? Write it as a fraction or a mixed number.",
+    "expression": {
+     "type": "numberline",
+     "max": 3,
+     "perUnit": 3,
+     "point": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 4,
+       "d": 4
+      }
+     },
+     {
+      "id": "frac.nl-whole-line",
+      "value": {
+       "n": 4,
+       "d": 9
+      }
+     }
+    ],
+    "part": "frac.meaning.number-line"
+   }
+  ]
+ },
+ "frac.meaning.division": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write the division as a fraction.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 4
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 9
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 9,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write the division as a fraction.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 1
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 8
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 8,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write the division as a fraction.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 1
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 2
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What whole number is this fraction equal to?",
+    "expression": {
+     "type": "frac",
+     "n": 12,
+     "d": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.whole-subtracted",
+      "value": {
+       "n": 8,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 4,
+       "d": 12
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What whole number is this fraction equal to?",
+    "expression": {
+     "type": "frac",
+     "n": 18,
+     "d": 6
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.whole-subtracted",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 6,
+       "d": 18
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What whole number is this fraction equal to?",
+    "expression": {
+     "type": "frac",
+     "n": 24,
+     "d": 6
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.whole-subtracted",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 6,
+       "d": 24
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the division as a fraction or a mixed number.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 9
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 5,
+       "d": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the division as a fraction or a mixed number.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 7
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 4,
+       "d": 7
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.division",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write the division as a fraction or a mixed number.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 12
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 12,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.division-flipped",
+      "value": {
+       "n": 5,
+       "d": 12
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "frac.meaning.number-line": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 4,
+     "point": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 4,
+     "point": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 3,
+     "point": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 8,
+     "point": 5
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 8
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 5,
+       "d": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 9,
+     "point": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 9
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 4,
+       "d": 10
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What number is at the dot? Write it as a fraction.",
+    "expression": {
+     "type": "numberline",
+     "max": 1,
+     "perUnit": 7,
+     "point": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 7
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 4,
+       "d": 8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What number is at the dot? Write it as a fraction or a mixed number.",
+    "expression": {
+     "type": "numberline",
+     "max": 2,
+     "perUnit": 4,
+     "point": 7
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 7,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.nl-whole-line",
+      "value": {
+       "n": 7,
+       "d": 8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What number is at the dot? Write it as a fraction or a mixed number.",
+    "expression": {
+     "type": "numberline",
+     "max": 3,
+     "perUnit": 5,
+     "point": 11
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 11,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 11,
+       "d": 6
+      }
+     },
+     {
+      "id": "frac.nl-whole-line",
+      "value": {
+       "n": 11,
+       "d": 15
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.number-line",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What number is at the dot? Write it as a fraction or a mixed number.",
+    "expression": {
+     "type": "numberline",
+     "max": 3,
+     "perUnit": 2,
+     "point": 3
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 2
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.nl-counted-ticks",
+      "value": {
+       "n": 3,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.nl-whole-line",
+      "value": {
+       "n": 3,
+       "d": 6
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "frac.meaning.read-models": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What fraction of the bar is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "bar",
+     "parts": 6,
+     "shaded": 5
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 1,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What fraction of the bar is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "bar",
+     "parts": 5,
+     "shaded": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What fraction of the bar is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "bar",
+     "parts": 4,
+     "shaded": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 3,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What fraction of the rectangle is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "area",
+     "rows": 3,
+     "cols": 3,
+     "parts": 9,
+     "shaded": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 9
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 1,
+       "d": 8
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 8,
+       "d": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What fraction of the dots are shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "set",
+     "parts": 6,
+     "shaded": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What fraction of the dots are shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "set",
+     "parts": 7,
+     "shaded": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 7
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 1,
+       "d": 6
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 6,
+       "d": 7
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What fraction of the bar is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "bar",
+     "parts": 11,
+     "shaded": 3
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 11
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 3,
+       "d": 8
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 8,
+       "d": 11
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What fraction of the dots are shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "set",
+     "parts": 11,
+     "shaded": 1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 11
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 1,
+       "d": 10
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 10,
+       "d": 11
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.meaning.read-models",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What fraction of the rectangle is shaded?",
+    "expression": {
+     "type": "model",
+     "shape": "area",
+     "rows": 2,
+     "cols": 6,
+     "parts": 12,
+     "shaded": 7
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 12
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.model-part-to-part",
+      "value": {
+       "n": 7,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.model-unshaded",
+      "value": {
+       "n": 5,
+       "d": 12
+      }
+     }
+    ]
+   }
+  ]
+ },
  "whole.add-sub": {
   "version": 1,
   "problems": [

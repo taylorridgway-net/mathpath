@@ -60,6 +60,36 @@
       "id": "frac.eq-divided-top-only",
       "description": "Divides only the top when simplifying (6/8 -> 3/8).",
       "pointsTo": "frac.equivalent.simplify"
+    },
+    {
+      "id": "frac.model-part-to-part",
+      "description": "Compares shaded parts to unshaded parts instead of to all the parts (3 shaded, 2 not -> 3/2).",
+      "pointsTo": "frac.meaning.read-models"
+    },
+    {
+      "id": "frac.model-unshaded",
+      "description": "Names the unshaded part instead of the shaded part (3 of 5 shaded -> 2/5).",
+      "pointsTo": "frac.meaning.read-models"
+    },
+    {
+      "id": "frac.nl-counted-ticks",
+      "description": "Counts the tick marks instead of the spaces between 0 and 1 (fourths -> fifths).",
+      "pointsTo": "frac.meaning.number-line"
+    },
+    {
+      "id": "frac.nl-whole-line",
+      "description": "Treats the whole line as one whole when it goes past 1 (5/4 on a 0-2 line -> 5/8).",
+      "pointsTo": "frac.meaning.number-line"
+    },
+    {
+      "id": "frac.division-flipped",
+      "description": "Writes the division upside down (3 / 4 -> 4/3).",
+      "pointsTo": "frac.meaning.division"
+    },
+    {
+      "id": "frac.whole-subtracted",
+      "description": "Subtracts instead of dividing to turn a fraction into a whole number (12/4 -> 8).",
+      "pointsTo": "frac.meaning.division"
     }
   ]
 }

@@ -27,3 +27,9 @@ test('every piece of text in the lesson file parses', () => {
   ];
   for (const t of texts) assert.doesNotThrow(() => parseLessonText(t, { autoFractions: true }), t);
 });
+
+test('picture markup for paper tests: bars, dots, number lines', () => {
+  assert.deepEqual(parseLessonText('{bar 3/5}'), [{ type: 'model', shape: 'bar', shaded: 3, parts: 5 }]);
+  assert.deepEqual(parseLessonText('{dots 4/9}'), [{ type: 'model', shape: 'set', shaded: 4, parts: 9 }]);
+  assert.deepEqual(parseLessonText('{line 2 4 7}'), [{ type: 'numberline', max: 2, perUnit: 4, point: 7 }]);
+});

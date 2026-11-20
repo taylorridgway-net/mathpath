@@ -183,3 +183,12 @@
   width: 100%; padding: 10px 12px; border-radius: var(--radius-sm); border: 1px solid var(--line);
   background: var(--surface); color: var(--ink); font: inherit; resize: vertical;
 }
+
+/* Pictures on paper (on-screen print view and real printing): black and white,
+   whatever the screen's theme, so they photocopy cleanly. */
+.p-page .m-pic .pic-off { fill: #fff; stroke: #111; }
+.p-page .m-pic .pic-on { fill: #b8b8b8; stroke: #111; }
+.p-page .m-pic .pic-line { stroke: #111; }
+.p-page .m-pic .pic-label { fill: #111; }
+.p-page .m-pic .pic-dot { fill: #111; stroke: #111; }
+.p-page .math-inline:has(.m-pic) { display: block; margin: 6px 0 2px; }

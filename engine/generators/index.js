@@ -4,6 +4,7 @@
 import { createRng } from '../random.js';
 import { addSubGenerators } from './frac/add-sub.js';
 import { equivalentGenerators } from './frac/equivalent.js';
+import { meaningGenerators } from './frac/meaning.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
 import { wholeFactorGenerators } from './whole/factors.js';
@@ -11,6 +12,7 @@ import { wholeFactorGenerators } from './whole/factors.js';
 export const generators = {
   ...addSubGenerators,
   ...equivalentGenerators,
+  ...meaningGenerators,
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,
   ...wholeFactorGenerators,

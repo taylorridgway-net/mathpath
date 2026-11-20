@@ -1,5 +1,9 @@
 // Lesson text with math in it.
 //
+// Pictures too (paper tests): {bar 3/5} a bar with 3 of 5 parts shaded,
+// {dots 4/9} 4 of 9 dots shaded, {line 2 4 7} a number line from 0 to 2 cut
+// into fourths with a dot at the 7th mark.
+//
 // Lesson files mark math with braces: {3/4} is a stacked fraction, {1 3/4} a
 // mixed number, {?/12} a fraction with a blank. Worked-solution sentences are
 // generated as plain text ("So 1/4 = 3/12"), so for those, bare a/b fractions
@@ -44,6 +48,10 @@ function pushText(out, rawText, autoFractions) {
 
 function parseMath(inner) {
   const part = (s) => (s === '?' ? { type: 'blank' } : Number(s));
+  const pic = /^(bar|dots) (\d+)\/(\d+)$/.exec(inner);
+  if (pic) return { type: 'model', shape: pic[1] === 'bar' ? 'bar' : 'set', shaded: Number(pic[2]), parts: Number(pic[3]) };
+  const line = /^line (\d+) (\d+) (\d+)$/.exec(inner);
+  if (line) return { type: 'numberline', max: Number(line[1]), perUnit: Number(line[2]), point: Number(line[3]) };
   const mixed = /^(\d+) (\d+)\/(\d+)$/.exec(inner);
   if (mixed) return { type: 'mixed', whole: Number(mixed[1]), n: Number(mixed[2]), d: Number(mixed[3]) };
   const f = /^(\d+|\?)\/(\d+|\?)$/.exec(inner);

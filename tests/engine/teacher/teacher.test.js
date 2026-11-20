@@ -43,10 +43,12 @@ test('platform mastery and verified mastery are separate', () => {
 });
 
 test('with waiting switched on, a student is marked waiting until the check is cleared', () => {
+  // As if "understand fractions" had no lesson yet (it has one now).
+  const without = lessons.filter((l) => l.skill !== 'frac.meaning');
   const r = { ...gapCombine, uncheckedCauses: ['frac.meaning'] };
-  assert.equal(status({ diagnosticResult: r, waitForTeacher: true }).waiting, true);
-  assert.equal(status({ diagnosticResult: r, cleared: ['frac.meaning'], waitForTeacher: true }).waiting, false);
-  assert.equal(status({ diagnosticResult: r }).waiting, false, 'by default (owner decision) nobody waits');
+  assert.equal(status({ diagnosticResult: r, waitForTeacher: true, lessons: without }).waiting, true);
+  assert.equal(status({ diagnosticResult: r, cleared: ['frac.meaning'], waitForTeacher: true, lessons: without }).waiting, false);
+  assert.equal(status({ diagnosticResult: r, lessons: without }).waiting, false, 'by default (owner decision) nobody waits');
 });
 
 test('no diagnostic yet: everything not tested', () => {
