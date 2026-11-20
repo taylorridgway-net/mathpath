@@ -72,8 +72,8 @@ export function createSheetsStore({ spreadsheet, lockService }) {
 
   function tab(name) {
     if (!headers.has(name)) {
-      const sheet = spreadsheet.getSheetByName(name);
-      if (!sheet) throw new Error(`The spreadsheet has no "${name}" tab. Run setup() once.`);
+      // A tab added in a newer version of MathPath is made the first time it's needed.
+      const sheet = spreadsheet.getSheetByName(name) || spreadsheet.insertSheet(name);
       headers.set(name, { sheet, header: headerOf(sheet, name) });
     }
     return headers.get(name);

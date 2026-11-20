@@ -121,6 +121,14 @@ test('an older spreadsheet gets the new columns added before "data", and its row
   assert.deepEqual(row.answers, [{ whole: 1 }]);
 });
 
+test('a spreadsheet from an older version (no Resets tab) keeps working: the tab is made when needed', () => {
+  const { spreadsheet, server } = fresh();
+  spreadsheet.sheets.delete('Resets');
+  assert.equal(server().teacher.teacherData(T).error, undefined);
+  assert.ok(spreadsheet.getSheetByName('Resets'), 'made on first use');
+  assert.deepEqual(spreadsheet.getSheetByName('Resets').rows[0], TABS.Resets);
+});
+
 test('someone who isn\'t on the Teachers tab gets nothing', () => {
   const { server } = fresh();
   assert.equal(server().teacher.teacherData('student@school.org').error, 'not-a-teacher');
