@@ -12,6 +12,7 @@
 //   { list: [1, 2, 3, 4, 6, 12] }         a list of whole numbers (factors, primes)
 //   { choice: 2, label: '>' }             one of the problem's answer buttons (compare)
 //   { coef: 3, constant: -12 }            3x - 12 (an expression, pre-algebra)
+//   { sign: '>', whole: 3, negative: true } an inequality's answer: x > −3 (any number shape, with a sign)
 //   { decimal: '3.25' }                   a decimal, as typed (".5" is fine); { negative: true } makes it negative
 //
 // Possible results:
@@ -88,6 +89,8 @@ export function checkAnswer(problem, raw) {
       return checkChoice(problem, raw);
     case 'decimal':
       return checkDecimal(problem, raw);
+    case 'inequality':
+      return checkInequality(problem, raw);
     default:
       throw new Error(`checkAnswer: unknown answer type "${expected.type}"`);
   }
@@ -154,6 +157,19 @@ function checkDecimal(problem, raw) {
   const given = raw.negative === true ? `-${typed}` : typed;
   if (sameDecimal(given, problem.answer.value)) return { status: 'correct' };
   return wrong(problem, (m) => typeof m.value === 'string' && sameDecimal(m.value, given));
+}
+
+// An inequality's solution: { type: 'inequality', sign: '<' | '≤' | '>' | '≥', value: fraction }.
+// Right sign and right number. A right answer with an unsimplified fraction gets the
+// usual "simplify" retry. Misconceptions: { id, sign, value }.
+export const INEQUALITY_SIGNS = ['<', '≤', '>', '≥'];
+function checkInequality(problem, raw) {
+  if (!INEQUALITY_SIGNS.includes(raw?.sign)) return { status: 'invalid', reason: 'no-sign' };
+  const read = readAnswer(raw);
+  if (!read.ok) return { status: 'invalid', reason: read.reason };
+  const { sign, value } = problem.answer;
+  if (raw.sign === sign && equals(read.value, value)) return read.simplest ? { status: 'correct' } : { status: 'not-simplified', hint: 'simplify' };
+  return wrong(problem, (m) => m.sign === raw.sign && equals(fraction(m.value.n, m.value.d), read.value));
 }
 
 // One of the answer buttons (<, =, >; or 0, 1/2, 1). A wrong button may match a

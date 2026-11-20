@@ -16,7 +16,8 @@ equations with fractions at the hardest level. "Go."
 - **The whole pre-algebra plan is built.** Next: owner's call (later pre-algebra: variables on both sides,
   equations that need distributing first, inequalities; or the next area).
 - **Quick re-check built** (owner OK): "can't check yet" questions are checked once the gaps under them are fixed.
-- **Multi-step equations built (2026-11-20):** x on both sides, distribute first (`alg.multi-step`); in the Pre-algebra check. Next: inequalities (needs an answer input for <, ≤, >, ≥).
+- **Multi-step equations built (2026-11-20):** x on both sides, distribute first (`alg.multi-step`); in the Pre-algebra check. 
+- **Inequalities built (2026-11-20):** `alg.inequalities` (solve; flip the sign), sign buttons on the keypad. Pre-algebra check: median 11 questions, max 21. Later: graphing solutions, compound inequalities, evaluating expressions.
 
 
 Owner decision 2026-11-20: pre-algebra is the next content area after fractions.

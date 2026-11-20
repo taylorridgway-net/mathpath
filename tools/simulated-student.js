@@ -38,6 +38,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
     if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least };
+    if (a.type === 'inequality') { const v = reduce(a.value); return { sign: a.sign, ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) }; }
     if (a.type === 'decimal') return a.value.startsWith('-') ? { negative: true, decimal: a.value.slice(1) } : { decimal: a.value };
     const v = reduce(a.value);
     return v.d === 1 ? { whole: Math.abs(v.n), negative: v.n < 0 } : { num: Math.abs(v.n), den: v.d, negative: v.n < 0 };
@@ -51,6 +52,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };
     if (a.type === 'linear') return { coef: a.coef + 1, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least + 1 };
+    if (a.type === 'inequality') return { sign: a.sign === '<' ? '>' : '<', whole: Math.abs(a.value.n) + 1 };
     if (a.type === 'decimal') return { decimal: a.value.includes('.') ? `${a.value.replace('-', '')}1` : `${a.value.replace('-', '')}.1` };
     return { num: Math.abs(a.value.n) + 1, den: a.value.d };
   }
@@ -84,6 +86,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (held) {
       if (held.choice !== undefined) return { choice: held.choice };
       if (typeof held.value === 'string') return { decimal: held.value };
+      if (held.sign) { const v = held.value; return { sign: held.sign, ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) }; }
       if (typeof held.value === 'number') return { whole: Math.abs(held.value), ...(held.value < 0 ? { negative: true } : {}) };
       if (held.value.quotient !== undefined) return { whole: held.value.quotient, rem: held.value.remainder };
       if (held.value.coef !== undefined) return { coef: held.value.coef, constant: held.value.constant };

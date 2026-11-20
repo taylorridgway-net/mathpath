@@ -32,6 +32,7 @@ import { createGroups } from '../components/groups.js';
 import { createFactorPairs } from '../components/factor-pairs.js';
 import { createPlaceChart } from '../components/place-chart.js';
 import { createBalanceSteps } from '../components/balance-steps.js';
+import { createFlipLine } from '../components/flip-line.js';
 import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
@@ -217,7 +218,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     const WIDGETS = {
       'fraction-bars': createFractionBars, 'area-model': createAreaModel, 'fraction-area': createFractionArea,
       'int-line': createIntLine, balance: createBalance, column: createColumnSteps, steps: createStepThrough,
-      groups: createGroups, 'factor-pairs': createFactorPairs, 'place-chart': createPlaceChart, 'balance-steps': createBalanceSteps,
+      groups: createGroups, 'factor-pairs': createFactorPairs, 'place-chart': createPlaceChart, 'balance-steps': createBalanceSteps, 'flip-line': createFlipLine,
     };
     if (WIDGETS[visual?.widget]) {
       const box = h('figure', 'visual');

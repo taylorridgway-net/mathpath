@@ -4590,6 +4590,1581 @@
    }
   ]
  },
+ "alg.inequalities": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "term",
+      "coef": 3,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 36
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 12,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≤",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": ">",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "term",
+      "coef": -7,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 14
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": -2,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "≥",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 4,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≤",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": ">",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≥",
+      "value": {
+       "n": 16,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -8,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -30
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 4,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "<",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": ">",
+      "value": {
+       "n": 7,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -44
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 10,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "<",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": ">",
+      "value": {
+       "n": 38,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -8,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 55
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": -8,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "≥",
+      "value": {
+       "n": -8,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": -8,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≤",
+      "value": {
+       "n": -23,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": 11,
+      "d": 5
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≥",
+      "value": {
+       "n": 11,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": 11,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≤",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -16
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": -13,
+      "d": 5
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≤",
+      "value": {
+       "n": -13,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": ">",
+      "value": {
+       "n": -13,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≥",
+      "value": {
+       "n": -19,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 11
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 7,
+      "d": 2
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "<",
+      "value": {
+       "n": 7,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": 7,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": ">",
+      "value": {
+       "n": 15,
+       "d": 2
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.inequalities.flip": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "term",
+      "coef": -1,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "<",
+     "value": {
+      "n": -5,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": ">",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≤",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "term",
+      "coef": -9,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": -9
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 1,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "<",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "term",
+      "coef": -5,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": -10
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": 2,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "≥",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 37
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "<",
+     "value": {
+      "n": -7,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": ">",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≤",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "<",
+      "value": {
+       "n": -39,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": -2,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "≤",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": ">",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≥",
+      "value": {
+       "n": -4,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -13
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 6,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "≤",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": ">",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≥",
+      "value": {
+       "n": 8,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 14
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": -11,
+      "d": 2
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "<",
+      "value": {
+       "n": -11,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": -11,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": ">",
+      "value": {
+       "n": -17,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -7
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 1,
+      "d": 4
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "<",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": ">",
+      "value": {
+       "n": 13,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.flip",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": -5,
+      "d": 3
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "sign": "≥",
+      "value": {
+       "n": -5,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": -5,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≤",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.inequalities.solve": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "term",
+      "coef": 7,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": 1,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≥",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 11
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 4,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "<",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": ">",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "term",
+      "coef": 4,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": 1,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≥",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 11
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": 1,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≥",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≤",
+      "value": {
+       "n": 19,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 17
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": 3,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≥",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≤",
+      "value": {
+       "n": 25,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -19
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≤",
+     "value": {
+      "n": -9,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≥",
+      "value": {
+       "n": -9,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "<",
+      "value": {
+       "n": -9,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≤",
+      "value": {
+       "n": -11,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "<",
+     "value": {
+      "n": 8,
+      "d": 5
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": ">",
+      "value": {
+       "n": 8,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≤",
+      "value": {
+       "n": 8,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "<",
+      "value": {
+       "n": 2,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 3,
+      "d": 2
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "≤",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": ">",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": "≥",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequalities.solve",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 19
+     }
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 13,
+      "d": 4
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-flipped-anyway",
+      "sign": "<",
+      "value": {
+       "n": 13,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.ineq-or-equal",
+      "sign": "≥",
+      "value": {
+       "n": 13,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.ineq-wrong-inverse",
+      "sign": ">",
+      "value": {
+       "n": 25,
+       "d": 4
+      }
+     }
+    ]
+   }
+  ]
+ },
  "alg.multi-step": {
   "version": 1,
   "problems": [

@@ -16,6 +16,7 @@
 //   { type: 'column', op, top, bottom, done }   column addition/subtraction on paper (engine/problem/column.js)
 //   { type: 'op', op: '+' | '-', left, right }
 //   { type: 'eq', left, right }
+//   { type: 'ineq', op: '<' | '≤' | '>' | '≥', left, right }   an inequality: 3x - 2 > 7
 //   { type: 'list', items: [...] }
 //   { type: 'blank' }
 //   { type: 'model', shape: 'bar' | 'area' | 'set', parts, shaded, rows?, cols? }
@@ -61,6 +62,8 @@ export function toText(node) {
       return `${toText(node.left)} ${node.op} ${wrapNegative(node.right)}`;
     case 'eq':
       return `${toText(node.left)} = ${toText(node.right)}`;
+    case 'ineq':
+      return `${toText(node.left)} ${node.op} ${toText(node.right)}`;
     case 'list':
       return node.items.map(toText).join(' and ');
     case 'model': {

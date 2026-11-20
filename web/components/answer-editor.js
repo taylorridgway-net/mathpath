@@ -25,6 +25,9 @@
 //              box takes the last number back to edit.
 // And decimals:
 //   decimal    3.25: one box; 'point' ("." on a keyboard) adds the decimal point once.
+// And inequalities (pre-algebra):
+//   inequality x > −3: a sign ('sign:<', 'sign:≤', 'sign:>', 'sign:≥'; "<" and ">" on a
+//              keyboard) and a number typed as usual (whole, fraction, negative).
 // And one for expressions (pre-algebra):
 //   linear     3x + 12: a box for the number in front of x and one for the number on
 //              its own, each with its own sign ('negate' changes the box with focus).
@@ -48,9 +51,10 @@ const FIELDS = {
 export function createAnswerState({ allowFractions = true, allowNegative = false, kind = 'standard' } = {}) {
   const mode = ['remainder', 'list', 'linear'].includes(kind) ? kind : 'number';
   return Object.freeze({
-    mode, kind, negative: false, whole: '', num: '', den: '', rem: '', entries: Object.freeze([]), focus: kind === 'linear' ? 'coef' : 'whole',
+    mode, kind, negative: false, sign: null, whole: '', num: '', den: '', rem: '', entries: Object.freeze([]), focus: kind === 'linear' ? 'coef' : 'whole',
     coef: '', cst: '', negCoef: false, negCst: false,
-    allowFractions: kind === 'standard' && allowFractions, allowNegative: kind === 'linear' || ((kind === 'standard' || kind === 'decimal') && allowNegative),
+    allowFractions: (kind === 'standard' || kind === 'inequality') && allowFractions,
+    allowNegative: kind === 'linear' || kind === 'inequality' || ((kind === 'standard' || kind === 'decimal') && allowNegative),
   });
 }
 
@@ -84,6 +88,12 @@ export function applyKey(state, key) {
 
     case 'remainder':
       return state.kind === 'remainder' ? next({ focus: 'rem' }) : state;
+
+    case 'sign:<':
+    case 'sign:≤':
+    case 'sign:>':
+    case 'sign:≥':
+      return state.kind === 'inequality' ? next({ sign: key.slice(5) }) : state;
 
     case 'point':
       if (state.kind !== 'decimal' || state.whole.includes('.') || state.whole.length >= MAX_DECIMAL - 1) return state;
@@ -162,6 +172,7 @@ export function toRawAnswer(state) {
     return raw;
   }
   const raw = {};
+  if (state.kind === 'inequality' && state.sign) raw.sign = state.sign;
   if (state.negative) raw.negative = true;
   if (state.mode !== 'fraction' && state.whole !== '') raw.whole = n(state.whole);
   if (state.mode !== 'number') {
@@ -183,6 +194,7 @@ export function canSubmit(state) {
   if (state.kind === 'remainder') return state.whole !== '';
   if (state.kind === 'linear') return state.coef !== '' && state.cst !== '';
   if (state.kind === 'decimal') return !state.whole.endsWith('.') && parseDecimal(state.whole) !== null;
+  if (state.kind === 'inequality' && !state.sign) return false;
   return null; // standard answers: the grader's readAnswer decides
 }
 
@@ -195,7 +207,9 @@ export function describeAnswer(state) {
     return `${state.negCoef ? 'negative ' : ''}${state.coef || 'blank'} x ${state.negCst ? 'minus' : 'plus'} ${state.cst || 'blank'}`;
   }
   const box = (s) => s || 'blank';
-  const sign = state.negative ? 'negative ' : '';
+  const words = { '<': 'is less than', '≤': 'is less than or equal to', '>': 'is greater than', '≥': 'is greater than or equal to' };
+  const lead = state.kind === 'inequality' ? `x ${state.sign ? words[state.sign] : 'blank'} ` : '';
+  const sign = `${lead}${state.negative ? 'negative ' : ''}`;
   if (state.mode === 'number') return `${sign}${state.whole}`;
   const frac = `${box(state.num)} over ${box(state.den)}`;
   if (state.mode === 'fraction') return `${sign}${frac}`;
@@ -205,6 +219,7 @@ export function describeAnswer(state) {
 // Text form of a raw answer, e.g. "2 3/4", for logs.
 export function rawToText(raw) {
   if (raw && Number.isInteger(raw.choice)) return raw.label ?? `choice ${raw.choice + 1}`;
+  if (raw && raw.sign) return `x ${raw.sign} ${rawToText({ ...raw, sign: undefined })}`;
   if (raw && typeof raw.decimal === 'string') return `${raw.negative ? '-' : ''}${raw.decimal}`;
   if (raw && Array.isArray(raw.list)) return raw.list.length ? raw.list.join(', ') : '(blank)';
   if (raw && raw.rem !== undefined) return `${raw.whole ?? '?'} R ${raw.rem}`;

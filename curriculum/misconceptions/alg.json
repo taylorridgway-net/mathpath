@@ -166,6 +166,26 @@
       "id": "alg.ms-distribute-sign",
       "description": "Gets the sign of the second product wrong when distributing (−2(x − 5) = −2x − 10).",
       "pointsTo": "alg.multi-step.distribute"
+    },
+    {
+      "id": "alg.ineq-no-flip",
+      "description": "Divides by a negative number without flipping the sign (−3x < 12 -> x < −4).",
+      "pointsTo": "alg.inequalities.flip"
+    },
+    {
+      "id": "alg.ineq-flipped-anyway",
+      "description": "Flips the sign when it shouldn't, e.g. because the answer is negative (3x < −12 -> x > −4).",
+      "pointsTo": "alg.inequalities.solve"
+    },
+    {
+      "id": "alg.ineq-or-equal",
+      "description": "Drops or adds \"or equal to\" (x ≥ 4 written x > 4).",
+      "pointsTo": "alg.inequalities.solve"
+    },
+    {
+      "id": "alg.ineq-wrong-inverse",
+      "description": "Undoes the number the wrong way (2x − 5 ≥ 7 -> 2x ≥ 2).",
+      "pointsTo": "alg.inequalities.solve"
     }
   ]
 }

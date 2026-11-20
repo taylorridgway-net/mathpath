@@ -256,6 +256,7 @@ function correct(problem) {
   if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
   if (a.type === 'common-multiple') return { whole: a.least };
   if (a.type === 'decimal') return { decimal: a.value };
+  if (a.type === 'inequality') { const v = reduce(a.value); return { sign: a.sign, ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) }; }
   const v = reduce(a.value);
   return { ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) };
 }
@@ -277,6 +278,7 @@ function mistake(problem, held) {
   if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };
   if (a.type === 'linear') return { coef: a.coef + 1, constant: a.constant };
   if (a.type === 'common-multiple') return { whole: a.least + 1 };
+  if (a.type === 'inequality') return { sign: a.sign === '<' ? '>' : '<', whole: Math.abs(a.value.n) + 1 };
   if (a.type === 'decimal') return { decimal: a.value.includes('.') ? `${a.value}1` : `${a.value}.1` };
   return { num: Math.abs(a.value.n) + 1, den: a.value.d };
 }

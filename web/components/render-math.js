@@ -70,7 +70,8 @@ function build(node) {
       return wrap;
     }
     case 'op':
-    case 'eq': {
+    case 'eq':
+    case 'ineq': {
       const wrap = el('span', 'm-row');
       const sym = node.type === 'eq' ? '=' : node.op === '-' ? '−' : node.op;
       const right = build(node.right);
@@ -139,7 +140,11 @@ function spoken(text) {
     .replace(/\)/g, ', close parenthesis')
     .replace(/ \u00d7 /g, ' times ')
     .replace(/ \u00f7 /g, ' divided by ')
-    .replace(/ = /g, ' equals ');
+    .replace(/ = /g, ' equals ')
+    .replace(/ ≤ /g, ' is less than or equal to ')
+    .replace(/ ≥ /g, ' is greater than or equal to ')
+    .replace(/ < /g, ' is less than ')
+    .replace(/ > /g, ' is greater than ');
 }
 
 // ---------- pictures (understand fractions) ----------

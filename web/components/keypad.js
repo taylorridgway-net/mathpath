@@ -19,6 +19,7 @@ const TOOLS = {
   list: ['next', null],
   linear: ['next', null],
   decimal: ['point', null],
+  inequality: ['fraction', 'mixed'],
 };
 
 const LABELS = {
@@ -37,6 +38,7 @@ export function keypadOptionsFor(problem) {
   if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };
   if (type === 'linear') return { answerKind: 'linear', allowNegative: true };
+  if (type === 'inequality') return { answerKind: 'inequality', allowFractions: true, allowNegative: true };
   if (type === 'decimal') return { answerKind: 'decimal', allowNegative: Boolean(problem.answer.allowNegative) };
   if (type === 'set' || type === 'multiset') return { answerKind: 'list', separator: type === 'multiset' ? '×' : ',' };
   return { allowFractions: type === 'fraction', allowNegative: Boolean(problem.answer.allowNegative) };
@@ -77,7 +79,10 @@ export function createKeypad({
   const coefSign = span('answer-sign', '−');
   const xLabel = span('answer-x', 'x');
   const plusMinus = span('answer-r answer-pm', '+');
-  display.append(sign, entries, boxes.whole, stack, rLabel, boxes.rem, coefSign, boxes.coef, xLabel, plusMinus, boxes.cst);
+  // inequality: "x" and the chosen sign come first: x [>] [−3]
+  const ineqX = span('answer-x', 'x');
+  const ineqSign = span('answer-r answer-ineq', '?');
+  display.append(ineqX, ineqSign, sign, entries, boxes.whole, stack, rLabel, boxes.rem, coefSign, boxes.coef, xLabel, plusMinus, boxes.cst);
   const live = div('visually-hidden');
   live.setAttribute('aria-live', 'polite');
 
@@ -100,12 +105,27 @@ export function createKeypad({
   hint.textContent = {
     linear: 'Type the number in front of x, tap Next, then the number on its own. (−) makes the box you’re in negative.',
     remainder: 'Type the answer, tap R, then type the remainder.',
+    inequality: 'Pick the sign, then type the number. a/b for a fraction; (−) for a negative.',
     decimal: allowNegative ? 'Type the number; tap . for the decimal point and (−) to make it negative.' : 'Type the number. Tap . for the decimal point.',
     list: separator === '×' ? 'Type a prime, tap Next, then type the next one.' : 'Type a number, tap Next, then type the next one.',
   }[answerKind] || (allowFractions ? 'Tap a/b for a fraction, 1 a/b for a mixed number.' : allowNegative ? 'Type a number. Tap (−) to make it negative.' : 'Type a whole number.');
-  if (allowNegative && allowFractions) hint.textContent += ' Tap (−) to make it negative.';
+  if (allowNegative && allowFractions && answerKind === 'standard') hint.textContent += ' Tap (−) to make it negative.';
 
-  host.append(display, live, hint, pad, skip);
+  // inequality: the four signs, as buttons above the answer.
+  const signRow = div('sign-row');
+  const signButtons = {};
+  if (answerKind === 'inequality') {
+    signRow.setAttribute('role', 'group');
+    signRow.setAttribute('aria-label', 'Sign');
+    for (const [sym, aria] of [['<', 'less than'], ['≤', 'less than or equal to'], ['>', 'greater than'], ['≥', 'greater than or equal to']]) {
+      const b = button('key key-sign', sym);
+      b.setAttribute('aria-label', aria);
+      b.addEventListener('click', () => press(`sign:${sym}`));
+      signButtons[sym] = b;
+      signRow.append(b);
+    }
+  }
+  host.append(...(answerKind === 'inequality' ? [signRow] : []), display, live, hint, pad, skip);
   document.addEventListener('keydown', onKeyDown);
   render();
 
@@ -129,6 +149,7 @@ export function createKeypad({
     };
     if (answerKind === 'remainder') Object.assign(map, { r: 'remainder', R: 'remainder', ArrowRight: 'remainder', ArrowLeft: 'focus:whole' });
     if (answerKind === 'decimal') Object.assign(map, { '.': 'point', ',': 'point' });
+    if (answerKind === 'inequality') Object.assign(map, { '<': 'sign:<', '>': 'sign:>' });
     if (answerKind === 'list') Object.assign(map, { ',': 'next', ' ': 'next', '*': 'next', x: 'next' });
     if (answerKind === 'linear') Object.assign(map, { x: 'next', X: 'next', '+': 'next', Tab: 'next', ArrowRight: 'next', ArrowLeft: 'focus:coef', ' ': 'next' });
     // Space and Enter on a keyboard-focused button press that button, as usual.
@@ -161,6 +182,14 @@ export function createKeypad({
     entries.hidden = state.mode !== 'list' || !state.entries.length;
     entries.textContent = state.entries.length ? `${state.entries.join(separator === '×' ? ' × ' : ', ')} ${separator === '×' ? '×' : ','}` : '';
     sign.hidden = !state.negative;
+    ineqX.hidden = answerKind !== 'inequality';
+    ineqSign.hidden = answerKind !== 'inequality';
+    ineqSign.textContent = state.sign || '?';
+    ineqSign.classList.toggle('is-empty', !state.sign);
+    for (const [sym, b] of Object.entries(signButtons)) {
+      b.classList.toggle('is-on', state.sign === sym);
+      b.setAttribute('aria-pressed', String(state.sign === sym));
+    }
     const linear = state.mode === 'linear';
     coefSign.hidden = !linear || !state.negCoef;
     xLabel.hidden = !linear;

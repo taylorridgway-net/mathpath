@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.inequalities",
+  "title": "Solve inequalities",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "alg.inequalities.solve": "Solve it like an equation: undo the number, then divide. Keep the same sign. Tap the sign first, then type the number.",
+    "alg.inequalities.flip": "When you divide both sides by a negative number, flip the sign: < becomes >, ≤ becomes ≥.",
+    "alg.inequalities": "Solve like an equation. If you divide by a negative number, flip the sign. Check with a number."
+  },
+  "misconceptionMessages": {
+    "alg.ineq-no-flip": "You divided by a negative number, so the sign has to flip: −3x < 12 becomes x > −4.",
+    "alg.ineq-flipped-anyway": "Only flip when you multiply or divide by a NEGATIVE number. A negative answer doesn't flip anything.",
+    "alg.ineq-or-equal": "Keep the \"or equal to\" part: if the problem has ≤ or ≥, the answer does too (flipped or not).",
+    "alg.ineq-wrong-inverse": "Undo the number the opposite way: 2x − 5 ≥ 7 means ADD 5 to both sides, so 2x ≥ 12."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "alg.inequalities.solve",
+      "forGap": "alg.inequalities.solve",
+      "title": "Solve like an equation",
+      "objective": "Solve one- and two-step inequalities.",
+      "mode": "section",
+      "generator": "alg.inequalities.solve",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "An inequality has many answers: x > 6 means any number bigger than 6.",
+        "Undo the steps like an equation. Check with a number that should work."
+      ],
+      "visual": null,
+      "key": "Solve an inequality like an equation: do the same thing to both sides. Adding, subtracting, or dividing by a positive number keeps the sign.",
+      "worked": [
+        {
+          "math": "2x − 5 ≥ 7",
+          "note": ""
+        },
+        {
+          "math": "[[2x ≥ 12]]",
+          "note": "add 5 to both sides"
+        },
+        {
+          "math": "[[x ≥ 6]]",
+          "note": "divide by 2: the sign stays"
+        },
+        {
+          "math": "2(10) − 5 = 15 ≥ 7 ✓",
+          "note": "check with a number bigger than 6"
+        }
+      ]
+    },
+    {
+      "id": "alg.inequalities.flip",
+      "forGap": "alg.inequalities.flip",
+      "title": "Flip the sign",
+      "objective": "Flip the sign when multiplying or dividing by a negative number.",
+      "mode": "section",
+      "generator": "alg.inequalities.flip",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Multiplying or dividing both sides by a negative number reverses the order of numbers, so the sign flips.",
+        "Adding and subtracting never flip it."
+      ],
+      "visual": {
+        "widget": "flip-line",
+        "params": {
+          "a": 2,
+          "b": 5
+        },
+        "caption": "2 < 5. Multiply both by −1 and watch the order."
+      },
+      "key": "Dividing (or multiplying) both sides by a negative number flips the sign: < becomes >, ≤ becomes ≥.",
+      "worked": [
+        {
+          "math": "−3x < 12",
+          "note": ""
+        },
+        {
+          "math": "x [[>]] −4",
+          "note": "divide by −3 and flip the sign"
+        },
+        {
+          "math": "−3(0) = 0 < 12 ✓",
+          "note": "check: 0 is bigger than −4, and it works"
+        }
+      ]
+    },
+    {
+      "id": "alg.inequalities.whole",
+      "forGap": "alg.inequalities",
+      "title": "Putting it together",
+      "objective": "Inequalities of every kind.",
+      "mode": "skill",
+      "generator": "alg.inequalities",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Solve like an equation. Divide by a negative number? Flip the sign. Then check with a number.",
+      "worked": [
+        {
+          "math": "−2x + 5 > 11",
+          "note": ""
+        },
+        {
+          "math": "[[−2x > 6]]",
+          "note": "subtract 5"
+        },
+        {
+          "math": "x [[<]] −3",
+          "note": "divide by −2: flip"
+        },
+        {
+          "math": "−2(−4) + 5 = 13 > 11 ✓",
+          "note": "check with −4"
+        }
+      ]
+    }
+  ]
+}

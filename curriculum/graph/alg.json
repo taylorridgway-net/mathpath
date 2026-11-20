@@ -278,6 +278,44 @@
           ]
         }
       ]
+    },
+    {
+      "id": "alg.inequalities",
+      "name": "Solve inequalities",
+      "summary": "Solve one- and two-step inequalities (2x − 5 ≥ 7), including flipping the sign when multiplying or dividing by a negative number (−2x + 5 > 11 -> x < −3).",
+      "typicalGrade": 7,
+      "standards": [
+        "7.EE.B.4b",
+        "6.EE.B.8"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.inequalities.solve",
+          "name": "Solve an inequality like an equation (2x − 5 ≥ 7)",
+          "prerequisites": [
+            {
+              "id": "alg.equations.two-step",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "alg.inequalities.flip",
+          "name": "Flip the sign when multiplying or dividing by a negative (−3x < 12 -> x > −4)",
+          "prerequisites": [
+            {
+              "id": "alg.inequalities.solve",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.divide",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

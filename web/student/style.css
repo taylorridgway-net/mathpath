@@ -461,3 +461,9 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .pchart-head.pchart-point { border-bottom: 2px solid var(--line); }
 .key-tool.key-point { font-size: 2.4rem; font-weight: 800; line-height: 0.5; }
 .path-group.path-teacher { color: var(--info); }
+
+/* inequality answers: the sign buttons */
+.sign-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.key-sign { font-family: var(--font-math); font-size: 1.6rem; }
+.key-sign.is-on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.answer-ineq.is-empty { color: var(--muted); }
