@@ -5551,6 +5551,1671 @@
    }
   ]
  },
+ "frac.multiply": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 35
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 28,
+       "d": 10
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 38,
+       "d": 35
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 9
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-keep-denominator",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 6,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 12,
+      "d": 35
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 21,
+       "d": 20
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 41,
+       "d": 35
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 6,
+       "d": 25
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 31,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 12
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 20,
+       "d": 27
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 47,
+       "d": 36
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 14
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 7,
+       "d": 18
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 25,
+       "d": 42
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 4
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 10
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 1,
+       "d": 10
+      }
+     },
+     {
+      "id": "frac.mult-whole-bottom",
+      "value": {
+       "n": 1,
+       "d": 40
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 25,
+       "d": 27
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 52,
+       "d": 45
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 24,
+       "d": 25
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 49,
+       "d": 30
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "frac.multiply.by-fraction": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 25
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-keep-denominator",
+      "value": {
+       "n": 8,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 10,
+       "d": 20
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 6,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 25
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-keep-denominator",
+      "value": {
+       "n": 4,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 10,
+       "d": 10
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 12,
+      "d": 25
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-keep-denominator",
+      "value": {
+       "n": 12,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 20,
+       "d": 15
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 7,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 16
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 6,
+       "d": 8
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 7,
+       "d": 8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 49
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-keep-denominator",
+      "value": {
+       "n": 4,
+       "d": 7
+      }
+     },
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 28,
+       "d": 7
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 5,
+       "d": 7
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 42
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 30,
+       "d": 7
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 37,
+       "d": 42
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 13,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 8
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 13,
+      "d": 72
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 104,
+       "d": 9
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 113,
+       "d": 72
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 4
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 36
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 9,
+       "d": 28
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 37,
+       "d": 36
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-fraction",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 8,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 24,
+      "d": 25
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-keep-denominator",
+      "value": {
+       "n": 24,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 40,
+       "d": 15
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 11,
+       "d": 5
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "frac.multiply.by-whole": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 8
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 8
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 1,
+       "d": 8
+      }
+     },
+     {
+      "id": "frac.mult-whole-bottom",
+      "value": {
+       "n": 1,
+       "d": 56
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 4
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 9
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 2,
+       "d": 9
+      }
+     },
+     {
+      "id": "frac.mult-whole-bottom",
+      "value": {
+       "n": 2,
+       "d": 36
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 9
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 1,
+       "d": 9
+      }
+     },
+     {
+      "id": "frac.mult-whole-bottom",
+      "value": {
+       "n": 1,
+       "d": 45
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.mult-whole-bottom",
+      "value": {
+       "n": 1,
+       "d": 12
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 9,
+      "d": 10
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 27,
+      "d": 10
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 9,
+       "d": 10
+      }
+     },
+     {
+      "id": "frac.mult-whole-bottom",
+      "value": {
+       "n": 9,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.mult-whole-bottom",
+      "value": {
+       "n": 1,
+       "d": 21
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find 4/7 of 42.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 7
+     },
+     "right": {
+      "type": "int",
+      "value": 42
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 24,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.of-divide-only",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 4,
+       "d": 7
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find 3/8 of 16.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 8
+     },
+     "right": {
+      "type": "int",
+      "value": 16
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 6,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.of-divide-only",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 3,
+       "d": 8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.by-whole",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find 8/9 of 72.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "frac",
+      "n": 8,
+      "d": 9
+     },
+     "right": {
+      "type": "int",
+      "value": 72
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 64,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.of-divide-only",
+      "value": {
+       "n": 8,
+       "d": 1
+      }
+     },
+     {
+      "id": "frac.mult-whole-both",
+      "value": {
+       "n": 8,
+       "d": 9
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "frac.multiply.simplify": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 5,
+       "d": 8
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 13,
+       "d": 10
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 9
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 12,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 15
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 5,
+       "d": 24
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 29,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 8,
+       "d": 27
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 35,
+       "d": 36
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 7
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 9,
+       "d": 7
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 16,
+       "d": 21
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 7,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 8
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 49,
+       "d": 40
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 89,
+       "d": 56
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 8
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 16,
+       "d": 9
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 25,
+       "d": 24
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 9,
+      "d": 10
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 27,
+       "d": 20
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 47,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.multiply.simplify",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 2
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.mult-cross",
+      "value": {
+       "n": 25,
+       "d": 32
+      }
+     },
+     {
+      "id": "frac.mult-added",
+      "value": {
+       "n": 57,
+       "d": 40
+      }
+     }
+    ]
+   }
+  ]
+ },
  "whole.add-sub": {
   "version": 1,
   "problems": [

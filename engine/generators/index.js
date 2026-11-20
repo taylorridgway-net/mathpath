@@ -6,6 +6,7 @@ import { addSubGenerators } from './frac/add-sub.js';
 import { equivalentGenerators } from './frac/equivalent.js';
 import { meaningGenerators } from './frac/meaning.js';
 import { compareGenerators } from './frac/compare.js';
+import { multiplyGenerators } from './frac/multiply.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
 import { wholeFactorGenerators } from './whole/factors.js';
@@ -15,6 +16,7 @@ export const generators = {
   ...equivalentGenerators,
   ...meaningGenerators,
   ...compareGenerators,
+  ...multiplyGenerators,
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,
   ...wholeFactorGenerators,

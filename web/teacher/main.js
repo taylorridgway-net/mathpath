@@ -20,6 +20,7 @@ import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
 import compareLesson from '../../curriculum/lessons/frac.compare.json';
+import multiplyLesson from '../../curriculum/lessons/frac.multiply.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -31,6 +32,7 @@ import wholeFactorsPaper from '../../curriculum/paper/whole.factors-multiples.js
 import equivalentPaper from '../../curriculum/paper/frac.equivalent.json';
 import meaningPaper from '../../curriculum/paper/frac.meaning.json';
 import comparePaper from '../../curriculum/paper/frac.compare.json';
+import multiplyPaper from '../../curriculum/paper/frac.multiply.json';
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
@@ -55,8 +57,8 @@ import { h, btn, pill, list, swap } from '../components/dom.js';
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
 const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];
-const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson];
-const papers = Object.fromEntries([wholeAddSubPaper, wholeMultDivPaper, wholeFactorsPaper, meaningPaper, equivalentPaper, comparePaper, addSubPaper].map((p) => [p.skill, p]));
+const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson];
+const papers = Object.fromEntries([wholeAddSubPaper, wholeMultDivPaper, wholeFactorsPaper, meaningPaper, equivalentPaper, comparePaper, addSubPaper, multiplyPaper].map((p) => [p.skill, p]));
 const rules = masteryRules.default;
 const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules };
 const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, s.title])));

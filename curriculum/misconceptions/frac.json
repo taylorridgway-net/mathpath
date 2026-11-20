@@ -105,6 +105,36 @@
       "id": "frac.cmp-gap-equal",
       "description": "Thinks fractions missing the same number of pieces are equal (3/4 = 5/6).",
       "pointsTo": "frac.compare.unlike"
+    },
+    {
+      "id": "frac.mult-keep-denominator",
+      "description": "Keeps the denominator when multiplying, as if adding (2/5 × 3/5 -> 6/5).",
+      "pointsTo": "frac.multiply.by-fraction"
+    },
+    {
+      "id": "frac.mult-cross",
+      "description": "Multiplies across diagonally (2/3 × 4/5 -> 10/12).",
+      "pointsTo": "frac.multiply.by-fraction"
+    },
+    {
+      "id": "frac.mult-added",
+      "description": "Adds the fractions instead of multiplying.",
+      "pointsTo": "frac.multiply.by-fraction"
+    },
+    {
+      "id": "frac.mult-whole-both",
+      "description": "Multiplies both the top and the bottom by the whole number (3 × 2/7 -> 6/21).",
+      "pointsTo": "frac.multiply.by-whole"
+    },
+    {
+      "id": "frac.mult-whole-bottom",
+      "description": "Multiplies the bottom by the whole number instead of the top (3 × 2/7 -> 2/21).",
+      "pointsTo": "frac.multiply.by-whole"
+    },
+    {
+      "id": "frac.of-divide-only",
+      "description": "For a fraction of an amount, divides by the bottom but doesn't multiply by the top (2/3 of 12 -> 4).",
+      "pointsTo": "frac.multiply.by-whole"
     }
   ]
 }

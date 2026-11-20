@@ -4,6 +4,7 @@ import { solveWhole } from './whole.js';
 import { solveEquivalent } from './frac-equivalent.js';
 import { solveMeaning } from './frac-meaning.js';
 import { solveCompare } from './frac-compare.js';
+import { solveMultiply } from './frac-multiply.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
@@ -11,5 +12,6 @@ export function solve(problem) {
   if (kind.startsWith('frac.equivalent')) return solveEquivalent(problem);
   if (kind.startsWith('frac.meaning')) return solveMeaning(problem);
   if (kind.startsWith('frac.compare')) return solveCompare(problem);
+  if (kind.startsWith('frac.multiply')) return solveMultiply(problem);
   return solveAddSub(problem);
 }

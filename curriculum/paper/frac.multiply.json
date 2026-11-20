@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "frac.multiply",
+  "title": "Multiply fractions",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and a reasoning item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. Write every answer in simplest form.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Multiply:  5 × {2/9}", "math": "mul 5/1 2/9", "answer": "10/9 (or 1 1/9)" },
+        { "id": "A2", "kind": "computation", "prompt": "Multiply:  {3/7} × {2/5}", "math": "mul 3/7 2/5", "answer": "6/35" },
+        { "id": "A3", "kind": "computation", "prompt": "Multiply and simplify:  {5/6} × {9/10}", "math": "mul 5/6 9/10", "answer": "3/4" },
+        { "id": "A4", "kind": "computation", "prompt": "What is {3/8} of 40?", "math": "mul 3/8 40/1", "answer": "15" },
+        { "id": "A5", "kind": "word", "prompt": "A garden is {3/4} of a meter long and {2/3} of a meter wide. What is its area, in square meters?", "math": "mul 3/4 2/3", "answer": "1/2" },
+        { "id": "A6", "kind": "word", "prompt": "Without multiplying, is {4/5} × {7/8} more or less than {4/5}? Explain how you know.", "math": "less 4/5 7/8", "answer": "less (multiplying by 7/8, less than 1, gives less)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Multiply:  {3/11} × 4", "math": "mul 3/11 4/1", "answer": "12/11 (or 1 1/11)" },
+        { "id": "B2", "kind": "computation", "prompt": "Multiply:  {4/9} × {2/7}", "math": "mul 4/9 2/7", "answer": "8/63" },
+        { "id": "B3", "kind": "computation", "prompt": "Multiply and simplify:  {8/15} × {5/12}", "math": "mul 8/15 5/12", "answer": "2/9" },
+        { "id": "B4", "kind": "computation", "prompt": "What is {5/6} of 42?", "math": "mul 5/6 42/1", "answer": "35" },
+        { "id": "B5", "kind": "word", "prompt": "A recipe needs {3/4} cup of sugar. You are making {1/2} of the recipe. How much sugar do you need?", "math": "mul 3/4 1/2", "answer": "3/8 (cup)" },
+        { "id": "B6", "kind": "word", "prompt": "Without multiplying, is 6 × {2/3} more or less than 6? Explain how you know.", "math": "less 6/1 2/3", "answer": "less (two thirds of 6 is less than all of 6)" }
+      ]
+    }
+  ]
+}

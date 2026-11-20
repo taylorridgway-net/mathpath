@@ -28,9 +28,10 @@ test('a student who knows everything: no gaps, very few questions', () => {
   assert.deepEqual(result.rootGaps, []);
   assert.deepEqual(withStatus(result, 'gap'), []);
   assert.equal(result.finishedReason, 'complete');
-  // One full add/subtract problem covers every add/subtract subskill, and one
-  // comparison with different denominators covers comparing (owner: "unless proven otherwise").
-  assert.equal(result.questionCount, 2);
+  // One full add/subtract problem covers every add/subtract subskill, one
+  // comparison with different denominators covers comparing, and one
+  // multiplication covers multiplying (owner: "unless proven otherwise").
+  assert.equal(result.questionCount, 3);
   for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result']) {
     assert.equal(statusOf(result, SUB(s)), 'known', s);
   }
@@ -55,7 +56,7 @@ test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simp
   assert.equal(statusOf(result, 'whole.add-sub.add-regroup'), 'known');
   assert.equal(statusOf(result, 'whole.add-sub.sub-regroup'), 'known');
   assert.ok(!result.uncheckedCauses.includes('whole.add-sub'));
-  assert.ok(result.questionCount <= 8, `took ${result.questionCount} questions`);
+  assert.ok(result.questionCount <= 9, `took ${result.questionCount} questions`);
 });
 
 test('can do everything but simplify: finds the simplifying gap and points below it', () => {
@@ -143,8 +144,23 @@ test('owner\'s case: can do every step on its own, but not the whole problem -> 
   assert.equal(statusOf(result, 'frac.add-sub'), 'gap');
   assert.deepEqual(result.rootGaps, ['frac.add-sub']);
   assert.equal(result.skills['frac.add-sub'], 'gap');
-  // Full problem, four steps, full problem again; plus one comparison.
-  assert.equal(result.questionCount, 7);
+  // Full problem, four steps, full problem again; plus one comparison and one multiplication.
+  assert.equal(result.questionCount, 8);
+});
+
+test('multiply: cross-multiplies (2/3 × 4/5 = 10/12) -> gap on multiplying two fractions, nothing else blamed', () => {
+  const { result } = diagnose({ lacks: ['frac.multiply.by-fraction'], misconceptions: ['frac.mult-cross'] });
+  assert.deepEqual(result.rootGaps, ['frac.multiply.by-fraction']);
+  assert.equal(statusOf(result, 'frac.multiply.by-whole'), 'known');
+  assert.equal(result.skills['frac.add-sub'], 'known');
+  assert.ok(result.misconceptions['frac.mult-cross'] >= 1);
+  assert.ok(result.questionCount <= 8, `took ${result.questionCount} questions`);
+});
+
+test('multiply: can multiply but never simplifies the product -> gap on simplifying products', () => {
+  const { result } = diagnose({ lacks: ['frac.multiply.simplify'] });
+  assert.deepEqual(result.rootGaps, ['frac.multiply.simplify']);
+  assert.equal(statusOf(result, 'frac.multiply.by-fraction'), 'known');
 });
 
 test('the same case with blank answers ("I\'m not sure") on both whole problems', () => {
