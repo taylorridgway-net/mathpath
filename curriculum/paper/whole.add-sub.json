@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "whole.add-sub",
+  "title": "Adding and subtracting whole numbers",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings and word problems. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Find the sum of 368 and 457.",
+          "math": "368 + 457",
+          "answer": "825"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "What is 604 minus 259?",
+          "math": "604 - 259",
+          "answer": "345"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "What number goes in the box?  275 + ☐ = 512",
+          "math": "512 - 275",
+          "answer": "237"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Subtract 87 from 300.",
+          "math": "300 - 87",
+          "answer": "213"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A school sold 186 tickets on Friday and 247 tickets on Saturday. How many tickets did it sell in all?",
+          "math": "186 + 247",
+          "answer": "433 tickets"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "A theater has 420 seats. 158 seats are empty. How many seats are taken?",
+          "math": "420 - 158",
+          "answer": "262 seats"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Find the sum of 579 and 264.",
+          "math": "579 + 264",
+          "answer": "843"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "What is 702 minus 348?",
+          "math": "702 - 348",
+          "answer": "354"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "What number goes in the box?  ☐ + 168 = 425",
+          "math": "425 - 168",
+          "answer": "257"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Subtract 59 from 400.",
+          "math": "400 - 59",
+          "answer": "341"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "Maya drove 278 miles on Monday and 145 miles on Tuesday. How far did she drive in all?",
+          "math": "278 + 145",
+          "answer": "423 miles"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "A book has 315 pages. Jon has read 187 of them. How many pages are left?",
+          "math": "315 - 187",
+          "answer": "128 pages"
+        }
+      ]
+    }
+  ]
+}

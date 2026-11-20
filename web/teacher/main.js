@@ -22,6 +22,9 @@ import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
 import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples.json';
 import addSubPaper from '../../curriculum/paper/frac.add-sub.json';
+import wholeAddSubPaper from '../../curriculum/paper/whole.add-sub.json';
+import wholeMultDivPaper from '../../curriculum/paper/whole.mult-div.json';
+import wholeFactorsPaper from '../../curriculum/paper/whole.factors-multiples.json';
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
@@ -47,7 +50,7 @@ import { h, btn, pill, list, swap } from '../components/dom.js';
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
 const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];
 const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, addSubLesson];
-const papers = { [addSubPaper.skill]: addSubPaper };
+const papers = Object.fromEntries([wholeAddSubPaper, wholeMultDivPaper, wholeFactorsPaper, addSubPaper].map((p) => [p.skill, p]));
 const rules = masteryRules.default;
 const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules };
 const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, s.title])));
@@ -546,11 +549,12 @@ function participationTab() {
 // ---------- Paper tests ----------
 
 let paperVersion = 'A';
+let paperSkill = 'frac.add-sub';
 let paperWho = 'ready';
 const marksDraft = {}; // code -> [1|0|null, ...]
 
 function paper() {
-  const skillId = 'frac.add-sub';
+  const skillId = paperSkill;
   const test = papers[skillId];
   const version = test.versions.find((v) => v.id === paperVersion);
   const screen = frame('Paper tests');
@@ -560,7 +564,16 @@ function paper() {
   // Left: the test itself.
   const left = h('div', 't-col');
   const pick = h('div', 't-controls');
-  pick.append(h('h2', 't-h2', `${test.title}`));
+  const skillPick = h('select', 't-select');
+  skillPick.setAttribute('aria-label', 'Which skill');
+  for (const p of Object.values(papers)) skillPick.append(new Option(p.title, p.skill));
+  skillPick.value = skillId;
+  skillPick.addEventListener('change', () => {
+    paperSkill = skillPick.value;
+    for (const k of Object.keys(marksDraft)) delete marksDraft[k];
+    render();
+  });
+  pick.append(skillPick);
   for (const v of test.versions) {
     pick.append(btn(`t-tab${v.id === paperVersion ? ' is-on' : ''}`, `Version ${v.id}`, () => { paperVersion = v.id; render(); }));
   }

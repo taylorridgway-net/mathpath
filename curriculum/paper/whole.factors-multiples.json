@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "whole.factors-multiples",
+  "title": "Factors and multiples",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings and word problems. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "List all the factors of 36.",
+          "math": "factors 36",
+          "answer": "1, 2, 3, 4, 6, 9, 12, 18, 36"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Write 72 as a product of primes.",
+          "math": "primes 72",
+          "answer": "2 × 2 × 2 × 3 × 3"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "What is the greatest common factor of 18 and 30?",
+          "math": "gcf 18 30",
+          "answer": "6"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "What is the least common multiple of 4 and 10?",
+          "math": "lcm 4 10",
+          "answer": "20"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "Hot dogs come in packs of 10 and buns come in packs of 8. What is the smallest number of hot dogs you can buy so that you can buy exactly the same number of buns?",
+          "math": "lcm 10 8",
+          "answer": "40 hot dogs"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "A teacher has 24 pencils and 32 erasers to share equally, with none left over. What is the greatest number of students who can each get the same share?",
+          "math": "gcf 24 32",
+          "answer": "8 students"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "List all the factors of 48.",
+          "math": "factors 48",
+          "answer": "1, 2, 3, 4, 6, 8, 12, 16, 24, 48"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Write 90 as a product of primes.",
+          "math": "primes 90",
+          "answer": "2 × 3 × 3 × 5"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "What is the greatest common factor of 24 and 40?",
+          "math": "gcf 24 40",
+          "answer": "8"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "What is the least common multiple of 6 and 9?",
+          "math": "lcm 6 9",
+          "answer": "18"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "One light blinks every 6 seconds and another blinks every 15 seconds. They just blinked at the same time. How many seconds until they blink together again?",
+          "math": "lcm 6 15",
+          "answer": "30 seconds"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "A florist has 36 roses and 48 tulips. She makes identical bouquets using all the flowers. What is the greatest number of bouquets she can make?",
+          "math": "gcf 36 48",
+          "answer": "12 bouquets"
+        }
+      ]
+    }
+  ]
+}

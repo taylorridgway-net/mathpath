@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "whole.mult-div",
+  "title": "Multiplication and division facts",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings and word problems. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. For division that doesn't come out even, write the remainder (like 9 R 2).",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "What is 8 times 7?",
+          "math": "8 × 7",
+          "answer": "56"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "What number goes in the box?  9 × ☐ = 63",
+          "math": "63 ÷ 9",
+          "answer": "7"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Divide 54 by 6.",
+          "math": "54 ÷ 6",
+          "answer": "9"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Find the product of 12 and 6.",
+          "math": "12 × 6",
+          "answer": "72"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "38 students need rides. Each car holds 5 students. How many cars are full, and how many students are left over?",
+          "math": "38 ÷ 5",
+          "answer": "7 R 3 (7 full cars, 3 students left over)"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "A box holds 6 rows of 9 pencils. How many pencils is that?",
+          "math": "6 × 9",
+          "answer": "54 pencils"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "What is 9 times 6?",
+          "math": "9 × 6",
+          "answer": "54"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "What number goes in the box?  7 × ☐ = 56",
+          "math": "56 ÷ 7",
+          "answer": "8"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Divide 72 by 8.",
+          "math": "72 ÷ 8",
+          "answer": "9"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Find the product of 12 and 8.",
+          "math": "12 × 8",
+          "answer": "96"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "50 cookies are packed in bags of 6. How many bags are full, and how many cookies are left over?",
+          "math": "50 ÷ 6",
+          "answer": "8 R 2 (8 full bags, 2 cookies left over)"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "There are 7 teams with 9 players on each team. How many players are there in all?",
+          "math": "7 × 9",
+          "answer": "63 players"
+        }
+      ]
+    }
+  ]
+}
