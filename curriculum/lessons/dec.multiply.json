@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.multiply",
+  "title": "Multiply decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "dec.multiply.powers-of-ten": "× 10, 100, 1000: the digits move 1, 2, 3 places left (bigger). ÷ 10, 100, 1000, or × 0.1, 0.01: they move right (smaller).",
+    "dec.multiply.place": "Multiply without the points. Then count the places after the point in both numbers; the answer has that many.",
+    "dec.multiply": "Multiply without the points, then count the places in both numbers. For 10, 100, 1000, move the digits."
+  },
+  "misconceptionMessages": {
+    "dec.point-wrong-way": "× 10 makes a number bigger, so the digits move left (the point moves right). ÷ 10 makes it smaller. Count one place for each zero.",
+    "dec.append-zero": "A zero on the end of a decimal doesn't change it (2.5 = 2.50). × 10 moves every digit one place left: 2.5 × 10 = 25.",
+    "dec.point-one-factor": "Count the places after the point in BOTH numbers and add them: 0.3 × 0.2 has 1 + 1 = 2 places, so 0.06."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "dec.multiply.powers-of-ten",
+      "forGap": "dec.multiply.powers-of-ten",
+      "title": "Times and divided by 10, 100, 1000",
+      "objective": "Multiply and divide by 10, 100, 1000, and multiply by 0.1 and 0.01.",
+      "mode": "section",
+      "generator": "dec.multiply.powers-of-ten",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "One place for each zero: × 100 moves the digits 2 places.",
+        "× 0.1 is the same as ÷ 10; × 0.01 is ÷ 100."
+      ],
+      "visual": {
+        "widget": "place-chart",
+        "params": {
+          "number": "4.5",
+          "buttons": true
+        },
+        "caption": "Tap × 10 and ÷ 10. The digits slide; the point stays."
+      },
+      "key": "× 10 makes a number 10 times bigger: every digit moves one place left. ÷ 10 moves them one place right. The point stays put.",
+      "worked": [
+        {
+          "math": "4.5 × 100",
+          "note": "2 zeros: 2 places"
+        },
+        {
+          "math": "[[450]]",
+          "note": "digits moved 2 places left"
+        },
+        {
+          "math": "37 ÷ 10 = [[3.7]]",
+          "note": "1 place right"
+        },
+        {
+          "math": "25 × 0.1 = 25 ÷ 10 = [[2.5]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "dec.multiply.place",
+      "forGap": "dec.multiply.place",
+      "title": "Multiply decimals",
+      "objective": "Multiply decimals by counting the places after the point.",
+      "mode": "section",
+      "generator": "dec.multiply.place",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "0.3 × 0.2 is 3 tenths of 2 tenths: the picture shows it's 6 hundredths.",
+        "The rule: multiply without the points, then count the places in both numbers."
+      ],
+      "visual": {
+        "widget": "fraction-area",
+        "params": {
+          "a": 3,
+          "b": 10,
+          "c": 2,
+          "d": 10
+        },
+        "caption": "0.3 × 0.2: 3 tenths, then 2 tenths of that. The overlap is 6 of 100 squares: 0.06."
+      },
+      "key": "Multiply without the points. Count the places after the point in both numbers; the answer has that many places.",
+      "worked": [
+        {
+          "math": "0.3 × 0.2",
+          "note": ""
+        },
+        {
+          "math": "[[3 × 2]] = 6",
+          "note": "multiply without the points"
+        },
+        {
+          "math": "1 + 1 = [[2]] places",
+          "note": "one place in each"
+        },
+        {
+          "math": "[[0.06]]",
+          "note": "6 hundredths: fill in a zero"
+        }
+      ]
+    },
+    {
+      "id": "dec.multiply.whole",
+      "forGap": "dec.multiply",
+      "title": "Putting it together",
+      "objective": "Multiplying decimals, and by 10, 100, 1000, mixed.",
+      "mode": "skill",
+      "generator": "dec.multiply",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "For 10, 100, 1000: move the digits. Otherwise: multiply without the points, then count the places in both numbers.",
+      "worked": [
+        {
+          "math": "1.2 × 0.4",
+          "note": ""
+        },
+        {
+          "math": "[[12 × 4]] = 48",
+          "note": ""
+        },
+        {
+          "math": "1 + 1 = 2 places",
+          "note": ""
+        },
+        {
+          "math": "[[0.48]]",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

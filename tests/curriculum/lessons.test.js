@@ -9,10 +9,10 @@ import { loadFractions } from '../helpers/fractions-setup.js';
 
 const dir = new URL('../../curriculum/lessons/', import.meta.url);
 const lessons = readdirSync(dir).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(readFileSync(new URL(f, dir), 'utf8')));
-const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area', 'int-line', 'balance', 'column', 'steps', 'groups', 'factor-pairs'];
+const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area', 'int-line', 'balance', 'column', 'steps', 'groups', 'factor-pairs', 'place-chart'];
 const { graph, misconceptions } = loadFractions();
 const MARKUP = /\{([^}]*)\}/g;
-const VALID = /^\d+( \d+)?\/(\d+|\?)$|^\?\/\d+$|^(bar|dots) \d+\/\d+$|^line \d+ \d+ \d+$/; // fractions; pictures in worked lines
+const VALID = /^\d+( \d+)?\/(\d+|\?)$|^\?\/\d+$|^(bar|dots) \d+\/\d+$|^line \d+ \d+ \d+$|^grid \d+\/100$/; // fractions; pictures in worked lines
 
 for (const lesson of lessons) test(`${lesson.skill}: sections point at real skills and real problem generators`, () => {
   for (const s of lesson.sections) {
@@ -57,5 +57,5 @@ for (const lesson of lessons) test(`${lesson.skill}: section checks and pictures
 });
 
 test('there are lessons for the built skills (fractions meaning, equivalent, compare, add/subtract; three whole-number skills)', () => {
-  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['alg.equations', 'alg.exponents', 'alg.expressions', 'alg.order-ops', 'frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'frac.signed', 'int.add-sub', 'int.mult-div', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div']);
+  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['alg.equations', 'alg.exponents', 'alg.expressions', 'alg.order-ops', 'frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'frac.signed', 'int.add-sub', 'int.mult-div', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div', 'dec.add-sub', 'dec.convert', 'dec.divide', 'dec.multiply', 'dec.place-value'].sort());
 });

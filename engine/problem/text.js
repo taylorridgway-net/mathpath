@@ -66,6 +66,7 @@ export function toText(node) {
     case 'model': {
       const what = { bar: 'a bar cut into', area: 'a rectangle cut into', set: 'a group of' }[node.shape];
       const unit = node.shape === 'set' ? 'dots' : 'equal parts';
+      if (node.shape === 'area' && node.parts === 100) return `[a hundredths grid, ${node.shaded} of 100 squares shaded]`;
       return `[${what} ${node.parts} ${unit}, ${node.shaded} shaded]`;
     }
     case 'compare':

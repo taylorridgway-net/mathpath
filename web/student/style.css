@@ -448,5 +448,15 @@ mark.hl { background: var(--mark-soft); color: inherit; border-bottom: 3px solid
 .fp-grid { gap: 2px; }
 
 sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
-.col-point { width: auto; font-weight: 700; }
+.col-point { font-weight: 700; }
 .col-pad { color: var(--muted); }
+
+/* place-value chart (decimals) */
+.pchart { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) 0.6em repeat(3, minmax(0, 1fr)); align-items: end; gap: 0 2px; justify-items: center; width: 100%; max-width: 30rem; }
+.pchart-head { font-size: 0.68rem; color: var(--muted); hyphens: manual; line-height: 1.2; display: flex; flex-direction: column; align-items: center; padding-bottom: 4px; border-bottom: 2px solid var(--line); width: 100%; text-align: center; }
+.pchart-note { text-transform: none; letter-spacing: 0; font-family: var(--font-math); font-size: 0.85rem; }
+.pchart-digit { font-family: var(--font-math); font-size: 2.2rem; line-height: 1.4; min-height: 1.4em; width: 100%; text-align: center; transition: transform 0.25s; }
+.pchart-digit:not(.is-empty) { background: var(--mark-soft); border-radius: 6px; }
+.pchart-point { font-family: var(--font-math); font-size: 2.2rem; line-height: 1.4; font-weight: 700; }
+.pchart-head.pchart-point { border-bottom: 2px solid var(--line); }
+.key-tool.key-point { font-size: 2.4rem; font-weight: 800; line-height: 0.5; }

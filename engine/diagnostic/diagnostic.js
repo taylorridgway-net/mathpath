@@ -439,10 +439,18 @@ export function catchUpTargets({ graph, generators, config, prior }) {
     const n = prior?.nodes?.[id];
     return !n || ((n.status === 'not-tested' || n.status === 'unchecked') && !n.blockedBy);
   };
-  const all = [...config.targets, ...(config.moreChecks || []).flatMap((c) => c.targets)];
-  return all.filter((id) => graph.has(id)
+  const open = (ids) => ids.filter((id) => graph.has(id)
     && (generators[id] || graph.subskillsOf(id).some((s) => generators[s]))
     && [id, ...graph.subskillsOf(id)].every(nothingKnown));
+  // New skills in the first check come first; then the further checks, ONE at a time,
+  // in order (pre-algebra, then decimals), so each stays short.
+  const first = open(config.targets);
+  if (first.length) return first;
+  for (const check of config.moreChecks || []) {
+    const left = open(check.targets);
+    if (left.length) return left;
+  }
+  return [];
 }
 
 // For diagnostics saved before whole results were kept: the verdicts recorded at

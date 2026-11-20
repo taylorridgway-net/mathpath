@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.divide",
+  "title": "Divide decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key. No item needs long division: after moving the decimal point, every division is a basic fact.",
+  "directions": "Show your work. When you divide by a decimal, show how you moved the decimal point.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Divide:  5.6 ÷ 7", "math": "5.6 / 7", "answer": "0.8" },
+        { "id": "A2", "kind": "computation", "prompt": "Divide:  3.6 ÷ 0.4", "math": "3.6 / 0.4", "answer": "9" },
+        { "id": "A3", "kind": "computation", "prompt": "Divide:  0.81 ÷ 9", "math": "0.81 / 9", "answer": "0.09" },
+        { "id": "A4", "kind": "computation", "prompt": "Divide:  6.3 ÷ 0.09", "math": "6.3 / 0.09", "answer": "70" },
+        { "id": "A5", "kind": "word", "prompt": "A $7.20 bill is split equally among 6 friends. How much does each person pay?", "math": "7.20 / 6", "answer": "$1.20 (each)" },
+        { "id": "A6", "kind": "word", "prompt": "A board 1.2 m long is cut into pieces 0.2 m long. Kim says 1.2 ÷ 0.2 = 0.6, so there are 0.6 pieces. Is she right? Explain, and give the correct answer.", "math": "1.2 / 0.2", "answer": "6 (No: count how many 0.2s fit in 1.2; that is 12 ÷ 2 = 6 pieces)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Divide:  7.2 ÷ 8", "math": "7.2 / 8", "answer": "0.9" },
+        { "id": "B2", "kind": "computation", "prompt": "Divide:  0.36 ÷ 12", "math": "0.36 / 12", "answer": "0.03" },
+        { "id": "B3", "kind": "computation", "prompt": "Divide:  1.8 ÷ 0.6", "math": "1.8 / 0.6", "answer": "3" },
+        { "id": "B4", "kind": "computation", "prompt": "Divide:  2.8 ÷ 0.04", "math": "2.8 / 0.04", "answer": "70" },
+        { "id": "B5", "kind": "word", "prompt": "A bag of dog food holds 5.4 kg. Each scoop is 0.6 kg. How many scoops are in the bag?", "math": "5.4 / 0.6", "answer": "9 (scoops)" },
+        { "id": "B6", "kind": "word", "prompt": "Jon says 3.5 ÷ 7 = 2, because 7 ÷ 3.5 = 2. Is he right? Explain, and give the correct answer.", "math": "3.5 / 7", "answer": "0.5 (No: order matters in division; 3.5 ÷ 7 shares 3.5 into 7 parts, and 35 tenths ÷ 7 = 5 tenths)" }
+      ]
+    }
+  ]
+}

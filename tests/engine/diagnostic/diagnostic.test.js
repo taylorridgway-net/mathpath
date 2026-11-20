@@ -446,11 +446,19 @@ function earlier(traits) {
 
 test('catch-up: finds exactly the skills that had no questions back then', () => {
   const { prior } = earlier({});
-  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']);
-  // After today's fractions check, only the later check (pre-algebra) is left.
+  // New skills in the first check come first, on their own.
+  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
+  // After today's fractions check: the later checks, one at a time (pre-algebra, then decimals).
   const now = compactResult(diagnose({}).result);
-  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']);
-  assert.equal(catchUpName(fractions.config, ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']), 'Pre-algebra check');
+  const ALG = ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ALG);
+  assert.equal(catchUpName(fractions.config, ALG), 'Pre-algebra check');
+  const afterAlg = { ...now, nodes: { ...now.nodes, ...Object.fromEntries(ALG.map((id) => [id, { status: 'known' }])) } };
+  const DEC = ['dec.place-value', 'dec.convert', 'dec.add-sub', 'dec.multiply', 'dec.divide'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterAlg }), DEC);
+  assert.equal(catchUpName(fractions.config, DEC), 'Decimals check');
+  const afterDec = { ...afterAlg, nodes: { ...afterAlg.nodes, ...Object.fromEntries(DEC.map((id) => [id, { status: 'known' }])) } };
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterDec }), []);
   assert.equal(catchUpName(fractions.config, ['frac.multiply', 'alg.order-ops']), null);
 });
 

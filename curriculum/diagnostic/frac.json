@@ -26,6 +26,17 @@
         "alg.equations",
         "alg.expressions"
       ]
+    },
+    {
+      "id": "decimals",
+      "name": "Decimals check",
+      "targets": [
+        "dec.place-value",
+        "dec.convert",
+        "dec.add-sub",
+        "dec.multiply",
+        "dec.divide"
+      ]
     }
   ]
 }

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.divide",
+  "title": "Divide decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "dec.divide.by-whole": "Divide as if there were no point, then put the point in the answer right above where it is in the number you're dividing.",
+    "dec.divide.by-decimal": "Move the point in the number you divide by until it's a whole number. Move the other point the same number of places. Then divide.",
+    "dec.divide": "Dividing by a decimal? Move both points the same number of places first. Then divide; the point stays where it is."
+  },
+  "misconceptionMessages": {
+    "dec.divide-point": "The digits are right; check the point. Divide without it, then put it back in the same place: 4.8 ÷ 6 = 0.8 (48 tenths ÷ 6 = 8 tenths).",
+    "dec.move-one-point": "Move BOTH points the same number of places. 2.4 ÷ 0.3 becomes 24 ÷ 3 = 8."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "dec.divide.by-whole",
+      "forGap": "dec.divide.by-whole",
+      "title": "Divide by a whole number",
+      "objective": "Divide a decimal by a whole number.",
+      "mode": "section",
+      "generator": "dec.divide.by-whole",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "4.8 is 48 tenths. 48 tenths shared into 6 groups is 8 tenths: 0.8.",
+        "Check by multiplying: 6 × 0.8 = 4.8."
+      ],
+      "visual": null,
+      "key": "Divide as if there were no point. The point in the answer goes right where it is in the number you're dividing.",
+      "worked": [
+        {
+          "math": "4.8 ÷ 6",
+          "note": ""
+        },
+        {
+          "math": "[[48]] ÷ 6 = 8",
+          "note": "48 tenths ÷ 6"
+        },
+        {
+          "math": "[[0.8]]",
+          "note": "8 tenths"
+        },
+        {
+          "math": "6 × 0.8 = 4.8",
+          "note": "check"
+        }
+      ]
+    },
+    {
+      "id": "dec.divide.by-decimal",
+      "forGap": "dec.divide.by-decimal",
+      "title": "Divide by a decimal",
+      "objective": "Divide by a decimal by moving both points.",
+      "mode": "section",
+      "generator": "dec.divide.by-decimal",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Multiplying both numbers by 10 doesn't change the answer: 24 ÷ 3 is the same as 2.4 ÷ 0.3.",
+        "So move both points the same number of places, until you're dividing by a whole number."
+      ],
+      "visual": null,
+      "key": "Make the number you divide by a whole number: move its point. Move the other point the same number of places. Then divide.",
+      "worked": [
+        {
+          "math": "2.4 ÷ 0.3",
+          "note": ""
+        },
+        {
+          "math": "[[24]] ÷ [[3]]",
+          "note": "both points move 1 place right"
+        },
+        {
+          "math": "8",
+          "note": ""
+        },
+        {
+          "math": "4.5 ÷ 0.05 = [[450]] ÷ [[5]] = 90",
+          "note": "2 places each"
+        }
+      ]
+    },
+    {
+      "id": "dec.divide.whole",
+      "forGap": "dec.divide",
+      "title": "Putting it together",
+      "objective": "Dividing decimals of every kind.",
+      "mode": "skill",
+      "generator": "dec.divide",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Dividing by a decimal? Move both points first. Then divide; the point stays where it is.",
+      "worked": [
+        {
+          "math": "0.48 ÷ 0.6",
+          "note": ""
+        },
+        {
+          "math": "[[4.8]] ÷ [[6]]",
+          "note": "both points 1 place right"
+        },
+        {
+          "math": "[[0.8]]",
+          "note": "48 tenths ÷ 6 = 8 tenths"
+        }
+      ]
+    }
+  ]
+}

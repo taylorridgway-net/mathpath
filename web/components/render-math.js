@@ -163,8 +163,9 @@ function modelSvg({ shape, parts, shaded, rows, cols }) {
     return root;
   }
   const [r, c] = shape === 'area' ? [rows, cols] : [1, parts];
-  const w = shape === 'area' ? c * 34 : 260;
-  const h = shape === 'area' ? r * 34 : 48;
+  const size = r * c >= 50 ? 14 : 34; // a hundredths grid gets small squares
+  const w = shape === 'area' ? c * size : 260;
+  const h = shape === 'area' ? r * size : 48;
   const root = svg('svg', { viewBox: `-2 -2 ${w + 4} ${h + 4}`, width: w + 4, class: 'm-pic', 'aria-hidden': 'true' });
   const cw = w / c;
   const ch = h / r;

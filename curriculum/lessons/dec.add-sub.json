@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.add-sub",
+  "title": "Add and subtract decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "dec.add-sub.line-up": "Line up the decimal points, not the last digits. Fill in zeros so both have the same number of places.",
+    "dec.add-sub.whole-numbers": "A whole number has its point at the end: 6 = 6.00. Line up the points, then subtract, borrowing as usual.",
+    "dec.add-sub": "Line up the points, fill in zeros, then add or subtract column by column. The point goes straight down."
+  },
+  "misconceptionMessages": {
+    "dec.right-align": "Line up the decimal points, not the last digits. Tenths go under tenths: 3.50 + 1.25.",
+    "dec.whole-ignored": "Write the whole number with zeros after the point (6 = 6.00), line up the points, and subtract every column. You'll need to borrow."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "dec.add-sub.line-up",
+      "forGap": "dec.add-sub.line-up",
+      "title": "Line up the points",
+      "objective": "Add and subtract decimals with different numbers of places.",
+      "mode": "section",
+      "generator": "dec.add-sub.line-up",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Ones under ones, tenths under tenths. Lining up the points does that for you.",
+        "Then it works just like whole numbers, carrying and borrowing as usual."
+      ],
+      "visual": {
+        "widget": "column",
+        "params": {
+          "op": "+",
+          "top": "3.5",
+          "bottom": "1.25"
+        },
+        "caption": "3.5 + 1.25, one column at a time. The grey 0 is filled in."
+      },
+      "key": "Line up the decimal points, not the last digits. Fill in zeros so both have the same number of places. The point in the answer goes straight down."
+    },
+    {
+      "id": "dec.add-sub.whole-numbers",
+      "forGap": "dec.add-sub.whole-numbers",
+      "title": "A whole number and a decimal",
+      "objective": "Add and subtract when one number is a whole number (6 − 2.35).",
+      "mode": "section",
+      "generator": "dec.add-sub.whole-numbers",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A whole number's point is at the end: 6 is 6. or 6.00.",
+        "Subtract every column. The zeros mean borrowing."
+      ],
+      "visual": {
+        "widget": "column",
+        "params": {
+          "op": "-",
+          "top": "6",
+          "bottom": "2.35"
+        },
+        "caption": "6 − 2.35: write 6 as 6.00, then borrow across the zeros."
+      },
+      "key": "A whole number has its point at the end: 6 = 6.00. Line up the points, then subtract every column, borrowing across the zeros."
+    },
+    {
+      "id": "dec.add-sub.whole",
+      "forGap": "dec.add-sub",
+      "title": "Putting it together",
+      "objective": "Add and subtract decimals of every kind.",
+      "mode": "skill",
+      "generator": "dec.add-sub",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Line up the points, fill in zeros, then work column by column. The point goes straight down.",
+      "worked": [
+        {
+          "math": "12.7 + 8.45",
+          "note": "line up the points"
+        },
+        {
+          "math": "[[12.70]] + 8.45",
+          "note": "fill in a zero"
+        },
+        {
+          "math": "21.15",
+          "note": "add as usual: 1270 + 845 = 2115 hundredths"
+        }
+      ]
+    }
+  ]
+}

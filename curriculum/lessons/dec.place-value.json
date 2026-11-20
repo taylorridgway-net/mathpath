@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.place-value",
+  "title": "Understand decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "dec.place-value.read": "After the point the places go tenths, hundredths, thousandths. The bottom number tells you which place the last digit goes in.",
+    "dec.place-value.compare": "Write zeros on the end so both have the same number of places (0.5 = 0.50). Then compare.",
+    "dec.place-value.round": "Look at the digit just after the place you're rounding to. 5 or more: round up. Less than 5: keep it.",
+    "dec.place-value": "Tenths, hundredths, thousandths. To compare, give both the same number of places. To round, look at the next digit."
+  },
+  "misconceptionMessages": {
+    "dec.place-value-shift": "Check the places: tenths are the first place after the point, hundredths the second. 7/100 is 7 hundredths: 0.07.",
+    "dec.longer-is-larger": "More digits doesn't mean bigger. Write both with the same number of places: 0.5 = 0.50, and 50 hundredths is more than 45 hundredths.",
+    "dec.shorter-is-larger": "Write both with the same number of places and compare: 0.4 = 0.40, which is less than 0.45.",
+    "dec.round-truncate": "Rounding isn't just cutting digits off. Look at the next digit: if it's 5 or more, round up.",
+    "dec.round-wrong-way": "Look at the digit just after the place you're rounding to: 5 or more rounds up, less than 5 stays.",
+    "dec.round-wrong-place": "Check which place the question asks for: nearest whole number, tenth, or hundredth."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "dec.place-value.read",
+      "forGap": "dec.place-value.read",
+      "title": "Tenths, hundredths, thousandths",
+      "objective": "Write fractions with 10, 100, 1000 as decimals, and name the place of a digit.",
+      "mode": "section",
+      "generator": "dec.place-value.read",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Each place is 10 times smaller than the one to its left. The point sits between the ones and the tenths.",
+        "The bottom of the fraction says which place the last digit goes in. Fill any empty places with 0."
+      ],
+      "visual": {
+        "widget": "place-chart",
+        "params": {
+          "number": "3.45",
+          "buttons": false
+        },
+        "caption": "3.45 in a place-value chart. Each column is 10 times the column to its right."
+      },
+      "key": "After the point: tenths, then hundredths, then thousandths. 7/100 is 7 hundredths, so the 7 goes in the second place: 0.07.",
+      "worked": [
+        {
+          "math": "{grid 45/100}",
+          "note": "45 hundredths shaded"
+        },
+        {
+          "math": "{45/100} = [[0.45]]",
+          "note": "4 tenths and 5 hundredths"
+        },
+        {
+          "math": "{grid 7/100}",
+          "note": "only 7 hundredths"
+        },
+        {
+          "math": "{7/100} = [[0.07]]",
+          "note": "the 7 goes in the hundredths place; 0 fills the tenths"
+        }
+      ]
+    },
+    {
+      "id": "dec.place-value.compare",
+      "forGap": "dec.place-value.compare",
+      "title": "Compare decimals",
+      "objective": "Compare decimals, even when they have different numbers of digits.",
+      "mode": "section",
+      "generator": "dec.place-value.compare",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Compare the whole-number parts first. If they're the same, write zeros on the end so both have the same number of places.",
+        "Zeros on the end don't change a decimal: 0.5 and 0.50 are the same amount."
+      ],
+      "visual": null,
+      "key": "More digits doesn't mean bigger. Give both decimals the same number of places, then compare them like whole numbers.",
+      "worked": [
+        {
+          "math": "0.5 ? 0.45",
+          "note": "Which is bigger?"
+        },
+        {
+          "math": "[[0.50]] ? 0.45",
+          "note": "write a zero on the end"
+        },
+        {
+          "math": "{grid 50/100}",
+          "note": "0.50: 50 hundredths"
+        },
+        {
+          "math": "{grid 45/100}",
+          "note": "0.45: 45 hundredths"
+        },
+        {
+          "math": "[[0.5 > 0.45]]",
+          "note": "50 hundredths is more than 45"
+        }
+      ],
+      "workedCaption": "Tap through and compare the two grids."
+    },
+    {
+      "id": "dec.place-value.round",
+      "forGap": "dec.place-value.round",
+      "title": "Round decimals",
+      "objective": "Round to the nearest whole number, tenth, or hundredth.",
+      "mode": "section",
+      "generator": "dec.place-value.round",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Find the place you're rounding to, then look at the digit just after it.",
+        "5 or more: round up. Less than 5: the digit stays. Then drop the digits after it."
+      ],
+      "visual": null,
+      "key": "Look at the digit just after the place you're rounding to. 5 or more rounds up; less than 5 stays the same.",
+      "worked": [
+        {
+          "math": "3.47 → nearest tenth",
+          "note": "the tenths digit is 4"
+        },
+        {
+          "math": "3.4[[7]]",
+          "note": "the next digit is 7: 5 or more"
+        },
+        {
+          "math": "[[3.5]]",
+          "note": "round up: 4 tenths becomes 5"
+        },
+        {
+          "math": "4.9[[6]] → nearest tenth",
+          "note": "9 tenths rounds up to 10 tenths"
+        },
+        {
+          "math": "[[5.0]] = 5",
+          "note": "10 tenths is 1 whole"
+        }
+      ],
+      "workedCaption": "Tap through two roundings."
+    },
+    {
+      "id": "dec.place-value.whole",
+      "forGap": "dec.place-value",
+      "title": "Putting it together",
+      "objective": "Place value, comparing and rounding, mixed together.",
+      "mode": "skill",
+      "generator": "dec.place-value",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Know your places: tenths, hundredths, thousandths. Same number of places to compare; the next digit to round.",
+      "worked": [
+        {
+          "math": "{3/1000} = [[0.003]]",
+          "note": "thousandths: third place"
+        },
+        {
+          "math": "0.7 ? 0.68 → [[0.70]] > 0.68",
+          "note": "same number of places"
+        },
+        {
+          "math": "2.351 → nearest hundredth: [[2.35]]",
+          "note": "the next digit, 1, is less than 5"
+        }
+      ]
+    }
+  ]
+}

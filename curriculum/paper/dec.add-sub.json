@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.add-sub",
+  "title": "Add and subtract decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. Line up the decimal points.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Add:  4.6 + 2.75", "math": "4.6 + 2.75", "answer": "7.35" },
+        { "id": "A2", "kind": "computation", "prompt": "Subtract:  8.3 − 5.47", "math": "8.3 - 5.47", "answer": "2.83" },
+        { "id": "A3", "kind": "computation", "prompt": "Subtract:  10 − 3.75", "math": "10 - 3.75", "answer": "6.25" },
+        { "id": "A4", "kind": "computation", "prompt": "Add:  12.08 + 0.9 + 3", "math": "12.08 + 0.9 + 3", "answer": "15.98" },
+        { "id": "A5", "kind": "word", "prompt": "You buy a sandwich for $6.85 and a drink for $1.99. You pay with a $10 bill. How much change do you get?", "math": "10 - (6.85 + 1.99)", "answer": "$1.16" },
+        { "id": "A6", "kind": "word", "prompt": "Ty adds 3.5 + 1.25 by lining up the last digits on the right, and gets 1.60. Is he right? Explain, and give the correct answer.", "math": "3.5 + 1.25", "answer": "4.75 (No: line up the decimal points, not the last digits; 3.50 + 1.25 = 4.75)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Add:  0.68 + 5.4", "math": "0.68 + 5.4", "answer": "6.08" },
+        { "id": "B2", "kind": "computation", "prompt": "Subtract:  7 − 2.36", "math": "7 - 2.36", "answer": "4.64" },
+        { "id": "B3", "kind": "computation", "prompt": "Subtract:  15.2 − 9.85", "math": "15.2 - 9.85", "answer": "5.35" },
+        { "id": "B4", "kind": "computation", "prompt": "Find:  6.5 − 1.25 + 0.8", "math": "6.5 - 1.25 + 0.8", "answer": "6.05" },
+        { "id": "B5", "kind": "word", "prompt": "A plant was 14.6 cm tall. Two weeks later it was 21.35 cm tall. How much did it grow?", "math": "21.35 - 14.6", "answer": "6.75 (cm)" },
+        { "id": "B6", "kind": "word", "prompt": "Ana says 5 − 0.3 = 0.2. Is she right? Explain, and give the correct answer.", "math": "5 - 0.3", "answer": "4.7 (No: 5 is 5.0, and 5.0 − 0.3 = 4.7)" }
+      ]
+    }
+  ]
+}

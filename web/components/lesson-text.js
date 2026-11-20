@@ -65,6 +65,9 @@ function parseMath(inner) {
   const part = (s) => (s === '?' ? { type: 'blank' } : Number(s));
   const pic = /^(bar|dots) (\d+)\/(\d+)$/.exec(inner);
   if (pic) return { type: 'model', shape: pic[1] === 'bar' ? 'bar' : 'set', shaded: Number(pic[2]), parts: Number(pic[3]) };
+  // A hundredths grid: 10 × 10 squares, the first n shaded (0.45 = 45 hundredths).
+  const grid = /^grid (\d+)\/100$/.exec(inner);
+  if (grid) return { type: 'model', shape: 'area', rows: 10, cols: 10, parts: 100, shaded: Number(grid[1]) };
   const line = /^line (\d+) (\d+) (\d+)$/.exec(inner);
   if (line) return { type: 'numberline', max: Number(line[1]), perUnit: Number(line[2]), point: Number(line[3]) };
   const mixed = /^(\d+) (\d+)\/(\d+)$/.exec(inner);

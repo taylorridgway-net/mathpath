@@ -282,6 +282,11 @@ const shortName = (id) => ({
   'frac.multiply': 'Multiply',
   'frac.divide': 'Divide',
   'frac.signed': 'Negative fractions',
+  'dec.place-value': 'Understand decimals',
+  'dec.convert': 'Fractions ↔ decimals',
+  'dec.add-sub': 'Decimals: add & subtract',
+  'dec.multiply': 'Decimals: multiply',
+  'dec.divide': 'Decimals: divide',
 }[id] || graph.get(id).name);
 
 // ---------- Class overview ----------

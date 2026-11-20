@@ -33,4 +33,9 @@ Division problems keep to fact-sized digits (long division is out for whole numb
   (2.4 ÷ 0.3 = 0.8), place value (3/100 = 0.3), 0.35 = 35/10.
 
 ## Progress
-- (in progress) input, graph, generators, lessons, paper tests, check.
+- **Built (2026-11-20):** decimal input ("." key, exact decimals), graph, generators (11 parts, 3 levels, 16 wrong-answer patterns),
+  worked solutions (column picture with the points lined up), lessons in the picture style (place-value chart, hundredths grids),
+  paper tests A/B for all five skills (keys checked by tests/curriculum/paper-dec.test.js), the Decimals check (after the
+  pre-algebra check). 400 pretend students: median 10 questions, 90th percentile 14, max 21, none at the limit; one who knows
+  everything: 8. No gap reported that the pretend student could actually do.
+- Waiting on the owner: review the lessons and paper items; the defaults above.

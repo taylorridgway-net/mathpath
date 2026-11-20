@@ -24,7 +24,12 @@
     "alg.order-ops",
     "alg.exponents",
     "alg.equations",
-    "alg.expressions"
+    "alg.expressions",
+    "dec.place-value",
+    "dec.convert",
+    "dec.add-sub",
+    "dec.multiply",
+    "dec.divide"
   ],
   "papers": [
     "whole.add-sub",
@@ -42,6 +47,11 @@
     "alg.order-ops",
     "alg.exponents",
     "alg.equations",
-    "alg.expressions"
+    "alg.expressions",
+    "dec.place-value",
+    "dec.convert",
+    "dec.add-sub",
+    "dec.multiply",
+    "dec.divide"
   ]
 }

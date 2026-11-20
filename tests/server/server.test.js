@@ -282,7 +282,7 @@ test('catch-up check: only the new skills; re-graded from the saved result; the 
   const { summary } = server.student.login(kid.code);
   const prior = summary.diagnostic.result;
   const targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior });
-  assert.deepEqual(targets, ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']);
+  assert.deepEqual(targets, ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
   const seed = seedFor(kid.id, 'diagnostic', 2);
   const d = startDiagnostic({ ...setup, config: { ...setup.diagnosticConfig, targets }, seed, prior });
   const answers = answerAll(d);
@@ -294,10 +294,8 @@ test('catch-up check: only the new skills; re-graded from the saved result; the 
   assert.equal(after.skills['frac.multiply'], 'known');
   assert.equal(res.summary.diagnostic.catchUp, true);
   assert.deepEqual(store.data.records.diagnostics.at(-1).targets, targets);
-  // Nothing new any more: another catch-up is refused.
-  const seed3 = seedFor(kid.id, 'diagnostic', 3);
-  const again = server.student.saveRecord(kid.code, { type: 'diagnostic', catchUp: true, saveId: 'd3', attemptNo: 3, seed: seed3, answers: [], times: [] });
-  assert.equal(again.error, 'nothing-to-catch-up');
+  // Next comes the pre-algebra check (one check at a time).
+  assert.deepEqual(catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior: after }), ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']);
 });
 
 test('catch-up answers re-graded as a full diagnostic (or the other way round) are refused', () => {

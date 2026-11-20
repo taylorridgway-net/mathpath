@@ -16,5 +16,10 @@ import algOrderOpsPaper from './paper/alg.order-ops.json';
 import algExponentsPaper from './paper/alg.exponents.json';
 import algEquationsPaper from './paper/alg.equations.json';
 import algExpressionsPaper from './paper/alg.expressions.json';
+import decPlaceValuePaper from './paper/dec.place-value.json';
+import decConvertPaper from './paper/dec.convert.json';
+import decAddSubPaper from './paper/dec.add-sub.json';
+import decMultiplyPaper from './paper/dec.multiply.json';
+import decDividePaper from './paper/dec.divide.json';
 
-export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper];
+export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper];

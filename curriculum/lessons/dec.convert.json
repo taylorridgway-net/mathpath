@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.convert",
+  "title": "Fractions and decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "dec.convert.to-decimal": "Make the bottom 10, 100 or 1000 by multiplying the top and bottom by the same number. Then write it as tenths, hundredths or thousandths.",
+    "dec.convert.to-fraction": "Count the places after the point: 1 place is tenths, 2 hundredths, 3 thousandths. Write it over 10, 100 or 1000, then simplify.",
+    "dec.convert": "Fraction to decimal: make the bottom 10, 100 or 1000. Decimal to fraction: write it over 10, 100 or 1000 and simplify."
+  },
+  "misconceptionMessages": {
+    "dec.convert-digits": "The digits of the fraction aren't the decimal. Make the bottom 10, 100 or 1000 first: 3/4 = 75/100 = 0.75.",
+    "dec.convert-flipped": "A fraction is the top divided by the bottom, not the other way round. 4/5 is less than 1, so its decimal is less than 1.",
+    "dec.convert-over-ten": "Count the places: 0.35 has 2 places, so it's 35 hundredths: 35/100. Then simplify."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "dec.convert.to-decimal",
+      "forGap": "dec.convert.to-decimal",
+      "title": "Fraction to decimal",
+      "objective": "Write fractions like 3/4 and 3/8 as decimals.",
+      "mode": "section",
+      "generator": "dec.convert.to-decimal",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Find a number to multiply the bottom by to get 10, 100 or 1000. Multiply the top by the same number.",
+        "Halves, fifths and tenths go to 10; quarters, twentieths and 25ths to 100; eighths to 1000."
+      ],
+      "visual": null,
+      "key": "Make the bottom 10, 100 or 1000 (same number times the top and the bottom). Then read it as tenths, hundredths or thousandths.",
+      "worked": [
+        {
+          "math": "{3/4}",
+          "note": "4 × 25 = 100"
+        },
+        {
+          "math": "{3/4} = [[{75/100}]]",
+          "note": "multiply the top and bottom by 25"
+        },
+        {
+          "math": "{grid 75/100}",
+          "note": "75 hundredths"
+        },
+        {
+          "math": "[[0.75]]",
+          "note": ""
+        },
+        {
+          "math": "{3/8} = {375/1000} = [[0.375]]",
+          "note": "eighths: 8 × 125 = 1000"
+        }
+      ]
+    },
+    {
+      "id": "dec.convert.to-fraction",
+      "forGap": "dec.convert.to-fraction",
+      "title": "Decimal to fraction",
+      "objective": "Write decimals as fractions in simplest form.",
+      "mode": "section",
+      "generator": "dec.convert.to-fraction",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Read the decimal: 0.35 is 35 hundredths. Write that as a fraction.",
+        "Then simplify, like any fraction."
+      ],
+      "visual": null,
+      "key": "Count the places: 1 place is tenths, 2 hundredths, 3 thousandths. Write the digits over 10, 100 or 1000, then simplify.",
+      "worked": [
+        {
+          "math": "0.35",
+          "note": "2 places: hundredths"
+        },
+        {
+          "math": "[[{35/100}]]",
+          "note": "35 hundredths"
+        },
+        {
+          "math": "[[{7/20}]]",
+          "note": "divide the top and bottom by 5"
+        },
+        {
+          "math": "2.5 = {25/10} = [[{5/2}]]",
+          "note": "or {2 1/2}"
+        }
+      ]
+    },
+    {
+      "id": "dec.convert.whole",
+      "forGap": "dec.convert",
+      "title": "Putting it together",
+      "objective": "Fractions to decimals and decimals to fractions, mixed.",
+      "mode": "skill",
+      "generator": "dec.convert",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Fraction to decimal: bottom to 10, 100 or 1000. Decimal to fraction: over 10, 100 or 1000, then simplify.",
+      "worked": [
+        {
+          "math": "{4/5} = [[{8/10}]] = 0.8",
+          "note": "5 × 2 = 10"
+        },
+        {
+          "math": "0.125 = [[{125/1000}]]",
+          "note": "3 places: thousandths"
+        },
+        {
+          "math": "{125/1000} = [[{1/8}]]",
+          "note": "divide by 125"
+        }
+      ]
+    }
+  ]
+}

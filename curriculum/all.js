@@ -31,8 +31,13 @@ import algOrderOpsLesson from './lessons/alg.order-ops.json';
 import algExponentsLesson from './lessons/alg.exponents.json';
 import algEquationsLesson from './lessons/alg.equations.json';
 import algExpressionsLesson from './lessons/alg.expressions.json';
+import decPlaceValueLesson from './lessons/dec.place-value.json';
+import decConvertLesson from './lessons/dec.convert.json';
+import decAddSubLesson from './lessons/dec.add-sub.json';
+import decMultiplyLesson from './lessons/dec.multiply.json';
+import decDivideLesson from './lessons/dec.divide.json';
 
 export { domainsIndex, diagnosticConfig, masteryRules };
 export const graphFiles = { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph, 'dec.json': decGraph };
 export const misconceptionList = [...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...fracMisconceptions.misconceptions, ...algMisconceptions.misconceptions, ...decMisconceptions.misconceptions];
-export const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsMultiplesLesson, fracMeaningLesson, fracEquivalentLesson, fracCompareLesson, fracAddSubLesson, fracMultiplyLesson, fracDivideLesson, intAddSubLesson, intMultDivLesson, fracSignedLesson, algOrderOpsLesson, algExponentsLesson, algEquationsLesson, algExpressionsLesson];
+export const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsMultiplesLesson, fracMeaningLesson, fracEquivalentLesson, fracCompareLesson, fracAddSubLesson, fracMultiplyLesson, fracDivideLesson, intAddSubLesson, intMultDivLesson, fracSignedLesson, algOrderOpsLesson, algExponentsLesson, algEquationsLesson, algExpressionsLesson, decPlaceValueLesson, decConvertLesson, decAddSubLesson, decMultiplyLesson, decDivideLesson];

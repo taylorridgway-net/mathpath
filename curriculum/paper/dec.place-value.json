@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.place-value",
+  "title": "Understand decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show how you know. Writing the decimals with the same number of places, or a place-value chart, both count.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Write as a decimal:  {7/100}", "math": "7/100", "answer": "0.07" },
+        { "id": "A2", "kind": "computation", "prompt": "In 6.384, which digit is in the hundredths place?", "math": "digit hundredths 6.384", "answer": "8" },
+        { "id": "A3", "kind": "computation", "prompt": "Write <, = or > to make it true:  0.7 ☐ 0.68", "math": "sign 0.7 0.68", "answer": ">" },
+        { "id": "A4", "kind": "computation", "prompt": "Round 4.762 to the nearest tenth.", "math": "round tenth 4.762", "answer": "4.8" },
+        { "id": "A5", "kind": "word", "prompt": "Three sprinters ran 100 meters in 12.4, 12.09 and 12.35 seconds. Put the times in order from fastest (least) to slowest (greatest).", "math": "order 12.4 12.09 12.35", "answer": "12.09, 12.35, 12.4" },
+        { "id": "A6", "kind": "word", "prompt": "Maya says 0.45 > 0.5 because 45 > 5. Is she right? Explain.", "math": "sign 0.45 0.5", "answer": "< (No: 0.5 = 0.50, and 50 hundredths is more than 45 hundredths, so 0.45 < 0.5)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Write as a decimal:  {9/1000}", "math": "9/1000", "answer": "0.009" },
+        { "id": "B2", "kind": "computation", "prompt": "In 25.617, which digit is in the tenths place?", "math": "digit tenths 25.617", "answer": "6" },
+        { "id": "B3", "kind": "computation", "prompt": "Round 3.096 to the nearest hundredth.", "math": "round hundredth 3.096", "answer": "3.10" },
+        { "id": "B4", "kind": "computation", "prompt": "Put these in order from least to greatest:  0.3, 0.29, 0.305", "math": "order 0.3 0.29 0.305", "answer": "0.29, 0.3, 0.305" },
+        { "id": "B5", "kind": "word", "prompt": "A bag of apples weighs 2.15 kg. A bag of oranges weighs 2.2 kg. Which bag is heavier? Show how you know.", "math": "bigger 2.15 2.2", "answer": "2.2 (kg: the oranges)" },
+        { "id": "B6", "kind": "word", "prompt": "A trip is 37.48 miles. Leo rounds it to the nearest whole mile and gets 38 miles. Is he right? Explain.", "math": "round whole 37.48", "answer": "37 (No: the tenths digit is 4, so it rounds down to 37)" }
+      ]
+    }
+  ]
+}

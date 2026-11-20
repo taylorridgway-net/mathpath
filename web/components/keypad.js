@@ -187,6 +187,7 @@ export function createKeypad({
       b.classList.add('key-tool');
     }
     if ((k === 'fraction' || k === 'mixed') && !allowFractions) b.disabled = true;
+    if (k === 'point') b.classList.add('key-point');
     b.addEventListener('click', () => press(k));
     return b;
   }
