@@ -26,6 +26,8 @@ import { createAreaModel } from '../components/area-model.js';
 import { createFractionArea } from '../components/fraction-area.js';
 import { createIntLine } from '../components/int-line.js';
 import { createBalance } from '../components/balance.js';
+import { createColumnSteps } from '../components/column-steps.js';
+import { createStepThrough, mathLine } from '../components/step-through.js';
 import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
@@ -175,21 +177,45 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     save();
     const screen = frame('Learn');
     const cols = split('even');
-    const main = sec.visual ? cols.main : screen;
+    const main = sec.visual || sec.worked ? cols.main : screen;
     main.append(h('p', 'eyebrow', sec.mode === 'skill' ? 'All the steps' : 'One step'));
     main.append(h('h1', 'title', sec.title));
     main.append(h('p', 'lede', sec.objective));
+    // The one thing to remember, big, before anything else.
+    if (sec.key) {
+      const key = renderLessonText(sec.key, { className: 'key-idea', autoFractions: false });
+      key.prepend(h('span', 'key-idea-label', 'Key idea'));
+      main.append(key);
+    }
     const body = h('div', 'lesson-body');
     for (const p of sec.explain) body.append(say(p));
     main.append(body);
 
-    const WIDGETS = { 'fraction-bars': createFractionBars, 'area-model': createAreaModel, 'fraction-area': createFractionArea, 'int-line': createIntLine, balance: createBalance };
-    if (WIDGETS[sec.visual?.widget]) {
+    // A worked example as math lines: beside the text as a step-through when there's
+    // no other picture; otherwise below the text, all at once.
+    const visual = sec.visual || (sec.worked ? { widget: 'steps', params: { lines: sec.worked }, caption: sec.workedCaption || 'Watch it one step at a time.' } : null);
+    if (sec.visual && sec.worked) {
+      const block = h('div', 'worked-static');
+      if (sec.workedCaption) block.append(h('p', 'worked-title', sec.workedCaption));
+      const list = h('ol', 'math-lines');
+      list.append(...sec.worked.map((l) => mathLine(l)));
+      block.append(list);
+      main.append(block);
+    }
+
+    const WIDGETS = {
+      'fraction-bars': createFractionBars, 'area-model': createAreaModel, 'fraction-area': createFractionArea,
+      'int-line': createIntLine, balance: createBalance, column: createColumnSteps, steps: createStepThrough,
+    };
+    if (WIDGETS[visual?.widget]) {
       const box = h('figure', 'visual');
-      const cap = renderLessonText(sec.visual.caption, { tag: 'figcaption', className: 'visual-caption', autoFractions: true });
+      const cap = renderLessonText(visual.caption, { tag: 'figcaption', className: 'visual-caption', autoFractions: true });
       box.append(cap);
-      WIDGETS[sec.visual.widget]({ host: box, params: sec.visual.params });
-      cols.side.append(box);
+      WIDGETS[visual.widget]({ host: box, params: visual.params });
+      // Phones (one column): the picture goes right after the key idea, not below everything.
+      const narrow = typeof window.matchMedia === 'function' && window.matchMedia('(max-width: 899px)').matches;
+      if (narrow) body.before(box);
+      else cols.side.append(box);
       screen.append(cols.el);
     }
 

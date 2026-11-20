@@ -33,3 +33,9 @@ test('picture markup for paper tests: bars, dots, number lines', () => {
   assert.deepEqual(parseLessonText('{dots 4/9}'), [{ type: 'model', shape: 'set', shaded: 4, parts: 9 }]);
   assert.deepEqual(parseLessonText('{line 2 4 7}'), [{ type: 'numberline', max: 2, perUnit: 4, point: 7 }]);
 });
+
+test('[[...]] marks the part being worked on, and math inside it still works', () => {
+  const plain = (x) => JSON.parse(JSON.stringify(x).replace(/\u00a0/g, ' '));
+  assert.deepEqual(plain(parseLessonText('2 + [[3 × 4]] = 14')), ['2 + ', { type: 'mark', pieces: ['3 × 4'] }, ' = 14']);
+  assert.deepEqual(parseLessonText('[[{1/2}]] of 8'), [{ type: 'mark', pieces: [{ type: 'frac', n: 1, d: 2 }] }, ' of 8']);
+});

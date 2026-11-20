@@ -412,3 +412,32 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .answer-x { font-family: var(--font-math); font-style: italic; font-size: 2rem; }
 .answer[data-mode="linear"] .answer-box { height: 3.2rem; font-size: 2rem; min-width: 3.4rem; }
 .answer-pm { font-size: 1.6rem; }
+
+/* column addition and subtraction (whole numbers) */
+.col-grid { display: inline-grid; font-family: var(--font-math); font-size: 2rem; line-height: 1.15; justify-items: center; font-variant-numeric: lining-nums tabular-nums; }
+.col-cell { display: block; min-height: 1.15em; text-align: center; width: 100%; }
+.col-small { font-size: 0.55em; color: var(--accent); font-weight: 700; align-self: end; }
+.col-under { border-bottom: 3px solid var(--ink); }
+.col-op { color: var(--muted); }
+.col-struck { text-decoration: line-through; text-decoration-color: var(--bad); text-decoration-thickness: 2px; color: var(--muted); }
+.col-result { color: var(--accent); font-weight: 600; }
+.col-hot { background: var(--mark-soft); }
+.col-small.col-hot { background: var(--mark-soft); }
+
+/* ---------- lesson layout: key idea, worked math lines ---------- */
+.key-idea {
+  margin: 0; padding: 14px 16px; border-radius: var(--radius); border-left: 5px solid var(--accent);
+  background: var(--accent-soft); font-size: 1.2rem; font-weight: 650; line-height: 1.55;
+}
+.key-idea-label { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+.math-lines { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.math-line { display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
+.math-line.is-current { border-color: var(--mark); }
+.math-line-math { font-family: var(--font-math); font-size: 1.7rem; line-height: 1.4; }
+.math-line-math .math-inline { font-size: 1em; }
+.math-line-note { font-size: 0.95rem; color: var(--muted); }
+mark.hl { background: var(--mark-soft); color: inherit; border-bottom: 3px solid var(--mark); border-radius: 4px; padding: 0 0.1em; }
+.steps-through { display: flex; flex-direction: column; gap: 12px; }
+.col-pic { display: flex; justify-content: center; padding: 8px 0; }
+.worked-static { display: flex; flex-direction: column; gap: 8px; }
+.worked-title { margin: 6px 0 0; font-weight: 700; }

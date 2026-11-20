@@ -9,6 +9,8 @@
 // generated as plain text ("So 1/4 = 3/12"), so for those, bare a/b fractions
 // can be turned into stacked fractions too (autoFractions).
 //
+// [[...]] highlights a part (the step that's happening): "2 + [[3 × 4]]".
+//
 // parseLessonText is pure (tested in Node); renderLessonText draws it.
 
 import { renderMath } from './render-math.js';
@@ -17,7 +19,20 @@ const BRACED = /\{([^}]*)\}/g;
 const BARE = /(?<![\w/])(\d+)\/(\d+)(?![\w/])/g;
 
 // "Add {1/2} and 3" -> [ 'Add ', { type: 'frac', n: 1, d: 2 }, ' and 3' ]
-export function parseLessonText(text, { autoFractions = false } = {}) {
+// "2 + [[3 × 4]]"   -> [ '2 + ', { type: 'mark', pieces: ['3 × 4'] } ]
+export function parseLessonText(text, options = {}) {
+  const out = [];
+  let last = 0;
+  for (const m of text.matchAll(/\[\[(.+?)\]\]/g)) {
+    if (m.index > last) out.push(...parsePlain(text.slice(last, m.index), options));
+    out.push({ type: 'mark', pieces: parsePlain(m[1], options) });
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(...parsePlain(text.slice(last), options));
+  return out;
+}
+
+function parsePlain(text, { autoFractions = false } = {}) {
   const out = [];
   let last = 0;
   for (const m of text.matchAll(BRACED)) {
@@ -63,8 +78,14 @@ function parseMath(inner) {
 export function renderLessonText(text, { tag = 'p', className = '', autoFractions = false } = {}) {
   const el = document.createElement(tag);
   if (className) el.className = className;
+  const draw = (piece) => (typeof piece === 'string' ? piece : renderMath(piece, { inline: true }));
   for (const piece of parseLessonText(text, { autoFractions })) {
-    el.append(typeof piece === 'string' ? piece : renderMath(piece, { inline: true }));
+    if (piece.type === 'mark') {
+      const mark = document.createElement('mark');
+      mark.className = 'hl';
+      mark.append(...piece.pieces.map(draw));
+      el.append(mark);
+    } else el.append(draw(piece));
   }
   return el;
 }

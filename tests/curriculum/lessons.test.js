@@ -9,7 +9,7 @@ import { loadFractions } from '../helpers/fractions-setup.js';
 
 const dir = new URL('../../curriculum/lessons/', import.meta.url);
 const lessons = readdirSync(dir).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(readFileSync(new URL(f, dir), 'utf8')));
-const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area', 'int-line', 'balance'];
+const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area', 'int-line', 'balance', 'column', 'steps'];
 const { graph, misconceptions } = loadFractions();
 const MARKUP = /\{([^}]*)\}/g;
 const VALID = /^\d+( \d+)?\/(\d+|\?)$|^\?\/\d+$/;
@@ -39,7 +39,10 @@ for (const lesson of lessons) test(`${lesson.skill}: every wrong-answer pattern 
 });
 
 for (const lesson of lessons) test(`${lesson.skill}: math markup is well formed`, () => {
-  const texts = [...lesson.sections.flatMap((s) => s.explain), ...Object.values(lesson.hints), ...Object.values(lesson.misconceptionMessages)];
+  const texts = [
+    ...lesson.sections.flatMap((s) => [...s.explain, ...(s.key ? [s.key] : []), ...(s.worked || []).flatMap((l) => [l.math, ...(l.note ? [l.note] : [])])]),
+    ...Object.values(lesson.hints), ...Object.values(lesson.misconceptionMessages),
+  ].map((t) => t.replace(/\[\[|\]\]/g, ''));
   for (const t of texts) {
     assert.equal((t.match(/\{/g) || []).length, (t.match(/\}/g) || []).length, `unbalanced braces: ${t}`);
     for (const [, inner] of t.matchAll(MARKUP)) assert.ok(VALID.test(inner), `bad math markup {${inner}} in: ${t}`);

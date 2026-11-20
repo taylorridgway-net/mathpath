@@ -34,7 +34,8 @@ export function solveWhole(problem) {
 function addSteps(a, b) {
   const da = digits(a);
   const db = digits(b);
-  const steps = [{ say: `Line up the places and add one column at a time, starting with the ones.` }];
+  const col = (done) => ({ type: 'column', op: '+', top: a, bottom: b, done });
+  const steps = [{ say: `Line up the places and add one column at a time, starting with the ones.`, show: col(0) }];
   let carry = 0;
   const out = [];
   for (let i = 0; i < Math.max(da.length, db.length); i++) {
@@ -42,14 +43,14 @@ function addSteps(a, b) {
     const sum = parts.reduce((s, x) => s + x, 0);
     const carried = carry ? ` (with the 1 carried)` : '';
     if (sum >= 10) {
-      steps.push({ say: `${cap(PLACES[i])}: ${parts.join(' + ')} = ${sum}${carried}. Write ${sum % 10} and carry 1 to the ${PLACES[i + 1]}.` });
+      steps.push({ say: `${cap(PLACES[i])}: ${parts.join(' + ')} = ${sum}${carried}. Write ${sum % 10} and carry 1 to the ${PLACES[i + 1]}.`, show: col(i + 1) });
     } else {
-      steps.push({ say: `${cap(PLACES[i])}: ${parts.join(' + ')} = ${sum}${carried}. Write ${sum}.` });
+      steps.push({ say: `${cap(PLACES[i])}: ${parts.join(' + ')} = ${sum}${carried}. Write ${sum}.`, show: col(i + 1) });
     }
     out.push(sum % 10);
     carry = sum >= 10 ? 1 : 0;
   }
-  if (carry) steps.push({ say: `Write the carried 1 in the ${PLACES[out.length]}.` });
+  if (carry) steps.push({ say: `Write the carried 1 in the ${PLACES[out.length]}.`, show: col(out.length + 1) });
   steps.push({ say: `So ${a} + ${b} = ${a + b}.`, show: eq(op('+', int(a), int(b)), int(a + b)) });
   return steps;
 }
@@ -57,7 +58,8 @@ function addSteps(a, b) {
 function subSteps(a, b) {
   const top = digits(a);
   const db = digits(b);
-  const steps = [{ say: `Line up the places and subtract one column at a time, starting with the ones.` }];
+  const col = (done) => ({ type: 'column', op: '-', top: a, bottom: b, done });
+  const steps = [{ say: `Line up the places and subtract one column at a time, starting with the ones.`, show: col(0) }];
   for (let i = 0; i < top.length; i++) {
     const bottom = db[i] || 0;
     if (i >= db.length && top.slice(i).every((d) => d === 0)) break;
@@ -77,7 +79,7 @@ function subSteps(a, b) {
       top[i] += 10;
       steps.push({ say });
     }
-    steps.push({ say: `${cap(PLACES[i])}: ${top[i]} − ${bottom} = ${top[i] - bottom}.` });
+    steps.push({ say: `${cap(PLACES[i])}: ${top[i]} − ${bottom} = ${top[i] - bottom}.`, show: col(i + 1) });
   }
   steps.push({ say: `So ${a} − ${b} = ${a - b}.`, show: eq(op('-', int(a), int(b)), int(a - b)) });
   return steps;

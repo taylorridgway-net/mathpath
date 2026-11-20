@@ -12,6 +12,7 @@
 //   { type: 'var', name }             a variable: x
 //   { type: 'term', coef, name }      a number times a variable: 3x, -x; coef may be a frac node: (2/3)x
 //   { type: 'scaled', coef, of }      a number times parentheses: 3(x + 4), -(x - 2)
+//   { type: 'column', op, top, bottom, done }   column addition/subtraction on paper (engine/problem/column.js)
 //   { type: 'op', op: '+' | '-', left, right }
 //   { type: 'eq', left, right }
 //   { type: 'list', items: [...] }
@@ -41,6 +42,8 @@ export function toText(node) {
       if (typeof c === 'number') return c === 1 ? node.name : c === -1 ? `-${node.name}` : `${c < 0 ? `-${-c}` : c}${node.name}`;
       return `(${toText(c)})${node.name}`;
     }
+    case 'column':
+      return `${node.top} ${node.op} ${node.bottom}`;
     case 'scaled':
       return `${node.coef === 1 ? '' : node.coef === -1 ? '-' : node.coef < 0 ? `-${-node.coef}` : node.coef}(${toText(node.of)})`;
     case 'pow':

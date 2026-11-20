@@ -12,15 +12,33 @@
       "mode": "section",
       "generator": "alg.equations.add-sub",
       "explain": [
-        "An equation is a balance: both sides are equal. Whatever you do to one side, do to the other, and it stays balanced.",
-        "To get x alone, undo what was done to it. In x + 5 = 12, 5 was added, so subtract 5 from both sides: x = 12 − 5 = 7.",
-        "In x − 3 = 8, 3 was subtracted, so add 3 to both sides: x = 8 + 3 = 11. Check by putting it back: 11 − 3 = 8. ✓"
+        "An equation is a balance: whatever you do to one side, do to the other.",
+        "Check by putting your answer back in."
       ],
       "visual": {
         "widget": "balance",
-        "params": { "add": 3, "total": 7 },
+        "params": {
+          "add": 3,
+          "total": 7
+        },
         "caption": "x + 3 balances 7. Take 3 from both sides."
-      }
+      },
+      "key": "Do the opposite to both sides. Subtract to undo adding; add to undo subtracting.",
+      "worked": [
+        {
+          "math": "x + 5 = 12",
+          "note": "5 was added to x."
+        },
+        {
+          "math": "x + 5 [[− 5]] = 12 [[− 5]]",
+          "note": "Undo it: subtract 5 from both sides."
+        },
+        {
+          "math": "x = 7",
+          "note": "Check: 7 + 5 = 12 ✓"
+        }
+      ],
+      "workedCaption": "The same thing, written down:"
     },
     {
       "id": "alg.equations.mult-div",
@@ -30,11 +48,26 @@
       "mode": "section",
       "generator": "alg.equations.mult-div",
       "explain": [
-        "3x means 3 times x. To undo multiplying by 3, divide both sides by 3: 3x = 21, so x = 21 ÷ 3 = 7.",
-        "x/4 means x divided by 4. To undo dividing by 4, multiply both sides by 4: x/4 = 6, so x = 6 × 4 = 24.",
-        "Signs follow the integer rules: −3x = 12 gives x = 12 ÷ (−3) = −4. And with a fraction in front, multiply by its reciprocal: {2/3}x = 10 gives x = 10 × {3/2} = 15."
+        "3x means 3 times x. x/4 means x divided by 4.",
+        "Signs follow the integer rules, and a fraction in front of x is undone by its reciprocal."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Divide to undo multiplying; multiply to undo dividing. Do it to both sides.",
+      "worked": [
+        {
+          "math": "3x = 21",
+          "note": "x was multiplied by 3."
+        },
+        {
+          "math": "3x [[÷ 3]] = 21 [[÷ 3]]",
+          "note": "Undo it: divide both sides by 3."
+        },
+        {
+          "math": "x = 7",
+          "note": "Check: 3 × 7 = 21 ✓"
+        }
+      ],
+      "workedCaption": "Tap through: undo the multiplying."
     },
     {
       "id": "alg.equations.two-step",
@@ -44,11 +77,34 @@
       "mode": "section",
       "generator": "alg.equations.two-step",
       "explain": [
-        "In 3x + 5 = 20, two things happened to x: it was multiplied by 3, then 5 was added. Undo them in reverse order, like taking off shoes before socks.",
-        "First undo the + 5: subtract 5 from both sides. 3x = 15. Then undo the × 3: divide both sides by 3. x = 5.",
-        "Check: 3 × 5 + 5 = 20. ✓ Dividing first is a common slip: divide 20 by 3 and the numbers stop working out."
+        "In 3x + 5, x was multiplied by 3 first, then 5 was added. Undo the last thing first, like taking off shoes before socks.",
+        "Dividing first is a common slip: the numbers stop working out."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Undo in reverse order: first the adding or subtracting, then the multiplying or dividing.",
+      "worked": [
+        {
+          "math": "3x + 5 = 20",
+          "note": "x was multiplied by 3, then 5 was added."
+        },
+        {
+          "math": "3x + 5 [[− 5]] = 20 [[− 5]]",
+          "note": "Undo the + 5 first."
+        },
+        {
+          "math": "3x = 15",
+          "note": ""
+        },
+        {
+          "math": "3x [[÷ 3]] = 15 [[÷ 3]]",
+          "note": "Then undo the × 3."
+        },
+        {
+          "math": "x = 5",
+          "note": "Check: 3 × 5 + 5 = 20 ✓"
+        }
+      ],
+      "workedCaption": "Tap through: two steps."
     },
     {
       "id": "alg.equations.whole",
@@ -58,10 +114,29 @@
       "mode": "skill",
       "generator": "alg.equations",
       "explain": [
-        "Now the problems are mixed.",
-        "Undo what was done to x, last thing first: adding or subtracting, then multiplying or dividing. Do the same to both sides, and check your answer by putting it back in."
+        "Now the problems are mixed: one step or two, whole numbers, negatives and fractions."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Undo the last thing done to x first, doing the same to both sides. Then check.",
+      "worked": [
+        {
+          "math": "−2x + 7 = 1",
+          "note": ""
+        },
+        {
+          "math": "−2x = [[1 − 7]] = −6",
+          "note": "Undo the + 7: subtract 7 from both sides."
+        },
+        {
+          "math": "x = [[−6 ÷ (−2)]] = 3",
+          "note": "Undo the × (−2): divide both sides by −2."
+        },
+        {
+          "math": "−2(3) + 7 = 1 ✓",
+          "note": "Check."
+        }
+      ],
+      "workedCaption": "Tap through: with negatives."
     }
   ],
   "hints": {

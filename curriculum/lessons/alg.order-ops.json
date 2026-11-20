@@ -12,11 +12,30 @@
       "mode": "section",
       "generator": "alg.order-ops.no-parens",
       "explain": [
-        "Everyone has to agree on one order, or 2 + 3 × 4 could mean two different numbers. The agreement: multiply and divide first, then add and subtract.",
-        "2 + 3 × 4: multiply first, 3 × 4 = 12. Then 2 + 12 = 14. (Not 20: that's adding first.)",
-        "Multiplying and dividing are a team: do them left to right, whichever comes first. 24 ÷ 4 × 2 = 6 × 2 = 12. Adding and subtracting are a team too: 20 − 6 + 4 = 14 + 4 = 18."
+        "Everyone agrees on this order, so an expression means the same thing to everyone.",
+        "× and ÷ are a team: do whichever comes first. + and − are a team too."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Multiply and divide first, then add and subtract. Within each pair, go left to right.",
+      "worked": [
+        {
+          "math": "2 + [[3 × 4]] − 5",
+          "note": "Multiply first."
+        },
+        {
+          "math": "[[2 + 12]] − 5",
+          "note": "Then add and subtract, left to right."
+        },
+        {
+          "math": "[[14 − 5]]",
+          "note": ""
+        },
+        {
+          "math": "9",
+          "note": "Not 15: going left to right from the start (2 + 3 = 5, × 4 …) gives the wrong answer."
+        }
+      ],
+      "workedCaption": "Tap through: what gets done first?"
     },
     {
       "id": "alg.order-ops.parens",
@@ -26,11 +45,30 @@
       "mode": "section",
       "generator": "alg.order-ops.parens",
       "explain": [
-        "Parentheses say \"do this part first\". (2 + 3) × 4 = 5 × 4 = 20.",
-        "Inside the parentheses, the usual order still applies: (8 + 3 × 2) × 4 = (8 + 6) × 4 = 14 × 4 = 56.",
-        "Watch a minus sign in front of parentheses: 20 − (8 − 3) = 20 − 5 = 15. Work out the parentheses first, then subtract the whole result."
+        "Parentheses say \"do this part first\".",
+        "A minus sign in front of parentheses subtracts the whole result."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Parentheses first. Inside them, the usual order still applies.",
+      "worked": [
+        {
+          "math": "20 − ([[8 + 3 × 2]])",
+          "note": "Parentheses first; inside, multiply first: 3 × 2 = 6."
+        },
+        {
+          "math": "20 − ([[8 + 6]])",
+          "note": "Still inside the parentheses: 8 + 6 = 14."
+        },
+        {
+          "math": "[[20 − 14]]",
+          "note": "Now the rest."
+        },
+        {
+          "math": "6",
+          "note": ""
+        }
+      ],
+      "workedCaption": "Tap through: parentheses first."
     },
     {
       "id": "alg.order-ops.integers",
@@ -40,11 +78,30 @@
       "mode": "section",
       "generator": "alg.order-ops.integers",
       "explain": [
-        "Negative numbers don't change the order: multiply and divide first, then add and subtract.",
-        "−2 + 3 × 4: multiply first, 3 × 4 = 12. Then −2 + 12 = 10.",
-        "Use the integer rules at each step. 7 − 10 ÷ (−5): divide first, 10 ÷ (−5) = −2. Then 7 − (−2) = 7 + 2 = 9."
+        "Multiply and divide first, then add and subtract, just like before.",
+        "Write each step down: signs are easy to lose in your head."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Negative numbers don't change the order. At each step, use the integer sign rules.",
+      "worked": [
+        {
+          "math": "7 − [[10 ÷ (−5)]]",
+          "note": "Divide first: a positive ÷ a negative is negative."
+        },
+        {
+          "math": "[[7 − (−2)]]",
+          "note": "Subtracting a negative means adding."
+        },
+        {
+          "math": "[[7 + 2]]",
+          "note": ""
+        },
+        {
+          "math": "9",
+          "note": ""
+        }
+      ],
+      "workedCaption": "Tap through, watching the signs."
     },
     {
       "id": "alg.order-ops.whole",
@@ -54,10 +111,29 @@
       "mode": "skill",
       "generator": "alg.order-ops",
       "explain": [
-        "Now the problems are mixed.",
-        "Parentheses first. Then multiply and divide, left to right. Then add and subtract, left to right. Do one step at a time and rewrite what's left."
+        "Now the problems are mixed. Do one step at a time and rewrite what's left."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Parentheses → × and ÷ (left to right) → + and − (left to right).",
+      "worked": [
+        {
+          "math": "4 × ([[6 − 2]]) + 3 × 5",
+          "note": "Parentheses first."
+        },
+        {
+          "math": "[[4 × 4]] + [[3 × 5]]",
+          "note": "Multiply, left to right."
+        },
+        {
+          "math": "[[16 + 15]]",
+          "note": "Then add."
+        },
+        {
+          "math": "31",
+          "note": ""
+        }
+      ],
+      "workedCaption": "Tap through: all the steps."
     }
   ],
   "hints": {

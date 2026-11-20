@@ -3,6 +3,7 @@
 // The plain-text version is attached as a label for screen readers.
 // inline: true draws it at text size, for math inside a sentence.
 
+import { drawColumn } from './column-view.js';
 import { toText } from '../../engine/problem/text.js';
 
 export function renderMath(node, { inline = false } = {}) {
@@ -23,6 +24,8 @@ function build(node) {
     }
     case 'var':
       return el('span', 'm-var', node.name);
+    case 'column':
+      return drawColumn(node);
     case 'scaled': {
       const wrap = el('span', 'm-row m-group');
       const c = node.coef;
