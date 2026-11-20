@@ -8,6 +8,7 @@ import { meaningGenerators } from './frac/meaning.js';
 import { compareGenerators } from './frac/compare.js';
 import { multiplyGenerators } from './frac/multiply.js';
 import { divideGenerators } from './frac/divide.js';
+import { integerGenerators } from './int/integers.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
 import { wholeFactorGenerators } from './whole/factors.js';
@@ -19,6 +20,7 @@ export const generators = {
   ...compareGenerators,
   ...multiplyGenerators,
   ...divideGenerators,
+  ...integerGenerators,
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,
   ...wholeFactorGenerators,

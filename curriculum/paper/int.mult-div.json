@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "int.mult-div",
+  "title": "Multiply and divide integers",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Find the product:  −7 × 8", "math": "-7 × 8", "answer": "-56" },
+        { "id": "A2", "kind": "computation", "prompt": "Find the product:  −9 × (−6)", "math": "-9 × -6", "answer": "54" },
+        { "id": "A3", "kind": "computation", "prompt": "Find the quotient:  −63 ÷ 7", "math": "-63 ÷ 7", "answer": "-9" },
+        { "id": "A4", "kind": "computation", "prompt": "Find the quotient:  −48 ÷ (−8)", "math": "-48 ÷ -8", "answer": "6" },
+        { "id": "A5", "kind": "word", "prompt": "The temperature dropped 3 degrees every hour for 5 hours. Write the total change in temperature as an integer.", "math": "5 × -3", "answer": "-15 (degrees)" },
+        { "id": "A6", "kind": "word", "prompt": "Ana says −2 × (−5) = −10 because \"negative times negative is negative.\" Is she right? Explain, and give the correct answer.", "math": "-2 × -5", "answer": "10 (No: two negatives make a positive)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Find the product:  6 × (−12)", "math": "6 × -12", "answer": "-72" },
+        { "id": "B2", "kind": "computation", "prompt": "Find the product:  −4 × 3 × (−5)", "math": "-4 × 3 × -5", "answer": "60" },
+        { "id": "B3", "kind": "computation", "prompt": "Find the quotient:  81 ÷ (−9)", "math": "81 ÷ -9", "answer": "-9" },
+        { "id": "B4", "kind": "computation", "prompt": "Find the quotient:  −56 ÷ (−7)", "math": "-56 ÷ -7", "answer": "8" },
+        { "id": "B5", "kind": "word", "prompt": "A company lost $48 over 6 days, the same amount each day. Write the change in money each day as an integer.", "math": "-48 ÷ 6", "answer": "-8 (dollars)" },
+        { "id": "B6", "kind": "word", "prompt": "A submarine goes down 25 feet every minute. Where is it, compared with where it started, after 4 minutes? Write your answer as an integer.", "math": "4 × -25", "answer": "-100 (feet)" }
+      ]
+    }
+  ]
+}

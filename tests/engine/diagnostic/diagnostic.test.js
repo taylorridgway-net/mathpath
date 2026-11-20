@@ -403,3 +403,30 @@ test('a question with a confirmed gap underneath is reported "can\'t check yet" 
   assert.ok(result.nodes['frac.compare.unlike'].blockedBy.length > 0);
   assert.equal(statusOf(result, 'frac.compare.like'), 'known', 'the parts that don\'t need it are still checked');
 });
+
+// ---------- integers (reached through negative fractions; tested here as targets) ----------
+const integers = { ...fractions, config: { ...fractions.config, targets: ['int.add-sub', 'int.mult-div'] } };
+
+test('integers: knows everything -> one subtraction for adding/subtracting, one each for multiplying and dividing', () => {
+  const { result } = diagnose({}, { setup: integers });
+  assert.deepEqual(result.rootGaps, []);
+  assert.equal(result.questionCount, 3);
+  assert.equal(statusOf(result, 'int.add-sub.same-sign'), 'known');
+  // A right integer multiplication shows multiplication facts; dividing shows division facts.
+  assert.equal(statusOf(result, 'whole.mult-div.mult-facts'), 'known-inferred');
+  assert.equal(statusOf(result, 'whole.mult-div.div-facts'), 'known-inferred');
+});
+
+test('integers: 4 - (-6) = -2 -> gap on subtracting, the adding parts still checked and fine', () => {
+  const { result } = diagnose({ lacks: ['int.add-sub.subtract'], misconceptions: ['int.sub-ignored-sign'] }, { setup: integers });
+  assert.deepEqual(result.rootGaps, ['int.add-sub.subtract']);
+  assert.equal(statusOf(result, 'int.add-sub.same-sign'), 'known');
+  assert.equal(statusOf(result, 'int.add-sub.different-signs'), 'known');
+});
+
+test('integers: division facts missing -> found under integer division; multiplying is fine', () => {
+  const { result } = diagnose({ lacks: ['whole.mult-div.div-facts'] }, { setup: integers });
+  assert.deepEqual(result.rootGaps, ['whole.mult-div.div-facts']);
+  assert.equal(statusOf(result, 'int.mult-div.multiply'), 'known');
+  assert.ok(result.questionCount <= 8, `took ${result.questionCount} questions`);
+});

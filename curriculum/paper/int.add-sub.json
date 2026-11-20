@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "int.add-sub",
+  "title": "Add and subtract integers",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. A number line counts as work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Find the sum:  −14 + (−9)", "math": "-14 + -9", "answer": "-23" },
+        { "id": "A2", "kind": "computation", "prompt": "Find the sum:  −18 + 11", "math": "-18 + 11", "answer": "-7" },
+        { "id": "A3", "kind": "computation", "prompt": "Find the difference:  6 − 15", "math": "6 - 15", "answer": "-9" },
+        { "id": "A4", "kind": "computation", "prompt": "Find the difference:  −8 − (−13)", "math": "-8 - -13", "answer": "5" },
+        { "id": "A5", "kind": "word", "prompt": "At 6 a.m. it was −4°F. By noon the temperature had gone up 11 degrees. What was the temperature at noon?", "math": "-4 + 11", "answer": "7 (°F)" },
+        { "id": "A6", "kind": "word", "prompt": "Jaylen says 5 − (−3) = 2. Is Jaylen right? Explain, and give the correct answer.", "math": "5 - -3", "answer": "8 (No: subtracting −3 means adding 3)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Find the sum:  −25 + (−17)", "math": "-25 + -17", "answer": "-42" },
+        { "id": "B2", "kind": "computation", "prompt": "Find the sum:  9 + (−16)", "math": "9 + -16", "answer": "-7" },
+        { "id": "B3", "kind": "computation", "prompt": "Find the difference:  −12 − 7", "math": "-12 - 7", "answer": "-19" },
+        { "id": "B4", "kind": "computation", "prompt": "Find the difference:  4 − (−20)", "math": "4 - -20", "answer": "24" },
+        { "id": "B5", "kind": "word", "prompt": "A diver is at −30 feet (30 feet below the surface). She swims up 12 feet. What is her new position?", "math": "-30 + 12", "answer": "-18 (feet)" },
+        { "id": "B6", "kind": "word", "prompt": "Your bank account has $15. You spend $40 with your debit card. What is your balance now?", "math": "15 - 40", "answer": "-25 (dollars)" }
+      ]
+    }
+  ]
+}

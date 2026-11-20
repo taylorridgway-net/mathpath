@@ -8636,6 +8636,2117 @@
    }
   ]
  },
+ "int.add-sub": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -7
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": 4
+     },
+     {
+      "id": "int.added-sizes",
+      "value": -10
+     }
+    ],
+    "part": "int.add-sub.different-signs"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -4
+     },
+     "right": {
+      "type": "int",
+      "value": -5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -9,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 9
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -1
+     }
+    ],
+    "part": "int.add-sub.same-sign"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -9
+     },
+     "right": {
+      "type": "int",
+      "value": -6
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -15,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 15
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -3
+     }
+    ],
+    "part": "int.add-sub.same-sign"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 10
+     },
+     "right": {
+      "type": "int",
+      "value": -18
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": 8
+     },
+     {
+      "id": "int.added-sizes",
+      "value": -28
+     }
+    ],
+    "part": "int.add-sub.different-signs"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 10
+     },
+     "right": {
+      "type": "int",
+      "value": -13
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": 3
+     },
+     {
+      "id": "int.added-sizes",
+      "value": -23
+     }
+    ],
+    "part": "int.add-sub.different-signs"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": -18
+     },
+     "right": {
+      "type": "int",
+      "value": -19
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-ignored-sign",
+      "value": -37
+     },
+     {
+      "id": "int.wrong-sign-sub",
+      "value": -1
+     }
+    ],
+    "part": "int.add-sub.subtract"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": -17
+     },
+     "right": {
+      "type": "int",
+      "value": -27
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 10,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-ignored-sign",
+      "value": -44
+     },
+     {
+      "id": "int.wrong-sign-sub",
+      "value": -10
+     }
+    ],
+    "part": "int.add-sub.subtract"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 33
+     },
+     "right": {
+      "type": "int",
+      "value": 36
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-backwards",
+      "value": 3
+     }
+    ],
+    "part": "int.add-sub.subtract"
+   },
+   {
+    "generator": "int.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 24
+     },
+     "right": {
+      "type": "int",
+      "value": -14
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 10,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": -10
+     },
+     {
+      "id": "int.added-sizes",
+      "value": 38
+     }
+    ],
+    "part": "int.add-sub.different-signs"
+   }
+  ]
+ },
+ "int.add-sub.different-signs": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 4
+     },
+     "right": {
+      "type": "int",
+      "value": -1
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": -3
+     },
+     {
+      "id": "int.added-sizes",
+      "value": 5
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -1
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": -3
+     },
+     {
+      "id": "int.added-sizes",
+      "value": 5
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -3
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": -1
+     },
+     {
+      "id": "int.added-sizes",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 9
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": 3
+     },
+     {
+      "id": "int.added-sizes",
+      "value": -21
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 18
+     },
+     "right": {
+      "type": "int",
+      "value": -17
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": -1
+     },
+     {
+      "id": "int.added-sizes",
+      "value": 35
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -6
+     },
+     "right": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": -4
+     },
+     {
+      "id": "int.added-sizes",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -1
+     },
+     "right": {
+      "type": "int",
+      "value": 42
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 41,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": -41
+     },
+     {
+      "id": "int.added-sizes",
+      "value": 43
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 27
+     },
+     "right": {
+      "type": "int",
+      "value": -28
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": 1
+     },
+     {
+      "id": "int.added-sizes",
+      "value": -55
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.different-signs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 21
+     },
+     "right": {
+      "type": "int",
+      "value": -34
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -13,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.wrong-sign",
+      "value": 13
+     },
+     {
+      "id": "int.added-sizes",
+      "value": -55
+     }
+    ]
+   }
+  ]
+ },
+ "int.add-sub.same-sign": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -8
+     },
+     "right": {
+      "type": "int",
+      "value": -8
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -8
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -10,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 10
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -6
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -9
+     },
+     "right": {
+      "type": "int",
+      "value": -7
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 16
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -2
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -20
+     },
+     "right": {
+      "type": "int",
+      "value": -19
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -39,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 39
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -1
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -10
+     },
+     "right": {
+      "type": "int",
+      "value": -8
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -18,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 18
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -2
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -3
+     },
+     "right": {
+      "type": "int",
+      "value": -14
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -17,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 17
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -11
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -45
+     },
+     "right": {
+      "type": "int",
+      "value": -31
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -76,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 76
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -14
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -18
+     },
+     "right": {
+      "type": "int",
+      "value": -31
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -49,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 49
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -13
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.same-sign",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -19
+     },
+     "right": {
+      "type": "int",
+      "value": -4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -23,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.dropped-negative",
+      "value": 23
+     },
+     {
+      "id": "int.subtracted-sizes",
+      "value": -15
+     }
+    ]
+   }
+  ]
+ },
+ "int.add-sub.subtract": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 7
+     },
+     "right": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-backwards",
+      "value": 3
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 5
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -2,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-backwards",
+      "value": 2
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 6
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-backwards",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": -12
+     },
+     "right": {
+      "type": "int",
+      "value": -18
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-ignored-sign",
+      "value": -30
+     },
+     {
+      "id": "int.wrong-sign-sub",
+      "value": -6
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 11
+     },
+     "right": {
+      "type": "int",
+      "value": -20
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 31,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-ignored-sign",
+      "value": -9
+     },
+     {
+      "id": "int.wrong-sign-sub",
+      "value": -31
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": -2
+     },
+     "right": {
+      "type": "int",
+      "value": -3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-ignored-sign",
+      "value": -5
+     },
+     {
+      "id": "int.wrong-sign-sub",
+      "value": -1
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": -39
+     },
+     "right": {
+      "type": "int",
+      "value": -46
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 7,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-ignored-sign",
+      "value": -85
+     },
+     {
+      "id": "int.wrong-sign-sub",
+      "value": -7
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 9
+     },
+     "right": {
+      "type": "int",
+      "value": -31
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 40,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-ignored-sign",
+      "value": -22
+     },
+     {
+      "id": "int.wrong-sign-sub",
+      "value": -40
+     }
+    ]
+   },
+   {
+    "generator": "int.add-sub.subtract",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 10
+     },
+     "right": {
+      "type": "int",
+      "value": 30
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -20,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.sub-backwards",
+      "value": 20
+     }
+    ]
+   }
+  ]
+ },
+ "int.mult-div": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 4
+     },
+     "right": {
+      "type": "int",
+      "value": -6
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -24,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 24
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 63
+     },
+     "right": {
+      "type": "int",
+      "value": -9
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -7,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": 7
+     }
+    ],
+    "part": "int.mult-div.divide"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 9
+     },
+     "right": {
+      "type": "int",
+      "value": -9
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -81,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 81
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 12
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -144,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 144
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -11
+     },
+     "right": {
+      "type": "int",
+      "value": -7
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 77,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": -77
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -6
+     },
+     "right": {
+      "type": "int",
+      "value": -5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 30,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": -30
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -150,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 150
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 3
+      },
+      "right": {
+       "type": "int",
+       "value": -6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 36,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": -36
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   },
+   {
+    "generator": "int.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": -4
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 96,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": -96
+     }
+    ],
+    "part": "int.mult-div.multiply"
+   }
+  ]
+ },
+ "int.mult-div.divide": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 14
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -7,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 24
+     },
+     "right": {
+      "type": "int",
+      "value": -3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": 8
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 28
+     },
+     "right": {
+      "type": "int",
+      "value": -4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -7,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 60
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": 5
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": -14
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 7,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": -7
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": -30
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": 6
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": -56
+     },
+     "right": {
+      "type": "int",
+      "value": -7
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": -8
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": -108
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 9,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": -9
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.divide",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": -72
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.div-sign",
+      "value": -6
+     }
+    ]
+   }
+  ]
+ },
+ "int.mult-div.multiply": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -5
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -25,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 25
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -8
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -32,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 32
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -8
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -56,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 56
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -4
+     },
+     "right": {
+      "type": "int",
+      "value": -9
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 36,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": -36
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -2
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -24,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 24
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": -3
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 36,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": -36
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 3
+      },
+      "right": {
+       "type": "int",
+       "value": -3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -27,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 27
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": -4
+      },
+      "right": {
+       "type": "int",
+       "value": -2
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "int.mult-div.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 5
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -50,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.mult-sign",
+      "value": 50
+     }
+    ]
+   }
+  ]
+ },
  "whole.add-sub": {
   "version": 1,
   "problems": [

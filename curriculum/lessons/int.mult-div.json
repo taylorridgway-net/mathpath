@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "skill": "int.mult-div",
+  "title": "Multiply and divide integers",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "int.mult-div.multiply",
+      "forGap": "int.mult-div.multiply",
+      "title": "Multiply integers",
+      "objective": "Multiply the sizes, then use the sign rule.",
+      "mode": "section",
+      "generator": "int.mult-div.multiply",
+      "explain": [
+        "3 × (−4) means 3 groups of −4: −4 + (−4) + (−4) = −12. A positive times a negative is negative.",
+        "Look at the pattern: 3 × (−4) = −12, 2 × (−4) = −8, 1 × (−4) = −4, 0 × (−4) = 0. Each step goes up by 4, so the next ones are −1 × (−4) = 4 and −2 × (−4) = 8. A negative times a negative is positive.",
+        "The rule: multiply the sizes, then count the negative numbers. An even number of negatives gives a positive answer; an odd number gives a negative answer. −2 × 3 × (−5) has two negatives, so it's +30."
+      ],
+      "visual": null
+    },
+    {
+      "id": "int.mult-div.divide",
+      "forGap": "int.mult-div.divide",
+      "title": "Divide integers",
+      "objective": "Divide the sizes, then use the same sign rule.",
+      "mode": "section",
+      "generator": "int.mult-div.divide",
+      "explain": [
+        "Dividing follows the same sign rule as multiplying, because every division is a multiplication backwards: −42 ÷ 6 = −7 because 6 × (−7) = −42.",
+        "Divide the sizes (42 ÷ 6 = 7), then the sign: one negative gives a negative answer, two negatives give a positive answer. −42 ÷ (−7) = 6."
+      ],
+      "visual": null
+    },
+    {
+      "id": "int.mult-div.whole",
+      "forGap": "int.mult-div",
+      "title": "Putting it together",
+      "objective": "Multiply and divide integers, mixed together.",
+      "mode": "skill",
+      "generator": "int.mult-div",
+      "explain": [
+        "Now the problems are mixed.",
+        "Multiply or divide the sizes. Then count the negative numbers: even gives positive, odd gives negative."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "int.mult-div.multiply": "Multiply the sizes. Then count the negatives: even means positive, odd means negative.",
+    "int.mult-div.divide": "Divide the sizes. One negative: the answer is negative. Two negatives: positive.",
+    "int.mult-div": "Work out the size first, then count the negatives: even means positive, odd means negative."
+  },
+  "misconceptionMessages": {
+    "int.mult-sign": "The size is right, but check the sign: count the negative numbers. An even number of negatives makes the answer positive; odd makes it negative.",
+    "int.div-sign": "The size is right, but check the sign: dividing uses the same rule as multiplying. Two negatives make a positive."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

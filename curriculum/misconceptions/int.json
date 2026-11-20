@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about integers. 'pointsTo' is the subskill to work on.",
+  "misconceptions": [
+    {
+      "id": "int.dropped-negative",
+      "description": "Adds two negatives and drops the sign (−3 + −5 = 8).",
+      "pointsTo": "int.add-sub.same-sign"
+    },
+    {
+      "id": "int.subtracted-sizes",
+      "description": "Subtracts when adding two negatives (−3 + −5 = −2).",
+      "pointsTo": "int.add-sub.same-sign"
+    },
+    {
+      "id": "int.wrong-sign",
+      "description": "Gets the size right but the sign wrong when adding a positive and a negative (−7 + 4 = 3).",
+      "pointsTo": "int.add-sub.different-signs"
+    },
+    {
+      "id": "int.added-sizes",
+      "description": "Adds the sizes when the signs are different (−7 + 4 = −11).",
+      "pointsTo": "int.add-sub.different-signs"
+    },
+    {
+      "id": "int.sub-ignored-sign",
+      "description": "Ignores the second number's sign when subtracting (4 − (−6) = −2; −5 − 7 = 2).",
+      "pointsTo": "int.add-sub.subtract"
+    },
+    {
+      "id": "int.sub-backwards",
+      "description": "Subtracts the smaller number from the bigger one (3 − 8 = 5).",
+      "pointsTo": "int.add-sub.subtract"
+    },
+    {
+      "id": "int.wrong-sign-sub",
+      "description": "Gets the size right but the sign wrong when subtracting.",
+      "pointsTo": "int.add-sub.subtract"
+    },
+    {
+      "id": "int.mult-sign",
+      "description": "Gets the sign wrong when multiplying (−6 × −7 = −42).",
+      "pointsTo": "int.mult-div.multiply"
+    },
+    {
+      "id": "int.div-sign",
+      "description": "Gets the sign wrong when dividing (−42 ÷ −7 = −6).",
+      "pointsTo": "int.mult-div.divide"
+    }
+  ]
+}

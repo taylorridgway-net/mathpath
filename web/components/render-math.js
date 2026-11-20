@@ -17,7 +17,7 @@ export function renderMath(node, { inline = false } = {}) {
 function build(node) {
   switch (node.type) {
     case 'int':
-      return el('span', 'm-num', String(node.value));
+      return el('span', 'm-num', node.value < 0 ? `−${-node.value}` : String(node.value));
     case 'blank':
       return el('span', 'm-blank', '?');
     case 'frac':
@@ -31,7 +31,10 @@ function build(node) {
     case 'eq': {
       const wrap = el('span', 'm-row');
       const sym = node.type === 'eq' ? '=' : node.op === '-' ? '−' : node.op;
-      wrap.append(build(node.left), el('span', 'm-op', sym), build(node.right));
+      const right = build(node.right);
+      // 5 − (−3): a negative number after an operation sign gets parentheses.
+      const paren = node.type === 'op' && node.right.type === 'int' && node.right.value < 0;
+      wrap.append(build(node.left), el('span', 'm-op', sym), ...(paren ? [el('span', 'm-num', '('), right, el('span', 'm-num', ')')] : [right]));
       return wrap;
     }
     case 'list': {
@@ -83,6 +86,8 @@ function spoken(text) {
     .replace(/\?/g, 'blank')
     .replace(/ \+ /g, ' plus ')
     .replace(/ - /g, ' minus ')
+    .replace(/-(\d)/g, 'negative $1')
+    .replace(/[()]/g, '')
     .replace(/ × /g, ' times ')
     .replace(/ ÷ /g, ' divided by ')
     .replace(/ = /g, ' equals ');

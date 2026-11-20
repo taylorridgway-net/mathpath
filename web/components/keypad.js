@@ -25,6 +25,7 @@ const LABELS = {
   mixed: { text: '1 a/b', aria: 'Mixed number' },
   remainder: { text: 'R', aria: 'Remainder' },
   next: { text: 'Next', aria: 'Add another number' },
+  negate: { text: '(−)', aria: 'Negative' },
 };
 
 // What the keypad needs to know about a problem's answer.
@@ -33,7 +34,7 @@ export function keypadOptionsFor(problem) {
   if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };
   if (type === 'set' || type === 'multiset') return { answerKind: 'list', separator: type === 'multiset' ? '×' : ',' };
-  return { allowFractions: type === 'fraction' };
+  return { allowFractions: type === 'fraction', allowNegative: Boolean(problem.answer.allowNegative) };
 }
 
 export function createKeypad({
@@ -72,8 +73,10 @@ export function createKeypad({
   // ---- keys ----
   const pad = div('keypad');
   for (const row of keyRows) for (const k of row) pad.append(k ? key(k) : spacer());
+  // With negatives allowed, the bottom row is  − | 0 | Check  (phones have no "-" key).
   const zero = key('0');
-  zero.classList.add('key-wide');
+  if (allowNegative) pad.append(key('negate'));
+  else zero.classList.add('key-wide');
   const check = button('key key-check', 'Check');
   check.addEventListener('click', submit);
   check.classList.add('key-wide');
@@ -86,7 +89,8 @@ export function createKeypad({
   hint.textContent = {
     remainder: 'Type the answer, tap R, then type the remainder.',
     list: separator === '×' ? 'Type a prime, tap Next, then type the next one.' : 'Type a number, tap Next, then type the next one.',
-  }[answerKind] || (allowFractions ? 'Tap a/b for a fraction, 1 a/b for a mixed number.' : 'Type a whole number.');
+  }[answerKind] || (allowFractions ? 'Tap a/b for a fraction, 1 a/b for a mixed number.' : allowNegative ? 'Type a number. Tap (−) to make it negative.' : 'Type a whole number.');
+  if (allowNegative && allowFractions) hint.textContent += ' Tap (−) to make it negative.';
 
   host.append(display, live, hint, pad, skip);
   document.addEventListener('keydown', onKeyDown);

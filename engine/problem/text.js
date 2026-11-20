@@ -21,13 +21,13 @@ export function toText(node) {
     case 'blank':
       return '?';
     case 'int':
-      return String(node.value);
+      return node.value < 0 ? `-${-node.value}` : String(node.value);
     case 'frac':
       return `${part(node.n)}/${part(node.d)}`;
     case 'mixed':
       return `${node.whole} ${node.n}/${node.d}`;
     case 'op':
-      return `${toText(node.left)} ${node.op} ${toText(node.right)}`;
+      return `${toText(node.left)} ${node.op} ${wrapNegative(node.right)}`;
     case 'eq':
       return `${toText(node.left)} = ${toText(node.right)}`;
     case 'list':
@@ -44,6 +44,11 @@ export function toText(node) {
     default:
       throw new Error(`toText: unknown expression type "${node.type}"`);
   }
+}
+
+// 5 - (-3): a negative number after an operation sign gets parentheses.
+function wrapNegative(node) {
+  return node.type === 'int' && node.value < 0 ? `(${toText(node)})` : toText(node);
 }
 
 function part(x) {

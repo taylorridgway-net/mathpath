@@ -11,12 +11,15 @@ import intGraph from '../../curriculum/graph/int.json';
 import fracGraph from '../../curriculum/graph/frac.json';
 import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
 import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
+import intMisconceptions from '../../curriculum/misconceptions/int.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
 import compareLesson from '../../curriculum/lessons/frac.compare.json';
 import multiplyLesson from '../../curriculum/lessons/frac.multiply.json';
 import divideLesson from '../../curriculum/lessons/frac.divide.json';
+import intAddSubLesson from '../../curriculum/lessons/int.add-sub.json';
+import intMultDivLesson from '../../curriculum/lessons/int.mult-div.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -40,10 +43,10 @@ import { diagnosticReport } from '../components/diagnostic-report.js';
 import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
 const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of the signed-in student
-const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson];
+const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson];
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
-const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];
+const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions];
 const api = createApi({
   setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default },
 });

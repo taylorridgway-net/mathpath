@@ -35,9 +35,9 @@ for (const d of domains.domains) files[d.file] = read(`graph/${d.file}`);
 const setup = {
   graph: buildGraphIndex(domains, files),
   generators,
-  misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions],
+  misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions, ...read('misconceptions/int.json').misconceptions],
   diagnosticConfig: read('diagnostic/frac.json'),
-  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.meaning', 'frac.equivalent', 'frac.compare', 'frac.add-sub', 'frac.multiply', 'frac.divide'].map((s) => read(`lessons/${s}.json`)),
+  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.meaning', 'frac.equivalent', 'frac.compare', 'frac.add-sub', 'frac.multiply', 'frac.divide', 'int.add-sub', 'int.mult-div'].map((s) => read(`lessons/${s}.json`)),
   rules: read('mastery.json').default,
 };
 
@@ -80,7 +80,7 @@ const right = (problem) => {
   if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
   if (a.form === 'exact') return { num: a.n, den: a.d };
   if (a.type === 'choice') return { choice: a.correct };
-  if (a.type === 'integer') return { whole: a.value };
+  if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
   return v.d === 1 ? { whole: v.n } : { num: v.n, den: v.d };

@@ -9,7 +9,7 @@ import { loadFractions } from '../helpers/fractions-setup.js';
 
 const dir = new URL('../../curriculum/lessons/', import.meta.url);
 const lessons = readdirSync(dir).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(readFileSync(new URL(f, dir), 'utf8')));
-const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area'];
+const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area', 'int-line'];
 const { graph, misconceptions } = loadFractions();
 const MARKUP = /\{([^}]*)\}/g;
 const VALID = /^\d+( \d+)?\/(\d+|\?)$|^\?\/\d+$/;
@@ -54,5 +54,5 @@ for (const lesson of lessons) test(`${lesson.skill}: section checks and pictures
 });
 
 test('there are lessons for the built skills (fractions meaning, equivalent, compare, add/subtract; three whole-number skills)', () => {
-  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div']);
+  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'int.add-sub', 'int.mult-div', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div']);
 });

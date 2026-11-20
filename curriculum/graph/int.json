@@ -5,25 +5,31 @@
     {
       "id": "int.add-sub",
       "name": "Add and subtract integers",
-      "summary": "Stub: prerequisite for negative fractions. Not built yet.",
+      "summary": "Add and subtract positive and negative whole numbers, using the number line.",
       "typicalGrade": 7,
       "standards": ["7.NS.A.1"],
-      "status": "stub",
+      "status": "draft",
       "prerequisites": [ { "id": "whole.add-sub", "strength": "essential" } ],
-      "subskills": []
+      "subskills": [
+        { "id": "int.add-sub.same-sign", "name": "Add two negative numbers (−3 + −5)", "prerequisites": [] },
+        { "id": "int.add-sub.different-signs", "name": "Add a positive and a negative number (−7 + 4)", "prerequisites": [] },
+        { "id": "int.add-sub.subtract", "name": "Subtract integers by adding the opposite (3 − 8, 4 − (−6))", "prerequisites": [] }
+      ]
     },
     {
       "id": "int.mult-div",
       "name": "Multiply and divide integers",
-      "summary": "Stub: prerequisite for negative fractions. Not built yet.",
+      "summary": "Multiply and divide positive and negative whole numbers: the sign rules.",
       "typicalGrade": 7,
       "standards": ["7.NS.A.2"],
-      "status": "stub",
-      "prerequisites": [
-        { "id": "whole.mult-div.mult-facts", "strength": "essential" },
-        { "id": "whole.mult-div.div-facts", "strength": "essential" }
-      ],
-      "subskills": []
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        { "id": "int.mult-div.multiply", "name": "Multiply integers (−6 × −7)",
+          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
+        { "id": "int.mult-div.divide", "name": "Divide integers (−42 ÷ 6)",
+          "prerequisites": [ { "id": "whole.mult-div.div-facts", "strength": "essential" } ] }
+      ]
     }
   ]
 }

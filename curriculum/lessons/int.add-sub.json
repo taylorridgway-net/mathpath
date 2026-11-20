@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "skill": "int.add-sub",
+  "title": "Add and subtract integers",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "int.add-sub.same-sign",
+      "forGap": "int.add-sub.same-sign",
+      "title": "Add two negatives",
+      "objective": "Add negative numbers by moving left on the number line.",
+      "mode": "section",
+      "generator": "int.add-sub.same-sign",
+      "explain": [
+        "On a number line, adding a positive number moves right. Adding a negative number moves left.",
+        "−3 + (−5): start at −3 and move 5 to the left. You land on −8.",
+        "The rule: when both numbers are negative, add the sizes (3 + 5 = 8) and keep the negative sign. Owing $3 and then owing $5 more means you owe $8: that's −8, not 8."
+      ],
+      "visual": {
+        "widget": "int-line",
+        "params": { "start": -3, "move": -5 },
+        "caption": "Adding a negative moves left."
+      }
+    },
+    {
+      "id": "int.add-sub.different-signs",
+      "forGap": "int.add-sub.different-signs",
+      "title": "Add a positive and a negative",
+      "objective": "Add numbers with different signs.",
+      "mode": "section",
+      "generator": "int.add-sub.different-signs",
+      "explain": [
+        "−7 + 4: start at −7 and move 4 to the right. You land on −3.",
+        "The rule: when the signs are different, subtract the sizes (7 − 4 = 3) and keep the sign of the number with the bigger size. −7 has the bigger size, so the answer is −3.",
+        "Check your answer makes sense: the positive and negative partly cancel, so the answer is closer to 0 than the bigger number."
+      ],
+      "visual": {
+        "widget": "int-line",
+        "params": { "start": -7, "move": 4 },
+        "caption": "Adding a positive moves right."
+      }
+    },
+    {
+      "id": "int.add-sub.subtract",
+      "forGap": "int.add-sub.subtract",
+      "title": "Subtract by adding the opposite",
+      "objective": "Change subtraction into adding the opposite, then add.",
+      "mode": "section",
+      "generator": "int.add-sub.subtract",
+      "explain": [
+        "Subtracting a number is the same as adding its opposite. 3 − 8 = 3 + (−8): start at 3, move 8 left, land on −5. (Not 5: you went past 0.)",
+        "Subtracting a negative means adding a positive: 4 − (−6) = 4 + 6 = 10. Taking away a debt of $6 leaves you $6 better off.",
+        "So: keep the first number, change − to +, change the sign of the second number. Then add, using the rules from before."
+      ],
+      "visual": {
+        "widget": "int-line",
+        "params": { "start": 3, "move": -8 },
+        "caption": "3 − 8 is 3 + (−8): move 8 to the left."
+      }
+    },
+    {
+      "id": "int.add-sub.whole",
+      "forGap": "int.add-sub",
+      "title": "Putting it together",
+      "objective": "Add and subtract integers, mixed together.",
+      "mode": "skill",
+      "generator": "int.add-sub",
+      "explain": [
+        "Now the problems are mixed.",
+        "Subtracting? First change it to adding the opposite. Then: same signs, add the sizes and keep the sign; different signs, subtract the sizes and keep the sign of the bigger size."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "int.add-sub.same-sign": "Both numbers are negative: start at the first one and move left. Add the sizes and keep the negative sign.",
+    "int.add-sub.different-signs": "Subtract the sizes, then use the sign of the number with the bigger size.",
+    "int.add-sub.subtract": "Change − to + and change the sign of the second number. Then add.",
+    "int.add-sub": "Subtracting? Add the opposite first. Then use the sign rules for adding."
+  },
+  "misconceptionMessages": {
+    "int.dropped-negative": "Both numbers are negative, so the answer is negative too. Moving left twice keeps you left of 0.",
+    "int.subtracted-sizes": "Both numbers are negative, so they don't cancel: add the sizes and keep the negative sign.",
+    "int.wrong-sign": "The size is right, but check the sign: use the sign of the number with the bigger size.",
+    "int.added-sizes": "The signs are different, so the numbers partly cancel: subtract the sizes instead of adding them.",
+    "int.sub-ignored-sign": "Watch the second number's sign. Subtracting means adding the opposite: change − to + and change the sign of the second number.",
+    "int.sub-backwards": "You can't swap the order in subtraction. A smaller number minus a bigger one: start at the first number and move left, past 0, so the answer is negative.",
+    "int.wrong-sign-sub": "The size is right, but check the sign. Rewrite it as adding the opposite, then use the sign rules."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

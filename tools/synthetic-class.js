@@ -203,7 +203,7 @@ function correct(problem) {
   if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
   if (a.form === 'exact') return { num: a.n, den: a.d };
   if (a.type === 'choice') return { choice: a.correct };
-  if (a.type === 'integer') return { whole: a.value };
+  if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
   return v.d === 1 ? { whole: v.n } : { num: v.n, den: v.d };
@@ -221,7 +221,7 @@ function mistake(problem, held) {
   if (a.type === 'choice') return { choice: m?.choice ?? (a.correct + 1) % a.options.length };
   if (a.type === 'quotient-remainder') return { whole: a.quotient + 1, rem: a.remainder };
   if (a.type === 'set' || a.type === 'multiset') return { list: a.values.slice(1) };
-  if (a.type === 'integer') return { whole: a.value + 1 };
+  if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };
   if (a.type === 'common-multiple') return { whole: a.least + 1 };
   return { num: Math.abs(a.value.n) + 1, den: a.value.d };
 }
