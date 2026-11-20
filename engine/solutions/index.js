@@ -12,6 +12,7 @@ import { solveAlg } from './alg.js';
 import { solveEquation } from './alg-equations.js';
 import { solveExpression } from './alg-expressions.js';
 import { solveDecimal } from './dec.js';
+import { solveMultiStep } from './alg-multi-step.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
@@ -19,6 +20,7 @@ export function solve(problem) {
   if (kind.startsWith('dec.')) return solveDecimal(problem);
   if (kind.startsWith('int.')) return solveInt(problem);
   if (kind.startsWith('alg.equations')) return solveEquation(problem);
+  if (kind.startsWith('alg.multi-step')) return solveMultiStep(problem);
   if (kind.startsWith('alg.expressions')) return solveExpression(problem);
   if (kind.startsWith('alg.')) return solveAlg(problem);
   if (kind.startsWith('frac.equivalent')) return solveEquivalent(problem);

@@ -14,6 +14,7 @@ import { orderOpsGenerators } from './alg/order-ops.js';
 import { exponentGenerators } from './alg/exponents.js';
 import { equationGenerators } from './alg/equations.js';
 import { expressionGenerators } from './alg/expressions.js';
+import { multiStepGenerators } from './alg/multi-step.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
 import { wholeFactorGenerators } from './whole/factors.js';
@@ -32,6 +33,7 @@ export const generators = {
   ...exponentGenerators,
   ...equationGenerators,
   ...expressionGenerators,
+  ...multiStepGenerators,
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,
   ...wholeFactorGenerators,

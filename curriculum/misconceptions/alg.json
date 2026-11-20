@@ -141,6 +141,31 @@
       "id": "alg.expr-whole-subtract-group",
       "description": "Subtracts only the first term of a group (12 − (x + 3) -> −x + 15).",
       "pointsTo": "alg.expressions"
+    },
+    {
+      "id": "alg.ms-move-sign",
+      "description": "Moves an x term to the other side without changing its sign (5x + 3 = 2x + 15 -> 7x = 12).",
+      "pointsTo": "alg.multi-step.both-sides"
+    },
+    {
+      "id": "alg.ms-move-constant",
+      "description": "Moves a number to the other side without changing its sign (5x + 3 = 2x + 15 -> 3x = 18).",
+      "pointsTo": "alg.multi-step.both-sides"
+    },
+    {
+      "id": "alg.ms-stopped-early",
+      "description": "Gets the x's together and the numbers together (3x = 12), then stops before dividing.",
+      "pointsTo": "alg.multi-step.both-sides"
+    },
+    {
+      "id": "alg.ms-distribute-first",
+      "description": "Multiplies only the first term in the parentheses (3(x + 4) = 3x + 4).",
+      "pointsTo": "alg.multi-step.distribute"
+    },
+    {
+      "id": "alg.ms-distribute-sign",
+      "description": "Gets the sign of the second product wrong when distributing (−2(x − 5) = −2x − 10).",
+      "pointsTo": "alg.multi-step.distribute"
     }
   ]
 }

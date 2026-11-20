@@ -234,6 +234,50 @@
           ]
         }
       ]
+    },
+    {
+      "id": "alg.multi-step",
+      "name": "Multi-step equations",
+      "summary": "Solve equations with x on both sides (5x + 3 = 2x + 15) and equations that need distributing first (3(x + 4) = 27, 2(x − 1) = x + 6).",
+      "typicalGrade": 8,
+      "standards": [
+        "7.EE.B.4a",
+        "8.EE.C.7b"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.multi-step.both-sides",
+          "name": "x on both sides (5x + 3 = 2x + 15)",
+          "prerequisites": [
+            {
+              "id": "alg.equations.two-step",
+              "strength": "essential",
+              "why": "After the x's are together it's a two-step equation."
+            },
+            {
+              "id": "alg.expressions.like-terms",
+              "strength": "essential",
+              "why": "Moving 2x across combines it with 5x."
+            }
+          ]
+        },
+        {
+          "id": "alg.multi-step.distribute",
+          "name": "Distribute first (3(x + 4) = 27)",
+          "prerequisites": [
+            {
+              "id": "alg.expressions.distribute",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.equations.two-step",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

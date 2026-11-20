@@ -24,7 +24,8 @@
         "alg.order-ops",
         "alg.exponents",
         "alg.equations",
-        "alg.expressions"
+        "alg.expressions",
+        "alg.multi-step"
       ]
     },
     {

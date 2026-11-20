@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.multi-step",
+  "title": "Multi-step equations",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "alg.multi-step.both-sides": "Get all the x's on one side first: subtract the smaller x term from both sides. Then it's a two-step equation.",
+    "alg.multi-step.distribute": "Multiply the number outside the parentheses by EVERY term inside. Then combine like terms and solve.",
+    "alg.multi-step": "Distribute, get the x's on one side, get the numbers on the other, then divide. Check by putting your answer back in."
+  },
+  "misconceptionMessages": {
+    "alg.ms-move-sign": "To move 2x off the right side, subtract 2x from BOTH sides. On the left that takes 2x away; it doesn't add it.",
+    "alg.ms-move-constant": "Moving a number across means doing the opposite to both sides: + 3 on the left becomes − 3 on both sides.",
+    "alg.ms-stopped-early": "Almost there: you have something like 3x = 12. Divide both sides by the number in front of x to finish.",
+    "alg.ms-distribute-first": "The number outside multiplies every term inside: 3(x + 4) = 3x + 12, not 3x + 4.",
+    "alg.ms-distribute-sign": "Watch the signs when you distribute: −2 times −5 is +10, so −2(x − 5) = −2x + 10."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "alg.multi-step.both-sides",
+      "forGap": "alg.multi-step.both-sides",
+      "title": "x on both sides",
+      "objective": "Solve equations with x on both sides, like 5x + 3 = 2x + 15.",
+      "mode": "section",
+      "generator": "alg.multi-step.both-sides",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Subtract the smaller x term from both sides, so the x's are on one side only.",
+        "Then undo the number and divide, like a two-step equation. Check in the original equation."
+      ],
+      "visual": {
+        "widget": "balance-steps",
+        "params": {
+          "left": [
+            3,
+            4
+          ],
+          "right": [
+            1,
+            10
+          ]
+        },
+        "caption": "3x + 4 = x + 10. Tap to do the same thing to both sides."
+      },
+      "key": "Get the x's on one side first: subtract the smaller x term from both sides. Then it's a two-step equation.",
+      "worked": [
+        {
+          "math": "5x + 3 = 2x + 15",
+          "note": ""
+        },
+        {
+          "math": "[[3x]] + 3 = 15",
+          "note": "subtract 2x from both sides"
+        },
+        {
+          "math": "[[3x = 12]]",
+          "note": "subtract 3 from both sides"
+        },
+        {
+          "math": "x = [[4]]",
+          "note": "divide by 3"
+        },
+        {
+          "math": "5(4) + 3 = 23, 2(4) + 15 = 23",
+          "note": "check: both sides 23"
+        }
+      ]
+    },
+    {
+      "id": "alg.multi-step.distribute",
+      "forGap": "alg.multi-step.distribute",
+      "title": "Distribute first",
+      "objective": "Solve equations with parentheses, like 3(x + 4) = 27.",
+      "mode": "section",
+      "generator": "alg.multi-step.distribute",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Multiply the number outside by every term inside the parentheses. Watch the signs.",
+        "Then combine like terms, and solve as usual."
+      ],
+      "visual": null,
+      "key": "Clear the parentheses first: the number outside multiplies every term inside. Then solve as usual.",
+      "worked": [
+        {
+          "math": "3(x + 4) = 27",
+          "note": ""
+        },
+        {
+          "math": "[[3x + 12]] = 27",
+          "note": "3 times x and 3 times 4"
+        },
+        {
+          "math": "[[3x = 15]]",
+          "note": "subtract 12"
+        },
+        {
+          "math": "x = [[5]]",
+          "note": "divide by 3"
+        },
+        {
+          "math": "−2(x − 5) = [[−2x + 10]]",
+          "note": "−2 times −5 is +10"
+        }
+      ]
+    },
+    {
+      "id": "alg.multi-step.whole",
+      "forGap": "alg.multi-step",
+      "title": "Putting it together",
+      "objective": "Equations that need distributing and have x on both sides.",
+      "mode": "skill",
+      "generator": "alg.multi-step",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems need every step."
+      ],
+      "visual": null,
+      "key": "Distribute, get the x's on one side, get the numbers on the other, divide. Then check.",
+      "worked": [
+        {
+          "math": "2(x + 3) = x + 15",
+          "note": ""
+        },
+        {
+          "math": "[[2x + 6]] = x + 15",
+          "note": "distribute"
+        },
+        {
+          "math": "[[x]] + 6 = 15",
+          "note": "subtract x from both sides"
+        },
+        {
+          "math": "x = [[9]]",
+          "note": "subtract 6"
+        },
+        {
+          "math": "2(9 + 3) = 24, 9 + 15 = 24",
+          "note": "check"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.multi-step",
+  "title": "Multi-step equations",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the equation (left = right, with x), used only by the test that checks the answer key.",
+  "directions": "Show your work. Write fractions in simplest form.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Solve:  5x + 3 = 2x + 15",
+          "math": "5*x + 3 = 2*x + 15",
+          "answer": "4"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Solve:  4(x − 3) = 20",
+          "math": "4*(x - 3) = 20",
+          "answer": "8"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Solve:  7x − 4 = 3x + 10",
+          "math": "7*x - 4 = 3*x + 10",
+          "answer": "7/2"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Solve:  −3(x + 2) = 2x − 16",
+          "math": "-3*(x + 2) = 2*x - 16",
+          "answer": "2"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "Phone plan A costs $20 a month plus $5 for each gigabyte of data. Plan B costs $35 a month plus $2 for each gigabyte. Write and solve an equation to find how many gigabytes make the two plans cost the same.",
+          "math": "20 + 5*x = 35 + 2*x",
+          "answer": "5 (gigabytes: 20 + 5x = 35 + 2x)"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Dev solved 2(x + 6) = 30 like this: 2x + 6 = 30, so 2x = 24 and x = 12. Is he right? Explain, and give the correct answer.",
+          "math": "2*(x + 6) = 30",
+          "answer": "9 (No: the 2 multiplies the 6 too, so 2x + 12 = 30)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Solve:  6x + 1 = 2x + 21",
+          "math": "6*x + 1 = 2*x + 21",
+          "answer": "5"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Solve:  5(x + 2) = 45",
+          "math": "5*(x + 2) = 45",
+          "answer": "7"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Solve:  2x + 9 = 5x − 6",
+          "math": "2*x + 9 = 5*x - 6",
+          "answer": "5"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Solve:  3(x − 4) = x + 5",
+          "math": "3*(x - 4) = x + 5",
+          "answer": "17/2"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "Gym A charges $40 to join plus $10 a month. Gym B charges $18 a month and nothing to join. Write and solve an equation to find after how many months the two gyms cost the same.",
+          "math": "40 + 10*x = 18*x",
+          "answer": "5 (months: 40 + 10x = 18x)"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Maria solved 4x + 7 = x + 22 by writing 5x + 7 = 22 as her first step. Is she right? Explain, and solve it correctly.",
+          "math": "4*x + 7 = x + 22",
+          "answer": "5 (No: subtract x from both sides to get 3x + 7 = 22)"
+        }
+      ]
+    }
+  ]
+}

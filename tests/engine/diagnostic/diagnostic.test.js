@@ -450,7 +450,7 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
   // After today's fractions check: the later checks, one at a time (pre-algebra, then decimals).
   const now = compactResult(diagnose({}).result);
-  const ALG = ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions'];
+  const ALG = ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions', 'alg.multi-step'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ALG);
   assert.equal(catchUpName(fractions.config, ALG), 'Pre-algebra check');
   const afterAlg = { ...now, nodes: { ...now.nodes, ...Object.fromEntries(ALG.map((id) => [id, { status: 'known' }])) } };
@@ -514,10 +514,11 @@ function preAlgebra(traits) {
   return runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'pre', prior }), student);
 }
 
-test('pre-algebra check: knows everything -> one problem each for order of operations, powers, equations and expressions, plus the two negative-number parts', () => {
+test('pre-algebra check: knows everything -> one problem each for order of operations, powers, equations, expressions and multi-step equations, plus the two negative-number parts', () => {
   const result = preAlgebra({});
   assert.deepEqual(result.rootGaps, []);
-  assert.equal(result.questionCount, 6);
+  assert.equal(result.questionCount, 7);
+  assert.equal(result.skills['alg.multi-step'], 'known');
   assert.equal(result.skills['alg.expressions'], 'known');
   assert.equal(result.skills['alg.equations'], 'known');
   assert.equal(result.skills['alg.order-ops'], 'known');
