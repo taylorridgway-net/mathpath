@@ -34,7 +34,7 @@ for (const d of domains.domains) files[d.file] = read(`graph/${d.file}`);
 const setup = {
   graph: buildGraphIndex(domains, files),
   generators,
-  misconceptions: read('misconceptions/frac.json').misconceptions,
+  misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions],
   diagnosticConfig: read('diagnostic/frac.json'),
   lessons: [read('lessons/frac.add-sub.json')],
   rules: read('mastery.json').default,

@@ -108,7 +108,9 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       const id = task.id;
       if (expandedSkills.has(id) || isSettled(id)) return null;
       expandedSkills.add(id);
-      if (hasGenerator(id)) return ask(task, id, difficulty.screen);
+      // A mixed-review skill (whole numbers) has no single "whole problem": one
+      // right fact says nothing about remainders. Ask each part instead.
+      if (hasGenerator(id) && !generators[id].mixed) return ask(task, id, difficulty.screen);
       const subs = subskillsWithProblems(id);
       if (subs.length === 0) {
         // Not built yet. As a possible cause of a gap, flag it; as a target, just skip it.
@@ -135,7 +137,9 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
     }
     if (task.stage === 1) {
       const uses = generators[id].alsoUses || [];
-      const blocked = (u) => statusOf(u) === 'gap' || statusOf(u) === 'shaky' || Boolean(nodes.get(u)?.blockedBy);
+      // Shaky only because it was slow (right, but over the time limit) doesn't block:
+        // the answers it leads to aren't in doubt.
+        const blocked = (u) => statusOf(u) === 'gap' || (statusOf(u) === 'shaky' && !nodes.get(u)?.slow) || Boolean(nodes.get(u)?.blockedBy);
       const blockers = uses.filter(blocked);
       if (blockers.length) {
         record(id).blockedBy = blockers;
@@ -148,7 +152,9 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
         return null;
       }
     }
-    return ask(task, id, task.stage === 1 ? difficulty.probe : difficulty.confirm);
+    // A generator can ask for its own level (facts: only the hard ones tell us anything).
+      const own = generators[id].diagnosticDifficulty || {};
+      return ask(task, id, task.stage === 1 ? own.probe ?? difficulty.probe : own.confirm ?? difficulty.confirm);
   }
 
   function ask(task, generatorId, level) {
@@ -204,10 +210,16 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
     }
   }
 
-  function onProbeAnswer(task, result) {
+  function onProbeAnswer(task, result, slow) {
     const id = task.id;
     const generator = generators[id];
     let outcome = result.status;
+    // A right fact that took too long is shaky, not known (owner decision, whole-number facts).
+    if (slow && outcome === 'correct') {
+      record(id).status = 'shaky';
+      record(id).slow = true;
+      return;
+    }
     if (outcome === 'not-simplified') {
       if (generator.ifNotSimplified === id) {
         outcome = 'wrong';
@@ -256,13 +268,15 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   }
 
   // Grade the student's answer to the current question and decide what's next.
-  function submit(rawAnswer) {
+  // ms: how long the student took on this question (for the slow-fact rule).
+  function submit(rawAnswer, ms) {
     if (!pending) throw new Error('submit() called with no question showing; call nextQuestion() first');
     const { task, problem, question } = pending;
     pending = null;
 
     const result = checkAnswer(problem, rawAnswer);
-    questions.push({ ...question, answer: rawAnswer ?? null, status: result.status, misconception: result.misconception });
+    const slow = Boolean(problem.slowAfterMs) && Number.isFinite(ms) && ms > problem.slowAfterMs;
+    questions.push({ ...question, answer: rawAnswer ?? null, status: result.status, misconception: result.misconception, ...(slow ? { slow } : {}) });
     record(question.nodeId).evidence.push({ question: question.index, status: result.status });
     if (result.misconception) {
       misconceptionCounts[result.misconception] = (misconceptionCounts[result.misconception] || 0) + 1;
@@ -270,7 +284,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
 
     if (task.kind === 'skill') onScreenerAnswer(task.id, result);
     else if (task.kind === 'recheck') onRecheckAnswer(task.id, result);
-    else onProbeAnswer(task, result);
+    else onProbeAnswer(task, result, slow);
     advance();
     return result;
   }
@@ -280,6 +294,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
     for (const [id, r] of nodes) {
       nodeResults[id] = { status: r.status, evidence: [...r.evidence] };
       if (r.blockedBy) nodeResults[id].blockedBy = [...r.blockedBy];
+      if (r.slow) nodeResults[id].slow = true;
     }
 
     // Skill summaries for the teacher: the worst status among a skill's subskills.
@@ -331,11 +346,12 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
 // Used by the server to verify a submitted result, and by the browser to resume.
 // Returns the live diagnostic (call .result() for the profile; it may continue
 // with more questions if the answers ran out before it finished).
-export function replayDiagnostic(setup, answers) {
+// times: milliseconds per answer (needed to replay the slow-fact rule exactly).
+export function replayDiagnostic(setup, answers, times = []) {
   const d = startDiagnostic(setup);
-  for (const answer of answers) {
+  answers.forEach((answer, i) => {
     if (!d.nextQuestion()) throw new Error('More answers than the diagnostic asked for');
-    d.submit(answer);
-  }
+    d.submit(answer, times[i]);
+  });
   return d;
 }

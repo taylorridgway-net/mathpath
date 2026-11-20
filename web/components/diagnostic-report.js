@@ -41,6 +41,7 @@ export function diagnosticReport(result, { graph, misconceptions, times = [] }) 
       const r = result.nodes[id];
       const row = h('div', 'status-row');
       let [label, tone] = r.blockedBy ? ['Blocked', 'muted'] : STATUS[r.status];
+      if (r.slow) label = 'Shaky: right, but slow (over 5 s)';
       if (id === skillId && r.status === 'gap') label = 'Gap: each step fine, whole problem missed twice';
       const nameCell = h('span', 'status-name', id === skillId ? '(whole skill)' : graph.get(id).name);
       if (r.blockedBy) {

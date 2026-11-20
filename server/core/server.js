@@ -100,13 +100,13 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     try {
       result = replayDiagnostic({
         graph: setup.graph, generators: setup.generators, misconceptions: setup.misconceptions, config: setup.diagnosticConfig, seed,
-      }, record.answers || []).result();
+      }, record.answers || [], record.times || []).result();
     } catch (e) {
       return fail('regrade-failed', String(e.message || e));
     }
     if (!result.finished) return fail('not-finished', 'The diagnostic isn’t finished.');
     summary.diagnosticAttempts = attemptNo;
-    summary.diagnostic = { attemptNo, seed, answers: record.answers, finishedAt: record.finishedAt };
+    summary.diagnostic = { attemptNo, seed, answers: record.answers, times: record.times || [], finishedAt: record.finishedAt };
     const verdicts = Object.fromEntries(Object.entries(result.nodes).map(([id, n]) => [id, n.status]));
     return {
       kind: 'diagnostics',

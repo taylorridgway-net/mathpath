@@ -10,6 +10,7 @@ import wholeGraph from '../../curriculum/graph/whole.json';
 import intGraph from '../../curriculum/graph/int.json';
 import fracGraph from '../../curriculum/graph/frac.json';
 import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
+import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import masteryRules from '../../curriculum/mastery.json';
@@ -34,7 +35,7 @@ const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of
 const lessons = [addSubLesson];
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
-const misconceptions = fracMisconceptions.misconceptions;
+const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];
 const api = createApi({
   setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default },
 });
@@ -179,13 +180,13 @@ function loadDiagnostic() {
   session = loadMine('diagnostic');
   const server = profile.summary.diagnostic;
   if (server && (!session || session.attemptNo < server.attemptNo || (session.attemptNo === server.attemptNo && !session.finished))) {
-    session = { attemptNo: server.attemptNo, seed: server.seed, answers: server.answers, times: [], finished: true };
+    session = { attemptNo: server.attemptNo, seed: server.seed, answers: server.answers, times: server.times || [], finished: true };
     saveMine('diagnostic', session);
   }
   diagnostic = null;
   if (session) {
     try {
-      diagnostic = replayDiagnostic(setupFor(session.seed), session.answers);
+      diagnostic = replayDiagnostic(setupFor(session.seed), session.answers, session.times);
     } catch {
       session = null; // doesn't fit the current questions (the app changed); start again
     }
@@ -220,7 +221,7 @@ function begin() {
     const seed = seedFor(profile.id, 'diagnostic', attemptNo);
     session = { attemptNo, seed, saveId: `${seed}|${new Date().toISOString()}`, answers: [], times: [], startedAt: new Date().toISOString(), finished: false };
   }
-  diagnostic = replayDiagnostic(setupFor(session.seed), session.answers);
+  diagnostic = replayDiagnostic(setupFor(session.seed), session.answers, session.times);
   saveMine('diagnostic', session);
   showQuestion();
 }
@@ -258,9 +259,10 @@ function showQuestion() {
 function answer(raw) {
   keypad?.destroy();
   keypad = null;
-  diagnostic.submit(raw);
+  const ms = Math.round(performance.now() - shownAt);
+  diagnostic.submit(raw, ms);
   session.answers.push(raw);
-  session.times.push(Math.round(performance.now() - shownAt));
+  session.times.push(ms);
   saveMine('diagnostic', session);
   showQuestion();
 }

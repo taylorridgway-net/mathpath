@@ -1,4 +1,4 @@
-# Whole Numbers — Plan (draft for owner review)
+# Whole Numbers — Plan
 
 Status: **approved 2026-11-20** with the owner's answers (section 7). Owner chose "whole numbers first" (before the rest of fractions).
 
@@ -51,8 +51,8 @@ time into a growing list.
 
 ## 6. Build order
 
-1. Graph update (`whole.json`) + generators with tests (independently re-computed answers, golden seeds).
-2. Diagnostic: check that fraction gaps now trace into whole numbers correctly (simulated students).
+1. Graph update (`whole.json`) + generators with tests (independently re-computed answers, golden seeds). **(Done.)**
+2. Diagnostic: check that fraction gaps now trace into whole numbers correctly (simulated students). **(Done.)** Also: mixed-review skills are checked part by part (one right fact says nothing about remainders); facts are asked at the hard level only; the slow rule is replayed exactly on the server (times are saved); a fact that's shaky only because it was slow doesn't block what depends on it.
 3. Keypad: remainder and list answers.
 4. Lesson text (Claude drafts; owner reviews in the preview) + area model.
 5. Dashboard: whole-number skills in the heatmap; paper tests for each skill (authored separately, answer keys checked).

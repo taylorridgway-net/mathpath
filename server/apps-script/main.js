@@ -16,6 +16,7 @@ import wholeGraph from '../../curriculum/graph/whole.json';
 import intGraph from '../../curriculum/graph/int.json';
 import fracGraph from '../../curriculum/graph/frac.json';
 import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
+import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import masteryRules from '../../curriculum/mastery.json';
@@ -33,7 +34,7 @@ const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents'
 const setupData = {
   graph: buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph }),
   generators,
-  misconceptions: fracMisconceptions.misconceptions,
+  misconceptions: [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions],
   diagnosticConfig: fracDiagnostic,
   lessons: [addSubLesson],
   rules: masteryRules.default,

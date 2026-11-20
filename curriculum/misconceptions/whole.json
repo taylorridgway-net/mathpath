@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "misconceptions": [
+    { "id": "whole.no-carry", "description": "Doesn't carry: writes only each column's ones digit (47 + 38 -> 75).", "pointsTo": "whole.add-sub.add-regroup" },
+    { "id": "whole.column-sums", "description": "Writes each column's whole sum side by side (47 + 38 -> 715).", "pointsTo": "whole.add-sub.add-regroup" },
+    { "id": "whole.smaller-from-larger", "description": "Subtracts the smaller digit from the larger in each column (52 - 27 -> 35).", "pointsTo": "whole.add-sub.sub-regroup" },
+    { "id": "whole.borrow-no-decrease", "description": "Borrows but doesn't take 1 from the next column (503 - 278 -> 335).", "pointsTo": "whole.add-sub.sub-regroup" },
+    { "id": "whole.neighbour-fact", "description": "Gives a neighbouring fact, one group off (7 x 8 -> 48 or 64).", "pointsTo": "whole.mult-div.mult-facts" },
+    { "id": "whole.added-not-multiplied", "description": "Adds instead of multiplying (7 x 8 -> 15).", "pointsTo": "whole.mult-div.mult-facts" },
+    { "id": "whole.remainder-too-big", "description": "Leaves a remainder bigger than the divisor (47 / 5 -> 8 R 7).", "pointsTo": "whole.mult-div.remainders" },
+    { "id": "whole.remainder-dropped", "description": "Gives the quotient and drops the remainder (47 / 5 -> 9).", "pointsTo": "whole.mult-div.remainders" },
+    { "id": "whole.multiples-not-factors", "description": "Lists multiples instead of factors (factors of 6 -> 6, 12, 18).", "pointsTo": "whole.factors-multiples.factors" },
+    { "id": "whole.factor-pairs-missed", "description": "Lists only some of the factors, usually missing a pair (factors of 24 without 4 and 6).", "pointsTo": "whole.factors-multiples.factors" },
+    { "id": "whole.not-all-prime", "description": "Stops before every factor is prime (60 = 4 x 15).", "pointsTo": "whole.factors-multiples.primes" },
+    { "id": "whole.gave-lcm", "description": "Gives the least common multiple when asked for the greatest common factor.", "pointsTo": "whole.factors-multiples.gcf" },
+    { "id": "whole.common-not-greatest", "description": "Gives a common factor that isn't the greatest (24 and 36 -> 6 instead of 12).", "pointsTo": "whole.factors-multiples.gcf" },
+    { "id": "whole.gave-gcf", "description": "Gives the greatest common factor when asked for the least common multiple.", "pointsTo": "whole.factors-multiples.lcm" },
+    { "id": "whole.product-not-least", "description": "Multiplies the two numbers instead of finding the least common multiple (6 and 8 -> 48).", "pointsTo": "whole.factors-multiples.lcm" }
+  ]
+}

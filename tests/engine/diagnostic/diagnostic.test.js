@@ -50,9 +50,11 @@ test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simp
   assert.deepEqual(result.nodes[SUB('simplify-result')].blockedBy, [SUB('combine')]);
   assert.equal(statusOf(result, SUB('simplify-result')), 'not-tested');
   assert.ok(result.misconceptions['frac.add-across'] >= 2);
-  // Possible deeper causes that don't have problems yet:
-  assert.ok(result.uncheckedCauses.includes('whole.add-sub'));
-  assert.ok(result.questionCount <= 6, `took ${result.questionCount} questions`);
+  // The deeper cause (whole-number add/subtract) now has questions: checked, and fine.
+  assert.equal(statusOf(result, 'whole.add-sub.add-regroup'), 'known');
+  assert.equal(statusOf(result, 'whole.add-sub.sub-regroup'), 'known');
+  assert.ok(!result.uncheckedCauses.includes('whole.add-sub'));
+  assert.ok(result.questionCount <= 8, `took ${result.questionCount} questions`);
 });
 
 test('can do everything but simplify: finds the simplifying gap and points below it', () => {
@@ -70,12 +72,52 @@ test('mixed numbers never come up in the diagnostic (owner decision: supporting 
   assert.ok(!fractions.config.targets.includes('frac.mixed'));
 });
 
-test('missing multiplication facts: many add/subtract gaps, all traced to the same possible cause', () => {
+test('missing multiplication facts: confirmed with real fact questions, as the root under the common-denominator gap', () => {
   const { result } = diagnose({ lacks: ['whole.mult-div.mult-facts'] });
   assert.ok(withStatus(result, 'gap').includes(SUB('common-denom')));
   assert.ok(withStatus(result, 'gap').includes(SUB('rewrite')));
   assert.equal(statusOf(result, SUB('combine')), 'known');
-  assert.ok(result.uncheckedCauses.includes('whole.mult-div.mult-facts'));
+  assert.equal(statusOf(result, 'whole.mult-div.mult-facts'), 'gap');
+  assert.ok(result.rootGaps.includes('whole.mult-div.mult-facts'));
+  assert.ok(!result.rootGaps.includes(SUB('common-denom')), 'common denominators has a gap underneath it');
+  assert.ok(result.questions.some((q) => q.generator === 'whole.mult-div.mult-facts'), 'actually asked a fact');
+});
+
+// ---------- whole numbers ----------
+
+const wholeConfig = { ...fractions.config, targets: ['whole.mult-div'] };
+const right = (p) => {
+  const e = p.expression;
+  const [a, b] = [e.left.value, e.right.value];
+  if (e.op === '×') return { whole: a * b };
+  return a % b === 0 && !p.generator.endsWith('remainders') ? { whole: a / b } : { whole: Math.floor(a / b), rem: a % b };
+};
+function runWhole(msFor) {
+  const d = startDiagnostic({ ...fractions, config: wholeConfig, seed: 'whole-seed' });
+  const answers = [];
+  const times = [];
+  for (let q = d.nextQuestion(); q; q = d.nextQuestion()) {
+    answers.push(right(q.problem));
+    times.push(msFor(q.problem));
+    d.submit(answers.at(-1), times.at(-1));
+  }
+  return { result: d.result(), answers, times };
+}
+
+test('a mixed-review skill (whole numbers) is checked part by part, not with one "whole problem"', () => {
+  const { result } = runWhole(() => 2000);
+  assert.ok(result.questions.every((q) => q.generator !== 'whole.mult-div'));
+  for (const s of ['mult-facts', 'div-facts', 'remainders']) assert.equal(statusOf(result, `whole.mult-div.${s}`), 'known', s);
+});
+
+test('owner decision: a right fact that took more than 5 seconds is shaky, not known; slow non-facts don\'t count', () => {
+  const { result, answers, times } = runWhole(() => 8000);
+  assert.equal(statusOf(result, 'whole.mult-div.mult-facts'), 'shaky');
+  assert.equal(statusOf(result, 'whole.mult-div.div-facts'), 'shaky');
+  assert.equal(statusOf(result, 'whole.mult-div.remainders'), 'known', 'remainders aren\'t timed');
+  // The server replays with the saved times and must get the same result.
+  const replayed = replayDiagnostic({ ...fractions, config: wholeConfig, seed: 'whole-seed' }, answers, times).result();
+  assert.deepEqual(replayed.nodes, result.nodes);
 });
 
 test('a slip on the first question: steps check out, a second whole problem is right, no gap', () => {
@@ -281,4 +323,11 @@ test('passing the top credits everything below it without asking', () => {
 
 test('every diagnostic target is a real skill in the graph', () => {
   for (const id of fractions.config.targets) assert.ok(fractions.graph.has(id), id);
+});
+
+test('the diagnostic asks hard facts (6-9 and 12), never easy ones like 4 × 2', () => {
+  const { result } = runWhole(() => 2000);
+  const facts = result.questions.filter((q) => q.generator.endsWith('-facts'));
+  assert.ok(facts.length >= 2);
+  assert.ok(facts.every((q) => q.difficulty === 3));
 });

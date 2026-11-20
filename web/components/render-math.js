@@ -74,5 +74,7 @@ function spoken(text) {
     .replace(/\?/g, 'blank')
     .replace(/ \+ /g, ' plus ')
     .replace(/ - /g, ' minus ')
+    .replace(/ × /g, ' times ')
+    .replace(/ ÷ /g, ' divided by ')
     .replace(/ = /g, ' equals ');
 }

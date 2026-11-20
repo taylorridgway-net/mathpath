@@ -8,6 +8,8 @@
 //   { num: 3, den: 4 }                    a fraction: 3/4
 //   { whole: 1, num: 3, den: 4 }          a mixed number: 1 3/4
 //   { negative: true, num: 3, den: 4 }    -3/4
+//   { whole: 9, rem: 2 }                  9 R 2 (a division with a remainder)
+//   { list: [1, 2, 3, 4, 6, 12] }         a list of whole numbers (factors, primes)
 //
 // Possible results:
 //   correct         right value, in an accepted form
@@ -71,6 +73,11 @@ export function checkAnswer(problem, raw) {
       return checkInteger(problem, raw);
     case 'common-multiple':
       return checkCommonMultiple(problem, raw);
+    case 'quotient-remainder':
+      return checkQuotientRemainder(problem, raw);
+    case 'set':
+    case 'multiset':
+      return checkList(problem, raw);
     default:
       throw new Error(`checkAnswer: unknown answer type "${expected.type}"`);
   }
@@ -119,6 +126,45 @@ function checkCommonMultiple(problem, raw) {
     return given === least ? { status: 'correct' } : { status: 'correct', note: 'not-least' };
   }
   return wrong(problem, (m) => m.value === given);
+}
+
+// 47 ÷ 5 = 9 R 2. The remainder box may be left empty when it's 0.
+function checkQuotientRemainder(problem, raw) {
+  const q = raw?.whole;
+  const r = raw?.rem === undefined || raw?.rem === null || raw?.rem === '' ? 0 : raw.rem;
+  if (!Number.isSafeInteger(q) || q < 0 || !Number.isSafeInteger(r) || r < 0) return { status: 'invalid', reason: 'empty' };
+  const { quotient, remainder } = problem.answer;
+  if (q === quotient && r === remainder) return { status: 'correct' };
+  return wrong(problem, (m) => m.value.quotient === q && m.value.remainder === r);
+}
+
+// "All the factors of 24" (set: each once, any order) or "60 as a product of
+// primes" (multiset: repeats matter, any order).
+function checkList(problem, raw) {
+  const list = Array.isArray(raw?.list) ? raw.list : null;
+  if (!list || !list.length || !list.every((x) => Number.isSafeInteger(x) && x >= 0)) return { status: 'invalid', reason: 'empty' };
+  const given = problem.answer.type === 'set' ? [...new Set(list)] : list;
+  const key = (xs) => [...xs].sort((a, b) => a - b).join(',');
+  if (key(given) === key(problem.answer.values)) return { status: 'correct' };
+  const match = (problem.misconceptions || []).find((m) => (m.test ? listTests[m.test](given, problem) : key(m.value) === key(given)));
+  return match ? { status: 'wrong', misconception: match.id } : { status: 'wrong' };
+}
+
+// Wrong-answer patterns that are a rule rather than one fixed wrong answer.
+const listTests = {
+  // Product is right, but some numbers in it aren't prime (60 = 4 × 15).
+  'product-right-not-all-prime': (given, problem) => given.reduce((p, x) => p * x, 1) === problem.answer.product
+    && given.some((x) => !isPrime(x)),
+  // Lists multiples of the number instead of factors.
+  'multiples-not-factors': (given, problem) => given.some((x) => x > problem.answer.of && x % problem.answer.of === 0),
+  // Every number is a factor, but some are missing.
+  'some-factors-missing': (given, problem) => given.every((x) => problem.answer.values.includes(x)) && given.length < problem.answer.values.length,
+};
+
+export function isPrime(n) {
+  if (!Number.isInteger(n) || n < 2) return false;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) return false;
+  return true;
 }
 
 function wrong(problem, matches) {

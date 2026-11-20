@@ -1,46 +1,125 @@
 {
   "schemaVersion": 1,
-  "domain": { "id": "whole", "name": "Whole numbers" },
+  "domain": {
+    "id": "whole",
+    "name": "Whole numbers"
+  },
   "skills": [
     {
       "id": "whole.add-sub",
       "name": "Add and subtract whole numbers",
-      "summary": "Stub: prerequisite for fractions. Not built yet.",
+      "summary": "Add and subtract 2- and 3-digit whole numbers, carrying and borrowing (including across zeros).",
       "typicalGrade": 3,
-      "standards": ["3.NBT.A.2", "4.NBT.B.4"],
-      "status": "stub",
+      "standards": [
+        "3.NBT.A.2",
+        "4.NBT.B.4"
+      ],
+      "status": "draft",
       "prerequisites": [],
-      "subskills": []
+      "subskills": [
+        {
+          "id": "whole.add-sub.add-regroup",
+          "name": "Add 2- and 3-digit numbers with carrying",
+          "prerequisites": []
+        },
+        {
+          "id": "whole.add-sub.sub-regroup",
+          "name": "Subtract 2- and 3-digit numbers with borrowing, including across zeros",
+          "prerequisites": []
+        }
+      ]
     },
     {
       "id": "whole.mult-div",
       "name": "Multiply and divide whole numbers",
-      "summary": "Stub: prerequisite for fractions. Not built yet.",
+      "summary": "Multiplication and division facts to 12 x 12, and dividing with a remainder. (2-digit multiplication and long division: not now, owner decision.)",
       "typicalGrade": 4,
-      "standards": ["3.OA.C.7", "4.NBT.B.6"],
-      "status": "stub",
+      "standards": [
+        "3.OA.C.7",
+        "4.NBT.B.6"
+      ],
+      "status": "draft",
       "prerequisites": [],
       "subskills": [
-        { "id": "whole.mult-div.mult-facts", "name": "Multiplication facts to 12 × 12", "prerequisites": [] },
-        { "id": "whole.mult-div.div-facts", "name": "Division facts to 144 ÷ 12",
-          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
-        { "id": "whole.mult-div.remainders", "name": "Divide with a remainder",
-          "prerequisites": [ { "id": "whole.mult-div.div-facts", "strength": "essential" } ] }
+        {
+          "id": "whole.mult-div.mult-facts",
+          "name": "Multiplication facts to 12 × 12",
+          "prerequisites": []
+        },
+        {
+          "id": "whole.mult-div.div-facts",
+          "name": "Division facts to 144 ÷ 12",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "whole.mult-div.remainders",
+          "name": "Divide with a remainder",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.div-facts",
+              "strength": "essential"
+            }
+          ]
+        }
       ]
     },
     {
       "id": "whole.factors-multiples",
       "name": "Factors and multiples",
-      "summary": "Stub: prerequisite for fractions. Not built yet.",
+      "summary": "Factors, primes and prime factorization, greatest common factor, least common multiple.",
       "typicalGrade": 6,
-      "standards": ["4.OA.B.4", "6.NS.B.4"],
-      "status": "stub",
-      "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ],
+      "standards": [
+        "4.OA.B.4",
+        "6.NS.B.4"
+      ],
+      "status": "draft",
+      "prerequisites": [
+        {
+          "id": "whole.mult-div.mult-facts",
+          "strength": "essential"
+        }
+      ],
       "subskills": [
-        { "id": "whole.factors-multiples.factors", "name": "List factors and test divisibility", "prerequisites": [] },
-        { "id": "whole.factors-multiples.gcf", "name": "Find the greatest common factor",
-          "prerequisites": [ { "id": "whole.factors-multiples.factors", "strength": "essential" } ] },
-        { "id": "whole.factors-multiples.lcm", "name": "Find the least common multiple", "prerequisites": [] }
+        {
+          "id": "whole.factors-multiples.factors",
+          "name": "List all the factors of a number",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.div-facts",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "whole.factors-multiples.primes",
+          "name": "Write a number as a product of primes",
+          "prerequisites": [
+            {
+              "id": "whole.factors-multiples.factors",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "whole.factors-multiples.gcf",
+          "name": "Find the greatest common factor",
+          "prerequisites": [
+            {
+              "id": "whole.factors-multiples.factors",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "whole.factors-multiples.lcm",
+          "name": "Find the least common multiple",
+          "prerequisites": []
+        }
       ]
     }
   ]

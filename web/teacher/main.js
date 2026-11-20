@@ -15,6 +15,7 @@ import wholeGraph from '../../curriculum/graph/whole.json';
 import intGraph from '../../curriculum/graph/int.json';
 import fracGraph from '../../curriculum/graph/frac.json';
 import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
+import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import addSubPaper from '../../curriculum/paper/frac.add-sub.json';
@@ -40,7 +41,7 @@ import { h, btn, pill, list, swap } from '../components/dom.js';
 // ---------- curriculum and engine ----------
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
-const misconceptions = fracMisconceptions.misconceptions;
+const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];
 const lessons = [addSubLesson];
 const papers = { [addSubPaper.skill]: addSubPaper };
 const rules = masteryRules.default;
@@ -84,7 +85,7 @@ function buildClass(then = render) {
     const diagnostic = data.diagnostics.find((d) => d.code === s.code) || null;
     // Re-created from the saved seed and answers, the way the server will check it.
     const result = diagnostic
-      ? replayDiagnostic({ graph, generators, misconceptions, config: fracDiagnostic, seed: diagnostic.seed }, diagnostic.answers).result()
+      ? replayDiagnostic({ graph, generators, misconceptions, config: fracDiagnostic, seed: diagnostic.seed }, diagnostic.answers, diagnostic.times || []).result()
       : null;
     return {
       ...s,
