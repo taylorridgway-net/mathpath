@@ -290,6 +290,9 @@ const shortName = (id) => ({
   'dec.add-sub': 'Decimals: add & subtract',
   'dec.multiply': 'Decimals: multiply',
   'dec.divide': 'Decimals: divide',
+  'rat.ratios': 'Ratios & rates',
+  'rat.percent': 'Percents',
+  'rat.percent-change': 'Percent change',
 }[id] || graph.get(id).name);
 
 // ---------- Class overview ----------

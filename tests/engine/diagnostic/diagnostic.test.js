@@ -458,7 +458,11 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterAlg }), DEC);
   assert.equal(catchUpName(fractions.config, DEC), 'Decimals check');
   const afterDec = { ...afterAlg, nodes: { ...afterAlg.nodes, ...Object.fromEntries(DEC.map((id) => [id, { status: 'known' }])) } };
-  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterDec }), []);
+  const RAT = ['rat.ratios', 'rat.percent', 'rat.percent-change'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterDec }), RAT);
+  assert.equal(catchUpName(fractions.config, RAT), 'Ratios and percents check');
+  const afterRat = { ...afterDec, nodes: { ...afterDec.nodes, ...Object.fromEntries(RAT.map((id) => [id, { status: 'known' }])) } };
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat }), []);
   assert.equal(catchUpName(fractions.config, ['frac.multiply', 'alg.order-ops']), null);
 });
 

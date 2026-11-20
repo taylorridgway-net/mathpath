@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "domain": {
+    "id": "rat",
+    "name": "Ratios and percents"
+  },
+  "skills": [
+    {
+      "id": "rat.ratios",
+      "name": "Ratios and rates",
+      "summary": "Equivalent ratios, unit rates (price for one, speed), and proportions.",
+      "typicalGrade": 6,
+      "standards": [
+        "6.RP.A.1",
+        "6.RP.A.2",
+        "6.RP.A.3",
+        "7.RP.A.2"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "rat.ratios.equivalent",
+          "name": "Equivalent ratios (3 : 4 = 12 : ?)",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.div-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.equivalent.scale",
+              "strength": "supporting",
+              "why": "Equivalent ratios work like equivalent fractions."
+            }
+          ]
+        },
+        {
+          "id": "rat.ratios.unit-rate",
+          "name": "Unit rates ($12 for 4 -> $3 each)",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.div-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.divide.by-whole",
+              "strength": "supporting",
+              "why": "Unit prices with cents ($7.50 for 3)."
+            }
+          ]
+        },
+        {
+          "id": "rat.ratios.proportion",
+          "name": "Proportions (x/6 = 10/15)",
+          "prerequisites": [
+            {
+              "id": "rat.ratios.equivalent",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rat.percent",
+      "name": "Percents",
+      "summary": "Percents as decimals and fractions, a percent of a number, and what percent one number is of another.",
+      "typicalGrade": 6,
+      "standards": [
+        "6.RP.A.3c",
+        "7.RP.A.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "rat.percent.convert",
+          "name": "Percents, decimals and fractions (35% = 0.35, 3/5 = 60%)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.convert.to-decimal",
+              "strength": "supporting",
+              "why": "3/5 = 0.6 = 60%."
+            }
+          ]
+        },
+        {
+          "id": "rat.percent.of",
+          "name": "A percent of a number (15% of 60)",
+          "prerequisites": [
+            {
+              "id": "rat.percent.convert",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "rat.percent.what-percent",
+          "name": "What percent? (12 is what percent of 48)",
+          "prerequisites": [
+            {
+              "id": "rat.percent.convert",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.equivalent.simplify",
+              "strength": "essential",
+              "why": "12/48 = 1/4 = 25%."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rat.percent-change",
+      "name": "Percent change",
+      "summary": "The new amount after a percent increase or decrease (sales, tax, tips), and the percent change between two amounts.",
+      "typicalGrade": 7,
+      "standards": [
+        "7.RP.A.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "rat.percent-change.apply",
+          "name": "The new amount after a change ($40 jacket, 25% off)",
+          "prerequisites": [
+            {
+              "id": "rat.percent.of",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "rat.percent-change.find",
+          "name": "The percent change (50 -> 40 is a 20% decrease)",
+          "prerequisites": [
+            {
+              "id": "rat.percent.what-percent",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "rat.percent",
+  "title": "Percents",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. Write every fraction in simplest form. Percent means 'out of 100'.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Write 35% as a decimal.", "math": "pcttodec 35", "answer": "0.35" },
+        { "id": "A2", "kind": "computation", "prompt": "Write as a percent:  {3/5}", "math": "fractopct 3/5", "answer": "60%" },
+        { "id": "A3", "kind": "computation", "prompt": "Write 45% as a fraction in simplest form.", "math": "pcttofrac 45", "answer": "9/20" },
+        { "id": "A4", "kind": "word", "prompt": "Of the 60 seniors at a school, 15% play on a sports team. How many seniors is that?", "math": "pct 15 of 60", "answer": "9 (seniors)" },
+        { "id": "A5", "kind": "word", "prompt": "A basketball player made 18 of her 24 free throws this season. What percent of her free throws did she make?", "math": "whatpct 18 24", "answer": "75%" },
+        { "id": "A6", "kind": "word", "prompt": "Dev says 25% of 80 is 80 ÷ 25 = 3.2. Is he right? Explain, and give the correct answer.", "math": "pct 25 of 80", "answer": "20 (No: 25% means 25 out of 100, which is 1/4, and 1/4 of 80 is 20)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Write 0.07 as a percent.", "math": "dectopct 0.07", "answer": "7%" },
+        { "id": "B2", "kind": "computation", "prompt": "Write as a percent:  {7/20}", "math": "fractopct 7/20", "answer": "35%" },
+        { "id": "B3", "kind": "computation", "prompt": "Write 64% as a fraction in simplest form.", "math": "pcttofrac 64", "answer": "16/25" },
+        { "id": "B4", "kind": "computation", "prompt": "What percent of 40 is 14?", "math": "whatpct 14 40", "answer": "35%" },
+        { "id": "B5", "kind": "word", "prompt": "Your phone plan has 20 GB of data each month. So far you have used 30% of it. How many GB have you used?", "math": "pct 30 of 20", "answer": "6 (GB)" },
+        { "id": "B6", "kind": "word", "prompt": "A survey says 0.6 of students have a part-time job. Rico says that is 6% of students. Is he right? Explain, and write 0.6 as a percent.", "math": "dectopct 0.6", "answer": "60% (No: 0.6 = 0.60 = 60 hundredths, which is 60 out of 100)" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "rat.percent-change",
+  "title": "Percent change",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. For a percent change, always compare the change with the starting amount, and say whether it is an increase or a decrease.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Increase 60 by 15%.", "math": "up 60 15", "answer": "69" },
+        { "id": "A2", "kind": "computation", "prompt": "Decrease 80 by 35%.", "math": "down 80 35", "answer": "52" },
+        { "id": "A3", "kind": "word", "prompt": "Your pizza order comes to $36. You add a 20% tip for the driver. How much do you pay in all?", "math": "up 36 20", "answer": "$43.20" },
+        { "id": "A4", "kind": "word", "prompt": "The price of gas went from $3.20 a gallon to $4.00 a gallon. By what percent did it change? Say if it is an increase or a decrease.", "math": "change 3.20 4.00", "answer": "25% increase" },
+        { "id": "A5", "kind": "computation", "prompt": "Find the percent change from 75 to 60. Is it an increase or a decrease?", "math": "change 75 60", "answer": "20% decrease" },
+        { "id": "A6", "kind": "word", "prompt": "A $40 hoodie is 20% off. Kai says the sale price is $40 − 20 = $20. Is he right? Explain, and give the correct sale price.", "math": "down 40 20", "answer": "$32 (No: 20% off means 20% of $40 = $8 off, so $40 − $8 = $32)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Increase 120 by 5%.", "math": "up 120 5", "answer": "126" },
+        { "id": "B2", "kind": "word", "prompt": "Sneakers cost $65. The sales tax is 8%. What is the total cost with tax?", "math": "up 65 8", "answer": "$70.20" },
+        { "id": "B3", "kind": "word", "prompt": "A store marks a $90 desk chair down by 30%. What is the new price?", "math": "down 90 30", "answer": "$63" },
+        { "id": "B4", "kind": "computation", "prompt": "Find the percent change from 40 to 58. Is it an increase or a decrease?", "math": "change 40 58", "answer": "45% increase" },
+        { "id": "B5", "kind": "word", "prompt": "You used 12 GB of phone data in March and 9 GB in April. By what percent did your data use change? Say if it is an increase or a decrease.", "math": "change 12 9", "answer": "25% decrease" },
+        { "id": "B6", "kind": "word", "prompt": "A concert ticket dropped from $50 to $40. Zoe says that is a 10% decrease, because 50 − 40 = 10. Is she right? Explain, and give the correct percent change.", "math": "change 50 40", "answer": "20% decrease (No: the drop is $10 out of the starting $50, and 10/50 = 20/100 = 20%)" }
+      ]
+    }
+  ]
+}

@@ -39,6 +39,15 @@
         "dec.multiply",
         "dec.divide"
       ]
+    },
+    {
+      "id": "ratios",
+      "name": "Ratios and percents check",
+      "targets": [
+        "rat.ratios",
+        "rat.percent",
+        "rat.percent-change"
+      ]
     }
   ]
 }

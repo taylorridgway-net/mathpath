@@ -32,8 +32,15 @@ const LABELS = {
   point: { text: '.', aria: 'Decimal point' },
 };
 
-// What the keypad needs to know about a problem's answer.
+// What the keypad needs to know about a problem's answer. A money or percent answer
+// shows "$" before the box or "%" after it (answer.prefix / answer.suffix).
 export function keypadOptionsFor(problem) {
+  const { prefix, suffix } = problem.answer;
+  const base = keypadKindFor(problem);
+  return prefix || suffix ? { ...base, ...(prefix ? { prefix } : {}), ...(suffix ? { suffix } : {}) } : base;
+}
+
+function keypadKindFor(problem) {
   const type = problem.answer.type;
   if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };
@@ -45,7 +52,7 @@ export function keypadOptionsFor(problem) {
 }
 
 export function createKeypad({
-  host, allowFractions = false, allowNegative = false, answerKind = 'standard', separator = ',', options, onSubmit, onSkip,
+  host, allowFractions = false, allowNegative = false, answerKind = 'standard', separator = ',', options, onSubmit, onSkip, prefix = '', suffix = '',
 }) {
   if (answerKind === 'choice') return createChoicePad({ host, options, onSubmit, onSkip });
   let state = createAnswerState({ allowFractions, allowNegative, kind: answerKind });
@@ -82,7 +89,11 @@ export function createKeypad({
   // inequality: "x" and the chosen sign come first: x [>] [−3]
   const ineqX = span('answer-x', 'x');
   const ineqSign = span('answer-r answer-ineq', '?');
-  display.append(ineqX, ineqSign, sign, entries, boxes.whole, stack, rLabel, boxes.rem, coefSign, boxes.coef, xLabel, plusMinus, boxes.cst);
+  const before = span('answer-r answer-unit', prefix);
+  const after = span('answer-r answer-unit', suffix);
+  before.hidden = !prefix;
+  after.hidden = !suffix;
+  display.append(ineqX, ineqSign, before, sign, entries, boxes.whole, stack, rLabel, boxes.rem, coefSign, boxes.coef, xLabel, plusMinus, boxes.cst, after);
   const live = div('visually-hidden');
   live.setAttribute('aria-live', 'polite');
 

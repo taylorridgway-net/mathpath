@@ -26118,6 +26118,2894 @@
    }
   ]
  },
+ "rat.percent": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "6 is what percent of 12?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-flipped",
+      "value": "200"
+     },
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "6"
+     }
+    ],
+    "part": "rat.percent.what-percent"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "4 is what percent of 40?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-flipped",
+      "value": "1000"
+     },
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "4"
+     }
+    ],
+    "part": "rat.percent.what-percent"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "1 is what percent of 10?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-flipped",
+      "value": "1000"
+     },
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "1"
+     }
+    ],
+    "part": "rat.percent.what-percent"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "frac",
+     "n": 1,
+     "d": 5
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-digits",
+      "value": "15"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "0.2"
+     }
+    ],
+    "part": "rat.percent.convert"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "6 is what percent of 40?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "6"
+     }
+    ],
+    "part": "rat.percent.what-percent"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "30"
+     },
+     "right": {
+      "type": "int",
+      "value": 100
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "3000"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "300"
+     }
+    ],
+    "part": "rat.percent.of"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "In a survey, 47 of 50 students said they walk to school. What percent walk?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "94",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "47"
+     }
+    ],
+    "part": "rat.percent.what-percent"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "In a survey, 10 of 25 students said they walk to school. What percent walk?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "40",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-flipped",
+      "value": "250"
+     },
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "10"
+     }
+    ],
+    "part": "rat.percent.what-percent"
+   },
+   {
+    "generator": "rat.percent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "35"
+     },
+     "right": {
+      "type": "int",
+      "value": 100
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "35"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "3500"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "350"
+     }
+    ],
+    "part": "rat.percent.of"
+   }
+  ]
+ },
+ "rat.percent-change": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 20 to 10. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-wrong-base",
+      "value": "100"
+     },
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "10"
+     }
+    ],
+    "part": "rat.percent-change.find"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 100 to 75. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25",
+     "suffix": "%"
+    },
+    "misconceptions": [],
+    "part": "rat.percent-change.find"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the percent increase.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 40 to 60. What is the percent increase?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "20"
+     }
+    ],
+    "part": "rat.percent-change.find"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $80 jacket is 15% off. What is the sale price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "68",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "12"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "92"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "65"
+     }
+    ],
+    "part": "rat.percent-change.apply"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $200 jacket is 15% off. What is the sale price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "170",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "30"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "230"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "185"
+     }
+    ],
+    "part": "rat.percent-change.apply"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 60 to 51. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "9"
+     }
+    ],
+    "part": "rat.percent-change.find"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A bike's price changed from $200 to $180. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "20"
+     }
+    ],
+    "part": "rat.percent-change.find"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A meal costs $16. You add a 18% tip. What is the total?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "18.88",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "2.88"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "13.12"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "34"
+     }
+    ],
+    "part": "rat.percent-change.apply"
+   },
+   {
+    "generator": "rat.percent-change",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the percent increase.",
+    "expression": {
+     "type": "words",
+     "text": "A bike's price changed from $200 to $260. What is the percent increase?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "60"
+     }
+    ],
+    "part": "rat.percent-change.find"
+   }
+  ]
+ },
+ "rat.percent-change.apply": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $20 ticket price goes up 50%. What is the new price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "10"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "70"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $20 ticket price goes up 10%. What is the new price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "22",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "2"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "18"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "30"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $8 jacket is 25% off. What is the sale price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "2"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "10"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $60 ticket price goes up 20%. What is the new price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "72",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "12"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "48"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "80"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $140 jacket is 20% off. What is the sale price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "112",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "28"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "168"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "120"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A $160 ticket price goes up 20%. What is the new price?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "192",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "32"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "128"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "180"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A game costs $11 plus 6% sales tax. What is the total?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "11.66",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "0.66"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "10.34"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "17"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A game costs $44 plus 15% sales tax. What is the total?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50.6",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "6.6"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "37.4"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "59"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.apply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the new amount.",
+    "expression": {
+     "type": "words",
+     "text": "A game costs $22 plus 18% sales tax. What is the total?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25.96",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-only-amount",
+      "value": "3.96"
+     },
+     {
+      "id": "rat.change-wrong-way",
+      "value": "18.04"
+     },
+     {
+      "id": "rat.change-subtract-percent",
+      "value": "40"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.percent-change.find": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the percent increase.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 40 to 60. What is the percent increase?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "20"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the percent increase.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 20 to 22. What is the percent increase?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "2"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 40 to 20. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-wrong-base",
+      "value": "100"
+     },
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "20"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the percent increase.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 60 to 66. What is the percent increase?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 40 to 28. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A number goes from 150 to 90. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "40",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "60"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the percent decrease.",
+    "expression": {
+     "type": "words",
+     "text": "A bike's price changed from $200 to $160. What is the percent decrease?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-wrong-base",
+      "value": "25"
+     },
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "40"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the percent increase.",
+    "expression": {
+     "type": "words",
+     "text": "A bike's price changed from $200 to $230. What is the percent increase?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "30"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.find",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the percent increase.",
+    "expression": {
+     "type": "words",
+     "text": "A bike's price changed from $40 to $46. What is the percent increase?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.change-amount-as-percent",
+      "value": "6"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.percent.convert": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "dec",
+     "value": "0.42"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "42",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-place",
+      "value": "4.2"
+     },
+     {
+      "id": "rat.percent-not-converted",
+      "value": "0.42"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "dec",
+     "value": "0.96"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "96",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-place",
+      "value": "9.6"
+     },
+     {
+      "id": "rat.percent-not-converted",
+      "value": "0.96"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "dec",
+     "value": "0.37"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "37",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-place",
+      "value": "3.7"
+     },
+     {
+      "id": "rat.percent-not-converted",
+      "value": "0.37"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "frac",
+     "n": 3,
+     "d": 4
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "75",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-digits",
+      "value": "34"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "0.75"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "frac",
+     "n": 9,
+     "d": 20
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "45",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-digits",
+      "value": "920"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "0.45"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "frac",
+     "n": 4,
+     "d": 5
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "80",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-digits",
+      "value": "45"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "0.8"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write as a percent.",
+    "expression": {
+     "type": "dec",
+     "value": "0.02"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-place",
+      "value": "0.2"
+     },
+     {
+      "id": "rat.percent-not-converted",
+      "value": "0.02"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write as a decimal.",
+    "expression": {
+     "type": "pct",
+     "value": "250"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2.5"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-place",
+      "value": "25"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "0.25"
+     },
+     {
+      "id": "rat.percent-not-converted",
+      "value": "250"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.convert",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write as a decimal.",
+    "expression": {
+     "type": "pct",
+     "value": "3"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.03"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-place",
+      "value": "0.3"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "0.003"
+     },
+     {
+      "id": "rat.percent-not-converted",
+      "value": "3"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.percent.of": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "10"
+     },
+     "right": {
+      "type": "int",
+      "value": 100
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "1000"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "100"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "10"
+     },
+     "right": {
+      "type": "int",
+      "value": 60
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "600"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "60"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "10"
+     },
+     "right": {
+      "type": "int",
+      "value": 80
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "800"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "80"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "40"
+     },
+     "right": {
+      "type": "int",
+      "value": 120
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "48"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-of-divide",
+      "value": "3"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "4800"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "480"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "15"
+     },
+     "right": {
+      "type": "int",
+      "value": 180
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "27"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-of-divide",
+      "value": "12"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "2700"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "270"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "20"
+     },
+     "right": {
+      "type": "int",
+      "value": 100
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-of-divide",
+      "value": "5"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "2000"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "200"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "8"
+     },
+     "right": {
+      "type": "int",
+      "value": 60
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4.8"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-of-divide",
+      "value": "7.5"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "480"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "48"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "5"
+     },
+     "right": {
+      "type": "int",
+      "value": 40
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-of-divide",
+      "value": "8"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "200"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "20"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.of",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the amount.",
+    "expression": {
+     "type": "op",
+     "op": "of",
+     "left": {
+      "type": "pct",
+      "value": "15"
+     },
+     "right": {
+      "type": "int",
+      "value": 20
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "300"
+     },
+     {
+      "id": "rat.percent-place",
+      "value": "30"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.percent.what-percent": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "15 is what percent of 20?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "75",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "15"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "10 is what percent of 20?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-flipped",
+      "value": "200"
+     },
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "10"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "3 is what percent of 4?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "75",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "3"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "14 is what percent of 40?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "35",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "14"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "3 is what percent of 60?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-flipped",
+      "value": "2000"
+     },
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "3"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "9 is what percent of 60?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "9"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "A team won 44 of its 50 games. What percent of its games did it win?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "88",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "44"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "In a survey, 12 of 20 students said they walk to school. What percent walk?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "60",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent.what-percent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the percent.",
+    "expression": {
+     "type": "words",
+     "text": "A team won 17 of its 20 games. What percent of its games did it win?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "85",
+     "suffix": "%"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-part-as-percent",
+      "value": "17"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.ratios": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 9
+      },
+      "b": {
+       "type": "int",
+       "value": 7
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 36
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "28"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "34"
+     }
+    ],
+    "part": "rat.ratios.equivalent"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the unit price.",
+    "expression": {
+     "type": "words",
+     "text": "6 notebooks cost $24. How much does 1 cost?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-flipped",
+      "value": "0.25"
+     },
+     {
+      "id": "rat.rate-multiplied",
+      "value": "144"
+     }
+    ],
+    "part": "rat.ratios.unit-rate"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the unit price.",
+    "expression": {
+     "type": "words",
+     "text": "2 tickets cost $18. How much does 1 cost?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-multiplied",
+      "value": "36"
+     }
+    ],
+    "part": "rat.ratios.unit-rate"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 15
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 10
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "75"
+     },
+     {
+      "id": "rat.additive",
+      "value": "7"
+     }
+    ],
+    "part": "rat.ratios.proportion"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 6
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "12"
+     },
+     {
+      "id": "rat.additive",
+      "value": "4"
+     }
+    ],
+    "part": "rat.ratios.proportion"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 8
+      },
+      "b": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 12
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "10"
+     },
+     {
+      "id": "rat.ratio-swapped",
+      "value": "16"
+     }
+    ],
+    "part": "rat.ratios.equivalent"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which is the better buy (less for each one)?",
+    "expression": {
+     "type": "words",
+     "text": "Pack A: 5 for $5.  Pack B: 4 for $5."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Pack A",
+      "Pack B"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "rat.better-buy-total",
+      "choice": 1
+     }
+    ],
+    "part": "rat.ratios.unit-rate"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which is the better buy (less for each one)?",
+    "expression": {
+     "type": "words",
+     "text": "Pack A: 2 for $2.50.  Pack B: 4 for $3."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Pack A",
+      "Pack B"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "rat.better-buy-total",
+      "choice": 0
+     }
+    ],
+    "part": "rat.ratios.unit-rate"
+   },
+   {
+    "generator": "rat.ratios",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A car goes 24 miles on 9 gallons of gas. At that rate, how many miles does it go on 15 gallons?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "40"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "5.625"
+     },
+     {
+      "id": "rat.additive",
+      "value": "30"
+     }
+    ],
+    "part": "rat.ratios.proportion"
+   }
+  ]
+ },
+ "rat.ratios.equivalent": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 5
+      },
+      "b": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 25
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "26"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 8
+      },
+      "b": {
+       "type": "int",
+       "value": 3
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 32
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "27"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 4
+      },
+      "b": {
+       "type": "int",
+       "value": 2
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 16
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "14"
+     },
+     {
+      "id": "rat.ratio-swapped",
+      "value": "32"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 4
+      },
+      "b": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 10
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 6
+      },
+      "b": {
+       "type": "int",
+       "value": 21
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 12
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "42"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "27"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 6
+      },
+      "b": {
+       "type": "int",
+       "value": 4
+      }
+     },
+     "right": {
+      "type": "ratio",
+      "a": {
+       "type": "int",
+       "value": 18
+      },
+      "b": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "16"
+     },
+     {
+      "id": "rat.ratio-swapped",
+      "value": "27"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A club has 12 boys for every 21 girls. If there are 28 boys, how many girls are there?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "49"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "37"
+     },
+     {
+      "id": "rat.ratio-swapped",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A recipe uses 15 cans of blue paint for every 40 cans of yellow paint. How many cans of yellow paint go with 21 cans of blue paint?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "56"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "46"
+     },
+     {
+      "id": "rat.ratio-swapped",
+      "value": "7.875"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.equivalent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A recipe uses 28 cups of flour for every 32 cups of sugar. How many cups of sugar go with 14 cups of flour?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "16"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "18"
+     },
+     {
+      "id": "rat.ratio-swapped",
+      "value": "12.25"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.ratios.proportion": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 15
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "45"
+     },
+     {
+      "id": "rat.additive",
+      "value": "13"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 12
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "14.4"
+     },
+     {
+      "id": "rat.additive",
+      "value": "11"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 12
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "9.6"
+     },
+     {
+      "id": "rat.additive",
+      "value": "13"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 12
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "27"
+     },
+     {
+      "id": "rat.additive",
+      "value": "1"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 28
+     },
+     "right": {
+      "type": "frac",
+      "n": 6,
+      "d": 14
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "20"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve the proportion.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 12
+     },
+     "right": {
+      "type": "frac",
+      "n": 10,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "7.2"
+     },
+     {
+      "id": "rat.additive",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "You earn $14 for 4 hours of work. At that rate, how many dollars do you earn for 8 hours?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "28"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A machine fills 4 bottles in 2 minutes. At that rate, how many bottles does it fill in 6 minutes?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.proportion-cross-wrong",
+      "value": "3"
+     },
+     {
+      "id": "rat.additive",
+      "value": "8"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.proportion",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "You earn $36 for 20 hours of work. At that rate, how many dollars do you earn for 30 hours?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "54"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.additive",
+      "value": "46"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.ratios.unit-rate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the unit price.",
+    "expression": {
+     "type": "words",
+     "text": "5 bottles of water cost $40. How much does 1 cost?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-flipped",
+      "value": "0.125"
+     },
+     {
+      "id": "rat.rate-multiplied",
+      "value": "200"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the unit price.",
+    "expression": {
+     "type": "words",
+     "text": "2 notebooks cost $10. How much does 1 cost?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-flipped",
+      "value": "0.2"
+     },
+     {
+      "id": "rat.rate-multiplied",
+      "value": "20"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the unit price.",
+    "expression": {
+     "type": "words",
+     "text": "5 pens cost $45. How much does 1 cost?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-multiplied",
+      "value": "225"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the unit rate.",
+    "expression": {
+     "type": "words",
+     "text": "Ana reads 385 pages in 7 days. How many pages is that per day?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "55"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-multiplied",
+      "value": "2695"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the unit rate.",
+    "expression": {
+     "type": "words",
+     "text": "Ana reads 200 pages in 8 days. How many pages is that per day?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-flipped",
+      "value": "0.04"
+     },
+     {
+      "id": "rat.rate-multiplied",
+      "value": "1600"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the unit rate.",
+    "expression": {
+     "type": "words",
+     "text": "Ana types 480 words in 8 minutes. How many words is that per minute?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "60"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-multiplied",
+      "value": "3840"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which is the better buy (less for each one)?",
+    "expression": {
+     "type": "words",
+     "text": "Pack A: 2 for $4.  Pack B: 6 for $7.50."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Pack A",
+      "Pack B"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "rat.better-buy-total",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which is the better buy (less for each one)?",
+    "expression": {
+     "type": "words",
+     "text": "Pack A: 2 for $3.  Pack B: 7 for $5.25."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Pack A",
+      "Pack B"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "rat.better-buy-total",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.unit-rate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the unit price.",
+    "expression": {
+     "type": "words",
+     "text": "8 bottles of water cost $78. How much does 1 cost?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9.75",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.rate-multiplied",
+      "value": "624"
+     }
+    ]
+   }
+  ]
+ },
  "whole.add-sub": {
   "version": 1,
   "problems": [

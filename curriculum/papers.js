@@ -23,5 +23,8 @@ import decConvertPaper from './paper/dec.convert.json';
 import decAddSubPaper from './paper/dec.add-sub.json';
 import decMultiplyPaper from './paper/dec.multiply.json';
 import decDividePaper from './paper/dec.divide.json';
+import ratRatiosPaper from './paper/rat.ratios.json';
+import ratPercentPaper from './paper/rat.percent.json';
+import ratPercentChangePaper from './paper/rat.percent-change.json';
 
-export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper];
+export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper];

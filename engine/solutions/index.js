@@ -14,11 +14,13 @@ import { solveExpression } from './alg-expressions.js';
 import { solveDecimal } from './dec.js';
 import { solveMultiStep } from './alg-multi-step.js';
 import { solveInequality } from './alg-inequalities.js';
+import { solveRatio } from './rat.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
   if (kind.startsWith('whole.')) return solveWhole(problem);
   if (kind.startsWith('dec.')) return solveDecimal(problem);
+  if (kind.startsWith('rat.')) return solveRatio(problem);
   if (kind.startsWith('int.')) return solveInt(problem);
   if (kind.startsWith('alg.equations')) return solveEquation(problem);
   if (kind.startsWith('alg.multi-step')) return solveMultiStep(problem);

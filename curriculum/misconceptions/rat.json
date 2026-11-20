@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about ratios and percents. 'pointsTo' is the subskill to work on. Claude's draft (2026-11-20).",
+  "misconceptions": [
+    {
+      "id": "rat.additive",
+      "description": "Adds the same amount instead of multiplying (3 : 4 = 12 : 13, because 3 + 9 = 12).",
+      "pointsTo": "rat.ratios.equivalent"
+    },
+    {
+      "id": "rat.ratio-swapped",
+      "description": "Mixes up which number goes with which in the ratio.",
+      "pointsTo": "rat.ratios.equivalent"
+    },
+    {
+      "id": "rat.rate-flipped",
+      "description": "Divides the wrong way for a unit rate (4 ÷ $12 instead of $12 ÷ 4).",
+      "pointsTo": "rat.ratios.unit-rate"
+    },
+    {
+      "id": "rat.rate-multiplied",
+      "description": "Multiplies instead of dividing to find the amount for one.",
+      "pointsTo": "rat.ratios.unit-rate"
+    },
+    {
+      "id": "rat.better-buy-total",
+      "description": "Picks the lower total price instead of the lower price for each one.",
+      "pointsTo": "rat.ratios.unit-rate"
+    },
+    {
+      "id": "rat.proportion-cross-wrong",
+      "description": "Multiplies the wrong pair of numbers when cross-multiplying.",
+      "pointsTo": "rat.ratios.proportion"
+    },
+    {
+      "id": "rat.percent-place",
+      "description": "Moves the decimal point the wrong number of places (7% = 0.7; 0.4 = 4%).",
+      "pointsTo": "rat.percent.convert"
+    },
+    {
+      "id": "rat.percent-not-converted",
+      "description": "Writes the same number with or without the % sign (35% = 35; 0.4 = 0.4%).",
+      "pointsTo": "rat.percent.convert"
+    },
+    {
+      "id": "rat.percent-digits",
+      "description": "Writes the fraction's numbers as the percent (3/5 = 35%).",
+      "pointsTo": "rat.percent.convert"
+    },
+    {
+      "id": "rat.percent-of-divide",
+      "description": "Divides the number by the percent (25% of 80 = 80 ÷ 25).",
+      "pointsTo": "rat.percent.of"
+    },
+    {
+      "id": "rat.percent-not-hundred",
+      "description": "Multiplies by the percent but forgets it's out of 100 (25% of 80 = 2000).",
+      "pointsTo": "rat.percent.of"
+    },
+    {
+      "id": "rat.percent-flipped",
+      "description": "Divides the whole by the part (12 is 400% of 48).",
+      "pointsTo": "rat.percent.what-percent"
+    },
+    {
+      "id": "rat.percent-part-as-percent",
+      "description": "Gives the part as the percent (12 out of 48 = 12%).",
+      "pointsTo": "rat.percent.what-percent"
+    },
+    {
+      "id": "rat.change-only-amount",
+      "description": "Gives only the amount of the change (the discount or the tip), not the new amount.",
+      "pointsTo": "rat.percent-change.apply"
+    },
+    {
+      "id": "rat.change-wrong-way",
+      "description": "Adds a discount or subtracts an increase.",
+      "pointsTo": "rat.percent-change.apply"
+    },
+    {
+      "id": "rat.change-subtract-percent",
+      "description": "Subtracts (or adds) the percent number itself ($40 − 25 = $15).",
+      "pointsTo": "rat.percent-change.apply"
+    },
+    {
+      "id": "rat.change-wrong-base",
+      "description": "Divides the change by the new amount instead of the original.",
+      "pointsTo": "rat.percent-change.find"
+    },
+    {
+      "id": "rat.change-amount-as-percent",
+      "description": "Gives the amount of the change as the percent (50 -> 40 is a 10% decrease).",
+      "pointsTo": "rat.percent-change.find"
+    }
+  ]
+}

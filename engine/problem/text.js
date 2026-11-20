@@ -19,6 +19,9 @@
 //   { type: 'ineq', op: '<' | '≤' | '>' | '≥', left, right }   an inequality: 3x - 2 > 7
 //   { type: 'list', items: [...] }
 //   { type: 'blank' }
+//   { type: 'ratio', a, b }           a ratio a : b (either may be a blank)
+//   { type: 'pct', value }            a percent: "35%" (value is decimal text)
+//   { type: 'words', text }           a short word problem's question, shown as text
 //   { type: 'model', shape: 'bar' | 'area' | 'set', parts, shaded, rows?, cols? }
 //                                     a picture: parts equal pieces (or dots), the first `shaded` shaded
 //   { type: 'compare', left, right }  "left ? right": which symbol goes in the box
@@ -31,6 +34,12 @@ export function toText(node) {
   switch (node.type) {
     case 'blank':
       return '?';
+    case 'words':
+      return node.text;
+    case 'ratio':
+      return `${toText(node.a)} : ${toText(node.b)}`;
+    case 'pct':
+      return `${node.value}%`;
     case 'int':
       return node.value < 0 ? `-${-node.value}` : String(node.value);
     case 'dec':

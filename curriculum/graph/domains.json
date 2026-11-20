@@ -26,6 +26,11 @@
       "id": "dec",
       "name": "Decimals",
       "file": "dec.json"
+    },
+    {
+      "id": "rat",
+      "name": "Ratios and percents",
+      "file": "rat.json"
     }
   ]
 }

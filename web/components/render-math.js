@@ -58,6 +58,15 @@ function build(node) {
     }
     case 'int':
       return el('span', 'm-num', node.value < 0 ? `−${-node.value}` : String(node.value));
+    case 'words':
+      return el('span', 'm-words', node.text);
+    case 'ratio': {
+      const wrap = el('span', 'm-row');
+      wrap.append(build(node.a), el('span', 'm-op', ':'), build(node.b));
+      return wrap;
+    }
+    case 'pct':
+      return el('span', 'm-num', `${node.value}%`);
     case 'dec':
       return el('span', 'm-num', node.value.startsWith('-') ? `−${node.value.slice(1)}` : node.value);
     case 'blank':
@@ -140,6 +149,7 @@ function spoken(text) {
     .replace(/\)/g, ', close parenthesis')
     .replace(/ \u00d7 /g, ' times ')
     .replace(/ \u00f7 /g, ' divided by ')
+    .replace(/ : /g, ' to ')
     .replace(/ = /g, ' equals ')
     .replace(/ ≤ /g, ' is less than or equal to ')
     .replace(/ ≥ /g, ' is greater than or equal to ')

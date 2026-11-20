@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "skill": "rat.percent",
+  "title": "Percents",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "rat.percent.convert": "Percent means out of 100. To go from percent to decimal, divide by 100 (point 2 places left); the other way, multiply by 100.",
+    "rat.percent.of": "Change the percent to a decimal (or a fraction), then multiply: 25% of 80 = 0.25 × 80.",
+    "rat.percent.what-percent": "Write part over whole as a fraction, change it to a decimal, then multiply by 100.",
+    "rat.percent": "Percent means out of 100. Of means multiply. What percent? Part over whole, times 100."
+  },
+  "misconceptionMessages": {
+    "rat.percent-place": "Percent means out of 100: move the point 2 places. 7% = 0.07, and 0.4 = 40%.",
+    "rat.percent-not-converted": "35% and 0.35 are the same amount: 35 hundredths. Move the point 2 places when you change between them.",
+    "rat.percent-digits": "The fraction's numbers aren't the percent. Make it out of 100: 3/5 = 60/100 = 60%.",
+    "rat.percent-of-divide": "Of means multiply: 25% of 80 = 0.25 × 80 = 20.",
+    "rat.percent-not-hundred": "Remember percent is out of 100: 25% of 80 is 25 × 80 ÷ 100 = 20.",
+    "rat.percent-flipped": "Part over whole: 12 out of 48 is 12/48, not 48/12. It should be less than 100% when the part is smaller.",
+    "rat.percent-part-as-percent": "The part isn't the percent unless the whole is 100. Divide part by whole, then multiply by 100."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "rat.percent.convert",
+      "forGap": "rat.percent.convert",
+      "title": "Percents, decimals and fractions",
+      "objective": "Change between percents, decimals and fractions.",
+      "mode": "section",
+      "generator": "rat.percent.convert",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Percent means \"out of 100\": 35% is 35 hundredths.",
+        "Percent to decimal: divide by 100. Decimal to percent: multiply by 100."
+      ],
+      "visual": null,
+      "key": "Percent means out of 100. 35% = 35/100 = 0.35. Move the point 2 places.",
+      "worked": [
+        {
+          "math": "{grid 35/100}",
+          "note": "35 out of 100 squares"
+        },
+        {
+          "math": "35% = {35/100} = [[0.35]]",
+          "note": ""
+        },
+        {
+          "math": "{3/5} = {60/100} = [[60%]]",
+          "note": "make the bottom 100"
+        },
+        {
+          "math": "7% = [[0.07]]",
+          "note": "not 0.7"
+        }
+      ]
+    },
+    {
+      "id": "rat.percent.of",
+      "forGap": "rat.percent.of",
+      "title": "A percent of a number",
+      "objective": "Find a percent of a number, like 15% of 60.",
+      "mode": "section",
+      "generator": "rat.percent.of",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Of means multiply.",
+        "Easy percents have easy fractions: 50% = 1/2, 25% = 1/4, 10% = 1/10."
+      ],
+      "visual": null,
+      "key": "Change the percent to a decimal or fraction, then multiply. 25% of 80 = {1/4} of 80 = 20.",
+      "worked": [
+        {
+          "math": "15% of 60",
+          "note": ""
+        },
+        {
+          "math": "[[0.15]] × 60",
+          "note": "15% as a decimal"
+        },
+        {
+          "math": "[[9]]",
+          "note": ""
+        },
+        {
+          "math": "or: 10% of 60 = 6, 5% = 3, so 15% = 6 + 3 = 9",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.percent.what-percent",
+      "forGap": "rat.percent.what-percent",
+      "title": "What percent?",
+      "objective": "Find what percent one number is of another.",
+      "mode": "section",
+      "generator": "rat.percent.what-percent",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Part over whole is the fraction. Change it to a percent.",
+        "A score: 21 out of 25 = 21/25 = 84/100 = 84%."
+      ],
+      "visual": null,
+      "key": "Write part over whole, change it to a decimal, then multiply by 100.",
+      "worked": [
+        {
+          "math": "12 is what percent of 48?",
+          "note": ""
+        },
+        {
+          "math": "{12/48} = [[{1/4}]]",
+          "note": "part over whole, simplified"
+        },
+        {
+          "math": "{1/4} = 0.25 = [[25%]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.percent.whole",
+      "forGap": "rat.percent",
+      "title": "Putting it together",
+      "objective": "Percents of every kind, mixed.",
+      "mode": "skill",
+      "generator": "rat.percent",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Percent means out of 100. Of means multiply. What percent? Part over whole, times 100.",
+      "worked": [
+        {
+          "math": "20% of 45 = 0.2 × 45 = [[9]]",
+          "note": ""
+        },
+        {
+          "math": "9 is what percent of 45? {9/45} = {1/5} = [[20%]]",
+          "note": "the same fact, backwards"
+        }
+      ]
+    }
+  ]
+}

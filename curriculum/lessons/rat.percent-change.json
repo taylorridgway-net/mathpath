@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "skill": "rat.percent-change",
+  "title": "Percent change",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "rat.percent-change.apply": "Find the change first (the percent of the original), then subtract it for a discount or add it for tax, a tip or an increase.",
+    "rat.percent-change.find": "Find how much it changed, then divide by the ORIGINAL amount and multiply by 100.",
+    "rat.percent-change": "New amount: find the change, then add or subtract. Percent change: change ÷ original × 100."
+  },
+  "misconceptionMessages": {
+    "rat.change-only-amount": "That's the amount of the change. Now take it off (or add it on) to get the new amount.",
+    "rat.change-wrong-way": "Check the direction: a discount makes the price smaller; tax, a tip or an increase makes it bigger.",
+    "rat.change-subtract-percent": "The percent isn't dollars. Find 25% OF the price first, then subtract that amount.",
+    "rat.change-wrong-base": "Compare the change with the ORIGINAL amount (the starting number), not the new one.",
+    "rat.change-amount-as-percent": "That's how much it changed. To get the percent, divide the change by the original amount and multiply by 100."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "rat.percent-change.apply",
+      "forGap": "rat.percent-change.apply",
+      "title": "Sales, tax and tips",
+      "objective": "Find the new amount after a percent increase or decrease.",
+      "mode": "section",
+      "generator": "rat.percent-change.apply",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A discount is a percent OF the price, taken off.",
+        "Tax and tips are a percent of the price, added on."
+      ],
+      "visual": null,
+      "key": "Find the change (the percent of the original amount), then subtract it for a discount or add it for tax, a tip or an increase.",
+      "worked": [
+        {
+          "math": "$40 jacket, 25% off",
+          "note": ""
+        },
+        {
+          "math": "{bar 1/4} 25% of $40 = [[$10]]",
+          "note": "the discount"
+        },
+        {
+          "math": "$40 − $10 = [[$30]]",
+          "note": "the sale price"
+        },
+        {
+          "math": "Or: 75% is left, and 0.75 × 40 = 30",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.percent-change.find",
+      "forGap": "rat.percent-change.find",
+      "title": "Percent increase and decrease",
+      "objective": "Find the percent change between two amounts.",
+      "mode": "section",
+      "generator": "rat.percent-change.find",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "The percent change compares the change with where you started.",
+        "From 50 to 40 is a change of 10, and 10 out of 50 is 20%."
+      ],
+      "visual": null,
+      "key": "Percent change = change ÷ ORIGINAL amount, times 100.",
+      "worked": [
+        {
+          "math": "50 → 40",
+          "note": ""
+        },
+        {
+          "math": "change: [[10]]",
+          "note": ""
+        },
+        {
+          "math": "{10/50} = [[0.2]]",
+          "note": "divide by the original, 50"
+        },
+        {
+          "math": "[[20%]] decrease",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.percent-change.whole",
+      "forGap": "rat.percent-change",
+      "title": "Putting it together",
+      "objective": "New amounts and percent changes, mixed.",
+      "mode": "skill",
+      "generator": "rat.percent-change",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "New amount: find the change, then add or subtract. Percent change: change ÷ original × 100.",
+      "worked": [
+        {
+          "math": "$60 plus 15% tip",
+          "note": ""
+        },
+        {
+          "math": "15% of 60 = [[9]]",
+          "note": ""
+        },
+        {
+          "math": "60 + 9 = [[$69]]",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

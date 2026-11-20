@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "rat.ratios",
+  "title": "Ratios and rates",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. A ratio table, a unit rate, or scaling both numbers of the ratio all count.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Fill in the missing number so the ratios are equal:  4 : 7 = ? : 35", "math": "4 * 35 / 7", "answer": "20" },
+        { "id": "A2", "kind": "computation", "prompt": "Solve for x:  x/8 = 15/24", "math": "8 * 15 / 24", "answer": "5" },
+        { "id": "A3", "kind": "computation", "prompt": "Write as a unit rate:  240 miles in 4 hours = ? miles per hour", "math": "240 / 4", "answer": "60 (miles per hour)" },
+        { "id": "A4", "kind": "word", "prompt": "A 6-pack of sports drinks costs $4.50. A 10-pack costs $7.00. Which is the better buy? Show the price per bottle.", "math": "better 6-pack 6 4.50 10-pack 10 7.00", "answer": "10-pack ($0.70 per bottle; the 6-pack is $0.75 per bottle)" },
+        { "id": "A5", "kind": "word", "prompt": "A recipe uses 3 cups of rice to feed 8 people. How many cups of rice do you need to feed 24 people?", "math": "3 * 24 / 8", "answer": "9 (cups)" },
+        { "id": "A6", "kind": "word", "prompt": "Jess says 3 : 4 = 12 : 13, because 3 + 9 = 12, so she added 9 to the 4 too. Is she right? Explain, and give the correct missing number.", "math": "4 * 12 / 3", "answer": "16 (No: equal ratios multiply both numbers by the same number; 3 × 4 = 12, so 4 × 4 = 16)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Fill in the missing number so the ratios are equal:  6 : 9 = 10 : ?", "math": "9 * 10 / 6", "answer": "15" },
+        { "id": "B2", "kind": "computation", "prompt": "Solve for n:  n/12 = 9/4", "math": "12 * 9 / 4", "answer": "27" },
+        { "id": "B3", "kind": "word", "prompt": "Rosa earned $84 for 7 hours of work at her job. How much does she earn per hour?", "math": "84 / 7", "answer": "$12 (per hour)" },
+        { "id": "B4", "kind": "word", "prompt": "Store A sells 12 ounces of cereal for $3.60. Store B sells 20 ounces of the same cereal for $5.00. Which is the better buy? Show the price per ounce.", "math": "better Store_A 12 3.60 Store_B 20 5.00", "answer": "Store B ($0.25 per ounce; Store A is $0.30 per ounce)" },
+        { "id": "B5", "kind": "word", "prompt": "Streaming video uses 3 GB of phone data every 2 hours. At that rate, how many GB does 10 hours of video use?", "math": "3 * 10 / 2", "answer": "15 (GB)" },
+        { "id": "B6", "kind": "word", "prompt": "An animal shelter has 3 cats for every 5 dogs. There are 15 dogs. Ken says there are 25 cats. Is he right? Explain, and give the correct number of cats.", "math": "3 * 15 / 5", "answer": "9 (No: 15 dogs is 5 × 3, so there are 3 × 3 = 9 cats; Ken scaled the wrong number)" }
+      ]
+    }
+  ]
+}

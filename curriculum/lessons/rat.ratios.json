@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "skill": "rat.ratios",
+  "title": "Ratios and rates",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "rat.ratios.equivalent": "Find what one number was multiplied by, and multiply the other number by the same.",
+    "rat.ratios.unit-rate": "For one, divide the total by how many. To compare deals, find the price for one in each.",
+    "rat.ratios.proportion": "Match the parts that go together. Find what the bottom was multiplied by, and do the same to the top.",
+    "rat.ratios": "Ratios grow by multiplying both numbers by the same thing. For one, divide."
+  },
+  "misconceptionMessages": {
+    "rat.additive": "Ratios grow by multiplying, not adding: 3 : 4 doubled is 6 : 8, not 6 : 7.",
+    "rat.ratio-swapped": "Check which number goes with which: keep flour with flour and sugar with sugar.",
+    "rat.rate-flipped": "For the amount for ONE, divide the total by how many: $12 ÷ 4.",
+    "rat.rate-multiplied": "You're finding the amount for one, so the answer should be smaller: divide, don't multiply.",
+    "rat.better-buy-total": "The cheaper pack isn't always the better buy. Find the price for ONE in each pack and compare.",
+    "rat.proportion-cross-wrong": "Line up the matching parts first: top with top, bottom with bottom. Then multiply across the right way."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "rat.ratios.equivalent",
+      "forGap": "rat.ratios.equivalent",
+      "title": "Equivalent ratios",
+      "objective": "Find a missing number in a ratio like 3 : 4 = 12 : ?.",
+      "mode": "section",
+      "generator": "rat.ratios.equivalent",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A ratio compares two amounts: 3 cups of flour for every 4 cups of sugar.",
+        "Making more batches multiplies both amounts by the same number."
+      ],
+      "visual": {
+        "widget": "ratio-table",
+        "params": {
+          "top": [
+            3,
+            "cups of flour"
+          ],
+          "bottom": [
+            4,
+            "cups of sugar"
+          ],
+          "times": [
+            2,
+            3,
+            4
+          ]
+        },
+        "caption": "3 cups of flour for every 4 cups of sugar. Tap for more batches."
+      },
+      "key": "Equivalent ratios come from multiplying (or dividing) both numbers by the same number. Never by adding.",
+      "worked": [
+        {
+          "math": "3 : 4 = 12 : ?",
+          "note": ""
+        },
+        {
+          "math": "3 [[× 4]] = 12",
+          "note": "what was 3 multiplied by?"
+        },
+        {
+          "math": "4 [[× 4]] = 16",
+          "note": "do the same to 4"
+        },
+        {
+          "math": "3 : 4 = 12 : [[16]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.ratios.unit-rate",
+      "forGap": "rat.ratios.unit-rate",
+      "title": "Unit rates",
+      "objective": "Find the amount for one: price per item, miles per hour.",
+      "mode": "section",
+      "generator": "rat.ratios.unit-rate",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "\"Per\" means for each one.",
+        "To compare deals, find the price for one in each and compare those."
+      ],
+      "visual": null,
+      "key": "A unit rate is the amount for ONE. Divide the total by how many.",
+      "worked": [
+        {
+          "math": "4 notebooks cost $12",
+          "note": ""
+        },
+        {
+          "math": "$12 [[÷ 4]] = $3",
+          "note": "divide by how many"
+        },
+        {
+          "math": "$3 for 1 notebook",
+          "note": ""
+        },
+        {
+          "math": "150 miles in 3 hours: 150 ÷ 3 = [[50]] miles per hour",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.ratios.proportion",
+      "forGap": "rat.ratios.proportion",
+      "title": "Proportions",
+      "objective": "Solve proportions like x/6 = 10/15.",
+      "mode": "section",
+      "generator": "rat.ratios.proportion",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A proportion says two ratios are equal.",
+        "Match the parts that go together, then scale; or cross-multiply."
+      ],
+      "visual": null,
+      "key": "Line up the matching parts. Whatever the bottom was multiplied by, multiply the top by the same.",
+      "worked": [
+        {
+          "math": "x/6 = {10/15}",
+          "note": ""
+        },
+        {
+          "math": "{10/15} = [[{2/3}]]",
+          "note": "simplify first"
+        },
+        {
+          "math": "6 = 3 [[× 2]]",
+          "note": ""
+        },
+        {
+          "math": "x = 2 [[× 2]] = 4",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.ratios.whole",
+      "forGap": "rat.ratios",
+      "title": "Putting it together",
+      "objective": "Ratios, rates and proportions, mixed.",
+      "mode": "skill",
+      "generator": "rat.ratios",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Ratios grow by multiplying. For one, divide. In a proportion, match the parts and scale.",
+      "worked": [
+        {
+          "math": "A car goes 120 miles on 4 gallons.",
+          "note": ""
+        },
+        {
+          "math": "120 ÷ 4 = [[30]] miles per gallon",
+          "note": "the unit rate"
+        },
+        {
+          "math": "7 gallons: 30 × 7 = [[210]] miles",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}
