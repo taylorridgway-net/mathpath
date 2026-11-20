@@ -84,7 +84,10 @@ const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnos
 const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, s.title])));
 const misconceptionInfo = new Map(misconceptions.map((m) => [m.id, m]));
 // Heatmap columns: whole-number skills first (they come first on paths), then fractions.
-const FRACTION_SKILLS = [...wholeGraph.skills, ...fracGraph.skills].map((s) => s.id);
+// Skills by area, in the order of curriculum/graph/domains.json.
+const AREA_FILES = { whole: wholeGraph, int: intGraph, frac: fracGraph, alg: algGraph };
+const AREAS = domainsIndex.domains.map((d) => ({ id: d.id, name: d.name, skills: AREA_FILES[d.id].skills.map((sk) => sk.id) }));
+const ALL_SKILLS = AREAS.flatMap((a) => a.skills);
 const ME = 'you (preview)';
 const api = createApi({ setup });
 const live = !api.preview;
@@ -209,6 +212,7 @@ const app = document.getElementById('app');
 let tab = 'overview';
 let classFilter = 'all';
 let expandedSkill = null;
+let heatArea = 'frac'; // the every-student table opens on fractions (owner decision); other areas are a tap away
 let sortBy = 'name';
 let onlyWaiting = false;
 
@@ -297,14 +301,20 @@ function legend() {
 }
 
 const shortName = (id) => ({
-  'whole.add-sub': 'Whole numbers: add & subtract',
-  'whole.mult-div': 'Whole numbers: facts & remainders',
-  'whole.factors-multiples': 'Whole numbers: factors & multiples',
+  'whole.add-sub': 'Add & subtract',
+  'whole.mult-div': 'Facts & remainders',
+  'whole.factors-multiples': 'Factors & multiples',
+  'int.add-sub': 'Integers: add & subtract',
+  'int.mult-div': 'Integers: multiply & divide',
   'frac.meaning': 'Understand fractions',
   'frac.equivalent': 'Equivalent & simplest form',
   'frac.compare': 'Compare & order',
   'frac.mixed': 'Mixed numbers',
   'frac.add-sub': 'Fractions: add & subtract',
+  'alg.order-ops': 'Order of operations',
+  'alg.exponents': 'Exponents',
+  'alg.equations': 'Equations',
+  'alg.expressions': 'Simplify expressions',
   'frac.multiply': 'Multiply',
   'frac.divide': 'Divide',
   'frac.signed': 'Negative fractions',
@@ -316,7 +326,7 @@ function overview() {
   const screen = frame('Class overview');
   const list_ = shown();
   const waitingCount = list_.filter((s) => s.status.openChecks.length).length;
-  const toVerify = list_.filter((s) => FRACTION_SKILLS.some((k) => s.status.skills[k] === 'platform')).length;
+  const toVerify = list_.filter((s) => ALL_SKILLS.some((k) => s.status.skills[k] === 'platform')).length;
 
   // Quick numbers a teacher acts on.
   const stats = h('div', 't-stats');
@@ -330,7 +340,7 @@ function overview() {
 
   // Per-skill bars.
   const bars = h('div', 't-bars');
-  bars.append(h('h2', 't-h2', 'Fraction skills across the class'));
+  bars.append(h('h2', 't-h2', 'Skills across the class'));
   const BAR_KEY = [['verified', 'Verified'], ['platform', 'Platform'], ['working', 'Working on it'], ['gap', 'Gap'], ['shaky', 'Shaky'], ['known', 'Showed or credited in the diagnostic'], ['not-tested', 'Not tested']];
   const key = h('div', 't-legend');
   for (const [st, label] of BAR_KEY) {
@@ -340,7 +350,10 @@ function overview() {
   }
   bars.append(key);
   const untested = [];
-  for (const skillId of FRACTION_SKILLS) {
+  for (const area of AREAS) {
+  const tested = area.skills.filter((skillId) => countStatuses(list_.map((s) => s.status.skills[skillId]))['not-tested'] !== list_.length);
+  if (tested.length) bars.append(h('h3', 't-area-head', area.name));
+  for (const skillId of area.skills) {
     const counts = countStatuses(list_.map((s) => s.status.skills[skillId]));
     if (counts['not-tested'] === list_.length) {
       untested.push(shortName(skillId));
@@ -368,7 +381,8 @@ function overview() {
     row.append(bar, h('span', 't-bar-note', parts.join(' · ')));
     bars.append(row);
   }
-  if (untested.length) bars.append(h('p', 't-hint', `No diagnostic questions yet for: ${untested.join(', ')}.`));
+  }
+  if (untested.length) bars.append(h('p', 't-hint', `Nobody here has been checked on these yet: ${untested.join(', ')}.`));
   screen.append(bars);
 
   // Heatmap.
@@ -386,7 +400,16 @@ function overview() {
   box.addEventListener('change', () => { onlyWaiting = box.checked; render(); });
   wait.append(box, ' Only students with a check for me');
   controls.append(sort, wait);
-  heat.append(controls, legend());
+  // Which area's skills the table shows.
+  const areaPick = h('div', 't-controls t-area-pick');
+  areaPick.setAttribute('role', 'group');
+  areaPick.setAttribute('aria-label', 'Area');
+  for (const area of [...AREAS, { id: 'all', name: 'All areas' }]) {
+    const b = btn(`t-tab${heatArea === area.id ? ' is-on' : ''}`, area.name, () => { heatArea = area.id; expandedSkill = null; render(); });
+    b.setAttribute('aria-pressed', String(heatArea === area.id));
+    areaPick.append(b);
+  }
+  heat.append(controls, areaPick, legend());
   heat.append(h('p', 't-hint', expandedSkill
     ? `Showing the parts of “${shortName(expandedSkill)}”. Click its heading again to close.`
     : 'Click a skill’s heading to see its parts. Click a student for their profile.'));
@@ -398,7 +421,8 @@ function overview() {
     : sortBy === 'active' ? (a.part.lastActive || '').localeCompare(b.part.lastActive || '')
       : a.name.localeCompare(b.name, undefined, { numeric: true })));
 
-  const columns = FRACTION_SKILLS.flatMap((id) => (id === expandedSkill
+  const areaSkills = heatArea === 'all' ? ALL_SKILLS : AREAS.find((a) => a.id === heatArea).skills;
+  const columns = areaSkills.flatMap((id) => (id === expandedSkill
     ? [{ id, skill: true }, ...graph.subskillsOf(id).map((sub) => ({ id: sub, sub: true }))]
     : [{ id, skill: true }]));
   const scroller = h('div', 't-scroll');
@@ -689,16 +713,56 @@ function tryLesson(lesson, sectionId) {
 // ---------- Paper tests ----------
 
 let paperVersion = 'A';
-let paperSkill = 'frac.add-sub';
+let paperSkill = null; // null: open on the skill with the most students waiting
 let paperWho = 'ready';
 const marksDraft = {}; // code -> [1|0|null, ...]
 
+// Everyone with platform mastery who hasn't been checked on paper yet, by skill.
+function waitingForPaper() {
+  const bySkill = new Map();
+  for (const st of shown()) {
+    for (const [skill, v] of Object.entries(st.status.skills)) {
+      if (v !== 'platform' || !papers[skill]) continue;
+      if (!bySkill.has(skill)) bySkill.set(skill, []);
+      bySkill.get(skill).push({ student: st, since: st.status.platformAt?.[skill] || null });
+    }
+  }
+  for (const list of bySkill.values()) list.sort((a, b) => String(a.since).localeCompare(String(b.since)));
+  return [...bySkill.entries()].sort((a, b) => b[1].length - a[1].length);
+}
+
 function paper() {
+  const waiting = waitingForPaper();
+  if (!paperSkill) paperSkill = waiting[0]?.[0] || 'frac.add-sub';
   const skillId = paperSkill;
   const test = papers[skillId];
   const version = test.versions.find((v) => v.id === paperVersion);
   const screen = frame('Paper tests');
   screen.append(h('p', 'lede', `Verified mastery comes only from these paper tests, written separately from the practice problems. ${rules.verification.minScore} of ${rules.verification.outOf} suggests “verified”; you make the final call.`));
+
+  // Who's waiting, across every skill, so nobody has to click through skills to find them.
+  const queue = h('div', 't-card t-queue');
+  const total = waiting.reduce((n, [, list]) => n + list.length, 0);
+  queue.append(h('h2', 't-h2', total ? `Waiting for a paper test (${total})` : 'Nobody is waiting for a paper test'));
+  if (total) queue.append(h('p', 't-card-sub', 'They showed platform mastery. Tap a name to open that skill’s test and their score card. Longest waiting first.'));
+  for (const [skill, list] of waiting) {
+    const row = h('div', 't-queue-row');
+    row.append(h('strong', 't-queue-skill', `${papers[skill].title} (${list.length})`));
+    const names = h('div', 't-queue-names');
+    for (const { student: st, since } of list) {
+      const b = btn('t-chip', since ? `${st.name} · ${day(since)}` : st.name, () => {
+        paperSkill = skill;
+        paperWho = 'ready';
+        for (const k of Object.keys(marksDraft)) delete marksDraft[k];
+        render();
+        document.getElementById(`score-${st.code}`)?.scrollIntoView({ block: 'center' });
+      });
+      names.append(b);
+    }
+    row.append(names);
+    queue.append(row);
+  }
+  screen.append(queue);
 
   const top = h('div', 't-two');
   // Left: the test itself.
@@ -754,6 +818,7 @@ function paper() {
 
 function scoreCard(s, skillId, version) {
   const card = h('div', 't-card');
+  card.id = `score-${s.code}`;
   const head = h('div', 't-card-head');
   head.append(btn('t-who', s.name, () => showStudent(s.code)), cell(s.status.skills[skillId]));
   card.append(head);

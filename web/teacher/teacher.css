@@ -203,3 +203,11 @@
 .t-lesson-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); flex-wrap: wrap; }
 .t-lesson-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 18rem; }
 .t-lesson-actions { display: flex; align-items: center; gap: 10px; }
+
+/* paper tests: who's waiting */
+.t-queue-row { display: flex; flex-direction: column; gap: 6px; padding: 10px 0; border-top: 1px solid var(--line); }
+.t-queue-names { display: flex; flex-wrap: wrap; gap: 6px; }
+.t-chip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; min-height: 36px; font-size: 0.9rem; }
+.t-chip:hover { border-color: var(--accent); }
+.t-area-head { margin: 14px 0 4px; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.t-area-pick { flex-wrap: wrap; }
