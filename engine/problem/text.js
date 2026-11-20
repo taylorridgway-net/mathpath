@@ -24,6 +24,8 @@
 //   { type: 'numberline', max, perUnit, point }
 //                                     0 to max, each whole cut into perUnit; a dot at tick `point`
 
+import { fromScaled } from '../math/decimal.js';
+
 export function toText(node) {
   switch (node.type) {
     case 'blank':
@@ -45,8 +47,10 @@ export function toText(node) {
       if (typeof c === 'number') return c === 1 ? node.name : c === -1 ? `-${node.name}` : `${c < 0 ? `-${-c}` : c}${node.name}`;
       return `(${toText(c)})${node.name}`;
     }
-    case 'column':
-      return `${node.top} ${node.op} ${node.bottom}`;
+    case 'column': {
+      const show = (n) => (node.places ? fromScaled(n, node.places, { keepZeros: true }) : String(n));
+      return `${show(node.top)} ${node.op} ${show(node.bottom)}`;
+    }
     case 'scaled':
       return `${node.coef === 1 ? '' : node.coef === -1 ? '-' : node.coef < 0 ? `-${-node.coef}` : node.coef}(${toText(node.of)})`;
     case 'pow':

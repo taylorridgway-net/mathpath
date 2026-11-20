@@ -448,3 +448,5 @@ mark.hl { background: var(--mark-soft); color: inherit; border-bottom: 3px solid
 .fp-grid { gap: 2px; }
 
 sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
+.col-point { width: auto; font-weight: 700; }
+.col-pad { color: var(--muted); }

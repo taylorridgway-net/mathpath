@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about decimals. 'pointsTo' is the subskill to work on. Claude's draft (2026-11-20), waiting for owner review.",
+  "misconceptions": [
+    {
+      "id": "dec.place-value-shift",
+      "description": "Puts digits in the wrong place: 7/100 written 0.7, 25/1000 as 0.25, 0.4 = 4/100, or reads the wrong place.",
+      "pointsTo": "dec.place-value.read"
+    },
+    {
+      "id": "dec.longer-is-larger",
+      "description": "Thinks a decimal with more digits is bigger (0.45 > 0.5, because 45 > 5).",
+      "pointsTo": "dec.place-value.compare"
+    },
+    {
+      "id": "dec.shorter-is-larger",
+      "description": "Thinks a decimal with fewer digits is bigger, because tenths are bigger pieces than hundredths (0.4 > 0.45).",
+      "pointsTo": "dec.place-value.compare"
+    },
+    {
+      "id": "dec.round-truncate",
+      "description": "Cuts the digits off instead of rounding (2.67 to the nearest tenth = 2.6).",
+      "pointsTo": "dec.place-value.round"
+    },
+    {
+      "id": "dec.round-wrong-way",
+      "description": "Rounds the wrong way (2.22 to the nearest tenth = 2.3).",
+      "pointsTo": "dec.place-value.round"
+    },
+    {
+      "id": "dec.round-wrong-place",
+      "description": "Rounds to a different place than asked.",
+      "pointsTo": "dec.place-value.round"
+    },
+    {
+      "id": "dec.convert-digits",
+      "description": "Writes the fraction's numbers as the decimal (3/4 = 0.34 or 3.4).",
+      "pointsTo": "dec.convert.to-decimal"
+    },
+    {
+      "id": "dec.convert-flipped",
+      "description": "Divides the bottom by the top (4/5 = 1.25).",
+      "pointsTo": "dec.convert.to-decimal"
+    },
+    {
+      "id": "dec.convert-over-ten",
+      "description": "Puts the decimal's digits over 10 whatever the place (0.35 = 35/10).",
+      "pointsTo": "dec.convert.to-fraction"
+    },
+    {
+      "id": "dec.right-align",
+      "description": "Lines up the last digits instead of the decimal points (3.5 + 1.25 = 1.60; 3.25 + 2 = 3.27).",
+      "pointsTo": "dec.add-sub.line-up"
+    },
+    {
+      "id": "dec.whole-ignored",
+      "description": "With a whole number, subtracts only the whole parts and brings the decimal part down (6 − 2.35 = 4.35).",
+      "pointsTo": "dec.add-sub.whole-numbers"
+    },
+    {
+      "id": "dec.point-wrong-way",
+      "description": "Moves the decimal point the wrong way, or not far enough, for 10, 100, 1000 (4.5 × 10 = 0.45).",
+      "pointsTo": "dec.multiply.powers-of-ten"
+    },
+    {
+      "id": "dec.append-zero",
+      "description": "Multiplies by 10 by writing a 0 on the end, which doesn't change a decimal (2.5 × 10 = 2.50).",
+      "pointsTo": "dec.multiply.powers-of-ten"
+    },
+    {
+      "id": "dec.point-one-factor",
+      "description": "Places the point from one factor instead of counting the places in both (0.3 × 0.2 = 0.6).",
+      "pointsTo": "dec.multiply.place"
+    },
+    {
+      "id": "dec.divide-point",
+      "description": "Divides the digits right but puts the point in the wrong place (4.8 ÷ 6 = 8).",
+      "pointsTo": "dec.divide.by-whole"
+    },
+    {
+      "id": "dec.move-one-point",
+      "description": "Moves the point in only one of the numbers when dividing by a decimal (2.4 ÷ 0.3 = 0.8).",
+      "pointsTo": "dec.divide.by-decimal"
+    }
+  ]
+}

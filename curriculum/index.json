@@ -5,7 +5,8 @@
     "whole",
     "int",
     "frac",
-    "alg"
+    "alg",
+    "dec"
   ],
   "lessons": [
     "whole.add-sub",

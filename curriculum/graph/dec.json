@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "domain": {
+    "id": "dec",
+    "name": "Decimals"
+  },
+  "skills": [
+    {
+      "id": "dec.place-value",
+      "name": "Understand decimals",
+      "summary": "Read and write decimals by place value (tenths, hundredths, thousandths), compare them, and round them.",
+      "typicalGrade": 5,
+      "standards": [
+        "4.NF.C.6",
+        "4.NF.C.7",
+        "5.NBT.A.3",
+        "5.NBT.A.4"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "dec.place-value.read",
+          "name": "Place value: tenths, hundredths, thousandths (0.07 = 7/100)",
+          "prerequisites": [
+            {
+              "id": "frac.meaning.read-models",
+              "strength": "supporting",
+              "why": "Tenths and hundredths are fractions; a picture of 7/100 helps."
+            }
+          ]
+        },
+        {
+          "id": "dec.place-value.compare",
+          "name": "Compare decimals (0.5 vs 0.45)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "dec.place-value.round",
+          "name": "Round decimals to the nearest whole, tenth or hundredth",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dec.convert",
+      "name": "Fractions and decimals",
+      "summary": "Write a fraction as a decimal (3/4 = 0.75, 3/8 = 0.375) and a decimal as a fraction in simplest form (0.35 = 7/20). Only decimals that end, for now.",
+      "typicalGrade": 7,
+      "standards": [
+        "4.NF.C.6",
+        "7.NS.A.2d"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "dec.convert.to-decimal",
+          "name": "Fraction to decimal (3/4 = 0.75)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.equivalent.scale",
+              "strength": "essential",
+              "why": "3/4 = 75/100 is an equivalent fraction."
+            }
+          ]
+        },
+        {
+          "id": "dec.convert.to-fraction",
+          "name": "Decimal to fraction in simplest form (0.35 = 7/20)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.equivalent.simplify",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dec.add-sub",
+      "name": "Add and subtract decimals",
+      "summary": "Add and subtract decimals by lining up the decimal points, including a whole number and a decimal (6 − 2.35).",
+      "typicalGrade": 5,
+      "standards": [
+        "5.NBT.B.7",
+        "6.NS.B.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "dec.add-sub.line-up",
+          "name": "Line up the decimal points (3.5 + 1.25)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.add-sub.add-regroup",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "dec.add-sub.whole-numbers",
+          "name": "A whole number and a decimal (6 − 2.35)",
+          "prerequisites": [
+            {
+              "id": "dec.add-sub.line-up",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dec.multiply",
+      "name": "Multiply decimals",
+      "summary": "Multiply and divide by 10, 100, 1000 (and by 0.1, 0.01) by moving the decimal point; multiply decimals by counting decimal places.",
+      "typicalGrade": 5,
+      "standards": [
+        "5.NBT.A.2",
+        "5.NBT.B.7",
+        "6.NS.B.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "dec.multiply.powers-of-ten",
+          "name": "Multiply or divide by 10, 100, 1000 (4.5 × 100 = 450)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "dec.multiply.place",
+          "name": "Multiply decimals: count the decimal places (0.3 × 0.2 = 0.06)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.multiply.powers-of-ten",
+              "strength": "supporting",
+              "why": "Why counting places works: 0.3 × 0.2 is 3 × 2 divided by 100."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dec.divide",
+      "name": "Divide decimals",
+      "summary": "Divide a decimal by a whole number (4.8 ÷ 6) and by a decimal, by moving both decimal points (2.4 ÷ 0.3 = 24 ÷ 3). Fact-sized digits only (no long division yet).",
+      "typicalGrade": 6,
+      "standards": [
+        "5.NBT.B.7",
+        "6.NS.B.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "dec.divide.by-whole",
+          "name": "Divide a decimal by a whole number (4.8 ÷ 6 = 0.8)",
+          "prerequisites": [
+            {
+              "id": "dec.place-value.read",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.div-facts",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "dec.divide.by-decimal",
+          "name": "Divide by a decimal: move both points (2.4 ÷ 0.3 = 8)",
+          "prerequisites": [
+            {
+              "id": "dec.divide.by-whole",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.multiply.powers-of-ten",
+              "strength": "essential",
+              "why": "Moving both points is multiplying both numbers by 10 or 100."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

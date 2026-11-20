@@ -6,15 +6,22 @@
 // (ones first) have been worked. Pure, so it's tested in Node and used by the
 // lesson picture and the worked solutions alike.
 
-const digitsOf = (n, width) => String(n).padStart(width, ' ').split('').reverse().map((c) => (c === ' ' ? null : Number(c)));
+// Decimals: top and bottom are whole numbers of 10^-places (3.5 and 1.25 with places 2
+// are 350 and 125), so the points line up; a number always shows its ones digit (0.35).
+// The zeros filled in to line the points up (3.50) are marked `padded`.
+const lengthOf = (n, places) => Math.max(String(n).length, places + 1);
+const digitsOf = (n, width, places = 0) => String(n).padStart(places + 1, '0').padStart(width, ' ').split('').reverse().map((c) => (c === ' ' ? null : Number(c)));
 
-export function columnLayout(op, top, bottom, done = Infinity) {
-  const width = Math.max(String(top).length, String(bottom).length, op === '+' ? String(top + bottom).length : 0);
-  const t = digitsOf(top, width);
-  const b = digitsOf(bottom, width);
-  const cols = Array.from({ length: width }, (_, i) => ({ top: t[i], bottom: b[i], newTop: null, carry: null, result: null }));
+export function columnLayout(op, top, bottom, done = Infinity, { places = 0, topPlaces = places, bottomPlaces = places } = {}) {
+  const width = Math.max(lengthOf(top, places), lengthOf(bottom, places), op === '+' ? lengthOf(top + bottom, places) : 0);
+  const t = digitsOf(top, width, places);
+  const b = digitsOf(bottom, width, places);
+  const cols = Array.from({ length: width }, (_, i) => ({
+    top: t[i], bottom: b[i], newTop: null, carry: null, result: null,
+    ...(i < places - topPlaces ? { topPadded: true } : {}), ...(i < places - bottomPlaces ? { bottomPadded: true } : {}),
+  }));
   // How many columns there are to work: every digit column, plus one for a final carry.
-  const work = op === '+' ? String(top + bottom).length : Math.max(String(top).length, String(bottom).length);
+  const work = op === '+' ? lengthOf(top + bottom, places) : Math.max(lengthOf(top, places), lengthOf(bottom, places));
   const columns = Math.min(done, work);
   if (op === '+') {
     let carry = 0;
@@ -39,7 +46,7 @@ export function columnLayout(op, top, bottom, done = Infinity) {
       cols[i].result = cur[i] - (b[i] ?? 0);
     }
     // No leading zeros in the answer.
-    for (let i = columns - 1; i > 0 && cols[i].result === 0 && i >= String(top - bottom).length; i--) cols[i].result = null;
+    for (let i = columns - 1; i > places && cols[i].result === 0 && i >= lengthOf(top - bottom, places); i--) cols[i].result = null;
   }
-  return { op, width, columns: cols, current: columns > 0 && columns <= width ? columns - 1 : null };
+  return { op, width, places, columns: cols, current: columns > 0 && columns <= width ? columns - 1 : null };
 }

@@ -17,6 +17,7 @@ import { expressionGenerators } from './alg/expressions.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
 import { wholeFactorGenerators } from './whole/factors.js';
+import { decimalGenerators } from './dec/decimals.js';
 
 export const generators = {
   ...addSubGenerators,
@@ -34,6 +35,7 @@ export const generators = {
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,
   ...wholeFactorGenerators,
+  ...decimalGenerators,
 };
 
 export const DIFFICULTIES = [1, 2, 3];
