@@ -559,14 +559,50 @@ function swap(screen) {
 
 // ---------- start ----------
 
-profile = loadLocal(PROFILE_KEY);
-if (!profile) {
-  showLogin();
-} else {
-  setStudent(profile.id);
-  loadDiagnostic();
-  route();
-  upload().then(() => (outbox().length ? null : refreshFromServerQuietly()));
+// If anything goes wrong and the page is left empty, show a way out instead of a blank page.
+window.addEventListener('error', (e) => crashed(e.error || e.message));
+window.addEventListener('unhandledrejection', (e) => crashed(e.reason));
+
+try {
+  profile = loadLocal(PROFILE_KEY);
+  if (!profile) {
+    showLogin();
+  } else {
+    setStudent(profile.id);
+    loadDiagnostic();
+    route();
+    upload().then(() => (outbox().length ? null : refreshFromServerQuietly()));
+  }
+} catch (e) {
+  crashed(e);
+}
+
+function crashed(error) {
+  console.error(error);
+  if (app.querySelector('.screen')) return; // the student still has a working screen
+  const detail = String(error?.stack || error?.message || error || 'unknown').split('\n').slice(0, 3).join(' | ');
+  const screen = section('screen screen-start');
+  screen.append(h('p', 'eyebrow', 'MathPath'), h('h1', 'title', 'Something went wrong'));
+  screen.append(h('p', 'lede', api.preview
+    ? 'This page couldn’t open the progress saved on this device. Starting fresh clears the pretend progress and opens the preview again.'
+    : 'This page couldn’t open what was saved on this device. Try again first. If it still doesn’t work, start fresh: anything not uploaded yet is kept, and the rest comes back from your teacher’s records.'));
+  const actions = h('div', 'actions');
+  actions.append(
+    btn('button button-primary', 'Try again', () => window.location.reload()),
+    btn('button', 'Start fresh on this device', () => { startFresh(); window.location.reload(); }),
+  );
+  screen.append(actions, h('p', 'fine', `For your teacher: ${detail}`));
+  swap(screen);
+}
+
+// Clear what this page saved in the browser. The real app keeps work waiting to upload.
+function startFresh() {
+  try {
+    const keys = Object.keys(window.localStorage).filter((k) => k.startsWith('mathpath.'));
+    for (const k of keys) if (api.preview || !k.endsWith('.outbox.v1')) window.localStorage.removeItem(k);
+  } catch {
+    // storage blocked: nothing saved to clear
+  }
 }
 
 // On load: pick up anything the teacher changed, without moving the student off their screen.
