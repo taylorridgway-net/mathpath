@@ -350,3 +350,9 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .account-out { border: 0; background: none; color: var(--accent); font-weight: 600; min-height: 36px; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
 .save-status { flex-basis: 100%; }
 .save-status.is-waiting { color: var(--warn); font-weight: 600; }
+
+/* remainder and list answers (whole numbers) */
+.answer-r { font-family: var(--font-ui); font-weight: 700; font-size: 1.25rem; color: var(--muted); padding-inline: 4px; }
+.answer-entries { font-size: 1.6rem; font-variant-numeric: lining-nums tabular-nums; max-width: 60%; overflow-wrap: anywhere; text-align: right; }
+.answer[data-mode="remainder"] .answer-box, .answer[data-mode="list"] .answer-box { height: 3.2rem; font-size: 2rem; min-width: 4rem; }
+.key-spacer { min-height: 54px; }

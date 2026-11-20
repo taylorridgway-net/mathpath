@@ -20,7 +20,7 @@ import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { buildPath } from '../../engine/lessons/path.js';
 import { seedFor } from '../../engine/seeds.js';
 import { renderMath } from '../components/render-math.js';
-import { createKeypad } from '../components/keypad.js';
+import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { loadLocal, saveLocal, removeLocal } from '../storage/local.js';
 import {
   setStudent, loadMine, saveMine, loadProgress, finishedRecords, clearAllSections,
@@ -249,7 +249,7 @@ function showQuestion() {
 
   keypad = createKeypad({
     host: answerHost,
-    allowFractions: q.problem.answer.type === 'fraction',
+    ...keypadOptionsFor(q.problem),
     onSubmit: (raw) => answer(raw),
     onSkip: () => answer({}),
   });

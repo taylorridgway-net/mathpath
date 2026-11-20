@@ -22,7 +22,7 @@ import { toText } from '../../engine/problem/text.js';
 import { renderMath } from '../components/render-math.js';
 import { renderLessonText } from '../components/lesson-text.js';
 import { createFractionBars } from '../components/fraction-bars.js';
-import { createKeypad } from '../components/keypad.js';
+import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
 import { seedFor } from '../../engine/seeds.js';
 import { h, section as screenEl, btn, swap, split } from '../components/dom.js';
@@ -239,7 +239,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       cols.side.append(answerHost);
       screen.append(cols.el);
       swap(app, screen);
-      mountKeypad(answerHost, cur.problem.answer.type === 'fraction', (raw) => answerPractice(raw));
+      mountKeypad(answerHost, keypadOptionsFor(cur.problem), (raw) => answerPractice(raw));
     }
   }
 
@@ -313,8 +313,9 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     return wrap;
   }
 
-  function mountKeypad(host, allowFractions, onSubmit) {
-    keypad = createKeypad({ host, allowFractions, onSubmit, onSkip: () => onSubmit({}) });
+  // options: from keypadOptionsFor(problem), e.g. { allowFractions: true } or { answerKind: 'remainder' }.
+  function mountKeypad(host, options, onSubmit) {
+    keypad = createKeypad({ host, ...options, onSubmit, onSkip: () => onSubmit({}) });
     shownAt = performance.now();
   }
 
@@ -420,9 +421,9 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     cols.side.append(answerHost);
     swap(app, outer);
     if (step.isFinal) {
-      mountKeypad(answerHost, true, (raw) => answerPractice(raw));
+      mountKeypad(answerHost, { allowFractions: true }, (raw) => answerPractice(raw));
     } else {
-      mountKeypad(answerHost, false, (raw) => answerStep(raw));
+      mountKeypad(answerHost, { allowFractions: false }, (raw) => answerStep(raw));
     }
   }
 

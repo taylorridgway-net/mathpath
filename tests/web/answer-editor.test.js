@@ -110,3 +110,32 @@ test('typed answers are graded correctly end to end', () => {
   assert.equal(grade([]), 'invalid');
   assert.equal(grade(['3', 'fraction', '4']), 'wrong');
 });
+
+// ---------- whole numbers: remainders and lists ----------
+
+test('a remainder: 9 R 2, and backspace from an empty remainder box goes back to the quotient', () => {
+  const opts = { kind: 'remainder' };
+  assert.deepEqual(raw(['9', 'remainder', '2'], opts), { whole: 9, rem: 2 });
+  const s = type(['9', 'remainder', 'backspace', 'backspace'], opts);
+  assert.equal(s.focus, 'whole');
+  assert.deepEqual(toRawAnswer(s), {});
+  assert.deepEqual(raw(['9'], opts), { whole: 9 }, 'remainder left empty means 0');
+  assert.deepEqual(raw(['3', 'fraction', '4'], opts), { whole: 34 }, 'no fractions in a remainder answer');
+});
+
+test('a list: type, next, type...; backspace in an empty box takes the last number back', () => {
+  const opts = { kind: 'list' };
+  assert.deepEqual(raw(['1', 'next', '2', 'next', '1', '2'], opts), { list: [1, 2, 12] });
+  assert.deepEqual(raw(['1', 'next', '2', 'next'], opts), { list: [1, 2] }, 'a trailing next is fine');
+  assert.deepEqual(raw(['1', 'next', '2', '4', 'next', 'backspace', 'backspace'], opts), { list: [1, 2] }, 'took 24 back, deleted the 4');
+  assert.deepEqual(raw(['next', 'next'], opts), { list: [] }, 'empty boxes are never added');
+});
+
+test('remainder and list answers are graded as the student typed them', () => {
+  const remProblem = { answer: { type: 'quotient-remainder', quotient: 9, remainder: 2 }, misconceptions: [] };
+  assert.equal(checkAnswer(remProblem, raw(['9', 'remainder', '2'], { kind: 'remainder' })).status, 'correct');
+  const listProblem = { answer: { type: 'set', values: [1, 2, 3, 6], of: 6 }, misconceptions: [] };
+  assert.equal(checkAnswer(listProblem, raw(['6', 'next', '3', 'next', '2', 'next', '1'], { kind: 'list' })).status, 'correct');
+  assert.equal(rawToText({ list: [2, 2, 3] }), '2, 2, 3');
+  assert.equal(rawToText({ whole: 9, rem: 2 }), '9 R 2');
+});
