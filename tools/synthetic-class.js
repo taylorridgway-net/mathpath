@@ -16,6 +16,7 @@ import { buildPath } from '../engine/lessons/path.js';
 import { reduce } from '../engine/math/fraction.js';
 import { simulatedStudent } from './simulated-student.js';
 import { sectionSummary } from '../engine/teacher/section-summary.js';
+import { practicePlan } from '../engine/lessons/plan.js';
 
 const DAY = 24 * 60 * 60 * 1000;
 
@@ -146,7 +147,7 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
 
 // One finished section, played with the real practice engine.
 function practiseSection({ rng, generators, rules, sec, lesson, code, seed, attemptNo, skill, held, at, curriculumVersion }) {
-  const practice = startPractice({ generators, rules, seed, plan: { generator: sec.generator, mode: sec.mode } });
+  const practice = startPractice({ generators, rules, seed, plan: practicePlan(sec) });
   const answers = [];
   const times = [];
   let p = skill;
@@ -174,6 +175,8 @@ function practiseSection({ rng, generators, rules, sec, lesson, code, seed, atte
 
 function correct(problem) {
   const a = problem.answer;
+  if (a.type === 'quotient-remainder') return { whole: a.quotient, rem: a.remainder };
+  if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
   if (a.type === 'integer') return { whole: a.value };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
@@ -182,8 +185,15 @@ function correct(problem) {
 
 function mistake(problem, held) {
   const m = (problem.misconceptions || []).find((x) => held.includes(x.id));
-  if (m) return typeof m.value === 'number' ? { whole: m.value } : { num: m.value.n, den: m.value.d };
+  if (m && !m.test) {
+    if (typeof m.value === 'number') return { whole: m.value };
+    if (m.value.quotient !== undefined) return { whole: m.value.quotient, rem: m.value.remainder };
+    return { num: m.value.n, den: m.value.d };
+  }
   const a = problem.answer;
+  if (m?.test) return { list: [1] };
+  if (a.type === 'quotient-remainder') return { whole: a.quotient + 1, rem: a.remainder };
+  if (a.type === 'set' || a.type === 'multiset') return { list: a.values.slice(1) };
   if (a.type === 'integer') return { whole: a.value + 1 };
   if (a.type === 'common-multiple') return { whole: a.least + 1 };
   return { num: Math.abs(a.value.n) + 1, den: a.value.d };

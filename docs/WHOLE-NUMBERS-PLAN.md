@@ -54,7 +54,7 @@ time into a growing list.
 1. Graph update (`whole.json`) + generators with tests (independently re-computed answers, golden seeds). **(Done.)**
 2. Diagnostic: check that fraction gaps now trace into whole numbers correctly (simulated students). **(Done.)** Also: mixed-review skills are checked part by part (one right fact says nothing about remainders); facts are asked at the hard level only; the slow rule is replayed exactly on the server (times are saved); a fact that's shaky only because it was slow doesn't block what depends on it.
 3. Keypad: remainder and list answers. **(Done.)**
-4. Lesson text (Claude drafts; owner reviews in the preview) + area model.
+4. Lesson text (Claude drafts; owner reviews in the preview) + area model. **(Done; text waiting for owner review.)** Worked solutions for every whole-number question (`engine/solutions/whole.js`, tested); the facts check is 10 hard facts, pass at 9 (`"check"` in the lesson file); one shared practice plan for browser, server and dashboard (`engine/lessons/plan.js`).
 5. Dashboard: whole-number skills in the heatmap; paper tests for each skill (authored separately, answer keys checked).
 
 ## 7. Owner's answers (2026-11-20)

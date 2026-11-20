@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "skill": "whole.factors-multiples",
+  "title": "Factors and multiples",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "whole.factors-multiples.factors",
+      "forGap": "whole.factors-multiples.factors",
+      "title": "List all the factors",
+      "objective": "Find every factor of a number, without missing any.",
+      "mode": "section",
+      "generator": "whole.factors-multiples.factors",
+      "explain": [
+        "A factor of 24 is a number that divides 24 evenly: 24 ÷ 6 = 4 with nothing left over, so 6 is a factor.",
+        "Find them in pairs so you don't miss any. Try 1, 2, 3, and so on: 1 × 24, 2 × 12, 3 × 8, 4 × 6. 5 doesn't divide 24. The next to try is 6, but you already have it, so you're done.",
+        "Factors are never bigger than the number. 48 and 72 are multiples of 24, not factors."
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.factors-multiples.primes",
+      "forGap": "whole.factors-multiples.primes",
+      "title": "Prime factorization",
+      "objective": "Write a number as a product of primes.",
+      "mode": "section",
+      "generator": "whole.factors-multiples.primes",
+      "explain": [
+        "A prime number has exactly two factors: 1 and itself. 2, 3, 5, 7, 11 and 13 are prime. 1 is not prime, and 9 isn't either (3 × 3).",
+        "To write 60 as a product of primes, split it into any two factors, then keep splitting anything that isn't prime: 60 = 2 × 30, 30 = 2 × 15, 15 = 3 × 5. So 60 = 2 × 2 × 3 × 5.",
+        "Type the primes one at a time with Next. The order doesn't matter, but every number must be prime."
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.factors-multiples.gcf",
+      "forGap": "whole.factors-multiples.gcf",
+      "title": "Greatest common factor",
+      "objective": "Find the biggest number that divides two numbers evenly.",
+      "mode": "section",
+      "generator": "whole.factors-multiples.gcf",
+      "explain": [
+        "A common factor divides both numbers. The greatest common factor (GCF) is the biggest one.",
+        "List the factors of each number and find the biggest one in both lists. For 24 and 36: 1, 2, 3, 4, 6, 12 are in both, so the GCF is 12.",
+        "You'll use this to simplify fractions: dividing the top and bottom of 24/36 by 12 gives 2/3 in one step."
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.factors-multiples.lcm",
+      "forGap": "whole.factors-multiples.lcm",
+      "title": "Least common multiple",
+      "objective": "Find the smallest number both numbers divide into.",
+      "mode": "section",
+      "generator": "whole.factors-multiples.lcm",
+      "explain": [
+        "Multiples of 6 are 6, 12, 18, 24, and so on. A common multiple of 6 and 8 is in both lists. The least common multiple (LCM) is the smallest one.",
+        "Count by the bigger number and stop at the first one the smaller number divides into: 8, 16, 24. 6 divides 24, so the LCM is 24.",
+        "Multiplying the two numbers (6 × 8 = 48) always gives a common multiple, but not always the least. This is the same idea as finding a common denominator."
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.factors-multiples.whole",
+      "forGap": "whole.factors-multiples",
+      "title": "Putting it together",
+      "objective": "Factors, prime factorization, GCF and LCM, mixed together.",
+      "mode": "skill",
+      "generator": "whole.factors-multiples",
+      "explain": [
+        "Now the problems are mixed. Read what each one asks for: all the factors, a product of primes, the greatest common factor, or the least common multiple.",
+        "Factors divide into a number. Multiples are what you get by counting by it. Greatest means the biggest common factor; least means the smallest common multiple."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "whole.factors-multiples.factors": "Go in pairs: 1 × ?, 2 × ?, 3 × ?, ... Stop when the pairs meet.",
+    "whole.factors-multiples.primes": "Split the number into any two factors. Keep splitting until every number is prime.",
+    "whole.factors-multiples.gcf": "List the factors of both numbers. Find the biggest one that's in both lists.",
+    "whole.factors-multiples.lcm": "Count by the bigger number. Stop at the first one the smaller number divides into.",
+    "whole.factors-multiples": "Read what the problem asks for first: factors, primes, greatest common factor or least common multiple."
+  },
+  "simplifyHint": "",
+  "misconceptionMessages": {
+    "whole.multiples-not-factors": "Those are multiples (you get them by counting by the number). Factors divide INTO the number, so they're never bigger than it.",
+    "whole.factor-pairs-missed": "Every number there is a factor, but some are missing. Go in pairs: 1 × ?, 2 × ?, 3 × ?, ...",
+    "whole.not-all-prime": "The product is right, but not every number is prime yet. Keep splitting the ones that aren't.",
+    "whole.gave-lcm": "That's a common multiple. The question asks for a common FACTOR: a number that divides into both.",
+    "whole.common-not-greatest": "That divides both numbers, but there's a bigger one that does too.",
+    "whole.gave-gcf": "That divides into both numbers. The question asks for a common MULTIPLE: a number both divide into.",
+    "whole.product-not-least": "That is a common multiple, but there's a smaller one. Count by the bigger number and stop at the first one that works."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

@@ -47,7 +47,7 @@ function diagnosticRecord(studentId, attemptNo = 1, answerFor = right) {
 }
 
 function sectionRecord(studentId, section, attemptNo = 1, answerFor = right) {
-  const sec = setup.lessons[0].sections.find((s) => s.id === section);
+  const sec = setup.lessons.flatMap((l) => l.sections).find((s) => s.id === section);
   const seed = seedFor(studentId, section, attemptNo);
   const p = startPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: sec.generator, mode: sec.mode } });
   const answers = [];

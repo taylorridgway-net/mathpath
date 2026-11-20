@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "skill": "whole.add-sub",
+  "title": "Adding and subtracting whole numbers",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "whole.add-sub.add-regroup",
+      "forGap": "whole.add-sub.add-regroup",
+      "title": "Add with carrying",
+      "objective": "Add 2- and 3-digit numbers when a column adds up to 10 or more.",
+      "mode": "section",
+      "generator": "whole.add-sub.add-regroup",
+      "explain": [
+        "Line the numbers up by place: ones under ones, tens under tens, hundreds under hundreds. Then add one column at a time, starting with the ones on the right.",
+        "When a column adds up to 10 or more, you can only write one digit there. 7 + 8 = 15 is 1 ten and 5 ones: write the 5 in the ones, and carry the 1 ten to the top of the tens column.",
+        "Then add the tens column, including the 1 you carried. Forgetting the carried 1 is the most common mistake, so say it out loud: \"plus the 1 I carried.\""
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.add-sub.sub-regroup",
+      "forGap": "whole.add-sub.sub-regroup",
+      "title": "Subtract with borrowing",
+      "objective": "Subtract 2- and 3-digit numbers when a top digit is smaller than the one below it, including across zeros.",
+      "mode": "section",
+      "generator": "whole.add-sub.sub-regroup",
+      "example": { "difficulty": 3 },
+      "explain": [
+        "Line the numbers up by place and subtract one column at a time, starting with the ones. Always take the bottom number from the top number, even when the top digit is smaller.",
+        "If the top digit is smaller, borrow: take 1 from the next place to the left. That 1 ten becomes 10 ones. In 52 − 27, the 5 tens become 4 tens, and the 2 ones become 12 ones. Then 12 − 7 = 5.",
+        "If the place you want to borrow from is 0, go one more place to the left. In 503 − 278, the tens are 0, so borrow from the hundreds: 5 hundreds become 4, the tens become 10. Then borrow 1 of those tens: the tens become 9, and the ones become 13.",
+        "Check by adding: your answer plus the number you took away should give back the top number."
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.add-sub.whole",
+      "forGap": "whole.add-sub",
+      "title": "Putting it together",
+      "objective": "Add and subtract 2- and 3-digit numbers, mixed together.",
+      "mode": "skill",
+      "generator": "whole.add-sub",
+      "explain": [
+        "Now the problems are mixed: some add, some subtract. Read the sign first.",
+        "Adding: carry when a column makes 10 or more. Subtracting: borrow when the top digit is smaller, and go further left if you hit a 0."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "whole.add-sub.add-regroup": "Start with the ones. If a column makes 10 or more, write the ones digit and carry the 1 to the next column.",
+    "whole.add-sub.sub-regroup": "Start with the ones. If the top digit is smaller, borrow 1 from the next place to the left (and if that's 0, go one more place left).",
+    "whole.add-sub": "Look at the sign first. Then work one column at a time, starting with the ones."
+  },
+  "simplifyHint": "",
+  "misconceptionMessages": {
+    "whole.no-carry": "That column added up to 10 or more. Write only the ones digit, and carry the 1 to the next column. Did you add the carried 1?",
+    "whole.column-sums": "Each column can only hold one digit. When a column makes 10 or more, write the ones digit and carry the 1 to the next column.",
+    "whole.smaller-from-larger": "In each column, take the bottom digit away from the top digit, even when the top one is smaller. When it's smaller, borrow from the next place.",
+    "whole.borrow-no-decrease": "When you borrow, the place you borrowed from goes down by 1. Did you cross it out and write one less?"
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

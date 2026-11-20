@@ -177,3 +177,29 @@ test('quick review only applies to one-step sections, not "Putting it together"'
   const p = startPractice({ generators, rules, seed: 'r2', plan: { generator: 'frac.add-sub', mode: 'skill', review: true } });
   assert.equal(p.currentProblem().phase, 'guided');
 });
+
+// ---- a fixed-length check (multiplication facts: 9 of 10 right on the first try, owner decision) ----
+const factsSetup = { generators, rules, seed: 'f1', plan: { generator: 'whole.mult-div.mult-facts', mode: 'section', check: { outOf: 10, rightNeeded: 9, difficulty: 3 } } };
+const factRight = (pr) => ({ whole: pr.expression.left.value * pr.expression.right.value });
+
+test('facts check: 9 right on the first try passes, even with one miss', () => {
+  let checkIndex = 0;
+  const { result } = run(factsSetup, (pr, attempt, i) => {
+    const p = factsSetup; // eslint-disable-line no-unused-vars
+    if (pr.difficulty === 3 && attempt === 1 && checkIndex++ === 4) return { whole: 1 };
+    return factRight(pr);
+  });
+  const check = result.problems.filter((x) => x.phase === 'check');
+  assert.equal(result.endedBy, 'passed');
+  assert.equal(check.filter((x) => x.outcome === 'right-first').length, 9);
+  assert.ok(check.length <= 10);
+  assert.ok(check.every((x) => x.difficulty === 3), 'the check uses the hard facts');
+});
+
+test('facts check: a second miss ends it, not passed (no 20-problem marathon)', () => {
+  let misses = 0;
+  const { result } = run(factsSetup, (pr, attempt) => (pr.difficulty === 3 && attempt === 1 && misses++ < 2 ? {} : factRight(pr)));
+  assert.equal(result.endedBy, 'limit');
+  assert.equal(result.passed, false);
+  assert.ok(result.problems.filter((x) => x.phase === 'check').length <= 10);
+});

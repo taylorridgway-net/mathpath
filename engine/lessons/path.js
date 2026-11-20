@@ -15,8 +15,10 @@
 //   3. Each lesson's "Putting it together" (the whole-skill section), added
 //      whenever any of that lesson's sections is on the path, or the whole skill
 //      itself is a gap. It's the one that gives provisional platform mastery.
-// While any foundation item hasn't been cleared by the teacher, every section
-// is marked `waiting` (owner decision: the student waits for the teacher).
+// A section is marked `waiting` while a foundation it builds on (through its
+// essential prerequisites) hasn't been cleared by the teacher (owner decision:
+// the student waits for the teacher). Lessons that don't build on it go ahead:
+// whole-number lessons never wait for a check on equivalent fractions.
 // `cleared` lists the foundation ids the teacher has checked off for this student.
 //
 // "Gap" puts the full section on the path. "Shaky" (one miss, then right) puts a
@@ -48,8 +50,35 @@ export function buildPath({ result, lessons, graph, cleared = [] }) {
     for (const s of parts) items.push({ ...sectionItem(lesson, s), review: status(s.forGap) === 'shaky' });
     if (whole && wholeNeeded) items.push(sectionItem(lesson, whole));
   }
-  const waiting = foundations.some((f) => !f.cleared);
-  return items.map((item) => (item.kind === 'section' ? { ...item, waiting } : item));
+  const builtOn = dependsOn(graph);
+  const open = foundations.filter((f) => !f.cleared);
+  return items.map((item) => (item.kind === 'section'
+    ? { ...item, lessonTitle: lessons.find((l) => l.skill === item.lesson).title, waiting: open.some((f) => builtOn(item.gap, f.gap)) }
+    : item));
+}
+
+// builtOn(a, b): does a need b, directly or further down (essential links only)?
+// A skill counts as needed if a needs the skill or any of its subskills.
+function dependsOn(graph) {
+  const memo = new Map();
+  const needs = (id) => {
+    if (memo.has(id)) return memo.get(id);
+    memo.set(id, new Set()); // guards against loops
+    const out = new Set();
+    for (const p of graph.essentialPrereqs(id)) {
+      out.add(p);
+      out.add(graph.get(p).skillId);
+      for (const q of needs(p)) out.add(q);
+    }
+    // A whole skill needs whatever its subskills need.
+    if (graph.get(id).kind === 'skill') for (const sub of graph.subskillsOf(id)) for (const q of needs(sub)) out.add(q);
+    memo.set(id, out);
+    return out;
+  };
+  return (a, b) => {
+    const n = needs(a);
+    return n.has(b) || graph.subskillsOf(b).some((sub) => n.has(sub));
+  };
 }
 
 function sectionItem(lesson, section) {

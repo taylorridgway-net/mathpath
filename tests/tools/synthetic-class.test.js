@@ -6,6 +6,7 @@ import { syntheticClass } from '../../tools/synthetic-class.js';
 import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { loadClassSetup } from '../helpers/class-setup.js';
+import { practicePlan } from '../../engine/lessons/plan.js';
 
 const setup = loadClassSetup();
 const now = '2026-11-19T20:00:00Z';
@@ -30,8 +31,8 @@ test('saved records replay through the real engine to the same results (as the s
     assert.ok(r.finished, d.code);
   }
   for (const s of c.sections) {
-    const sec = setup.lessons[0].sections.find((x) => x.id === s.section);
-    const r = replayPractice({ generators: setup.generators, rules: setup.rules, seed: s.seed, plan: { generator: sec.generator, mode: sec.mode } }, s.answers).result();
+    const sec = setup.lessons.flatMap((l) => l.sections).find((x) => x.id === s.section);
+    const r = replayPractice({ generators: setup.generators, rules: setup.rules, seed: s.seed, plan: practicePlan(sec) }, s.answers).result();
     assert.equal(r.endedBy, s.endedBy, s.seed);
   }
   assert.ok(c.sections.length > 10 && c.verifications.length > 0, 'the class has some activity');

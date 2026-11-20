@@ -31,6 +31,8 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
 
   function correctAnswer(problem) {
     const a = problem.answer;
+    if (a.type === 'quotient-remainder') return { whole: a.quotient, rem: a.remainder };
+    if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
     if (a.type === 'integer') return { whole: a.value };
     if (a.type === 'common-multiple') return { whole: a.least };
     const v = reduce(a.value);
@@ -39,6 +41,8 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
 
   function wrongAnswer(problem) {
     const a = problem.answer;
+    if (a.type === 'quotient-remainder') return { whole: a.quotient + 1, rem: a.remainder };
+    if (a.type === 'set' || a.type === 'multiset') return { list: a.values.slice(1) };
     if (a.type === 'integer') return { whole: a.value + 1 };
     if (a.type === 'common-multiple') return { whole: a.least + 1 };
     return { num: Math.abs(a.value.n) + 1, den: a.value.d };
@@ -66,9 +70,11 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
       return right.num ? { num: right.num * 2, den: right.den * 2 } : { num: right.whole * 2, den: 2 };
     }
 
-    const held = (problem.misconceptions || []).find((m) => misconceptions.includes(m.id));
+    const held = (problem.misconceptions || []).find((m) => misconceptions.includes(m.id) && !m.test);
     if (held) {
-      return typeof held.value === 'number' ? { whole: held.value } : { num: held.value.n, den: held.value.d };
+      if (typeof held.value === 'number') return { whole: held.value };
+      if (held.value.quotient !== undefined) return { whole: held.value.quotient, rem: held.value.remainder };
+      return { num: held.value.n, den: held.value.d };
     }
     return wrongAnswer(problem);
   }

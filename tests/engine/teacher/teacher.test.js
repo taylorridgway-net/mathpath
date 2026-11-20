@@ -43,9 +43,9 @@ test('platform mastery and verified mastery are separate', () => {
 });
 
 test('a student waiting on a teacher check is marked waiting until it is cleared', () => {
-  const r = { ...gapCombine, uncheckedCauses: ['whole.add-sub'] };
+  const r = { ...gapCombine, uncheckedCauses: ['frac.equivalent'] };
   assert.equal(status({ diagnosticResult: r }).waiting, true);
-  assert.equal(status({ diagnosticResult: r, cleared: ['whole.add-sub'] }).waiting, false);
+  assert.equal(status({ diagnosticResult: r, cleared: ['frac.equivalent'] }).waiting, false);
 });
 
 test('no diagnostic yet: everything not tested', () => {

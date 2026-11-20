@@ -17,14 +17,17 @@
 import { generators, generateProblem } from '../../engine/generators/index.js';
 import { startPractice } from '../../engine/practice/practice.js';
 import { startScaffold, STEP_HINTS } from '../../engine/practice/scaffold.js';
-import { solveAddSub } from '../../engine/solutions/frac-add-sub.js';
+import { solve } from '../../engine/solutions/index.js';
 import { toText } from '../../engine/problem/text.js';
 import { renderMath } from '../components/render-math.js';
 import { renderLessonText } from '../components/lesson-text.js';
 import { createFractionBars } from '../components/fraction-bars.js';
+import { createAreaModel } from '../components/area-model.js';
 import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
+import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
 import { seedFor } from '../../engine/seeds.js';
+import { practicePlan } from '../../engine/lessons/plan.js';
 import { h, section as screenEl, btn, swap, split } from '../components/dom.js';
 
 const PHASE_NAMES = {
@@ -63,7 +66,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     generators,
     rules,
     seed: run.seed,
-    plan: { generator: sec.generator, mode: sec.mode, review: Boolean(run.review) },
+    plan: practicePlan(sec, { review: run.review }),
   };
   let practice;
   try {
@@ -112,7 +115,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
   }
 
   function solutionSteps(problem, { stepByStep = false, onDone } = {}) {
-    const steps = solveAddSub(problem);
+    const steps = solve(problem);
     const listEl = h('ol', 'solution');
     let shown = stepByStep ? 1 : steps.length;
     const more = stepByStep ? btn('button', 'Next step', () => {
@@ -170,11 +173,12 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     for (const p of sec.explain) body.append(say(p));
     main.append(body);
 
-    if (sec.visual?.widget === 'fraction-bars') {
+    const WIDGETS = { 'fraction-bars': createFractionBars, 'area-model': createAreaModel };
+    if (WIDGETS[sec.visual?.widget]) {
       const box = h('figure', 'visual');
       const cap = renderLessonText(sec.visual.caption, { tag: 'figcaption', className: 'visual-caption', autoFractions: true });
       box.append(cap);
-      createFractionBars({ host: box, params: sec.visual.params });
+      WIDGETS[sec.visual.widget]({ host: box, params: sec.visual.params });
       cols.side.append(box);
       screen.append(cols.el);
     }
@@ -217,7 +221,8 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     const cur = practice.currentProblem();
     if (!cur) return showDone();
 
-    const scaffolded = sec.mode === 'skill' && cur.phase === 'guided';
+    // One box per step: only fraction add/subtract has steps like that.
+    const scaffolded = sec.generator === 'frac.add-sub' && sec.mode === 'skill' && cur.phase === 'guided';
     if (scaffolded && scaffoldIndex !== cur.index) {
       scaffold = startScaffold(cur.problem);
       scaffoldIndex = cur.index;
@@ -249,6 +254,11 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     if (cur.phase === 'guided') {
       const right = done.filter((p) => p.outcome !== 'missed').length;
       bar.append(h('span', 'progress-text', `Problem ${done.length + 1} · ${right} of ${rules.guided.rightNeeded} solved`));
+    } else if (cur.phase === 'check' && sec.check?.outOf) {
+      // A fixed-length check (multiplication facts: 9 of 10).
+      const { outOf, rightNeeded } = sec.check;
+      bar.append(h('span', 'progress-text', `${rightNeeded} of ${outOf} right on the first try · no hints`));
+      bar.append(dots(Array.from({ length: outOf }, (_, i) => (i >= done.length ? 'empty' : done[i].outcome === 'right-first' ? 'yes' : 'no'))));
     } else if (cur.phase === 'check') {
       let streak = 0;
       for (let i = done.length - 1; i >= 0 && done[i].outcome === 'right-first'; i--) streak++;
@@ -287,7 +297,11 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     box.classList.add(feedback.kind === 'simplify' ? 'feedback-near' : feedback.kind === 'info' ? 'feedback-info' : 'feedback-try');
     box.append(h('p', 'feedback-title', feedback.kind === 'simplify' ? 'Almost.' : feedback.kind === 'info' ? '' : 'Not yet. Try once more.'));
     box.append(say(text, 'feedback-text'));
-    const shown = feedback.kind !== 'info' && answerExpression(lastAnswer);
+    // Remainder and list answers are shown as text ("9 R 2", "2, 2, 3"); the rest as math.
+    if (feedback.kind !== 'info' && lastAnswer && (lastAnswer.rem !== undefined || Array.isArray(lastAnswer.list))) {
+      box.append(h('p', 'feedback-yours', `You wrote ${rawToText(lastAnswer)}`));
+    }
+    const shown = feedback.kind !== 'info' && !Array.isArray(lastAnswer?.list) && lastAnswer?.rem === undefined && answerExpression(lastAnswer);
     if (shown) {
       const yours = h('p', 'feedback-yours', 'You wrote ');
       yours.append(renderMath(shown, { inline: true }));
@@ -444,6 +458,10 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
 
   // ---------- done ----------
 
+  const checkText = () => (sec.check?.outOf
+    ? `${sec.check.rightNeeded} of ${sec.check.outOf} right on the first try`
+    : `${rules.sectionCheck.rightInARow} right in a row`);
+
   function showDone() {
     const result = practice.result();
     const record = {
@@ -484,13 +502,13 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       screen.append(h('p', 'lede', 'This counts as platform mastery for now. Your teacher will check it with a short problem set on paper.'));
     } else if (result.passed && run.review) {
       screen.append(h('p', 'eyebrow', `Quick review: ${sec.title}`), h('h1', 'title', 'You’ve got this one'));
-      screen.append(h('p', 'lede', `${rules.sectionCheck.rightInARow} right in a row. No need for the full section.`));
+      screen.append(h('p', 'lede', `${checkText()}. No need for the full section.`));
     } else if (result.endedBy === 'review-missed') {
       screen.append(h('p', 'eyebrow', `Quick review: ${sec.title}`), h('h1', 'title', 'Let’s go through this one properly'));
       screen.append(h('p', 'lede', 'That one tripped you up, so the full section is next: a short explanation, an example, and practice with help.'));
     } else if (result.passed) {
       screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Section done'));
-      screen.append(h('p', 'lede', `${rules.sectionCheck.rightInARow} right in a row. This step is ready to use in whole problems.`));
+      screen.append(h('p', 'lede', `${checkText()}. This step is ready to use in whole problems.`));
     } else {
       screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Let’s stop here for now'));
       screen.append(h('p', 'lede', 'That was a lot of problems. Your teacher will see which ones were tricky. You can come back to this section later.'));

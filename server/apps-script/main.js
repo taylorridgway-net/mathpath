@@ -19,6 +19,9 @@ import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
 import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
+import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
+import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
+import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples.json';
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
@@ -36,7 +39,7 @@ const setupData = {
   generators,
   misconceptions: [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions],
   diagnosticConfig: fracDiagnostic,
-  lessons: [addSubLesson],
+  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, addSubLesson],
   rules: masteryRules.default,
 };
 

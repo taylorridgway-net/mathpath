@@ -78,6 +78,14 @@ export function startPractice({ generators, plan, rules, seed }) {
 
     if (phase === 'check') {
       if (review && outcome !== 'right-first') return end('review-missed');
+      if (checkRule.outOf) {
+        // A fixed-length check, e.g. multiplication facts: 9 of 10 right on the first try.
+        // Ends as soon as the result is certain.
+        const right = inPhase.filter((p) => p.outcome === 'right-first').length;
+        if (right >= checkRule.rightNeeded) return end('passed');
+        if (inPhase.length - right > checkRule.outOf - checkRule.rightNeeded) return end('limit');
+        return newProblem(checkRule.difficulty);
+      }
       if (rightInARow(inPhase) >= checkRule.rightInARow) return end('passed');
       if (inPhase.length >= checkRule.maxProblems) return end('limit');
       return newProblem(checkRule.difficulty); // after a miss this is the "similar problem"

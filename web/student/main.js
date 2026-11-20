@@ -13,6 +13,9 @@ import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
 import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
+import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
+import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
+import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples.json';
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
@@ -32,7 +35,7 @@ import { diagnosticReport } from '../components/diagnostic-report.js';
 import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
 const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of the signed-in student
-const lessons = [addSubLesson];
+const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, addSubLesson];
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
 const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];
@@ -372,7 +375,7 @@ function pathList(path) {
       h('span', 'path-title', 'With your teacher first'),
       h('span', 'path-note', allCleared
         ? 'Your teacher has checked these. You can go on.'
-        : 'One of these might be what makes the next steps hard. The app can’t teach or check them yet, so your teacher will. The lessons below open after that.'),
+        : 'One of these might be what makes the next steps hard. The app can’t teach or check them yet, so your teacher will. Lessons that build on them open after that.'),
     );
     const ul = h('ul', 'plain-list');
     for (const f of foundations) {
@@ -398,7 +401,13 @@ function pathList(path) {
     ol.append(li);
   }
 
+  let lastLesson = null;
   path.filter((item) => item.kind === 'section').forEach((item) => {
+    // A heading for each skill, so "Putting it together" is clear about what it puts together.
+    if (item.lesson !== lastLesson) {
+      ol.append(h('li', 'path-group', item.lessonTitle));
+      lastLesson = item.lesson;
+    }
     const li = h('li', 'path-item');
     const text = h('div', 'path-text');
     const [label, tone, action] = sectionState(item.section);
@@ -466,6 +475,7 @@ function previewSections() {
   details.addEventListener('toggle', () => { previewOpen = details.open; });
   const ol = h('ol', 'path');
   for (const lesson of lessons) {
+    ol.append(h('li', 'path-group', lesson.title));
     for (const s of lesson.sections) {
       const li = h('li', 'path-item');
       const text = h('div', 'path-text');

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "skill": "whole.mult-div",
+  "title": "Multiplication and division facts",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "whole.mult-div.mult-facts",
+      "forGap": "whole.mult-div.mult-facts",
+      "title": "Multiplication facts",
+      "objective": "Know the multiplication facts up to 12 × 12, and work out the ones you don't remember.",
+      "mode": "section",
+      "generator": "whole.mult-div.mult-facts",
+      "example": { "difficulty": 3 },
+      "check": { "outOf": 10, "rightNeeded": 9, "difficulty": 3 },
+      "explain": [
+        "7 × 8 means 7 groups of 8, or 8 groups of 7. The order doesn't matter: 7 × 8 and 8 × 7 are the same fact.",
+        "If you don't remember a fact, split it into facts you do know. 7 × 8 is 7 × 5 plus 7 × 3: 35 + 21 = 56. For 12s, split 12 into 10 + 2: 12 × 7 is 70 + 14 = 84.",
+        "The goal is to know these without working them out, because every fraction problem uses them. The check at the end is 10 of the harder facts, and you need 9 right."
+      ],
+      "visual": {
+        "widget": "area-model",
+        "params": { "rows": 7, "cols": 8, "split": 5 },
+        "caption": "7 × 8 as a rectangle of 7 rows of 8. Move the split to break it into two facts you know."
+      }
+    },
+    {
+      "id": "whole.mult-div.div-facts",
+      "forGap": "whole.mult-div.div-facts",
+      "title": "Division facts",
+      "objective": "Use multiplication facts to divide.",
+      "mode": "section",
+      "generator": "whole.mult-div.div-facts",
+      "explain": [
+        "Division undoes multiplication. 56 ÷ 7 asks: 7 times what makes 56?",
+        "Since 7 × 8 = 56, the answer is 8. Every division fact is a multiplication fact read backwards."
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.mult-div.remainders",
+      "forGap": "whole.mult-div.remainders",
+      "title": "Divide with a remainder",
+      "objective": "Divide when it doesn't come out even, and write what's left over.",
+      "mode": "section",
+      "generator": "whole.mult-div.remainders",
+      "explain": [
+        "Sometimes the groups don't come out even. 47 ÷ 5: 5 × 9 = 45 fits, and 5 × 10 = 50 is too big. So 9 groups, with 47 − 45 = 2 left over.",
+        "Write it as 9 R 2: tap R on the keypad, then type the remainder.",
+        "The remainder is always less than the number you divide by. If it isn't, another whole group fits."
+      ],
+      "visual": null
+    },
+    {
+      "id": "whole.mult-div.whole",
+      "forGap": "whole.mult-div",
+      "title": "Putting it together",
+      "objective": "Multiplication facts, division facts and remainders, mixed together.",
+      "mode": "skill",
+      "generator": "whole.mult-div",
+      "explain": [
+        "Now the problems are mixed. Read the sign first.",
+        "Dividing: think of the multiplication fact. If it doesn't come out even, find the biggest group that fits and write the remainder."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "whole.mult-div.mult-facts": "Split one number into parts you know. 7 × 8 = 7 × 5 + 7 × 3.",
+    "whole.mult-div.div-facts": "Think of it as multiplication: the number you divide by, times what, makes the big number?",
+    "whole.mult-div.remainders": "Find the biggest multiple of the number you divide by that fits. Then subtract to see what's left over.",
+    "whole.mult-div": "Read the sign first. For division, think of the multiplication fact."
+  },
+  "simplifyHint": "",
+  "misconceptionMessages": {
+    "whole.neighbour-fact": "Close: that's one group off. Check with a fact you know, like the 5s or the 10s, and count from there.",
+    "whole.added-not-multiplied": "That's what you get by adding. Multiplying means groups: 7 × 8 is 7 groups of 8.",
+    "whole.remainder-too-big": "The remainder is bigger than the number you're dividing by, so another whole group still fits.",
+    "whole.remainder-dropped": "It doesn't come out even. Tap R and write what's left over."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

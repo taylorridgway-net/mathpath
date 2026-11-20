@@ -20,6 +20,7 @@ import { startDiagnostic } from '../engine/diagnostic/diagnostic.js';
 import { startPractice } from '../engine/practice/practice.js';
 import { buildPath } from '../engine/lessons/path.js';
 import { seedFor } from '../engine/seeds.js';
+import { practicePlan } from '../engine/lessons/plan.js';
 import { createRng } from '../engine/random.js';
 import { reduce } from '../engine/math/fraction.js';
 import { createServer } from '../server/core/server.js';
@@ -36,7 +37,7 @@ const setup = {
   generators,
   misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions],
   diagnosticConfig: read('diagnostic/frac.json'),
-  lessons: [read('lessons/frac.add-sub.json')],
+  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.add-sub'].map((s) => read(`lessons/${s}.json`)),
   rules: read('mastery.json').default,
 };
 
@@ -120,10 +121,10 @@ for (const [i, kid] of kids.entries()) {
   // Practice: every section on the path (ignoring teacher checks, to make more saves), 1-3 tries each.
   const path = buildPath({ result: d.result(), lessons: setup.lessons, graph: setup.graph }).filter((x) => x.kind === 'section');
   for (const item of path) {
-    const sec = setup.lessons[0].sections.find((s) => s.id === item.section);
+    const sec = setup.lessons.flatMap((l) => l.sections).find((s) => s.id === item.section);
     for (let attemptNo = 1; attemptNo <= 3; attemptNo++) {
       const sseed = seedFor(kid.id, sec.id, attemptNo);
-      const p = startPractice({ generators, rules: setup.rules, seed: sseed, plan: { generator: sec.generator, mode: sec.mode } });
+      const p = startPractice({ generators, rules: setup.rules, seed: sseed, plan: practicePlan(sec) });
       const skill = 0.5 + 0.2 * attemptNo;
       const sa = [];
       for (let c = p.currentProblem(); c; c = p.currentProblem()) { sa.push(rng.chance(skill) ? right(c.problem) : {}); p.submit(sa.at(-1)); }

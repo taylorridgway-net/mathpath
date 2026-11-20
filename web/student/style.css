@@ -356,3 +356,14 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .answer-entries { font-size: 1.6rem; font-variant-numeric: lining-nums tabular-nums; max-width: 60%; overflow-wrap: anywhere; text-align: right; }
 .answer[data-mode="remainder"] .answer-box, .answer[data-mode="list"] .answer-box { height: 3.2rem; font-size: 2rem; min-width: 4rem; }
 .key-spacer { min-height: 54px; }
+
+/* area model (multiplication facts) */
+.area { display: flex; flex-direction: column; gap: 14px; }
+.area-grid { display: grid; gap: 3px; max-width: 22rem; }
+.area-cell { aspect-ratio: 1; border-radius: 3px; }
+.area-left { background: color-mix(in srgb, var(--accent) 55%, transparent); }
+.area-right { background: color-mix(in srgb, var(--mark) 70%, transparent); }
+.area-edge { box-shadow: 3px 0 0 var(--ink); }
+.area-sums { margin: 0; line-height: 1.6; font-weight: 600; }
+.path-group { list-style: none; margin-top: 10px; padding-top: 6px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.path-group:first-child { margin-top: 0; }

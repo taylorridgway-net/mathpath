@@ -17,6 +17,7 @@ import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { verificationRecord } from '../../engine/teacher/verification.js';
 import { sectionSummary } from '../../engine/teacher/section-summary.js';
+import { practicePlan } from '../../engine/lessons/plan.js';
 
 const MAX_SAVE_IDS = 200; // recent saveIds kept per student to spot repeats
 const WORDS_A = ['maple', 'river', 'cedar', 'stone', 'amber', 'cloud', 'birch', 'coral', 'frost', 'ember', 'meadow', 'harbor', 'canyon', 'willow', 'summit', 'pebble', 'acorn', 'delta', 'orbit', 'prism', 'quartz', 'tundra', 'lagoon', 'aspen'];
@@ -130,7 +131,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     if (record.seed !== seed) return fail('wrong-seed', 'Seed doesn’t match.');
     let result;
     try {
-      result = replayPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: sec.generator, mode: sec.mode, review: record.review === true } }, record.answers || []).result();
+      result = replayPractice({ generators: setup.generators, rules: setup.rules, seed, plan: practicePlan(sec, { review: record.review === true }) }, record.answers || []).result();
     } catch (e) {
       return fail('regrade-failed', String(e.message || e));
     }

@@ -18,12 +18,16 @@ import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
 import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
+import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
+import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
+import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples.json';
 import addSubPaper from '../../curriculum/paper/frac.add-sub.json';
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
 import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
+import { practicePlan } from '../../engine/lessons/plan.js';
 import { toText } from '../../engine/problem/text.js';
 import { createRng } from '../../engine/random.js';
 import { studentStatus, countStatuses } from '../../engine/teacher/student-status.js';
@@ -42,13 +46,14 @@ import { h, btn, pill, list, swap } from '../components/dom.js';
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
 const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];
-const lessons = [addSubLesson];
+const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, addSubLesson];
 const papers = { [addSubPaper.skill]: addSubPaper };
 const rules = masteryRules.default;
 const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules };
 const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, s.title])));
 const misconceptionInfo = new Map(misconceptions.map((m) => [m.id, m]));
-const FRACTION_SKILLS = fracGraph.skills.map((s) => s.id);
+// Heatmap columns: whole-number skills first (they come first on paths), then fractions.
+const FRACTION_SKILLS = [...wholeGraph.skills, ...fracGraph.skills].map((s) => s.id);
 const ME = 'you (preview)';
 const api = createApi({ setup });
 const live = !api.preview;
@@ -205,11 +210,14 @@ function legend() {
 }
 
 const shortName = (id) => ({
+  'whole.add-sub': 'Whole numbers: add & subtract',
+  'whole.mult-div': 'Whole numbers: facts & remainders',
+  'whole.factors-multiples': 'Whole numbers: factors & multiples',
   'frac.meaning': 'Understand fractions',
   'frac.equivalent': 'Equivalent & simplest form',
   'frac.compare': 'Compare & order',
   'frac.mixed': 'Mixed numbers',
-  'frac.add-sub': 'Add & subtract',
+  'frac.add-sub': 'Fractions: add & subtract',
   'frac.multiply': 'Multiply',
   'frac.divide': 'Divide',
   'frac.signed': 'Negative fractions',
@@ -391,7 +399,7 @@ function groups() {
     const info = misconceptionInfo.get(group.target);
     const card = h('div', 't-card');
     card.append(h('h3', 't-card-title', info.description), h('p', 't-card-sub', `${group.students.length} students · points to “${graph.get(info.pointsTo).name}”`));
-    const msg = addSubLesson.misconceptionMessages[group.target];
+    const msg = lessons.map((l) => l.misconceptionMessages[group.target]).find(Boolean);
     if (msg) {
       const said = renderLessonText(`What the app tells them: “${msg}”`, { className: 't-card-note' });
       card.append(said);
@@ -829,7 +837,8 @@ function showStudent(code) {
   for (const item of s.status.path) {
     const li = h('li', 't-path-item');
     if (item.kind === 'section') {
-      li.append(h('span', '', item.review ? `Quick review: ${item.title}` : item.title));
+      const title = item.title === 'Putting it together' ? `Putting it together (${item.lessonTitle})` : item.title;
+      li.append(h('span', '', item.review ? `Quick review: ${title}` : title));
       const look = { done: ['Done', 'good'], tried: ['Started', 'warn'], 'not-started': [item.waiting ? 'Waiting' : 'Not started', 'muted'] }[item.progress];
       li.append(pill(...look));
     } else {
@@ -898,7 +907,7 @@ function problemsOf(r) {
   if (r.problems) return r.problems;
   if (!r.answers || !r.seed) return null;
   const sec = lessons.flatMap((l) => l.sections).find((x) => x.id === r.section);
-  return replayPractice({ generators, rules, seed: r.seed, plan: { generator: sec.generator, mode: sec.mode, review: r.review === true } }, r.answers).result().problems;
+  return replayPractice({ generators, rules, seed: r.seed, plan: practicePlan(sec, { review: r.review === true }) }, r.answers).result().problems;
 }
 
 function sectionHistory(summary, detail) {
