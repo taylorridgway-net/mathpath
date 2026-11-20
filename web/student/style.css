@@ -401,3 +401,9 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .m-paren { font-family: var(--font-math); }
 .m-row.m-group { gap: 0.04em; }
 .m-pow > .m-paren:first-child { margin-right: 0.04em; }
+
+/* variables (equations) */
+.m-var { font-family: var(--font-math); font-style: italic; }
+.m-term { display: inline-flex; align-items: center; gap: 0.04em; }
+.balance .bal-gone { opacity: 0.3; stroke-dasharray: 3 2; }
+.balance .bal-x { font-style: italic; }

@@ -22,7 +22,8 @@
       "name": "Pre-algebra check",
       "targets": [
         "alg.order-ops",
-        "alg.exponents"
+        "alg.exponents",
+        "alg.equations"
       ]
     }
   ]

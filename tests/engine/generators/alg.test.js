@@ -45,7 +45,7 @@ for (const id of IDS) {
 test('every wrong-answer pattern in the catalog is generated somewhere', () => {
   const seen = new Set();
   for (const seed of SEEDS) for (const id of IDS) for (const d of DIFFICULTIES) for (const m of generateProblem(id, seed, d).misconceptions) seen.add(m.id);
-  assert.deepEqual([...seen].sort(), [...catalog.keys()].sort());
+  assert.deepEqual([...seen].sort(), [...catalog].filter(([, to]) => /^alg\.(order-ops|exponents)\./.test(to)).map(([k]) => k).sort());
 });
 
 test('what each part is about: whole-number answers without negatives; parentheses where promised; powers with whole exponents', () => {

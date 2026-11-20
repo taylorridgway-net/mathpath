@@ -21,6 +21,18 @@ function build(node) {
       wrap.append(el('span', 'm-paren', '('), build(node.of), el('span', 'm-paren', ')'));
       return wrap;
     }
+    case 'var':
+      return el('span', 'm-var', node.name);
+    case 'term': {
+      const wrap = el('span', 'm-term');
+      const c = node.coef;
+      if (typeof c === 'number') {
+        if (c === -1) wrap.append(el('span', 'm-num', '\u2212'));
+        else if (c !== 1) wrap.append(el('span', 'm-num', c < 0 ? `\u2212${-c}` : String(c)));
+      } else wrap.append(build(c));
+      wrap.append(el('span', 'm-var', node.name));
+      return wrap;
+    }
     case 'pow': {
       const wrap = el('span', 'm-pow');
       const negBase = node.base.type === 'int' && node.base.value < 0;
@@ -51,7 +63,8 @@ function build(node) {
       const sym = node.type === 'eq' ? '=' : node.op === '-' ? '−' : node.op;
       const right = build(node.right);
       // 5 − (−3): a negative number after an operation sign gets parentheses.
-      const paren = node.type === 'op' && ((node.right.type === 'int' && node.right.value < 0) || node.right.type === 'neg');
+      const paren = node.type === 'op' && ((node.right.type === 'int' && node.right.value < 0) || node.right.type === 'neg'
+        || (node.right.type === 'term' && typeof node.right.coef === 'number' && node.right.coef < 0));
       wrap.append(build(node.left), el('span', 'm-op', sym), ...(paren ? [el('span', 'm-num', '('), right, el('span', 'm-num', ')')] : [right]));
       return wrap;
     }

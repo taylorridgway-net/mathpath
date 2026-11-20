@@ -61,6 +61,56 @@
       "id": "alg.exp-each-term",
       "description": "Applies the power to each number inside the parentheses ((2 + 3)² = 13).",
       "pointsTo": "alg.exponents.in-order"
+    },
+    {
+      "id": "alg.eq-add-same-op",
+      "description": "Does the operation instead of undoing it (x + 5 = 12 -> 17).",
+      "pointsTo": "alg.equations.add-sub"
+    },
+    {
+      "id": "alg.eq-add-sign",
+      "description": "Undoes the right operation but gets the sign wrong.",
+      "pointsTo": "alg.equations.add-sub"
+    },
+    {
+      "id": "alg.eq-mult-same-op",
+      "description": "Multiplies instead of dividing to undo (3x = 21 -> 63), or divides instead of multiplying (x/4 = 6 -> 3/2).",
+      "pointsTo": "alg.equations.mult-div"
+    },
+    {
+      "id": "alg.eq-mult-wrong-inverse",
+      "description": "Subtracts the number in front of x instead of dividing by it (3x = 21 -> 18).",
+      "pointsTo": "alg.equations.mult-div"
+    },
+    {
+      "id": "alg.eq-flipped-division",
+      "description": "Divides the wrong way round (6x = 4 -> 6/4).",
+      "pointsTo": "alg.equations.mult-div"
+    },
+    {
+      "id": "alg.eq-mult-sign",
+      "description": "Divides right but gets the sign wrong (−3x = 12 -> 4).",
+      "pointsTo": "alg.equations.mult-div"
+    },
+    {
+      "id": "alg.eq-stopped-early",
+      "description": "Undoes the adding or subtracting, then stops (3x + 5 = 20 -> 15).",
+      "pointsTo": "alg.equations.two-step"
+    },
+    {
+      "id": "alg.eq-two-wrong-inverse",
+      "description": "Adds the number instead of subtracting it (3x + 5 = 20 -> 25/3).",
+      "pointsTo": "alg.equations.two-step"
+    },
+    {
+      "id": "alg.eq-divide-first",
+      "description": "Divides only the right side first, then subtracts (3x + 6 = 21 -> 7 − 6 = 1).",
+      "pointsTo": "alg.equations.two-step"
+    },
+    {
+      "id": "alg.eq-two-sign",
+      "description": "Does both steps but gets the sign wrong.",
+      "pointsTo": "alg.equations.two-step"
     }
   ]
 }

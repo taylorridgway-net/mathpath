@@ -1,4 +1,2138 @@
 {
+ "alg.equations": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 14
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 62
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 12,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 48,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 19,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -12,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 8,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 65
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 56,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 37,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": -7,
+       "d": 8
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 8,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 38
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 32,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 11,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": -5,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 10
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -20
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -10,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": -30,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": -10,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": -50,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -7,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 34
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 28,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": -40,
+       "d": 7
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": -76,
+       "d": 7
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -1
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": -3,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": -19,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 4,
+        "d": 5
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 12
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 20,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 16,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": -10,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 17,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -20,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "frac",
+       "n": 3,
+       "d": 4
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 8
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 11,
+      "d": 8
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": -1,
+       "d": 8
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": -11,
+       "d": 8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "frac",
+       "n": 6,
+       "d": 7
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -5,
+      "d": 14
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": 19,
+       "d": 14
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": 5,
+       "d": 14
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.equations.add-sub": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 17
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 21,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": -13,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": -21,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 10
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 29
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 19,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": 39,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": -19,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 11
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 26
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 15,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": 37,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": -15,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "int",
+       "value": 1
+      },
+      "right": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -1
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": -15
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 17
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 32,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": -32,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 15
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 10,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": -20,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": -10,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "frac",
+       "n": 2,
+       "d": 3
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 11,
+      "d": 12
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": -5,
+       "d": 12
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": -11,
+       "d": 12
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "frac",
+       "n": 3,
+       "d": 8
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 24
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": 17,
+       "d": 24
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": 1,
+       "d": 24
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "frac",
+       "n": 4,
+       "d": 7
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 14
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-add-same-op",
+      "value": {
+       "n": 15,
+       "d": 14
+      }
+     },
+     {
+      "id": "alg.eq-add-sign",
+      "value": {
+       "n": 1,
+       "d": 14
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.equations.mult-div": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 3,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 15
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 45,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-flipped-division",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.eq-mult-sign",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "var",
+       "name": "x"
+      },
+      "d": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 24,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-mult-sign",
+      "value": {
+       "n": -24,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 5,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 50,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-flipped-division",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.eq-mult-sign",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-mult-sign",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 9,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 81
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 729,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": 72,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-flipped-division",
+      "value": {
+       "n": 1,
+       "d": 9
+      }
+     },
+     {
+      "id": "alg.eq-mult-sign",
+      "value": {
+       "n": -9,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 8,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": -64
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": -512,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": -72,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-flipped-division",
+      "value": {
+       "n": -1,
+       "d": 8
+      }
+     },
+     {
+      "id": "alg.eq-mult-sign",
+      "value": {
+       "n": 8,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-flipped-division",
+      "value": {
+       "n": 2,
+       "d": 9
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": 7,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 8,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 48,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-flipped-division",
+      "value": {
+       "n": 4,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "term",
+      "coef": 5,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 12,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-mult-same-op",
+      "value": {
+       "n": 60,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-flipped-division",
+      "value": {
+       "n": 5,
+       "d": 12
+      }
+     },
+     {
+      "id": "alg.eq-mult-wrong-inverse",
+      "value": {
+       "n": 7,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.equations.two-step": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 6,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 10
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 64
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 54,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 37,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -9,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 8,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 57
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 56,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 29,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 49,
+       "d": 8
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 16
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 15,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 17,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 11,
+       "d": 5
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -19
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": -16,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 11,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 25,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -8,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 12
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -20
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": -8,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": -16,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 7,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -51
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -6,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": -42,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": -60,
+       "d": 7
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 12,
+       "d": 7
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 11
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 16
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 27,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -5,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": -5,
+       "d": 2
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -1,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.equations.two-step",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve for x.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eq-stopped-early",
+      "value": {
+       "n": 14,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-two-wrong-inverse",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.eq-divide-first",
+      "value": {
+       "n": 35,
+       "d": 4
+      }
+     },
+     {
+      "id": "alg.eq-two-sign",
+      "value": {
+       "n": -7,
+       "d": 2
+      }
+     }
+    ]
+   }
+  ]
+ },
  "alg.exponents": {
   "version": 1,
   "problems": [

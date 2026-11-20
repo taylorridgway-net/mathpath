@@ -1,31 +1,74 @@
 {
   "schemaVersion": 1,
-  "domain": { "id": "alg", "name": "Pre-algebra" },
+  "domain": {
+    "id": "alg",
+    "name": "Pre-algebra"
+  },
   "skills": [
     {
       "id": "alg.order-ops",
       "name": "Order of operations",
       "summary": "Evaluate expressions with several operations: multiplication and division before addition and subtraction, left to right, parentheses first.",
       "typicalGrade": 6,
-      "standards": ["5.OA.A.1", "6.EE.A.2c"],
+      "standards": [
+        "5.OA.A.1",
+        "6.EE.A.2c"
+      ],
       "status": "draft",
       "prerequisites": [],
       "subskills": [
-        { "id": "alg.order-ops.no-parens", "name": "Multiply and divide before adding and subtracting (2 + 3 × 4)",
+        {
+          "id": "alg.order-ops.no-parens",
+          "name": "Multiply and divide before adding and subtracting (2 + 3 × 4)",
           "prerequisites": [
-            { "id": "whole.mult-div.mult-facts", "strength": "essential" },
-            { "id": "whole.mult-div.div-facts", "strength": "supporting", "why": "The hardest problems divide too." }
-          ] },
-        { "id": "alg.order-ops.parens", "name": "Parentheses first ((2 + 3) × 4)",
-          "prerequisites": [ { "id": "alg.order-ops.no-parens", "strength": "essential", "why": "Inside and around the parentheses, the usual order still applies." } ] },
-        { "id": "alg.order-ops.integers", "name": "Order of operations with negative numbers (−2 + 3 × (−4))",
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.div-facts",
+              "strength": "supporting",
+              "why": "The hardest problems divide too."
+            }
+          ]
+        },
+        {
+          "id": "alg.order-ops.parens",
+          "name": "Parentheses first ((2 + 3) × 4)",
           "prerequisites": [
-            { "id": "alg.order-ops.no-parens", "strength": "essential" },
-            { "id": "int.add-sub.same-sign", "strength": "essential" },
-            { "id": "int.add-sub.different-signs", "strength": "essential" },
-            { "id": "int.add-sub.subtract", "strength": "essential" },
-            { "id": "int.mult-div.multiply", "strength": "essential" }
-          ] }
+            {
+              "id": "alg.order-ops.no-parens",
+              "strength": "essential",
+              "why": "Inside and around the parentheses, the usual order still applies."
+            }
+          ]
+        },
+        {
+          "id": "alg.order-ops.integers",
+          "name": "Order of operations with negative numbers (−2 + 3 × (−4))",
+          "prerequisites": [
+            {
+              "id": "alg.order-ops.no-parens",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.same-sign",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.different-signs",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.multiply",
+              "strength": "essential"
+            }
+          ]
+        }
       ]
     },
     {
@@ -33,22 +76,117 @@
       "name": "Exponents",
       "summary": "Evaluate powers with whole-number exponents (including 0), negative bases, and powers inside longer expressions.",
       "typicalGrade": 6,
-      "standards": ["6.EE.A.1", "8.EE.A.1"],
+      "standards": [
+        "6.EE.A.1",
+        "8.EE.A.1"
+      ],
       "status": "draft",
       "prerequisites": [],
       "subskills": [
-        { "id": "alg.exponents.evaluate", "name": "Evaluate a power (2⁴, 5³, 7⁰)",
-          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
-        { "id": "alg.exponents.negative-base", "name": "Negative bases: (−3)² versus −3²",
+        {
+          "id": "alg.exponents.evaluate",
+          "name": "Evaluate a power (2⁴, 5³, 7⁰)",
           "prerequisites": [
-            { "id": "alg.exponents.evaluate", "strength": "essential" },
-            { "id": "int.mult-div.multiply", "strength": "essential" }
-          ] },
-        { "id": "alg.exponents.in-order", "name": "Powers in the order of operations (2 + 3², (2 + 3)²)",
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "alg.exponents.negative-base",
+          "name": "Negative bases: (−3)² versus −3²",
           "prerequisites": [
-            { "id": "alg.exponents.evaluate", "strength": "essential" },
-            { "id": "alg.order-ops.no-parens", "strength": "essential" }
-          ] }
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.multiply",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "alg.exponents.in-order",
+          "name": "Powers in the order of operations (2 + 3², (2 + 3)²)",
+          "prerequisites": [
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.order-ops.no-parens",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "alg.equations",
+      "name": "Solve one- and two-step equations",
+      "summary": "Solve equations by undoing what was done to x, doing the same to both sides; whole numbers, negatives, and fractions at the hardest level.",
+      "typicalGrade": 7,
+      "standards": [
+        "6.EE.B.7",
+        "7.EE.B.4a"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.equations.add-sub",
+          "name": "Undo adding or subtracting (x + 5 = 12)",
+          "prerequisites": [
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.different-signs",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.add-sub",
+              "strength": "supporting",
+              "why": "The hardest ones have fractions."
+            }
+          ]
+        },
+        {
+          "id": "alg.equations.mult-div",
+          "name": "Undo multiplying or dividing (3x = 21, x/4 = 6)",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.div-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.divide",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.divide",
+              "strength": "supporting",
+              "why": "The hardest ones have a fraction in front of x."
+            }
+          ]
+        },
+        {
+          "id": "alg.equations.two-step",
+          "name": "Two steps: undo adding or subtracting first, then multiplying or dividing (3x + 5 = 20)",
+          "prerequisites": [
+            {
+              "id": "alg.equations.add-sub",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.equations.mult-div",
+              "strength": "essential"
+            }
+          ]
+        }
       ]
     }
   ]

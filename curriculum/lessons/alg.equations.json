@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.equations",
+  "title": "Solve one- and two-step equations",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "alg.equations.add-sub",
+      "forGap": "alg.equations.add-sub",
+      "title": "Undo adding or subtracting",
+      "objective": "Solve x + 5 = 12 and x − 3 = 8 by doing the opposite to both sides.",
+      "mode": "section",
+      "generator": "alg.equations.add-sub",
+      "explain": [
+        "An equation is a balance: both sides are equal. Whatever you do to one side, do to the other, and it stays balanced.",
+        "To get x alone, undo what was done to it. In x + 5 = 12, 5 was added, so subtract 5 from both sides: x = 12 − 5 = 7.",
+        "In x − 3 = 8, 3 was subtracted, so add 3 to both sides: x = 8 + 3 = 11. Check by putting it back: 11 − 3 = 8. ✓"
+      ],
+      "visual": {
+        "widget": "balance",
+        "params": { "add": 3, "total": 7 },
+        "caption": "x + 3 balances 7. Take 3 from both sides."
+      }
+    },
+    {
+      "id": "alg.equations.mult-div",
+      "forGap": "alg.equations.mult-div",
+      "title": "Undo multiplying or dividing",
+      "objective": "Solve 3x = 21 and x/4 = 6 by doing the opposite to both sides.",
+      "mode": "section",
+      "generator": "alg.equations.mult-div",
+      "explain": [
+        "3x means 3 times x. To undo multiplying by 3, divide both sides by 3: 3x = 21, so x = 21 ÷ 3 = 7.",
+        "x/4 means x divided by 4. To undo dividing by 4, multiply both sides by 4: x/4 = 6, so x = 6 × 4 = 24.",
+        "Signs follow the integer rules: −3x = 12 gives x = 12 ÷ (−3) = −4. And with a fraction in front, multiply by its reciprocal: {2/3}x = 10 gives x = 10 × {3/2} = 15."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.equations.two-step",
+      "forGap": "alg.equations.two-step",
+      "title": "Two steps",
+      "objective": "Solve 3x + 5 = 20: undo the adding or subtracting first, then the multiplying or dividing.",
+      "mode": "section",
+      "generator": "alg.equations.two-step",
+      "explain": [
+        "In 3x + 5 = 20, two things happened to x: it was multiplied by 3, then 5 was added. Undo them in reverse order, like taking off shoes before socks.",
+        "First undo the + 5: subtract 5 from both sides. 3x = 15. Then undo the × 3: divide both sides by 3. x = 5.",
+        "Check: 3 × 5 + 5 = 20. ✓ Dividing first is a common slip: divide 20 by 3 and the numbers stop working out."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.equations.whole",
+      "forGap": "alg.equations",
+      "title": "Putting it together",
+      "objective": "Solve one- and two-step equations with whole numbers, negatives and fractions.",
+      "mode": "skill",
+      "generator": "alg.equations",
+      "explain": [
+        "Now the problems are mixed.",
+        "Undo what was done to x, last thing first: adding or subtracting, then multiplying or dividing. Do the same to both sides, and check your answer by putting it back in."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "alg.equations.add-sub": "What was done to x: adding or subtracting? Do the opposite to both sides.",
+    "alg.equations.mult-div": "x was multiplied or divided. Do the opposite to both sides: divide to undo multiplying, multiply to undo dividing.",
+    "alg.equations.two-step": "First undo the adding or subtracting, on both sides. Then undo the multiplying or dividing.",
+    "alg.equations": "Undo the last thing done to x first, doing the same to both sides. Then check your answer."
+  },
+  "misconceptionMessages": {
+    "alg.eq-add-same-op": "To get x alone, undo what was done to it: if a number was added, subtract it from both sides.",
+    "alg.eq-add-sign": "The size is right, but check the sign. Put your answer back into the equation to check.",
+    "alg.eq-mult-same-op": "To undo multiplying, divide (and to undo dividing, multiply). Do the opposite of what was done to x.",
+    "alg.eq-mult-wrong-inverse": "3x means 3 times x, so undo it by dividing by 3, not subtracting 3.",
+    "alg.eq-flipped-division": "Divide the other side by the number in front of x: in 6x = 4, x = 4 ÷ 6, not 6 ÷ 4.",
+    "alg.eq-mult-sign": "Check the sign with the integer rules: dividing by a negative changes the sign.",
+    "alg.eq-stopped-early": "You undid the adding or subtracting. Now there's still a number multiplying x: undo that too.",
+    "alg.eq-two-wrong-inverse": "To undo adding a number, subtract it from both sides (and to undo subtracting, add).",
+    "alg.eq-divide-first": "Undo the adding or subtracting first, then the multiplying. Dividing first only works if you divide every part of both sides.",
+    "alg.eq-two-sign": "Both steps are right, but check the sign. Put your answer back into the equation to check."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

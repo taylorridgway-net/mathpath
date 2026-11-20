@@ -7,7 +7,10 @@ equations with fractions at the hardest level. "Go."
 - **Built:** the Pre-algebra check (offered on the path after the fractions check; asks only its own skills,
   starting from what the student already showed), order of operations, exponents. Pretend students:
   pre-algebra check median 4 questions, max 13.
-- **Next:** one- and two-step equations; then the distributive property and combining like terms (needs the "x" keypad).
+- **Equations built** (one skill, three parts: undo adding/subtracting, undo multiplying/dividing, two steps; fractions at
+  level 3; a balance picture). In the pre-algebra check one two-step equation stands for all three parts.
+  Pre-algebra check now: median 6 questions, max 15.
+- **Next:** the distributive property and combining like terms (needs the "x" keypad and an answer checker for expressions).
 - **Quick re-check built** (owner OK): "can't check yet" questions are checked once the gaps under them are fixed.
 
 

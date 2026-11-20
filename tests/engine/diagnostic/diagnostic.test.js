@@ -446,11 +446,11 @@ function earlier(traits) {
 
 test('catch-up: finds exactly the skills that had no questions back then', () => {
   const { prior } = earlier({});
-  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents']);
+  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents', 'alg.equations']);
   // After today's fractions check, only the later check (pre-algebra) is left.
   const now = compactResult(diagnose({}).result);
-  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ['alg.order-ops', 'alg.exponents']);
-  assert.equal(catchUpName(fractions.config, ['alg.order-ops', 'alg.exponents']), 'Pre-algebra check');
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ['alg.order-ops', 'alg.exponents', 'alg.equations']);
+  assert.equal(catchUpName(fractions.config, ['alg.order-ops', 'alg.exponents', 'alg.equations']), 'Pre-algebra check');
   assert.equal(catchUpName(fractions.config, ['frac.multiply', 'alg.order-ops']), null);
 });
 
@@ -506,10 +506,11 @@ function preAlgebra(traits) {
   return runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'pre', prior }), student);
 }
 
-test('pre-algebra check: knows everything -> one problem each for order of operations and powers, plus the two negative-number parts', () => {
+test('pre-algebra check: knows everything -> one problem each for order of operations, powers and equations, plus the two negative-number parts', () => {
   const result = preAlgebra({});
   assert.deepEqual(result.rootGaps, []);
-  assert.equal(result.questionCount, 4);
+  assert.equal(result.questionCount, 5);
+  assert.equal(result.skills['alg.equations'], 'known');
   assert.equal(result.skills['alg.order-ops'], 'known');
   assert.equal(result.skills['alg.exponents'], 'known');
   assert.ok(result.questions.every((q) => q.generator.startsWith('alg.')), 'nothing from the fractions check asked again');
@@ -565,4 +566,15 @@ test('re-check: a gap counts as fixed by passing its section, mastering its skil
   assert.deepEqual(f({ mastered: ['frac.add-sub'] }), ['frac.add-sub.combine']);
   assert.deepEqual(f({ cleared: ['whole.add-sub.add-regroup'] }), ['whole.add-sub.add-regroup']);
   assert.deepEqual(f({ sectionsPassed: ['whole.mult-div.mult-facts'] }), ['whole.mult-div.mult-facts']);
+});
+
+test('pre-algebra check: does the operation instead of undoing it (x + 5 = 12 -> 17) -> gap on undoing adding, two steps can\'t be checked yet', () => {
+  const result = preAlgebra({ lacks: ['alg.equations.add-sub'], misconceptions: ['alg.eq-add-same-op'] });
+  assert.ok(result.rootGaps.includes('alg.equations.add-sub'), JSON.stringify(result.rootGaps));
+  assert.equal(statusOf(result, 'alg.equations.mult-div'), 'known');
+});
+
+test('pre-algebra check: can\'t divide integers -> found under undoing multiplication', () => {
+  const result = preAlgebra({ lacks: ['int.mult-div.divide'] });
+  assert.ok(result.rootGaps.includes('int.mult-div.divide'), JSON.stringify(result.rootGaps));
 });

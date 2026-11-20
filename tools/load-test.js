@@ -37,7 +37,7 @@ const setup = {
   generators,
   misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions, ...read('misconceptions/int.json').misconceptions, ...read('misconceptions/alg.json').misconceptions],
   diagnosticConfig: read('diagnostic/frac.json'),
-  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.meaning', 'frac.equivalent', 'frac.compare', 'frac.add-sub', 'frac.multiply', 'frac.divide', 'int.add-sub', 'int.mult-div', 'frac.signed', 'alg.order-ops', 'alg.exponents'].map((s) => read(`lessons/${s}.json`)),
+  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.meaning', 'frac.equivalent', 'frac.compare', 'frac.add-sub', 'frac.multiply', 'frac.divide', 'int.add-sub', 'int.mult-div', 'frac.signed', 'alg.order-ops', 'alg.exponents', 'alg.equations'].map((s) => read(`lessons/${s}.json`)),
   rules: read('mastery.json').default,
 };
 

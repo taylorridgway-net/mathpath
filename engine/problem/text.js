@@ -9,6 +9,8 @@
 //   { type: 'neg', of }               the negative of a fraction or power: -3/4, -3^2
 //   { type: 'group', of }             parentheses around part of an expression: (2 + 3)
 //   { type: 'pow', base, exp }        a power: 2^4; a negative base gets parentheses: (-3)^2
+//   { type: 'var', name }             a variable: x
+//   { type: 'term', coef, name }      a number times a variable: 3x, -x; coef may be a frac node: (2/3)x
 //   { type: 'op', op: '+' | '-', left, right }
 //   { type: 'eq', left, right }
 //   { type: 'list', items: [...] }
@@ -31,6 +33,13 @@ export function toText(node) {
       return `-${toText(node.of)}`;
     case 'group':
       return `(${toText(node.of)})`;
+    case 'var':
+      return node.name;
+    case 'term': {
+      const c = node.coef;
+      if (typeof c === 'number') return c === 1 ? node.name : c === -1 ? `-${node.name}` : `${c < 0 ? `-${-c}` : c}${node.name}`;
+      return `(${toText(c)})${node.name}`;
+    }
     case 'pow':
       return `${node.base.type === 'int' && node.base.value < 0 ? `(${toText(node.base)})` : toText(node.base)}^${node.exp}`;
     case 'mixed':
@@ -57,7 +66,9 @@ export function toText(node) {
 
 // 5 - (-3): a negative number after an operation sign gets parentheses.
 function wrapNegative(node) {
-  return (node.type === 'int' && node.value < 0) || node.type === 'neg' ? `(${toText(node)})` : toText(node);
+  const negative = (node.type === 'int' && node.value < 0) || node.type === 'neg'
+    || (node.type === 'term' && typeof node.coef === 'number' && node.coef < 0);
+  return negative ? `(${toText(node)})` : toText(node);
 }
 
 function part(x) {

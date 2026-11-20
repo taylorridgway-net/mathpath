@@ -25,6 +25,7 @@ import { createFractionBars } from '../components/fraction-bars.js';
 import { createAreaModel } from '../components/area-model.js';
 import { createFractionArea } from '../components/fraction-area.js';
 import { createIntLine } from '../components/int-line.js';
+import { createBalance } from '../components/balance.js';
 import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
@@ -182,7 +183,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     for (const p of sec.explain) body.append(say(p));
     main.append(body);
 
-    const WIDGETS = { 'fraction-bars': createFractionBars, 'area-model': createAreaModel, 'fraction-area': createFractionArea, 'int-line': createIntLine };
+    const WIDGETS = { 'fraction-bars': createFractionBars, 'area-model': createAreaModel, 'fraction-area': createFractionArea, 'int-line': createIntLine, balance: createBalance };
     if (WIDGETS[sec.visual?.widget]) {
       const box = h('figure', 'visual');
       const cap = renderLessonText(sec.visual.caption, { tag: 'figcaption', className: 'visual-caption', autoFractions: true });
