@@ -460,3 +460,4 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .pchart-point { font-family: var(--font-math); font-size: 2.2rem; line-height: 1.4; font-weight: 700; }
 .pchart-head.pchart-point { border-bottom: 2px solid var(--line); }
 .key-tool.key-point { font-size: 2.4rem; font-weight: 800; line-height: 0.5; }
+.path-group.path-teacher { color: var(--info); }

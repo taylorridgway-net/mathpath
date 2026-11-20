@@ -216,3 +216,6 @@
 sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 
 .t-seg.st-slipping, .t-swatch.st-slipping { background: var(--warn); }
+.t-assign { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 6px; }
+.t-assign .t-select { max-width: 100%; flex: 1 1 16rem; }
+.t-card > .t-link { align-self: flex-start; text-align: left; }

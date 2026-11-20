@@ -22,7 +22,7 @@ import { createSheetsStore, ensureTabs } from './store-sheets.js';
 const SHEET_ID_KEY = 'MATHPATH_SPREADSHEET_ID';
 const STUDENT_CALLS = ['login', 'saveRecord', 'setNickname'];
 const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents', 'resetCode', 'clearFoundation', 'resetSkill', 'verify',
-  'removeStudent', 'restoreStudent', 'removeClass', 'restoreClass', 'shareClass', 'unshareClass'];
+  'removeStudent', 'restoreStudent', 'removeClass', 'restoreClass', 'shareClass', 'unshareClass', 'changePath'];
 
 const setupData = {
   graph: buildGraphIndex(domainsIndex, graphFiles),

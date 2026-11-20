@@ -28,8 +28,14 @@
 //
 // As lessons for foundation skills get built, "not-built" and "unchecked" items
 // turn into real sections automatically, in the right order.
+//
+// The teacher's changes (engine/teacher/assignments.js): `assigned` lessons or steps
+// come right after the foundations, marked assigned (the teacher decides the order);
+// `skipped` ones are left off.
 
-export function buildPath({ result, lessons, graph, cleared = [], waitForTeacher = false }) {
+import { sectionsOf } from '../teacher/assignments.js';
+
+export function buildPath({ result, lessons, graph, cleared = [], waitForTeacher = false, assigned = [], skipped = [] }) {
   const status = (id) => result.nodes[id]?.status;
   const taughtGaps = new Set(lessons.flatMap((l) => l.sections.map((s) => s.forGap)));
   const hasLesson = (id) => taughtGaps.has(id) || graph.subskillsOf(id).some((s) => taughtGaps.has(s));
@@ -50,9 +56,23 @@ export function buildPath({ result, lessons, graph, cleared = [], waitForTeacher
     for (const s of parts) items.push({ ...sectionItem(lesson, s), review: status(s.forGap) === 'shaky' });
     if (whole && wholeNeeded) items.push(sectionItem(lesson, whole));
   }
+  // The teacher's changes.
+  const off = new Set(skipped.flatMap((i) => sectionsOf(i, lessons)));
+  const fromTeacher = [];
+  for (const a of assigned) {
+    const lesson = lessons.find((l) => l.skill === a.lesson);
+    for (const id of sectionsOf(a, lessons)) {
+      if (fromTeacher.some((x) => x.section === id)) continue;
+      fromTeacher.push({ ...sectionItem(lesson, lesson.sections.find((s) => s.id === id)), assigned: true });
+    }
+  }
+  const mine = new Set(fromTeacher.map((x) => x.section));
+  const proposed = items.filter((i) => i.kind !== 'section' || (!off.has(i.section) && !mine.has(i.section)));
+  const all = [...proposed.filter((i) => i.kind !== 'section'), ...fromTeacher, ...proposed.filter((i) => i.kind === 'section')];
+
   const builtOn = dependsOn(graph);
   const open = foundations.filter((f) => !f.cleared);
-  return items.map((item) => (item.kind === 'section'
+  return all.map((item) => (item.kind === 'section'
     ? { ...item, lessonTitle: lessons.find((l) => l.skill === item.lesson).title, waiting: waitForTeacher && open.some((f) => builtOn(item.gap, f.gap)) }
     : item));
 }

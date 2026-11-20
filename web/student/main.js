@@ -351,7 +351,10 @@ function showDone() {
   const name = (id) => graph.get(id).name;
   const shown = Object.keys(result.nodes)
     .filter((id) => result.nodes[id].status === 'known' && graph.get(id).kind === 'subskill');
-  const path = buildPath({ result, lessons, graph, cleared: profile.summary.cleared || [], waitForTeacher: masteryRules.default.paths?.waitForTeacherChecks });
+  const path = buildPath({
+    result, lessons, graph, cleared: profile.summary.cleared || [], waitForTeacher: masteryRules.default.paths?.waitForTeacherChecks,
+    assigned: profile.summary.assigned || [], skipped: profile.summary.skipped || [],
+  });
 
   const screen = section('screen screen-done');
   screen.append(accountBar());
@@ -501,9 +504,11 @@ function pathList(path) {
   let lastLesson = null;
   path.filter((item) => item.kind === 'section').forEach((item) => {
     // A heading for each skill, so "Putting it together" is clear about what it puts together.
-    if (item.lesson !== lastLesson) {
-      ol.append(h('li', 'path-group', item.lessonTitle));
-      lastLesson = item.lesson;
+    // What the teacher assigned comes first, under its own heading.
+    const group = `${item.assigned ? 'teacher:' : ''}${item.lesson}`;
+    if (group !== lastLesson) {
+      ol.append(h('li', `path-group${item.assigned ? ' path-teacher' : ''}`, item.assigned ? `From your teacher: ${item.lessonTitle}` : item.lessonTitle));
+      lastLesson = group;
     }
     const li = h('li', 'path-item');
     const text = h('div', 'path-text');

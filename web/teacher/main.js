@@ -20,6 +20,7 @@ import { practicePlan } from '../../engine/lessons/plan.js';
 import { toText } from '../../engine/problem/text.js';
 import { createRng } from '../../engine/random.js';
 import { studentStatus, countStatuses } from '../../engine/teacher/student-status.js';
+import { LOG_STATES } from '../../engine/teacher/assignments.js';
 import { teachTogether } from '../../engine/teacher/groups.js';
 import { participation } from '../../engine/teacher/participation.js';
 import { scorePaperTest, verificationRecord } from '../../engine/teacher/verification.js';
@@ -109,6 +110,7 @@ const store = Object.assign(
   {
     periods: 3, classSeed: 'sample-1', expected: 3, verifications: [], clearances: [], resets: [], log: [], codeChanges: {},
     removedStudents: [], removedClasses: [], shares: {}, // preview: removing and sharing, on this device only
+    assignments: [], // preview: assigning and skipping lessons, on this device only
   },
   loadLocal(STORE_KEY) || {},
 );
@@ -160,9 +162,10 @@ function refresh() {
     s.verifications = [...data.verifications, ...(live ? [] : store.verifications)].filter((v) => v.code === s.code);
     s.cleared = [...data.clearances, ...(live ? [] : store.clearances)].filter((c) => c.code === s.code).map((c) => c.gap);
     s.resets = [...(data.resets || []), ...(live ? [] : store.resets || [])].filter((r) => r.code === s.code);
+    s.assignments = [...(data.assignments || []), ...(live ? [] : store.assignments || [])].filter((r) => r.code === s.code);
     s.status = studentStatus({
       diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, resets: s.resets,
-      memory: s.memory, retention: rules.retention, now, graph, lessons, waitForTeacher: rules.paths?.waitForTeacherChecks,
+      memory: s.memory, retention: rules.retention, now, assignments: s.assignments, graph, lessons, waitForTeacher: rules.paths?.waitForTeacherChecks,
     });
     const hasWork = Boolean(s.status.next) && !s.status.waiting;
     s.part = participation({ diagnostic: s.diagnostic, sections: s.sections, practice: s.practice, memory: s.memory, hasWork }, { now, expectedSections: store.expected });
@@ -523,6 +526,15 @@ function groups() {
       card.append(said);
     }
     card.append(chips(group.students));
+    // The step that teaches it: one tap puts it at the top of all their paths.
+    const lesson = lessons.find((l) => l.sections.some((x) => x.forGap === info.pointsTo));
+    const step = lesson?.sections.find((x) => x.forGap === info.pointsTo);
+    if (step) {
+      const already = group.students.every((c) => students.find((x) => x.code === c).status.assigned.some((a) => a.lesson === lesson.skill && (!a.section || a.section === step.id)));
+      card.append(already
+        ? h('p', 't-card-note', `“${step.title}” is on all their paths (from you).`)
+        : btn('button', `Put “${step.title}” at the top of their paths`, () => changePath(group.students, 'assign', lesson.skill, step.id, render)));
+    }
     mistakeCol.append(card);
   }
   cols.append(nextCol, mistakeCol);
@@ -559,6 +571,50 @@ async function clearFoundations(codes, gap, then) {
 }
 
 const idOf = (code) => students.find((s) => s.code === code).id;
+
+// Assign or skip a lesson (or one step) for some students: on the server when live,
+// on this device in the preview (engine/teacher/assignments.js).
+async function changePath(codes, action, lesson, section, then) {
+  if (live) {
+    const res = await api.teacher('changePath', { studentIds: codes.map(idOf), action, lesson, section });
+    if (res.error) return problem(res);
+    return reload(then);
+  }
+  const l = lessons.find((x) => x.skill === lesson);
+  const what = section ? `“${l.sections.find((x) => x.id === section).title}” (${l.title})` : `“${l.title}”`;
+  const words = { assign: 'Assigned', unassign: 'Took back the assignment of', skip: 'Took off the path:', unskip: 'Put back on the path:' }[action];
+  const at = new Date().toISOString();
+  for (const code of codes) {
+    store.assignments.push({ code, action, lesson, section: section || '', by: ME, at });
+    logChange(code, `${words} ${what}`, ...LOG_STATES[action]);
+  }
+  persist();
+  refresh();
+  then();
+}
+
+// "Add to their path": any lesson, or one step of it.
+function assignPicker(onPick, label = 'Add to their path') {
+  const wrap = h('div', 't-assign');
+  const select = h('select', 't-select');
+  select.append(new Option('Choose a lesson or step…', ''));
+  for (const area of AREAS) {
+    for (const l of lessons.filter((x) => area.skills.includes(x.skill))) {
+      const g = document.createElement('optgroup');
+      g.label = `${area.name}: ${l.title}`;
+      g.append(new Option(`The whole lesson: ${l.title}`, `${l.skill}|`));
+      for (const sec of l.sections) g.append(new Option(sec.mode === 'skill' ? `Putting it together (${l.title})` : sec.title, `${l.skill}|${sec.id}`));
+      select.append(g);
+    }
+  }
+  const go = btn('button', label, () => {
+    if (!select.value) return;
+    const [lesson, section] = select.value.split('|');
+    onPick(lesson, section || null);
+  });
+  wrap.append(select, go);
+  return wrap;
+}
 
 // Live: ask the server for everything again, then redraw with `then`.
 async function reload(then = render) {
@@ -682,6 +738,16 @@ function lessonsTab() {
     for (const lesson of inArea) {
       const card = h('div', 't-card');
       card.append(h('h3', 't-h3', lesson.title));
+      // Give the whole lesson to everyone shown (the class picked at the top), with a second tap to confirm.
+      const who = shown();
+      if (who.length) {
+        const cls = data.classes.find((c) => c.id === classFilter);
+        const all = who.every((st) => st.status.assigned.some((a) => a.lesson === lesson.skill && !a.section));
+        card.append(all
+          ? h('p', 't-hint', `On ${cls ? `everyone in ${cls.name}` : 'all your students'}’s path (from you).`)
+          : confirmBtn('t-link', `Put this lesson at the top of ${cls ? `${cls.name}’s` : 'every student’s'} path (${who.length})`, `Tap again to give it to ${who.length} student${who.length > 1 ? 's' : ''}`,
+            () => changePath(who.map((st) => st.code), 'assign', lesson.skill, null, render)));
+      }
       for (const sec of lesson.sections) {
         const row = h('div', 't-lesson-row');
         const text = h('div', 't-lesson-text');
@@ -1153,6 +1219,14 @@ function showStudent(code) {
       li.append(h('span', '', item.review ? `Quick review: ${title}` : title));
       const look = { done: ['Done', 'good'], tried: ['Started', 'warn'], 'not-started': [item.waiting ? 'Waiting' : 'Not started', 'muted'] }[item.progress];
       li.append(pill(...look));
+      if (item.assigned) {
+        // Take back the assignment it came from (a whole lesson, or this one step).
+        const from = s.status.assigned.find((a) => a.lesson === item.lesson && (a.section === item.section || !a.section));
+        li.append(pill('From you', 'info'));
+        if (from) li.append(btn('t-link', 'Take back', () => changePath([s.code], 'unassign', from.lesson, from.section, () => showStudent(code))));
+      } else if (item.progress !== 'done') {
+        li.append(btn('t-link', 'Skip', () => changePath([s.code], 'skip', item.lesson, item.section, () => showStudent(code))));
+      }
     } else {
       li.append(h('span', '', `${item.kind === 'unchecked' ? 'Check first' : 'Gap, no lesson yet'}: ${item.name}`));
       if (item.cleared) li.append(pill('Checked', 'good'));
@@ -1172,6 +1246,20 @@ function showStudent(code) {
     ol.append(li);
   }
   pathCard.append(ol);
+  if (s.status.skipped.length) {
+    pathCard.append(h('h3', 't-area-head', 'Taken off by you'));
+    const ul = h('ul', 't-path');
+    for (const k of s.status.skipped) {
+      const l = lessons.find((x) => x.skill === k.lesson);
+      const li = h('li', 't-path-item');
+      li.append(h('span', '', k.section ? `${l.sections.find((x) => x.id === k.section).title} (${l.title})` : `${l.title} (whole lesson)`));
+      li.append(btn('t-link', 'Put back', () => changePath([s.code], 'unskip', k.lesson, k.section, () => showStudent(code))));
+      ul.append(li);
+    }
+    pathCard.append(ul);
+  }
+  pathCard.append(h('p', 't-hint', 'Add any lesson (or one step) to the top of their path, even one the check didn’t point to.'));
+  pathCard.append(assignPicker((lesson, section) => changePath([s.code], 'assign', lesson, section, () => showStudent(code))));
   left.append(pathCard);
 
   // Participation.

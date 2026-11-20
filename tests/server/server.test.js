@@ -480,3 +480,25 @@ test('send back to redo clears the memory schedule; older summaries get theirs f
   assert.equal(filled['frac.add-sub'][0].type, 'mastered');
   assert.ok(st);
 });
+
+// ---------- the teacher's changes to paths ----------
+
+test('assign a lesson to two students, skip a step for one: summaries, records and log; only your own students', () => {
+  const { server, store, cls } = fresh();
+  const [a, b] = server.teacher.addStudents(T1, cls.id, ['A', 'B']).students;
+  const res = server.teacher.changePath(T1, { studentIds: [a.id, b.id], action: 'assign', lesson: 'frac.multiply' });
+  assert.equal(res.ok, true, JSON.stringify(res));
+  assert.deepEqual(server.student.login(a.code).summary.assigned.map((x) => x.lesson), ['frac.multiply']);
+  server.teacher.changePath(T1, { studentIds: [a.id], action: 'skip', lesson: 'frac.add-sub', section: 'frac.add-sub.combine' });
+  const s = server.student.login(a.code).summary;
+  assert.deepEqual(s.skipped.map((x) => x.section), ['frac.add-sub.combine']);
+  assert.equal(store.data.records.assignments.length, 3);
+  assert.ok(server.teacher.teacherData(T1).log.some((l) => /Assigned “Multiply fractions”/.test(l.what) && l.by === T1));
+  assert.equal(server.teacher.teacherData(T1).assignments.length, 3);
+  assert.equal(server.teacher.changePath(T2, { studentIds: [a.id], action: 'assign', lesson: 'frac.multiply' }).error, 'not-your-student');
+  assert.equal(server.teacher.changePath(T1, { studentIds: [a.id], action: 'assign', lesson: 'frac.nope' }).error, 'bad-lesson');
+  assert.equal(server.teacher.changePath(T1, { studentIds: [a.id], action: 'delete', lesson: 'frac.multiply' }).error, 'bad-action');
+  server.teacher.changePath(T1, { studentIds: [a.id], action: 'unassign', lesson: 'frac.multiply' });
+  assert.deepEqual(server.student.login(a.code).summary.assigned, []);
+  assert.equal(server.student.login(b.code).summary.assigned.length, 1, 'the other student keeps it');
+});

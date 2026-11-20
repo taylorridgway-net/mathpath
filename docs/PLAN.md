@@ -205,7 +205,7 @@ Updated 2026-11-20. Read this first in a new session.
 - **Next:** owner review of the drafts; then teacher assignments/exemptions, retention checks, or the next area (decimals) — owner's call. Later: teacher assignments/exemptions; retention checks.
 - **Waiting on owner:** review the compare, multiply, divide and integer lessons and paper tests in the previews; paste the new files into Apps Script when convenient.
 - **Lessons restyled (2026-11-20):** every lesson step has a key idea, short text and a picture or tap-through worked example (owner liked the first batch).
-- **Memory checks built (2026-11-20, Claude's defaults; see CLAUDE.md):** schedule `engine/lessons/memory.js`, one-try checks and refreshers in the practice engine, server validation (`memory-check` saves, Sheets tab `Memory`), "Keep it fresh" on the student path, dashboard (Slipping status, Memory checks card on the overview, profile column and history, Participation column), pretend class with memory history. Still not built: teacher assignments and exemptions, path reordering, due dates.
+- **Memory checks built (2026-11-20, Claude's defaults; see CLAUDE.md):** schedule `engine/lessons/memory.js`, one-try checks and refreshers in the practice engine, server validation (`memory-check` saves, Sheets tab `Memory`), "Keep it fresh" on the student path, dashboard (Slipping status, Memory checks card on the overview, profile column and history, Participation column), pretend class with memory history. Still not built: due dates, path reordering beyond "assign to the top".
 
 ## 4. Build order for the fractions prototype
 
@@ -229,3 +229,5 @@ See the "Decided details" section of `CLAUDE.md`. In short: simplest form requir
 - Which Google account hosts the Apps Script project. Fine to use a personal account during synthetic-data development; must be settled (and the admin told) before any real student data.
 - Full skill list across all domains: drafted in `docs/SKILL-LIST.md`, waiting for the owner to keep/cut/merge.
 - License (AGPL-3.0 vs MIT). No license file until decided.
+- **Decimals built (2026-11-20):** see docs/DECIMALS-PLAN.md.
+- **Teacher assignments and skips built (2026-11-20):** see CLAUDE.md.

@@ -28,11 +28,13 @@ export const TABS = {
   Practice: ['studentId', 'saveId', 'skillId', 'attemptNo', 'problemCount', 'firstTry', 'seconds', 'misconceptions', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'data'],
   // Memory checks (retention): did a mastered skill stick?
   Memory: ['studentId', 'saveId', 'skillId', 'attemptNo', 'stage', 'held', 'problemCount', 'firstTry', 'seconds', 'misconceptions', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'data'],
+  // The teacher's changes to paths (assign / skip a lesson or step).
+  Assignments: ['studentId', 'action', 'lesson', 'section', 'by', 'at'],
   Log: ['at', 'by', 'studentId', 'what', 'before', 'after'],
 };
 const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks', 'misconceptions', 'coTeachers']);
 const BOOLEAN_COLUMNS = new Set(['retired', 'review', 'passed', 'provisionalMastery', 'archived', 'held']);
-const KIND_TAB = { diagnostics: 'Diagnostics', sections: 'Sections', verifications: 'Verifications', clearances: 'Clearances', resets: 'Resets', practice: 'Practice', memory: 'Memory', log: 'Log' };
+const KIND_TAB = { diagnostics: 'Diagnostics', sections: 'Sections', verifications: 'Verifications', clearances: 'Clearances', resets: 'Resets', practice: 'Practice', memory: 'Memory', assignments: 'Assignments', log: 'Log' };
 
 // Make the tabs (with header rows) if they don't exist yet, and add any columns
 // a newer version of MathPath needs. Safe to run again; never removes anything.

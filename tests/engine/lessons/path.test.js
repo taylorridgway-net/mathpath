@@ -128,3 +128,34 @@ test('owner decision (2026-11-20): by default nothing waits for the teacher; the
   const rules = JSON.parse(readFileSync(new URL('../../../curriculum/mastery.json', import.meta.url), 'utf8')).default;
   assert.equal(rules.paths.waitForTeacherChecks, false);
 });
+
+// ---- the teacher's changes: assign and skip ----
+import { pathChanges } from '../../../engine/teacher/assignments.js';
+
+const multiply = JSON.parse(readFileSync(new URL('../../../curriculum/lessons/frac.multiply.json', import.meta.url), 'utf8'));
+const gapR = () => result({ 'frac.add-sub.common-denom': 'gap', 'frac.add-sub.combine': 'known' }, ['frac.add-sub.common-denom']);
+
+test('an assigned lesson goes at the top, all its steps in order, marked as from the teacher', () => {
+  const p = buildPath({ result: gapR(), lessons: [lesson, multiply], graph, assigned: [{ lesson: 'frac.multiply', section: null }] });
+  assert.deepEqual(ids(p), ['frac.multiply.by-whole', 'frac.multiply.by-fraction', 'frac.multiply.simplify', 'frac.multiply.whole', 'frac.add-sub.common-denom', 'frac.add-sub.whole']);
+  assert.ok(p.slice(0, 4).every((i) => i.assigned) && !p[4].assigned);
+});
+
+test('one assigned step already on the path moves to the top (not listed twice); skipped steps and lessons are left off', () => {
+  const one = buildPath({ result: gapR(), lessons: [lesson], graph, assigned: [{ lesson: 'frac.add-sub', section: 'frac.add-sub.whole' }] });
+  assert.deepEqual(ids(one), ['frac.add-sub.whole', 'frac.add-sub.common-denom']);
+  const skip = buildPath({ result: gapR(), lessons: [lesson], graph, skipped: [{ lesson: 'frac.add-sub', section: 'frac.add-sub.common-denom' }] });
+  assert.deepEqual(ids(skip), ['frac.add-sub.whole']);
+  assert.deepEqual(ids(buildPath({ result: gapR(), lessons: [lesson], graph, skipped: [{ lesson: 'frac.add-sub', section: null }] })), []);
+});
+
+test('the latest decision wins: assign after skip puts it back; unassign and unskip undo', () => {
+  const r = (action, at, section = null) => ({ action, lesson: 'frac.add-sub', section, at, by: 't' });
+  assert.deepEqual(pathChanges([r('skip', '1'), r('assign', '2')]).skipped, []);
+  assert.equal(pathChanges([r('skip', '1'), r('assign', '2')]).assigned.length, 1);
+  assert.deepEqual(pathChanges([r('assign', '1'), r('skip', '2')]).assigned, []);
+  assert.deepEqual(pathChanges([r('assign', '2'), r('unassign', '3')]), { assigned: [], skipped: [] });
+  assert.deepEqual(pathChanges([r('skip', '1', 'frac.add-sub.combine'), r('unskip', '2', 'frac.add-sub.combine')]).skipped, []);
+  // Order of arrival doesn't matter: decided by time.
+  assert.deepEqual(pathChanges([r('assign', '2'), r('skip', '1')]).skipped, []);
+});

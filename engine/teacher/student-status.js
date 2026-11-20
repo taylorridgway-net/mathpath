@@ -14,6 +14,7 @@
 
 import { buildPath } from '../lessons/path.js';
 import { memoryState, memoryEvents } from '../lessons/memory.js';
+import { pathChanges } from './assignments.js';
 
 // Cell statuses, best first. The dashboard colours and labels these.
 export const STATUSES = [
@@ -44,7 +45,8 @@ const FROM_DIAGNOSTIC = {
 
 // resets: [{ skillId, at }] when the teacher sent the student back to redo a skill.
 // memory: memory-check records [{ skillId, held, finishedAt }]; retention: mastery.json "retention"; now: ISO time.
-export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], resets = [], memory = [], retention = null, now = null, graph, lessons, waitForTeacher = false }) {
+// assignments: the teacher's assign/skip records for this student (engine/teacher/assignments.js).
+export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], resets = [], memory = [], retention = null, now = null, assignments = [], graph, lessons, waitForTeacher = false }) {
   const sectionOf = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, { ...s, lesson: l.skill }])));
   const byTime = (a, b) => String(a.at ?? a.finishedAt).localeCompare(String(b.at ?? b.finishedAt));
   // After a reset, that skill's "Putting it together" and paper tests from before don't count.
@@ -63,7 +65,8 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
   for (const r of records) if (r.provisionalMastery && !platformAt[r.lesson]) platformAt[r.lesson] = r.finishedAt;
 
   // ---- path with progress ----
-  const path = result ? buildPath({ result, lessons, graph, cleared, waitForTeacher }) : [];
+  const changes = pathChanges(assignments);
+  const path = result ? buildPath({ result, lessons, graph, cleared, waitForTeacher, ...changes }) : [];
   const sectionProgress = (id) => {
     const mine = records.filter((r) => r.section === id);
     if (mine.some((r) => r.passed)) return 'done';
@@ -127,6 +130,9 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
     path: pathWithProgress,
     next,
     waiting: pathWithProgress.some((i) => i.kind === 'section' && i.waiting && i.progress !== 'done'),
+    // The teacher's own changes to the path.
+    assigned: changes.assigned,
+    skipped: changes.skipped,
     // Foundations the teacher still needs to check with this student ("with your teacher first").
     openChecks: pathWithProgress.filter((i) => i.kind !== 'section' && !i.cleared).map((i) => i.gap),
   };

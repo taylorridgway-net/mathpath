@@ -19,6 +19,7 @@ import { verificationRecord } from '../../engine/teacher/verification.js';
 import { sectionSummary } from '../../engine/teacher/section-summary.js';
 import { practicePlan, practiceSetPlan, memoryCheckPlan } from '../../engine/lessons/plan.js';
 import { memoryState, memoryHeld, memoryEvents } from '../../engine/lessons/memory.js';
+import { pathChanges, PATH_ACTIONS, LOG_STATES } from '../../engine/teacher/assignments.js';
 
 const MAX_SAVE_IDS = 200; // recent saveIds kept per student to spot repeats
 const WORDS_A = ['maple', 'river', 'cedar', 'stone', 'amber', 'cloud', 'birch', 'coral', 'frost', 'ember', 'meadow', 'harbor', 'canyon', 'willow', 'summit', 'pebble', 'acorn', 'delta', 'orbit', 'prism', 'quartz', 'tundra', 'lagoon', 'aspen'];
@@ -348,6 +349,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         resets: withCode(store.listRecords('resets', ids)),
         practice: withCode(store.listRecords('practice', ids, { summary: true })).map((r) => ({ type: 'practice-set', ...r })),
         memory: withCode(store.listRecords('memory', ids, { summary: true })).map((r) => ({ type: 'memory-check', ...r })),
+        assignments: withCode(store.listRecords('assignments', ids)),
         log: withCode(store.listRecords('log', ids)),
         removed: {
           classes: all.filter((c) => c.archived).map(({ id, name }) => ({ id, name })),
@@ -494,6 +496,31 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     }));
   }
 
+  // The teacher changes students' paths: assign a lesson (or one step) to the top of
+  // the path, or skip one. For one student or a group at once. Logged per student;
+  // the student's summary keeps the current list (what sign-in sends).
+  function changePath(email, { studentIds, action, lesson, section = null }) {
+    return teacherOnly(email, () => store.withLock(() => {
+      if (!PATH_ACTIONS.includes(action)) return fail('bad-action', `Unknown action ${action}.`);
+      const l = setup.lessons.find((x) => x.skill === lesson);
+      if (!l || (section && !l.sections.some((s) => s.id === section))) return fail('bad-lesson', 'No such lesson or step.');
+      const list = (studentIds || []).map((id) => ownStudent(email, id));
+      if (!list.length || list.some((s) => !s)) return fail('not-your-student', 'That student isn’t in your classes.');
+      const at = now();
+      const what = section ? `“${l.sections.find((s) => s.id === section).title}” (${l.title})` : `“${l.title}”`;
+      const words = { assign: 'Assigned', unassign: 'Took back the assignment of', skip: 'Took off the path:', unskip: 'Put back on the path:' }[action];
+      for (const student of list) {
+        const row = { studentId: student.id, action, lesson, section: section || '', by: email, at };
+        store.appendRecord('assignments', row);
+        const all = store.listRecords('assignments', [student.id]);
+        const changes = pathChanges(all);
+        store.putStudent({ ...student, summary: { ...student.summary, assigned: changes.assigned, skipped: changes.skipped } });
+        log(email, student.id, `${words} ${what}`, ...LOG_STATES[action]);
+      }
+      return { ok: true, at };
+    }));
+  }
+
   // A paper-test result. The server scores the marks itself (5 of 6 rule) and
   // keeps the teacher's decision alongside the suggestion.
   function verify(email, { studentId, skillId, version, marks, decision }) {
@@ -527,6 +554,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       restoreClass: (email, id) => setClassRemoved(email, id, false),
       shareClass,
       unshareClass,
+      changePath,
     },
   };
 }
