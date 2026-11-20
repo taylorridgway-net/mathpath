@@ -61,6 +61,11 @@ export function diagnosticReport(result, { graph, misconceptions, times = [] }) 
     details.append(list(seen.map(([id, n]) => `${misconceptionText.get(id)} (${n}×)`)));
   }
 
+  if (!result.questions?.length) {
+    // Diagnostics saved before results were kept whole: only the verdicts are stored.
+    details.append(h('p', 'fine', 'The individual questions weren’t kept for this check (it was saved by an earlier version).'));
+    return details;
+  }
   details.append(h('h3', 'teacher-heading', 'Every question'));
   const log = h('div', 'log');
   const head = h('div', 'log-row log-head');

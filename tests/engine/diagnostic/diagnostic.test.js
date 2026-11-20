@@ -4,7 +4,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { startDiagnostic, replayDiagnostic } from '../../../engine/diagnostic/diagnostic.js';
+import { startDiagnostic, replayDiagnostic, compactResult, catchUpTargets } from '../../../engine/diagnostic/diagnostic.js';
 import { buildGraphIndex } from '../../../engine/graph/graph-index.js';
 import { createRng } from '../../../engine/random.js';
 import { simulatedStudent, runWithStudent } from '../../../tools/simulated-student.js';
@@ -429,4 +429,50 @@ test('integers: division facts missing -> found under integer division; multiply
   assert.deepEqual(result.rootGaps, ['whole.mult-div.div-facts']);
   assert.equal(statusOf(result, 'int.mult-div.multiply'), 'known');
   assert.ok(result.questionCount <= 8, `took ${result.questionCount} questions`);
+});
+
+// ---------- catch-up check (skills added after the student's diagnostic) ----------
+// "Before": the diagnostic as it was when only adding/subtracting had questions.
+const before = { ...fractions, config: { ...fractions.config, targets: ['frac.add-sub'] } };
+function earlier(traits) {
+  const student = simulatedStudent({ graph: fractions.graph, generators: fractions.generators, ...traits });
+  return { student, prior: compactResult(runWithStudent(startDiagnostic({ ...before, seed: 'old' }), student)) };
+}
+
+test('catch-up: finds exactly the skills that had no questions back then', () => {
+  const { prior } = earlier({});
+  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.compare']);
+  // Nothing new: nothing to catch up on.
+  const now = compactResult(diagnose({}).result);
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), []);
+});
+
+test('catch-up: asks only about the new skills, and the result keeps everything from before', () => {
+  const { student, prior } = earlier({ lacks: ['frac.add-sub.combine'], misconceptions: ['frac.add-across'] });
+  const targets = catchUpTargets({ ...fractions, prior });
+  const result = runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'catch', prior }), student);
+  assert.ok(result.questions.every((q) => !q.generator.startsWith('frac.add-sub')), 'nothing about adding asked again');
+  assert.equal(result.nodes['frac.add-sub.combine'].status, 'gap', 'the old gap is still there');
+  assert.ok(result.misconceptions['frac.add-across'] >= 1, 'old wrong-answer patterns kept');
+  assert.equal(result.skills['frac.multiply'], 'known');
+  assert.equal(result.questionCount, 3, 'one question each: multiply, divide, compare');
+});
+
+test('catch-up: a gap found the first time blocks new questions that rest on it', () => {
+  const { student, prior } = earlier({ lacks: ['whole.mult-div.mult-facts'] });
+  assert.equal(prior.nodes['whole.mult-div.mult-facts'].status, 'gap');
+  const targets = catchUpTargets({ ...fractions, prior });
+  const result = runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'catch', prior }), student);
+  assert.ok(!result.questions.some((q) => q.generator === 'whole.mult-div.mult-facts'), 'facts not asked again');
+  assert.ok(result.nodes['frac.multiply.by-fraction'].blockedBy);
+  assert.ok(result.questionCount <= 10, `took ${result.questionCount}`);
+});
+
+test('a saved (compact) result is what the path needs, without re-running anything', () => {
+  const full = diagnose({ lacks: [SUB('combine')] }).result;
+  const saved = compactResult(full);
+  assert.deepEqual(saved.rootGaps, full.rootGaps);
+  assert.deepEqual(Object.fromEntries(Object.entries(saved.nodes).map(([k, v]) => [k, v.status])), Object.fromEntries(Object.entries(full.nodes).map(([k, v]) => [k, v.status])));
+  assert.equal(saved.questions.length, full.questionCount);
+  assert.ok(!JSON.stringify(saved).includes('evidence'));
 });

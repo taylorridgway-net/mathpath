@@ -46,7 +46,11 @@
 import { checkAnswer } from '../grading/check-answer.js';
 import { createRng } from '../random.js';
 
-export function startDiagnostic({ graph, generators, misconceptions = [], config, seed }) {
+// prior: the saved result of an earlier diagnostic (compactResult: nodes { id: { status,
+// blockedBy?, slow? } } and the wrong-answer patterns seen).
+// A catch-up check starts from it: nothing already settled is asked again, and the
+// final result covers both (see catchUpTargets below).
+export function startDiagnostic({ graph, generators, misconceptions = [], config, seed, prior = null }) {
   const pointsTo = new Map(misconceptions.map((m) => [m.id, m.pointsTo]));
   const difficulty = { screen: 2, probe: 2, confirm: 1, ...config.difficulty };
   const maxQuestions = config.maxQuestions ?? 25;
@@ -54,7 +58,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   const nodes = new Map(); // id -> { status, evidence: [] }
   const expandedSkills = new Set();
   const questions = []; // everything needed to replay and verify
-  const misconceptionCounts = {};
+  const misconceptionCounts = { ...(prior?.misconceptions || {}) };
   let tasks = config.targets.map((id) => ({ kind: 'skill', id, fromDescent: false }));
   let pending = null; // { task, problem, question }
   let finishedReason = null;
@@ -66,6 +70,10 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
     return nodes.get(id);
   };
   const statusOf = (id) => nodes.get(id)?.status ?? 'not-tested';
+  for (const [id, n] of Object.entries(prior?.nodes || {})) {
+    if (!graph.has(id)) continue; // a skill that no longer exists
+    nodes.set(id, { status: n.status, evidence: [], ...(n.blockedBy ? { blockedBy: [...n.blockedBy] } : {}), ...(n.slow ? { slow: true } : {}) });
+  }
   // Confirmed gaps this node is built on (essential links). If there are any, a
   // question here can't tell us anything new: report "can't check yet" instead.
   // Prerequisites that are gaps, or can't be checked yet because of a gap under them
@@ -388,4 +396,63 @@ export function replayDiagnostic(setup, answers, times = []) {
     d.submit(answer, times[i]);
   });
   return d;
+}
+
+// ---------- saved results and the catch-up check ----------
+
+// What's kept of a finished diagnostic: everything the path and the teacher's
+// report need, without re-running it (re-running old answers through a newer
+// diagnostic can ask different questions).
+export function compactResult(result) {
+  const nodes = {};
+  for (const [id, n] of Object.entries(result.nodes)) {
+    nodes[id] = { status: n.status, ...(n.blockedBy ? { blockedBy: n.blockedBy } : {}), ...(n.slow ? { slow: true } : {}) };
+  }
+  return {
+    diagnosticId: result.diagnosticId,
+    curriculumVersion: result.curriculumVersion,
+    seed: result.seed,
+    finished: result.finished,
+    finishedReason: result.finishedReason,
+    questionCount: result.questionCount,
+    nodes,
+    skills: result.skills,
+    rootGaps: result.rootGaps,
+    uncheckedCauses: result.uncheckedCauses,
+    misconceptions: result.misconceptions,
+    questions: result.questions.map(({ index, nodeId, generator, seed, difficulty, answer, status, misconception, slow }) => ({
+      index, nodeId, generator, seed, difficulty, answer, status, ...(misconception ? { misconception } : {}), ...(slow ? { slow } : {}),
+    })),
+  };
+}
+
+// Target skills that have questions now but had none when this result was made:
+// nothing about the skill or its parts was asked, credited or blocked. These are
+// what a catch-up check asks about.
+export function catchUpTargets({ graph, generators, config, prior }) {
+  const nothingKnown = (id) => {
+    const n = prior?.nodes?.[id];
+    return !n || ((n.status === 'not-tested' || n.status === 'unchecked') && !n.blockedBy);
+  };
+  return config.targets.filter((id) => graph.has(id)
+    && (generators[id] || graph.subskillsOf(id).some((s) => generators[s]))
+    && [id, ...graph.subskillsOf(id)].every(nothingKnown));
+}
+
+// For diagnostics saved before whole results were kept: the verdicts recorded at
+// the time ({ id: status }), plus the gaps and wrong-answer patterns.
+export function resultFromVerdicts(row) {
+  const nodes = Object.fromEntries(Object.entries(row.verdicts || {}).map(([id, status]) => [id, { status }]));
+  return {
+    curriculumVersion: row.curriculumVersion,
+    seed: row.seed,
+    finished: true,
+    questionCount: row.questionCount,
+    nodes,
+    skills: {},
+    rootGaps: row.rootGaps || [],
+    uncheckedCauses: Object.keys(nodes).filter((id) => nodes[id].status === 'unchecked'),
+    misconceptions: row.misconceptions || {},
+    questions: [],
+  };
 }

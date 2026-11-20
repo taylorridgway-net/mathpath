@@ -43,7 +43,7 @@ import intMultDivPaper from '../../curriculum/paper/int.mult-div.json';
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
-import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
+import { replayDiagnostic, resultFromVerdicts } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { practicePlan } from '../../engine/lessons/plan.js';
 import { toText } from '../../engine/problem/text.js';
@@ -106,10 +106,11 @@ function buildClass(then = render) {
   const nameOf = new Map(data.roster.map((r) => [r.code, r.realName]));
   students = data.students.map((s) => {
     const diagnostic = data.diagnostics.find((d) => d.code === s.code) || null;
-    // Re-created from the saved seed and answers, the way the server will check it.
-    const result = diagnostic
-      ? replayDiagnostic({ graph, generators, misconceptions, config: fracDiagnostic, seed: diagnostic.seed }, diagnostic.answers, diagnostic.times || []).result()
-      : null;
+    // The result as the server saved it (older saves: rebuilt from their verdicts). Never
+    // re-run from the answers: a newer diagnostic could ask different questions.
+    const result = !diagnostic ? null
+      : diagnostic.result || (diagnostic.verdicts ? resultFromVerdicts(diagnostic)
+        : replayDiagnostic({ graph, generators, misconceptions, config: fracDiagnostic, seed: diagnostic.seed }, diagnostic.answers, diagnostic.times || []).result());
     return {
       ...s,
       id: s.id || s.code,
@@ -850,7 +851,7 @@ function newCode(code) {
 
 // ---------- Student profile ----------
 
-const detailCache = new Map(); // live: code -> that student's full section records
+const detailCache = new Map(); // live: code -> { sections, diagnostic } with every answer
 let currentProfile = null;
 
 function showStudent(code) {
@@ -948,22 +949,24 @@ function showStudent(code) {
   if (!records.length) hist.append(h('p', 'empty', 'No practice yet.'));
   // Live: the dashboard has summaries; this student's answers are fetched now, once.
   const detail = live ? detailCache.get(s.code) : null;
-  if (live && records.length && !detail) {
+  if (live && (records.length || s.diagnostic) && !detail) {
     hist.append(h('p', 't-hint', 'Loading every answer…'));
     api.teacher('studentDetail', s.id).then((res) => {
       if (res.error) return problem(res);
-      detailCache.set(s.code, res.sections);
+      detailCache.set(s.code, { sections: res.sections, diagnostic: res.diagnostic });
       if (app.querySelector('.t-profile-head') && currentProfile === code) showStudent(code);
     });
   }
-  const full = new Map((detail || []).map((r) => [r.saveId, r]));
+  const full = new Map((detail?.sections || []).map((r) => [r.saveId, r]));
   for (const r of records) hist.append(sectionHistory(r, full.get(r.saveId)));
   right.append(hist);
 
   // Diagnostic.
   const diag = h('div', 't-card');
   diag.append(h('h2', 't-h2', `Diagnostic${s.diagnostic ? `, ${day(s.diagnostic.finishedAt)}` : ''}`));
-  if (s.result) diag.append(diagnosticReport(s.result, { graph, misconceptions, times: s.diagnostic.times }));
+  // Live: the question list and times come with this student's details.
+  const fullDiag = live ? detail?.diagnostic : s.diagnostic;
+  if (s.result) diag.append(diagnosticReport(fullDiag?.result || s.result, { graph, misconceptions, times: fullDiag?.times || [] }));
   else diag.append(h('p', 'empty', 'Not taken yet.'));
   right.append(diag);
 

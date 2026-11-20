@@ -27,7 +27,7 @@ import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
-import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
+import { replayDiagnostic, compactResult, catchUpTargets } from '../../engine/diagnostic/diagnostic.js';
 import { buildPath } from '../../engine/lessons/path.js';
 import { seedFor } from '../../engine/seeds.js';
 import { renderMath } from '../components/render-math.js';
@@ -50,11 +50,19 @@ const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconcept
 const api = createApi({
   setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default },
 });
-const setupFor = (seed) => ({ graph, generators, misconceptions, config: fracDiagnostic, seed });
+// A catch-up check starts from the saved result and asks only about skills added since.
+const setupFor = (seed, catchUp = null) => ({
+  graph, generators, misconceptions, seed,
+  config: catchUp ? { ...fracDiagnostic, targets: catchUpTargets({ graph, generators, config: fracDiagnostic, prior: catchUp.prior }) } : fracDiagnostic,
+  prior: catchUp?.prior || null,
+});
+// A finished diagnostic as saved: used as it is, never re-run (re-running old answers
+// through a newer diagnostic can ask different questions).
+const savedDiagnostic = (result) => ({ result: () => result, nextQuestion: () => null, submit() {} });
 
 const app = document.getElementById('app');
 let profile = null;
-let session = null; // the diagnostic: { attemptNo, seed, saveId, answers, times, startedAt, finished }
+let session = null; // the diagnostic: { attemptNo, seed, saveId, answers, times, startedAt, finished, catchUp?, result? }
 let diagnostic = null;
 let keypad = null;
 let shownAt = 0;
@@ -190,18 +198,32 @@ function refreshStatus() {
 function loadDiagnostic() {
   session = loadMine('diagnostic');
   const server = profile.summary.diagnostic;
-  if (server && (!session || session.attemptNo < server.attemptNo || (session.attemptNo === server.attemptNo && !session.finished))) {
-    session = { attemptNo: server.attemptNo, seed: server.seed, answers: server.answers, times: server.times || [], finished: true };
+  const serverIsNewer = server && (!session || session.attemptNo < server.attemptNo
+    || (session.attemptNo === server.attemptNo && (!session.finished || (server.result && !session.result))));
+  if (serverIsNewer) {
+    session = { attemptNo: server.attemptNo, seed: server.seed, answers: server.answers, times: server.times || [], finished: true, result: server.result || null };
     saveMine('diagnostic', session);
   }
   diagnostic = null;
-  if (session) {
+  if (session?.finished && session.result) {
+    diagnostic = savedDiagnostic(session.result);
+  } else if (session) {
     try {
-      diagnostic = replayDiagnostic(setupFor(session.seed), session.answers, session.times);
+      diagnostic = replayDiagnostic(setupFor(session.seed, session.catchUp), session.answers, session.times);
+      if (session.finished) {
+        session.result = compactResult(diagnostic.result());
+        saveMine('diagnostic', session);
+      }
     } catch {
       session = null; // doesn't fit the current questions (the app changed); start again
     }
   }
+}
+
+// Skills with questions now that this student's diagnostic didn't have yet.
+function catchUpSkills() {
+  if (!session?.finished || !diagnostic) return [];
+  return catchUpTargets({ graph, generators, config: fracDiagnostic, prior: diagnostic.result() });
 }
 
 function route() {
@@ -213,12 +235,21 @@ function showStart() {
   const canResume = session && session.answers.length > 0 && !session.finished;
   const screen = section('screen screen-start');
   screen.append(accountBar());
-  screen.append(
-    h('p', 'eyebrow', 'Fractions check'),
-    h('h1', 'title', 'Let’s see what you already know'),
-    h('p', 'lede', 'About 5 to 25 short questions. This isn’t graded. It shows your teacher where to start, so you don’t redo things you already know.'),
-    h('p', 'lede', 'If you don’t know an answer, tap “I’m not sure”. That helps too.'),
-  );
+  if (session?.catchUp && !session.finished) {
+    screen.append(
+      h('p', 'eyebrow', 'Catch-up check'),
+      h('h1', 'title', 'A few questions on new topics'),
+      h('p', 'lede', 'MathPath has new topics since your first check. These questions are only about those. Everything you already showed still counts.'),
+      h('p', 'lede', 'If you don’t know an answer, tap “I’m not sure”. That helps too.'),
+    );
+  } else {
+    screen.append(
+      h('p', 'eyebrow', 'Fractions check'),
+      h('h1', 'title', 'Let’s see what you already know'),
+      h('p', 'lede', 'About 5 to 25 short questions. This isn’t graded. It shows your teacher where to start, so you don’t redo things you already know.'),
+      h('p', 'lede', 'If you don’t know an answer, tap “I’m not sure”. That helps too.'),
+    );
+  }
   const actions = h('div', 'actions');
   actions.append(btn('button button-primary', canResume ? `Continue from question ${session.answers.length + 1}` : 'Start', begin));
   screen.append(actions);
@@ -232,9 +263,21 @@ function begin() {
     const seed = seedFor(profile.id, 'diagnostic', attemptNo);
     session = { attemptNo, seed, saveId: `${seed}|${new Date().toISOString()}`, answers: [], times: [], startedAt: new Date().toISOString(), finished: false };
   }
-  diagnostic = replayDiagnostic(setupFor(session.seed), session.answers, session.times);
+  diagnostic = replayDiagnostic(setupFor(session.seed, session.catchUp), session.answers, session.times);
   saveMine('diagnostic', session);
   showQuestion();
+}
+
+// Start a catch-up check from the finished diagnostic's result.
+function beginCatchUp() {
+  const prior = diagnostic.result();
+  const attemptNo = Math.max(profile.summary.diagnosticAttempts || 0, session.attemptNo) + 1;
+  const seed = seedFor(profile.id, 'diagnostic', attemptNo);
+  session = {
+    attemptNo, seed, saveId: `${seed}|${new Date().toISOString()}`, answers: [], times: [], startedAt: new Date().toISOString(),
+    finished: false, catchUp: { prior },
+  };
+  begin();
 }
 
 function showQuestion() {
@@ -282,11 +325,12 @@ function finishDiagnostic() {
   if (!session.finished) {
     session.finished = true;
     session.finishedAt = new Date().toISOString();
+    session.result = compactResult(diagnostic.result());
     saveMine('diagnostic', session);
     saveFinished({
       type: 'diagnostic', saveId: session.saveId, studentId: profile.id, attemptNo: session.attemptNo, seed: session.seed,
       answers: session.answers, times: session.times, startedAt: session.startedAt, finishedAt: session.finishedAt,
-      curriculumVersion: graph.curriculumVersion,
+      curriculumVersion: graph.curriculumVersion, ...(session.catchUp ? { catchUp: true } : {}),
     });
     upload();
   }
@@ -315,6 +359,18 @@ function showDone() {
   next.append(pathList(path));
   const grid = h('div', 'path-grid');
   grid.append(next, strong);
+  const newSkills = catchUpSkills();
+  if (newSkills.length) {
+    const card = h('div', 'done-block catch-up');
+    card.append(
+      h('h2', 'block-title', 'New topics to check'),
+      h('p', 'lede', `MathPath has new topics since your check: ${newSkills.map(name).join(', ')}. Answer a few questions so your path includes them.`),
+    );
+    const actions = h('div', 'actions');
+    actions.append(btn('button button-primary', 'Start the catch-up check', beginCatchUp));
+    card.append(actions);
+    screen.append(card);
+  }
   screen.append(grid, practiceCard());
 
   if (api.preview) {

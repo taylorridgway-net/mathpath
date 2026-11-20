@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import { createServer } from '../../server/core/server.js';
 import { createMemoryStore } from '../../server/core/store-memory.js';
 import { seedFor } from '../../engine/seeds.js';
-import { startDiagnostic } from '../../engine/diagnostic/diagnostic.js';
+import { startDiagnostic, catchUpTargets } from '../../engine/diagnostic/diagnostic.js';
 import { startPractice } from '../../engine/practice/practice.js';
 import { reduce } from '../../engine/math/fraction.js';
 import { createRng } from '../../engine/random.js';
@@ -224,4 +224,97 @@ test('practice for a check: re-graded, stored once, counted per skill; never cha
   const data = server.teacher.teacherData(T1);
   assert.equal(data.practice.length, 1);
   assert.equal(data.practice[0].answers, undefined, 'the dashboard gets the summary only');
+});
+
+// ---------- saved results and the catch-up check ----------
+
+// The diagnostic as it was before compare/multiply/divide had questions.
+const oldSetup = { ...setup, diagnosticConfig: { ...setup.diagnosticConfig, targets: ['frac.add-sub'] } };
+
+function answerAll(d, answerFor = right) {
+  const answers = [];
+  for (let q = d.nextQuestion(); q; q = d.nextQuestion()) {
+    const a = answerFor(q.problem);
+    answers.push(a);
+    d.submit(a);
+  }
+  return answers;
+}
+
+// A student who took the old diagnostic, then the app gained skills (same store, newer server).
+function tookOldDiagnostic() {
+  const store = createMemoryStore({ teachers: [T1] });
+  const old = createServer({ store, setup: oldSetup, now: () => '2026-11-19T10:00:00.000Z', random: createRng('old').next });
+  const cls = old.teacher.addClass(T1, 'Period 1').class;
+  const [kid] = old.teacher.addStudents(T1, cls.id, ['Pretend Kid']).students;
+  const seed = seedFor(kid.id, 'diagnostic', 1);
+  const answers = answerAll(startDiagnostic({ ...oldSetup, config: oldSetup.diagnosticConfig, seed }));
+  assert.equal(old.student.saveRecord(kid.code, { type: 'diagnostic', saveId: 'd1', attemptNo: 1, seed, answers, times: [], startedAt: 'a', finishedAt: 'b' }).ok, true);
+  const server = createServer({ store, setup, now: () => '2026-11-20T10:00:00.000Z', random: createRng('new').next });
+  return { store, server, kid };
+}
+
+test('a diagnostic save keeps its whole result; the student\'s copy leaves out the question list', () => {
+  const { server, store, kid } = fresh();
+  const res = server.student.saveRecord(kid.code, diagnosticRecord(kid.id));
+  assert.equal(res.summary.diagnostic.result.nodes['frac.add-sub.combine'].status, 'known');
+  assert.equal(res.summary.diagnostic.result.questions, undefined);
+  assert.equal(store.data.records.diagnostics[0].result.questions.length, store.data.records.diagnostics[0].questionCount);
+});
+
+test('older saves (verdicts only) get their result filled in at sign-in, once', () => {
+  const { server, store, kid } = tookOldDiagnostic();
+  // Make it look like it was saved before results were kept.
+  delete store.data.records.diagnostics[0].result;
+  const st = store.getStudentByCode(kid.code);
+  delete st.summary.diagnostic.result;
+  store.putStudent(st);
+  const res = server.student.login(kid.code);
+  assert.equal(res.summary.diagnostic.result.nodes['frac.add-sub.combine'].status, 'known');
+  assert.ok(store.getStudentByCode(kid.code).summary.diagnostic.result, 'saved, so it isn\'t rebuilt every time');
+});
+
+test('catch-up check: only the new skills; re-graded from the saved result; the result covers both', () => {
+  const { server, store, kid } = tookOldDiagnostic();
+  const { summary } = server.student.login(kid.code);
+  const prior = summary.diagnostic.result;
+  const targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior });
+  assert.deepEqual(targets, ['frac.multiply', 'frac.divide', 'frac.compare']);
+  const seed = seedFor(kid.id, 'diagnostic', 2);
+  const d = startDiagnostic({ ...setup, config: { ...setup.diagnosticConfig, targets }, seed, prior });
+  const answers = answerAll(d);
+  assert.ok(answers.length <= 4);
+  const res = server.student.saveRecord(kid.code, { type: 'diagnostic', catchUp: true, saveId: 'd2', attemptNo: 2, seed, answers, times: [], startedAt: 'a', finishedAt: 'b' });
+  assert.equal(res.ok, true, res.message);
+  const after = res.summary.diagnostic.result;
+  assert.equal(after.nodes['frac.add-sub.combine'].status, 'known', 'the first check still counts');
+  assert.equal(after.skills['frac.multiply'], 'known');
+  assert.equal(res.summary.diagnostic.catchUp, true);
+  assert.deepEqual(store.data.records.diagnostics.at(-1).targets, targets);
+  // Nothing new any more: another catch-up is refused.
+  const seed3 = seedFor(kid.id, 'diagnostic', 3);
+  const again = server.student.saveRecord(kid.code, { type: 'diagnostic', catchUp: true, saveId: 'd3', attemptNo: 3, seed: seed3, answers: [], times: [] });
+  assert.equal(again.error, 'nothing-to-catch-up');
+});
+
+test('catch-up answers re-graded as a full diagnostic (or the other way round) are refused', () => {
+  const { server, kid } = tookOldDiagnostic();
+  const prior = server.student.login(kid.code).summary.diagnostic.result;
+  const targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior });
+  const seed = seedFor(kid.id, 'diagnostic', 2);
+  const answers = answerAll(startDiagnostic({ ...setup, config: { ...setup.diagnosticConfig, targets }, seed, prior }));
+  const res = server.student.saveRecord(kid.code, { type: 'diagnostic', saveId: 'd2', attemptNo: 2, seed, answers, times: [] });
+  assert.ok(res.error, 'without catchUp: true the same answers don\'t make a finished full diagnostic');
+});
+
+test('dashboard overview: diagnostics without answers or the question list; the student\'s details have them', () => {
+  const { server, kid } = fresh();
+  server.student.saveRecord(kid.code, diagnosticRecord(kid.id));
+  const [d] = server.teacher.teacherData(T1).diagnostics;
+  assert.equal(d.answers, undefined);
+  assert.equal(d.result.questions, undefined);
+  assert.equal(d.result.nodes['frac.add-sub.combine'].status, 'known');
+  const detail = server.teacher.studentDetail(T1, kid.id);
+  assert.equal(detail.diagnostic.result.questions.length, detail.diagnostic.questionCount);
+  assert.equal(detail.diagnostic.answers.length, detail.diagnostic.questionCount);
 });

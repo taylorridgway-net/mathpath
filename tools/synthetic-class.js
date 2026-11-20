@@ -10,7 +10,7 @@
 // Deterministic: the same settings and seed always make the same class.
 
 import { createRng } from '../engine/random.js';
-import { startDiagnostic } from '../engine/diagnostic/diagnostic.js';
+import { startDiagnostic, compactResult } from '../engine/diagnostic/diagnostic.js';
 import { startPractice } from '../engine/practice/practice.js';
 import { buildPath } from '../engine/lessons/path.js';
 import { reduce } from '../engine/math/fraction.js';
@@ -88,7 +88,7 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
       const result = diag.result();
       diagnostics.push({
         type: 'diagnostic', code, seed: diagSeed, answers, times, curriculumVersion: graph.curriculumVersion,
-        startedAt: iso(t - sum(times)), finishedAt: iso(t),
+        startedAt: iso(t - sum(times)), finishedAt: iso(t), result: compactResult(result),
       });
 
       // ---- the teacher clears foundation checks for some students after a few days ----

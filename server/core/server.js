@@ -13,7 +13,7 @@
 // Every function returns a plain object; failures are { error: 'kind', message }.
 
 import { seedFor } from '../../engine/seeds.js';
-import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
+import { replayDiagnostic, compactResult, catchUpTargets, resultFromVerdicts } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { verificationRecord } from '../../engine/teacher/verification.js';
 import { sectionSummary } from '../../engine/teacher/section-summary.js';
@@ -55,9 +55,27 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
   // ---------------- students ----------------
 
   function login(code) {
-    const student = store.getStudentByCode(normalize(code));
+    let student = store.getStudentByCode(normalize(code));
     if (!student || student.retired) return fail('unknown-code', 'That code isn’t right. Check it with your teacher.');
+    if (student.summary.diagnostic && !student.summary.diagnostic.result) {
+      // Saved before results were kept: fill it in once, from the verdicts recorded at the time.
+      student = store.withLock(() => {
+        const fresh = store.getStudentByCode(normalize(code));
+        if (fresh.summary.diagnostic && !fresh.summary.diagnostic.result) {
+          fresh.summary.diagnostic.result = slimResult(savedResultFromRecords(fresh));
+          store.putStudent(fresh);
+        }
+        return fresh;
+      });
+    }
     return { student: { id: student.id, nickname: student.nickname || '' }, summary: publicSummary(student.summary) };
+  }
+
+  // The latest diagnostic's result as saved (older saves: rebuilt from their verdicts).
+  function savedResultFromRecords(student) {
+    const latest = latestDiagnostics(store.listRecords('diagnostics', [student.id]))[0];
+    if (!latest) return null;
+    return latest.result || resultFromVerdicts(latest);
   }
 
   function setNickname(code, nickname) {
@@ -98,17 +116,31 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     if (record.attemptNo !== attemptNo) return fail('wrong-attempt', `Expected diagnostic attempt ${attemptNo}.`);
     const seed = seedFor(student.id, 'diagnostic', attemptNo);
     if (record.seed !== seed) return fail('wrong-seed', 'Seed doesn’t match.');
+    // A catch-up check starts from the saved result; the server works out the new skills itself.
+    let config = setup.diagnosticConfig;
+    let prior = null;
+    if (record.catchUp === true) {
+      prior = summary.diagnostic?.result || (summary.diagnostic && savedResultFromRecords(student));
+      if (!prior) return fail('no-diagnostic', 'There’s no earlier check to catch up from.');
+      const targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config, prior });
+      if (!targets.length) return fail('nothing-to-catch-up', 'There’s nothing new to check.');
+      config = { ...config, targets };
+    }
     let result;
     try {
       result = replayDiagnostic({
-        graph: setup.graph, generators: setup.generators, misconceptions: setup.misconceptions, config: setup.diagnosticConfig, seed,
+        graph: setup.graph, generators: setup.generators, misconceptions: setup.misconceptions, config, seed, prior,
       }, record.answers || [], record.times || []).result();
     } catch (e) {
       return fail('regrade-failed', String(e.message || e));
     }
     if (!result.finished) return fail('not-finished', 'The diagnostic isn’t finished.');
+    const saved = compactResult(result);
     summary.diagnosticAttempts = attemptNo;
-    summary.diagnostic = { attemptNo, seed, answers: record.answers, times: record.times || [], finishedAt: record.finishedAt };
+    summary.diagnostic = {
+      attemptNo, seed, answers: record.answers, times: record.times || [], finishedAt: record.finishedAt,
+      ...(prior ? { catchUp: true } : {}), result: slimResult(saved),
+    };
     const verdicts = Object.fromEntries(Object.entries(result.nodes).map(([id, n]) => [id, n.status]));
     return {
       kind: 'diagnostics',
@@ -118,6 +150,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         startedAt: record.startedAt, finishedAt: record.finishedAt, receivedAt: now(),
         curriculumVersion: setup.graph.curriculumVersion, questionCount: result.questionCount,
         verdicts, rootGaps: result.rootGaps, misconceptions: result.misconceptions,
+        ...(prior ? { catchUp: true, targets: config.targets } : {}), result: saved,
       },
     };
   }
@@ -218,7 +251,8 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         classes,
         students: students.map((s) => ({ id: s.id, code: s.code, nickname: s.nickname || null, classId: s.classId, createdAt: s.createdAt })),
         roster: store.listRoster(ids).map((r) => ({ ...r, code: codeOf.get(r.studentId) })),
-        diagnostics: withCode(latestDiagnostics(store.listRecords('diagnostics', ids))).map((d) => ({ type: 'diagnostic', ...d })),
+        // The latest result per student, without its question list (studentDetail() has that).
+        diagnostics: withCode(latestDiagnostics(store.listRecords('diagnostics', ids))).map(dashboardDiagnostic),
         // Summaries only; studentDetail() has the answers for one student.
         sections: withCode(store.listRecords('sections', ids, { summary: true })).map((r) => ({ type: 'lesson-section', ...r })),
         verifications: withCode(store.listRecords('verifications', ids)),
@@ -236,7 +270,9 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       const student = ownStudent(email, studentId);
       if (!student) return fail('not-your-student', 'That student isn’t in your classes.');
       const sections = store.listRecords('sections', [studentId]).map((r) => ({ type: 'lesson-section', ...r, code: student.code }));
-      return { ok: true, sections };
+      const latest = latestDiagnostics(store.listRecords('diagnostics', [studentId]))[0];
+      const diagnostic = latest ? { ...latest, code: student.code, result: latest.result || resultFromVerdicts(latest) } : null;
+      return { ok: true, sections, diagnostic };
     });
   }
 
@@ -342,6 +378,19 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
 }
 
 // Only the most recent diagnostic per student (a retake replaces the old one on the dashboard).
+// What the dashboard overview needs from a diagnostic row (answers and the question list stay behind).
+function dashboardDiagnostic(row) {
+  const { answers, times, verdicts, result, ...rest } = row;
+  return { type: 'diagnostic', ...rest, result: slimResult(result || resultFromVerdicts(row)) };
+}
+
+// The student's own copy (read at every sign-in) leaves out the question list.
+function slimResult(result) {
+  if (!result) return null;
+  const { questions, ...rest } = result;
+  return rest;
+}
+
 function latestDiagnostics(rows) {
   const latest = new Map();
   for (const r of rows) if (!latest.has(r.studentId) || latest.get(r.studentId).attemptNo < r.attemptNo) latest.set(r.studentId, r);
