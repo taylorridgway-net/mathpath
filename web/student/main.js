@@ -16,6 +16,7 @@ import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
 import compareLesson from '../../curriculum/lessons/frac.compare.json';
 import multiplyLesson from '../../curriculum/lessons/frac.multiply.json';
+import divideLesson from '../../curriculum/lessons/frac.divide.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -39,7 +40,7 @@ import { diagnosticReport } from '../components/diagnostic-report.js';
 import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
 const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of the signed-in student
-const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson];
+const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson];
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
 const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions];

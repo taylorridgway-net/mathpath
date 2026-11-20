@@ -10,6 +10,8 @@
 //                 pieces; the shaded amount stays the same (1/4 = 3/12).
 //   combine       bars [[2,7],[3,7]]: put the shaded pieces together into one
 //                 bar; the piece size doesn't change (2/7 + 3/7 = 5/7).
+//   count-pieces  wholes 4: cut every whole into k pieces and count them
+//                 (how many 1/3s fit into 4? 4 × 3 = 12).
 
 import { renderMath } from './render-math.js';
 
@@ -25,7 +27,7 @@ export function shadingLinesUp(d, pieces) {
 export function createFractionBars({ host, params }) {
   const wrap = el('div', 'fbars');
   host.append(wrap);
-  const draw = { 'cut-to-match': cutToMatch, recut, combine }[params.task];
+  const draw = { 'cut-to-match': cutToMatch, recut, combine, 'count-pieces': countPieces }[params.task];
   if (!draw) throw new Error(`fraction-bars: unknown task "${params.task}"`);
   draw(wrap, params);
 }
@@ -104,6 +106,37 @@ function recut(wrap, { bars, recutInto }) {
     status.textContent = k === 1
       ? `${n} of ${d} pieces shaded.`
       : `Each piece cut into ${k}: now ${n * k} of ${d * k} pieces are shaded. The shaded amount didn't change.`;
+  }
+}
+
+// ---------- count-pieces ----------
+
+const PIECE_NAMES = { 2: 'halves', 3: 'thirds', 4: 'fourths', 5: 'fifths', 6: 'sixths', 7: 'sevenths', 8: 'eighths' };
+
+function countPieces(wrap, { wholes }) {
+  let k = 1;
+  const rows = el('div', 'fbars-rows');
+  const status = el('p', 'fbars-status');
+  status.setAttribute('aria-live', 'polite');
+  const stepper = makeStepper({
+    label: 'Cut each whole into',
+    unit: '',
+    min: 1,
+    max: 8,
+    start: 1,
+    onChange(v) {
+      k = v;
+      render();
+    },
+  });
+  wrap.append(rows, stepper.el, status);
+  render();
+
+  function render() {
+    rows.replaceChildren(barRow({ n: 1, d: 1, cuts: wholes * k, major: wholes, label: { type: 'int', value: wholes } }));
+    status.textContent = k === 1
+      ? `${wholes} wholes. Use + to cut each whole into pieces.`
+      : `${wholes} wholes, each cut into ${k}: ${wholes} × ${k} = ${wholes * k} ${PIECE_NAMES[k]}. So ${wholes * k} pieces of size 1/${k} fit into ${wholes}.`;
   }
 }
 

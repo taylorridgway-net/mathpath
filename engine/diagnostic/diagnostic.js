@@ -68,8 +68,11 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   const statusOf = (id) => nodes.get(id)?.status ?? 'not-tested';
   // Confirmed gaps this node is built on (essential links). If there are any, a
   // question here can't tell us anything new: report "can't check yet" instead.
-  const gapsUnder = (id) => graph.essentialPrereqs(id).filter((p) => statusOf(p) === 'gap'
-    || (graph.get(p).kind === 'skill' && graph.subskillsOf(p).some((s) => statusOf(s) === 'gap')));
+  // Prerequisites that are gaps, or can't be checked yet because of a gap under them
+  // (either way, a question on top of them can't tell us anything new).
+  const stuck = (s) => statusOf(s) === 'gap' || (statusOf(s) === 'not-tested' && Boolean(nodes.get(s)?.blockedBy));
+  const gapsUnder = (id) => graph.essentialPrereqs(id).filter((p) => stuck(p)
+    || (graph.get(p).kind === 'skill' && graph.subskillsOf(p).some(stuck)));
   const hasGenerator = (id) => Boolean(generators[id]);
   const subskillsWithProblems = (skillId) => graph.subskillsOf(skillId).filter(hasGenerator);
   const isSettled = (id) => statusOf(id) !== 'not-tested' && statusOf(id) !== 'unchecked';
@@ -140,7 +143,8 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
 
     if (task.kind === 'recheck') {
       // Only needed if the steps don't explain the miss on the whole problem.
-      const explained = (generators[task.id].covers || [])
+      const g = generators[task.id];
+      const explained = [...(g.covers || []), ...(g.ifNotSimplified ? [g.ifNotSimplified] : [])]
         .some((s) => statusOf(s) === 'gap' || nodes.get(s)?.blockedBy);
       return explained ? null : ask(task, generators[task.id].screener || task.id, difficulty.screen);
     }

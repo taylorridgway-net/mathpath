@@ -121,13 +121,13 @@
       "standards": ["5.NF.B.7", "6.NS.A.1"],
       "status": "draft",
       "prerequisites": [
-        { "id": "frac.meaning", "strength": "essential" },
-        { "id": "frac.multiply", "strength": "essential" }
+        { "id": "frac.meaning", "strength": "essential" }
       ],
       "subskills": [
         { "id": "frac.divide.meaning", "name": "Explain division as 'how many groups' (how many 1/2s in 3?)", "prerequisites": [] },
         { "id": "frac.divide.reciprocal", "name": "Write the reciprocal of a fraction or whole number", "prerequisites": [] },
-        { "id": "frac.divide.multiply-reciprocal", "name": "Divide by multiplying by the reciprocal of the divisor", "prerequisites": [] }
+        { "id": "frac.divide.multiply-reciprocal", "name": "Divide by multiplying by the reciprocal of the divisor",
+          "prerequisites": [ { "id": "frac.multiply.by-fraction", "strength": "essential" } ] }
       ]
     },
     {

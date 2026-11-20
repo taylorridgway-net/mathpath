@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "frac.divide",
+  "title": "Divide fractions",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. Write every answer in simplest form.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Write the reciprocal of {7/4}.", "math": "recip 7/4", "answer": "4/7" },
+        { "id": "A2", "kind": "computation", "prompt": "Divide:  {3/5} ÷ {2/7}", "math": "div 3/5 2/7", "answer": "21/10 (or 2 1/10)" },
+        { "id": "A3", "kind": "computation", "prompt": "Divide and simplify:  {5/6} ÷ {10/9}", "math": "div 5/6 10/9", "answer": "3/4" },
+        { "id": "A4", "kind": "computation", "prompt": "Divide:  5 ÷ {1/4}", "math": "div 5/1 1/4", "answer": "20" },
+        { "id": "A5", "kind": "word", "prompt": "You have {3/4} of a pound of trail mix. You put {1/8} of a pound in each bag. How many bags can you fill?", "math": "div 3/4 1/8", "answer": "6 (bags)" },
+        { "id": "A6", "kind": "word", "prompt": "A ribbon 6 feet long is cut into pieces that are each {2/3} of a foot long. How many pieces are there?", "math": "div 6/1 2/3", "answer": "9 (pieces)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Write the reciprocal of 9.", "math": "recip 9/1", "answer": "1/9" },
+        { "id": "B2", "kind": "computation", "prompt": "Divide:  {4/9} ÷ {5/8}", "math": "div 4/9 5/8", "answer": "32/45" },
+        { "id": "B3", "kind": "computation", "prompt": "Divide and simplify:  {9/10} ÷ {3/5}", "math": "div 9/10 3/5", "answer": "3/2 (or 1 1/2)" },
+        { "id": "B4", "kind": "computation", "prompt": "Divide:  {2/3} ÷ 4", "math": "div 2/3 4/1", "answer": "1/6" },
+        { "id": "B5", "kind": "word", "prompt": "Half a gallon of juice ({1/2} gallon) is poured into cups that each hold {1/10} of a gallon. How many cups can be filled?", "math": "div 1/2 1/10", "answer": "5 (cups)" },
+        { "id": "B6", "kind": "word", "prompt": "Maria says 6 ÷ {1/2} = 3. Is she right? Explain, and give the correct answer.", "math": "div 6/1 1/2", "answer": "12 (No: 6 ÷ 1/2 asks how many halves fit into 6, which is 12; 3 is 6 × 1/2)" }
+      ]
+    }
+  ]
+}

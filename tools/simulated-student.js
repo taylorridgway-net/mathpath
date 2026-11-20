@@ -56,6 +56,8 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     const id = problem.generator;
     const generator = generators[id];
     const needed = generator.covers ? [id, ...generator.covers] : [id, ...(generator.alsoUses || [])];
+    // Simplifying can belong to another skill (dividing simplifies the way multiplying does).
+    if (generator.ifNotSimplified && !needed.includes(generator.ifNotSimplified)) needed.push(generator.ifNotSimplified);
     const missing = needed.filter((n) => !canDo(n));
 
     if (missing.length === 0) {

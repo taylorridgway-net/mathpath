@@ -30,8 +30,8 @@ test('a student who knows everything: no gaps, very few questions', () => {
   assert.equal(result.finishedReason, 'complete');
   // One full add/subtract problem covers every add/subtract subskill, one
   // comparison with different denominators covers comparing, and one
-  // multiplication covers multiplying (owner: "unless proven otherwise").
-  assert.equal(result.questionCount, 3);
+  // multiplication covers multiplying, one division covers dividing (owner: "unless proven otherwise").
+  assert.equal(result.questionCount, 4);
   for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result']) {
     assert.equal(statusOf(result, SUB(s)), 'known', s);
   }
@@ -56,7 +56,7 @@ test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simp
   assert.equal(statusOf(result, 'whole.add-sub.add-regroup'), 'known');
   assert.equal(statusOf(result, 'whole.add-sub.sub-regroup'), 'known');
   assert.ok(!result.uncheckedCauses.includes('whole.add-sub'));
-  assert.ok(result.questionCount <= 9, `took ${result.questionCount} questions`);
+  assert.ok(result.questionCount <= 10, `took ${result.questionCount} questions`);
 });
 
 test('can do everything but simplify: finds the simplifying gap and points below it', () => {
@@ -144,8 +144,8 @@ test('owner\'s case: can do every step on its own, but not the whole problem -> 
   assert.equal(statusOf(result, 'frac.add-sub'), 'gap');
   assert.deepEqual(result.rootGaps, ['frac.add-sub']);
   assert.equal(result.skills['frac.add-sub'], 'gap');
-  // Full problem, four steps, full problem again; plus one comparison and one multiplication.
-  assert.equal(result.questionCount, 8);
+  // Full problem, four steps, full problem again; plus one comparison, one multiplication, one division.
+  assert.equal(result.questionCount, 9);
 });
 
 test('multiply: cross-multiplies (2/3 × 4/5 = 10/12) -> gap on multiplying two fractions, nothing else blamed', () => {
@@ -154,7 +154,10 @@ test('multiply: cross-multiplies (2/3 × 4/5 = 10/12) -> gap on multiplying two 
   assert.equal(statusOf(result, 'frac.multiply.by-whole'), 'known');
   assert.equal(result.skills['frac.add-sub'], 'known');
   assert.ok(result.misconceptions['frac.mult-cross'] >= 1);
-  assert.ok(result.questionCount <= 8, `took ${result.questionCount} questions`);
+  // Dividing needs this step, so "multiply by the reciprocal" is "can't check yet", not asked.
+  assert.deepEqual(result.nodes['frac.divide.multiply-reciprocal'].blockedBy, ['frac.multiply.by-fraction']);
+  assert.equal(statusOf(result, 'frac.divide.reciprocal'), 'known');
+  assert.ok(result.questionCount <= 9, `took ${result.questionCount} questions`);
 });
 
 test('multiply: can multiply but never simplifies the product -> gap on simplifying products', () => {
@@ -364,7 +367,25 @@ test('owner decision, real curriculum: under a confirmed common-denominator gap,
   const { result } = diagnose({ lacks: ['whole.mult-div.mult-facts'] });
   assert.equal(statusOf(result, 'whole.mult-div.mult-facts'), 'gap');
   assert.equal(result.questions.filter((q) => q.generator === 'whole.mult-div.mult-facts').length, 1);
-  assert.ok(result.questionCount <= 16, `took ${result.questionCount} questions`);
+  assert.ok(result.questionCount <= 18, `took ${result.questionCount} questions`);
+});
+
+test('divide: can divide by flipping, but not simplify the answer -> the simplifying gap is in multiplying', () => {
+  const { result } = diagnose({ lacks: ['frac.multiply.simplify'] });
+  assert.deepEqual(result.rootGaps, ['frac.multiply.simplify']);
+  // The division was right apart from simplifying: dividing is fine, and no extra division question.
+  assert.equal(statusOf(result, 'frac.divide.multiply-reciprocal'), 'known');
+  assert.notEqual(statusOf(result, 'frac.divide'), 'gap');
+  assert.equal(result.questions.filter((q) => q.generator === 'frac.divide').length, 1);
+});
+
+test('anything resting on a "can\'t check yet" step is also "can\'t check yet"', () => {
+  const { result } = diagnose({ lacks: ['whole.mult-div.mult-facts'] });
+  // Multiplying two fractions can't be checked (facts are a gap); dividing by flipping rests on it.
+  assert.ok(result.nodes['frac.multiply.by-fraction'].blockedBy);
+  assert.ok(result.nodes['frac.divide.multiply-reciprocal'].blockedBy);
+  assert.ok(!result.questions.some((q) => q.generator === 'frac.divide.multiply-reciprocal'));
+  assert.equal(statusOf(result, 'frac.divide.meaning'), 'known', '"how many 1/3s fit into 4?" doesn\'t need it');
 });
 
 test('compare: one hard comparison stands for all; when it\'s missed, that miss counts as the first try', () => {
