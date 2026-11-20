@@ -40,19 +40,27 @@ const FROM_DIAGNOSTIC = {
   'partly-known': 'partly',
 };
 
-export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], graph, lessons }) {
+// resets: [{ skillId, at }] when the teacher sent the student back to redo a skill.
+export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], resets = [], graph, lessons, waitForTeacher = false }) {
   const sectionOf = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, { ...s, lesson: l.skill }])));
   const byTime = (a, b) => String(a.at ?? a.finishedAt).localeCompare(String(b.at ?? b.finishedAt));
-  const records = [...sections].sort(byTime);
+  // After a reset, that skill's "Putting it together" and paper tests from before don't count.
+  const resetAt = {};
+  for (const r of resets) if (!resetAt[r.skillId] || r.at > resetAt[r.skillId]) resetAt[r.skillId] = r.at;
+  const wholeSections = new Set(lessons.flatMap((l) => l.sections.filter((s) => s.mode === 'skill').map((s) => s.id)));
+  const stillCounts = (r) => !(wholeSections.has(r.section) && resetAt[r.lesson] && String(r.finishedAt) <= resetAt[r.lesson]);
+  const records = [...sections].filter(stillCounts).sort(byTime);
 
   // ---- mastery per skill ----
   const latestVerification = {};
-  for (const v of [...verifications].sort(byTime)) latestVerification[v.skillId] = v;
+  for (const v of [...verifications].sort(byTime)) {
+    if (!(resetAt[v.skillId] && String(v.at) <= resetAt[v.skillId])) latestVerification[v.skillId] = v;
+  }
   const platformAt = {};
   for (const r of records) if (r.provisionalMastery && !platformAt[r.lesson]) platformAt[r.lesson] = r.finishedAt;
 
   // ---- path with progress ----
-  const path = result ? buildPath({ result, lessons, graph, cleared }) : [];
+  const path = result ? buildPath({ result, lessons, graph, cleared, waitForTeacher }) : [];
   const sectionProgress = (id) => {
     const mine = records.filter((r) => r.section === id);
     if (mine.some((r) => r.passed)) return 'done';
@@ -99,10 +107,13 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
     skills,
     subskills,
     platformAt,
+    resetAt,
     verification: latestVerification,
     path: pathWithProgress,
     next,
     waiting: pathWithProgress.some((i) => i.kind === 'section' && i.waiting && i.progress !== 'done'),
+    // Foundations the teacher still needs to check with this student ("with your teacher first").
+    openChecks: pathWithProgress.filter((i) => i.kind !== 'section' && !i.cleared).map((i) => i.gap),
   };
 }
 

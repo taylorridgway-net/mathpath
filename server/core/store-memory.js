@@ -10,7 +10,7 @@
 //   appendRecord(kind, row), listRecords(kind, studentIds, { summary })
 //     kinds: diagnostics, sections, verifications, clearances, log
 
-const KINDS = ['diagnostics', 'sections', 'verifications', 'clearances', 'log'];
+const KINDS = ['diagnostics', 'sections', 'verifications', 'clearances', 'resets', 'log'];
 const DETAIL = ['answers', 'times', 'scaffolds', 'hintsShown', 'seed', 'gap', 'generator', 'mode'];
 const stripDetail = (r) => Object.fromEntries(Object.entries(r).filter(([k]) => !DETAIL.includes(k)));
 

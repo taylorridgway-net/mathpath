@@ -30,6 +30,10 @@
       "minScore": 5,
       "outOf": 6,
       "note": "Paper test: 5 of 6 suggests verified (owner decision 2026-11-19). The teacher makes the final call."
+    },
+    "paths": {
+      "waitForTeacherChecks": false,
+      "note": "Owner decision 2026-11-20: students move on while waiting for the teacher; 'with your teacher first' items stay on the path as a flag. Set to true to lock lessons that build on an unchecked foundation."
     }
   }
 }

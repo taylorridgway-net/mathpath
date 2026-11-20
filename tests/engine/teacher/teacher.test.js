@@ -42,10 +42,11 @@ test('platform mastery and verified mastery are separate', () => {
     'the latest paper test counts; a "not yet" leaves platform mastery standing');
 });
 
-test('a student waiting on a teacher check is marked waiting until it is cleared', () => {
+test('with waiting switched on, a student is marked waiting until the check is cleared', () => {
   const r = { ...gapCombine, uncheckedCauses: ['frac.equivalent'] };
-  assert.equal(status({ diagnosticResult: r }).waiting, true);
-  assert.equal(status({ diagnosticResult: r, cleared: ['frac.equivalent'] }).waiting, false);
+  assert.equal(status({ diagnosticResult: r, waitForTeacher: true }).waiting, true);
+  assert.equal(status({ diagnosticResult: r, cleared: ['frac.equivalent'], waitForTeacher: true }).waiting, false);
+  assert.equal(status({ diagnosticResult: r }).waiting, false, 'by default (owner decision) nobody waits');
 });
 
 test('no diagnostic yet: everything not tested', () => {
@@ -104,4 +105,16 @@ test('paper test: 5 of 6 suggests verified (owner rule); the teacher makes the c
   assert.equal(first.decision, 'verified', 'teacher override is kept, with the suggestion alongside');
   const second = verificationRecord({ code: 'k', skillId: SKILL, assessmentId: SKILL, version: 'B', marks: [1, 1, 1, 1, 1, 1], rule, by: 't', at: 'later', previous: [first] });
   assert.equal(second.attempt, 2);
+});
+
+test('after "send back to redo": the old mastery and the old paper test no longer count; a new attempt does', () => {
+  const sections = [record(`${SKILL}.combine`), record(`${SKILL}.whole`, { mastery: true, at: '2026-11-10T10:00:00Z' })];
+  const notYet = { skillId: SKILL, decision: 'not-yet', at: '2026-11-11T10:00:00Z' };
+  const verified = { skillId: SKILL, decision: 'verified', at: '2026-11-11T09:00:00Z' };
+  const resets = [{ skillId: SKILL, at: '2026-11-12T10:00:00Z' }];
+  const after = status({ diagnosticResult: gapCombine, sections, verifications: [verified, notYet], resets });
+  assert.equal(after.skills[SKILL], 'working');
+  assert.equal(after.next.section, `${SKILL}.whole`, 'Putting it together is next again');
+  const redone = [...sections, record(`${SKILL}.whole`, { mastery: true, at: '2026-11-14T10:00:00Z' })];
+  assert.equal(status({ diagnosticResult: gapCombine, sections: redone, verifications: [notYet], resets }).skills[SKILL], 'platform');
 });

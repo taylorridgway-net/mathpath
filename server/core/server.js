@@ -191,6 +191,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         sections: withCode(store.listRecords('sections', ids, { summary: true })).map((r) => ({ type: 'lesson-section', ...r })),
         verifications: withCode(store.listRecords('verifications', ids)),
         clearances: withCode(store.listRecords('clearances', ids)),
+        resets: withCode(store.listRecords('resets', ids)),
         log: withCode(store.listRecords('log', ids)),
       };
     });
@@ -254,6 +255,30 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     }));
   }
 
+  // The teacher sends a student back to redo a skill (e.g. after a paper test
+  // says "not yet"): platform mastery is cleared and "Putting it together" for
+  // that skill counts as not done, so the student does it again. Logged.
+  function resetSkill(email, studentId, skillId) {
+    return teacherOnly(email, () => store.withLock(() => {
+      const student = ownStudent(email, studentId);
+      if (!student) return fail('not-your-student', 'That student isn’t in your classes.');
+      const lesson = setup.lessons.find((l) => l.skill === skillId);
+      if (!lesson) return fail('bad-skill', `No lesson for ${skillId}.`);
+      const at = now();
+      const whole = lesson.sections.filter((s) => s.mode === 'skill').map((s) => s.id);
+      const summary = {
+        ...student.summary,
+        mastered: student.summary.mastered.filter((m) => m !== skillId),
+        sectionsPassed: student.summary.sectionsPassed.filter((s) => !whole.includes(s)),
+        resets: { ...(student.summary.resets || {}), [skillId]: at },
+      };
+      store.appendRecord('resets', { studentId, skillId, by: email, at });
+      store.putStudent({ ...student, summary });
+      log(email, studentId, `Sent back to redo “${lesson.title}”`, student.summary.mastered.includes(skillId) ? 'platform mastery' : '', 'redo');
+      return { ok: true, at };
+    }));
+  }
+
   // A paper-test result. The server scores the marks itself (5 of 6 rule) and
   // keeps the teacher's decision alongside the suggestion.
   function verify(email, { studentId, skillId, version, marks, decision }) {
@@ -279,7 +304,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
 
   return {
     student: { login, saveRecord, setNickname },
-    teacher: { teacherData, studentDetail, addClass, addStudents, resetCode, clearFoundation, verify },
+    teacher: { teacherData, studentDetail, addClass, addStudents, resetCode, clearFoundation, resetSkill, verify },
   };
 }
 

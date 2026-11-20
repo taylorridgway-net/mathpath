@@ -15,10 +15,10 @@
 //   3. Each lesson's "Putting it together" (the whole-skill section), added
 //      whenever any of that lesson's sections is on the path, or the whole skill
 //      itself is a gap. It's the one that gives provisional platform mastery.
-// A section is marked `waiting` while a foundation it builds on (through its
-// essential prerequisites) hasn't been cleared by the teacher (owner decision:
-// the student waits for the teacher). Lessons that don't build on it go ahead:
-// whole-number lessons never wait for a check on equivalent fractions.
+// waitForTeacher (curriculum/mastery.json "paths"): if true, a section is marked
+// `waiting` while a foundation it builds on (through its essential prerequisites)
+// hasn't been cleared by the teacher. Owner decision 2026-11-20: false. Students
+// move on; the foundation stays on the path as a flag for the teacher.
 // `cleared` lists the foundation ids the teacher has checked off for this student.
 //
 // "Gap" puts the full section on the path. "Shaky" (one miss, then right) puts a
@@ -29,7 +29,7 @@
 // As lessons for foundation skills get built, "not-built" and "unchecked" items
 // turn into real sections automatically, in the right order.
 
-export function buildPath({ result, lessons, graph, cleared = [] }) {
+export function buildPath({ result, lessons, graph, cleared = [], waitForTeacher = false }) {
   const status = (id) => result.nodes[id]?.status;
   const taughtGaps = new Set(lessons.flatMap((l) => l.sections.map((s) => s.forGap)));
   const hasLesson = (id) => taughtGaps.has(id) || graph.subskillsOf(id).some((s) => taughtGaps.has(s));
@@ -53,7 +53,7 @@ export function buildPath({ result, lessons, graph, cleared = [] }) {
   const builtOn = dependsOn(graph);
   const open = foundations.filter((f) => !f.cleared);
   return items.map((item) => (item.kind === 'section'
-    ? { ...item, lessonTitle: lessons.find((l) => l.skill === item.lesson).title, waiting: open.some((f) => builtOn(item.gap, f.gap)) }
+    ? { ...item, lessonTitle: lessons.find((l) => l.skill === item.lesson).title, waiting: waitForTeacher && open.some((f) => builtOn(item.gap, f.gap)) }
     : item));
 }
 

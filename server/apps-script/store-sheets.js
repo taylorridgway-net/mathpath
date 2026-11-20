@@ -24,11 +24,12 @@ export const TABS = {
     'problemCount', 'firstTry', 'seconds', 'misconceptions', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'data'],
   Verifications: ['studentId', 'skillId', 'version', 'score', 'outOf', 'suggested', 'decision', 'attempt', 'by', 'at', 'marks'],
   Clearances: ['studentId', 'gap', 'by', 'at'],
+  Resets: ['studentId', 'skillId', 'by', 'at'],
   Log: ['at', 'by', 'studentId', 'what', 'before', 'after'],
 };
 const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks', 'misconceptions']);
 const BOOLEAN_COLUMNS = new Set(['retired', 'review', 'passed', 'provisionalMastery']);
-const KIND_TAB = { diagnostics: 'Diagnostics', sections: 'Sections', verifications: 'Verifications', clearances: 'Clearances', log: 'Log' };
+const KIND_TAB = { diagnostics: 'Diagnostics', sections: 'Sections', verifications: 'Verifications', clearances: 'Clearances', resets: 'Resets', log: 'Log' };
 
 // Make the tabs (with header rows) if they don't exist yet, and add any columns
 // a newer version of MathPath needs. Safe to run again; never removes anything.

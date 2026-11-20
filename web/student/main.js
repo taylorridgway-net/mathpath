@@ -292,7 +292,7 @@ function showDone() {
   const name = (id) => graph.get(id).name;
   const shown = Object.keys(result.nodes)
     .filter((id) => result.nodes[id].status === 'known' && graph.get(id).kind === 'subskill');
-  const path = buildPath({ result, lessons, graph, cleared: profile.summary.cleared || [] });
+  const path = buildPath({ result, lessons, graph, cleared: profile.summary.cleared || [], waitForTeacher: masteryRules.default.paths?.waitForTeacherChecks });
 
   const screen = section('screen screen-done');
   screen.append(accountBar());
@@ -349,14 +349,17 @@ function nicknameForm() {
 // A section's state, from this device's records and what the server knows.
 function sectionState(sectionId) {
   const sec = lessons.flatMap((l) => l.sections.map((s) => ({ ...s, lesson: l.skill }))).find((s) => s.id === sectionId);
-  const records = finishedRecords(sectionId);
   const s = profile.summary;
+  // If the teacher sent the student back to redo this skill, earlier "Putting it together" work doesn't count.
+  const resetAt = sec.mode === 'skill' ? s.resets?.[sec.lesson] : null;
+  const records = finishedRecords(sectionId).filter((r) => !resetAt || String(r.finishedAt) > resetAt);
   if (sec.mode === 'skill' && (records.some((r) => r.provisionalMastery) || s.mastered?.includes(sec.lesson))) {
     return ['Platform mastery (provisional)', 'good', 'Practice again'];
   }
   if (records.some((r) => r.passed) || s.sectionsPassed?.includes(sectionId)) return ['Done', 'good', 'Practice again'];
   if (loadProgress(sectionId)) return ['In progress', 'warn', 'Continue'];
-  if (records.length || s.sectionAttempts?.[sectionId]) return ['Tried, not finished', 'warn', 'Try again'];
+  if (records.length || (!resetAt && s.sectionAttempts?.[sectionId])) return ['Tried, not finished', 'warn', 'Try again'];
+  if (resetAt) return ['Your teacher asked you to redo this', 'warn', 'Start'];
   return ['Not started', 'muted', 'Start'];
 }
 
@@ -375,7 +378,7 @@ function pathList(path) {
       h('span', 'path-title', 'With your teacher first'),
       h('span', 'path-note', allCleared
         ? 'Your teacher has checked these. You can go on.'
-        : 'One of these might be what makes the next steps hard. The app can’t teach or check them yet, so your teacher will. Lessons that build on them open after that.'),
+        : 'One of these might be what makes the next steps hard. The app can’t teach or check them yet, so your teacher will check them with you. You can keep going in the meantime.'),
     );
     const ul = h('ul', 'plain-list');
     for (const f of foundations) {

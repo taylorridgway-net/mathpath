@@ -64,7 +64,7 @@ if (live) document.querySelector('.preview-banner')?.remove();
 
 const STORE_KEY = 'mathpath.teacher-preview.v1';
 const store = Object.assign(
-  { periods: 3, classSeed: 'sample-1', expected: 3, verifications: [], clearances: [], log: [], codeChanges: {} },
+  { periods: 3, classSeed: 'sample-1', expected: 3, verifications: [], clearances: [], resets: [], log: [], codeChanges: {} },
   loadLocal(STORE_KEY) || {},
 );
 const persist = () => saveLocal(STORE_KEY, store);
@@ -111,7 +111,8 @@ function refresh() {
     s.shownCode = live ? s.code : store.codeChanges[s.code] || s.code;
     s.verifications = [...data.verifications, ...(live ? [] : store.verifications)].filter((v) => v.code === s.code);
     s.cleared = [...data.clearances, ...(live ? [] : store.clearances)].filter((c) => c.code === s.code).map((c) => c.gap);
-    s.status = studentStatus({ diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, graph, lessons });
+    s.resets = [...(data.resets || []), ...(live ? [] : store.resets || [])].filter((r) => r.code === s.code);
+    s.status = studentStatus({ diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, resets: s.resets, graph, lessons, waitForTeacher: rules.paths?.waitForTeacherChecks });
     const hasWork = Boolean(s.status.next) && !s.status.waiting;
     s.part = participation({ diagnostic: s.diagnostic, sections: s.sections, hasWork }, { now, expectedSections: store.expected });
   }
@@ -228,14 +229,14 @@ const shortName = (id) => ({
 function overview() {
   const screen = frame('Class overview');
   const list_ = shown();
-  const waitingCount = list_.filter((s) => s.status.waiting).length;
+  const waitingCount = list_.filter((s) => s.status.openChecks.length).length;
   const toVerify = list_.filter((s) => FRACTION_SKILLS.some((k) => s.status.skills[k] === 'platform')).length;
 
   // Quick numbers a teacher acts on.
   const stats = h('div', 't-stats');
   stats.append(
     stat(String(list_.length), 'students'),
-    stat(String(waitingCount), 'waiting for you to check a foundation', waitingCount ? () => { tab = 'groups'; render(); } : null),
+    stat(String(waitingCount), 'have a foundation for you to check', waitingCount ? () => { tab = 'groups'; render(); } : null),
     stat(String(toVerify), 'have platform mastery to verify on paper', toVerify ? () => { tab = 'paper'; render(); } : null),
     stat(String(list_.filter((s) => s.part.inactive).length), 'not active in the last 7 days'),
   );
@@ -297,14 +298,14 @@ function overview() {
   box.type = 'checkbox';
   box.checked = onlyWaiting;
   box.addEventListener('change', () => { onlyWaiting = box.checked; render(); });
-  wait.append(box, ' Only students waiting for me');
+  wait.append(box, ' Only students with a check for me');
   controls.append(sort, wait);
   heat.append(controls, legend());
   heat.append(h('p', 't-hint', expandedSkill
     ? `Showing the parts of “${shortName(expandedSkill)}”. Click its heading again to close.`
     : 'Click a skill’s heading to see its parts. Click a student for their profile.'));
 
-  let rows = onlyWaiting ? list_.filter((s) => s.status.waiting) : [...list_];
+  let rows = onlyWaiting ? list_.filter((s) => s.status.openChecks.length) : [...list_];
   const helpScore = (s) => Object.values(s.status.skills).filter((x) => x === 'gap' || x === 'working').length * 10
     + Object.values(s.status.subskills).filter((x) => x === 'gap').length;
   rows.sort((a, b) => (sortBy === 'help' ? helpScore(b) - helpScore(a)
@@ -338,7 +339,7 @@ function overview() {
     th.scope = 'row';
     const who = btn('t-who', '', () => showStudent(s.code));
     who.append(h('span', 't-who-name', s.name), h('span', 't-who-code', s.shownCode));
-    if (s.status.waiting) who.append(h('span', 't-who-flag', 'Waiting for you'));
+    if (s.status.openChecks.length) who.append(h('span', 't-who-flag', 'Check for you'));
     th.append(who);
     tr.append(th);
     for (const col of columns) {
@@ -383,7 +384,7 @@ function groups() {
     const card = h('div', 't-card');
     card.append(h('h3', 't-card-title', group.title), h('p', 't-card-sub', `${group.students.length} students`));
     if (group.foundation) {
-      card.append(h('p', 't-card-note', 'The app can’t check this yet. Their lessons wait until you mark it checked.'));
+      card.append(h('p', 't-card-note', 'The app can’t check this yet. Students keep going in the meantime; mark it checked once you have.'));
     }
     card.append(chips(group.students));
     if (group.foundation) {
@@ -461,6 +462,29 @@ function problem(res) {
   app.firstElementChild?.prepend(bar);
 }
 
+// "Send back to redo": clears platform mastery of the skill; the student does
+// "Putting it together" again. Two taps (pop-ups are blocked in the preview).
+function sendBackButton(s, skillId, then) {
+  const b = btn('t-link', 'Send back to redo', async () => {
+    if (b.dataset.armed !== 'yes') {
+      b.dataset.armed = 'yes';
+      b.textContent = 'Tap again: they redo “Putting it together”';
+      return;
+    }
+    if (live) {
+      const res = await api.teacher('resetSkill', s.id, skillId);
+      if (res.error) return problem(res);
+      return reload(then);
+    }
+    store.resets.push({ code: s.code, skillId, by: ME, at: new Date().toISOString() });
+    logChange(s.code, `Sent back to redo “${lessons.find((l) => l.skill === skillId).title}”`, 'platform mastery', 'redo');
+    persist();
+    refresh();
+    then();
+  });
+  return b;
+}
+
 // ---------- Participation ----------
 
 function participationTab() {
@@ -496,6 +520,7 @@ function participationTab() {
     who.append(btn('t-who', s.name, () => showStudent(s.code)));
     let flag;
     if (s.status.waiting) flag = pill('Waiting for you', 'warn');
+    else if (s.status.openChecks.length && !s.status.next) flag = pill('Check for you', 'warn');
     else if (!s.status.next) flag = pill('Path done', 'good');
     else if (p.inactive) flag = pill('Inactive 7+ days', 'bad');
     else if (p.belowExpectation) flag = pill('Below expectation', 'warn');
@@ -582,6 +607,13 @@ function scoreCard(s, skillId, version) {
   const past = s.verifications.filter((v) => v.skillId === skillId);
   if (past.length) {
     card.append(h('p', 't-card-sub', past.map((v) => `Attempt ${v.attempt}: ${v.score}/${v.outOf} (version ${v.version}), ${v.decision === 'verified' ? 'verified' : 'not yet'}`).join(' · ')));
+  }
+  // "Not yet" on paper: the teacher can send the student back to redo the skill.
+  const latest = past.slice().sort((a, b) => String(a.at).localeCompare(String(b.at))).pop();
+  if (latest?.decision === 'not-yet' && s.status.skills[skillId] === 'platform') {
+    const row = h('div', 't-controls');
+    row.append(h('span', 't-hint', 'Not yet on paper.'), sendBackButton(s, skillId, render));
+    card.append(row);
   }
   const marks = (marksDraft[s.code] ||= version.items.map(() => null));
   const row = h('div', 't-marks');
@@ -685,7 +717,7 @@ function roster() {
   row.append(periods, btn('button', 'Make a new pretend class', () => {
     store.periods = Number(periods.value);
     store.classSeed = `sample-${Date.now().toString(36)}`;
-    Object.assign(store, { verifications: [], clearances: [], log: [], codeChanges: {} });
+    Object.assign(store, { verifications: [], clearances: [], resets: [], log: [], codeChanges: {} });
     classFilter = 'all';
     persist();
     buildClass();
@@ -813,7 +845,7 @@ function showStudent(code) {
   mastery.append(h('h2', 't-h2', 'Mastery'));
   const mt = h('table', 't-table t-mini');
   const mh = h('tr');
-  for (const t of ['Skill', 'Platform (provisional)', 'Verified on paper']) mh.append(h('th', '', t));
+  for (const t of ['Skill', 'Platform (provisional)', 'Verified on paper', '']) mh.append(h('th', '', t));
   mt.append(mh);
   for (const lesson of lessons) {
     const tr = h('tr');
@@ -824,6 +856,10 @@ function showStudent(code) {
       h('td', '', p ? `Yes, ${day(p)}` : '—'),
       h('td', '', v ? `${v.decision === 'verified' ? 'Yes' : 'Not yet'}: ${v.score}/${v.outOf}, ${day(v.at)}` : '—'),
     );
+    const action = h('td');
+    if (p || v) action.append(sendBackButton(s, lesson.skill, () => showStudent(code)));
+    else if (s.status.resetAt[lesson.skill]) action.append(h('span', 't-hint', `Sent back ${day(s.status.resetAt[lesson.skill])}`));
+    tr.append(action);
     mt.append(tr);
   }
   mastery.append(mt);

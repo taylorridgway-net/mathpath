@@ -183,3 +183,23 @@ test('a quick review is re-graded as a review: a slip ends it, not passed; the n
   const full = sectionRecord(kid.id, section, 2);
   assert.equal(server.student.saveRecord(kid.code, full).result.passed, true);
 });
+
+test('send back to redo: platform mastery cleared, "Putting it together" not done, logged; other teachers can\'t', () => {
+  const { server, kid } = fresh();
+  server.student.saveRecord(kid.code, sectionRecord(kid.id, 'frac.add-sub.combine'));
+  server.student.saveRecord(kid.code, sectionRecord(kid.id, 'frac.add-sub.whole'));
+  assert.deepEqual(server.student.login(kid.code).summary.mastered, ['frac.add-sub']);
+  assert.equal(server.teacher.resetSkill(T2, kid.id, 'frac.add-sub').error, 'not-your-student');
+  const res = server.teacher.resetSkill(T1, kid.id, 'frac.add-sub');
+  assert.equal(res.ok, true);
+  const s = server.student.login(kid.code).summary;
+  assert.deepEqual(s.mastered, []);
+  assert.deepEqual(s.sectionsPassed, ['frac.add-sub.combine'], 'the one-step section stays done');
+  assert.ok(s.resets['frac.add-sub']);
+  const data = server.teacher.teacherData(T1);
+  assert.equal(data.resets.length, 1);
+  assert.ok(data.log.some((l) => /Sent back to redo/.test(l.what) && l.by === T1));
+  // Redoing it: the next attempt is accepted and gives mastery again.
+  server.student.saveRecord(kid.code, sectionRecord(kid.id, 'frac.add-sub.whole', 2));
+  assert.deepEqual(server.student.login(kid.code).summary.mastered, ['frac.add-sub']);
+});

@@ -77,13 +77,13 @@ test('lessons come in prerequisite order, whatever order they are listed in', ()
   ]);
 });
 
-test('sections wait until the teacher clears every foundation they build on (owner decision)', () => {
+test('with waiting switched on: sections wait until the teacher clears every foundation they build on', () => {
   // Rewriting needs equivalent fractions, which needs understanding fractions: neither can be checked yet.
   const r = {
     ...result({ 'frac.add-sub.rewrite': 'gap' }, ['frac.add-sub.rewrite']),
     uncheckedCauses: ['frac.meaning', 'frac.equivalent'],
   };
-  const sections = (cleared) => buildPath({ result: r, lessons: [lesson], graph, cleared }).filter((p) => p.kind === 'section');
+  const sections = (cleared) => buildPath({ result: r, lessons: [lesson], graph, cleared, waitForTeacher: true }).filter((p) => p.kind === 'section');
   assert.ok(sections([]).every((s) => s.waiting));
   assert.ok(sections(['frac.equivalent']).every((s) => s.waiting), 'one cleared is not enough');
   assert.ok(sections(['frac.meaning', 'frac.equivalent']).every((s) => !s.waiting));
@@ -108,14 +108,23 @@ test('shaky and gap together: review and full sections in lesson order, then "Pu
   ]);
 });
 
-test('only lessons that build on an unchecked foundation wait; others go ahead', () => {
+test('with waiting switched on: only lessons that build on an unchecked foundation wait', () => {
   const wholeLesson = JSON.parse(readFileSync(new URL('../../../curriculum/lessons/whole.add-sub.json', import.meta.url), 'utf8'));
   const r = {
     ...result({ 'frac.add-sub.common-denom': 'gap', 'whole.add-sub.sub-regroup': 'gap' }, ['frac.add-sub.common-denom', 'whole.add-sub.sub-regroup']),
     uncheckedCauses: ['frac.meaning'],
   };
-  const path = buildPath({ result: r, lessons: [lesson, wholeLesson], graph });
+  const path = buildPath({ result: r, lessons: [lesson, wholeLesson], graph, waitForTeacher: true });
   const waiting = Object.fromEntries(path.filter((p) => p.kind === 'section').map((p) => [p.section, p.waiting]));
   assert.equal(waiting['frac.add-sub.common-denom'], true, 'fractions need "understand fractions"');
   assert.equal(waiting['whole.add-sub.sub-regroup'], false, 'whole-number subtraction doesn\'t');
+});
+
+test('owner decision (2026-11-20): by default nothing waits for the teacher; the foundation stays on the path as a flag', () => {
+  const r = { ...result({ 'frac.add-sub.rewrite': 'gap' }, ['frac.add-sub.rewrite']), uncheckedCauses: ['frac.equivalent'] };
+  const path = buildPath({ result: r, lessons: [lesson], graph });
+  assert.equal(path[0].kind, 'unchecked');
+  assert.ok(path.filter((p) => p.kind === 'section').every((s) => !s.waiting));
+  const rules = JSON.parse(readFileSync(new URL('../../../curriculum/mastery.json', import.meta.url), 'utf8')).default;
+  assert.equal(rules.paths.waitForTeacherChecks, false);
 });

@@ -102,7 +102,7 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
           t = at;
         }
       }
-      if (foundations.length && !cleared.length) continue; // waiting for the teacher
+      // (Owner decision: students don't wait for the teacher's check; they keep going.)
 
       // ---- practice along the path, getting better with practice ----
       let skill = rng.int(45, 70) / 100; // chance of getting a problem right on the first try
