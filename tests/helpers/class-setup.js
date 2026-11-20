@@ -11,7 +11,7 @@ export function loadClassSetup() {
     generators: f.generators,
     misconceptions: f.misconceptions,
     diagnosticConfig: f.config,
-    lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.meaning', 'frac.equivalent', 'frac.compare', 'frac.add-sub', 'frac.multiply', 'frac.divide', 'int.add-sub', 'int.mult-div', 'frac.signed', 'alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions'].map((s) => read(`lessons/${s}.json`)),
+    lessons: read('index.json').lessons.map((s) => read(`lessons/${s}.json`)),
     rules: read('mastery.json').default,
   };
 }

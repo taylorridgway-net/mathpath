@@ -5,33 +5,7 @@
 // Work is saved in this browser first, then uploaded once per finished
 // diagnostic or section; anything not uploaded yet is retried on the next load.
 
-import domainsIndex from '../../curriculum/graph/domains.json';
-import wholeGraph from '../../curriculum/graph/whole.json';
-import intGraph from '../../curriculum/graph/int.json';
-import algGraph from '../../curriculum/graph/alg.json';
-import fracGraph from '../../curriculum/graph/frac.json';
-import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
-import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
-import intMisconceptions from '../../curriculum/misconceptions/int.json';
-import algMisconceptions from '../../curriculum/misconceptions/alg.json';
-import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
-import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
-import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
-import compareLesson from '../../curriculum/lessons/frac.compare.json';
-import multiplyLesson from '../../curriculum/lessons/frac.multiply.json';
-import divideLesson from '../../curriculum/lessons/frac.divide.json';
-import intAddSubLesson from '../../curriculum/lessons/int.add-sub.json';
-import intMultDivLesson from '../../curriculum/lessons/int.mult-div.json';
-import signedLesson from '../../curriculum/lessons/frac.signed.json';
-import orderOpsLesson from '../../curriculum/lessons/alg.order-ops.json';
-import exponentsLesson from '../../curriculum/lessons/alg.exponents.json';
-import equationsLesson from '../../curriculum/lessons/alg.equations.json';
-import expressionsLesson from '../../curriculum/lessons/alg.expressions.json';
-import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
-import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
-import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
-import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples.json';
-import masteryRules from '../../curriculum/mastery.json';
+import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules } from '../../curriculum/all.js';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
 import { replayDiagnostic, compactResult, catchUpTargets, catchUpName, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
@@ -51,10 +25,10 @@ import { diagnosticReport } from '../components/diagnostic-report.js';
 import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
 const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of the signed-in student
-const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson, equationsLesson, expressionsLesson];
+const lessons = allLessons;
 
-const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph });
-const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...algMisconceptions.misconceptions];
+const graph = buildGraphIndex(domainsIndex, graphFiles);
+const misconceptions = misconceptionList;
 const api = createApi({
   setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default },
 });

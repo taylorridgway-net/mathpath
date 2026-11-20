@@ -18,6 +18,7 @@ const TOOLS = {
   remainder: ['remainder', null],
   list: ['next', null],
   linear: ['next', null],
+  decimal: ['point', null],
 };
 
 const LABELS = {
@@ -27,6 +28,7 @@ const LABELS = {
   remainder: { text: 'R', aria: 'Remainder' },
   next: { text: 'Next', aria: 'Add another number' },
   negate: { text: '(−)', aria: 'Negative' },
+  point: { text: '.', aria: 'Decimal point' },
 };
 
 // What the keypad needs to know about a problem's answer.
@@ -35,6 +37,7 @@ export function keypadOptionsFor(problem) {
   if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };
   if (type === 'linear') return { answerKind: 'linear', allowNegative: true };
+  if (type === 'decimal') return { answerKind: 'decimal', allowNegative: Boolean(problem.answer.allowNegative) };
   if (type === 'set' || type === 'multiset') return { answerKind: 'list', separator: type === 'multiset' ? '×' : ',' };
   return { allowFractions: type === 'fraction', allowNegative: Boolean(problem.answer.allowNegative) };
 }
@@ -97,6 +100,7 @@ export function createKeypad({
   hint.textContent = {
     linear: 'Type the number in front of x, tap Next, then the number on its own. (−) makes the box you’re in negative.',
     remainder: 'Type the answer, tap R, then type the remainder.',
+    decimal: allowNegative ? 'Type the number; tap . for the decimal point and (−) to make it negative.' : 'Type the number. Tap . for the decimal point.',
     list: separator === '×' ? 'Type a prime, tap Next, then type the next one.' : 'Type a number, tap Next, then type the next one.',
   }[answerKind] || (allowFractions ? 'Tap a/b for a fraction, 1 a/b for a mixed number.' : allowNegative ? 'Type a number. Tap (−) to make it negative.' : 'Type a whole number.');
   if (allowNegative && allowFractions) hint.textContent += ' Tap (−) to make it negative.';
@@ -124,6 +128,7 @@ export function createKeypad({
       ArrowUp: 'focus:num', ArrowDown: 'focus:den', ArrowLeft: 'focus:whole',
     };
     if (answerKind === 'remainder') Object.assign(map, { r: 'remainder', R: 'remainder', ArrowRight: 'remainder', ArrowLeft: 'focus:whole' });
+    if (answerKind === 'decimal') Object.assign(map, { '.': 'point', ',': 'point' });
     if (answerKind === 'list') Object.assign(map, { ',': 'next', ' ': 'next', '*': 'next', x: 'next' });
     if (answerKind === 'linear') Object.assign(map, { x: 'next', X: 'next', '+': 'next', Tab: 'next', ArrowRight: 'next', ArrowLeft: 'focus:coef', ' ': 'next' });
     // Space and Enter on a keyboard-focused button press that button, as usual.

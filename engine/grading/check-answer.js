@@ -12,6 +12,7 @@
 //   { list: [1, 2, 3, 4, 6, 12] }         a list of whole numbers (factors, primes)
 //   { choice: 2, label: '>' }             one of the problem's answer buttons (compare)
 //   { coef: 3, constant: -12 }            3x - 12 (an expression, pre-algebra)
+//   { decimal: '3.25' }                   a decimal, as typed (".5" is fine); { negative: true } makes it negative
 //
 // Possible results:
 //   correct         right value, in an accepted form
@@ -24,6 +25,7 @@
 // is decided by the practice session, not here.
 
 import { fraction, gcd, equals } from '../math/fraction.js';
+import { parseDecimal, sameDecimal } from '../math/decimal.js';
 
 // Read a keypad answer into a value plus facts about how it was written.
 export function readAnswer(raw) {
@@ -84,6 +86,8 @@ export function checkAnswer(problem, raw) {
       return checkList(problem, raw);
     case 'choice':
       return checkChoice(problem, raw);
+    case 'decimal':
+      return checkDecimal(problem, raw);
     default:
       throw new Error(`checkAnswer: unknown answer type "${expected.type}"`);
   }
@@ -139,6 +143,17 @@ function checkCommonMultiple(problem, raw) {
     return given === least ? { status: 'correct' } : { status: 'correct', note: 'not-least' };
   }
   return wrong(problem, (m) => m.value === given);
+}
+
+// A decimal answer: { type: 'decimal', value: '0.75' }. Any way of writing the same
+// number counts (0.75, .75, 0.750: trailing zeros don't change the value; Claude's
+// default, docs/DECIMALS-PLAN.md). Misconceptions: { id, value: '7.5' }.
+function checkDecimal(problem, raw) {
+  const typed = typeof raw?.decimal === 'string' ? raw.decimal : Number.isSafeInteger(raw?.whole) && raw?.num === undefined ? String(raw.whole) : null;
+  if (typed === null || typed.startsWith('-') || !parseDecimal(typed)) return { status: 'invalid', reason: 'empty' };
+  const given = raw.negative === true ? `-${typed}` : typed;
+  if (sameDecimal(given, problem.answer.value)) return { status: 'correct' };
+  return wrong(problem, (m) => typeof m.value === 'string' && sameDecimal(m.value, given));
 }
 
 // One of the answer buttons (<, =, >; or 0, 1/2, 1). A wrong button may match a

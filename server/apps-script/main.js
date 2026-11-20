@@ -11,33 +11,7 @@
 //   apiStudent(name, args)     student requests (sign in, save); students need no Google account
 //   apiTeacher(name, args)     teacher requests; Google tells us who is signed in
 
-import domainsIndex from '../../curriculum/graph/domains.json';
-import wholeGraph from '../../curriculum/graph/whole.json';
-import intGraph from '../../curriculum/graph/int.json';
-import algGraph from '../../curriculum/graph/alg.json';
-import fracGraph from '../../curriculum/graph/frac.json';
-import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
-import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
-import intMisconceptions from '../../curriculum/misconceptions/int.json';
-import algMisconceptions from '../../curriculum/misconceptions/alg.json';
-import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
-import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
-import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
-import compareLesson from '../../curriculum/lessons/frac.compare.json';
-import multiplyLesson from '../../curriculum/lessons/frac.multiply.json';
-import divideLesson from '../../curriculum/lessons/frac.divide.json';
-import intAddSubLesson from '../../curriculum/lessons/int.add-sub.json';
-import intMultDivLesson from '../../curriculum/lessons/int.mult-div.json';
-import signedLesson from '../../curriculum/lessons/frac.signed.json';
-import orderOpsLesson from '../../curriculum/lessons/alg.order-ops.json';
-import exponentsLesson from '../../curriculum/lessons/alg.exponents.json';
-import equationsLesson from '../../curriculum/lessons/alg.equations.json';
-import expressionsLesson from '../../curriculum/lessons/alg.expressions.json';
-import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
-import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
-import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
-import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples.json';
-import masteryRules from '../../curriculum/mastery.json';
+import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules } from '../../curriculum/all.js';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
 import { createServer } from '../core/server.js';
@@ -51,11 +25,11 @@ const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents'
   'removeStudent', 'restoreStudent', 'removeClass', 'restoreClass', 'shareClass', 'unshareClass'];
 
 const setupData = {
-  graph: buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph }),
+  graph: buildGraphIndex(domainsIndex, graphFiles),
   generators,
-  misconceptions: [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...algMisconceptions.misconceptions],
+  misconceptions: misconceptionList,
   diagnosticConfig: fracDiagnostic,
-  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson, equationsLesson, expressionsLesson],
+  lessons: allLessons,
   rules: masteryRules.default,
 };
 

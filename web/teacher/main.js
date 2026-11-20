@@ -10,49 +10,8 @@
 //
 // All the thinking is in engine/teacher/ (tested); this file draws.
 
-import domainsIndex from '../../curriculum/graph/domains.json';
-import wholeGraph from '../../curriculum/graph/whole.json';
-import intGraph from '../../curriculum/graph/int.json';
-import algGraph from '../../curriculum/graph/alg.json';
-import fracGraph from '../../curriculum/graph/frac.json';
-import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
-import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
-import intMisconceptions from '../../curriculum/misconceptions/int.json';
-import algMisconceptions from '../../curriculum/misconceptions/alg.json';
-import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
-import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
-import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
-import compareLesson from '../../curriculum/lessons/frac.compare.json';
-import multiplyLesson from '../../curriculum/lessons/frac.multiply.json';
-import divideLesson from '../../curriculum/lessons/frac.divide.json';
-import intAddSubLesson from '../../curriculum/lessons/int.add-sub.json';
-import intMultDivLesson from '../../curriculum/lessons/int.mult-div.json';
-import signedLesson from '../../curriculum/lessons/frac.signed.json';
-import orderOpsLesson from '../../curriculum/lessons/alg.order-ops.json';
-import exponentsLesson from '../../curriculum/lessons/alg.exponents.json';
-import equationsLesson from '../../curriculum/lessons/alg.equations.json';
-import expressionsLesson from '../../curriculum/lessons/alg.expressions.json';
-import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
-import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
-import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
-import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples.json';
-import addSubPaper from '../../curriculum/paper/frac.add-sub.json';
-import wholeAddSubPaper from '../../curriculum/paper/whole.add-sub.json';
-import wholeMultDivPaper from '../../curriculum/paper/whole.mult-div.json';
-import wholeFactorsPaper from '../../curriculum/paper/whole.factors-multiples.json';
-import equivalentPaper from '../../curriculum/paper/frac.equivalent.json';
-import meaningPaper from '../../curriculum/paper/frac.meaning.json';
-import comparePaper from '../../curriculum/paper/frac.compare.json';
-import multiplyPaper from '../../curriculum/paper/frac.multiply.json';
-import dividePaper from '../../curriculum/paper/frac.divide.json';
-import intAddSubPaper from '../../curriculum/paper/int.add-sub.json';
-import intMultDivPaper from '../../curriculum/paper/int.mult-div.json';
-import signedPaper from '../../curriculum/paper/frac.signed.json';
-import orderOpsPaper from '../../curriculum/paper/alg.order-ops.json';
-import exponentsPaper from '../../curriculum/paper/alg.exponents.json';
-import equationsPaper from '../../curriculum/paper/alg.equations.json';
-import expressionsPaper from '../../curriculum/paper/alg.expressions.json';
-import masteryRules from '../../curriculum/mastery.json';
+import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules } from '../../curriculum/all.js';
+import { paperList } from '../../curriculum/papers.js';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
 import { replayDiagnostic, resultFromVerdicts } from '../../engine/diagnostic/diagnostic.js';
@@ -75,10 +34,10 @@ import { openSection } from '../student/lesson.js';
 
 // ---------- curriculum and engine ----------
 
-const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph });
-const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...algMisconceptions.misconceptions];
-const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson, equationsLesson, expressionsLesson];
-const papers = Object.fromEntries([wholeAddSubPaper, wholeMultDivPaper, wholeFactorsPaper, meaningPaper, equivalentPaper, comparePaper, addSubPaper, multiplyPaper, dividePaper, intAddSubPaper, intMultDivPaper, signedPaper, orderOpsPaper, exponentsPaper, equationsPaper, expressionsPaper].map((p) => [p.skill, p]));
+const graph = buildGraphIndex(domainsIndex, graphFiles);
+const misconceptions = misconceptionList;
+const lessons = allLessons;
+const papers = Object.fromEntries(paperList.map((p) => [p.skill, p]));
 const rules = masteryRules.default;
 const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules };
 const wholeSectionIds = new Set(lessons.flatMap((l) => l.sections.filter((x) => x.mode === 'skill').map((x) => x.id)));
@@ -86,8 +45,7 @@ const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id,
 const misconceptionInfo = new Map(misconceptions.map((m) => [m.id, m]));
 // Heatmap columns: whole-number skills first (they come first on paths), then fractions.
 // Skills by area, in the order of curriculum/graph/domains.json.
-const AREA_FILES = { whole: wholeGraph, int: intGraph, frac: fracGraph, alg: algGraph };
-const AREAS = domainsIndex.domains.map((d) => ({ id: d.id, name: d.name, skills: AREA_FILES[d.id].skills.map((sk) => sk.id) }));
+const AREAS = domainsIndex.domains.map((d) => ({ id: d.id, name: d.name, skills: graphFiles[d.file].skills.map((sk) => sk.id) }));
 const ALL_SKILLS = AREAS.flatMap((a) => a.skills);
 const ME = 'you (preview)';
 const api = createApi({ setup });

@@ -6,6 +6,7 @@
 //   { type: 'frac', n, d }            n or d may be { type: 'blank' }
 //   { type: 'mixed', whole, n, d }
 //   { type: 'int', value }            value may be negative
+//   { type: 'dec', value }            a decimal, as text: "3.25", "-0.4" (exact; never a float)
 //   { type: 'neg', of }               the negative of a fraction or power: -3/4, -3^2
 //   { type: 'group', of }             parentheses around part of an expression: (2 + 3)
 //   { type: 'pow', base, exp }        a power: 2^4; a negative base gets parentheses: (-3)^2
@@ -29,6 +30,8 @@ export function toText(node) {
       return '?';
     case 'int':
       return node.value < 0 ? `-${-node.value}` : String(node.value);
+    case 'dec':
+      return node.value;
     case 'frac':
       return `${part(node.n)}/${part(node.d)}`;
     case 'neg':
@@ -72,7 +75,7 @@ export function toText(node) {
 
 // 5 - (-3): a negative number after an operation sign gets parentheses.
 function wrapNegative(node) {
-  const negative = (node.type === 'int' && node.value < 0) || node.type === 'neg'
+  const negative = (node.type === 'int' && node.value < 0) || (node.type === 'dec' && node.value.startsWith('-')) || node.type === 'neg'
     || (node.type === 'term' && typeof node.coef === 'number' && node.coef < 0);
   return negative ? `(${toText(node)})` : toText(node);
 }

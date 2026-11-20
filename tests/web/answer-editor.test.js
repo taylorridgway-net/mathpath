@@ -166,3 +166,18 @@ test('linear: backspace in the empty second box goes back to the first; Check ne
   assert.equal(rawToText({ coef: -1, constant: 5 }), '-x + 5');
   assert.equal(rawToText({ coef: 3, constant: -12 }), '3x - 12');
 });
+
+// ---- decimals ----
+test('a decimal: digits, one point, more digits; a leading point gets a 0', () => {
+  const d = { kind: 'decimal' };
+  assert.deepEqual(raw(['3', 'point', '2', '5'], d), { decimal: '3.25' });
+  assert.deepEqual(raw(['point', '5'], d), { decimal: '0.5' });
+  assert.deepEqual(raw(['1', 'point', 'point', '5'], d), { decimal: '1.5' }, 'only one point');
+  assert.deepEqual(raw(['1', 'point', '5', 'backspace', 'backspace'], d), { decimal: '1' });
+  assert.deepEqual(raw(['1', '2', 'point', '3', '7', '5', '9', '9'], d), { decimal: '12.3759' }, 'stops at 7 characters');
+  assert.deepEqual(raw(['4', 'negate', 'point', '2'], { kind: 'decimal', allowNegative: true }), { negative: true, decimal: '4.2' });
+  assert.equal(canSubmit(type(['point'], d)), false, 'a point alone can’t be sent');
+  assert.equal(canSubmit(type(['point', '5'], d)), true);
+  assert.equal(rawToText({ negative: true, decimal: '0.4' }), '-0.4');
+  assert.equal(checkAnswer({ answer: { type: 'decimal', value: '0.5' } }, raw(['point', '5', '0'], d)).status, 'correct');
+});

@@ -23,12 +23,17 @@
 //   list       all the factors of 24, or 60 as a product of primes: type a number,
 //              'next' ("," or space) adds it to the list; backspace in an empty
 //              box takes the last number back to edit.
+// And decimals:
+//   decimal    3.25: one box; 'point' ("." on a keyboard) adds the decimal point once.
 // And one for expressions (pre-algebra):
 //   linear     3x + 12: a box for the number in front of x and one for the number on
 //              its own, each with its own sign ('negate' changes the box with focus).
 //              'next' ("x", "+" or Tab on a keyboard) moves to the second box.
 
+import { parseDecimal } from '../../engine/math/decimal.js';
+
 export const MAX_DIGITS = 4;
+const MAX_DECIMAL = 7; // characters in a decimal answer, point included (12.375)
 
 const FIELDS = {
   number: ['whole'],
@@ -45,7 +50,7 @@ export function createAnswerState({ allowFractions = true, allowNegative = false
   return Object.freeze({
     mode, kind, negative: false, whole: '', num: '', den: '', rem: '', entries: Object.freeze([]), focus: kind === 'linear' ? 'coef' : 'whole',
     coef: '', cst: '', negCoef: false, negCst: false,
-    allowFractions: kind === 'standard' && allowFractions, allowNegative: kind === 'linear' || (kind === 'standard' && allowNegative),
+    allowFractions: kind === 'standard' && allowFractions, allowNegative: kind === 'linear' || ((kind === 'standard' || kind === 'decimal') && allowNegative),
   });
 }
 
@@ -58,7 +63,7 @@ export function applyKey(state, key) {
 
   if (/^[0-9]$/.test(key)) {
     const value = state[state.focus];
-    if (value.length >= MAX_DIGITS) return state;
+    if (value.length >= (state.kind === 'decimal' ? MAX_DECIMAL : MAX_DIGITS)) return state;
     return next({ [state.focus]: value === '0' ? key : value + key });
   }
 
@@ -79,6 +84,10 @@ export function applyKey(state, key) {
 
     case 'remainder':
       return state.kind === 'remainder' ? next({ focus: 'rem' }) : state;
+
+    case 'point':
+      if (state.kind !== 'decimal' || state.whole.includes('.') || state.whole.length >= MAX_DECIMAL - 1) return state;
+      return next({ whole: `${state.whole || '0'}.` });
 
     case 'next':
       if (state.kind === 'linear') return next({ focus: 'cst' });
@@ -139,6 +148,7 @@ function backspace(state, next) {
 export function toRawAnswer(state) {
   const n = (s) => (s === '' ? undefined : Number(s));
   if (state.kind === 'list') return { list: [...state.entries, ...(state.whole ? [Number(state.whole)] : [])] };
+  if (state.kind === 'decimal') return { ...(state.negative ? { negative: true } : {}), ...(state.whole ? { decimal: state.whole } : {}) };
   if (state.kind === 'linear') {
     const raw = {};
     if (state.coef !== '') raw.coef = (state.negCoef ? -1 : 1) * Number(state.coef);
@@ -172,6 +182,7 @@ export function canSubmit(state) {
   if (state.kind === 'list') return state.entries.length > 0 || state.whole !== '';
   if (state.kind === 'remainder') return state.whole !== '';
   if (state.kind === 'linear') return state.coef !== '' && state.cst !== '';
+  if (state.kind === 'decimal') return !state.whole.endsWith('.') && parseDecimal(state.whole) !== null;
   return null; // standard answers: the grader's readAnswer decides
 }
 
@@ -194,6 +205,7 @@ export function describeAnswer(state) {
 // Text form of a raw answer, e.g. "2 3/4", for logs.
 export function rawToText(raw) {
   if (raw && Number.isInteger(raw.choice)) return raw.label ?? `choice ${raw.choice + 1}`;
+  if (raw && typeof raw.decimal === 'string') return `${raw.negative ? '-' : ''}${raw.decimal}`;
   if (raw && Array.isArray(raw.list)) return raw.list.length ? raw.list.join(', ') : '(blank)';
   if (raw && raw.rem !== undefined) return `${raw.whole ?? '?'} R ${raw.rem}`;
   if (raw && (raw.coef !== undefined || raw.constant !== undefined)) return linearText(raw.coef, raw.constant);

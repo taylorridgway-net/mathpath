@@ -98,3 +98,17 @@ test('common-denominator answers: any common multiple is right', () => {
 test('unknown answer type is a programming error', () => {
   assert.throws(() => checkAnswer({ answer: { type: 'essay' } }, { whole: 1 }));
 });
+
+// ---- decimals ----
+test('decimal answers: any way of writing the same number counts; misconceptions match by value', () => {
+  const p = { answer: { type: 'decimal', value: '0.75' }, misconceptions: [{ id: 'dec.x', value: '7.5' }] };
+  for (const typed of ['0.75', '.75', '0.750']) assert.equal(checkAnswer(p, { decimal: typed }).status, 'correct', typed);
+  assert.deepEqual(checkAnswer(p, { decimal: '7.50' }), { status: 'wrong', misconception: 'dec.x' });
+  assert.equal(checkAnswer(p, { decimal: '0.7' }).status, 'wrong');
+  assert.equal(checkAnswer(p, { decimal: '.' }).status, 'invalid');
+  assert.equal(checkAnswer(p, {}).status, 'invalid');
+  assert.equal(checkAnswer(p, { negative: true, decimal: '0.75' }).status, 'wrong');
+  const n = { answer: { type: 'decimal', value: '-1.2', allowNegative: true } };
+  assert.equal(checkAnswer(n, { negative: true, decimal: '1.20' }).status, 'correct');
+  assert.equal(checkAnswer({ answer: { type: 'decimal', value: '6' } }, { whole: 6 }).status, 'correct');
+});

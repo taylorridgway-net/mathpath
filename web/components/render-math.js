@@ -58,6 +58,8 @@ function build(node) {
     }
     case 'int':
       return el('span', 'm-num', node.value < 0 ? `−${-node.value}` : String(node.value));
+    case 'dec':
+      return el('span', 'm-num', node.value.startsWith('-') ? `−${node.value.slice(1)}` : node.value);
     case 'blank':
       return el('span', 'm-blank', '?');
     case 'frac':
@@ -74,6 +76,7 @@ function build(node) {
       const right = build(node.right);
       // 5 − (−3): a negative number after an operation sign gets parentheses.
       const paren = node.type === 'op' && ((node.right.type === 'int' && node.right.value < 0) || node.right.type === 'neg'
+        || (node.right.type === 'dec' && node.right.value.startsWith('-'))
         || (node.right.type === 'term' && typeof node.right.coef === 'number' && node.right.coef < 0));
       wrap.append(build(node.left), el('span', 'm-op', sym), ...(paren ? [el('span', 'm-num', '('), right, el('span', 'm-num', ')')] : [right]));
       return wrap;

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "about": "Every curriculum file the app loads, in order. curriculum/all.js and curriculum/papers.js import exactly these (a test checks); lessons are listed in the order students and teachers see them.",
+  "misconceptions": [
+    "whole",
+    "int",
+    "frac",
+    "alg"
+  ],
+  "lessons": [
+    "whole.add-sub",
+    "whole.mult-div",
+    "whole.factors-multiples",
+    "frac.meaning",
+    "frac.equivalent",
+    "frac.compare",
+    "frac.add-sub",
+    "frac.multiply",
+    "frac.divide",
+    "int.add-sub",
+    "int.mult-div",
+    "frac.signed",
+    "alg.order-ops",
+    "alg.exponents",
+    "alg.equations",
+    "alg.expressions"
+  ],
+  "papers": [
+    "whole.add-sub",
+    "whole.mult-div",
+    "whole.factors-multiples",
+    "frac.meaning",
+    "frac.equivalent",
+    "frac.compare",
+    "frac.add-sub",
+    "frac.multiply",
+    "frac.divide",
+    "int.add-sub",
+    "int.mult-div",
+    "frac.signed",
+    "alg.order-ops",
+    "alg.exponents",
+    "alg.equations",
+    "alg.expressions"
+  ]
+}
