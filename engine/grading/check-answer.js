@@ -10,6 +10,7 @@
 //   { negative: true, num: 3, den: 4 }    -3/4
 //   { whole: 9, rem: 2 }                  9 R 2 (a division with a remainder)
 //   { list: [1, 2, 3, 4, 6, 12] }         a list of whole numbers (factors, primes)
+//   { choice: 2, label: '>' }             one of the problem's answer buttons (compare)
 //
 // Possible results:
 //   correct         right value, in an accepted form
@@ -78,6 +79,8 @@ export function checkAnswer(problem, raw) {
     case 'set':
     case 'multiset':
       return checkList(problem, raw);
+    case 'choice':
+      return checkChoice(problem, raw);
     default:
       throw new Error(`checkAnswer: unknown answer type "${expected.type}"`);
   }
@@ -133,6 +136,15 @@ function checkCommonMultiple(problem, raw) {
     return given === least ? { status: 'correct' } : { status: 'correct', note: 'not-least' };
   }
   return wrong(problem, (m) => m.value === given);
+}
+
+// One of the answer buttons (<, =, >; or 0, 1/2, 1). A wrong button may match a
+// misconception: { id, choice } means "this wrong button comes from that mistake".
+function checkChoice(problem, raw) {
+  const c = raw?.choice;
+  if (!Number.isInteger(c) || c < 0 || c >= problem.answer.options.length) return { status: 'invalid', reason: 'empty' };
+  if (c === problem.answer.correct) return { status: 'correct' };
+  return wrong(problem, (m) => m.choice === c);
 }
 
 // 47 ÷ 5 = 9 R 2. The remainder box may be left empty when it's 0.

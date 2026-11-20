@@ -66,6 +66,10 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
     return nodes.get(id);
   };
   const statusOf = (id) => nodes.get(id)?.status ?? 'not-tested';
+  // Confirmed gaps this node is built on (essential links). If there are any, a
+  // question here can't tell us anything new: report "can't check yet" instead.
+  const gapsUnder = (id) => graph.essentialPrereqs(id).filter((p) => statusOf(p) === 'gap'
+    || (graph.get(p).kind === 'skill' && graph.subskillsOf(p).some((s) => statusOf(s) === 'gap')));
   const hasGenerator = (id) => Boolean(generators[id]);
   const subskillsWithProblems = (skillId) => graph.subskillsOf(skillId).filter(hasGenerator);
   const isSettled = (id) => statusOf(id) !== 'not-tested' && statusOf(id) !== 'unchecked';
@@ -118,7 +122,12 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       expandedSkills.add(id);
       // A mixed-review skill (whole numbers) has no single "whole problem": one
       // right fact says nothing about remainders. Ask each part instead.
+      // ...unless it names one part whose right answer shows the rest (compare: one
+      // hard comparison stands for the easier ones; owner: "unless proven otherwise").
       if (hasGenerator(id) && !generators[id].mixed) return ask(task, id, difficulty.screen);
+      if (hasGenerator(id) && generators[id].screener && !gapsUnder(generators[id].screener).length) {
+        return ask(task, generators[id].screener, difficulty.screen);
+      }
       const subs = subskillsWithProblems(id);
       if (subs.length === 0) {
         // Not built yet. As a possible cause of a gap, flag it; as a target, just skip it.
@@ -133,12 +142,16 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       // Only needed if the steps don't explain the miss on the whole problem.
       const explained = (generators[task.id].covers || [])
         .some((s) => statusOf(s) === 'gap' || nodes.get(s)?.blockedBy);
-      return explained ? null : ask(task, task.id, difficulty.screen);
+      return explained ? null : ask(task, generators[task.id].screener || task.id, difficulty.screen);
     }
 
     // probe
     const id = task.id;
     if (task.stage === 1 && isSettled(id)) return null;
+    if (task.stage === 1 && gapsUnder(id).length) {
+      record(id).blockedBy = gapsUnder(id);
+      return null;
+    }
     if (!hasGenerator(id)) {
       markUnchecked(id);
       return null;
@@ -187,7 +200,10 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
     const generator = generators[skillId];
     const covered = generator.covers || [];
     const uncovered = subskillsWithProblems(skillId).filter((s) => !covered.includes(s));
-    const probe = (id) => ({ kind: 'probe', id, stage: 1, single: task.fromDescent });
+    // If the screening question was one of the parts, its miss counts as that part's first try.
+    const probe = (id) => (id === generator.screener
+      ? { kind: 'probe', id, stage: 2, single: task.fromDescent }
+      : { kind: 'probe', id, stage: 1, single: task.fromDescent });
 
     if (result.status === 'correct') {
       covered.forEach(markKnown);

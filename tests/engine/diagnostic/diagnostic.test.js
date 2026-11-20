@@ -28,8 +28,9 @@ test('a student who knows everything: no gaps, very few questions', () => {
   assert.deepEqual(result.rootGaps, []);
   assert.deepEqual(withStatus(result, 'gap'), []);
   assert.equal(result.finishedReason, 'complete');
-  // One full add/subtract problem covers every add/subtract subskill.
-  assert.equal(result.questionCount, 1);
+  // One full add/subtract problem covers every add/subtract subskill, and one
+  // comparison with different denominators covers comparing (owner: "unless proven otherwise").
+  assert.equal(result.questionCount, 2);
   for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result']) {
     assert.equal(statusOf(result, SUB(s)), 'known', s);
   }
@@ -126,8 +127,8 @@ test('a slip on the first question: steps check out, a second whole problem is r
   assert.deepEqual(withStatus(result, 'gap'), []);
   assert.deepEqual(withStatus(result, 'shaky'), []);
   assert.equal(result.questions[0].status, 'wrong');
-  const last = result.questions.at(-1);
-  assert.equal(last.generator, 'frac.add-sub', 'should finish with a second whole problem');
+  const last = result.questions.filter((q) => q.generator === 'frac.add-sub').at(-1);
+  assert.equal(result.questions.filter((q) => q.generator === 'frac.add-sub').length, 2, 'should finish add/subtract with a second whole problem');
   assert.equal(last.status, 'correct');
   assert.equal(result.skills['frac.add-sub'], 'known');
 });
@@ -142,8 +143,8 @@ test('owner\'s case: can do every step on its own, but not the whole problem -> 
   assert.equal(statusOf(result, 'frac.add-sub'), 'gap');
   assert.deepEqual(result.rootGaps, ['frac.add-sub']);
   assert.equal(result.skills['frac.add-sub'], 'gap');
-  // Full problem, four steps, full problem again.
-  assert.equal(result.questionCount, 6);
+  // Full problem, four steps, full problem again; plus one comparison.
+  assert.equal(result.questionCount, 7);
 });
 
 test('the same case with blank answers ("I\'m not sure") on both whole problems', () => {
@@ -348,4 +349,20 @@ test('owner decision, real curriculum: under a confirmed common-denominator gap,
   assert.equal(statusOf(result, 'whole.mult-div.mult-facts'), 'gap');
   assert.equal(result.questions.filter((q) => q.generator === 'whole.mult-div.mult-facts').length, 1);
   assert.ok(result.questionCount <= 16, `took ${result.questionCount} questions`);
+});
+
+test('compare: one hard comparison stands for all; when it\'s missed, that miss counts as the first try', () => {
+  const { result } = diagnose({ lacks: ['frac.compare.unlike'] });
+  const unlikeAsked = result.questions.filter((q) => q.generator === 'frac.compare.unlike').length;
+  assert.equal(unlikeAsked, 2, 'the screening miss plus one confirming question, not three');
+  assert.equal(statusOf(result, 'frac.compare.unlike'), 'gap');
+  assert.equal(statusOf(result, 'frac.compare.like'), 'known');
+});
+
+test('a question with a confirmed gap underneath is reported "can\'t check yet" instead of being asked', () => {
+  const { result } = diagnose({ lacks: ['whole.mult-div.mult-facts'] });
+  // Comparing different denominators needs equivalent fractions, which needs facts: not asked.
+  assert.ok(!result.questions.some((q) => q.generator === 'frac.compare.unlike'));
+  assert.ok(result.nodes['frac.compare.unlike'].blockedBy.length > 0);
+  assert.equal(statusOf(result, 'frac.compare.like'), 'known', 'the parts that don\'t need it are still checked');
 });

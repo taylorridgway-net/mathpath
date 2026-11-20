@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "frac.compare",
+  "title": "Compare fractions",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: students write the sign themselves, put fractions in order, explain, and solve word problems. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show how you know. A picture, a common denominator, or comparing to one half all count.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Write <, = or > to make it true:  {7/10} ☐ {4/10}", "math": "sign 7/10 4/10", "answer": ">" },
+        { "id": "A2", "kind": "computation", "prompt": "Write <, = or > to make it true:  {2/9} ☐ {1/2}", "math": "sign 2/9 1/2", "answer": "<" },
+        { "id": "A3", "kind": "computation", "prompt": "Write <, = or > to make it true:  {5/6} ☐ {7/9}", "math": "sign 5/6 7/9", "answer": ">" },
+        { "id": "A4", "kind": "computation", "prompt": "Put these in order from least to greatest:  {2/3}, {3/8}, {5/6}", "math": "order 2/3 3/8 5/6", "answer": "3/8, 2/3, 5/6" },
+        { "id": "A5", "kind": "word", "prompt": "Maya ran {3/4} of a mile. Luis ran {4/5} of a mile. Who ran farther? Show how you know.", "math": "bigger 3/4 4/5", "answer": "4/5 (Luis)" },
+        { "id": "A6", "kind": "word", "prompt": "Jordan says {3/8} is bigger than {3/5} because 8 is bigger than 5. Is Jordan right? Explain.", "math": "sign 3/8 3/5", "answer": "< (No: eighths are smaller pieces, so 3/8 < 3/5)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Write <, = or > to make it true:  {5/12} ☐ {11/12}", "math": "sign 5/12 11/12", "answer": "<" },
+        { "id": "B2", "kind": "computation", "prompt": "Write <, = or > to make it true:  {9/8} ☐ 1", "math": "sign 9/8 1/1", "answer": ">" },
+        { "id": "B3", "kind": "computation", "prompt": "Write <, = or > to make it true:  {4/7} ☐ {3/5}", "math": "sign 4/7 3/5", "answer": "<" },
+        { "id": "B4", "kind": "computation", "prompt": "Put these in order from least to greatest:  {3/4}, {1/6}, {7/12}", "math": "order 3/4 1/6 7/12", "answer": "1/6, 7/12, 3/4" },
+        { "id": "B5", "kind": "word", "prompt": "One pitcher is {2/3} full and another is {5/8} full. Which pitcher has more juice in it? Show how you know.", "math": "bigger 2/3 5/8", "answer": "2/3" },
+        { "id": "B6", "kind": "word", "prompt": "Sam says {4/5} and {6/7} are equal because each is one piece away from a whole. Is Sam right? Explain.", "math": "sign 4/5 6/7", "answer": "< (No: 4/5 = 28/35 and 6/7 = 30/35, so 4/5 < 6/7)" }
+      ]
+    }
+  ]
+}

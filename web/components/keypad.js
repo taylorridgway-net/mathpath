@@ -10,6 +10,7 @@
 
 import { createAnswerState, applyKey, toRawAnswer, describeAnswer, fieldsFor, canSubmit } from './answer-editor.js';
 import { readAnswer } from '../../engine/grading/check-answer.js';
+import { createChoicePad } from './choice-pad.js';
 
 // The two tool keys under backspace depend on the kind of answer.
 const TOOLS = {
@@ -29,14 +30,16 @@ const LABELS = {
 // What the keypad needs to know about a problem's answer.
 export function keypadOptionsFor(problem) {
   const type = problem.answer.type;
+  if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };
   if (type === 'set' || type === 'multiset') return { answerKind: 'list', separator: type === 'multiset' ? '×' : ',' };
   return { allowFractions: type === 'fraction' };
 }
 
 export function createKeypad({
-  host, allowFractions = false, allowNegative = false, answerKind = 'standard', separator = ',', onSubmit, onSkip,
+  host, allowFractions = false, allowNegative = false, answerKind = 'standard', separator = ',', options, onSubmit, onSkip,
 }) {
+  if (answerKind === 'choice') return createChoicePad({ host, options, onSubmit, onSkip });
   let state = createAnswerState({ allowFractions, allowNegative, kind: answerKind });
   const keyRows = [
     ['7', '8', '9', 'backspace'],

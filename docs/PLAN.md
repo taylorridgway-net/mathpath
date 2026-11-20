@@ -165,7 +165,7 @@ Integer and whole-number stubs have no lessons in this milestone. If the diagnos
 
 ## Where we are (handoff notes)
 
-Updated 2026-11-19 (end of session 2). Read this first in a new session.
+Updated 2026-11-20. Read this first in a new session.
 
 - **Done:**
   - Engine: skill graph + checker; fraction math, seeded random, answer checking; add/subtract generators; adaptive diagnostic; worked solutions; practice sessions with feedback and mastery; step boxes for "Putting it together" (`engine/practice/scaffold.js`); learning path, foundations first, lessons in skill-graph order, sections wait while a teacher check is open (`engine/lessons/path.js`).
@@ -195,7 +195,9 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
 - **Equivalent fractions built (2026-11-20):** generators (scale with an exact-form answer, missing number, simplify) with tests, wrong-answer messages, lesson (Claude's draft, owner review pending), worked solutions, paper test (versions A/B, keys checked). The diagnostic now confirms equivalent-fraction gaps itself. Diagnostic search order changed: all steps of a skill are asked before following a confirmed gap down (a struggling student was running out of the 25 questions before every add/subtract step was checked). A student weak only on multiplication facts now takes ~22 questions (each confirmed gap is asked twice); worth trimming later if the owner finds it long.
 - **Understand fractions built (2026-11-20):** pictures in problems (bars, grids, dots, number lines; SVG in `web/components/render-math.js`, black and white on paper), generators for naming a fraction from a picture, number lines (including past 1) and fractions as division, with tests; lesson (draft for owner review), worked solutions, paper test with pictures (`{bar 3/5}`, `{dots 4/9}`, `{line 2 4 7}` markup). Nothing under fraction add/subtract is "with your teacher first" any more.
 - **Diagnostic length settled (owner, 2026-11-20):** one question per prerequisite below a confirmed gap. 400 pretend students: median 8 questions, max 20, none at the limit.
-- **Next:** compare and order fractions, then multiply, divide, negative fractions (the integer skills those need come first, as stubs today). Later: teacher assignments/exemptions; retention checks.
+- **Compare fractions built (2026-11-20):** answer buttons (`<`, `=`, `>`, or "closest to 0, 1/2 or 1"; `web/components/choice-pad.js`, answer type `choice`, keyboard works too), generators (same denominator, benchmarks, different denominators incl. "one piece missing" pairs) with three wrong-answer patterns, worked solutions, lesson (draft for owner review, uses the cut-to-match bars), paper test (write the sign, order three, word problems, "is Jordan right?"; keys checked). Diagnostic: one hard comparison stands for the whole skill (right credits all three parts; if it's missed, that counts as the first try and each part is checked). A question with a confirmed gap underneath is reported "can't check yet" instead of being asked. 400 pretend students: median 9 questions, max 21, none at the limit.
+- **Next:** multiply, divide, negative fractions (the integer skills those need come first, as stubs today). Later: teacher assignments/exemptions; retention checks.
+- **Waiting on owner:** review the compare lesson and paper test in the previews; paste the new files into Apps Script when convenient.
 
 ## 4. Build order for the fractions prototype
 

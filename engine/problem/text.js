@@ -12,6 +12,7 @@
 //   { type: 'blank' }
 //   { type: 'model', shape: 'bar' | 'area' | 'set', parts, shaded, rows?, cols? }
 //                                     a picture: parts equal pieces (or dots), the first `shaded` shaded
+//   { type: 'compare', left, right }  "left ? right": which symbol goes in the box
 //   { type: 'numberline', max, perUnit, point }
 //                                     0 to max, each whole cut into perUnit; a dot at tick `point`
 
@@ -36,6 +37,8 @@ export function toText(node) {
       const unit = node.shape === 'set' ? 'dots' : 'equal parts';
       return `[${what} ${node.parts} ${unit}, ${node.shaded} shaded]`;
     }
+    case 'compare':
+      return `${toText(node.left)} ? ${toText(node.right)}`;
     case 'numberline':
       return `[a number line from 0 to ${node.max}, each whole cut into ${node.perUnit} equal parts, with a dot ${node.point} ${node.point === 1 ? 'part' : 'parts'} from 0]`;
     default:

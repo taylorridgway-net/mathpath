@@ -42,6 +42,11 @@ function build(node) {
       });
       return wrap;
     }
+    case 'compare': {
+      const wrap = el('span', 'm-row');
+      wrap.append(build(node.left), el('span', 'm-blank m-cmp', '?'), build(node.right));
+      return wrap;
+    }
     case 'model':
       return modelSvg(node);
     case 'numberline':

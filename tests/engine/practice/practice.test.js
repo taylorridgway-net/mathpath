@@ -15,6 +15,7 @@ const skill = { generators, rules, seed: 's1', plan: { generator: 'frac.add-sub'
 // ---- answer helpers ----
 function right(problem) {
   const a = problem.answer;
+  if (a.type === 'choice') return { choice: a.correct };
   if (a.type === 'integer') return { whole: a.value };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);

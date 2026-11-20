@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "skill": "frac.compare",
+  "title": "Compare fractions",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "frac.compare.like",
+      "forGap": "frac.compare.like",
+      "title": "Same-size pieces",
+      "objective": "Compare fractions with the same denominator by comparing the tops.",
+      "mode": "section",
+      "generator": "frac.compare.like",
+      "explain": [
+        "When two fractions have the same bottom, the pieces are the same size. {5/8} is 5 eighths and {3/8} is 3 eighths.",
+        "So just compare how many pieces: 5 is more than 3, so {5/8} > {3/8}.",
+        "The open side of the sign faces the bigger amount: {3/8} < {5/8} says the same thing."
+      ],
+      "visual": null
+    },
+    {
+      "id": "frac.compare.benchmark",
+      "forGap": "frac.compare.benchmark",
+      "title": "Compare to one half and one",
+      "objective": "Decide whether a fraction is more or less than {1/2} or 1, and which of 0, {1/2}, 1 it is closest to.",
+      "mode": "section",
+      "generator": "frac.compare.benchmark",
+      "explain": [
+        "One half of the bottom number is the halfway point. For {3/7}: half of 7 is 3½, and 3 is less than that, so {3/7} < {1/2}.",
+        "Don't compare only the tops. {2/7} has a bigger top than {1/2}, but 2 sevenths is less than half of the bar.",
+        "A fraction equals 1 when the top equals the bottom ({7/7} = 1). If the top is bigger, it's more than 1: {9/7} > 1.",
+        "Closest to 0, {1/2} or 1? Compare the top with 0, half the bottom, and the whole bottom. {7/8}: 7 is right next to 8, so it's closest to 1."
+      ],
+      "visual": null
+    },
+    {
+      "id": "frac.compare.unlike",
+      "forGap": "frac.compare.unlike",
+      "title": "Different-size pieces",
+      "objective": "Compare fractions with different denominators by rewriting them with a common denominator.",
+      "mode": "section",
+      "generator": "frac.compare.unlike",
+      "example": { "difficulty": 2 },
+      "explain": [
+        "A bigger bottom means smaller pieces. {3/5} > {3/8}: both are 3 pieces, but fifths are bigger than eighths.",
+        "When the tops and the bottoms are different, rewrite both over a common denominator, then compare the tops. {3/4} = {9/12} and {5/6} = {10/12}, so {3/4} < {5/6}.",
+        "Careful: {3/4} and {5/6} are each missing one piece, but they aren't equal. A missing sixth is smaller than a missing fourth, so {5/6} is closer to 1."
+      ],
+      "visual": {
+        "widget": "fraction-bars",
+        "params": { "bars": [[3, 4], [5, 6]], "task": "cut-to-match" },
+        "caption": "Cut both bars into the same number of pieces. Then you can see which shading is longer."
+      }
+    },
+    {
+      "id": "frac.compare.whole",
+      "forGap": "frac.compare",
+      "title": "Putting it together",
+      "objective": "Compare fractions of every kind, mixed together.",
+      "mode": "skill",
+      "generator": "frac.compare",
+      "explain": [
+        "Now the problems are mixed. Pick the quickest way for each one.",
+        "Same bottoms: compare the tops. Same tops: the smaller bottom is bigger. Otherwise: think about {1/2} and 1, or rewrite over a common denominator."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "frac.compare.like": "The pieces are the same size. Which fraction has more pieces?",
+    "frac.compare.benchmark": "Find half of the bottom number. Is the top more or less than that? For 1, compare the top with the bottom.",
+    "frac.compare.unlike": "Rewrite both fractions over a common denominator, then compare the tops.",
+    "frac.compare": "Same bottoms: compare the tops. Otherwise rewrite both over a common denominator, or compare each one to {1/2} or 1."
+  },
+  "misconceptionMessages": {
+    "frac.cmp-numerators-only": "Comparing only the tops doesn't work when the pieces are different sizes. Compare each fraction with one half: is the top more or less than half the bottom?",
+    "frac.cmp-bigger-denominator-bigger": "A bigger bottom number means the whole is cut into more pieces, so each piece is smaller. Think about which pieces are bigger.",
+    "frac.cmp-gap-equal": "Both are missing pieces, but the missing pieces aren't the same size. Rewrite both over a common denominator to compare them."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

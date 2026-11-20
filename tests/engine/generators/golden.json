@@ -1723,6 +1723,1142 @@
    }
   ]
  },
+ "frac.compare": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "frac.compare.like"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 11
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "choice": 2
+     }
+    ],
+    "part": "frac.compare.unlike"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 10
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "choice": 2
+     }
+    ],
+    "part": "frac.compare.unlike"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 19,
+      "d": 11
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 11
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [],
+    "part": "frac.compare.like"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 10,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 13,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "frac.compare.like"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 12
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "choice": 2
+     }
+    ],
+    "part": "frac.compare.unlike"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which number is this fraction closest to?",
+    "expression": {
+     "type": "frac",
+     "n": 2,
+     "d": 5
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0",
+      "{1/2}",
+      "1"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "frac.compare.benchmark"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which number is this fraction closest to?",
+    "expression": {
+     "type": "frac",
+     "n": 1,
+     "d": 10
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0",
+      "{1/2}",
+      "1"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "frac.compare.benchmark"
+   },
+   {
+    "generator": "frac.compare",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 7,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [],
+    "part": "frac.compare.like"
+   }
+  ]
+ },
+ "frac.compare.benchmark": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 12
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-numerators-only",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-numerators-only",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 9,
+      "d": 8
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 11,
+      "d": 6
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 9
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-numerators-only",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which number is this fraction closest to?",
+    "expression": {
+     "type": "frac",
+     "n": 8,
+     "d": 9
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0",
+      "{1/2}",
+      "1"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which number is this fraction closest to?",
+    "expression": {
+     "type": "frac",
+     "n": 3,
+     "d": 10
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0",
+      "{1/2}",
+      "1"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.benchmark",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Which number is this fraction closest to?",
+    "expression": {
+     "type": "frac",
+     "n": 1,
+     "d": 6
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0",
+      "{1/2}",
+      "1"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   }
+  ]
+ },
+ "frac.compare.like": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 10
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 10
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 7,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 7,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 8
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 10,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 13,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.like",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 12,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 14,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   }
+  ]
+ },
+ "frac.compare.unlike": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 7,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 4
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 8
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 10
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-gap-equal",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 8,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-gap-equal",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 7,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-gap-equal",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "frac.compare.unlike",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "frac",
+      "n": 6,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "frac.cmp-gap-equal",
+      "choice": 1
+     }
+    ]
+   }
+  ]
+ },
  "frac.equivalent": {
   "version": 1,
   "problems": [

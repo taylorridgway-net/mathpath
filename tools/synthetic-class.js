@@ -202,6 +202,7 @@ function correct(problem) {
   if (a.type === 'quotient-remainder') return { whole: a.quotient, rem: a.remainder };
   if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
   if (a.form === 'exact') return { num: a.n, den: a.d };
+  if (a.type === 'choice') return { choice: a.correct };
   if (a.type === 'integer') return { whole: a.value };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
@@ -217,6 +218,7 @@ function mistake(problem, held) {
   }
   const a = problem.answer;
   if (m?.test) return { list: [1] };
+  if (a.type === 'choice') return { choice: m?.choice ?? (a.correct + 1) % a.options.length };
   if (a.type === 'quotient-remainder') return { whole: a.quotient + 1, rem: a.remainder };
   if (a.type === 'set' || a.type === 'multiset') return { list: a.values.slice(1) };
   if (a.type === 'integer') return { whole: a.value + 1 };

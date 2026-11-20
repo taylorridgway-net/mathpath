@@ -90,6 +90,21 @@
       "id": "frac.whole-subtracted",
       "description": "Subtracts instead of dividing to turn a fraction into a whole number (12/4 -> 8).",
       "pointsTo": "frac.meaning.division"
+    },
+    {
+      "id": "frac.cmp-numerators-only",
+      "description": "Compares only the tops (2/7 vs 1/2 -> 2/7 is bigger because 2 > 1).",
+      "pointsTo": "frac.compare.benchmark"
+    },
+    {
+      "id": "frac.cmp-bigger-denominator-bigger",
+      "description": "Thinks a bigger denominator means a bigger fraction (3/8 > 3/5).",
+      "pointsTo": "frac.compare.unlike"
+    },
+    {
+      "id": "frac.cmp-gap-equal",
+      "description": "Thinks fractions missing the same number of pieces are equal (3/4 = 5/6).",
+      "pointsTo": "frac.compare.unlike"
     }
   ]
 }

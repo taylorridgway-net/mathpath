@@ -167,6 +167,7 @@ export function describeAnswer(state) {
 
 // Text form of a raw answer, e.g. "2 3/4", for logs.
 export function rawToText(raw) {
+  if (raw && Number.isInteger(raw.choice)) return raw.label ?? `choice ${raw.choice + 1}`;
   if (raw && Array.isArray(raw.list)) return raw.list.length ? raw.list.join(', ') : '(blank)';
   if (raw && raw.rem !== undefined) return `${raw.whole ?? '?'} R ${raw.rem}`;
   if (!raw || (raw.whole === undefined && raw.num === undefined && raw.den === undefined)) return '(blank)';

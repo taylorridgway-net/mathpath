@@ -376,3 +376,13 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .m-pic .pic-line { stroke: var(--ink); stroke-width: 2; }
 .m-pic .pic-label { fill: var(--ink); font-family: var(--font-math); font-size: 16px; }
 .m-pic .pic-dot { fill: var(--mark); stroke: var(--ink); stroke-width: 1.5; }
+
+/* answer buttons (compare) */
+.choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); gap: 10px; }
+.choice {
+  min-height: 72px; border-radius: var(--radius); border: 2px solid var(--line); background: var(--surface);
+  font-family: var(--font-math); font-size: 2rem; color: var(--ink);
+}
+.choice:hover, .choice:focus-visible { border-color: var(--accent); }
+.choice:active { transform: translateY(1px); }
+.m-cmp { min-width: 1.2em; }
