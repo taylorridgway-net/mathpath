@@ -23,6 +23,10 @@
 //   list       all the factors of 24, or 60 as a product of primes: type a number,
 //              'next' ("," or space) adds it to the list; backspace in an empty
 //              box takes the last number back to edit.
+// And one for expressions (pre-algebra):
+//   linear     3x + 12: a box for the number in front of x and one for the number on
+//              its own, each with its own sign ('negate' changes the box with focus).
+//              'next' ("x", "+" or Tab on a keyboard) moves to the second box.
 
 export const MAX_DIGITS = 4;
 
@@ -32,14 +36,16 @@ const FIELDS = {
   mixed: ['whole', 'num', 'den'],
   remainder: ['whole', 'rem'],
   list: ['whole'],
+  linear: ['coef', 'cst'],
 };
 
 // kind: 'standard' (whole numbers, fractions, mixed numbers), 'remainder' or 'list'.
 export function createAnswerState({ allowFractions = true, allowNegative = false, kind = 'standard' } = {}) {
-  const mode = kind === 'remainder' ? 'remainder' : kind === 'list' ? 'list' : 'number';
+  const mode = ['remainder', 'list', 'linear'].includes(kind) ? kind : 'number';
   return Object.freeze({
-    mode, kind, negative: false, whole: '', num: '', den: '', rem: '', entries: Object.freeze([]), focus: 'whole',
-    allowFractions: kind === 'standard' && allowFractions, allowNegative: kind === 'standard' && allowNegative,
+    mode, kind, negative: false, whole: '', num: '', den: '', rem: '', entries: Object.freeze([]), focus: kind === 'linear' ? 'coef' : 'whole',
+    coef: '', cst: '', negCoef: false, negCst: false,
+    allowFractions: kind === 'standard' && allowFractions, allowNegative: kind === 'linear' || (kind === 'standard' && allowNegative),
   });
 }
 
@@ -59,6 +65,13 @@ export function applyKey(state, key) {
   switch (key) {
     case 'backspace':
       if (state.kind === 'remainder' && state.focus === 'rem' && !state.rem) return next({ focus: 'whole' });
+      if (state.kind === 'linear') {
+        const f = state.focus;
+        const neg = f === 'coef' ? 'negCoef' : 'negCst';
+        if (state[f]) return next({ [f]: state[f].slice(0, -1) });
+        if (state[neg]) return next({ [neg]: false });
+        return f === 'cst' ? next({ focus: 'coef' }) : state;
+      }
       if (state.kind === 'list' && !state.whole && state.entries.length) {
         return next({ whole: String(state.entries[state.entries.length - 1]), entries: Object.freeze(state.entries.slice(0, -1)) });
       }
@@ -68,6 +81,7 @@ export function applyKey(state, key) {
       return state.kind === 'remainder' ? next({ focus: 'rem' }) : state;
 
     case 'next':
+      if (state.kind === 'linear') return next({ focus: 'cst' });
       if (state.kind !== 'list' || !state.whole) return state;
       return next({ entries: Object.freeze([...state.entries, Number(state.whole)]), whole: '' });
 
@@ -87,6 +101,7 @@ export function applyKey(state, key) {
       return next({ focus: 'whole' });
 
     case 'negate':
+      if (state.kind === 'linear') return state.focus === 'coef' ? next({ negCoef: !state.negCoef }) : next({ negCst: !state.negCst });
       return state.allowNegative ? next({ negative: !state.negative }) : state;
 
     case 'clear':
@@ -124,6 +139,12 @@ function backspace(state, next) {
 export function toRawAnswer(state) {
   const n = (s) => (s === '' ? undefined : Number(s));
   if (state.kind === 'list') return { list: [...state.entries, ...(state.whole ? [Number(state.whole)] : [])] };
+  if (state.kind === 'linear') {
+    const raw = {};
+    if (state.coef !== '') raw.coef = (state.negCoef ? -1 : 1) * Number(state.coef);
+    if (state.cst !== '') raw.constant = (state.negCst ? -1 : 1) * Number(state.cst);
+    return raw;
+  }
   if (state.kind === 'remainder') {
     const raw = {};
     if (state.whole !== '') raw.whole = n(state.whole);
@@ -142,6 +163,7 @@ export function toRawAnswer(state) {
 
 export function isEmpty(state) {
   if (state.kind === 'list') return !state.whole && !state.entries.length;
+  if (state.kind === 'linear') return !state.coef && !state.cst;
   return !state.whole && !state.num && !state.den && !state.rem;
 }
 
@@ -149,6 +171,7 @@ export function isEmpty(state) {
 export function canSubmit(state) {
   if (state.kind === 'list') return state.entries.length > 0 || state.whole !== '';
   if (state.kind === 'remainder') return state.whole !== '';
+  if (state.kind === 'linear') return state.coef !== '' && state.cst !== '';
   return null; // standard answers: the grader's readAnswer decides
 }
 
@@ -157,6 +180,9 @@ export function describeAnswer(state) {
   if (isEmpty(state)) return 'empty';
   if (state.kind === 'list') return [...state.entries, ...(state.whole ? [state.whole] : [])].join(', ');
   if (state.kind === 'remainder') return `${state.whole || 'blank'} remainder ${state.rem || 'blank'}`;
+  if (state.kind === 'linear') {
+    return `${state.negCoef ? 'negative ' : ''}${state.coef || 'blank'} x ${state.negCst ? 'minus' : 'plus'} ${state.cst || 'blank'}`;
+  }
   const box = (s) => s || 'blank';
   const sign = state.negative ? 'negative ' : '';
   if (state.mode === 'number') return `${sign}${state.whole}`;
@@ -170,8 +196,16 @@ export function rawToText(raw) {
   if (raw && Number.isInteger(raw.choice)) return raw.label ?? `choice ${raw.choice + 1}`;
   if (raw && Array.isArray(raw.list)) return raw.list.length ? raw.list.join(', ') : '(blank)';
   if (raw && raw.rem !== undefined) return `${raw.whole ?? '?'} R ${raw.rem}`;
+  if (raw && (raw.coef !== undefined || raw.constant !== undefined)) return linearText(raw.coef, raw.constant);
   if (!raw || (raw.whole === undefined && raw.num === undefined && raw.den === undefined)) return '(blank)';
   const sign = raw.negative ? '-' : '';
   const frac = raw.num !== undefined || raw.den !== undefined ? `${raw.num ?? '?'}/${raw.den ?? '?'}` : '';
   return `${sign}${[raw.whole, frac].filter((x) => x !== undefined && x !== '').join(' ')}`;
+}
+
+// "3x + 12", "-x - 5", "4x" (constant 0), for logs and feedback.
+export function linearText(coef, constant) {
+  const c = coef === undefined ? '?' : coef === 1 ? '' : coef === -1 ? '-' : String(coef);
+  const k = constant === undefined ? ' + ?' : constant === 0 ? '' : constant < 0 ? ` - ${-constant}` : ` + ${constant}`;
+  return `${c}x${k}`;
 }

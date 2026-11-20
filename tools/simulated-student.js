@@ -36,6 +36,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.form === 'exact') return { num: a.n, den: a.d };
     if (a.type === 'choice') return { choice: a.correct };
     if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
+    if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least };
     const v = reduce(a.value);
     return v.d === 1 ? { whole: Math.abs(v.n), negative: v.n < 0 } : { num: Math.abs(v.n), den: v.d, negative: v.n < 0 };
@@ -47,6 +48,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.type === 'set' || a.type === 'multiset') return { list: a.values.slice(1) };
     if (a.type === 'choice') return { choice: (a.correct + 1) % a.options.length };
     if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };
+    if (a.type === 'linear') return { coef: a.coef + 1, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least + 1 };
     return { num: Math.abs(a.value.n) + 1, den: a.value.d };
   }
@@ -81,6 +83,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
       if (held.choice !== undefined) return { choice: held.choice };
       if (typeof held.value === 'number') return { whole: Math.abs(held.value), ...(held.value < 0 ? { negative: true } : {}) };
       if (held.value.quotient !== undefined) return { whole: held.value.quotient, rem: held.value.remainder };
+      if (held.value.coef !== undefined) return { coef: held.value.coef, constant: held.value.constant };
       return { num: Math.abs(held.value.n), den: held.value.d, ...(held.value.n < 0 ? { negative: true } : {}) };
     }
     return wrongAnswer(problem);

@@ -111,6 +111,36 @@
       "id": "alg.eq-two-sign",
       "description": "Does both steps but gets the sign wrong.",
       "pointsTo": "alg.equations.two-step"
+    },
+    {
+      "id": "alg.expr-sign-dropped",
+      "description": "Ignores the minus signs between terms (5x − 7 − 2x + 3 -> 7x + 10).",
+      "pointsTo": "alg.expressions.like-terms"
+    },
+    {
+      "id": "alg.expr-lone-x",
+      "description": "Counts x with no number in front as nothing, instead of 1x (4x − x -> 4x).",
+      "pointsTo": "alg.expressions.like-terms"
+    },
+    {
+      "id": "alg.expr-first-only",
+      "description": "Multiplies only the first term in the parentheses (3(x + 4) -> 3x + 4).",
+      "pointsTo": "alg.expressions.distribute"
+    },
+    {
+      "id": "alg.expr-second-sign",
+      "description": "With a negative outside, gets the second term's sign wrong (−2(x − 5) -> −2x − 10).",
+      "pointsTo": "alg.expressions.distribute"
+    },
+    {
+      "id": "alg.expr-whole-first-only",
+      "description": "Distributes to only the first term, then combines (2(x + 3) + 4x -> 6x + 3).",
+      "pointsTo": "alg.expressions"
+    },
+    {
+      "id": "alg.expr-whole-subtract-group",
+      "description": "Subtracts only the first term of a group (12 − (x + 3) -> −x + 15).",
+      "pointsTo": "alg.expressions"
     }
   ]
 }

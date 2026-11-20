@@ -188,6 +188,52 @@
           ]
         }
       ]
+    },
+    {
+      "id": "alg.expressions",
+      "name": "Simplify expressions",
+      "summary": "Combine like terms and use the distributive property to write an expression as simply as possible (ax + b).",
+      "typicalGrade": 7,
+      "standards": [
+        "6.EE.A.3",
+        "7.EE.A.1"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.expressions.like-terms",
+          "name": "Combine like terms (4x + 3 − x + 7)",
+          "prerequisites": [
+            {
+              "id": "int.add-sub.same-sign",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.different-signs",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "alg.expressions.distribute",
+          "name": "Use the distributive property (3(x + 4), −2(x − 5))",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.multiply",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

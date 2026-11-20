@@ -17,6 +17,7 @@ const TOOLS = {
   standard: ['fraction', 'mixed'],
   remainder: ['remainder', null],
   list: ['next', null],
+  linear: ['next', null],
 };
 
 const LABELS = {
@@ -33,6 +34,7 @@ export function keypadOptionsFor(problem) {
   const type = problem.answer.type;
   if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };
+  if (type === 'linear') return { answerKind: 'linear', allowNegative: true };
   if (type === 'set' || type === 'multiset') return { answerKind: 'list', separator: type === 'multiset' ? '×' : ',' };
   return { allowFractions: type === 'fraction', allowNegative: Boolean(problem.answer.allowNegative) };
 }
@@ -62,11 +64,17 @@ export function createKeypad({
     num: box('num', 'Numerator'),
     den: box('den', 'Denominator'),
     rem: box('rem', 'Remainder'),
+    coef: box('coef', 'Number in front of x'),
+    cst: box('cst', 'Number on its own'),
   };
   const stack = div('answer-stack');
   stack.append(boxes.num, div('answer-bar'), boxes.den);
   const rLabel = span('answer-r', 'R');
-  display.append(sign, entries, boxes.whole, stack, rLabel, boxes.rem);
+  // linear: [−][coef] x [+/−] [cst]
+  const coefSign = span('answer-sign', '−');
+  const xLabel = span('answer-x', 'x');
+  const plusMinus = span('answer-r answer-pm', '+');
+  display.append(sign, entries, boxes.whole, stack, rLabel, boxes.rem, coefSign, boxes.coef, xLabel, plusMinus, boxes.cst);
   const live = div('visually-hidden');
   live.setAttribute('aria-live', 'polite');
 
@@ -87,6 +95,7 @@ export function createKeypad({
 
   const hint = div('answer-hint');
   hint.textContent = {
+    linear: 'Type the number in front of x, tap Next, then the number on its own. (−) makes the box you’re in negative.',
     remainder: 'Type the answer, tap R, then type the remainder.',
     list: separator === '×' ? 'Type a prime, tap Next, then type the next one.' : 'Type a number, tap Next, then type the next one.',
   }[answerKind] || (allowFractions ? 'Tap a/b for a fraction, 1 a/b for a mixed number.' : allowNegative ? 'Type a number. Tap (−) to make it negative.' : 'Type a whole number.');
@@ -116,6 +125,7 @@ export function createKeypad({
     };
     if (answerKind === 'remainder') Object.assign(map, { r: 'remainder', R: 'remainder', ArrowRight: 'remainder', ArrowLeft: 'focus:whole' });
     if (answerKind === 'list') Object.assign(map, { ',': 'next', ' ': 'next', '*': 'next', x: 'next' });
+    if (answerKind === 'linear') Object.assign(map, { x: 'next', X: 'next', '+': 'next', Tab: 'next', ArrowRight: 'next', ArrowLeft: 'focus:coef', ' ': 'next' });
     // Space and Enter on a keyboard-focused button press that button, as usual.
     const onButton = document.activeElement?.tagName === 'BUTTON';
     if ((e.key === ' ' || e.key === 'Enter') && onButton) return;
@@ -126,6 +136,7 @@ export function createKeypad({
     }
     let k = /^[0-9]$/.test(e.key) ? e.key : map[e.key];
     if (e.key === 'ArrowRight' && answerKind === 'standard') k = state.focus === 'whole' ? 'focus:num' : null;
+    if (e.key === 'Tab' && (answerKind !== 'linear' || state.focus === 'cst')) return; // let Tab move on as usual
     if (!k) return;
     e.preventDefault();
     press(k);
@@ -133,7 +144,7 @@ export function createKeypad({
 
   function render() {
     const shown = fieldsFor(state.mode);
-    for (const f of ['whole', 'num', 'den', 'rem']) {
+    for (const f of ['whole', 'num', 'den', 'rem', 'coef', 'cst']) {
       const b = boxes[f];
       b.hidden = !shown.includes(f);
       b.textContent = state[f];
@@ -145,6 +156,11 @@ export function createKeypad({
     entries.hidden = state.mode !== 'list' || !state.entries.length;
     entries.textContent = state.entries.length ? `${state.entries.join(separator === '×' ? ' × ' : ', ')} ${separator === '×' ? '×' : ','}` : '';
     sign.hidden = !state.negative;
+    const linear = state.mode === 'linear';
+    coefSign.hidden = !linear || !state.negCoef;
+    xLabel.hidden = !linear;
+    plusMinus.hidden = !linear;
+    plusMinus.textContent = state.negCst ? '−' : '+';
     display.dataset.mode = state.mode;
     live.textContent = `Your answer: ${describeAnswer(state)}`;
     const ready = canSubmit(state);
@@ -159,7 +175,7 @@ export function createKeypad({
   }
 
   function key(k) {
-    const label = LABELS[k];
+    const label = k === 'next' && answerKind === 'linear' ? { text: 'Next', aria: 'Next box' } : LABELS[k];
     const b = button('key', label ? label.text : k);
     if (label) {
       b.setAttribute('aria-label', label.aria);

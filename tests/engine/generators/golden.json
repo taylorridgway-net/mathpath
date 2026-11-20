@@ -3301,6 +3301,1295 @@
    }
   ]
  },
+ "alg.expressions": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "scaled",
+      "coef": 4,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 1,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 8
+       }
+      }
+     },
+     "right": {
+      "type": "term",
+      "coef": 4,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 8,
+     "constant": 32
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 8,
+       "constant": 8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "scaled",
+      "coef": 5,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 1,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     },
+     "right": {
+      "type": "term",
+      "coef": 4,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 9,
+     "constant": 20
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 9,
+       "constant": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "scaled",
+      "coef": 6,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 1,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      }
+     },
+     "right": {
+      "type": "term",
+      "coef": 5,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 11,
+     "constant": 36
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 11,
+       "constant": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "scaled",
+       "coef": 5,
+       "of": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 3
+        }
+       }
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     },
+     "right": {
+      "type": "term",
+      "coef": 3,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": 17
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 2,
+       "constant": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "scaled",
+       "coef": 3,
+       "of": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 1
+        }
+       }
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     },
+     "right": {
+      "type": "term",
+      "coef": 1,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": 11
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 2,
+       "constant": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "scaled",
+       "coef": 6,
+       "of": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 8
+        }
+       }
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     },
+     "right": {
+      "type": "term",
+      "coef": 3,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": 55
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 3,
+       "constant": 15
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 8,
+      "name": "x"
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 4,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 1,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": -12
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 4,
+       "constant": -3
+      }
+     },
+     {
+      "id": "alg.expr-whole-subtract-group",
+      "value": {
+       "coef": 4,
+       "constant": 12
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "int",
+       "value": 10
+      },
+      "right": {
+       "type": "scaled",
+       "coef": 1,
+       "of": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 7
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "term",
+      "coef": 6,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 17
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-subtract-group",
+      "value": {
+       "coef": 5,
+       "constant": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 4,
+      "name": "x"
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 2,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 1,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": -4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-whole-first-only",
+      "value": {
+       "coef": 2,
+       "constant": -2
+      }
+     },
+     {
+      "id": "alg.expr-whole-subtract-group",
+      "value": {
+       "coef": 2,
+       "constant": 4
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.expressions.distribute": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": 5,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 30
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": 5,
+       "constant": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": 8,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 8,
+     "constant": 24
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": 8,
+       "constant": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": 3,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": 18
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": 3,
+       "constant": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": 6,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 12,
+     "constant": 42
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": 12,
+       "constant": 7
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": 5,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 5
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": 5,
+       "constant": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": 3,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": 9
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": 3,
+       "constant": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": -6,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -6,
+     "constant": -36
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": -6,
+       "constant": 6
+      }
+     },
+     {
+      "id": "alg.expr-second-sign",
+      "value": {
+       "coef": -6,
+       "constant": 36
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": -5,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -10,
+     "constant": -15
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": -10,
+       "constant": 3
+      }
+     },
+     {
+      "id": "alg.expr-second-sign",
+      "value": {
+       "coef": -10,
+       "constant": 15
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.distribute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "scaled",
+     "coef": -3,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -6,
+     "constant": -18
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-first-only",
+      "value": {
+       "coef": -6,
+       "constant": 6
+      }
+     },
+     {
+      "id": "alg.expr-second-sign",
+      "value": {
+       "coef": -6,
+       "constant": 18
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.expressions.like-terms": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 11
+       },
+       "right": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 8,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 12,
+     "constant": 14
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 3
+       },
+       "right": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 6,
+     "constant": 11
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 6
+       },
+       "right": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 7,
+     "constant": 9
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": 9
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-sign-dropped",
+      "value": {
+       "coef": 7,
+       "constant": 15
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 8,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 10
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -5
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-sign-dropped",
+      "value": {
+       "coef": 11,
+       "constant": 15
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": 8
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-sign-dropped",
+      "value": {
+       "coef": 8,
+       "constant": 16
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 10
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-sign-dropped",
+      "value": {
+       "coef": 6,
+       "constant": 17
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -1,
+     "constant": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-sign-dropped",
+      "value": {
+       "coef": 9,
+       "constant": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.expressions.like-terms",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write it as (number)x + (number).",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 6,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 9
+       }
+      },
+      "right": {
+       "type": "term",
+       "coef": 1,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 15
+    },
+    "misconceptions": [
+     {
+      "id": "alg.expr-sign-dropped",
+      "value": {
+       "coef": 7,
+       "constant": 15
+      }
+     },
+     {
+      "id": "alg.expr-lone-x",
+      "value": {
+       "coef": 6,
+       "constant": 15
+      }
+     }
+    ]
+   }
+  ]
+ },
  "alg.order-ops": {
   "version": 1,
   "problems": [

@@ -204,6 +204,7 @@ function correct(problem) {
   if (a.form === 'exact') return { num: a.n, den: a.d };
   if (a.type === 'choice') return { choice: a.correct };
   if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
+  if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
   return { ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) };
@@ -214,6 +215,7 @@ function mistake(problem, held) {
   if (m && !m.test) {
     if (typeof m.value === 'number') return { whole: m.value };
     if (m.value.quotient !== undefined) return { whole: m.value.quotient, rem: m.value.remainder };
+    if (m.value.coef !== undefined) return { coef: m.value.coef, constant: m.value.constant };
     return { num: Math.abs(m.value.n), den: m.value.d, ...(m.value.n < 0 ? { negative: true } : {}) };
   }
   const a = problem.answer;
@@ -222,6 +224,7 @@ function mistake(problem, held) {
   if (a.type === 'quotient-remainder') return { whole: a.quotient + 1, rem: a.remainder };
   if (a.type === 'set' || a.type === 'multiset') return { list: a.values.slice(1) };
   if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };
+  if (a.type === 'linear') return { coef: a.coef + 1, constant: a.constant };
   if (a.type === 'common-multiple') return { whole: a.least + 1 };
   return { num: Math.abs(a.value.n) + 1, den: a.value.d };
 }

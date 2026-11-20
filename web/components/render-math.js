@@ -23,6 +23,13 @@ function build(node) {
     }
     case 'var':
       return el('span', 'm-var', node.name);
+    case 'scaled': {
+      const wrap = el('span', 'm-row m-group');
+      const c = node.coef;
+      if (c !== 1) wrap.append(el('span', 'm-num', c === -1 ? '\u2212' : c < 0 ? `\u2212${-c}` : String(c)));
+      wrap.append(el('span', 'm-paren', '('), build(node.of), el('span', 'm-paren', ')'));
+      return wrap;
+    }
     case 'term': {
       const wrap = el('span', 'm-term');
       const c = node.coef;
@@ -120,6 +127,8 @@ function spoken(text) {
     .replace(/ - /g, ' minus ')
     .replace(/-(\d)/g, 'negative $1')
     .replace(/\^(\d+)/g, ' to the power $1')
+    .replace(/(\d)\(/g, '$1 times (')
+    .replace(/(^|[^\w)])-\(/g, '$1negative (')
     .replace(/\(/g, 'open parenthesis, ')
     .replace(/\)/g, ', close parenthesis')
     .replace(/ \u00d7 /g, ' times ')

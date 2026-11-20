@@ -26,6 +26,7 @@ import signedLesson from '../../curriculum/lessons/frac.signed.json';
 import orderOpsLesson from '../../curriculum/lessons/alg.order-ops.json';
 import exponentsLesson from '../../curriculum/lessons/alg.exponents.json';
 import equationsLesson from '../../curriculum/lessons/alg.equations.json';
+import expressionsLesson from '../../curriculum/lessons/alg.expressions.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -49,7 +50,7 @@ import { diagnosticReport } from '../components/diagnostic-report.js';
 import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
 const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of the signed-in student
-const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson, equationsLesson];
+const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson, equationsLesson, expressionsLesson];
 
 const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph });
 const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...algMisconceptions.misconceptions];
@@ -395,7 +396,7 @@ function showDone() {
     card.append(
       h('h2', 'block-title', named ? `Next: the ${named.toLowerCase()}` : 'New topics to check'),
       h('p', 'lede', named
-        ? `A few questions on ${newSkills.map(name).join(', ').toLowerCase()}. Your answers add these topics to your path.`
+        ? `A few questions about these topics: ${newSkills.map(name).join('; ')}. Your answers add them to your path.`
         : `MathPath has new topics since your check: ${newSkills.map(name).join(', ')}. Answer a few questions so your path includes them.`),
     );
     const actions = h('div', 'actions');

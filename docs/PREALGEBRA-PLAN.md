@@ -10,7 +10,11 @@ equations with fractions at the hardest level. "Go."
 - **Equations built** (one skill, three parts: undo adding/subtracting, undo multiplying/dividing, two steps; fractions at
   level 3; a balance picture). In the pre-algebra check one two-step equation stands for all three parts.
   Pre-algebra check now: median 6 questions, max 15.
-- **Next:** the distributive property and combining like terms (needs the "x" keypad and an answer checker for expressions).
+- **Expressions built** (one skill `alg.expressions`: combine like terms, distributive property; "putting it together"
+  distributes then combines). Answers are typed in two boxes, [ ]x + [ ] (answer type `linear`, keypad kind `linear`,
+  each box with its own sign). Pre-algebra check now: median 7 questions, max 17; a student who knows everything: 6.
+- **The whole pre-algebra plan is built.** Next: owner's call (later pre-algebra: variables on both sides,
+  equations that need distributing first, inequalities; or the next area).
 - **Quick re-check built** (owner OK): "can't check yet" questions are checked once the gaps under them are fixed.
 
 

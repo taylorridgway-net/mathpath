@@ -11,6 +11,7 @@
 //   { whole: 9, rem: 2 }                  9 R 2 (a division with a remainder)
 //   { list: [1, 2, 3, 4, 6, 12] }         a list of whole numbers (factors, primes)
 //   { choice: 2, label: '>' }             one of the problem's answer buttons (compare)
+//   { coef: 3, constant: -12 }            3x - 12 (an expression, pre-algebra)
 //
 // Possible results:
 //   correct         right value, in an accepted form
@@ -76,6 +77,8 @@ export function checkAnswer(problem, raw) {
       return checkCommonMultiple(problem, raw);
     case 'quotient-remainder':
       return checkQuotientRemainder(problem, raw);
+    case 'linear':
+      return checkLinear(problem, raw);
     case 'set':
     case 'multiset':
       return checkList(problem, raw);
@@ -148,6 +151,17 @@ function checkChoice(problem, raw) {
 }
 
 // 47 ÷ 5 = 9 R 2. The remainder box may be left empty when it's 0.
+// "3x + 12": answer { type: 'linear', coef, constant }; raw { coef, constant } (whole
+// numbers, signed). Both boxes are needed (0 is typed as 0). A misconception
+// matches when both numbers match its { coef, constant }.
+function checkLinear(problem, raw) {
+  const ok = (v) => Number.isInteger(v) && Math.abs(v) < 100000;
+  if (!ok(raw?.coef) || !ok(raw?.constant)) return { status: 'invalid', reason: 'empty' };
+  const { coef, constant } = problem.answer;
+  if (raw.coef === coef && raw.constant === constant) return { status: 'correct' };
+  return wrong(problem, (m) => m.value && m.value.coef === raw.coef && m.value.constant === raw.constant);
+}
+
 function checkQuotientRemainder(problem, raw) {
   const q = raw?.whole;
   const r = raw?.rem === undefined || raw?.rem === null || raw?.rem === '' ? 0 : raw.rem;

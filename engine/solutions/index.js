@@ -10,12 +10,14 @@ import { solveInt } from './int.js';
 import { solveSigned } from './frac-signed.js';
 import { solveAlg } from './alg.js';
 import { solveEquation } from './alg-equations.js';
+import { solveExpression } from './alg-expressions.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
   if (kind.startsWith('whole.')) return solveWhole(problem);
   if (kind.startsWith('int.')) return solveInt(problem);
   if (kind.startsWith('alg.equations')) return solveEquation(problem);
+  if (kind.startsWith('alg.expressions')) return solveExpression(problem);
   if (kind.startsWith('alg.')) return solveAlg(problem);
   if (kind.startsWith('frac.equivalent')) return solveEquivalent(problem);
   if (kind.startsWith('frac.meaning')) return solveMeaning(problem);

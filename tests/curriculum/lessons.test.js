@@ -34,7 +34,7 @@ for (const lesson of lessons) test(`${lesson.skill}: every hint is for a generat
 });
 
 for (const lesson of lessons) test(`${lesson.skill}: every wrong-answer pattern for this skill has a student message`, () => {
-  const ids = misconceptions.filter((m) => m.pointsTo.startsWith(`${lesson.skill}.`)).map((m) => m.id).sort();
+  const ids = misconceptions.filter((m) => m.pointsTo === lesson.skill || m.pointsTo.startsWith(`${lesson.skill}.`)).map((m) => m.id).sort();
   assert.deepEqual(Object.keys(lesson.misconceptionMessages).sort(), ids);
 });
 
@@ -54,5 +54,5 @@ for (const lesson of lessons) test(`${lesson.skill}: section checks and pictures
 });
 
 test('there are lessons for the built skills (fractions meaning, equivalent, compare, add/subtract; three whole-number skills)', () => {
-  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['alg.equations', 'alg.exponents', 'alg.order-ops', 'frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'frac.signed', 'int.add-sub', 'int.mult-div', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div']);
+  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['alg.equations', 'alg.exponents', 'alg.expressions', 'alg.order-ops', 'frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'frac.signed', 'int.add-sub', 'int.mult-div', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div']);
 });

@@ -4,7 +4,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  createAnswerState, applyKey, toRawAnswer, describeAnswer, rawToText, MAX_DIGITS,
+  createAnswerState, applyKey, toRawAnswer, describeAnswer, rawToText, canSubmit, MAX_DIGITS,
 } from '../../web/components/answer-editor.js';
 import { checkAnswer } from '../../engine/grading/check-answer.js';
 import { fraction } from '../../engine/math/fraction.js';
@@ -138,4 +138,31 @@ test('remainder and list answers are graded as the student typed them', () => {
   assert.equal(checkAnswer(listProblem, raw(['6', 'next', '3', 'next', '2', 'next', '1'], { kind: 'list' })).status, 'correct');
   assert.equal(rawToText({ list: [2, 2, 3] }), '2, 2, 3');
   assert.equal(rawToText({ whole: 9, rem: 2 }), '9 R 2');
+});
+
+// ---------- linear (pre-algebra): [coef] x + [constant] ----------
+
+const keys = (state, list) => list.reduce(applyKey, state);
+
+test('linear: type 3, Next, 12 -> 3x + 12', () => {
+  const s = keys(createAnswerState({ kind: 'linear' }), ['3', 'next', '1', '2']);
+  assert.deepEqual(toRawAnswer(s), { coef: 3, constant: 12 });
+  assert.equal(canSubmit(s), true);
+  assert.equal(describeAnswer(s), '3 x plus 12');
+});
+
+test('linear: (−) makes the box with focus negative; each box has its own sign', () => {
+  const s = keys(createAnswerState({ kind: 'linear' }), ['negate', '2', 'next', '1', '0', 'negate']);
+  assert.deepEqual(toRawAnswer(s), { coef: -2, constant: -10 });
+  assert.equal(describeAnswer(s), 'negative 2 x minus 10');
+});
+
+test('linear: backspace in the empty second box goes back to the first; Check needs both boxes', () => {
+  let s = keys(createAnswerState({ kind: 'linear' }), ['4', 'next']);
+  assert.equal(canSubmit(s), false);
+  s = keys(s, ['backspace', 'backspace']);
+  assert.equal(s.focus, 'coef');
+  assert.equal(s.coef, '');
+  assert.equal(rawToText({ coef: -1, constant: 5 }), '-x + 5');
+  assert.equal(rawToText({ coef: 3, constant: -12 }), '3x - 12');
 });

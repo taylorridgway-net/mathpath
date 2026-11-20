@@ -446,11 +446,11 @@ function earlier(traits) {
 
 test('catch-up: finds exactly the skills that had no questions back then', () => {
   const { prior } = earlier({});
-  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents', 'alg.equations']);
+  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']);
   // After today's fractions check, only the later check (pre-algebra) is left.
   const now = compactResult(diagnose({}).result);
-  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ['alg.order-ops', 'alg.exponents', 'alg.equations']);
-  assert.equal(catchUpName(fractions.config, ['alg.order-ops', 'alg.exponents', 'alg.equations']), 'Pre-algebra check');
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']);
+  assert.equal(catchUpName(fractions.config, ['alg.order-ops', 'alg.exponents', 'alg.equations', 'alg.expressions']), 'Pre-algebra check');
   assert.equal(catchUpName(fractions.config, ['frac.multiply', 'alg.order-ops']), null);
 });
 
@@ -475,7 +475,7 @@ test('catch-up: a gap found the first time blocks new questions that rest on it'
   const result = runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'catch', prior }), student);
   assert.ok(!result.questions.some((q) => q.generator === 'whole.mult-div.mult-facts'), 'facts not asked again');
   assert.ok(result.nodes['frac.multiply.by-fraction'].blockedBy);
-  assert.ok(result.questionCount <= 10, `took ${result.questionCount}`);
+  assert.ok(result.questionCount <= 12, `took ${result.questionCount}`);
 });
 
 test('a saved (compact) result is what the path needs, without re-running anything', () => {
@@ -506,10 +506,11 @@ function preAlgebra(traits) {
   return runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'pre', prior }), student);
 }
 
-test('pre-algebra check: knows everything -> one problem each for order of operations, powers and equations, plus the two negative-number parts', () => {
+test('pre-algebra check: knows everything -> one problem each for order of operations, powers, equations and expressions, plus the two negative-number parts', () => {
   const result = preAlgebra({});
   assert.deepEqual(result.rootGaps, []);
-  assert.equal(result.questionCount, 5);
+  assert.equal(result.questionCount, 6);
+  assert.equal(result.skills['alg.expressions'], 'known');
   assert.equal(result.skills['alg.equations'], 'known');
   assert.equal(result.skills['alg.order-ops'], 'known');
   assert.equal(result.skills['alg.exponents'], 'known');
@@ -577,4 +578,10 @@ test('pre-algebra check: does the operation instead of undoing it (x + 5 = 12 ->
 test('pre-algebra check: can\'t divide integers -> found under undoing multiplication', () => {
   const result = preAlgebra({ lacks: ['int.mult-div.divide'] });
   assert.ok(result.rootGaps.includes('int.mult-div.divide'), JSON.stringify(result.rootGaps));
+});
+
+test('pre-algebra check: 3(x + 4) = 3x + 4 -> gap on the distributive property; combining like terms still checked', () => {
+  const result = preAlgebra({ lacks: ['alg.expressions.distribute'], misconceptions: ['alg.expr-first-only'] });
+  assert.ok(result.rootGaps.includes('alg.expressions.distribute'), JSON.stringify(result.rootGaps));
+  assert.equal(statusOf(result, 'alg.expressions.like-terms'), 'known');
 });

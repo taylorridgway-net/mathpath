@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.expressions",
+  "title": "Simplify expressions",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems that need an expression, and an 'is this right?' item. Each item is worth 1 point. 'math' is the expression in JavaScript form, used only by the test that checks the answer key (compared at several values of x).",
+  "directions": "Simplify. Show your steps.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Simplify:  6x + 4 − 2x + 9", "math": "6*x + 4 - 2*x + 9", "answer": "4x + 13" },
+        { "id": "A2", "kind": "computation", "prompt": "Simplify:  5(x − 3)", "math": "5*(x - 3)", "answer": "5x - 15" },
+        { "id": "A3", "kind": "computation", "prompt": "Simplify:  −4(2x + 1)", "math": "-4*(2*x + 1)", "answer": "-8x - 4" },
+        { "id": "A4", "kind": "computation", "prompt": "Simplify:  3(x + 2) − x + 5", "math": "3*(x + 2) - x + 5", "answer": "2x + 11" },
+        { "id": "A5", "kind": "word", "prompt": "A rectangle is (x + 6) feet long and 3 feet wide. Write a simplified expression for its area.", "math": "3*(x + 6)", "answer": "3x + 18 (square feet)" },
+        { "id": "A6", "kind": "word", "prompt": "Devon simplified 2(x + 7) and got 2x + 7. Is he right? Explain, and simplify it correctly.", "math": "2*(x + 7)", "answer": "2x + 14 (No: multiply the 2 by both terms)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Simplify:  9 + 2x − 12 + x", "math": "9 + 2*x - 12 + x", "answer": "3x - 3" },
+        { "id": "B2", "kind": "computation", "prompt": "Simplify:  7(2x + 3)", "math": "7*(2*x + 3)", "answer": "14x + 21" },
+        { "id": "B3", "kind": "computation", "prompt": "Simplify:  −(x − 8)", "math": "-1*(x - 8)", "answer": "-x + 8" },
+        { "id": "B4", "kind": "computation", "prompt": "Simplify:  10x − 2(3x + 4)", "math": "10*x - 2*(3*x + 4)", "answer": "4x - 8" },
+        { "id": "B5", "kind": "word", "prompt": "Tickets cost $x each, plus a $4 fee per ticket. Write a simplified expression for the cost of 5 tickets.", "math": "5*(x + 4)", "answer": "5x + 20 (dollars)" },
+        { "id": "B6", "kind": "word", "prompt": "Mia simplified 8x − x + 3 and got 8x + 3. Is she right? Explain, and simplify it correctly.", "math": "8*x - x + 3", "answer": "7x + 3 (No: x on its own is 1x)" }
+      ]
+    }
+  ]
+}

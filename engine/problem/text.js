@@ -11,6 +11,7 @@
 //   { type: 'pow', base, exp }        a power: 2^4; a negative base gets parentheses: (-3)^2
 //   { type: 'var', name }             a variable: x
 //   { type: 'term', coef, name }      a number times a variable: 3x, -x; coef may be a frac node: (2/3)x
+//   { type: 'scaled', coef, of }      a number times parentheses: 3(x + 4), -(x - 2)
 //   { type: 'op', op: '+' | '-', left, right }
 //   { type: 'eq', left, right }
 //   { type: 'list', items: [...] }
@@ -40,6 +41,8 @@ export function toText(node) {
       if (typeof c === 'number') return c === 1 ? node.name : c === -1 ? `-${node.name}` : `${c < 0 ? `-${-c}` : c}${node.name}`;
       return `(${toText(c)})${node.name}`;
     }
+    case 'scaled':
+      return `${node.coef === 1 ? '' : node.coef === -1 ? '-' : node.coef < 0 ? `-${-node.coef}` : node.coef}(${toText(node.of)})`;
     case 'pow':
       return `${node.base.type === 'int' && node.base.value < 0 ? `(${toText(node.base)})` : toText(node.base)}^${node.exp}`;
     case 'mixed':

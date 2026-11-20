@@ -31,6 +31,7 @@ const right = (problem) => {
   const a = problem.answer;
   if (a.type === 'choice') return { choice: a.correct };
   if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
+  if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
   return { ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) };

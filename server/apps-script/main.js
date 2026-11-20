@@ -32,6 +32,7 @@ import signedLesson from '../../curriculum/lessons/frac.signed.json';
 import orderOpsLesson from '../../curriculum/lessons/alg.order-ops.json';
 import exponentsLesson from '../../curriculum/lessons/alg.exponents.json';
 import equationsLesson from '../../curriculum/lessons/alg.equations.json';
+import expressionsLesson from '../../curriculum/lessons/alg.expressions.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -54,7 +55,7 @@ const setupData = {
   generators,
   misconceptions: [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...algMisconceptions.misconceptions],
   diagnosticConfig: fracDiagnostic,
-  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson, equationsLesson],
+  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson, equationsLesson, expressionsLesson],
   rules: masteryRules.default,
 };
 

@@ -23,7 +23,8 @@
       "targets": [
         "alg.order-ops",
         "alg.exponents",
-        "alg.equations"
+        "alg.equations",
+        "alg.expressions"
       ]
     }
   ]

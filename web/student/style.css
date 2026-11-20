@@ -407,3 +407,8 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .m-term { display: inline-flex; align-items: center; gap: 0.04em; }
 .balance .bal-gone { opacity: 0.3; stroke-dasharray: 3 2; }
 .balance .bal-x { font-style: italic; }
+
+/* expression answers: [coef] x + [constant] */
+.answer-x { font-family: var(--font-math); font-style: italic; font-size: 2rem; }
+.answer[data-mode="linear"] .answer-box { height: 3.2rem; font-size: 2rem; min-width: 3.4rem; }
+.answer-pm { font-size: 1.6rem; }
