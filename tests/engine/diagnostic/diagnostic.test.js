@@ -4,7 +4,8 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { startDiagnostic, replayDiagnostic, compactResult, catchUpTargets, catchUpName } from '../../../engine/diagnostic/diagnostic.js';
+import { startDiagnostic, replayDiagnostic, compactResult, catchUpTargets, catchUpName, fixedGaps, recheckPlan } from '../../../engine/diagnostic/diagnostic.js';
+import { loadClassSetup } from '../../helpers/class-setup.js';
 import { buildGraphIndex } from '../../../engine/graph/graph-index.js';
 import { createRng } from '../../../engine/random.js';
 import { simulatedStudent, runWithStudent } from '../../../tools/simulated-student.js';
@@ -528,4 +529,40 @@ test('pre-algebra check: can\'t multiply integers -> the negative-number parts l
   const result = preAlgebra({ lacks: ['int.mult-div.multiply'] });
   assert.ok(result.rootGaps.includes('int.mult-div.multiply'), JSON.stringify(result.rootGaps));
   assert.equal(statusOf(result, 'alg.order-ops.no-parens'), 'known');
+});
+
+// ---------- quick re-check after a foundation gap is fixed ----------
+
+const { lessons } = loadClassSetup();
+
+test('re-check: nothing fixed yet -> nothing to re-check', () => {
+  const prior = compactResult(diagnose({ lacks: ['whole.mult-div.mult-facts'] }).result);
+  assert.deepEqual(fixedGaps({ graph: fractions.graph, prior, summary: { sectionsPassed: [] }, lessons }), []);
+});
+
+test('re-check: once facts are fixed, everything that waited on them is reopened (chains too), foundations first', () => {
+  const prior = compactResult(diagnose({ lacks: ['whole.mult-div.mult-facts'] }).result);
+  assert.ok(prior.nodes['frac.multiply.by-fraction'].blockedBy, 'multiplying fractions waited on facts');
+  assert.ok(prior.nodes['frac.divide.multiply-reciprocal'].blockedBy, 'dividing waited on multiplying');
+  const fixed = fixedGaps({ graph: fractions.graph, prior, summary: { sectionsPassed: ['whole.mult-div.mult-facts'] }, lessons });
+  assert.deepEqual(fixed, ['whole.mult-div.mult-facts']);
+  const plan = recheckPlan({ graph: fractions.graph, generators: fractions.generators, prior, fixed });
+  assert.ok(plan.targets.includes('frac.multiply') && plan.targets.includes('frac.divide'), plan.targets.join());
+  assert.ok(plan.targets.indexOf('frac.multiply') < plan.targets.indexOf('frac.divide'), 'what dividing builds on comes first');
+  assert.equal(plan.prior.nodes['whole.mult-div.mult-facts'].status, 'known');
+  assert.equal(plan.prior.nodes['frac.divide.multiply-reciprocal'].blockedBy, undefined);
+  // The student now knows their facts: the re-check finds that, without asking about facts again.
+  const now = simulatedStudent({ graph: fractions.graph, generators: fractions.generators });
+  const result = runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets: plan.targets }, seed: 're', prior: plan.prior }), now);
+  assert.ok(!result.questions.some((q) => q.generator === 'whole.mult-div.mult-facts'));
+  assert.equal(result.skills['frac.multiply'], 'known');
+  assert.ok(result.questionCount <= 12, `took ${result.questionCount}`);
+});
+
+test('re-check: a gap counts as fixed by passing its section, mastering its skill, or the teacher\'s check', () => {
+  const prior = { nodes: { 'whole.mult-div.mult-facts': { status: 'gap' }, 'frac.add-sub.combine': { status: 'gap' }, 'whole.add-sub.add-regroup': { status: 'gap' } } };
+  const f = (summary) => fixedGaps({ graph: fractions.graph, prior, summary, lessons }).sort();
+  assert.deepEqual(f({ mastered: ['frac.add-sub'] }), ['frac.add-sub.combine']);
+  assert.deepEqual(f({ cleared: ['whole.add-sub.add-regroup'] }), ['whole.add-sub.add-regroup']);
+  assert.deepEqual(f({ sectionsPassed: ['whole.mult-div.mult-facts'] }), ['whole.mult-div.mult-facts']);
 });

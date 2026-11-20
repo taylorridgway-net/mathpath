@@ -32,7 +32,7 @@ import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
-import { replayDiagnostic, compactResult, catchUpTargets, catchUpName } from '../../engine/diagnostic/diagnostic.js';
+import { replayDiagnostic, compactResult, catchUpTargets, catchUpName, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
 import { buildPath } from '../../engine/lessons/path.js';
 import { seedFor } from '../../engine/seeds.js';
 import { renderMath } from '../components/render-math.js';
@@ -58,7 +58,7 @@ const api = createApi({
 // A catch-up check starts from the saved result and asks only about skills added since.
 const setupFor = (seed, catchUp = null) => ({
   graph, generators, misconceptions, seed,
-  config: catchUp ? { ...fracDiagnostic, targets: catchUpTargets({ graph, generators, config: fracDiagnostic, prior: catchUp.prior }) } : fracDiagnostic,
+  config: catchUp ? { ...fracDiagnostic, targets: catchUp.targets || catchUpTargets({ graph, generators, config: fracDiagnostic, prior: catchUp.prior }) } : fracDiagnostic,
   prior: catchUp?.prior || null,
 });
 // A finished diagnostic as saved: used as it is, never re-run (re-running old answers
@@ -225,6 +225,18 @@ function loadDiagnostic() {
   }
 }
 
+// A quick re-check: questions that couldn't be checked because of a gap the student
+// has since fixed. Only offered once everything is uploaded, so the server sees the
+// same progress (it re-checks the fixes itself).
+function recheck() {
+  if (!session?.finished || !diagnostic || outbox().length) return null;
+  const prior = diagnostic.result();
+  const fixed = fixedGaps({ graph, prior, summary: profile.summary, lessons });
+  if (!fixed.length) return null;
+  const plan = recheckPlan({ graph, generators, prior, fixed });
+  return plan.targets.length ? { ...plan, fixed } : null;
+}
+
 // Skills with questions now that this student's diagnostic didn't have yet.
 function catchUpSkills() {
   if (!session?.finished || !diagnostic) return [];
@@ -240,7 +252,14 @@ function showStart() {
   const canResume = session && session.answers.length > 0 && !session.finished;
   const screen = section('screen screen-start');
   screen.append(accountBar());
-  if (session?.catchUp && !session.finished) {
+  if (session?.catchUp?.recheck && !session.finished) {
+    screen.append(
+      h('p', 'eyebrow', 'Quick check'),
+      h('h1', 'title', 'Let’s check what you can do now'),
+      h('p', 'lede', 'You’ve fixed something that some questions depended on, so now we can check those. Everything else you showed still counts.'),
+      h('p', 'lede', 'If you don’t know an answer, tap “I’m not sure”. That helps too.'),
+    );
+  } else if (session?.catchUp && !session.finished) {
     const named = catchUpName(fracDiagnostic, catchUpTargets({ graph, generators, config: fracDiagnostic, prior: session.catchUp.prior }));
     screen.append(
       h('p', 'eyebrow', named || 'Catch-up check'),
@@ -276,14 +295,14 @@ function begin() {
   showQuestion();
 }
 
-// Start a catch-up check from the finished diagnostic's result.
-function beginCatchUp() {
-  const prior = diagnostic.result();
+// Start a catch-up check from the finished diagnostic's result (or a quick re-check, from its plan).
+function beginCatchUp(plan = null) {
+  const prior = plan ? plan.prior : diagnostic.result();
   const attemptNo = Math.max(profile.summary.diagnosticAttempts || 0, session.attemptNo) + 1;
   const seed = seedFor(profile.id, 'diagnostic', attemptNo);
   session = {
     attemptNo, seed, saveId: `${seed}|${new Date().toISOString()}`, answers: [], times: [], startedAt: new Date().toISOString(),
-    finished: false, catchUp: { prior },
+    finished: false, catchUp: plan ? { prior, targets: plan.targets, recheck: true, fixed: plan.fixed } : { prior },
   };
   begin();
 }
@@ -339,6 +358,7 @@ function finishDiagnostic() {
       type: 'diagnostic', saveId: session.saveId, studentId: profile.id, attemptNo: session.attemptNo, seed: session.seed,
       answers: session.answers, times: session.times, startedAt: session.startedAt, finishedAt: session.finishedAt,
       curriculumVersion: graph.curriculumVersion, ...(session.catchUp ? { catchUp: true } : {}),
+      ...(session.catchUp?.recheck ? { recheck: true, fixed: session.catchUp.fixed } : {}),
     });
     upload();
   }
@@ -378,9 +398,22 @@ function showDone() {
         : `MathPath has new topics since your check: ${newSkills.map(name).join(', ')}. Answer a few questions so your path includes them.`),
     );
     const actions = h('div', 'actions');
-    actions.append(btn('button button-primary', named ? `Start the ${named.toLowerCase()}` : 'Start the catch-up check', beginCatchUp));
+    actions.append(btn('button button-primary', named ? `Start the ${named.toLowerCase()}` : 'Start the catch-up check', () => beginCatchUp()));
     card.append(actions);
     screen.append(card);
+  } else {
+    const plan = recheck();
+    if (plan) {
+      const card = h('div', 'done-block catch-up');
+      card.append(
+        h('h2', 'block-title', 'Ready for a quick check'),
+        h('p', 'lede', `You worked on ${plan.fixed.map(name).join(', ').toLowerCase()}. Now we can check ${plan.targets.map(name).join(', ').toLowerCase()}, which builds on it. A few questions.`),
+      );
+      const actions = h('div', 'actions');
+      actions.append(btn('button button-primary', 'Start the quick check', () => beginCatchUp(plan)));
+      card.append(actions);
+      screen.append(card);
+    }
   }
   screen.append(grid, practiceCard());
 

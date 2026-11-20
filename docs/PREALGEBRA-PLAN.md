@@ -8,9 +8,7 @@ equations with fractions at the hardest level. "Go."
   starting from what the student already showed), order of operations, exponents. Pretend students:
   pre-algebra check median 4 questions, max 13.
 - **Next:** one- and two-step equations; then the distributive property and combining like terms (needs the "x" keypad).
-- **Noticed (to discuss with the owner):** a skill that couldn't be checked because of a gap underneath
-  ("can't check yet") isn't checked again after the student fixes that gap. A short re-check offered once the
-  foundation is mastered would close this.
+- **Quick re-check built** (owner OK): "can't check yet" questions are checked once the gaps under them are fixed.
 
 
 Owner decision 2026-11-20: pre-algebra is the next content area after fractions.

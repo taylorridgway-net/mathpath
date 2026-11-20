@@ -469,3 +469,60 @@ export function catchUpName(config, targets) {
   const check = (config.moreChecks || []).find((c) => targets.length && targets.every((t) => c.targets.includes(t)));
   return check ? check.name : null;
 }
+
+// ---------- the quick re-check (after a foundation gap is fixed) ----------
+// A question that "can't be checked yet" because of a gap underneath gets
+// checked once that gap is fixed: its lesson section passed, its skill
+// mastered, or (a foundation with no lesson yet) the teacher marked it checked.
+
+// Gaps in this result that the student has since fixed. summary: the server's
+// student summary (sectionsPassed, mastered, cleared). lessons: lesson files.
+export function fixedGaps({ graph, prior, summary, lessons }) {
+  const passed = new Set(summary.sectionsPassed || []);
+  const mastered = new Set(summary.mastered || []);
+  const cleared = new Set(summary.cleared || []);
+  const passedFor = new Set(lessons.flatMap((l) => l.sections.filter((s) => passed.has(s.id)).map((s) => s.forGap)));
+  return Object.entries(prior?.nodes || {})
+    .filter(([id, n]) => n.status === 'gap' && graph.has(id))
+    .filter(([id]) => {
+      const skill = graph.get(id).kind === 'skill' ? id : graph.get(id).skillId;
+      return cleared.has(id) || passedFor.has(id) || mastered.has(skill);
+    })
+    .map(([id]) => id);
+}
+
+// What a re-check asks, given the fixed gaps: every "can't check yet" question
+// whose blockers are all fixed (or are themselves being reopened). The fixed gaps
+// count as known; the reopened questions are asked again from scratch.
+export function recheckPlan({ graph, generators, prior, fixed }) {
+  const fixedSet = new Set(fixed);
+  const nodes = {};
+  for (const [id, n] of Object.entries(prior?.nodes || {})) nodes[id] = { ...n };
+  for (const id of fixedSet) if (nodes[id]?.status === 'gap') nodes[id] = { status: 'known' };
+  const reopened = new Set();
+  for (let changed = true; changed;) {
+    changed = false;
+    for (const [id, n] of Object.entries(nodes)) {
+      if (reopened.has(id) || n.status !== 'not-tested' || !n.blockedBy) continue;
+      if (n.blockedBy.every((b) => fixedSet.has(b) || reopened.has(b))) {
+        reopened.add(id);
+        changed = true;
+      }
+    }
+  }
+  for (const id of reopened) nodes[id] = { status: 'not-tested' };
+  const hasQuestions = (skill) => generators[skill] || graph.subskillsOf(skill).some((s) => generators[s]);
+  // Deeper skills first, so a reopened foundation is asked before what builds on it.
+  const memo = new Map();
+  const depth = (id) => {
+    if (!memo.has(id)) {
+      memo.set(id, 0); // the graph has no loops (checked), but be safe
+      memo.set(id, 1 + Math.max(0, ...graph.essentialPrereqs(id).map(depth)));
+    }
+    return memo.get(id);
+  };
+  const skills = [...new Set([...reopened].map((id) => (graph.get(id).kind === 'skill' ? id : graph.get(id).skillId)))]
+    .filter(hasQuestions)
+    .sort((a, b) => depth(a) - depth(b));
+  return { targets: skills, prior: { ...prior, nodes } };
+}

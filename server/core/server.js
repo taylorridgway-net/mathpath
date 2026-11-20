@@ -13,7 +13,7 @@
 // Every function returns a plain object; failures are { error: 'kind', message }.
 
 import { seedFor } from '../../engine/seeds.js';
-import { replayDiagnostic, compactResult, catchUpTargets, resultFromVerdicts } from '../../engine/diagnostic/diagnostic.js';
+import { replayDiagnostic, compactResult, catchUpTargets, resultFromVerdicts, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { verificationRecord } from '../../engine/teacher/verification.js';
 import { sectionSummary } from '../../engine/teacher/section-summary.js';
@@ -122,7 +122,18 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     if (record.catchUp === true) {
       prior = summary.diagnostic?.result || (summary.diagnostic && savedResultFromRecords(student));
       if (!prior) return fail('no-diagnostic', 'There’s no earlier check to catch up from.');
-      const targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config, prior });
+      let targets;
+      if (record.recheck === true) {
+        // A quick re-check: the browser says which gaps are fixed; accept only ones this server can confirm.
+        const confirmed = new Set(fixedGaps({ graph: setup.graph, prior, summary, lessons: setup.lessons }));
+        const fixed = (record.fixed || []).filter((g) => confirmed.has(g));
+        if (fixed.length !== (record.fixed || []).length) return fail('not-fixed', 'Some of those gaps aren’t fixed yet.');
+        const plan = recheckPlan({ graph: setup.graph, generators: setup.generators, prior, fixed });
+        ({ targets } = plan);
+        prior = plan.prior;
+      } else {
+        targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config, prior });
+      }
       if (!targets.length) return fail('nothing-to-catch-up', 'There’s nothing new to check.');
       config = { ...config, targets };
     }
@@ -139,7 +150,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     summary.diagnosticAttempts = attemptNo;
     summary.diagnostic = {
       attemptNo, seed, answers: record.answers, times: record.times || [], finishedAt: record.finishedAt,
-      ...(prior ? { catchUp: true } : {}), result: slimResult(saved),
+      ...(prior ? { catchUp: true } : {}), ...(record.recheck === true ? { recheck: true } : {}), result: slimResult(saved),
     };
     const verdicts = Object.fromEntries(Object.entries(result.nodes).map(([id, n]) => [id, n.status]));
     return {
@@ -150,7 +161,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         startedAt: record.startedAt, finishedAt: record.finishedAt, receivedAt: now(),
         curriculumVersion: setup.graph.curriculumVersion, questionCount: result.questionCount,
         verdicts, rootGaps: result.rootGaps, misconceptions: result.misconceptions,
-        ...(prior ? { catchUp: true, targets: config.targets } : {}), result: saved,
+        ...(prior ? { catchUp: true, targets: config.targets } : {}), ...(record.recheck === true ? { recheck: true, fixed: record.fixed } : {}), result: saved,
       },
     };
   }

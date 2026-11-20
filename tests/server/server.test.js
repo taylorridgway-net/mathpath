@@ -6,8 +6,10 @@ import assert from 'node:assert/strict';
 import { createServer } from '../../server/core/server.js';
 import { createMemoryStore } from '../../server/core/store-memory.js';
 import { seedFor } from '../../engine/seeds.js';
-import { startDiagnostic, catchUpTargets } from '../../engine/diagnostic/diagnostic.js';
+import { startDiagnostic, catchUpTargets, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
+import { simulatedStudent } from '../../tools/simulated-student.js';
 import { startPractice } from '../../engine/practice/practice.js';
+import { practicePlan } from '../../engine/lessons/plan.js';
 import { reduce } from '../../engine/math/fraction.js';
 import { createRng } from '../../engine/random.js';
 import { loadClassSetup } from '../helpers/class-setup.js';
@@ -50,7 +52,7 @@ function diagnosticRecord(studentId, attemptNo = 1, answerFor = right) {
 function sectionRecord(studentId, section, attemptNo = 1, answerFor = right) {
   const sec = setup.lessons.flatMap((l) => l.sections).find((s) => s.id === section);
   const seed = seedFor(studentId, section, attemptNo);
-  const p = startPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: sec.generator, mode: sec.mode } });
+  const p = startPractice({ generators: setup.generators, rules: setup.rules, seed, plan: practicePlan(sec) });
   const answers = [];
   for (let c = p.currentProblem(); c; c = p.currentProblem()) {
     const a = answerFor(c.problem);
@@ -368,4 +370,34 @@ test('co-teacher: sharing a class lets her see and change everything for it; uns
   assert.equal(server.teacher.teacherData(T2).students.length, 0);
   server.teacher.unshareClass(T1, cls.id, CO);
   assert.equal(server.teacher.teacherData(CO).students.length, 0);
+});
+
+// ---------- quick re-check ----------
+
+test('quick re-check: after the facts section is passed, what waited on facts is checked; only real fixes are accepted', () => {
+  const { server, kid } = fresh();
+  // Diagnostic by a student who doesn't know their facts.
+  const noFacts = simulatedStudent({ graph: setup.graph, generators: setup.generators, lacks: ['whole.mult-div.mult-facts'] });
+  const first = diagnosticRecord(kid.id, 1, (p) => noFacts.answer(p));
+  assert.equal(server.student.saveRecord(kid.code, first).ok, true);
+  let { summary } = server.student.login(kid.code);
+  const prior = summary.diagnostic.result;
+  // Claiming a fix that hasn't happened is refused.
+  const seed2 = seedFor(kid.id, 'diagnostic', 2);
+  const fake = server.student.saveRecord(kid.code, { type: 'diagnostic', catchUp: true, recheck: true, fixed: ['whole.mult-div.mult-facts'], saveId: 'r0', attemptNo: 2, seed: seed2, answers: [], times: [] });
+  assert.equal(fake.error, 'not-fixed');
+  // Pass the facts section, then the re-check.
+  assert.equal(server.student.saveRecord(kid.code, sectionRecord(kid.id, 'whole.mult-div.mult-facts')).result.passed, true);
+  ({ summary } = server.student.login(kid.code));
+  const fixed = fixedGaps({ graph: setup.graph, prior, summary, lessons: setup.lessons });
+  assert.deepEqual(fixed, ['whole.mult-div.mult-facts']);
+  const plan = recheckPlan({ graph: setup.graph, generators: setup.generators, prior, fixed });
+  const d = startDiagnostic({ ...setup, config: { ...setup.diagnosticConfig, targets: plan.targets }, seed: seed2, prior: plan.prior });
+  const answers = [];
+  for (let q = d.nextQuestion(); q; q = d.nextQuestion()) { const a = right(q.problem); answers.push(a); d.submit(a); }
+  const res = server.student.saveRecord(kid.code, { type: 'diagnostic', catchUp: true, recheck: true, fixed, saveId: 'r1', attemptNo: 2, seed: seed2, answers, times: [] });
+  assert.equal(res.ok, true, res.message);
+  assert.equal(res.summary.diagnostic.result.skills['frac.multiply'], 'known');
+  assert.equal(res.summary.diagnostic.result.nodes['whole.mult-div.mult-facts'].status, 'known');
+  assert.equal(res.summary.diagnostic.recheck, true);
 });
