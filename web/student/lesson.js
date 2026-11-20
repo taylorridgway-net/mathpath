@@ -34,13 +34,15 @@ import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
 import { seedFor } from '../../engine/seeds.js';
-import { practicePlan, practiceSetPlan } from '../../engine/lessons/plan.js';
+import { practicePlan, practiceSetPlan, memoryCheckPlan } from '../../engine/lessons/plan.js';
+import { memoryHeld } from '../../engine/lessons/memory.js';
 import { h, section as screenEl, btn, swap, split } from '../components/dom.js';
 
 const PHASE_NAMES = {
   guided: 'Practice with help',
   check: 'Check',
   practice: 'Practice for a check',
+  memory: 'Memory check',
   mastery: 'Mastery check',
 };
 
@@ -50,12 +52,17 @@ const PHASE_NAMES = {
 // the check; a miss ends it, and openFull() starts the full section.
 // tryOut: the teacher trying a lesson from the dashboard. Same screens, problems and
 // feedback; nothing is saved, and each try gets new problems.
-export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit, review = false, openFull, tryOut = false, backLabel = 'Your path' }) {
+export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit, review = false, openFull, tryOut = false, backLabel = 'Your path', clock = () => new Date().toISOString() }) {
   // "practice:<skill>" is practice for a check: the skill's whole problems, like the paper test.
-  const practicing = sectionId === `practice:${lesson.skill}`;
+  // "memory:<skill>" is a memory check: a few whole problems on a skill mastered a while ago,
+  // one try each, no hints (curriculum/mastery.json "retention").
+  const memory = sectionId === `memory:${lesson.skill}`;
+  const practicing = memory || sectionId === `practice:${lesson.skill}`;
   const sec = practicing
-    ? { id: sectionId, title: `Practice for a check: ${lesson.title}`, mode: 'practice', generator: lesson.skill, forGap: lesson.skill, explain: [], visual: null }
+    ? { id: sectionId, title: `${memory ? 'Memory check' : 'Practice for a check'}: ${lesson.title}`, mode: 'practice', generator: lesson.skill, forGap: lesson.skill, explain: [], visual: null }
     : lesson.sections.find((s) => s.id === sectionId);
+  // A refresher: "Putting it together" after a missed memory check, straight to the whole problems.
+  const refresher = review && sec?.mode === 'skill';
   if (!sec) throw new Error(`No section "${sectionId}"`);
 
   let run = tryOut ? null : loadProgress(sectionId);
@@ -66,13 +73,13 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       section: sectionId,
       seed: tryOut ? `teacher-try|${sectionId}|${Date.now()}` : seedFor(studentId, sectionId, attemptNo),
       attemptNo,
-      review: review && sec.mode === 'section',
-      stage: practicing || (review && sec.mode === 'section') ? 'practice' : 'learn',
+      review: Boolean(review),
+      stage: practicing || review ? 'practice' : 'learn',
       answers: [],
       times: [],
       scaffolds: {}, // practice problem index -> step answers
       hintsShown: [], // practice problem indexes where the student opened a hint
-      startedAt: new Date().toISOString(),
+      startedAt: clock(),
     };
   }
 
@@ -80,7 +87,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     generators,
     rules,
     seed: run.seed,
-    plan: practicing ? practiceSetPlan(lesson.skill, rules) : practicePlan(sec, { review: run.review }),
+    plan: memory ? memoryCheckPlan(lesson.skill, rules) : practicing ? practiceSetPlan(lesson.skill, rules) : practicePlan(sec, { review: run.review }),
   };
   let practice;
   try {
@@ -269,7 +276,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     }
     if (!scaffolded) scaffold = null;
 
-    const screen = frame(run.review ? 'Quick review' : PHASE_NAMES[cur.phase]);
+    const screen = frame(stageName(cur));
     screen.append(progressBar(cur));
 
     if (scaffold) {
@@ -278,7 +285,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       const cols = split();
       cols.main.append(problemCard(cur.problem));
       cols.main.append(feedbackBox(cur.feedback, sec.generator, run.answers.at(-1)));
-      if (cur.phase === 'guided' || cur.phase === 'practice') cols.main.append(hintToggle(cur.index, lesson.hints[sec.generator]));
+      if (cur.phase === 'guided' || (cur.phase === 'practice' && !memory)) cols.main.append(hintToggle(cur.index, lesson.hints[sec.generator]));
       const answerHost = h('div', '');
       cols.side.append(answerHost);
       screen.append(cols.el);
@@ -291,8 +298,9 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     const bar = h('div', 'progress');
     const done = practice.result().problems.filter((p) => p.phase === cur.phase && p.outcome);
     if (cur.phase === 'practice') {
-      bar.append(h('span', 'progress-text', `Problem ${Math.min(done.length + 1, rules.practice.difficulties.length)} of ${rules.practice.difficulties.length} · hints are fine here`));
-      bar.append(dots(Array.from({ length: rules.practice.difficulties.length }, (_, i) => (i >= done.length ? 'empty' : done[i].outcome === 'right-first' ? 'yes' : 'no'))));
+      const n = (memory ? rules.retention : rules.practice).difficulties.length;
+      bar.append(h('span', 'progress-text', `Problem ${Math.min(done.length + 1, n)} of ${n} · ${memory ? 'one try each, no hints' : 'hints are fine here'}`));
+      bar.append(dots(Array.from({ length: n }, (_, i) => (i >= done.length ? 'empty' : done[i].outcome === 'right-first' ? 'yes' : 'no'))));
     } else if (cur.phase === 'guided') {
       const right = done.filter((p) => p.outcome !== 'missed').length;
       bar.append(h('span', 'progress-text', `Problem ${done.length + 1} · ${right} of ${rules.guided.rightNeeded} solved`));
@@ -389,8 +397,14 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     showRight(cur, response);
   }
 
+  function stageName(cur) {
+    if (memory) return PHASE_NAMES.memory;
+    if (refresher) return 'Refresher';
+    return run.review ? 'Quick review' : PHASE_NAMES[cur.phase];
+  }
+
   function showRight(cur, response) {
-    const screen = frame(run.review ? 'Quick review' : PHASE_NAMES[cur.phase]);
+    const screen = frame(stageName(cur));
     screen.append(progressBar(cur));
     const cols = split();
     cols.main.append(problemCard(cur.problem));
@@ -506,8 +520,10 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
 
   function showDone() {
     const result = practice.result();
+    const held = memory ? memoryHeld(result, rules.retention) : null;
     const record = practicing ? {
-      type: 'practice-set',
+      type: memory ? 'memory-check' : 'practice-set',
+      ...(memory ? { held } : {}),
       saveId: `${run.seed}|${run.startedAt}`,
       studentId,
       skill: lesson.skill,
@@ -516,7 +532,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       attemptNo: run.attemptNo,
       curriculumVersion,
       startedAt: run.startedAt,
-      finishedAt: new Date().toISOString(),
+      finishedAt: clock(),
       answers: run.answers,
       times: run.times,
       hintsShown: run.hintsShown,
@@ -535,7 +551,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       attemptNo: run.attemptNo,
       curriculumVersion,
       startedAt: run.startedAt,
-      finishedAt: new Date().toISOString(),
+      finishedAt: clock(),
       answers: run.answers,
       times: run.times,
       scaffolds: run.scaffolds,
@@ -554,7 +570,12 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
 
     const screen = frame('Done');
     const firstTry = result.problems.filter((p) => p.outcome === 'right-first').length;
-    if (practicing) {
+    if (memory) {
+      screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', held ? 'It stuck' : 'This one is slipping'));
+      screen.append(h('p', 'lede', held
+        ? `${firstTry} of ${result.problemCount} right. You still know how to do this, weeks later. That’s what counts.`
+        : `${firstTry} of ${result.problemCount} right. That’s normal after a while. A short refresher is now on your path: whole problems until it’s back.`));
+    } else if (practicing) {
       // Compared with the paper test the teacher gives (5 of 6), so students know where they stand.
       const { minScore, outOf } = rules.verification;
       const ready = firstTry >= minScore;
@@ -563,6 +584,9 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
         ? `On paper, your teacher looks for ${minScore} of ${outOf}. You’re there: you could ask for your check.`
         : `On paper, your teacher looks for ${minScore} of ${outOf}. Practice again, or look back at the lesson for the problems that tripped you up.`));
       screen.append(h('p', 'fine', 'Practice never changes your progress. It just helps you get ready.'));
+    } else if (result.provisionalMastery && refresher) {
+      screen.append(h('p', 'eyebrow', `Refresher: ${lesson.title}`), h('h1', 'title', 'It’s back'));
+      screen.append(h('p', 'lede', 'You can do the whole thing again. There will be another memory check in a couple of weeks.'));
     } else if (result.provisionalMastery) {
       screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'You showed you can do the whole thing'));
       screen.append(h('p', 'lede', 'This counts as platform mastery for now. Your teacher will check it with a short problem set on paper.'));
@@ -581,7 +605,9 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     }
     if (!practicing) screen.append(h('p', 'fine', `${result.problemCount} problems · ${firstTry} right on the first try`));
     const actions = h('div', 'actions');
-    if (practicing) {
+    if (memory) {
+      actions.append(btn('button button-primary', `Back to ${backLabel.toLowerCase()}`, onExit));
+    } else if (practicing) {
       actions.append(btn('button button-primary', 'Practice again', openFull), btn('button', `Back to ${backLabel.toLowerCase()}`, onExit));
     } else if (result.endedBy === 'review-missed' && openFull) {
       actions.append(btn('button button-primary', 'Start the full section', openFull), btn('button', `Back to ${backLabel.toLowerCase()}`, onExit));

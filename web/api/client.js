@@ -15,6 +15,7 @@ import { loadLocal, saveLocal, removeLocal } from '../storage/local.js';
 export const PREVIEW_CODE = 'maple-tiger-42';
 const PREVIEW_TEACHER = 'preview-teacher@example.org';
 const PREVIEW_STORE_KEY = 'mathpath.preview.server.v1';
+const PREVIEW_DAYS_KEY = 'mathpath.preview.days.v1'; // preview only: pretend this many days have passed
 
 export function createApi({ setup }) {
   const run = typeof google !== 'undefined' && google.script && google.script.run; // eslint-disable-line no-undef
@@ -29,6 +30,7 @@ function googleApi() {
   });
   return {
     preview: false,
+    now: () => new Date().toISOString(),
     student: (name, ...args) => call('apiStudent', name, args),
     teacher: (name, ...args) => call('apiTeacher', name, args),
   };
@@ -43,7 +45,11 @@ function previewApi(setup) {
     return a[0] / 2 ** 32;
   };
   let store = createMemoryStore(loadLocal(PREVIEW_STORE_KEY) || seedPreview());
-  const server = () => createServer({ store, setup, random });
+  // So the owner can try memory checks without waiting weeks: the pretend server's clock
+  // (and the page's idea of "now") can be moved forward. Work keeps its real times.
+  let days = Number(loadLocal(PREVIEW_DAYS_KEY)) || 0;
+  const now = () => new Date(Date.now() + days * 24 * 3600 * 1000).toISOString();
+  const server = () => createServer({ store, setup, random, now });
   const persist = () => saveLocal(PREVIEW_STORE_KEY, store.data);
   const respond = (fn) => {
     const result = fn();
@@ -52,11 +58,19 @@ function previewApi(setup) {
   };
   return {
     preview: true,
+    now,
+    daysSkipped: () => days,
+    skipDays(n) {
+      days += n;
+      saveLocal(PREVIEW_DAYS_KEY, days);
+    },
     student: (name, ...args) => respond(() => server().student[name](...args)),
     teacher: (name, ...args) => respond(() => server().teacher[name](PREVIEW_TEACHER, ...args)),
     // Preview only: forget everything the pretend server knows.
     reset() {
       removeLocal(PREVIEW_STORE_KEY);
+      removeLocal(PREVIEW_DAYS_KEY);
+      days = 0;
       store = createMemoryStore(seedPreview());
       persist();
     },

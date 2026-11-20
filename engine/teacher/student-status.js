@@ -13,11 +13,13 @@
 // The two are kept separate everywhere (CLAUDE.md, "Assessment integrity").
 
 import { buildPath } from '../lessons/path.js';
+import { memoryState, memoryEvents } from '../lessons/memory.js';
 
 // Cell statuses, best first. The dashboard colours and labels these.
 export const STATUSES = [
   'verified', // teacher verified on paper
   'platform', // provisional platform mastery
+  'slipping', // platform mastery, then missed a memory check (refresher on their path)
   'practised', // (subskill) section check passed
   'working', // on the path, started
   'gap', // diagnostic: missed twice
@@ -41,7 +43,8 @@ const FROM_DIAGNOSTIC = {
 };
 
 // resets: [{ skillId, at }] when the teacher sent the student back to redo a skill.
-export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], resets = [], graph, lessons, waitForTeacher = false }) {
+// memory: memory-check records [{ skillId, held, finishedAt }]; retention: mastery.json "retention"; now: ISO time.
+export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], resets = [], memory = [], retention = null, now = null, graph, lessons, waitForTeacher = false }) {
   const sectionOf = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, { ...s, lesson: l.skill }])));
   const byTime = (a, b) => String(a.at ?? a.finishedAt).localeCompare(String(b.at ?? b.finishedAt));
   // After a reset, that skill's "Putting it together" and paper tests from before don't count.
@@ -72,10 +75,20 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
   const next = pathWithProgress.find((item) => item.progress !== 'done') || null;
 
   // ---- skill and subskill cells ----
+  // ---- memory checks: did mastered skills stick? ----
+  const memoryOf = {};
+  if (retention) {
+    for (const l of lessons) {
+      const state = memoryState(memoryEvents(l.skill, { sections: records, checks: memory, resetAt: resetAt[l.skill] || null }), retention, now);
+      if (state.status !== 'none') memoryOf[l.skill] = state;
+    }
+  }
+
   const touched = new Set(records.map((r) => r.lesson));
   const skillStatus = (skillId) => {
+    // Verified stays verified (the teacher decides); a slip shows in the memory list.
     if (latestVerification[skillId]?.decision === 'verified') return 'verified';
-    if (platformAt[skillId]) return 'platform';
+    if (platformAt[skillId]) return memoryOf[skillId]?.status === 'slipping' ? 'slipping' : 'platform';
     const diag = result?.skills?.[skillId];
     if (diag === 'gap' && touched.has(skillId)) return 'working';
     return FROM_DIAGNOSTIC[diag] ?? 'not-tested';
@@ -83,7 +96,7 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
   const subskillStatus = (id) => {
     const skillId = graph.get(id).skillId;
     const whole = skillStatus(skillId);
-    if (whole === 'verified' || whole === 'platform') return whole;
+    if (whole === 'verified' || whole === 'platform' || whole === 'slipping') return whole;
     const section = [...sectionOf.values()].find((s) => s.forGap === id);
     if (section) {
       const p = sectionProgress(section.id);
@@ -108,6 +121,8 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
     subskills,
     platformAt,
     resetAt,
+    // Per mastered skill: { status: waiting | due | slipping | kept, stage, dueAt, lastAt }.
+    memory: memoryOf,
     verification: latestVerification,
     path: pathWithProgress,
     next,

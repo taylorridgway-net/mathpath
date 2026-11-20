@@ -17,7 +17,8 @@ import { replayDiagnostic, compactResult, catchUpTargets, resultFromVerdicts, fi
 import { replayPractice } from '../../engine/practice/practice.js';
 import { verificationRecord } from '../../engine/teacher/verification.js';
 import { sectionSummary } from '../../engine/teacher/section-summary.js';
-import { practicePlan, practiceSetPlan } from '../../engine/lessons/plan.js';
+import { practicePlan, practiceSetPlan, memoryCheckPlan } from '../../engine/lessons/plan.js';
+import { memoryState, memoryHeld, memoryEvents } from '../../engine/lessons/memory.js';
 
 const MAX_SAVE_IDS = 200; // recent saveIds kept per student to spot repeats
 const WORDS_A = ['maple', 'river', 'cedar', 'stone', 'amber', 'cloud', 'birch', 'coral', 'frost', 'ember', 'meadow', 'harbor', 'canyon', 'willow', 'summit', 'pebble', 'acorn', 'delta', 'orbit', 'prism', 'quartz', 'tundra', 'lagoon', 'aspen'];
@@ -31,7 +32,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
   const normalize = (code) => String(code || '').trim().toLowerCase().replace(/\s+/g, '-');
 
   function newSummary() {
-    return { diagnostic: null, diagnosticAttempts: 0, sectionAttempts: {}, sectionsPassed: [], mastered: [], cleared: [], saveIds: [] };
+    return { diagnostic: null, diagnosticAttempts: 0, sectionAttempts: {}, sectionsPassed: [], mastered: [], cleared: [], memory: {}, saveIds: [] };
   }
   const publicSummary = (summary) => {
     const { saveIds, ...rest } = summary;
@@ -57,6 +58,20 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
   function login(code) {
     let student = store.getStudentByCode(normalize(code));
     if (!student || student.retired) return fail('unknown-code', 'That code isn’t right. Check it with your teacher.');
+    if (!student.summary.memory) {
+      // Saved before memory checks: work out each mastered skill's schedule once, from its records.
+      student = store.withLock(() => {
+        const fresh = store.getStudentByCode(normalize(code));
+        if (!fresh.summary.memory) {
+          const sections = store.listRecords('sections', [fresh.id], { summary: true });
+          fresh.summary.memory = Object.fromEntries((fresh.summary.mastered || []).map((skill) => [
+            skill, memoryEvents(skill, { sections, resetAt: fresh.summary.resets?.[skill] || null }),
+          ]));
+          store.putStudent(fresh);
+        }
+        return fresh;
+      });
+    }
     if (student.summary.diagnostic && !student.summary.diagnostic.result) {
       // Saved before results were kept: fill it in once, from the verdicts recorded at the time.
       student = store.withLock(() => {
@@ -100,7 +115,8 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       const checked = record.type === 'diagnostic' ? checkDiagnostic(student, record)
         : record.type === 'lesson-section' ? checkSection(student, record)
           : record.type === 'practice-set' ? checkPracticeSet(student, record)
-            : fail('bad-record', `Unknown record type ${record.type}`);
+            : record.type === 'memory-check' ? checkMemoryCheck(student, record)
+              : fail('bad-record', `Unknown record type ${record.type}`);
       if (checked.error) return checked;
 
       summary.saveIds = [...summary.saveIds, record.saveId].slice(-MAX_SAVE_IDS);
@@ -174,6 +190,11 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     if (record.attemptNo !== attemptNo) return fail('wrong-attempt', `Expected attempt ${attemptNo} of ${sec.id}.`);
     const seed = seedFor(student.id, sec.id, attemptNo);
     if (record.seed !== seed) return fail('wrong-seed', 'Seed doesn’t match.');
+    // A refresher ("Putting it together" straight to the whole problems) only after a missed memory check.
+    if (record.review === true && sec.mode === 'skill'
+      && memoryState(summary.memory?.[sec.lesson] || [], setup.rules.retention, now()).status !== 'slipping') {
+      return fail('not-slipping', 'A refresher is only for a skill that slipped in a memory check.');
+    }
     let result;
     try {
       result = replayPractice({ generators: setup.generators, rules: setup.rules, seed, plan: practicePlan(sec, { review: record.review === true }) }, record.answers || []).result();
@@ -184,6 +205,11 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     summary.sectionAttempts = { ...summary.sectionAttempts, [sec.id]: attemptNo };
     if (result.passed && !summary.sectionsPassed.includes(sec.id)) summary.sectionsPassed = [...summary.sectionsPassed, sec.id];
     if (result.provisionalMastery && !summary.mastered.includes(sec.lesson)) summary.mastered = [...summary.mastered, sec.lesson];
+    if (result.provisionalMastery) {
+      // Starts (or after a slip, restarts) the memory-check schedule.
+      const events = summary.memory?.[sec.lesson] || [];
+      summary.memory = { ...(summary.memory || {}), [sec.lesson]: [...events, { type: 'mastered', at: when(record.finishedAt) }] };
+    }
     return {
       kind: 'sections',
       result: { endedBy: result.endedBy, passed: result.passed, provisionalMastery: result.provisionalMastery },
@@ -231,6 +257,52 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     };
   }
 
+  // A memory check: a few whole problems on a skill mastered a while ago. The server
+  // checks it's really due (its own clock, a little slack for device clocks), re-grades
+  // it, and moves the skill's schedule on (held up) or marks it slipping (refresher next).
+  function checkMemoryCheck(student, record) {
+    const summary = student.summary;
+    const skillId = record.skill;
+    const rule = setup.rules.retention;
+    if (!setup.lessons.some((l) => l.skill === skillId)) return fail('bad-record', `No memory check for ${skillId}.`);
+    const events = summary.memory?.[skillId] || [];
+    const slack = new Date(new Date(now()).getTime() + (rule.dueSlackDays || 0) * 24 * 3600 * 1000).toISOString();
+    const state = memoryState(events, rule, slack);
+    if (state.status !== 'due') return fail('not-due', `No memory check is due for ${skillId}.`);
+    const attempts = summary.memoryAttempts || {};
+    const attemptNo = (attempts[skillId] || 0) + 1;
+    if (record.attemptNo !== attemptNo) return fail('wrong-attempt', `Expected memory check ${attemptNo} for ${skillId}.`);
+    const seed = seedFor(student.id, `memory:${skillId}`, attemptNo);
+    if (record.seed !== seed) return fail('wrong-seed', 'Seed doesn’t match.');
+    let result;
+    try {
+      result = replayPractice({ generators: setup.generators, rules: setup.rules, seed, plan: memoryCheckPlan(skillId, setup.rules) }, record.answers || []).result();
+    } catch (e) {
+      return fail('regrade-failed', String(e.message || e));
+    }
+    if (!result.finished) return fail('not-finished', 'The memory check isn’t finished.');
+    const held = memoryHeld(result, rule);
+    const at = when(record.finishedAt);
+    summary.memoryAttempts = { ...attempts, [skillId]: attemptNo };
+    summary.memory = { ...(summary.memory || {}), [skillId]: [...events, { type: 'check', at, held }] };
+    const short = sectionSummary(result, record.times || []);
+    return {
+      kind: 'memory',
+      result: { held, firstTry: short.firstTry, problemCount: short.problemCount },
+      row: {
+        studentId: student.id, saveId: record.saveId, skillId, attemptNo, stage: state.stage + 1, held, seed,
+        answers: record.answers, times: record.times || [], startedAt: record.startedAt, finishedAt: at, receivedAt: now(),
+        curriculumVersion: setup.graph.curriculumVersion, ...short,
+      },
+    };
+  }
+
+  // A device's finish time, unless it's in the future or not a time (then the server's).
+  function when(t) {
+    const server = now();
+    return typeof t === 'string' && !Number.isNaN(Date.parse(t)) && t <= server ? new Date(t).toISOString() : server;
+  }
+
   // ---------------- teachers ----------------
 
   function teacherOnly(email, fn) {
@@ -275,6 +347,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         clearances: withCode(store.listRecords('clearances', ids)),
         resets: withCode(store.listRecords('resets', ids)),
         practice: withCode(store.listRecords('practice', ids, { summary: true })).map((r) => ({ type: 'practice-set', ...r })),
+        memory: withCode(store.listRecords('memory', ids, { summary: true })).map((r) => ({ type: 'memory-check', ...r })),
         log: withCode(store.listRecords('log', ids)),
         removed: {
           classes: all.filter((c) => c.archived).map(({ id, name }) => ({ id, name })),
@@ -290,9 +363,10 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       const student = ownStudent(email, studentId);
       if (!student) return fail('not-your-student', 'That student isn’t in your classes.');
       const sections = store.listRecords('sections', [studentId]).map((r) => ({ type: 'lesson-section', ...r, code: student.code }));
+      const memory = store.listRecords('memory', [studentId]).map((r) => ({ type: 'memory-check', ...r, code: student.code }));
       const latest = latestDiagnostics(store.listRecords('diagnostics', [studentId]))[0];
       const diagnostic = latest ? { ...latest, code: student.code, result: latest.result || resultFromVerdicts(latest) } : null;
-      return { ok: true, sections, diagnostic };
+      return { ok: true, sections, memory, diagnostic };
     });
   }
 
@@ -410,6 +484,8 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         mastered: student.summary.mastered.filter((m) => m !== skillId),
         sectionsPassed: student.summary.sectionsPassed.filter((s) => !whole.includes(s)),
         resets: { ...(student.summary.resets || {}), [skillId]: at },
+        // Memory checks start again from the next platform mastery.
+        memory: { ...(student.summary.memory || {}), [skillId]: [] },
       };
       store.appendRecord('resets', { studentId, skillId, by: email, at });
       store.putStudent({ ...student, summary });

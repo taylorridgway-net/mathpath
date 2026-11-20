@@ -24,7 +24,14 @@
         14,
         28
       ],
-      "problems": 3
+      "difficulties": [
+        2,
+        3,
+        3
+      ],
+      "holdAt": 2,
+      "dueSlackDays": 2,
+      "note": "Memory checks (Claude's defaults 2026-11-20, owner may change): first one 14 days after platform mastery, the second 28 days after the first was passed. 3 whole problems, one try each, no hints; 2 of 3 right holds up. A miss puts a refresher on the path ('Putting it together', straight to the whole problems). dueSlackDays: the server accepts a check up to this many days early (device clocks differ)."
     },
     "verification": {
       "minScore": 5,

@@ -16,7 +16,8 @@ import { buildPath } from '../engine/lessons/path.js';
 import { reduce } from '../engine/math/fraction.js';
 import { simulatedStudent } from './simulated-student.js';
 import { sectionSummary } from '../engine/teacher/section-summary.js';
-import { practicePlan, practiceSetPlan } from '../engine/lessons/plan.js';
+import { practicePlan, practiceSetPlan, memoryCheckPlan } from '../engine/lessons/plan.js';
+import { memoryHeld } from '../engine/lessons/memory.js';
 
 const DAY = 24 * 60 * 60 * 1000;
 
@@ -57,6 +58,7 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
   const verifications = [];
   const clearances = [];
   const practice = [];
+  const memory = [];
   const usedCodes = new Set();
   let n = 0;
 
@@ -84,7 +86,8 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
         times.push(rng.int(12, 70) * 1000);
         diag.submit(a);
       }
-      let t = end - rng.int(9, 15) * DAY + rng.int(8, 14) * 3600 * 1000;
+      // Started somewhere in the last 9 to 35 days (so some memory checks have come due).
+      let t = end - rng.int(9, 35) * DAY + rng.int(8, 14) * 3600 * 1000;
       const result = diag.result();
       diagnostics.push({
         type: 'diagnostic', code, seed: diagSeed, answers, times, curriculumVersion: graph.curriculumVersion,
@@ -147,6 +150,52 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
         }
       }
 
+      // ---- memory checks two weeks after platform mastery; a slip gets a refresher ----
+      const retention = rules.retention;
+      for (const lessonId of [...new Set(sections.filter((r) => r.code === code && r.provisionalMastery).map((r) => r.lesson))]) {
+        const lesson = lessons.find((l) => l.skill === lessonId);
+        const whole = lesson.sections.find((x) => x.mode === 'skill');
+        let last = new Date(sections.find((r) => r.code === code && r.lesson === lessonId && r.provisionalMastery).finishedAt).getTime();
+        let stage = 0;
+        let attemptNo = 0;
+        while (stage < retention.afterDays.length) {
+          const at = last + (retention.afterDays[stage] + rng.int(0, 3)) * DAY;
+          if (at >= end) break;
+          attemptNo++;
+          const mseed = `${seed}:${code}:memory:${lessonId}:${attemptNo}`;
+          const mc = startPractice({ generators, rules, seed: mseed, plan: memoryCheckPlan(lessonId, rules) });
+          const answers = [];
+          const times = [];
+          for (let c = mc.currentProblem(); c; c = mc.currentProblem()) {
+            const a = rng.chance(0.72) ? correct(c.problem) : mistake(c.problem, held);
+            answers.push(a);
+            times.push(rng.int(30, 120) * 1000);
+            mc.submit(a);
+          }
+          const result = mc.result();
+          const ok = memoryHeld(result, retention);
+          const finishedAt = at + sum(times);
+          memory.push({
+            type: 'memory-check', code, skillId: lessonId, attemptNo, stage: stage + 1, held: ok, seed: mseed, answers, times,
+            startedAt: iso(at), finishedAt: iso(finishedAt), ...sectionSummary(result, times),
+          });
+          last = finishedAt;
+          if (ok) {
+            stage++;
+            continue;
+          }
+          // Slipped: most do the refresher within a few days.
+          const rt = finishedAt + rng.int(1, 4) * DAY;
+          if (rt >= end || !rng.chance(0.7)) break;
+          const tries = sections.filter((r) => r.code === code && r.section === whole.id).length;
+          const rec = practiseSection({ rng, generators, rules, sec: whole, lesson, code, seed: `${seed}:${code}:${whole.id}:${tries + 1}`, attemptNo: tries + 1, skill: 0.8, held, at: rt, curriculumVersion: graph.curriculumVersion, review: true });
+          sections.push(rec);
+          if (!rec.provisionalMastery) break;
+          last = new Date(rec.finishedAt).getTime();
+          stage = 0;
+        }
+      }
+
       // ---- some students with platform mastery already took the paper test ----
       const mastered = sections.find((r) => r.code === code && r.provisionalMastery);
       if (mastered && rng.chance(0.6)) {
@@ -166,12 +215,12 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
     }
   });
 
-  return { synthetic: true, generatedFor: now, classes, students, roster, diagnostics, sections, verifications, clearances, practice };
+  return { synthetic: true, generatedFor: now, classes, students, roster, diagnostics, sections, verifications, clearances, practice, memory };
 }
 
 // One finished section, played with the real practice engine.
-function practiseSection({ rng, generators, rules, sec, lesson, code, seed, attemptNo, skill, held, at, curriculumVersion }) {
-  const practice = startPractice({ generators, rules, seed, plan: practicePlan(sec) });
+function practiseSection({ rng, generators, rules, sec, lesson, code, seed, attemptNo, skill, held, at, curriculumVersion, review = false }) {
+  const practice = startPractice({ generators, rules, seed, plan: practicePlan(sec, { review }) });
   const answers = [];
   const times = [];
   let p = skill;
@@ -189,7 +238,7 @@ function practiseSection({ rng, generators, rules, sec, lesson, code, seed, atte
   const result = practice.result();
   const finishedAt = at + sum(times);
   return {
-    type: 'lesson-section', code, lesson: lesson.skill, section: sec.id, gap: sec.forGap, generator: sec.generator, mode: sec.mode,
+    type: 'lesson-section', code, lesson: lesson.skill, section: sec.id, gap: sec.forGap, generator: sec.generator, mode: sec.mode, review,
     seed, attemptNo, curriculumVersion, startedAt: iso(at), finishedAt: iso(finishedAt),
     answers, times, scaffolds: {}, hintsShown: [],
     endedBy: result.endedBy, passed: result.passed, provisionalMastery: result.provisionalMastery, problems: result.problems,

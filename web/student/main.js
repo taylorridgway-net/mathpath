@@ -36,6 +36,7 @@ import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
 import { replayDiagnostic, compactResult, catchUpTargets, catchUpName, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
 import { buildPath } from '../../engine/lessons/path.js';
+import { memoryState } from '../../engine/lessons/memory.js';
 import { seedFor } from '../../engine/seeds.js';
 import { renderMath } from '../components/render-math.js';
 import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
@@ -67,6 +68,8 @@ const setupFor = (seed, catchUp = null) => ({
 // through a newer diagnostic can ask different questions).
 const savedDiagnostic = (result) => ({ result: () => result, nextQuestion: () => null, submit() {} });
 
+// "Now": the real time, except in the preview, where the pretend clock can be moved forward.
+const clock = () => api.now();
 const app = document.getElementById('app');
 let profile = null;
 let session = null; // the diagnostic: { attemptNo, seed, saveId, answers, times, startedAt, finished, catchUp?, result? }
@@ -290,7 +293,7 @@ function begin() {
   if (!session || session.finished) {
     const attemptNo = (profile.summary.diagnosticAttempts || 0) + 1;
     const seed = seedFor(profile.id, 'diagnostic', attemptNo);
-    session = { attemptNo, seed, saveId: `${seed}|${new Date().toISOString()}`, answers: [], times: [], startedAt: new Date().toISOString(), finished: false };
+    session = { attemptNo, seed, saveId: `${seed}|${clock()}`, answers: [], times: [], startedAt: clock(), finished: false };
   }
   diagnostic = replayDiagnostic(setupFor(session.seed, session.catchUp), session.answers, session.times);
   saveMine('diagnostic', session);
@@ -303,7 +306,7 @@ function beginCatchUp(plan = null) {
   const attemptNo = Math.max(profile.summary.diagnosticAttempts || 0, session.attemptNo) + 1;
   const seed = seedFor(profile.id, 'diagnostic', attemptNo);
   session = {
-    attemptNo, seed, saveId: `${seed}|${new Date().toISOString()}`, answers: [], times: [], startedAt: new Date().toISOString(),
+    attemptNo, seed, saveId: `${seed}|${clock()}`, answers: [], times: [], startedAt: clock(),
     finished: false, catchUp: plan ? { prior, targets: plan.targets, recheck: true, fixed: plan.fixed } : { prior },
   };
   begin();
@@ -353,7 +356,7 @@ function answer(raw) {
 function finishDiagnostic() {
   if (!session.finished) {
     session.finished = true;
-    session.finishedAt = new Date().toISOString();
+    session.finishedAt = clock();
     session.result = compactResult(diagnostic.result());
     saveMine('diagnostic', session);
     saveFinished({
@@ -417,11 +420,18 @@ function showDone() {
       screen.append(card);
     }
   }
+  const memory = memoryCard();
+  if (memory) screen.append(memory);
   screen.append(grid, practiceCard());
 
   if (api.preview) {
     screen.append(teacherView(result), previewSections());
     const actions = h('div', 'actions');
+    // PREVIEW ONLY: memory checks come weeks after mastery; this moves the pretend clock forward.
+    actions.append(btn('button preview-only', `Preview: pretend 2 weeks have passed${api.daysSkipped() ? ` (${api.daysSkipped()} days so far)` : ''}`, () => {
+      api.skipDays(14);
+      refreshFromServer();
+    }));
     actions.append(btn('button', 'Start over (preview: forget everything)', () => {
       api.reset();
       clearAllSections();
@@ -561,6 +571,80 @@ async function refreshFromServer() {
   route();
 }
 
+// ---------- memory checks (retention) ----------
+
+// Each mastered skill's memory-check state: what the server knows, plus finished
+// work on this device that hasn't uploaded yet.
+function memoryStates() {
+  const s = profile.summary;
+  const waiting = outbox();
+  const wholeOf = new Map(lessons.map((l) => [l.skill, l.sections.find((x) => x.mode === 'skill')?.id]));
+  const out = [];
+  for (const lesson of lessons) {
+    const skill = lesson.skill;
+    const events = [
+      ...(s.memory?.[skill] || []),
+      ...waiting.filter((r) => r.type === 'lesson-section' && r.section === wholeOf.get(skill) && r.provisionalMastery)
+        .map((r) => ({ type: 'mastered', at: r.finishedAt })),
+      ...waiting.filter((r) => r.type === 'memory-check' && r.skill === skill).map((r) => ({ type: 'check', at: r.finishedAt, held: r.held })),
+    ];
+    const state = memoryState(events, masteryRules.default.retention, api.now());
+    if (state.status !== 'none') out.push({ lesson, whole: wholeOf.get(skill), ...state });
+  }
+  return out;
+}
+
+// "Memory check" items when one is due, and a refresher for anything that slipped.
+function memoryCard() {
+  const items = memoryStates().filter((m) => m.status === 'due' || m.status === 'slipping');
+  if (!items.length) return null;
+  const card = h('div', 'done-block catch-up memory-card');
+  card.append(h('h2', 'block-title', 'Keep it fresh'));
+  card.append(h('p', 'path-note', 'Things you mastered a while ago. A memory check is 3 problems, one try each, no hints. It checks the skill stuck.'));
+  const ol = h('ol', 'path');
+  for (const m of items) {
+    const li = h('li', 'path-item');
+    const text = h('div', 'path-text');
+    if (m.status === 'due') {
+      const id = `memory:${m.lesson.skill}`;
+      text.append(h('span', 'path-title', `Memory check: ${m.lesson.title}`));
+      text.append(h('span', 'path-note', `You mastered this ${weeksAgo(m.lastAt)}.`));
+      li.append(text, btn('button button-primary', loadProgress(id) ? 'Continue' : 'Start', () => goToMemoryCheck(m.lesson.skill)));
+    } else {
+      text.append(h('span', 'path-title', `Refresher: ${m.lesson.title}`));
+      text.append(h('span', 'path-note', 'Slipped a little in the memory check. Whole problems until it’s back.'));
+      li.append(text, btn('button button-primary', loadProgress(m.whole) ? 'Continue' : 'Start', () => goToSection(m.whole, { review: true })));
+    }
+    ol.append(li);
+  }
+  card.append(ol);
+  return card;
+}
+
+function weeksAgo(iso) {
+  const days = Math.round((new Date(api.now()).getTime() - new Date(iso).getTime()) / 86400000);
+  if (days < 7) return `${days} day${days === 1 ? '' : 's'} ago`;
+  const weeks = Math.round(days / 7);
+  return `${weeks} week${weeks === 1 ? '' : 's'} ago`;
+}
+
+function goToMemoryCheck(skill) {
+  const lesson = lessons.find((l) => l.skill === skill);
+  const id = `memory:${skill}`;
+  openSection({
+    app,
+    lesson,
+    sectionId: id,
+    rules: masteryRules.default,
+    curriculumVersion: graph.curriculumVersion,
+    studentId: profile.id,
+    nextAttempt: () => Math.max(profile.summary.memoryAttempts?.[skill] || 0, finishedRecords(id).length) + 1,
+    onFinished: () => upload(),
+    onExit: route,
+    clock,
+  });
+}
+
 // ---------- practice for a check (the student's choice) ----------
 
 // Any skill, any time, to get ready for the teacher's paper test. Skills with
@@ -601,6 +685,7 @@ function goToPractice(skill) {
     nextAttempt: () => Math.max(profile.summary.practiceAttempts?.[skill] || 0, finishedRecords(id).length) + 1,
     onFinished: () => upload(),
     onExit: route,
+    clock,
     openFull: () => goToPractice(skill), // "Practice again"
   });
 }
@@ -618,6 +703,7 @@ function goToSection(sectionId, { review = false } = {}) {
     nextAttempt: (id) => Math.max(profile.summary.sectionAttempts?.[id] || 0, finishedRecords(id).length) + 1,
     onFinished: () => upload(),
     onExit: route,
+    clock,
     review,
     openFull: () => goToSection(sectionId, { review: false }),
   });

@@ -127,3 +127,27 @@ test('practice sets count as activity (days, minutes) and on their own; not as s
   const p = participation({ sections: [], practice }, { now, expectedSections: 1 });
   assert.deepEqual([p.daysActive, p.practiceSets, p.sectionsFinished, p.minutes, p.inactive], [1, 1, 0, 10, false]);
 });
+
+test('memory checks: due after 14 days; a slip shows as "slipping" on platform mastery, never overrides "verified"', () => {
+  const sections = [record(`${SKILL}.combine`), record(`${SKILL}.whole`, { mastery: true, at: '2026-10-01T10:00:00Z' })];
+  const o = { diagnosticResult: gapCombine, sections, retention: rules.retention };
+  assert.equal(status({ ...o, now: '2026-10-10T00:00:00Z' }).memory[SKILL].status, 'waiting');
+  assert.equal(status({ ...o, now: '2026-10-16T00:00:00Z' }).memory[SKILL].status, 'due');
+  const slip = [{ skillId: SKILL, held: false, finishedAt: '2026-10-16T10:00:00Z' }];
+  const s = status({ ...o, memory: slip, now: '2026-10-20T00:00:00Z' });
+  assert.equal(s.skills[SKILL], 'slipping');
+  assert.equal(s.subskills[`${SKILL}.combine`], 'slipping');
+  const verified = { skillId: SKILL, decision: 'verified', at: '2026-10-05T10:00:00Z' };
+  const v = status({ ...o, memory: slip, verifications: [verified], now: '2026-10-20T00:00:00Z' });
+  assert.equal(v.skills[SKILL], 'verified');
+  assert.equal(v.memory[SKILL].status, 'slipping', 'the teacher still sees the slip');
+  // The refresher's mastery restarts the schedule.
+  const back = [...sections, record(`${SKILL}.whole`, { mastery: true, at: '2026-10-18T10:00:00Z' })];
+  assert.equal(status({ ...o, sections: back, memory: slip, now: '2026-10-20T00:00:00Z' }).skills[SKILL], 'platform');
+});
+
+test('memory checks count as activity in participation', () => {
+  const p = participation({ memory: [{ finishedAt: '2026-11-19T10:00:00Z', seconds: 120 }] }, { now: '2026-11-20T10:00:00Z' });
+  assert.equal(p.memoryChecks, 1);
+  assert.equal(p.minutes, 2);
+});

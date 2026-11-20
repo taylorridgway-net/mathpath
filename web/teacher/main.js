@@ -81,6 +81,7 @@ const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, mean
 const papers = Object.fromEntries([wholeAddSubPaper, wholeMultDivPaper, wholeFactorsPaper, meaningPaper, equivalentPaper, comparePaper, addSubPaper, multiplyPaper, dividePaper, intAddSubPaper, intMultDivPaper, signedPaper, orderOpsPaper, exponentsPaper, equationsPaper, expressionsPaper].map((p) => [p.skill, p]));
 const rules = masteryRules.default;
 const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules };
+const wholeSectionIds = new Set(lessons.flatMap((l) => l.sections.filter((x) => x.mode === 'skill').map((x) => x.id)));
 const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, s.title])));
 const misconceptionInfo = new Map(misconceptions.map((m) => [m.id, m]));
 // Heatmap columns: whole-number skills first (they come first on paths), then fractions.
@@ -187,6 +188,7 @@ function buildClass(then = render) {
       result,
       sections: data.sections.filter((r) => r.code === s.code),
       practice: (data.practice || []).filter((r) => r.code === s.code),
+      memory: (data.memory || []).filter((r) => r.code === s.code),
     };
   });
   refresh();
@@ -200,9 +202,12 @@ function refresh() {
     s.verifications = [...data.verifications, ...(live ? [] : store.verifications)].filter((v) => v.code === s.code);
     s.cleared = [...data.clearances, ...(live ? [] : store.clearances)].filter((c) => c.code === s.code).map((c) => c.gap);
     s.resets = [...(data.resets || []), ...(live ? [] : store.resets || [])].filter((r) => r.code === s.code);
-    s.status = studentStatus({ diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, resets: s.resets, graph, lessons, waitForTeacher: rules.paths?.waitForTeacherChecks });
+    s.status = studentStatus({
+      diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, resets: s.resets,
+      memory: s.memory, retention: rules.retention, now, graph, lessons, waitForTeacher: rules.paths?.waitForTeacherChecks,
+    });
     const hasWork = Boolean(s.status.next) && !s.status.waiting;
-    s.part = participation({ diagnostic: s.diagnostic, sections: s.sections, practice: s.practice, hasWork }, { now, expectedSections: store.expected });
+    s.part = participation({ diagnostic: s.diagnostic, sections: s.sections, practice: s.practice, memory: s.memory, hasWork }, { now, expectedSections: store.expected });
   }
 }
 
@@ -271,6 +276,7 @@ function render() {
 const STATUS_LOOK = {
   verified: ['Verified', 'Teacher verified on paper'],
   platform: ['Platform', 'Platform mastery (provisional, not yet verified on paper)'],
+  slipping: ['Slipping', 'Platform mastery, then missed a memory check (a refresher is on their path)'],
   practised: ['Practised', 'Section check passed'],
   working: ['Working', 'On their path, started'],
   gap: ['Gap', 'Diagnostic: missed twice'],
@@ -292,7 +298,7 @@ function cell(status) {
 
 function legend() {
   const box = h('div', 't-legend');
-  for (const s of ['verified', 'platform', 'practised', 'working', 'gap', 'shaky', 'known', 'credited', 'unchecked', 'not-tested']) {
+  for (const s of ['verified', 'platform', 'slipping', 'practised', 'working', 'gap', 'shaky', 'known', 'credited', 'unchecked', 'not-tested']) {
     const item = h('span', 't-legend-item');
     item.append(cell(s), h('span', '', STATUS_LOOK[s][1].split(' (')[0]));
     box.append(item);
@@ -337,11 +343,13 @@ function overview() {
     stat(String(list_.filter((s) => s.part.inactive).length), 'not active in the last 7 days'),
   );
   screen.append(stats);
+  const memory = memoryOverview(list_);
+  if (memory) screen.append(memory);
 
   // Per-skill bars.
   const bars = h('div', 't-bars');
   bars.append(h('h2', 't-h2', 'Skills across the class'));
-  const BAR_KEY = [['verified', 'Verified'], ['platform', 'Platform'], ['working', 'Working on it'], ['gap', 'Gap'], ['shaky', 'Shaky'], ['known', 'Showed or credited in the diagnostic'], ['not-tested', 'Not tested']];
+  const BAR_KEY = [['verified', 'Verified'], ['platform', 'Platform'], ['slipping', 'Slipping (memory check)'], ['working', 'Working on it'], ['gap', 'Gap'], ['shaky', 'Shaky'], ['known', 'Showed or credited in the diagnostic'], ['not-tested', 'Not tested']];
   const key = h('div', 't-legend');
   for (const [st, label] of BAR_KEY) {
     const item = h('span', 't-legend-item');
@@ -363,7 +371,7 @@ function overview() {
     row.append(h('span', 't-bar-name', shortName(skillId)));
     const bar = h('span', 't-bar');
     const groups = [
-      ['verified', counts.verified], ['platform', counts.platform], ['working', counts.working + counts.practised],
+      ['verified', counts.verified], ['platform', counts.platform], ['slipping', counts.slipping], ['working', counts.working + counts.practised],
       ['gap', counts.gap], ['shaky', counts.shaky], ['known', counts.known + counts.credited + counts.partly],
       ['not-tested', counts['not-tested'] + counts.unchecked + counts.blocked],
     ];
@@ -375,7 +383,7 @@ function overview() {
       bar.append(seg);
     }
     const parts = [
-      [counts.verified, 'verified'], [counts.platform, 'platform'], [counts.working + counts.practised, 'working on it'],
+      [counts.verified, 'verified'], [counts.platform, 'platform'], [counts.slipping, 'slipping'], [counts.working + counts.practised, 'working on it'],
       [counts.gap, 'gap'], [counts.shaky, 'shaky'], [counts.known + counts.credited + counts.partly, 'showed or credited'],
     ].filter(([n]) => n).map(([n, l]) => `${n} ${l}`);
     row.append(bar, h('span', 't-bar-note', parts.join(' · ')));
@@ -471,6 +479,42 @@ function overview() {
   heat.append(scroller);
   screen.append(heat);
   swap(app, screen);
+}
+
+// Memory checks: which mastered skills slipped (refresher on the student's path),
+// and how the checks are going. Verified skills that slipped are listed too: the
+// app never takes verified mastery away; the teacher decides.
+function memoryOverview(list_) {
+  const slipped = [];
+  let due = 0;
+  for (const s of list_) {
+    for (const [skill, m] of Object.entries(s.status.memory || {})) {
+      if (m.status === 'slipping') slipped.push({ s, skill, at: m.lastAt });
+      if (m.status === 'due') due++;
+    }
+  }
+  const taken = list_.flatMap((s) => s.memory || []);
+  if (!slipped.length && !due && !taken.length) return null;
+  const card = h('div', 't-card t-memory');
+  card.append(h('h2', 't-h2', 'Memory checks'));
+  const held = taken.filter((r) => r.held).length;
+  const [first, second] = rules.retention.afterDays;
+  card.append(h('p', 't-hint', `${first / 7} and ${(first + second) / 7} weeks after platform mastery, students get ${rules.retention.difficulties.length} problems on the skill, one try each. `
+    + `So far: ${held} held up, ${taken.length - held} slipped${due ? ` · ${due} due now` : ''}.`));
+  if (slipped.length) {
+    card.append(h('h3', 't-area-head', 'Slipping: a refresher is on their path'));
+    const ul = h('ul', 't-queue');
+    slipped.sort((a, b) => String(a.at).localeCompare(String(b.at)));
+    for (const { s, skill, at } of slipped) {
+      const li = h('li', 't-queue-row');
+      li.append(btn('t-chip', s.name, () => showStudent(s.code)));
+      const verified = s.status.skills[skill] === 'verified';
+      li.append(h('span', 't-card-sub', `${shortName(skill)} · missed ${day(at)}${verified ? ' · verified on paper earlier (your call)' : ''}`));
+      ul.append(li);
+    }
+    card.append(ul);
+  }
+  return card;
 }
 
 function stat(number, label, onClick) {
@@ -618,7 +662,7 @@ function participationTab() {
   const scroller = h('div', 't-scroll');
   const table = h('table', 't-table');
   const head = h('tr');
-  for (const t of ['Student', 'Last active', 'Days active', 'Sections', 'Practice sets', 'Minutes', '']) head.append(h('th', '', t));
+  for (const t of ['Student', 'Last active', 'Days active', 'Sections', 'Practice sets', 'Memory checks', 'Minutes', '']) head.append(h('th', '', t));
   const thead = h('thead');
   thead.append(head);
   const tbody = h('tbody');
@@ -643,6 +687,7 @@ function participationTab() {
       h('td', 'num', String(p.daysActive)),
       h('td', 'num', String(p.sectionsFinished)),
       h('td', 'num', String(p.practiceSets)),
+      h('td', 'num', String(p.memoryChecks)),
       h('td', 'num', String(p.minutes)),
       flagCell,
     );
@@ -1112,7 +1157,7 @@ function showStudent(code) {
   mastery.append(h('h2', 't-h2', 'Mastery'));
   const mt = h('table', 't-table t-mini');
   const mh = h('tr');
-  for (const t of ['Skill', 'Platform (provisional)', 'Verified on paper', '']) mh.append(h('th', '', t));
+  for (const t of ['Skill', 'Platform (provisional)', 'Verified on paper', 'Memory checks', '']) mh.append(h('th', '', t));
   mt.append(mh);
   for (const lesson of lessons) {
     const tr = h('tr');
@@ -1122,6 +1167,7 @@ function showStudent(code) {
       h('td', '', shortName(lesson.skill)),
       h('td', '', p ? `Yes, ${day(p)}` : '—'),
       h('td', '', v ? `${v.decision === 'verified' ? 'Yes' : 'Not yet'}: ${v.score}/${v.outOf}, ${day(v.at)}` : '—'),
+      h('td', '', memoryText(s.status.memory?.[lesson.skill])),
     );
     const action = h('td');
     if (p || v) action.append(sendBackButton(s, lesson.skill, () => showStudent(code)));
@@ -1153,6 +1199,15 @@ function showStudent(code) {
     }
     ol.append(li);
   }
+  // Memory checks show up on the student's path too ("Keep it fresh").
+  for (const [skill, m] of Object.entries(s.status.memory || {})) {
+    if (m.status !== 'due' && m.status !== 'slipping') continue;
+    const li = h('li', 't-path-item');
+    const title = lessons.find((l) => l.skill === skill).title;
+    li.append(h('span', '', m.status === 'due' ? `Memory check: ${title}` : `Refresher: Putting it together (${title})`));
+    li.append(pill(m.status === 'due' ? 'Due' : 'Slipped', 'warn'));
+    ol.append(li);
+  }
   pathCard.append(ol);
   left.append(pathCard);
 
@@ -1170,6 +1225,13 @@ function showStudent(code) {
   const skillTitle = (id) => lessons.find((l) => l.skill === id)?.title || id;
   practiceCard.append(list(sets.map((r) => `${day(r.finishedAt)}: ${skillTitle(r.skillId)}, ${r.firstTry} of ${r.problemCount} right on the first try`), 'No practice sets yet.'));
   left.append(practiceCard);
+
+  // Memory checks (retention), newest first.
+  const memCard = h('div', 't-card');
+  memCard.append(h('h2', 't-h2', 'Memory checks'));
+  const checks = [...(s.memory || [])].sort((a, b) => b.finishedAt.localeCompare(a.finishedAt));
+  memCard.append(list(checks.map((r) => `${day(r.finishedAt)}: ${skillTitle(r.skillId)}, ${r.firstTry} of ${r.problemCount} right: ${r.held ? 'held up' : 'slipped (refresher next)'}`), 'No memory checks yet. The first comes two weeks after platform mastery.'));
+  left.append(memCard);
 
   // Change log.
   const mine = (live ? data.log || [] : store.log).filter((l) => l.code === s.code);
@@ -1232,7 +1294,7 @@ function sectionHistory(summary, detail) {
   const mins = Math.round((r.seconds ?? r.times.reduce((n, x) => n + x, 0) / 1000) / 60);
   const sum = h('summary', 't-history-sum');
   sum.append(
-    h('span', 't-history-title', `${r.review ? 'Quick review: ' : ''}${sectionTitle.get(r.section)}${r.attemptNo > 1 ? ` (try ${r.attemptNo})` : ''}`),
+    h('span', 't-history-title', `${r.review ? (wholeSectionIds.has(r.section) ? 'Refresher: ' : 'Quick review: ') : ''}${sectionTitle.get(r.section)}${r.attemptNo > 1 ? ` (try ${r.attemptNo})` : ''}`),
     h('span', 't-card-sub', `${day(r.finishedAt)} · ${ENDED[r.endedBy] || r.endedBy} · ${firstTry}/${count} right first try · ${mins} min`),
   );
   d.append(sum);
@@ -1261,6 +1323,14 @@ function sectionHistory(summary, detail) {
   scroller.append(log);
   d.append(scroller);
   return d;
+}
+
+function memoryText(m) {
+  if (!m) return '—';
+  if (m.status === 'waiting') return `Next ${day(m.dueAt)}${m.stage ? ` (${m.stage} held up)` : ''}`;
+  if (m.status === 'due') return 'Due now';
+  if (m.status === 'slipping') return `Slipped ${day(m.lastAt)}: refresher next`;
+  return 'Held up every time';
 }
 
 function day(iso) {

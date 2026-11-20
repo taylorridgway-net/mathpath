@@ -10,6 +10,13 @@ export function practiceSetPlan(skillId, rules) {
   return { generator: skillId, mode: 'practice', difficulties: [...rules.practice.difficulties] };
 }
 
+// A memory check: a few whole problems, one try each, no hints (mastery.json "retention").
+export function memoryCheckPlan(skillId, rules) {
+  return { generator: skillId, mode: 'practice', difficulties: [...rules.retention.difficulties], oneTry: true };
+}
+
+// review: a quick review for a subskill section (straight to the check), or a
+// refresher for a "Putting it together" section (straight to the whole problems).
 export function practicePlan(section, { review = false } = {}) {
   return {
     generator: section.generator,

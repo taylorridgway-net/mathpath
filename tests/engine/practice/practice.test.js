@@ -175,9 +175,14 @@ test('quick review: one problem not right on the first try ends it (then the ful
   assert.equal(result.problems.length, 2);
 });
 
-test('quick review only applies to one-step sections, not "Putting it together"', () => {
+test('a refresher ("Putting it together" after a slipped memory check) goes straight to the whole problems', () => {
   const p = startPractice({ generators, rules, seed: 'r2', plan: { generator: 'frac.add-sub', mode: 'skill', review: true } });
-  assert.equal(p.currentProblem().phase, 'guided');
+  assert.equal(p.currentProblem().phase, 'mastery');
+  assert.equal(p.currentProblem().problem.difficulty, rules.skill.startDifficulty);
+  const { result } = run({ generators, rules, seed: 'r2', plan: { generator: 'frac.add-sub', mode: 'skill', review: true } }, (pr) => right(pr));
+  assert.equal(result.provisionalMastery, true);
+  assert.equal(result.refresh, true);
+  assert.ok(result.problems.every((x) => x.phase === 'mastery'));
 });
 
 // ---- a fixed-length check (multiplication facts: 9 of 10 right on the first try, owner decision) ----
@@ -222,4 +227,28 @@ test('practice for a check: a miss gets the usual help, and the set still ends a
   assert.equal(responses[1].showSolutionFor, 1, 'worked solution after "not sure"');
   assert.equal(result.problems.length, 6);
   assert.equal(result.problems.filter((x) => x.outcome === 'right-first').length, 5);
+});
+
+// ---- memory checks (retention): one try each, no hints ----
+const memorySetup = { generators, rules, seed: 'm1', plan: { generator: 'frac.add-sub', mode: 'practice', difficulties: [2, 3, 3], oneTry: true } };
+
+test('memory check: 3 whole problems; a wrong answer gets no retry, just the worked solution', () => {
+  const { result, responses } = run(memorySetup, (pr, attempt, i) => (i === 0 ? wrong(pr) : right(pr)));
+  assert.equal(result.problems.length, 3);
+  assert.equal(responses[0].retry, false);
+  assert.equal(responses[0].showSolutionFor, 0);
+  assert.deepEqual(result.problems.map((x) => x.outcome), ['missed', 'right-first', 'right-first']);
+  assert.equal(result.provisionalMastery, false);
+});
+
+test('memory check: an unsimplified answer still gets the "simplify" retry (owner rule), and counts if fixed', () => {
+  const { result, responses } = run(memorySetup, (pr, attempt) => (attempt === 1 ? unsimplified(pr) : right(pr)));
+  assert.equal(responses[0].retry, true);
+  assert.equal(responses[0].feedback.kind, 'simplify');
+  assert.ok(result.problems.every((x) => x.outcome === 'right-first'));
+});
+
+test('memory check replays identically (server re-grading)', () => {
+  const { result, answers } = run(memorySetup, (pr, attempt, i) => (i === 1 ? {} : right(pr)));
+  assert.deepEqual(replayPractice(memorySetup, answers).result(), result);
 });

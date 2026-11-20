@@ -9,7 +9,7 @@ import { seedFor } from '../../engine/seeds.js';
 import { startDiagnostic, catchUpTargets, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
 import { simulatedStudent } from '../../tools/simulated-student.js';
 import { startPractice } from '../../engine/practice/practice.js';
-import { practicePlan } from '../../engine/lessons/plan.js';
+import { practicePlan, memoryCheckPlan } from '../../engine/lessons/plan.js';
 import { reduce } from '../../engine/math/fraction.js';
 import { createRng } from '../../engine/random.js';
 import { loadClassSetup } from '../helpers/class-setup.js';
@@ -401,4 +401,84 @@ test('quick re-check: after the facts section is passed, what waited on facts is
   assert.equal(res.summary.diagnostic.result.skills['frac.multiply'], 'known');
   assert.equal(res.summary.diagnostic.result.nodes['whole.mult-div.mult-facts'].status, 'known');
   assert.equal(res.summary.diagnostic.recheck, true);
+});
+
+// ---------- memory checks (retention) ----------
+
+function clockServer() {
+  const store = createMemoryStore({ teachers: [T1] });
+  let day = 0;
+  const now = () => new Date(Date.UTC(2026, 8, 1) + day * 86400000).toISOString();
+  const server = createServer({ store, setup, now, random: createRng('memory-test').next });
+  const cls = server.teacher.addClass(T1, 'Period 1').class;
+  const [kid] = server.teacher.addStudents(T1, cls.id, ['Pretend Kid']).students;
+  return { store, server, kid, setDay: (n) => { day = n; } };
+}
+
+function memoryRecord(studentId, skill, attemptNo, answerFor = right) {
+  const seed = seedFor(studentId, `memory:${skill}`, attemptNo);
+  const p = startPractice({ generators: setup.generators, rules: setup.rules, seed, plan: memoryCheckPlan(skill, setup.rules) });
+  const answers = [];
+  for (let c = p.currentProblem(); c; c = p.currentProblem()) { answers.push(answerFor(c.problem)); p.submit(answers.at(-1)); }
+  return { type: 'memory-check', saveId: `mem-${skill}-${attemptNo}`, skill, attemptNo, seed, answers, times: answers.map(() => 30000), startedAt: 'a', finishedAt: 'b' };
+}
+const wrongAnswer = (problem) => ({ whole: 987 });
+
+test('memory check: refused before it\'s due; accepted (re-graded) when due; held up moves the schedule on', () => {
+  const { server, store, kid, setDay } = clockServer();
+  server.student.saveRecord(kid.code, sectionRecord(kid.id, 'frac.add-sub.whole'));
+  const skill = 'frac.add-sub';
+  setDay(10);
+  assert.equal(server.student.saveRecord(kid.code, memoryRecord(kid.id, skill, 1)).error, 'not-due');
+  setDay(12); // within the 2 days' slack for device clocks
+  const res = server.student.saveRecord(kid.code, memoryRecord(kid.id, skill, 1));
+  assert.equal(res.ok, true, JSON.stringify(res));
+  assert.equal(res.result.held, true);
+  assert.deepEqual(res.summary.memory[skill].map((e) => e.type), ['mastered', 'check']);
+  assert.equal(store.data.records.memory[0].stage, 1);
+  assert.equal(server.student.saveRecord(kid.code, memoryRecord(kid.id, skill, 2)).error, 'not-due', 'next one is 28 days later');
+  assert.equal(server.student.saveRecord(kid.code, memoryRecord(kid.id, 'frac.compare', 1)).error, 'not-due', 'not mastered');
+  const data = server.teacher.teacherData(T1);
+  assert.equal(data.memory.length, 1);
+  assert.equal(data.memory[0].answers, undefined);
+});
+
+test('memory check missed: slipping; a refresher is accepted only then, and its mastery restarts the schedule', () => {
+  const { server, kid, setDay } = clockServer();
+  const skill = 'frac.add-sub';
+  server.student.saveRecord(kid.code, sectionRecord(kid.id, 'frac.add-sub.whole'));
+  const refresher = (attemptNo) => {
+    const rec = sectionRecord(kid.id, 'frac.add-sub.whole', attemptNo);
+    const p = startPractice({ generators: setup.generators, rules: setup.rules, seed: rec.seed, plan: practicePlan(setup.lessons.find((l) => l.skill === skill).sections.find((s) => s.mode === 'skill'), { review: true }) });
+    const answers = [];
+    for (let c = p.currentProblem(); c; c = p.currentProblem()) { answers.push(right(c.problem)); p.submit(answers.at(-1)); }
+    return { ...rec, saveId: `refresh-${attemptNo}`, answers, review: true };
+  };
+  assert.equal(server.student.saveRecord(kid.code, refresher(2)).error, 'not-slipping');
+  setDay(15);
+  const miss = server.student.saveRecord(kid.code, memoryRecord(kid.id, skill, 1, wrongAnswer));
+  assert.equal(miss.result.held, false);
+  assert.deepEqual(miss.summary.mastered, [skill], 'platform mastery isn’t taken away automatically');
+  setDay(16);
+  const res = server.student.saveRecord(kid.code, refresher(2));
+  assert.equal(res.ok, true, JSON.stringify(res));
+  assert.equal(res.result.provisionalMastery, true);
+  setDay(27); // due on day 30 (14 days after the refresher), with 2 days' slack
+  assert.equal(server.student.saveRecord(kid.code, memoryRecord(kid.id, skill, 2)).error, 'not-due', 'due 14 days after the refresher');
+  setDay(30);
+  assert.equal(server.student.saveRecord(kid.code, memoryRecord(kid.id, skill, 2)).ok, true);
+});
+
+test('send back to redo clears the memory schedule; older summaries get theirs filled in at sign-in', () => {
+  const { server, store, kid } = clockServer();
+  server.student.saveRecord(kid.code, sectionRecord(kid.id, 'frac.add-sub.whole'));
+  server.teacher.resetSkill(T1, kid.id, 'frac.add-sub');
+  assert.deepEqual(server.student.login(kid.code).summary.memory['frac.add-sub'], []);
+  // A summary saved before memory checks existed.
+  const st = store.data.students.find((s) => s.id === kid.id);
+  store.data.students = store.data.students.map((s) => (s.id === kid.id ? { ...s, summary: { ...s.summary, memory: undefined, mastered: ['frac.add-sub'], resets: {} } } : s));
+  const filled = server.student.login(kid.code).summary.memory;
+  assert.equal(filled['frac.add-sub'].length, 1);
+  assert.equal(filled['frac.add-sub'][0].type, 'mastered');
+  assert.ok(st);
 });

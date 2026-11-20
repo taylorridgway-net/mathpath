@@ -8,9 +8,9 @@
 //   listClasses(teacherEmail), putClass(cls)
 //   listRoster(studentIds), putRoster(row)
 //   appendRecord(kind, row), listRecords(kind, studentIds, { summary })
-//     kinds: diagnostics, sections, verifications, clearances, log
+//     kinds: diagnostics, sections, verifications, clearances, resets, practice, memory, log
 
-const KINDS = ['diagnostics', 'sections', 'verifications', 'clearances', 'resets', 'practice', 'log'];
+const KINDS = ['diagnostics', 'sections', 'verifications', 'clearances', 'resets', 'practice', 'memory', 'log'];
 const DETAIL = ['answers', 'times', 'scaffolds', 'hintsShown', 'seed', 'gap', 'generator', 'mode'];
 const stripDetail = (r) => Object.fromEntries(Object.entries(r).filter(([k]) => !DETAIL.includes(k)));
 
@@ -55,6 +55,6 @@ export function createMemoryStore(initial = {}) {
     },
     // summary: leave out the bulky fields (answers, timing), like the Sheets store does.
     listRecords: (kind, ids, { summary = false } = {}) => copy(data.records[kind].filter((r) => ids.includes(r.studentId)))
-      .map((r) => (summary && (kind === 'sections' || kind === 'practice') ? stripDetail(r) : r)),
+      .map((r) => (summary && (kind === 'sections' || kind === 'practice' || kind === 'memory') ? stripDetail(r) : r)),
   };
 }

@@ -40,12 +40,18 @@ export function startPractice({ generators, plan, rules, seed }) {
   // Practice for a check (mode 'practice'): a fixed set of whole problems at set
   // difficulties, like the teacher's paper test. Never gives or takes away mastery.
   const practiceSet = mode === 'practice' ? plan.difficulties : null;
-  let phase = practiceSet ? 'practice' : review ? 'check' : 'guided';
+  // A memory check (plan.oneTry): a practice set with one try per problem and no
+  // hints; only an unsimplified answer gets the usual "simplify" retry.
+  const oneTry = Boolean(plan.oneTry) && Boolean(practiceSet);
+  // A refresher (a "Putting it together" after a missed memory check): straight to
+  // the whole problems, no guided ones.
+  const refresh = Boolean(plan.review) && mode === 'skill';
+  let phase = practiceSet ? 'practice' : review ? 'check' : refresh ? 'mastery' : 'guided';
   let current = null;
   let endedBy = null;
   let skillDifficulty = skillRule.startDifficulty;
 
-  newProblem(practiceSet ? practiceSet[0] : review ? checkRule.difficulty : guidedRule.difficulty);
+  newProblem(practiceSet ? practiceSet[0] : review ? checkRule.difficulty : refresh ? skillDifficulty : guidedRule.difficulty);
 
   function newProblem(difficulty) {
     const index = problems.length;
@@ -155,7 +161,7 @@ export function startPractice({ generators, plan, rules, seed }) {
       return { status: result.status, outcome, retry: false };
     }
 
-    if (attempt === 1 && !blank) {
+    if (attempt === 1 && !blank && !(oneTry && result.status !== 'not-simplified')) {
       if (result.status === 'not-simplified') record.feedback = { kind: 'simplify' };
       else if (result.misconception) record.feedback = { kind: 'misconception', id: result.misconception };
       else record.feedback = { kind: 'hint', generator: entry.generator };
@@ -180,6 +186,8 @@ export function startPractice({ generators, plan, rules, seed }) {
       generator: generatorId,
       mode,
       review,
+      ...(refresh ? { refresh: true } : {}),
+      ...(oneTry ? { oneTry: true } : {}),
       seed,
       finished: Boolean(endedBy),
       endedBy,

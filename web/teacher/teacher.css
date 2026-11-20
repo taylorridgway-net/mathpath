@@ -52,6 +52,7 @@
 }
 .st-verified { background: var(--good); color: var(--accent-ink); }
 .st-platform { background: var(--good-soft); color: var(--good); border-color: var(--good); }
+.st-slipping { background: var(--warn-soft); color: var(--warn); border-color: var(--warn); }
 .st-practised { background: var(--info-soft); color: var(--info); }
 .st-working { background: var(--info-soft); color: var(--info); border-color: var(--info); border-style: dashed; }
 .st-gap { background: var(--bad-soft); color: var(--bad); border-color: var(--bad); }
@@ -213,3 +214,5 @@
 .t-area-pick { flex-wrap: wrap; }
 
 sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
+
+.t-seg.st-slipping, .t-swatch.st-slipping { background: var(--warn); }
