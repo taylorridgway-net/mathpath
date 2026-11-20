@@ -107,6 +107,21 @@ test('another teacher\'s classes stay out of the data, on the sheet too', () => 
   assert.deepEqual(server().teacher.teacherData(other).classes.map((c) => c.name), ['Theirs']);
 });
 
+test('on the sheet: sharing a class with a co-teacher, and removing/restoring it, work (and an older Classes tab gets the new columns)', () => {
+  const { server, request } = fresh();
+  const cls = server().teacher.addClass(T, 'Shared').class;
+  server().teacher.addStudents(T, cls.id, ['Kid']);
+  const co = 'co@school.org';
+  assert.equal(server().teacher.shareClass(T, cls.id, co).ok, true);
+  assert.ok(request().isTeacher(co));
+  assert.deepEqual(server().teacher.teacherData(co).classes.map((c) => c.name), ['Shared']);
+  server().teacher.removeClass(co, cls.id);
+  assert.equal(server().teacher.teacherData(T).classes.length, 0);
+  assert.equal(server().teacher.teacherData(T).removed.classes[0].name, 'Shared');
+  server().teacher.restoreClass(T, cls.id);
+  assert.equal(server().teacher.teacherData(T).students.length, 1);
+});
+
 test('an older spreadsheet gets the new columns added before "data", and its rows still read correctly', () => {
   const spreadsheet = fakeSpreadsheet();
   const old = spreadsheet.insertSheet('Sections');

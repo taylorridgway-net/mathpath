@@ -240,9 +240,14 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
   // labelled with each student's current code (codes can be reset; ids can't).
   function teacherData(email) {
     return teacherOnly(email, () => {
-      const classes = store.listClasses(email);
-      const students = store.listStudents(classes.map((c) => c.id)).filter((s) => !s.retired);
+      const all = store.listClasses(email);
+      const classes = all.filter((c) => !c.archived);
+      const everyone = store.listStudents(classes.map((c) => c.id));
+      const students = everyone.filter((s) => !s.retired);
       const ids = students.map((s) => s.id);
+      // Removed students and classes, so the teacher can bring them back.
+      const gone = everyone.filter((s) => s.retired);
+      const goneNames = new Map(store.listRoster(gone.map((s) => s.id)).map((r) => [r.studentId, r.realName]));
       const codeOf = new Map(students.map((s) => [s.id, s.code]));
       const withCode = (rows) => rows.map((r) => ({ ...r, code: codeOf.get(r.studentId) }));
       return {
@@ -260,6 +265,10 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         resets: withCode(store.listRecords('resets', ids)),
         practice: withCode(store.listRecords('practice', ids, { summary: true })).map((r) => ({ type: 'practice-set', ...r })),
         log: withCode(store.listRecords('log', ids)),
+        removed: {
+          classes: all.filter((c) => c.archived).map(({ id, name }) => ({ id, name })),
+          students: gone.map((s) => ({ id: s.id, code: s.code, classId: s.classId, realName: goneNames.get(s.id) || '' })),
+        },
       };
     });
   }
@@ -297,6 +306,56 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         return { id: student.id, code: student.code, realName };
       });
       return { ok: true, students: created };
+    }));
+  }
+
+  // ---- removing and restoring (nothing is deleted: the work stays, and can come back) ----
+
+  function setStudentRemoved(email, studentId, removed) {
+    return teacherOnly(email, () => store.withLock(() => {
+      const student = ownStudent(email, studentId);
+      if (!student) return fail('not-your-student', 'That student isn’t in your classes.');
+      if (Boolean(student.retired) === removed) return { ok: true, already: true };
+      store.putStudent({ ...student, retired: removed });
+      log(email, studentId, removed ? 'Removed from the class (code stops working; work kept)' : 'Brought back to the class', removed ? 'active' : 'removed', removed ? 'removed' : 'active');
+      return { ok: true };
+    }));
+  }
+
+  function setClassRemoved(email, classId, removed) {
+    return teacherOnly(email, () => store.withLock(() => {
+      const cls = store.listClasses(email).find((c) => c.id === classId);
+      if (!cls) return fail('not-your-class', 'That class isn’t yours.');
+      store.putClass({ ...cls, archived: removed });
+      for (const st of store.listStudents([classId])) log(email, st.id, removed ? `Class “${cls.name}” removed` : `Class “${cls.name}” brought back`, '', '');
+      return { ok: true };
+    }));
+  }
+
+  // A co-teacher sees and does everything the teacher can for this class (owner decision).
+  function shareClass(email, classId, otherEmail) {
+    return teacherOnly(email, () => store.withLock(() => {
+      const cls = store.listClasses(email).find((c) => c.id === classId);
+      if (!cls) return fail('not-your-class', 'That class isn’t yours.');
+      const other = String(otherEmail || '').trim().toLowerCase();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(other)) return fail('bad-email', 'That doesn’t look like an email address.');
+      if (other === String(cls.teacherEmail).toLowerCase() || (cls.coTeachers || []).includes(other)) return { ok: true, already: true };
+      store.addTeacher(other);
+      store.putClass({ ...cls, coTeachers: [...(cls.coTeachers || []), other] });
+      for (const st of store.listStudents([classId])) log(email, st.id, `Class shared with ${other}`, '', other);
+      return { ok: true };
+    }));
+  }
+
+  function unshareClass(email, classId, otherEmail) {
+    return teacherOnly(email, () => store.withLock(() => {
+      const cls = store.listClasses(email).find((c) => c.id === classId);
+      if (!cls) return fail('not-your-class', 'That class isn’t yours.');
+      const other = String(otherEmail || '').trim().toLowerCase();
+      if (!(cls.coTeachers || []).includes(other)) return { ok: true, already: true };
+      store.putClass({ ...cls, coTeachers: cls.coTeachers.filter((e) => e !== other) });
+      for (const st of store.listStudents([classId])) log(email, st.id, `Class no longer shared with ${other}`, other, '');
+      return { ok: true };
     }));
   }
 
@@ -373,7 +432,15 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
 
   return {
     student: { login, saveRecord, setNickname },
-    teacher: { teacherData, studentDetail, addClass, addStudents, resetCode, clearFoundation, resetSkill, verify },
+    teacher: {
+      teacherData, studentDetail, addClass, addStudents, resetCode, clearFoundation, resetSkill, verify,
+      removeStudent: (email, id) => setStudentRemoved(email, id, true),
+      restoreStudent: (email, id) => setStudentRemoved(email, id, false),
+      removeClass: (email, id) => setClassRemoved(email, id, true),
+      restoreClass: (email, id) => setClassRemoved(email, id, false),
+      shareClass,
+      unshareClass,
+    },
   };
 }
 

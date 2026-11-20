@@ -41,7 +41,8 @@ import { createSheetsStore, ensureTabs } from './store-sheets.js';
 
 const SHEET_ID_KEY = 'MATHPATH_SPREADSHEET_ID';
 const STUDENT_CALLS = ['login', 'saveRecord', 'setNickname'];
-const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents', 'resetCode', 'clearFoundation', 'resetSkill', 'verify'];
+const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents', 'resetCode', 'clearFoundation', 'resetSkill', 'verify',
+  'removeStudent', 'restoreStudent', 'removeClass', 'restoreClass', 'shareClass', 'unshareClass'];
 
 const setupData = {
   graph: buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph }),

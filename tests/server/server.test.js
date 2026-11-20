@@ -318,3 +318,54 @@ test('dashboard overview: diagnostics without answers or the question list; the 
   assert.equal(detail.diagnostic.result.questions.length, detail.diagnostic.questionCount);
   assert.equal(detail.diagnostic.answers.length, detail.diagnostic.questionCount);
 });
+
+// ---------- removing, restoring, co-teachers ----------
+
+test('remove a student: off the dashboard, code stops working, work kept; bring back restores it all; logged', () => {
+  const { server, kid } = fresh();
+  server.student.saveRecord(kid.code, diagnosticRecord(kid.id));
+  assert.equal(server.teacher.removeStudent(T1, kid.id).ok, true);
+  let data = server.teacher.teacherData(T1);
+  assert.equal(data.students.length, 0);
+  assert.deepEqual(data.removed.students.map((s) => s.id), [kid.id]);
+  assert.equal(data.removed.students[0].realName, 'Pretend Kid');
+  assert.equal(server.student.login(kid.code).error, 'unknown-code');
+  assert.equal(server.teacher.removeStudent(T2, kid.id).error, 'not-your-student');
+  assert.equal(server.teacher.restoreStudent(T1, kid.id).ok, true);
+  data = server.teacher.teacherData(T1);
+  assert.equal(data.students.length, 1);
+  assert.equal(data.diagnostics.length, 1, 'their work is still there');
+  assert.ok(server.student.login(kid.code).student);
+  assert.ok(data.log.some((l) => l.what.startsWith('Removed')) && data.log.some((l) => l.what.startsWith('Brought back')));
+});
+
+test('remove a class: it and its students leave the dashboard; restoring brings them back', () => {
+  const { server, cls, kid } = fresh();
+  assert.equal(server.teacher.removeClass(T2, cls.id).error, 'not-your-class');
+  server.teacher.removeClass(T1, cls.id);
+  let data = server.teacher.teacherData(T1);
+  assert.equal(data.classes.length, 0);
+  assert.equal(data.students.length, 0);
+  assert.deepEqual(data.removed.classes.map((c) => c.id), [cls.id]);
+  server.teacher.restoreClass(T1, cls.id);
+  data = server.teacher.teacherData(T1);
+  assert.equal(data.classes.length, 1);
+  assert.equal(data.students[0].id, kid.id);
+});
+
+test('co-teacher: sharing a class lets her see and change everything for it; unsharing takes it away', () => {
+  const { server, store, cls, kid } = fresh();
+  const CO = 'co.teacher@school.org';
+  assert.equal(server.teacher.teacherData(CO).error, 'not-a-teacher');
+  assert.equal(server.teacher.shareClass(T1, cls.id, 'not an email').error, 'bad-email');
+  assert.equal(server.teacher.shareClass(T1, cls.id, ' Co.Teacher@School.org ').ok, true);
+  const data = server.teacher.teacherData(CO);
+  assert.equal(data.students[0].id, kid.id);
+  assert.equal(data.classes[0].teacherEmail, T1);
+  assert.equal(server.teacher.resetCode(CO, kid.id).ok, true, 'she can act, not just look');
+  assert.ok(store.data.records.log.some((l) => l.by === CO && l.what === 'Code reset'), 'logged as her');
+  // The other teacher still can't see it.
+  assert.equal(server.teacher.teacherData(T2).students.length, 0);
+  server.teacher.unshareClass(T1, cls.id, CO);
+  assert.equal(server.teacher.teacherData(CO).students.length, 0);
+});

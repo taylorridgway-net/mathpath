@@ -43,7 +43,9 @@ const PHASE_NAMES = {
 // onFinished(record): called once with the finished record (already queued for upload).
 // review: a quick review (the diagnostic marked this subskill "shaky"): straight to
 // the check; a miss ends it, and openFull() starts the full section.
-export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit, review = false, openFull }) {
+// tryOut: the teacher trying a lesson from the dashboard. Same screens, problems and
+// feedback; nothing is saved, and each try gets new problems.
+export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit, review = false, openFull, tryOut = false, backLabel = 'Your path' }) {
   // "practice:<skill>" is practice for a check: the skill's whole problems, like the paper test.
   const practicing = sectionId === `practice:${lesson.skill}`;
   const sec = practicing
@@ -51,13 +53,13 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     : lesson.sections.find((s) => s.id === sectionId);
   if (!sec) throw new Error(`No section "${sectionId}"`);
 
-  let run = loadProgress(sectionId);
+  let run = tryOut ? null : loadProgress(sectionId);
   if (!run) {
-    const attemptNo = nextAttempt(sectionId);
+    const attemptNo = tryOut ? 1 : nextAttempt(sectionId);
     run = {
       lesson: lesson.skill,
       section: sectionId,
-      seed: seedFor(studentId, sectionId, attemptNo),
+      seed: tryOut ? `teacher-try|${sectionId}|${Date.now()}` : seedFor(studentId, sectionId, attemptNo),
       attemptNo,
       review: review && sec.mode === 'section',
       stage: practicing || (review && sec.mode === 'section') ? 'practice' : 'learn',
@@ -94,7 +96,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
   let scaffoldIndex = -1;
   let scaffoldNote = null; // a one-time message for the next step (e.g. "filled in for you")
 
-  const save = () => saveProgress(sectionId, run);
+  const save = () => (tryOut ? null : saveProgress(sectionId, run));
   save();
 
   if (run.stage === 'practice') showPractice();
@@ -107,7 +109,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     destroyKeypad();
     const screen = screenEl('screen screen-lesson');
     const top = h('div', 'lesson-top');
-    top.append(btn('back-link', '← Your path', onExit), h('span', 'lesson-stage', stepName));
+    top.append(btn('back-link', `← ${backLabel}`, onExit), h('span', 'lesson-stage', stepName));
     screen.append(top);
     return screen;
   }
@@ -513,7 +515,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       provisionalMastery: result.provisionalMastery,
       problems: result.problems,
     };
-    if (run.stage !== 'done') {
+    if (run.stage !== 'done' && !tryOut) {
       saveFinished(record);
       clearProgress(sectionId);
       run.stage = 'done';
@@ -550,11 +552,11 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     if (!practicing) screen.append(h('p', 'fine', `${result.problemCount} problems · ${firstTry} right on the first try`));
     const actions = h('div', 'actions');
     if (practicing) {
-      actions.append(btn('button button-primary', 'Practice again', openFull), btn('button', 'Back to your path', onExit));
+      actions.append(btn('button button-primary', 'Practice again', openFull), btn('button', `Back to ${backLabel.toLowerCase()}`, onExit));
     } else if (result.endedBy === 'review-missed' && openFull) {
-      actions.append(btn('button button-primary', 'Start the full section', openFull), btn('button', 'Back to your path', onExit));
+      actions.append(btn('button button-primary', 'Start the full section', openFull), btn('button', `Back to ${backLabel.toLowerCase()}`, onExit));
     } else {
-      actions.append(btn('button button-primary', 'Back to your path', onExit));
+      actions.append(btn('button button-primary', `Back to ${backLabel.toLowerCase()}`, onExit));
     }
     screen.append(actions);
     swap(app, screen);

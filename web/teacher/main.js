@@ -61,6 +61,7 @@ import { rawToText } from '../components/answer-editor.js';
 import { loadLocal, saveLocal } from '../storage/local.js';
 import { createApi } from '../api/client.js';
 import { h, btn, pill, list, swap } from '../components/dom.js';
+import { openSection } from '../student/lesson.js';
 
 // ---------- curriculum and engine ----------
 
@@ -82,9 +83,61 @@ if (live) document.querySelector('.preview-banner')?.remove();
 
 // ---------- the teacher's saved changes (preview: this browser only) ----------
 
+// Preview: apply this device's removals and shares to the pretend class, the way the server would.
+function withPreviewChanges(d) {
+  const gone = new Set(store.removedStudents);
+  const goneClasses = new Set(store.removedClasses);
+  const classes = d.classes.map((c) => ({ ...c, teacherEmail: c.teacherEmail || ME, coTeachers: store.shares[c.id] || [] }));
+  const nameOf = new Map(d.roster.map((r) => [r.code, r.realName]));
+  return {
+    ...d,
+    classes: classes.filter((c) => !goneClasses.has(c.id)),
+    students: d.students.filter((st) => !gone.has(st.code) && !goneClasses.has(st.classId)),
+    removed: {
+      classes: classes.filter((c) => goneClasses.has(c.id)).map(({ id, name }) => ({ id, name })),
+      students: d.students.filter((st) => gone.has(st.code) && !goneClasses.has(st.classId))
+        .map((st) => ({ id: st.code, code: st.code, classId: st.classId, realName: nameOf.get(st.code) || '' })),
+    },
+  };
+}
+
+// Remove / bring back / share: on the server when live, on this device in the preview.
+function classAction(call, ...args) {
+  if (live) {
+    api.teacher(call, ...args).then((res) => (res.error ? problem(res) : reload(() => { tab = 'roster'; render(); })));
+    return;
+  }
+  const [id, other] = args;
+  const without = (list, x) => list.filter((y) => y !== x);
+  if (call === 'removeStudent') { store.removedStudents = [...without(store.removedStudents, id), id]; logChange(id, 'Removed from the class (code stops working; work kept)', 'active', 'removed'); }
+  if (call === 'restoreStudent') { store.removedStudents = without(store.removedStudents, id); logChange(id, 'Brought back to the class', 'removed', 'active'); }
+  if (call === 'removeClass') store.removedClasses = [...without(store.removedClasses, id), id];
+  if (call === 'restoreClass') store.removedClasses = without(store.removedClasses, id);
+  if (call === 'shareClass') store.shares[id] = [...without(store.shares[id] || [], other), other];
+  if (call === 'unshareClass') store.shares[id] = without(store.shares[id] || [], other);
+  persist();
+  buildClass(() => { tab = 'roster'; render(); });
+}
+
+// A button that needs a second tap to confirm (pop-ups are blocked in the preview viewer).
+function confirmBtn(className, label, armedLabel, onConfirm) {
+  const b = btn(className, label, () => {
+    if (b.dataset.armed !== 'yes') {
+      b.dataset.armed = 'yes';
+      b.textContent = armedLabel;
+      return;
+    }
+    onConfirm();
+  });
+  return b;
+}
+
 const STORE_KEY = 'mathpath.teacher-preview.v1';
 const store = Object.assign(
-  { periods: 3, classSeed: 'sample-1', expected: 3, verifications: [], clearances: [], resets: [], log: [], codeChanges: {} },
+  {
+    periods: 3, classSeed: 'sample-1', expected: 3, verifications: [], clearances: [], resets: [], log: [], codeChanges: {},
+    removedStudents: [], removedClasses: [], shares: {}, // preview: removing and sharing, on this device only
+  },
   loadLocal(STORE_KEY) || {},
 );
 const persist = () => saveLocal(STORE_KEY, store);
@@ -104,7 +157,7 @@ function periodSizes(count, seed) {
 }
 
 function buildClass(then = render) {
-  data = live ? serverData : syntheticClass({ periods: periodSizes(store.periods, store.classSeed), seed: store.classSeed, now, setup });
+  data = live ? serverData : withPreviewChanges(syntheticClass({ periods: periodSizes(store.periods, store.classSeed), seed: store.classSeed, now, setup }));
   const nameOf = new Map(data.roster.map((r) => [r.code, r.realName]));
   students = data.students.map((s) => {
     const diagnostic = data.diagnostics.find((d) => d.code === s.code) || null;
@@ -154,6 +207,7 @@ const TABS = [
   ['groups', 'Teach together'],
   ['participation', 'Participation'],
   ['paper', 'Paper tests'],
+  ['lessons', 'Lessons'],
   ['roster', 'Roster'],
 ];
 
@@ -195,7 +249,7 @@ function frame(title, { tabs = true } = {}) {
 }
 
 function render() {
-  ({ overview, groups, participation: participationTab, paper, roster })[tab]();
+  ({ overview, groups, participation: participationTab, paper, lessons: lessonsTab, roster })[tab]();
 }
 
 // ---------- status cells ----------
@@ -566,6 +620,62 @@ function participationTab() {
   swap(app, screen);
 }
 
+
+// ---------- Lessons: see what students see ----------
+
+function lessonsTab() {
+  const screen = frame('Lessons');
+  screen.append(h('p', 'lede', 'Every lesson a student can get, by area. Open one to see it exactly as a student does: the explanation, the picture, a worked example, and practice with the same hints and feedback. Nothing you do here is saved or counted.'));
+  // How many of the shown students have each step on their path, not finished yet.
+  const onPath = new Map();
+  for (const st of shown()) {
+    for (const item of st.status.path) {
+      if (item.kind === 'section' && item.progress !== 'done') onPath.set(item.section, (onPath.get(item.section) || 0) + 1);
+    }
+  }
+  for (const d of domainsIndex.domains) {
+    const inArea = lessons.filter((l) => l.skill.startsWith(`${d.id}.`));
+    if (!inArea.length) continue;
+    screen.append(h('h2', 't-h2 t-area', d.name));
+    for (const lesson of inArea) {
+      const card = h('div', 't-card');
+      card.append(h('h3', 't-h3', lesson.title));
+      for (const sec of lesson.sections) {
+        const row = h('div', 't-lesson-row');
+        const text = h('div', 't-lesson-text');
+        text.append(h('strong', '', sec.title), h('span', 't-hint', sec.objective));
+        const n = onPath.get(sec.id) || 0;
+        const right = h('div', 't-lesson-actions');
+        if (n) right.append(pill(`${n} student${n > 1 ? 's' : ''} on it`, 'info'));
+        right.append(btn('button', 'Open', () => tryLesson(lesson, sec.id)));
+        row.append(text, right);
+        card.append(row);
+      }
+      const practiceRow = h('div', 't-lesson-row');
+      const pt = h('div', 't-lesson-text');
+      pt.append(h('strong', '', 'Practice for a check'), h('span', 't-hint', '6 problems like the paper test, with hints. Students can do this any time.'));
+      const pa = h('div', 't-lesson-actions');
+      pa.append(btn('button', 'Open', () => tryLesson(lesson, `practice:${lesson.skill}`)));
+      practiceRow.append(pt, pa);
+      card.append(practiceRow);
+      screen.append(card);
+    }
+  }
+  swap(app, screen);
+}
+
+// The student's lesson screens, as a try-out: new problems each time, nothing saved.
+function tryLesson(lesson, sectionId) {
+  window.scrollTo(0, 0);
+  openSection({
+    app, lesson, sectionId, rules, curriculumVersion: graph.curriculumVersion, studentId: 'teacher-try', nextAttempt: () => 1,
+    onExit: () => { tab = 'lessons'; render(); },
+    openFull: () => tryLesson(lesson, sectionId.replace(/^practice:.*/, sectionId)),
+    tryOut: true,
+    backLabel: 'Lessons',
+  });
+}
+
 // ---------- Paper tests ----------
 
 let paperVersion = 'A';
@@ -790,14 +900,63 @@ function roster() {
       refresh();
       render();
     });
-    actions.append(reset);
+    actions.append(reset, ' · ', confirmBtn('t-link', 'Remove', `Tap again: remove ${s.name}`, () => classAction('removeStudent', live ? s.id : s.code)));
     tr.append(h('td', '', className.get(s.classId)), nameCell, h('td', 't-code', s.shownCode), h('td', '', s.nickname || '—'), actions);
     tbody.append(tr);
   }
   table.append(thead, tbody);
   scroller.append(table);
-  screen.append(scroller);
+  screen.append(classesCard(), scroller);
+  if (data.removed && (data.removed.classes.length || data.removed.students.length)) screen.append(removedCard());
   swap(app, screen);
+}
+
+// Each class: who teaches it, sharing with a co-teacher, removing it.
+function classesCard() {
+  const card = h('div', 't-card');
+  card.append(h('h2', 't-h2', 'Classes and co-teachers'));
+  card.append(h('p', 't-card-sub', 'Share a class with a co-teacher by their school Google email. They open the same dashboard link and see the class, and can do everything you can. Every change is logged with who made it.'));
+  for (const c of data.classes) {
+    const row = h('div', 't-class-row');
+    const who = h('p', 't-class-who');
+    who.append(h('strong', '', c.name), ` · ${c.teacherEmail === data.teacher || !live ? 'you' : c.teacherEmail}`);
+    for (const co of c.coTeachers || []) {
+      who.append(', ', co, ' ');
+      who.append(btn('t-link', 'stop sharing', () => classAction('unshareClass', c.id, co)));
+    }
+    const share = h('form', 't-controls');
+    const email = h('input', 't-number t-wide');
+    Object.assign(email, { type: 'email', placeholder: 'co-teacher@school.org', autocomplete: 'off' });
+    email.setAttribute('aria-label', `Co-teacher's email for ${c.name}`);
+    const add = h('button', 'button', 'Share');
+    add.type = 'submit';
+    share.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (email.value.trim()) classAction('shareClass', c.id, email.value.trim().toLowerCase());
+    });
+    share.append(email, add, confirmBtn('t-link', 'Remove class', `Tap again: remove ${c.name} and its students`, () => classAction('removeClass', c.id)));
+    row.append(who, share);
+    card.append(row);
+  }
+  return card;
+}
+
+// Removed classes and students, with a way back. Nothing was deleted.
+function removedCard() {
+  const card = h('div', 't-card');
+  card.append(h('h2', 't-h2', 'Removed'));
+  card.append(h('p', 't-card-sub', 'Removed students can’t sign in, and don’t show on the dashboard. Their work is kept: bring them back any time.'));
+  const className = new Map(data.classes.map((c) => [c.id, c.name]));
+  const items = [
+    ...data.removed.classes.map((c) => ({ text: `Class: ${c.name}`, back: () => classAction('restoreClass', c.id) })),
+    ...data.removed.students.map((st) => ({ text: `${st.realName || st.code} (${className.get(st.classId) || 'class'})`, back: () => classAction('restoreStudent', st.id) })),
+  ];
+  for (const it of items) {
+    const row = h('p', 't-class-who');
+    row.append(it.text, ' ', btn('t-link', 'Bring back', it.back));
+    card.append(row);
+  }
+  return card;
 }
 
 // Live only: make a class, and add students to it (codes are made by the server).

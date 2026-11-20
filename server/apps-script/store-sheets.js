@@ -15,7 +15,7 @@
 
 export const TABS = {
   Teachers: ['email'],
-  Classes: ['id', 'name', 'teacherEmail', 'createdAt'],
+  Classes: ['id', 'name', 'teacherEmail', 'createdAt', 'coTeachers', 'archived'],
   Students: ['id', 'code', 'nickname', 'classId', 'createdAt', 'retired', 'summary'],
   Roster: ['studentId', 'classId', 'realName'],
   Diagnostics: ['studentId', 'saveId', 'attemptNo', 'seed', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'questionCount', 'rootGaps', 'data'],
@@ -28,8 +28,8 @@ export const TABS = {
   Practice: ['studentId', 'saveId', 'skillId', 'attemptNo', 'problemCount', 'firstTry', 'seconds', 'misconceptions', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'data'],
   Log: ['at', 'by', 'studentId', 'what', 'before', 'after'],
 };
-const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks', 'misconceptions']);
-const BOOLEAN_COLUMNS = new Set(['retired', 'review', 'passed', 'provisionalMastery']);
+const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks', 'misconceptions', 'coTeachers']);
+const BOOLEAN_COLUMNS = new Set(['retired', 'review', 'passed', 'provisionalMastery', 'archived']);
 const KIND_TAB = { diagnostics: 'Diagnostics', sections: 'Sections', verifications: 'Verifications', clearances: 'Clearances', resets: 'Resets', practice: 'Practice', log: 'Log' };
 
 // Make the tabs (with header rows) if they don't exist yet, and add any columns
@@ -131,7 +131,11 @@ export function createSheetsStore({ spreadsheet, lockService }) {
     getStudentByCode: (code) => copy(rows('Students').find((s) => s.code === code)),
     putStudent: (student) => upsert('Students', 'id', copy(student)),
     listStudents: (classIds) => copy(rows('Students').filter((s) => classIds.includes(s.classId))),
-    listClasses: (email) => copy(rows('Classes').filter((c) => String(c.teacherEmail).toLowerCase() === String(email).toLowerCase())),
+    // A teacher's classes: the ones they made, and ones shared with them.
+    listClasses: (email) => {
+      const me = String(email).toLowerCase();
+      return copy(rows('Classes').filter((c) => String(c.teacherEmail).toLowerCase() === me || (c.coTeachers || []).includes(me)));
+    },
     putClass: (cls) => upsert('Classes', 'id', copy(cls)),
     listRoster: (ids) => copy(rows('Roster').filter((r) => ids.includes(r.studentId))),
     putRoster: (row) => upsert('Roster', 'studentId', copy(row)),

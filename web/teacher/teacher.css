@@ -192,3 +192,14 @@
 .p-page .m-pic .pic-label { fill: #111; }
 .p-page .m-pic .pic-dot { fill: #111; stroke: #111; }
 .p-page .math-inline:has(.m-pic) { display: block; margin: 6px 0 2px; }
+
+/* classes and co-teachers (roster tab) */
+.t-class-row { display: flex; flex-direction: column; gap: 6px; padding: 10px 0; border-top: 1px solid var(--line); }
+.t-class-who { margin: 0; }
+
+/* lessons tab */
+.t-area { margin-top: 18px; }
+.t-h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.t-lesson-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); flex-wrap: wrap; }
+.t-lesson-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 18rem; }
+.t-lesson-actions { display: flex; align-items: center; gap: 10px; }
