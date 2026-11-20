@@ -3,3 +3,4 @@ dist/
 .clasp.json
 .DS_Store
 deploy-copy/
+undefined/
