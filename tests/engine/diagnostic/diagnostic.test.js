@@ -298,7 +298,17 @@ test('follows a gap down two levels to the real root cause', () => {
   const { result } = diagnose({ lacks: ['t.base'] }, { setup });
   assert.deepEqual(withStatus(result, 'gap'), ['t.base.x', 't.mid.x', 't.top.x']);
   assert.deepEqual(result.rootGaps, ['t.base.x']);
-  assert.equal(result.questionCount, 6);
+  // Two questions confirm the first gap; below it, one question per level (owner decision).
+  assert.equal(result.questionCount, 4);
+});
+
+test('owner decision: the first gap needs two misses; below a confirmed gap, one miss is enough', () => {
+  const setup = chainSetup();
+  const { result } = diagnose({ lacks: ['t.base'] }, { setup });
+  const asked = (id) => result.questions.filter((q) => q.nodeId === id || q.generator === id).length;
+  assert.equal(asked('t.top.x'), 2, 'the first gap is confirmed with a second question');
+  assert.equal(asked('t.mid.x'), 1);
+  assert.equal(asked('t.base.x'), 1);
 });
 
 test('stops descending once it reaches something the student knows', () => {
@@ -331,4 +341,11 @@ test('the diagnostic asks hard facts (6-9 and 12), never easy ones like 4 × 2',
   const facts = result.questions.filter((q) => q.generator.endsWith('-facts'));
   assert.ok(facts.length >= 2);
   assert.ok(facts.every((q) => q.difficulty === 3));
+});
+
+test('owner decision, real curriculum: under a confirmed common-denominator gap, multiplication facts are asked once', () => {
+  const { result } = diagnose({ lacks: ['whole.mult-div.mult-facts'] });
+  assert.equal(statusOf(result, 'whole.mult-div.mult-facts'), 'gap');
+  assert.equal(result.questions.filter((q) => q.generator === 'whole.mult-div.mult-facts').length, 1);
+  assert.ok(result.questionCount <= 16, `took ${result.questionCount} questions`);
 });

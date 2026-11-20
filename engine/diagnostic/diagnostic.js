@@ -100,7 +100,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   // the first one (the question limit can run out).
   function descendFrom(id) {
     const descent = graph.essentialPrereqs(id).map((p) => (
-      graph.get(p).kind === 'skill' ? { kind: 'skill', id: p, fromDescent: true } : { kind: 'probe', id: p, stage: 1 }
+      graph.get(p).kind === 'skill' ? { kind: 'skill', id: p, fromDescent: true } : { kind: 'probe', id: p, stage: 1, single: true }
     ));
     const skillId = graph.get(id).skillId;
     let after = 0;
@@ -125,7 +125,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
         if (task.fromDescent) markUnchecked(id);
         return null;
       }
-      doNext(subs.map((s) => ({ kind: 'probe', id: s, stage: 1 })));
+      doNext(subs.map((s) => ({ kind: 'probe', id: s, stage: 1, single: task.fromDescent })));
       return null;
     }
 
@@ -182,11 +182,12 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
 
   // ---------- reacting to answers ----------
 
-  function onScreenerAnswer(skillId, result) {
+  function onScreenerAnswer(task, result) {
+    const skillId = task.id;
     const generator = generators[skillId];
     const covered = generator.covers || [];
     const uncovered = subskillsWithProblems(skillId).filter((s) => !covered.includes(s));
-    const probe = (id) => ({ kind: 'probe', id, stage: 1 });
+    const probe = (id) => ({ kind: 'probe', id, stage: 1, single: task.fromDescent });
 
     if (result.status === 'correct') {
       covered.forEach(markKnown);
@@ -240,7 +241,12 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
 
     if (task.stage === 1) {
       if (right) markKnown(id);
-      else doNext([{ kind: 'probe', id, stage: 2 }]);
+      else if (task.single) {
+        // Below a gap that's already confirmed, one miss is enough (owner decision
+        // 2026-11-20): keeps the diagnostic short for students with many gaps.
+        record(id).status = 'gap';
+        descendFrom(id);
+      } else doNext([{ kind: 'probe', id, stage: 2 }]);
     } else if (right) {
       record(id).status = 'shaky';
     } else {
@@ -290,7 +296,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       misconceptionCounts[result.misconception] = (misconceptionCounts[result.misconception] || 0) + 1;
     }
 
-    if (task.kind === 'skill') onScreenerAnswer(task.id, result);
+    if (task.kind === 'skill') onScreenerAnswer(task, result);
     else if (task.kind === 'recheck') onRecheckAnswer(task.id, result);
     else onProbeAnswer(task, result, slow);
     advance();
