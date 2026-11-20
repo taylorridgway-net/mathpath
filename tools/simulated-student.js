@@ -72,7 +72,8 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     const simplifySubskill = generator.ifNotSimplified;
     if (problem.answer.type === 'fraction' && missing.length === 1 && missing[0] === simplifySubskill) {
       const right = correctAnswer(problem);
-      return right.num ? { num: right.num * 2, den: right.den * 2 } : { num: right.whole * 2, den: 2 };
+      const sign = right.negative ? { negative: true } : {};
+      return right.num ? { num: right.num * 2, den: right.den * 2, ...sign } : { num: right.whole * 2, den: 2, ...sign };
     }
 
     const held = (problem.misconceptions || []).find((m) => misconceptions.includes(m.id) && !m.test);
@@ -80,7 +81,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
       if (held.choice !== undefined) return { choice: held.choice };
       if (typeof held.value === 'number') return { whole: Math.abs(held.value), ...(held.value < 0 ? { negative: true } : {}) };
       if (held.value.quotient !== undefined) return { whole: held.value.quotient, rem: held.value.remainder };
-      return { num: held.value.n, den: held.value.d };
+      return { num: Math.abs(held.value.n), den: held.value.d, ...(held.value.n < 0 ? { negative: true } : {}) };
     }
     return wrongAnswer(problem);
   }

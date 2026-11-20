@@ -8636,6 +8636,1445 @@
    }
   ]
  },
+ "frac.signed": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 12
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 12
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ],
+    "part": "frac.signed.add-sub"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 3,
+       "d": 10
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 10
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -2,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": 2,
+       "d": 5
+      }
+     }
+    ],
+    "part": "frac.signed.add-sub"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": 3,
+     "d": -8
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 8
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-sign-dropped",
+      "value": {
+       "n": 3,
+       "d": 8
+      }
+     }
+    ],
+    "part": "frac.signed.sign-placement"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -10,
+     "d": -12
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 6
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-two-negatives",
+      "value": {
+       "n": -5,
+       "d": 6
+      }
+     }
+    ],
+    "part": "frac.signed.sign-placement"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 6
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 7,
+       "d": 12
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -17,
+      "d": 12
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": 17,
+       "d": 12
+      }
+     }
+    ],
+    "part": "frac.signed.add-sub"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Divide. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -5,
+      "d": 6
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ],
+    "part": "frac.signed.mult-div"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -2,
+     "d": 6
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-sign-dropped",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     }
+    ],
+    "part": "frac.signed.sign-placement"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -4,
+     "d": -10
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-two-negatives",
+      "value": {
+       "n": -2,
+       "d": 5
+      }
+     }
+    ],
+    "part": "frac.signed.sign-placement"
+   },
+   {
+    "generator": "frac.signed",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Divide. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 2,
+       "d": 5
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 4,
+       "d": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 10
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": -7,
+       "d": 10
+      }
+     }
+    ],
+    "part": "frac.signed.mult-div"
+   }
+  ]
+ },
+ "frac.signed.add-sub": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 11
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 7,
+       "d": 11
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -12,
+      "d": 11
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": 12,
+       "d": 11
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 3
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -7,
+      "d": 6
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": 7,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "frac",
+      "n": 7,
+      "d": 12
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Add. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 6
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 18
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 9
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": -1,
+       "d": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Subtract. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 3,
+       "d": 4
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     },
+     {
+      "id": "frac.signed-sub-ignored-sign",
+      "value": {
+       "n": -5,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Subtract. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 2,
+       "d": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 17,
+      "d": 30
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": -17,
+       "d": 30
+      }
+     },
+     {
+      "id": "frac.signed-sub-ignored-sign",
+      "value": {
+       "n": -7,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Subtract. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 9
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 13,
+      "d": 18
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-wrong-sign",
+      "value": {
+       "n": -13,
+       "d": 18
+      }
+     },
+     {
+      "id": "frac.signed-sub-ignored-sign",
+      "value": {
+       "n": -5,
+       "d": 18
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "frac.signed.mult-div": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -5,
+      "d": 18
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": 5,
+       "d": 18
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 6
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 1,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 30
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": 1,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -4,
+      "d": 25
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": 4,
+       "d": 25
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Divide. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 5
+      }
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -7,
+      "d": 25
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": 7,
+       "d": 25
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Divide. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 9
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 4,
+       "d": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 25,
+      "d": 36
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": -25,
+       "d": 36
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Divide. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 5
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -18,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": 18,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 2,
+       "d": 7
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 21
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": -5,
+       "d": 21
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Divide. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 7
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 1,
+       "d": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Divide. Write your answer in simplest form.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 7
+      }
+     },
+     "right": {
+      "type": "neg",
+      "of": {
+       "type": "frac",
+       "n": 5,
+       "d": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 6,
+      "d": 7
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-mult-sign",
+      "value": {
+       "n": -6,
+       "d": 7
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "frac.signed.sign-placement": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": 3,
+     "d": -4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-sign-dropped",
+      "value": {
+       "n": 3,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": 5,
+     "d": -6
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -5,
+      "d": 6
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-sign-dropped",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": 2,
+     "d": -5
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -2,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-sign-dropped",
+      "value": {
+       "n": 2,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -20,
+     "d": -24
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 6
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-two-negatives",
+      "value": {
+       "n": -5,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -4,
+     "d": -8
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-two-negatives",
+      "value": {
+       "n": -1,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -4,
+     "d": -6
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-two-negatives",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": 12,
+     "d": -20
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-sign-dropped",
+      "value": {
+       "n": 3,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -2,
+     "d": 4
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-sign-dropped",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.signed.sign-placement",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write this as one fraction in simplest form, with any negative sign in front.",
+    "expression": {
+     "type": "frac",
+     "n": -16,
+     "d": -20
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "frac.signed-two-negatives",
+      "value": {
+       "n": -4,
+       "d": 5
+      }
+     }
+    ]
+   }
+  ]
+ },
  "int.add-sub": {
   "version": 1,
   "problems": [

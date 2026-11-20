@@ -206,7 +206,7 @@ function correct(problem) {
   if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
-  return v.d === 1 ? { whole: v.n } : { num: v.n, den: v.d };
+  return { ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) };
 }
 
 function mistake(problem, held) {
@@ -214,7 +214,7 @@ function mistake(problem, held) {
   if (m && !m.test) {
     if (typeof m.value === 'number') return { whole: m.value };
     if (m.value.quotient !== undefined) return { whole: m.value.quotient, rem: m.value.remainder };
-    return { num: m.value.n, den: m.value.d };
+    return { num: Math.abs(m.value.n), den: m.value.d, ...(m.value.n < 0 ? { negative: true } : {}) };
   }
   const a = problem.answer;
   if (m?.test) return { list: [1] };

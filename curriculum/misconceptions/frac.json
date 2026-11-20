@@ -155,6 +155,31 @@
       "id": "frac.recip-same",
       "description": "Writes the same number back instead of flipping it (reciprocal of 3/5 -> 3/5).",
       "pointsTo": "frac.divide.reciprocal"
+    },
+    {
+      "id": "frac.signed-sign-dropped",
+      "description": "Drops the negative sign when moving it (3/(−5) -> 3/5).",
+      "pointsTo": "frac.signed.sign-placement"
+    },
+    {
+      "id": "frac.signed-two-negatives",
+      "description": "Leaves a fraction negative when the top and bottom are both negative ((−6)/(−9) -> −2/3).",
+      "pointsTo": "frac.signed.sign-placement"
+    },
+    {
+      "id": "frac.signed-wrong-sign",
+      "description": "Adds or subtracts the fractions right but gets the sign wrong (−1/2 + 1/3 -> 1/6).",
+      "pointsTo": "frac.signed.add-sub"
+    },
+    {
+      "id": "frac.signed-sub-ignored-sign",
+      "description": "Ignores the second fraction's sign when subtracting (2/5 − (−3/4) worked as 2/5 − 3/4).",
+      "pointsTo": "frac.signed.add-sub"
+    },
+    {
+      "id": "frac.signed-mult-sign",
+      "description": "Multiplies or divides right but gets the sign wrong (−2/3 × −3/4 -> −1/2).",
+      "pointsTo": "frac.signed.mult-div"
     }
   ]
 }

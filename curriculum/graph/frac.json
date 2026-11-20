@@ -35,7 +35,9 @@
         { "id": "frac.equivalent.scale", "name": "Make an equivalent fraction by multiplying top and bottom by the same number", "prerequisites": [] },
         { "id": "frac.equivalent.missing", "name": "Find the missing number in an equivalence (3/4 = ?/20)", "prerequisites": [] },
         { "id": "frac.equivalent.simplify", "name": "Reduce a fraction to simplest form",
-          "prerequisites": [ { "id": "whole.factors-multiples", "strength": "essential" } ] }
+          "prerequisites": [ { "id": "whole.factors-multiples", "strength": "essential",
+            "check": ["whole.factors-multiples.factors", "whole.factors-multiples.gcf"],
+            "why": "Simplifying uses factors and common factors; primes and LCM aren't checked when looking for the cause." } ] }
       ]
     },
     {
@@ -124,7 +126,8 @@
         { "id": "frac.meaning", "strength": "essential" }
       ],
       "subskills": [
-        { "id": "frac.divide.meaning", "name": "Explain division as 'how many groups' (how many 1/2s in 3?)", "prerequisites": [] },
+        { "id": "frac.divide.meaning", "name": "Explain division as 'how many groups' (how many 1/2s in 3?)",
+          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential", "why": "4 wholes are 4 × 3 = 12 thirds." } ] },
         { "id": "frac.divide.reciprocal", "name": "Write the reciprocal of a fraction or whole number", "prerequisites": [] },
         { "id": "frac.divide.multiply-reciprocal", "name": "Divide by multiplying by the reciprocal of the divisor",
           "prerequisites": [ { "id": "frac.multiply.by-fraction", "strength": "essential" } ] }
@@ -144,14 +147,16 @@
             "why": "The rule comes from 'negative divided by positive is negative'." } ] },
         { "id": "frac.signed.add-sub", "name": "Add and subtract negative fractions",
           "prerequisites": [
-            { "id": "int.add-sub", "strength": "essential" },
+            { "id": "int.add-sub.same-sign", "strength": "essential" },
+            { "id": "int.add-sub.different-signs", "strength": "essential" },
+            { "id": "int.add-sub.subtract", "strength": "essential" },
             { "id": "frac.add-sub", "strength": "essential" }
           ] },
         { "id": "frac.signed.mult-div", "name": "Multiply and divide negative fractions",
           "prerequisites": [
-            { "id": "int.mult-div", "strength": "essential" },
-            { "id": "frac.multiply", "strength": "essential" },
-            { "id": "frac.divide", "strength": "essential" }
+            { "id": "int.mult-div.multiply", "strength": "essential", "why": "The sign rule. Dividing uses the same rule, but not division facts." },
+            { "id": "frac.multiply.by-fraction", "strength": "essential" },
+            { "id": "frac.divide.multiply-reciprocal", "strength": "essential" }
           ] }
       ]
     }

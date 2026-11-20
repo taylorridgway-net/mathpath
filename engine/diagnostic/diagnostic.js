@@ -114,8 +114,12 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   // every step of the skill the student is on matters more than going deep on
   // the first one (the question limit can run out).
   function descendFrom(id) {
+    // A link to a whole skill may name the parts that matter ("check"): only those are asked.
+    const node = graph.get(id);
+    const links = [...(node.prerequisites || []), ...(node.kind === 'subskill' ? graph.get(node.skillId).prerequisites || [] : [])];
+    const only = (p) => links.find((l) => l.id === p && l.check)?.check;
     const descent = graph.essentialPrereqs(id).map((p) => (
-      graph.get(p).kind === 'skill' ? { kind: 'skill', id: p, fromDescent: true } : { kind: 'probe', id: p, stage: 1, single: true }
+      graph.get(p).kind === 'skill' ? { kind: 'skill', id: p, fromDescent: true, only: only(p) } : { kind: 'probe', id: p, stage: 1, single: true }
     ));
     const skillId = graph.get(id).skillId;
     let after = 0;
@@ -139,7 +143,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       if (hasGenerator(id) && generators[id].screener && !gapsUnder(generators[id].screener).length) {
         return ask(task, generators[id].screener, difficulty.screen);
       }
-      const subs = subskillsWithProblems(id);
+      const subs = subskillsWithProblems(id).filter((s) => !task.only || task.only.includes(s));
       if (subs.length === 0) {
         // Not built yet. As a possible cause of a gap, flag it; as a target, just skip it.
         if (task.fromDescent) markUnchecked(id);

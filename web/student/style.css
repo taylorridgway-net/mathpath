@@ -391,3 +391,6 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .choice:hover, .choice:focus-visible { border-color: var(--accent); }
 .choice:active { transform: translateY(1px); }
 .m-cmp { min-width: 1.2em; }
+
+/* a negative fraction: the minus sign sits close to the fraction bar */
+.m-row.m-neg { gap: 0.08em; }

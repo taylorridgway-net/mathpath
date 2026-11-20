@@ -19,7 +19,7 @@ function right(problem) {
   if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
-  return v.d === 1 ? { whole: v.n } : { num: v.n, den: v.d };
+  return { ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) };
 }
 const unsimplified = (problem) => {
   const r = right(problem);
@@ -68,7 +68,7 @@ test('not simplified twice is a miss', () => {
 test('known misconception -> its message and a retry; right on the second try', () => {
   const { responses, result } = run(section('frac.add-sub.combine'), (pr, attempt, i) => {
     const m = pr.misconceptions.find((x) => x.id === 'frac.add-across');
-    return i === 0 && attempt === 1 && m ? { num: m.value.n, den: m.value.d } : right(pr);
+    return i === 0 && attempt === 1 && m ? { num: Math.abs(m.value.n), den: m.value.d, ...(m.value.n < 0 ? { negative: true } : {}) } : right(pr);
   });
   assert.deepEqual(responses[0].feedback, { kind: 'misconception', id: 'frac.add-across' });
   assert.equal(result.problems[0].outcome, 'right-second');

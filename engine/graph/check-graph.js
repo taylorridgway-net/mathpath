@@ -85,6 +85,11 @@ export function checkGraph(domainsIndex, domainFiles) {
       if (target.skillId === node.skillId && (target.kind === 'skill' || node.kind === 'skill')) {
         problems.push(`${node.id} -> ${link.id}: a skill can't need itself or its own subskills`);
       }
+      // "check": when the diagnostic follows this link down, ask only these parts of the skill.
+      if (link.check !== undefined) {
+        if (target.kind !== 'skill') problems.push(`${node.id} -> ${link.id}: "check" only makes sense for a link to a whole skill`);
+        else for (const c of link.check) if (nodes.get(c)?.skillId !== link.id || c === link.id) problems.push(`${node.id} -> ${link.id}: "check" lists ${c}, which isn't one of its parts`);
+      }
       if (target.status === 'retired' && node.status !== 'retired') {
         problems.push(`${node.id} -> ${link.id}: depends on a retired skill`);
       }

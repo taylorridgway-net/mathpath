@@ -37,7 +37,7 @@ const setup = {
   generators,
   misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions, ...read('misconceptions/int.json').misconceptions],
   diagnosticConfig: read('diagnostic/frac.json'),
-  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.meaning', 'frac.equivalent', 'frac.compare', 'frac.add-sub', 'frac.multiply', 'frac.divide', 'int.add-sub', 'int.mult-div'].map((s) => read(`lessons/${s}.json`)),
+  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.meaning', 'frac.equivalent', 'frac.compare', 'frac.add-sub', 'frac.multiply', 'frac.divide', 'int.add-sub', 'int.mult-div', 'frac.signed'].map((s) => read(`lessons/${s}.json`)),
   rules: read('mastery.json').default,
 };
 
@@ -83,7 +83,7 @@ const right = (problem) => {
   if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
-  return v.d === 1 ? { whole: v.n } : { num: v.n, den: v.d };
+  return { ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) };
 };
 
 const costs = []; // per save: { reads, writes, ms, chars }

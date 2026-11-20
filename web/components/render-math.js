@@ -16,6 +16,11 @@ export function renderMath(node, { inline = false } = {}) {
 
 function build(node) {
   switch (node.type) {
+    case 'neg': {
+      const wrap = el('span', 'm-row m-neg');
+      wrap.append(el('span', 'm-op', '\u2212'), build(node.of));
+      return wrap;
+    }
     case 'int':
       return el('span', 'm-num', node.value < 0 ? `−${-node.value}` : String(node.value));
     case 'blank':
@@ -33,7 +38,7 @@ function build(node) {
       const sym = node.type === 'eq' ? '=' : node.op === '-' ? '−' : node.op;
       const right = build(node.right);
       // 5 − (−3): a negative number after an operation sign gets parentheses.
-      const paren = node.type === 'op' && node.right.type === 'int' && node.right.value < 0;
+      const paren = node.type === 'op' && ((node.right.type === 'int' && node.right.value < 0) || node.right.type === 'neg');
       wrap.append(build(node.left), el('span', 'm-op', sym), ...(paren ? [el('span', 'm-num', '('), right, el('span', 'm-num', ')')] : [right]));
       return wrap;
     }
@@ -61,7 +66,7 @@ function build(node) {
 
 function fractionEl(n, d) {
   const f = el('span', 'm-frac');
-  const part = (x) => (typeof x === 'number' ? el('span', 'm-num', String(x)) : build(x));
+  const part = (x) => (typeof x === 'number' ? el('span', 'm-num', x < 0 ? `\u2212${-x}` : String(x)) : build(x));
   const top = el('span', 'm-top');
   top.append(part(n));
   const bottom = el('span', 'm-bottom');
@@ -81,8 +86,9 @@ function el(tag, className, text) {
 // "3/4 + 1 1/2" -> "3 over 4 plus 1 and 1 over 2"
 function spoken(text) {
   return text
+    .replace(/\((-\d+)\)/g, '$1') // 3/(-5) -> 3/-5, 5 - (-3) -> 5 - -3
     .replace(/(\d+) (\d+)\/(\d+)/g, '$1 and $2 over $3')
-    .replace(/(\d+|\?)\/(\d+|\?)/g, '$1 over $2')
+    .replace(/(-?\d+|\?)\/(-?\d+|\?)/g, '$1 over $2')
     .replace(/\?/g, 'blank')
     .replace(/ \+ /g, ' plus ')
     .replace(/ - /g, ' minus ')

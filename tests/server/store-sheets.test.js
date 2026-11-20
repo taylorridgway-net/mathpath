@@ -33,7 +33,7 @@ const right = (problem) => {
   if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);
-  return v.d === 1 ? { whole: v.n } : { num: v.n, den: v.d };
+  return { ...(v.d === 1 ? { whole: Math.abs(v.n) } : { num: Math.abs(v.n), den: v.d }), ...(v.n < 0 ? { negative: true } : {}) };
 };
 
 test('setup makes every tab with its header row, and running it again changes nothing', () => {

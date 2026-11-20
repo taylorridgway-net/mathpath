@@ -146,3 +146,11 @@ test('wrong schema version', () => {
   g.files['d.json'].schemaVersion = 2;
   assertComplains(g, 'schemaVersion');
 });
+
+test('"check" on a link must name parts of that skill', () => {
+  const g = validGraph();
+  g.skills[1].prerequisites[0].check = ['d.base.one'];
+  assert.deepEqual(problemsFor(g), []);
+  g.skills[1].prerequisites[0].check = ['d.top.one'];
+  assertComplains(g, "isn't one of its parts");
+});

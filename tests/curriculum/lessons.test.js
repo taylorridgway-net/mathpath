@@ -54,5 +54,5 @@ for (const lesson of lessons) test(`${lesson.skill}: section checks and pictures
 });
 
 test('there are lessons for the built skills (fractions meaning, equivalent, compare, add/subtract; three whole-number skills)', () => {
-  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'int.add-sub', 'int.mult-div', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div']);
+  assert.deepEqual(lessons.map((l) => l.skill).sort(), ['frac.add-sub', 'frac.compare', 'frac.divide', 'frac.equivalent', 'frac.meaning', 'frac.multiply', 'frac.signed', 'int.add-sub', 'int.mult-div', 'whole.add-sub', 'whole.factors-multiples', 'whole.mult-div']);
 });

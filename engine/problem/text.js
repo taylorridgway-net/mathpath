@@ -5,7 +5,8 @@
 // Expression pieces:
 //   { type: 'frac', n, d }            n or d may be { type: 'blank' }
 //   { type: 'mixed', whole, n, d }
-//   { type: 'int', value }
+//   { type: 'int', value }            value may be negative
+//   { type: 'neg', of }               the negative of a fraction: -3/4 (minus sign in front of the bar)
 //   { type: 'op', op: '+' | '-', left, right }
 //   { type: 'eq', left, right }
 //   { type: 'list', items: [...] }
@@ -24,6 +25,8 @@ export function toText(node) {
       return node.value < 0 ? `-${-node.value}` : String(node.value);
     case 'frac':
       return `${part(node.n)}/${part(node.d)}`;
+    case 'neg':
+      return `-${toText(node.of)}`;
     case 'mixed':
       return `${node.whole} ${node.n}/${node.d}`;
     case 'op':
@@ -48,9 +51,10 @@ export function toText(node) {
 
 // 5 - (-3): a negative number after an operation sign gets parentheses.
 function wrapNegative(node) {
-  return node.type === 'int' && node.value < 0 ? `(${toText(node)})` : toText(node);
+  return (node.type === 'int' && node.value < 0) || node.type === 'neg' ? `(${toText(node)})` : toText(node);
 }
 
 function part(x) {
-  return typeof x === 'number' ? String(x) : toText(x);
+  if (typeof x === 'number') return x < 0 ? `(-${-x})` : String(x); // 3/(-5)
+  return toText(x);
 }

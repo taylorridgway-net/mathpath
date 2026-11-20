@@ -31,7 +31,8 @@ test('a student who knows everything: no gaps, very few questions', () => {
   // One full add/subtract problem covers every add/subtract subskill, one
   // comparison with different denominators covers comparing, and one
   // multiplication covers multiplying, one division covers dividing (owner: "unless proven otherwise").
-  assert.equal(result.questionCount, 4);
+  // Negative fractions: one question per part (they rest on different integer skills).
+  assert.equal(result.questionCount, 7);
   for (const s of ['common-denom', 'rewrite', 'combine', 'simplify-result']) {
     assert.equal(statusOf(result, SUB(s)), 'known', s);
   }
@@ -56,7 +57,7 @@ test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simp
   assert.equal(statusOf(result, 'whole.add-sub.add-regroup'), 'known');
   assert.equal(statusOf(result, 'whole.add-sub.sub-regroup'), 'known');
   assert.ok(!result.uncheckedCauses.includes('whole.add-sub'));
-  assert.ok(result.questionCount <= 10, `took ${result.questionCount} questions`);
+  assert.ok(result.questionCount <= 12, `took ${result.questionCount} questions`);
 });
 
 test('can do everything but simplify: finds the simplifying gap and points below it', () => {
@@ -144,8 +145,9 @@ test('owner\'s case: can do every step on its own, but not the whole problem -> 
   assert.equal(statusOf(result, 'frac.add-sub'), 'gap');
   assert.deepEqual(result.rootGaps, ['frac.add-sub']);
   assert.equal(result.skills['frac.add-sub'], 'gap');
-  // Full problem, four steps, full problem again; plus one comparison, one multiplication, one division.
-  assert.equal(result.questionCount, 9);
+  // Full problem, four steps, full problem again; plus one comparison, one multiplication, one division,
+  // and negative fractions' sign and multiply/divide parts (adding with negatives rests on the gap: not asked).
+  assert.equal(result.questionCount, 11);
 });
 
 test('multiply: cross-multiplies (2/3 × 4/5 = 10/12) -> gap on multiplying two fractions, nothing else blamed', () => {
@@ -157,7 +159,7 @@ test('multiply: cross-multiplies (2/3 × 4/5 = 10/12) -> gap on multiplying two 
   // Dividing needs this step, so "multiply by the reciprocal" is "can't check yet", not asked.
   assert.deepEqual(result.nodes['frac.divide.multiply-reciprocal'].blockedBy, ['frac.multiply.by-fraction']);
   assert.equal(statusOf(result, 'frac.divide.reciprocal'), 'known');
-  assert.ok(result.questionCount <= 9, `took ${result.questionCount} questions`);
+  assert.ok(result.questionCount <= 11, `took ${result.questionCount} questions`);
 });
 
 test('multiply: can multiply but never simplifies the product -> gap on simplifying products', () => {
@@ -385,7 +387,9 @@ test('anything resting on a "can\'t check yet" step is also "can\'t check yet"',
   assert.ok(result.nodes['frac.multiply.by-fraction'].blockedBy);
   assert.ok(result.nodes['frac.divide.multiply-reciprocal'].blockedBy);
   assert.ok(!result.questions.some((q) => q.generator === 'frac.divide.multiply-reciprocal'));
-  assert.equal(statusOf(result, 'frac.divide.meaning'), 'known', '"how many 1/3s fit into 4?" doesn\'t need it');
+  // "How many 1/3s fit into 4?" needs facts too (4 × 3 = 12); reciprocals don't, and are still checked.
+  assert.ok(result.nodes['frac.divide.meaning'].blockedBy);
+  assert.equal(statusOf(result, 'frac.divide.reciprocal'), 'known');
 });
 
 test('compare: one hard comparison stands for all; when it\'s missed, that miss counts as the first try', () => {
@@ -441,7 +445,7 @@ function earlier(traits) {
 
 test('catch-up: finds exactly the skills that had no questions back then', () => {
   const { prior } = earlier({});
-  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.compare']);
+  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
   // Nothing new: nothing to catch up on.
   const now = compactResult(diagnose({}).result);
   assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), []);
@@ -455,7 +459,10 @@ test('catch-up: asks only about the new skills, and the result keeps everything 
   assert.equal(result.nodes['frac.add-sub.combine'].status, 'gap', 'the old gap is still there');
   assert.ok(result.misconceptions['frac.add-across'] >= 1, 'old wrong-answer patterns kept');
   assert.equal(result.skills['frac.multiply'], 'known');
-  assert.equal(result.questionCount, 3, 'one question each: multiply, divide, compare');
+  // multiply, divide, compare, and the sign and multiply/divide parts of negative fractions
+  // (adding with negatives rests on the adding gap found the first time: not asked).
+  assert.equal(result.questionCount, 5);
+  assert.ok(result.nodes['frac.signed.add-sub'].blockedBy);
 });
 
 test('catch-up: a gap found the first time blocks new questions that rest on it', () => {
@@ -475,4 +482,14 @@ test('a saved (compact) result is what the path needs, without re-running anythi
   assert.deepEqual(Object.fromEntries(Object.entries(saved.nodes).map(([k, v]) => [k, v.status])), Object.fromEntries(Object.entries(full.nodes).map(([k, v]) => [k, v.status])));
   assert.equal(saved.questions.length, full.questionCount);
   assert.ok(!JSON.stringify(saved).includes('evidence'));
+});
+
+test('looking under a simplifying gap: only factors and GCF are checked, not primes or LCM', () => {
+  const { result } = diagnose({ lacks: ['frac.equivalent.simplify'] });
+  const asked = new Set(result.questions.map((q) => q.generator));
+  assert.ok(asked.has('whole.factors-multiples.factors') || result.nodes['whole.factors-multiples.factors']);
+  assert.ok(!asked.has('whole.factors-multiples.primes'));
+  assert.ok(!asked.has('whole.factors-multiples.lcm'));
+  // ...and the owner's rule still holds: no division facts credited by fraction work.
+  assert.equal(statusOf(diagnose({}).result, 'whole.mult-div.div-facts'), 'not-tested');
 });

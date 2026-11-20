@@ -26,6 +26,7 @@ import multiplyLesson from '../../curriculum/lessons/frac.multiply.json';
 import divideLesson from '../../curriculum/lessons/frac.divide.json';
 import intAddSubLesson from '../../curriculum/lessons/int.add-sub.json';
 import intMultDivLesson from '../../curriculum/lessons/int.mult-div.json';
+import signedLesson from '../../curriculum/lessons/frac.signed.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -47,7 +48,7 @@ const setupData = {
   generators,
   misconceptions: [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions],
   diagnosticConfig: fracDiagnostic,
-  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson],
+  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson],
   rules: masteryRules.default,
 };
 
