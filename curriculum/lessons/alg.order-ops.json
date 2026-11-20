@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.order-ops",
+  "title": "Order of operations",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "alg.order-ops.no-parens",
+      "forGap": "alg.order-ops.no-parens",
+      "title": "Multiply and divide first",
+      "objective": "Do multiplication and division before addition and subtraction; otherwise go left to right.",
+      "mode": "section",
+      "generator": "alg.order-ops.no-parens",
+      "explain": [
+        "Everyone has to agree on one order, or 2 + 3 × 4 could mean two different numbers. The agreement: multiply and divide first, then add and subtract.",
+        "2 + 3 × 4: multiply first, 3 × 4 = 12. Then 2 + 12 = 14. (Not 20: that's adding first.)",
+        "Multiplying and dividing are a team: do them left to right, whichever comes first. 24 ÷ 4 × 2 = 6 × 2 = 12. Adding and subtracting are a team too: 20 − 6 + 4 = 14 + 4 = 18."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.order-ops.parens",
+      "forGap": "alg.order-ops.parens",
+      "title": "Parentheses first",
+      "objective": "Work out what's inside parentheses before anything else.",
+      "mode": "section",
+      "generator": "alg.order-ops.parens",
+      "explain": [
+        "Parentheses say \"do this part first\". (2 + 3) × 4 = 5 × 4 = 20.",
+        "Inside the parentheses, the usual order still applies: (8 + 3 × 2) × 4 = (8 + 6) × 4 = 14 × 4 = 56.",
+        "Watch a minus sign in front of parentheses: 20 − (8 − 3) = 20 − 5 = 15. Work out the parentheses first, then subtract the whole result."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.order-ops.integers",
+      "forGap": "alg.order-ops.integers",
+      "title": "With negative numbers",
+      "objective": "Use the same order with negative numbers, and the integer sign rules at each step.",
+      "mode": "section",
+      "generator": "alg.order-ops.integers",
+      "explain": [
+        "Negative numbers don't change the order: multiply and divide first, then add and subtract.",
+        "−2 + 3 × 4: multiply first, 3 × 4 = 12. Then −2 + 12 = 10.",
+        "Use the integer rules at each step. 7 − 10 ÷ (−5): divide first, 10 ÷ (−5) = −2. Then 7 − (−2) = 7 + 2 = 9."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.order-ops.whole",
+      "forGap": "alg.order-ops",
+      "title": "Putting it together",
+      "objective": "Use the order of operations on any expression.",
+      "mode": "skill",
+      "generator": "alg.order-ops",
+      "explain": [
+        "Now the problems are mixed.",
+        "Parentheses first. Then multiply and divide, left to right. Then add and subtract, left to right. Do one step at a time and rewrite what's left."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "alg.order-ops.no-parens": "Find any × or ÷ and do those first, left to right. Then add and subtract, left to right.",
+    "alg.order-ops.parens": "Work out the parentheses first. Then multiply and divide, then add and subtract.",
+    "alg.order-ops.integers": "Same order as always. At each step, use the sign rules for integers.",
+    "alg.order-ops": "Parentheses, then × and ÷ left to right, then + and − left to right."
+  },
+  "misconceptionMessages": {
+    "alg.ops-left-to-right": "It looks like you went left to right. Multiply and divide come before adding and subtracting.",
+    "alg.ops-add-before-subtract": "Adding doesn't come before subtracting: they're a team. Go left to right between them.",
+    "alg.ops-multiply-before-divide": "Multiplying doesn't come before dividing: they're a team. Go left to right between them.",
+    "alg.ops-ignored-parentheses": "Work out the parentheses first. They change which step comes first.",
+    "alg.ops-int-left-to-right": "Negative numbers don't change the order: multiply and divide before adding and subtracting.",
+    "alg.ops-int-ignored-parentheses": "Work out the parentheses first, then the rest.",
+    "alg.ops-int-sign": "The order is right, but check the signs at each step with the integer rules."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

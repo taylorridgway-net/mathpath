@@ -4,6 +4,7 @@
   "domains": [
     { "id": "whole", "name": "Whole numbers", "file": "whole.json" },
     { "id": "int", "name": "Integers", "file": "int.json" },
-    { "id": "frac", "name": "Fractions", "file": "frac.json" }
+    { "id": "frac", "name": "Fractions", "file": "frac.json" },
+    { "id": "alg", "name": "Pre-algebra", "file": "alg.json" }
   ]
 }

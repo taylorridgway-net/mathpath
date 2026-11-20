@@ -4,7 +4,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { startDiagnostic, replayDiagnostic, compactResult, catchUpTargets } from '../../../engine/diagnostic/diagnostic.js';
+import { startDiagnostic, replayDiagnostic, compactResult, catchUpTargets, catchUpName } from '../../../engine/diagnostic/diagnostic.js';
 import { buildGraphIndex } from '../../../engine/graph/graph-index.js';
 import { createRng } from '../../../engine/random.js';
 import { simulatedStudent, runWithStudent } from '../../../tools/simulated-student.js';
@@ -445,15 +445,17 @@ function earlier(traits) {
 
 test('catch-up: finds exactly the skills that had no questions back then', () => {
   const { prior } = earlier({});
-  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
-  // Nothing new: nothing to catch up on.
+  assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents']);
+  // After today's fractions check, only the later check (pre-algebra) is left.
   const now = compactResult(diagnose({}).result);
-  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), []);
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ['alg.order-ops', 'alg.exponents']);
+  assert.equal(catchUpName(fractions.config, ['alg.order-ops', 'alg.exponents']), 'Pre-algebra check');
+  assert.equal(catchUpName(fractions.config, ['frac.multiply', 'alg.order-ops']), null);
 });
 
 test('catch-up: asks only about the new skills, and the result keeps everything from before', () => {
   const { student, prior } = earlier({ lacks: ['frac.add-sub.combine'], misconceptions: ['frac.add-across'] });
-  const targets = catchUpTargets({ ...fractions, prior });
+  const targets = catchUpTargets({ ...fractions, prior }).filter((t) => t.startsWith('frac.'));
   const result = runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'catch', prior }), student);
   assert.ok(result.questions.every((q) => !q.generator.startsWith('frac.add-sub')), 'nothing about adding asked again');
   assert.equal(result.nodes['frac.add-sub.combine'].status, 'gap', 'the old gap is still there');
@@ -492,4 +494,38 @@ test('looking under a simplifying gap: only factors and GCF are checked, not pri
   assert.ok(!asked.has('whole.factors-multiples.lcm'));
   // ...and the owner's rule still holds: no division facts credited by fraction work.
   assert.equal(statusOf(diagnose({}).result, 'whole.mult-div.div-facts'), 'not-tested');
+});
+
+// ---------- the pre-algebra check (taken after the fractions check) ----------
+
+function preAlgebra(traits) {
+  const student = simulatedStudent({ graph: fractions.graph, generators: fractions.generators, ...traits });
+  const prior = compactResult(runWithStudent(startDiagnostic({ ...fractions, seed: 'first' }), student));
+  const targets = catchUpTargets({ ...fractions, prior });
+  return runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'pre', prior }), student);
+}
+
+test('pre-algebra check: knows everything -> one problem each for order of operations and powers, plus the two negative-number parts', () => {
+  const result = preAlgebra({});
+  assert.deepEqual(result.rootGaps, []);
+  assert.equal(result.questionCount, 4);
+  assert.equal(result.skills['alg.order-ops'], 'known');
+  assert.equal(result.skills['alg.exponents'], 'known');
+  assert.ok(result.questions.every((q) => q.generator.startsWith('alg.')), 'nothing from the fractions check asked again');
+});
+
+test('pre-algebra check: works left to right (2 + 3 × 4 = 20) -> gap on the order of operations, found and named', () => {
+  const result = preAlgebra({ lacks: ['alg.order-ops.no-parens'], misconceptions: ['alg.ops-left-to-right'] });
+  assert.deepEqual(result.rootGaps, ['alg.order-ops.no-parens']);
+  assert.ok(result.misconceptions['alg.ops-left-to-right'] >= 1);
+  // Parentheses and powers-in-expressions rest on it: "can't check yet", not asked.
+  assert.ok(result.nodes['alg.order-ops.parens'].blockedBy || result.nodes['alg.order-ops.parens'].status === 'not-tested');
+  assert.equal(statusOf(result, 'alg.exponents.evaluate'), 'known');
+  assert.ok(result.questionCount <= 8, `took ${result.questionCount}`);
+});
+
+test('pre-algebra check: can\'t multiply integers -> the negative-number parts lead back to integer multiplying', () => {
+  const result = preAlgebra({ lacks: ['int.mult-div.multiply'] });
+  assert.ok(result.rootGaps.includes('int.mult-div.multiply'), JSON.stringify(result.rootGaps));
+  assert.equal(statusOf(result, 'alg.order-ops.no-parens'), 'known');
 });

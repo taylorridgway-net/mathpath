@@ -16,6 +16,19 @@ export function renderMath(node, { inline = false } = {}) {
 
 function build(node) {
   switch (node.type) {
+    case 'group': {
+      const wrap = el('span', 'm-row m-group');
+      wrap.append(el('span', 'm-paren', '('), build(node.of), el('span', 'm-paren', ')'));
+      return wrap;
+    }
+    case 'pow': {
+      const wrap = el('span', 'm-pow');
+      const negBase = node.base.type === 'int' && node.base.value < 0;
+      if (negBase) wrap.append(el('span', 'm-paren', '('), build(node.base), el('span', 'm-paren', ')'));
+      else wrap.append(build(node.base));
+      wrap.append(el('sup', 'm-exp', String(node.exp)));
+      return wrap;
+    }
     case 'neg': {
       const wrap = el('span', 'm-row m-neg');
       wrap.append(el('span', 'm-op', '\u2212'), build(node.of));
@@ -86,14 +99,16 @@ function el(tag, className, text) {
 // "3/4 + 1 1/2" -> "3 over 4 plus 1 and 1 over 2"
 function spoken(text) {
   return text
-    .replace(/\((-\d+)\)/g, '$1') // 3/(-5) -> 3/-5, 5 - (-3) -> 5 - -3
+    .replace(/\((-\d+)\)(?!\^)/g, '$1') // 3/(-5) -> 3/-5, 5 - (-3) -> 5 - -3 (but not (-3)^2)
     .replace(/(\d+) (\d+)\/(\d+)/g, '$1 and $2 over $3')
     .replace(/(-?\d+|\?)\/(-?\d+|\?)/g, '$1 over $2')
     .replace(/\?/g, 'blank')
     .replace(/ \+ /g, ' plus ')
     .replace(/ - /g, ' minus ')
     .replace(/-(\d)/g, 'negative $1')
-    .replace(/[()]/g, '')
+    .replace(/\^(\d+)/g, ' to the power $1')
+    .replace(/\(/g, 'open parenthesis, ')
+    .replace(/\)/g, ', close parenthesis')
     .replace(/ \u00d7 /g, ' times ')
     .replace(/ \u00f7 /g, ' divided by ')
     .replace(/ = /g, ' equals ');

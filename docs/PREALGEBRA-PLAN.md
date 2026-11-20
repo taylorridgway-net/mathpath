@@ -1,4 +1,17 @@
-# Pre-algebra plan (draft for owner review)
+# Pre-algebra plan
+
+Owner answers (2026-11-20): separate "Pre-algebra check"; whole-number exponents only (including 0);
+equations with fractions at the hardest level. "Go."
+
+## Progress
+- **Built:** the Pre-algebra check (offered on the path after the fractions check; asks only its own skills,
+  starting from what the student already showed), order of operations, exponents. Pretend students:
+  pre-algebra check median 4 questions, max 13.
+- **Next:** one- and two-step equations; then the distributive property and combining like terms (needs the "x" keypad).
+- **Noticed (to discuss with the owner):** a skill that couldn't be checked because of a gap underneath
+  ("can't check yet") isn't checked again after the student fixes that gap. A short re-check offered once the
+  foundation is mastered would close this.
+
 
 Owner decision 2026-11-20: pre-algebra is the next content area after fractions.
 It's what Integrated Math 1 leans on most, and it builds on what's already built

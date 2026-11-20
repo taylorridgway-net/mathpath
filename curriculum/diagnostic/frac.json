@@ -2,7 +2,28 @@
   "schemaVersion": 1,
   "id": "frac-diagnostic",
   "name": "Fractions diagnostic",
-  "targets": ["frac.add-sub", "frac.multiply", "frac.divide", "frac.signed", "frac.compare"],
+  "targets": [
+    "frac.add-sub",
+    "frac.multiply",
+    "frac.divide",
+    "frac.signed",
+    "frac.compare"
+  ],
   "maxQuestions": 25,
-  "difficulty": { "screen": 2, "probe": 2, "confirm": 1 }
+  "difficulty": {
+    "screen": 2,
+    "probe": 2,
+    "confirm": 1
+  },
+  "about": "The first check every student takes (fractions, and the whole-number and integer skills under them). 'moreChecks' are taken afterwards, from the path: each asks only its own skills, starting from what the student already showed.",
+  "moreChecks": [
+    {
+      "id": "prealgebra",
+      "name": "Pre-algebra check",
+      "targets": [
+        "alg.order-ops",
+        "alg.exponents"
+      ]
+    }
+  ]
 }

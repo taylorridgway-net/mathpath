@@ -14,10 +14,12 @@
 import domainsIndex from '../../curriculum/graph/domains.json';
 import wholeGraph from '../../curriculum/graph/whole.json';
 import intGraph from '../../curriculum/graph/int.json';
+import algGraph from '../../curriculum/graph/alg.json';
 import fracGraph from '../../curriculum/graph/frac.json';
 import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
 import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import intMisconceptions from '../../curriculum/misconceptions/int.json';
+import algMisconceptions from '../../curriculum/misconceptions/alg.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
@@ -27,6 +29,8 @@ import divideLesson from '../../curriculum/lessons/frac.divide.json';
 import intAddSubLesson from '../../curriculum/lessons/int.add-sub.json';
 import intMultDivLesson from '../../curriculum/lessons/int.mult-div.json';
 import signedLesson from '../../curriculum/lessons/frac.signed.json';
+import orderOpsLesson from '../../curriculum/lessons/alg.order-ops.json';
+import exponentsLesson from '../../curriculum/lessons/alg.exponents.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -45,11 +49,11 @@ const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents'
   'removeStudent', 'restoreStudent', 'removeClass', 'restoreClass', 'shareClass', 'unshareClass'];
 
 const setupData = {
-  graph: buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph }),
+  graph: buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph }),
   generators,
-  misconceptions: [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions],
+  misconceptions: [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...algMisconceptions.misconceptions],
   diagnosticConfig: fracDiagnostic,
-  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson],
+  lessons: [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson],
   rules: masteryRules.default,
 };
 

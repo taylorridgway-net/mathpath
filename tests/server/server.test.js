@@ -279,11 +279,11 @@ test('catch-up check: only the new skills; re-graded from the saved result; the 
   const { summary } = server.student.login(kid.code);
   const prior = summary.diagnostic.result;
   const targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior });
-  assert.deepEqual(targets, ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
+  assert.deepEqual(targets, ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare', 'alg.order-ops', 'alg.exponents']);
   const seed = seedFor(kid.id, 'diagnostic', 2);
   const d = startDiagnostic({ ...setup, config: { ...setup.diagnosticConfig, targets }, seed, prior });
   const answers = answerAll(d);
-  assert.ok(answers.length <= 6);
+  assert.ok(answers.length <= 10);
   const res = server.student.saveRecord(kid.code, { type: 'diagnostic', catchUp: true, saveId: 'd2', attemptNo: 2, seed, answers, times: [], startedAt: 'a', finishedAt: 'b' });
   assert.equal(res.ok, true, res.message);
   const after = res.summary.diagnostic.result;

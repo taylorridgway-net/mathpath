@@ -1,4 +1,2773 @@
 {
+ "alg.exponents": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 8
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 64,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 16
+     }
+    ],
+    "part": "alg.exponents.evaluate"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 2
+     },
+     "exp": 3
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 6
+     }
+    ],
+    "part": "alg.exponents.evaluate"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 11
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 3
+      },
+      "exp": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 38,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-power-last",
+      "value": 2744
+     }
+    ],
+    "part": "alg.exponents.in-order"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 3
+     },
+     "exp": 4
+    },
+    "answer": {
+     "type": "integer",
+     "value": 81,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 12
+     }
+    ],
+    "part": "alg.exponents.evaluate"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 4
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 64,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-each-term",
+      "value": 32
+     }
+    ],
+    "part": "alg.exponents.in-order"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "neg",
+     "of": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 2
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 4
+     }
+    ],
+    "part": "alg.exponents.negative-base"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": -5
+     },
+     "exp": 3
+    },
+    "answer": {
+     "type": "integer",
+     "value": -125,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 125
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -15
+     }
+    ],
+    "part": "alg.exponents.negative-base"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 2
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-power-last",
+      "value": 13
+     }
+    ],
+    "part": "alg.exponents.in-order"
+   },
+   {
+    "generator": "alg.exponents",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 90
+     },
+     "exp": 0
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 0
+     },
+     {
+      "id": "alg.exp-zero",
+      "value": 90
+     }
+    ],
+    "part": "alg.exponents.evaluate"
+   }
+  ]
+ },
+ "alg.exponents.evaluate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 3
+     },
+     "exp": 3
+    },
+    "answer": {
+     "type": "integer",
+     "value": 27,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 9
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 5
+     },
+     "exp": 3
+    },
+    "answer": {
+     "type": "integer",
+     "value": 125,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 15
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 4
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 8
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 3
+     },
+     "exp": 4
+    },
+    "answer": {
+     "type": "integer",
+     "value": 81,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 12
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 3
+     },
+     "exp": 4
+    },
+    "answer": {
+     "type": "integer",
+     "value": 81,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 12
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 15
+     },
+     "exp": 0
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 0
+     },
+     {
+      "id": "alg.exp-zero",
+      "value": 15
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 20
+     },
+     "exp": 0
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 0
+     },
+     {
+      "id": "alg.exp-zero",
+      "value": 20
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 4
+     },
+     "exp": 4
+    },
+    "answer": {
+     "type": "integer",
+     "value": 256,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 44
+     },
+     "exp": 0
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-times",
+      "value": 0
+     },
+     {
+      "id": "alg.exp-zero",
+      "value": 44
+     }
+    ]
+   }
+  ]
+ },
+ "alg.exponents.in-order": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 11
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 5
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 36,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-power-last",
+      "value": 256
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 4
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 64,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-power-last",
+      "value": 256
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 8
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 5
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 200,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-power-last",
+      "value": 1600
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 6
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 64,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-each-term",
+      "value": 40
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 4
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 25,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-each-term",
+      "value": 17
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 6
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      }
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 0,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 2
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 23,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-power-last",
+      "value": 143
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 4
+      },
+      "exp": 2
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 2
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 20,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.exponents.in-order",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 88,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-power-last",
+      "value": 568
+     }
+    ]
+   }
+  ]
+ },
+ "alg.exponents.negative-base": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": -9
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 81,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": -81
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -18
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": -12
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 144,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": -144
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -24
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": -7
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 49,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": -49
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -14
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "neg",
+     "of": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 8
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -64,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 64
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -16
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "neg",
+     "of": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 4
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 16
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -8
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "neg",
+     "of": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 7
+      },
+      "exp": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -49,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 49
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -14
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "neg",
+     "of": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 3
+      },
+      "exp": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -27,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 27
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -9
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "neg",
+     "of": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 5
+      },
+      "exp": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -625,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 625
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -20
+     }
+    ]
+   },
+   {
+    "generator": "alg.exponents.negative-base",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "neg",
+     "of": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 3
+      },
+      "exp": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -81,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.exp-negative-base",
+      "value": 81
+     },
+     {
+      "id": "alg.exp-times",
+      "value": -12
+     }
+    ]
+   }
+  ]
+ },
+ "alg.order-ops": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 7
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 5
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 67,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 235
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 62,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 160
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "int",
+       "value": 37
+      },
+      "right": {
+       "type": "op",
+       "op": "×",
+       "left": {
+        "type": "int",
+        "value": 5
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 13,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 161
+     },
+     {
+      "id": "alg.ops-add-before-subtract",
+      "value": 11
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 1
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 12
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 21,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 20
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 5
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      }
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 7
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 66,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 46
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 16
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "int",
+         "value": 8
+        },
+        "right": {
+         "type": "int",
+         "value": 1
+        }
+       }
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 52,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 100
+     },
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 28
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 38
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 9
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 32,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 26
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 24
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 12
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 13,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 11
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 23
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 14
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 6
+     }
+    ]
+   }
+  ]
+ },
+ "alg.order-ops.integers": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 5
+      },
+      "right": {
+       "type": "int",
+       "value": -5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -20,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-sign",
+      "value": 20
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "int",
+       "value": -3
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -14,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-sign",
+      "value": 14
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": -8
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 3
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-left-to-right",
+      "value": -20
+     },
+     {
+      "id": "alg.ops-int-sign",
+      "value": -4
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": -3
+      },
+      "right": {
+       "type": "int",
+       "value": -2
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 15
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -9,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-sign",
+      "value": 9
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": -8
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -45,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-ignored-parentheses",
+      "value": -13
+     },
+     {
+      "id": "alg.ops-int-sign",
+      "value": 45
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": -3
+      },
+      "right": {
+       "type": "int",
+       "value": -5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 13,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-sign",
+      "value": -13
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 5
+     },
+     "right": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "int",
+       "value": -2
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-sign",
+      "value": -8
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 9
+     },
+     "right": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "int",
+       "value": 18
+      },
+      "right": {
+       "type": "int",
+       "value": -3
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 15,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-left-to-right",
+      "value": 3
+     },
+     {
+      "id": "alg.ops-int-sign",
+      "value": -15
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.integers",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": -5
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "int",
+       "value": -3
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-int-left-to-right",
+      "value": 21
+     },
+     {
+      "id": "alg.ops-int-sign",
+      "value": -1
+     }
+    ]
+   }
+  ]
+ },
+ "alg.order-ops.no-parens": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 3
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 39,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 54
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 4
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 29,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 20
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 7
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 69,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 189
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 5
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 4
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 41,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 116
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "int",
+       "value": 4
+      },
+      "right": {
+       "type": "op",
+       "op": "×",
+       "left": {
+        "type": "int",
+        "value": 7
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 43,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 63
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 9
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 91,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 171
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "int",
+       "value": 16
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 14,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-add-before-subtract",
+      "value": 8
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "int",
+       "value": 81
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 36,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.order-ops.no-parens",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "int",
+       "value": 20
+      },
+      "right": {
+       "type": "op",
+       "op": "÷",
+       "left": {
+        "type": "int",
+        "value": 6
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 19,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   }
+  ]
+ },
+ "alg.order-ops.parens": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 8
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 15
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 112,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 119
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 8
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 6
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 44
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 6
+       },
+       "right": {
+        "type": "int",
+        "value": 9
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 105,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 69
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 1
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 6
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 3
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "int",
+      "value": 4
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "int",
+         "value": 9
+        },
+        "right": {
+         "type": "int",
+         "value": 6
+        }
+       }
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 79,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 95
+     },
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 43
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 2
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     },
+     "right": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "int",
+        "value": 10
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 36,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 38
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "int",
+        "value": 2
+       },
+       "right": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "int",
+         "value": 5
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 68,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 100
+     },
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 62
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 55
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "int",
+         "value": 6
+        },
+        "right": {
+         "type": "int",
+         "value": 6
+        }
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 31,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 636
+     },
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 49
+     }
+    ]
+   },
+   {
+    "generator": "alg.order-ops.parens",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 37
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 3
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "int",
+         "value": 5
+        },
+        "right": {
+         "type": "int",
+         "value": 1
+        }
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 19,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ops-left-to-right",
+      "value": 204
+     },
+     {
+      "id": "alg.ops-ignored-parentheses",
+      "value": 23
+     }
+    ]
+   }
+  ]
+ },
  "frac.add-sub": {
   "version": 1,
   "problems": [

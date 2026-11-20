@@ -10,6 +10,8 @@ import { multiplyGenerators } from './frac/multiply.js';
 import { divideGenerators } from './frac/divide.js';
 import { integerGenerators } from './int/integers.js';
 import { signedGenerators } from './frac/signed.js';
+import { orderOpsGenerators } from './alg/order-ops.js';
+import { exponentGenerators } from './alg/exponents.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
 import { wholeFactorGenerators } from './whole/factors.js';
@@ -23,6 +25,8 @@ export const generators = {
   ...divideGenerators,
   ...integerGenerators,
   ...signedGenerators,
+  ...orderOpsGenerators,
+  ...exponentGenerators,
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,
   ...wholeFactorGenerators,

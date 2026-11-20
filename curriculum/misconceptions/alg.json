@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding in pre-algebra. 'pointsTo' is the subskill to work on.",
+  "misconceptions": [
+    {
+      "id": "alg.ops-left-to-right",
+      "description": "Works strictly left to right instead of multiplying and dividing first (2 + 3 × 4 = 20).",
+      "pointsTo": "alg.order-ops.no-parens"
+    },
+    {
+      "id": "alg.ops-add-before-subtract",
+      "description": "Adds before subtracting instead of going left to right (20 − 6 + 4 = 10).",
+      "pointsTo": "alg.order-ops.no-parens"
+    },
+    {
+      "id": "alg.ops-multiply-before-divide",
+      "description": "Multiplies before dividing instead of going left to right (24 ÷ 4 × 2 = 3).",
+      "pointsTo": "alg.order-ops.no-parens"
+    },
+    {
+      "id": "alg.ops-ignored-parentheses",
+      "description": "Ignores the parentheses ((2 + 3) × 4 = 14; 20 − (8 − 3) = 9).",
+      "pointsTo": "alg.order-ops.parens"
+    },
+    {
+      "id": "alg.ops-int-left-to-right",
+      "description": "With negative numbers, works left to right instead of multiplying first (−2 + 3 × 4 = 4).",
+      "pointsTo": "alg.order-ops.integers"
+    },
+    {
+      "id": "alg.ops-int-ignored-parentheses",
+      "description": "With negative numbers, ignores the parentheses.",
+      "pointsTo": "alg.order-ops.integers"
+    },
+    {
+      "id": "alg.ops-int-sign",
+      "description": "Does the steps in the right order but gets the sign wrong.",
+      "pointsTo": "alg.order-ops.integers"
+    },
+    {
+      "id": "alg.exp-times",
+      "description": "Multiplies the base by the exponent (2⁴ = 8).",
+      "pointsTo": "alg.exponents.evaluate"
+    },
+    {
+      "id": "alg.exp-zero",
+      "description": "Thinks a number to the power 0 is 0, or the number itself (7⁰ = 0 or 7).",
+      "pointsTo": "alg.exponents.evaluate"
+    },
+    {
+      "id": "alg.exp-negative-base",
+      "description": "Mixes up (−3)² and −3²: gets the size right but the sign wrong.",
+      "pointsTo": "alg.exponents.negative-base"
+    },
+    {
+      "id": "alg.exp-power-last",
+      "description": "Does the power after the other operations (2 + 3² = 25).",
+      "pointsTo": "alg.exponents.in-order"
+    },
+    {
+      "id": "alg.exp-each-term",
+      "description": "Applies the power to each number inside the parentheses ((2 + 3)² = 13).",
+      "pointsTo": "alg.exponents.in-order"
+    }
+  ]
+}

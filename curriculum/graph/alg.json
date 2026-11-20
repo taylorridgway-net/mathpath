@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "domain": { "id": "alg", "name": "Pre-algebra" },
+  "skills": [
+    {
+      "id": "alg.order-ops",
+      "name": "Order of operations",
+      "summary": "Evaluate expressions with several operations: multiplication and division before addition and subtraction, left to right, parentheses first.",
+      "typicalGrade": 6,
+      "standards": ["5.OA.A.1", "6.EE.A.2c"],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        { "id": "alg.order-ops.no-parens", "name": "Multiply and divide before adding and subtracting (2 + 3 × 4)",
+          "prerequisites": [
+            { "id": "whole.mult-div.mult-facts", "strength": "essential" },
+            { "id": "whole.mult-div.div-facts", "strength": "supporting", "why": "The hardest problems divide too." }
+          ] },
+        { "id": "alg.order-ops.parens", "name": "Parentheses first ((2 + 3) × 4)",
+          "prerequisites": [ { "id": "alg.order-ops.no-parens", "strength": "essential", "why": "Inside and around the parentheses, the usual order still applies." } ] },
+        { "id": "alg.order-ops.integers", "name": "Order of operations with negative numbers (−2 + 3 × (−4))",
+          "prerequisites": [
+            { "id": "alg.order-ops.no-parens", "strength": "essential" },
+            { "id": "int.add-sub.same-sign", "strength": "essential" },
+            { "id": "int.add-sub.different-signs", "strength": "essential" },
+            { "id": "int.add-sub.subtract", "strength": "essential" },
+            { "id": "int.mult-div.multiply", "strength": "essential" }
+          ] }
+      ]
+    },
+    {
+      "id": "alg.exponents",
+      "name": "Exponents",
+      "summary": "Evaluate powers with whole-number exponents (including 0), negative bases, and powers inside longer expressions.",
+      "typicalGrade": 6,
+      "standards": ["6.EE.A.1", "8.EE.A.1"],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        { "id": "alg.exponents.evaluate", "name": "Evaluate a power (2⁴, 5³, 7⁰)",
+          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
+        { "id": "alg.exponents.negative-base", "name": "Negative bases: (−3)² versus −3²",
+          "prerequisites": [
+            { "id": "alg.exponents.evaluate", "strength": "essential" },
+            { "id": "int.mult-div.multiply", "strength": "essential" }
+          ] },
+        { "id": "alg.exponents.in-order", "name": "Powers in the order of operations (2 + 3², (2 + 3)²)",
+          "prerequisites": [
+            { "id": "alg.exponents.evaluate", "strength": "essential" },
+            { "id": "alg.order-ops.no-parens", "strength": "essential" }
+          ] }
+      ]
+    }
+  ]
+}

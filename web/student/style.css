@@ -394,3 +394,10 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 
 /* a negative fraction: the minus sign sits close to the fraction bar */
 .m-row.m-neg { gap: 0.08em; }
+
+/* powers and parentheses (pre-algebra) */
+.m-pow { display: inline-flex; align-items: flex-start; }
+.m-exp { font-size: 0.6em; line-height: 1; margin-left: 0.04em; position: relative; top: -0.15em; }
+.m-paren { font-family: var(--font-math); }
+.m-row.m-group { gap: 0.04em; }
+.m-pow > .m-paren:first-child { margin-right: 0.04em; }

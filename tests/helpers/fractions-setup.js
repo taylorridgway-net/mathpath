@@ -12,7 +12,7 @@ export function loadFractions() {
   return {
     graph: buildGraphIndex(index, files),
     generators,
-    misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions, ...read('misconceptions/int.json').misconceptions],
+    misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions, ...read('misconceptions/int.json').misconceptions, ...read('misconceptions/alg.json').misconceptions],
     config: read('diagnostic/frac.json'),
   };
 }

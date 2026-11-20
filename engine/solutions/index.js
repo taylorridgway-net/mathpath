@@ -8,11 +8,13 @@ import { solveMultiply } from './frac-multiply.js';
 import { solveDivide } from './frac-divide.js';
 import { solveInt } from './int.js';
 import { solveSigned } from './frac-signed.js';
+import { solveAlg } from './alg.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
   if (kind.startsWith('whole.')) return solveWhole(problem);
   if (kind.startsWith('int.')) return solveInt(problem);
+  if (kind.startsWith('alg.')) return solveAlg(problem);
   if (kind.startsWith('frac.equivalent')) return solveEquivalent(problem);
   if (kind.startsWith('frac.meaning')) return solveMeaning(problem);
   if (kind.startsWith('frac.compare')) return solveCompare(problem);

@@ -8,10 +8,12 @@
 import domainsIndex from '../../curriculum/graph/domains.json';
 import wholeGraph from '../../curriculum/graph/whole.json';
 import intGraph from '../../curriculum/graph/int.json';
+import algGraph from '../../curriculum/graph/alg.json';
 import fracGraph from '../../curriculum/graph/frac.json';
 import fracMisconceptions from '../../curriculum/misconceptions/frac.json';
 import wholeMisconceptions from '../../curriculum/misconceptions/whole.json';
 import intMisconceptions from '../../curriculum/misconceptions/int.json';
+import algMisconceptions from '../../curriculum/misconceptions/alg.json';
 import fracDiagnostic from '../../curriculum/diagnostic/frac.json';
 import addSubLesson from '../../curriculum/lessons/frac.add-sub.json';
 import equivalentLesson from '../../curriculum/lessons/frac.equivalent.json';
@@ -21,6 +23,8 @@ import divideLesson from '../../curriculum/lessons/frac.divide.json';
 import intAddSubLesson from '../../curriculum/lessons/int.add-sub.json';
 import intMultDivLesson from '../../curriculum/lessons/int.mult-div.json';
 import signedLesson from '../../curriculum/lessons/frac.signed.json';
+import orderOpsLesson from '../../curriculum/lessons/alg.order-ops.json';
+import exponentsLesson from '../../curriculum/lessons/alg.exponents.json';
 import meaningLesson from '../../curriculum/lessons/frac.meaning.json';
 import wholeAddSubLesson from '../../curriculum/lessons/whole.add-sub.json';
 import wholeMultDivLesson from '../../curriculum/lessons/whole.mult-div.json';
@@ -28,7 +32,7 @@ import wholeFactorsLesson from '../../curriculum/lessons/whole.factors-multiples
 import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
-import { replayDiagnostic, compactResult, catchUpTargets } from '../../engine/diagnostic/diagnostic.js';
+import { replayDiagnostic, compactResult, catchUpTargets, catchUpName } from '../../engine/diagnostic/diagnostic.js';
 import { buildPath } from '../../engine/lessons/path.js';
 import { seedFor } from '../../engine/seeds.js';
 import { renderMath } from '../components/render-math.js';
@@ -44,10 +48,10 @@ import { diagnosticReport } from '../components/diagnostic-report.js';
 import { h, section, btn, pill, list, split, swap as swapInto } from '../components/dom.js';
 
 const PROFILE_KEY = 'mathpath.profile.v1'; // { code, id, nickname, summary } of the signed-in student
-const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson];
+const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsLesson, meaningLesson, equivalentLesson, compareLesson, addSubLesson, multiplyLesson, divideLesson, intAddSubLesson, intMultDivLesson, signedLesson, orderOpsLesson, exponentsLesson];
 
-const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph });
-const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions];
+const graph = buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph });
+const misconceptions = [...fracMisconceptions.misconceptions, ...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...algMisconceptions.misconceptions];
 const api = createApi({
   setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default },
 });
@@ -237,10 +241,13 @@ function showStart() {
   const screen = section('screen screen-start');
   screen.append(accountBar());
   if (session?.catchUp && !session.finished) {
+    const named = catchUpName(fracDiagnostic, catchUpTargets({ graph, generators, config: fracDiagnostic, prior: session.catchUp.prior }));
     screen.append(
-      h('p', 'eyebrow', 'Catch-up check'),
-      h('h1', 'title', 'A few questions on new topics'),
-      h('p', 'lede', 'MathPath has new topics since your first check. These questions are only about those. Everything you already showed still counts.'),
+      h('p', 'eyebrow', named || 'Catch-up check'),
+      h('h1', 'title', named ? 'Let’s see what you already know' : 'A few questions on new topics'),
+      h('p', 'lede', named
+        ? 'Short questions on new topics. This isn’t graded. Everything you showed in your first check still counts, so nothing is asked twice.'
+        : 'MathPath has new topics since your first check. These questions are only about those. Everything you already showed still counts.'),
       h('p', 'lede', 'If you don’t know an answer, tap “I’m not sure”. That helps too.'),
     );
   } else {
@@ -362,13 +369,16 @@ function showDone() {
   grid.append(next, strong);
   const newSkills = catchUpSkills();
   if (newSkills.length) {
+    const named = catchUpName(fracDiagnostic, newSkills);
     const card = h('div', 'done-block catch-up');
     card.append(
-      h('h2', 'block-title', 'New topics to check'),
-      h('p', 'lede', `MathPath has new topics since your check: ${newSkills.map(name).join(', ')}. Answer a few questions so your path includes them.`),
+      h('h2', 'block-title', named ? `Next: the ${named.toLowerCase()}` : 'New topics to check'),
+      h('p', 'lede', named
+        ? `A few questions on ${newSkills.map(name).join(', ').toLowerCase()}. Your answers add these topics to your path.`
+        : `MathPath has new topics since your check: ${newSkills.map(name).join(', ')}. Answer a few questions so your path includes them.`),
     );
     const actions = h('div', 'actions');
-    actions.append(btn('button button-primary', 'Start the catch-up check', beginCatchUp));
+    actions.append(btn('button button-primary', named ? `Start the ${named.toLowerCase()}` : 'Start the catch-up check', beginCatchUp));
     card.append(actions);
     screen.append(card);
   }

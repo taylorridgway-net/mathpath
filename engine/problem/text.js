@@ -6,7 +6,9 @@
 //   { type: 'frac', n, d }            n or d may be { type: 'blank' }
 //   { type: 'mixed', whole, n, d }
 //   { type: 'int', value }            value may be negative
-//   { type: 'neg', of }               the negative of a fraction: -3/4 (minus sign in front of the bar)
+//   { type: 'neg', of }               the negative of a fraction or power: -3/4, -3^2
+//   { type: 'group', of }             parentheses around part of an expression: (2 + 3)
+//   { type: 'pow', base, exp }        a power: 2^4; a negative base gets parentheses: (-3)^2
 //   { type: 'op', op: '+' | '-', left, right }
 //   { type: 'eq', left, right }
 //   { type: 'list', items: [...] }
@@ -27,6 +29,10 @@ export function toText(node) {
       return `${part(node.n)}/${part(node.d)}`;
     case 'neg':
       return `-${toText(node.of)}`;
+    case 'group':
+      return `(${toText(node.of)})`;
+    case 'pow':
+      return `${node.base.type === 'int' && node.base.value < 0 ? `(${toText(node.base)})` : toText(node.base)}^${node.exp}`;
     case 'mixed':
       return `${node.whole} ${node.n}/${node.d}`;
     case 'op':

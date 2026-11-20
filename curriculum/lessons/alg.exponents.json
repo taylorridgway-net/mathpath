@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.exponents",
+  "title": "Exponents",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "alg.exponents.evaluate",
+      "forGap": "alg.exponents.evaluate",
+      "title": "What a power means",
+      "objective": "Evaluate a power by multiplying the base by itself.",
+      "mode": "section",
+      "generator": "alg.exponents.evaluate",
+      "explain": [
+        "An exponent says how many times to multiply the base by itself. 2⁴ = 2 × 2 × 2 × 2 = 16.",
+        "It isn't base times exponent: 2⁴ is not 2 × 4 = 8.",
+        "Two special cases: any number to the power 1 is itself (9¹ = 9), and any number except 0 to the power 0 is 1 (7⁰ = 1). Look at the pattern: 2³ = 8, 2² = 4, 2¹ = 2, so the next one, 2⁰, is 1. Each step divides by 2."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.exponents.negative-base",
+      "forGap": "alg.exponents.negative-base",
+      "title": "Negative bases",
+      "objective": "Tell (−3)² from −3².",
+      "mode": "section",
+      "generator": "alg.exponents.negative-base",
+      "explain": [
+        "(−3)² means (−3) × (−3) = 9. The parentheses make −3 the base, and a negative times a negative is positive.",
+        "−3² means −(3²) = −9. Without parentheses, only the 3 is squared; the minus sign waits until after the power.",
+        "Odd powers of a negative base stay negative: (−2)³ = (−2) × (−2) × (−2) = −8."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.exponents.in-order",
+      "forGap": "alg.exponents.in-order",
+      "title": "Powers in the order of operations",
+      "objective": "Do powers after parentheses and before multiplying, dividing, adding and subtracting.",
+      "mode": "section",
+      "generator": "alg.exponents.in-order",
+      "explain": [
+        "Powers come right after parentheses: parentheses, then powers, then × and ÷, then + and −.",
+        "2 + 3²: the power first, 3² = 9. Then 2 + 9 = 11. (Not 5² = 25.)",
+        "(2 + 3)²: the parentheses first, 2 + 3 = 5, then 5² = 25. It's not 2² + 3² = 13: the power applies to the whole result in the parentheses."
+      ],
+      "visual": null
+    },
+    {
+      "id": "alg.exponents.whole",
+      "forGap": "alg.exponents",
+      "title": "Putting it together",
+      "objective": "Powers on their own, with negative bases, and inside expressions.",
+      "mode": "skill",
+      "generator": "alg.exponents",
+      "explain": [
+        "Now the problems are mixed.",
+        "A power multiplies the base by itself. Check what the base is: (−3)² or −3². In a longer expression: parentheses, powers, × and ÷, + and −."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "alg.exponents.evaluate": "Write the base out as many times as the exponent says, and multiply. To the power 0 is 1.",
+    "alg.exponents.negative-base": "Is the minus sign inside the parentheses with the number? If so, it's part of the base. If not, do the power first, then make it negative.",
+    "alg.exponents.in-order": "Parentheses first, then powers, then × and ÷, then + and −.",
+    "alg.exponents": "Find the base, multiply it by itself, and keep the order: parentheses, powers, × and ÷, + and −."
+  },
+  "misconceptionMessages": {
+    "alg.exp-times": "The exponent isn't something to multiply by. It says how many times to multiply the base by itself: 2⁴ = 2 × 2 × 2 × 2.",
+    "alg.exp-zero": "Any number (except 0) to the power 0 is 1. Follow the pattern: 2³ = 8, 2² = 4, 2¹ = 2, 2⁰ = 1.",
+    "alg.exp-negative-base": "Check the sign. With parentheses, (−3)² = (−3) × (−3) is positive. Without them, −3² means −(3 × 3), which is negative.",
+    "alg.exp-power-last": "Powers come before multiplying, dividing, adding and subtracting. Do the power first.",
+    "alg.exp-each-term": "Work out the parentheses first, then apply the power to that one number: (2 + 3)² = 5² = 25."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

@@ -432,13 +432,15 @@ export function compactResult(result) {
 
 // Target skills that have questions now but had none when this result was made:
 // nothing about the skill or its parts was asked, credited or blocked. These are
-// what a catch-up check asks about.
+// what a catch-up check asks about. That covers skills added after the student's
+// check, and the later checks in config.moreChecks (e.g. the pre-algebra check).
 export function catchUpTargets({ graph, generators, config, prior }) {
   const nothingKnown = (id) => {
     const n = prior?.nodes?.[id];
     return !n || ((n.status === 'not-tested' || n.status === 'unchecked') && !n.blockedBy);
   };
-  return config.targets.filter((id) => graph.has(id)
+  const all = [...config.targets, ...(config.moreChecks || []).flatMap((c) => c.targets)];
+  return all.filter((id) => graph.has(id)
     && (generators[id] || graph.subskillsOf(id).some((s) => generators[s]))
     && [id, ...graph.subskillsOf(id)].every(nothingKnown));
 }
@@ -459,4 +461,11 @@ export function resultFromVerdicts(row) {
     misconceptions: row.misconceptions || {},
     questions: [],
   };
+}
+
+// The name to show for a catch-up: a later check's own name when the skills are all
+// from it (e.g. "Pre-algebra check"); otherwise a catch-up of new topics.
+export function catchUpName(config, targets) {
+  const check = (config.moreChecks || []).find((c) => targets.length && targets.every((t) => c.targets.includes(t)));
+  return check ? check.name : null;
 }
