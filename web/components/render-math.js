@@ -88,8 +88,8 @@ function spoken(text) {
     .replace(/ - /g, ' minus ')
     .replace(/-(\d)/g, 'negative $1')
     .replace(/[()]/g, '')
-    .replace(/ × /g, ' times ')
-    .replace(/ ÷ /g, ' divided by ')
+    .replace(/ \u00d7 /g, ' times ')
+    .replace(/ \u00f7 /g, ' divided by ')
     .replace(/ = /g, ' equals ');
 }
 

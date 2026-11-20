@@ -32,7 +32,7 @@ export function parseLessonText(text, { autoFractions = false } = {}) {
 function pushText(out, rawText, autoFractions) {
   if (!rawText) return;
   // Keep "4 × 3 = 12" on one line: no line breaks around × and =.
-  const text = rawText.replace(/ ([×=+−]) /g, '\u00a0$1\u00a0');
+  const text = rawText.replace(/ ([\u00d7=+\u2212]) /g, '\u00a0$1\u00a0');
   if (!autoFractions) {
     out.push(text);
     return;
