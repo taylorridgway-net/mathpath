@@ -7,10 +7,12 @@
 //   getStudent(id), getStudentByCode(code), putStudent(student), listStudents(classIds)
 //   listClasses(teacherEmail), putClass(cls)
 //   listRoster(studentIds), putRoster(row)
-//   appendRecord(kind, row), listRecords(kind, studentIds)
+//   appendRecord(kind, row), listRecords(kind, studentIds, { summary })
 //     kinds: diagnostics, sections, verifications, clearances, log
 
 const KINDS = ['diagnostics', 'sections', 'verifications', 'clearances', 'log'];
+const DETAIL = ['answers', 'times', 'scaffolds', 'hintsShown', 'seed', 'gap', 'generator', 'mode'];
+const stripDetail = (r) => Object.fromEntries(Object.entries(r).filter(([k]) => !DETAIL.includes(k)));
 
 export function createMemoryStore(initial = {}) {
   const data = {
@@ -50,6 +52,8 @@ export function createMemoryStore(initial = {}) {
       if (!KINDS.includes(kind)) throw new Error(`Unknown record kind ${kind}`);
       data.records[kind].push(copy(row));
     },
-    listRecords: (kind, ids) => copy(data.records[kind].filter((r) => ids.includes(r.studentId))),
+    // summary: leave out the bulky fields (answers, timing), like the Sheets store does.
+    listRecords: (kind, ids, { summary = false } = {}) => copy(data.records[kind].filter((r) => ids.includes(r.studentId)))
+      .map((r) => (summary && kind === 'sections' ? stripDetail(r) : r)),
   };
 }

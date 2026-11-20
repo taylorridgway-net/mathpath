@@ -7,7 +7,7 @@
 
 import { build } from 'esbuild';
 
-export const ENTRY_POINTS = ['setup', 'doGet', 'apiStudent', 'apiTeacher'];
+export const ENTRY_POINTS = ['setup', 'speedCheck', 'doGet', 'apiStudent', 'apiTeacher'];
 
 export async function bundleServer() {
   const result = await build({

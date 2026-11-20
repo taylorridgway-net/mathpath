@@ -55,20 +55,35 @@ test('the whole flow works on a sheet: add students, sign in, save a section, te
 
   const sheet = spreadsheet.getSheetByName('Sections');
   const before = sheet.writes;
+  const readsBefore = sheet.reads;
   const res = server().student.saveRecord(kid.code, {
     type: 'lesson-section', saveId: 'x1', section, attemptNo: 1, seed, answers, times: answers.map(() => 30000),
     startedAt: '2026-11-20T09:50:00.000Z', finishedAt: '2026-11-20T09:58:00.000Z',
   });
   assert.equal(res.ok, true, JSON.stringify(res));
   assert.equal(sheet.writes - before, 1, `one row for the whole section (${answers.length} answers), not one per question`);
+  assert.ok(sheet.reads - readsBefore <= 1, 'a save reads at most the header of Sections');
+
+  // A second save, now that there is a past save it must NOT read.
+  const seed2 = seedFor(kid.id, section, 2);
+  const p2 = startPractice({ generators: setup.generators, rules: setup.rules, seed: seed2, plan: { generator: section, mode: 'section' } });
+  const answers2 = [];
+  for (let c = p2.currentProblem(); c; c = p2.currentProblem()) { answers2.push(right(c.problem)); p2.submit(answers2.at(-1)); }
+  const reads2 = sheet.reads;
+  server().student.saveRecord(kid.code, { type: 'lesson-section', saveId: 'x2', section, attemptNo: 2, seed: seed2, answers: answers2, times: [] });
+  assert.ok(sheet.reads - reads2 <= 1, 'a save never re-reads past saves');
 
   // A new request reads it back from the sheet.
   assert.deepEqual(server().student.login(kid.code).summary.sectionsPassed, [section]);
   const data = server().teacher.teacherData(T);
-  assert.equal(data.sections.length, 1);
+  assert.equal(data.sections.length, 2);
   assert.equal(data.sections[0].finishedAt, '2026-11-20T09:58:00.000Z', 'dates come back as the same text');
-  assert.deepEqual(data.sections[0].answers, answers);
+  assert.equal(data.sections[0].answers, undefined, 'the dashboard gets summaries, not every answer');
   assert.equal(data.sections[0].passed, true);
+  assert.equal(data.sections[0].problemCount, 5);
+  assert.equal(data.sections[0].seconds, answers.length * 30);
+  const detail = server().teacher.studentDetail(T, kid.id);
+  assert.deepEqual(detail.sections[0].answers, answers, 'the profile gets every answer, for one student');
   assert.equal(data.roster.find((r) => r.studentId === kid.id).realName, '=SUM(A1)');
 });
 
@@ -89,6 +104,21 @@ test('another teacher\'s classes stay out of the data, on the sheet too', () => 
   server().teacher.addClass(other, 'Theirs');
   assert.deepEqual(server().teacher.teacherData(T).classes.map((c) => c.name), ['Mine']);
   assert.deepEqual(server().teacher.teacherData(other).classes.map((c) => c.name), ['Theirs']);
+});
+
+test('an older spreadsheet gets the new columns added before "data", and its rows still read correctly', () => {
+  const spreadsheet = fakeSpreadsheet();
+  const old = spreadsheet.insertSheet('Sections');
+  old.appendRow(['studentId', 'saveId', 'section', 'attemptNo', 'endedBy', 'passed', 'data']);
+  old.appendRow(['s-1', 'x', 'frac.add-sub.combine', 1, 'passed', true, JSON.stringify({ answers: [{ whole: 1 }] })]);
+  ensureTabs(spreadsheet);
+  const header = old.rows[0];
+  assert.equal(header[header.length - 1], 'data', '"data" stays last');
+  assert.ok(header.includes('seconds') && header.includes('misconceptions'));
+  const store = createSheetsStore({ spreadsheet, lockService: fakeLockService() });
+  const [row] = store.listRecords('sections', ['s-1']);
+  assert.equal(row.passed, true);
+  assert.deepEqual(row.answers, [{ whole: 1 }]);
 });
 
 test('someone who isn\'t on the Teachers tab gets nothing', () => {

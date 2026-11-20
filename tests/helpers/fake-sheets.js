@@ -9,13 +9,20 @@ export function fakeSpreadsheet() {
     return {
       rows,
       writes: 0,
+      reads: 0,
       getLastRow: () => rows.length,
+      getLastColumn: () => Math.max(0, ...rows.map((r) => r.length)),
+      insertColumnBefore(col) { for (const r of rows) r.splice(col - 1, 0, ''); },
       setFrozenRows() {},
       appendRow(r) { rows.push(r.map(cell)); this.writes++; },
       getDataRange: () => ({ getValues: () => rows.map((r) => [...r]) }),
       getRange(row, col, nr, nc) {
         const self = this;
         return {
+          getValues() {
+            self.reads++;
+            return rows.slice(row - 1, row - 1 + nr).map((r) => Array.from({ length: nc }, (_, j) => (r[col - 1 + j] ?? '')));
+          },
           setValues(vals) {
             for (let i = 0; i < nr; i++) for (let j = 0; j < nc; j++) {
               rows[row - 1 + i] ||= [];

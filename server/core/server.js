@@ -16,6 +16,7 @@ import { seedFor } from '../../engine/seeds.js';
 import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { verificationRecord } from '../../engine/teacher/verification.js';
+import { sectionSummary } from '../../engine/teacher/section-summary.js';
 
 const MAX_SAVE_IDS = 200; // recent saveIds kept per student to spot repeats
 const WORDS_A = ['maple', 'river', 'cedar', 'stone', 'amber', 'cloud', 'birch', 'coral', 'frost', 'ember', 'meadow', 'harbor', 'canyon', 'willow', 'summit', 'pebble', 'acorn', 'delta', 'orbit', 'prism', 'quartz', 'tundra', 'lagoon', 'aspen'];
@@ -145,8 +146,10 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         mode: sec.mode, review: record.review === true, seed, attemptNo, answers: record.answers, times: record.times || [], scaffolds: record.scaffolds || {},
         hintsShown: record.hintsShown || [], startedAt: record.startedAt, finishedAt: record.finishedAt, receivedAt: now(),
         curriculumVersion: setup.graph.curriculumVersion,
-        // The server's own grading:
-        endedBy: result.endedBy, passed: result.passed, provisionalMastery: result.provisionalMastery, problems: result.problems,
+        // The server's own grading. Each problem isn't stored: it can always be
+        // re-created from the seed and answers (the dashboard does that on demand).
+        endedBy: result.endedBy, passed: result.passed, provisionalMastery: result.provisionalMastery,
+        ...sectionSummary(result, record.times || []),
       },
     };
   }
@@ -183,11 +186,22 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         students: students.map((s) => ({ id: s.id, code: s.code, nickname: s.nickname || null, classId: s.classId, createdAt: s.createdAt })),
         roster: store.listRoster(ids).map((r) => ({ ...r, code: codeOf.get(r.studentId) })),
         diagnostics: withCode(latestDiagnostics(store.listRecords('diagnostics', ids))).map((d) => ({ type: 'diagnostic', ...d })),
-        sections: withCode(store.listRecords('sections', ids)).map((r) => ({ type: 'lesson-section', ...r })),
+        // Summaries only; studentDetail() has the answers for one student.
+        sections: withCode(store.listRecords('sections', ids, { summary: true })).map((r) => ({ type: 'lesson-section', ...r })),
         verifications: withCode(store.listRecords('verifications', ids)),
         clearances: withCode(store.listRecords('clearances', ids)),
         log: withCode(store.listRecords('log', ids)),
       };
+    });
+  }
+
+  // One student's finished sections with every answer, for their profile page.
+  function studentDetail(email, studentId) {
+    return teacherOnly(email, () => {
+      const student = ownStudent(email, studentId);
+      if (!student) return fail('not-your-student', 'That student isn’t in your classes.');
+      const sections = store.listRecords('sections', [studentId]).map((r) => ({ type: 'lesson-section', ...r, code: student.code }));
+      return { ok: true, sections };
     });
   }
 
@@ -264,7 +278,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
 
   return {
     student: { login, saveRecord, setNickname },
-    teacher: { teacherData, addClass, addStudents, resetCode, clearFoundation, verify },
+    teacher: { teacherData, studentDetail, addClass, addStudents, resetCode, clearFoundation, verify },
   };
 }
 

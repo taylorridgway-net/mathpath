@@ -22,6 +22,7 @@ import masteryRules from '../../curriculum/mastery.json';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
 import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
+import { replayPractice } from '../../engine/practice/practice.js';
 import { toText } from '../../engine/problem/text.js';
 import { createRng } from '../../engine/random.js';
 import { studentStatus, countStatuses } from '../../engine/teacher/student-status.js';
@@ -778,7 +779,11 @@ function newCode(code) {
 
 // ---------- Student profile ----------
 
+const detailCache = new Map(); // live: code -> that student's full section records
+let currentProfile = null;
+
 function showStudent(code) {
+  currentProfile = code;
   const s = students.find((x) => x.code === code);
   const screen = frame(null, { tabs: false });
   screen.append(btn('back-link', '← Back', render));
@@ -849,7 +854,7 @@ function showStudent(code) {
   const mine = (live ? data.log || [] : store.log).filter((l) => l.code === s.code);
   const logCard = h('div', 't-card');
   logCard.append(h('h2', 't-h2', 'Changes'));
-  logCard.append(list(mine.map((l) => `${day(l.at)}: ${l.what} (${l.before} → ${l.after}), by ${l.by}`), 'No changes yet.'));
+  logCard.append(list(mine.map((l) => `${day(l.at)}: ${l.what} (${l.before || "—"} → ${l.after || "—"}), by ${l.by}`), 'No changes yet.'));
   left.append(logCard);
 
   // Practice history, newest first; every problem re-created from its seed.
@@ -857,7 +862,18 @@ function showStudent(code) {
   hist.append(h('h2', 't-h2', 'Practice'));
   const records = [...s.sections].sort((a, b) => b.finishedAt.localeCompare(a.finishedAt));
   if (!records.length) hist.append(h('p', 'empty', 'No practice yet.'));
-  for (const r of records) hist.append(sectionHistory(r));
+  // Live: the dashboard has summaries; this student's answers are fetched now, once.
+  const detail = live ? detailCache.get(s.code) : null;
+  if (live && records.length && !detail) {
+    hist.append(h('p', 't-hint', 'Loading every answer…'));
+    api.teacher('studentDetail', s.id).then((res) => {
+      if (res.error) return problem(res);
+      detailCache.set(s.code, res.sections);
+      if (app.querySelector('.t-profile-head') && currentProfile === code) showStudent(code);
+    });
+  }
+  const full = new Map((detail || []).map((r) => [r.saveId, r]));
+  for (const r of records) hist.append(sectionHistory(r, full.get(r.saveId)));
   right.append(hist);
 
   // Diagnostic.
@@ -872,24 +888,40 @@ function showStudent(code) {
   swap(app, screen);
 }
 
-const ENDED = { passed: 'Passed the check', mastered: 'Platform mastery', limit: 'Stopped (too many problems)' };
+const ENDED = { passed: 'Passed the check', mastered: 'Platform mastery', limit: 'Stopped (too many problems)', 'review-missed': 'Quick review: missed one, full section next' };
 const OUTCOME = { 'right-first': 'Right', 'right-second': 'Right on 2nd try', missed: 'Missed' };
 
-function sectionHistory(r) {
+// The problems of a finished section: stored (pretend class), or re-created
+// from the seed and answers exactly as the server graded them.
+function problemsOf(r) {
+  if (r.problems) return r.problems;
+  if (!r.answers || !r.seed) return null;
+  const sec = lessons.flatMap((l) => l.sections).find((x) => x.id === r.section);
+  return replayPractice({ generators, rules, seed: r.seed, plan: { generator: sec.generator, mode: sec.mode, review: r.review === true } }, r.answers).result().problems;
+}
+
+function sectionHistory(summary, detail) {
+  const r = { ...summary, ...(detail || {}) };
+  const problems = problemsOf(r);
   const d = h('details', 't-history');
-  const firstTry = r.problems.filter((p) => p.outcome === 'right-first').length;
-  const mins = Math.round(r.times.reduce((n, x) => n + x, 0) / 60000);
+  const count = r.problemCount ?? problems?.length ?? 0;
+  const firstTry = r.firstTry ?? problems.filter((p) => p.outcome === 'right-first').length;
+  const mins = Math.round((r.seconds ?? r.times.reduce((n, x) => n + x, 0) / 1000) / 60);
   const sum = h('summary', 't-history-sum');
   sum.append(
-    h('span', 't-history-title', `${sectionTitle.get(r.section)}${r.attemptNo > 1 ? ` (try ${r.attemptNo})` : ''}`),
-    h('span', 't-card-sub', `${day(r.finishedAt)} · ${ENDED[r.endedBy] || r.endedBy} · ${firstTry}/${r.problems.length} right first try · ${mins} min`),
+    h('span', 't-history-title', `${r.review ? 'Quick review: ' : ''}${sectionTitle.get(r.section)}${r.attemptNo > 1 ? ` (try ${r.attemptNo})` : ''}`),
+    h('span', 't-card-sub', `${day(r.finishedAt)} · ${ENDED[r.endedBy] || r.endedBy} · ${firstTry}/${count} right first try · ${mins} min`),
   );
   d.append(sum);
+  if (!problems) {
+    d.append(h('p', 't-hint', 'Loading answers…'));
+    return d;
+  }
   const log = h('div', 'log');
   const head = h('div', 'log-row log-head');
   ['#', 'Problem', 'Answers', 'Result', 'Level'].forEach((t) => head.append(h('span', '', t)));
   log.append(head);
-  r.problems.forEach((p, i) => {
+  problems.filter((p) => p.outcome).forEach((p, i) => {
     const problem = toText(generateProblem(p.generator, p.seed, p.difficulty).expression);
     const row = h('div', 'log-row');
     const mis = p.attempts.map((a) => a.misconception).filter(Boolean).map((m) => m.replace('frac.', ''));

@@ -15,6 +15,7 @@ import { startPractice } from '../engine/practice/practice.js';
 import { buildPath } from '../engine/lessons/path.js';
 import { reduce } from '../engine/math/fraction.js';
 import { simulatedStudent } from './simulated-student.js';
+import { sectionSummary } from '../engine/teacher/section-summary.js';
 
 const DAY = 24 * 60 * 60 * 1000;
 
@@ -167,6 +168,7 @@ function practiseSection({ rng, generators, rules, sec, lesson, code, seed, atte
     seed, attemptNo, curriculumVersion, startedAt: iso(at), finishedAt: iso(finishedAt),
     answers, times, scaffolds: {}, hintsShown: [],
     endedBy: result.endedBy, passed: result.passed, provisionalMastery: result.provisionalMastery, problems: result.problems,
+    ...sectionSummary(result, times),
   };
 }
 

@@ -13,7 +13,7 @@ export function participation({ diagnostic, sections = [], hasWork = true }, { n
   const start = end - windowDays * DAY;
   const events = [];
   if (diagnostic) events.push({ at: diagnostic.finishedAt, ms: sum(diagnostic.times), section: false });
-  for (const r of sections) events.push({ at: r.finishedAt, ms: sum(r.times), section: true });
+  for (const r of sections) events.push({ at: r.finishedAt, ms: r.seconds !== undefined ? r.seconds * 1000 : sum(r.times), section: true });
 
   const inWindow = events.filter((e) => {
     const t = new Date(e.at).getTime();

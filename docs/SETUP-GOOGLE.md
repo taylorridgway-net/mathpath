@@ -59,6 +59,12 @@ If the access list doesn't offer "Anyone within [your school]", the district may
 2. On a Chromebook (or a private browser window), open the student link, sign in with one of the codes, and take the fractions check.
 3. Reload the dashboard. The pretend student shows up. The spreadsheet has one row per finished check or section.
 
+## Speed check (once, for the load test)
+
+1. In the editor, open **Code.gs**, choose **speedCheck** in the function dropdown, and click **Run**.
+2. The log at the bottom lists how long each spreadsheet step took and ends with "One save takes about N ms".
+3. Tell Claude that number. It replaces the guess in the load test. It uses a scratch tab that it deletes again; your data isn't touched.
+
 ## Updating later
 
 When Claude changes the app:

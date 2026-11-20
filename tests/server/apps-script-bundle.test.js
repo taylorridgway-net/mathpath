@@ -66,6 +66,15 @@ test('setup, then a teacher adds a class and students, and a student signs in', 
   assert.equal(context.apiTeacher('teacherData', []).error, 'not-a-teacher');
 });
 
+test('speedCheck times the save steps on a scratch tab and removes it again', async () => {
+  const { context, spreadsheet } = await googleWorld();
+  context.setup();
+  const tabs = spreadsheet.getSheets().length;
+  const r = context.speedCheck();
+  assert.equal(typeof r.save, 'number');
+  assert.equal(spreadsheet.getSheets().length, tabs, 'scratch tab deleted');
+});
+
 test('only the allowed calls get through', async () => {
   const { context } = await googleWorld();
   context.setup();

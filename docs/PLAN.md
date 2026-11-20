@@ -184,7 +184,9 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
 - **Google layer (step 6) built:** `server/core/` (sign-in, saving with re-grading and no rerolls, teacher actions, teachers see only their classes), `server/apps-script/` (entry points, Sheets store with LockService), `web/api/client.js`, sign-in screen, "Not you? Sign out", nickname, upload status and retry, live dashboard (loads from the server; add classes and students; all actions saved and logged). Tested with fake Google services, including the real built `Code.js`, and an end-to-end browser run of the real Google files (teacher adds students, student signs in, diagnostic, teacher clears checks, section done offline then uploaded, teacher sees it).
 - **Owner deployed it** to the school Google account and tested as a student (2026-11-20). That test found that a "shaky" result left the path empty; fixed with the Quick review (CLAUDE.md). The owner pastes updated files and makes a new deployment version after each change (docs/SETUP-GOOGLE.md, "Updating later").
 - **Not built yet:** teacher assignments and exemptions, path reordering, due dates; retention checks; the simulated-class load test (step 7, next after the owner's first deploy).
-- **Next:** fix whatever the first real deploy turns up; then step 7, the load test (a pretend class of up to 6 x 45 students saving at once against the Sheets store).
+- **Load test (step 7) built:** `npm run load-test`. Part 1 runs 6 x 45 pretend students through the real server and Sheets store: 3 reads + 2 writes per save whatever the sheet size, no duplicates with retried saves, Sections rows ~550 chars, dashboard data ~0.5 MB. Part 2 MODELS Google's timing from an assumed time per save (default 1.5 s): a whole period saving at the bell gets some "busy" replies and is fully saved within ~2 minutes by automatic retries. Changes made from it: the dashboard reads only summary columns (answers fetched per student on the profile page), a save never re-reads past saves, columns are read by header name (new columns are added automatically), busy saves retry after 15 s / 30 s / 1 min / 2 min with jitter.
+- **Waiting on owner:** run `speedCheck()` in the Apps Script editor (docs/SETUP-GOOGLE.md) and report the "one save takes about N ms" number; Claude reruns `npm run load-test -- --save-ms N`. If the bell scenario looks bad with the real number, the next fix is to do the re-grading outside the lock (shorter lock time).
+- **Next:** the build-order decision (whole-number skills first, or the rest of fractions); teacher assignments/exemptions; retention checks.
 
 ## 4. Build order for the fractions prototype
 
@@ -194,7 +196,7 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
 4. Student UI: math keypad, lesson player, practice, local save/retry. **(Done for `frac.add-sub`; sending saves to the server comes with step 6.)**
 5. Teacher dashboard: class view, heatmap, student profile, printable paper tests, verification entry. **(Done against a pretend class; assignments/exemptions come with step 6.)**
 6. Apps Script layer: deploy, code login, teacher Google login, batched save with LockService, server-chosen seeds, server re-grading. **(Built and tested here; owner's first deploy pending.)**
-7. Simulated-class load test with synthetic students.
+7. Simulated-class load test with synthetic students. **(Built: `npm run load-test`; real Google timing from `speedCheck()` pending.)**
 8. Fill in the remaining fraction skills (1-4, 6-8) end to end.
 
 ---

@@ -56,7 +56,8 @@ export function recentMisconceptions(student, since) {
   }
   for (const r of student.sections || []) {
     if (new Date(r.finishedAt).getTime() < since) continue;
-    for (const p of r.problems || []) for (const a of p.attempts || []) if (a.misconception) seen.add(a.misconception);
+    if (r.misconceptions) for (const id of r.misconceptions) seen.add(id);
+    else for (const p of r.problems || []) for (const a of p.attempts || []) if (a.misconception) seen.add(a.misconception);
   }
   return [...seen];
 }

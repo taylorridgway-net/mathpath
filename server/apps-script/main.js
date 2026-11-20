@@ -5,6 +5,8 @@
 // Functions Google calls:
 //   setup()                    run ONCE by hand from the Apps Script editor: makes the
 //                              spreadsheet and adds you as a teacher
+//   speedCheck()               run by hand: times the spreadsheet steps a save makes,
+//                              on a scratch tab it deletes again (no real data touched)
 //   doGet(e)                   serves the student page, or the dashboard with ?page=teacher
 //   apiStudent(name, args)     student requests (sign in, save); students need no Google account
 //   apiTeacher(name, args)     teacher requests; Google tells us who is signed in
@@ -26,7 +28,7 @@ import { createSheetsStore, ensureTabs } from './store-sheets.js';
 
 const SHEET_ID_KEY = 'MATHPATH_SPREADSHEET_ID';
 const STUDENT_CALLS = ['login', 'saveRecord', 'setNickname'];
-const TEACHER_CALLS = ['teacherData', 'addClass', 'addStudents', 'resetCode', 'clearFoundation', 'verify'];
+const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents', 'resetCode', 'clearFoundation', 'verify'];
 
 const setupData = {
   graph: buildGraphIndex(domainsIndex, { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph }),
@@ -69,6 +71,39 @@ export function setup() {
   if (sheet1 && spreadsheet.getSheets().length > 1) spreadsheet.deleteSheet(sheet1);
   Logger.log(`MathPath is set up. Data spreadsheet: ${spreadsheet.getUrl()}  Teacher: ${me}`);
   return spreadsheet.getUrl();
+}
+
+// How long the spreadsheet steps of one save take on Google, for the load test
+// (npm run load-test -- --save-ms N). Uses a scratch tab, then deletes it.
+export function speedCheck() {
+  const ms = {};
+  const time = (name, fn) => {
+    const t = Date.now();
+    const out = fn();
+    ms[name] = Date.now() - t;
+    return out;
+  };
+  const spreadsheet = time('open the spreadsheet', openSpreadsheet);
+  const students = spreadsheet.getSheetByName('Students');
+  time('read the Students tab', () => students.getRange(1, 1, Math.max(1, students.getLastRow()), students.getLastColumn()).getValues());
+  const scratch = spreadsheet.insertSheet(`SpeedCheck ${Date.now()}`);
+  try {
+    time('read a header row', () => scratch.getLastRow());
+    time('add a row', () => scratch.appendRow(['speed', 'check', JSON.stringify({ answers: new Array(30).fill({ num: 3, den: 4 }) })]));
+    time('update a row', () => scratch.getRange(1, 1, 1, 3).setValues([['speed', 'check', 'again']]));
+    time('take and release the lock', () => {
+      const lock = LockService.getScriptLock();
+      lock.waitLock(25000);
+      lock.releaseLock();
+    });
+  } finally {
+    spreadsheet.deleteSheet(scratch);
+  }
+  // A save: open + read Students + read Sections header + add a row + update the student row, inside the lock.
+  const save = ms['open the spreadsheet'] + ms['read the Students tab'] + ms['read a header row'] + ms['add a row'] + ms['update a row'] + ms['take and release the lock'];
+  const lines = Object.entries(ms).map(([k, v]) => `${k}: ${v} ms`);
+  Logger.log(`${lines.join('\n')}\nOne save takes about ${save} ms. Tell Claude this number (for npm run load-test -- --save-ms ${save}).`);
+  return { ...ms, save };
 }
 
 export function doGet(e) {

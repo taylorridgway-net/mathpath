@@ -129,9 +129,16 @@ function saveStatus() {
   return el;
 }
 
-// Send queued records in order. Stop at a dropped connection; retry on next load.
+// Send queued records in order. If the server is busy (a whole class saving at
+// once) or the connection drops, try again after 15 s, 30 s, 1 min, 2 min, then
+// every 2 min while the page is open; and always on the next load.
+const RETRY_SECONDS = [15, 30, 60, 120];
+let retries = 0;
+let retryTimer = null;
+
 async function upload() {
   if (!profile || uploadState === 'uploading') return;
+  clearTimeout(retryTimer);
   uploadState = 'uploading';
   for (const record of outbox()) {
     const res = await api.student('saveRecord', profile.code, record);
@@ -142,6 +149,10 @@ async function upload() {
     } else if (['network', 'busy', 'server'].includes(res.error)) {
       uploadState = 'offline';
       refreshStatus();
+      const wait = RETRY_SECONDS[Math.min(retries, RETRY_SECONDS.length - 1)];
+      retries++;
+      // A little randomness, so a whole class doesn't retry in the same second.
+      retryTimer = setTimeout(upload, (wait + Math.random() * 10) * 1000);
       return;
     } else if (res.error === 'unknown-code') {
       uploadState = 'idle';
@@ -151,6 +162,7 @@ async function upload() {
     }
   }
   uploadState = 'idle';
+  retries = 0;
   refreshStatus();
 }
 

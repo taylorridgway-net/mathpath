@@ -19,54 +19,93 @@ export const TABS = {
   Students: ['id', 'code', 'nickname', 'classId', 'createdAt', 'retired', 'summary'],
   Roster: ['studentId', 'classId', 'realName'],
   Diagnostics: ['studentId', 'saveId', 'attemptNo', 'seed', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'questionCount', 'rootGaps', 'data'],
-  Sections: ['studentId', 'saveId', 'section', 'attemptNo', 'endedBy', 'passed', 'provisionalMastery', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'data'],
+  // Summary columns first (what the dashboard reads); the bulky answers stay in "data".
+  Sections: ['studentId', 'saveId', 'lesson', 'section', 'attemptNo', 'review', 'endedBy', 'passed', 'provisionalMastery',
+    'problemCount', 'firstTry', 'seconds', 'misconceptions', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'data'],
   Verifications: ['studentId', 'skillId', 'version', 'score', 'outOf', 'suggested', 'decision', 'attempt', 'by', 'at', 'marks'],
   Clearances: ['studentId', 'gap', 'by', 'at'],
   Log: ['at', 'by', 'studentId', 'what', 'before', 'after'],
 };
-const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks']);
+const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks', 'misconceptions']);
+const BOOLEAN_COLUMNS = new Set(['retired', 'review', 'passed', 'provisionalMastery']);
 const KIND_TAB = { diagnostics: 'Diagnostics', sections: 'Sections', verifications: 'Verifications', clearances: 'Clearances', log: 'Log' };
 
-// Make the tabs (with header rows) if they don't exist yet. Safe to run again.
+// Make the tabs (with header rows) if they don't exist yet, and add any columns
+// a newer version of MathPath needs. Safe to run again; never removes anything.
 export function ensureTabs(spreadsheet) {
-  for (const [name, columns] of Object.entries(TABS)) {
+  for (const name of Object.keys(TABS)) {
     let sheet = spreadsheet.getSheetByName(name);
     if (!sheet) sheet = spreadsheet.insertSheet(name);
-    if (sheet.getLastRow() === 0) {
-      sheet.appendRow(columns);
-      sheet.setFrozenRows(1);
-    }
+    headerOf(sheet, name);
   }
 }
 
-export function createSheetsStore({ spreadsheet, lockService }) {
-  const cache = new Map(); // tab -> { sheet, rows: [object], index of first data row = 2 }
-
-  function table(tab) {
-    if (!cache.has(tab)) {
-      const sheet = spreadsheet.getSheetByName(tab);
-      if (!sheet) throw new Error(`The spreadsheet has no "${tab}" tab. Run setup() once.`);
-      const values = sheet.getDataRange().getValues();
-      const columns = TABS[tab];
-      const rows = values.slice(1).filter((r) => r.some((v) => v !== '')).map((r) => fromRow(columns, r));
-      cache.set(tab, { sheet, rows });
+// The tab's header row, after adding any missing columns. New columns go just
+// before "data", so "data" stays last and the dashboard can skip it.
+function headerOf(sheet, tab) {
+  const wanted = TABS[tab];
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(wanted);
+    sheet.setFrozenRows(1);
+    return [...wanted];
+  }
+  const header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0].map(String);
+  for (const col of wanted) {
+    if (header.includes(col)) continue;
+    const dataAt = header.indexOf('data');
+    if (dataAt >= 0) {
+      sheet.insertColumnBefore(dataAt + 1);
+      sheet.getRange(1, dataAt + 1, 1, 1).setValues([[col]]);
+      header.splice(dataAt, 0, col);
+    } else {
+      sheet.getRange(1, header.length + 1, 1, 1).setValues([[col]]);
+      header.push(col);
     }
-    return cache.get(tab);
+  }
+  return header;
+}
+
+export function createSheetsStore({ spreadsheet, lockService }) {
+  const headers = new Map(); // tab -> { sheet, header }
+  const cache = new Map(); // `${tab}|full` or `${tab}|summary` -> rows
+
+  function tab(name) {
+    if (!headers.has(name)) {
+      const sheet = spreadsheet.getSheetByName(name);
+      if (!sheet) throw new Error(`The spreadsheet has no "${name}" tab. Run setup() once.`);
+      headers.set(name, { sheet, header: headerOf(sheet, name) });
+    }
+    return headers.get(name);
   }
 
-  function append(tab, obj) {
-    const t = table(tab);
-    t.sheet.appendRow(toRow(TABS[tab], obj));
-    t.rows.push(obj);
+  // All rows of a tab. summary: leave out the "data" column (it's last), so the
+  // dashboard doesn't pull every answer ever given.
+  function rows(name, { summary = false } = {}) {
+    const key = `${name}|${summary ? 'summary' : 'full'}`;
+    if (!cache.has(key)) {
+      const { sheet, header } = tab(name);
+      const lastRow = sheet.getLastRow();
+      const width = summary && header[header.length - 1] === 'data' ? header.length - 1 : header.length;
+      const values = lastRow < 2 ? [] : sheet.getRange(2, 1, lastRow - 1, width).getValues();
+      cache.set(key, values.filter((r) => r.some((v) => v !== '')).map((r) => fromRow(header.slice(0, width), r)));
+    }
+    return cache.get(key);
   }
 
-  function upsert(tab, key, obj) {
-    const t = table(tab);
-    const i = t.rows.findIndex((r) => r[key] === obj[key]);
-    if (i < 0) return append(tab, obj);
-    const columns = TABS[tab];
-    t.sheet.getRange(i + 2, 1, 1, columns.length).setValues([toRow(columns, obj)]);
-    t.rows[i] = obj;
+  // Add a row without reading the tab (a save never re-reads past saves).
+  function append(name, obj) {
+    const { sheet, header } = tab(name);
+    sheet.appendRow(toRow(header, obj));
+    for (const key of [`${name}|full`, `${name}|summary`]) if (cache.has(key)) cache.get(key).push(obj);
+  }
+
+  function upsert(name, key, obj) {
+    const all = rows(name);
+    const i = all.findIndex((r) => r[key] === obj[key]);
+    if (i < 0) return append(name, obj);
+    const { sheet, header } = tab(name);
+    sheet.getRange(i + 2, 1, 1, header.length).setValues([toRow(header, obj)]);
+    all[i] = obj;
   }
 
   const copy = (x) => (x ? JSON.parse(JSON.stringify(x)) : x);
@@ -74,7 +113,7 @@ export function createSheetsStore({ spreadsheet, lockService }) {
   return {
     withLock(fn) {
       const lock = lockService.getScriptLock();
-      lock.waitLock(20000); // throws if it can't get the lock in 20 s; the browser retries later
+      lock.waitLock(25000); // throws if it can't get the lock in 25 s; the browser retries
       try {
         cache.clear(); // someone may have written while we waited
         return fn();
@@ -82,26 +121,27 @@ export function createSheetsStore({ spreadsheet, lockService }) {
         lock.releaseLock();
       }
     },
-    isTeacher: (email) => table('Teachers').rows.some((r) => String(r.email).toLowerCase() === String(email).toLowerCase()),
+    isTeacher: (email) => rows('Teachers').some((r) => String(r.email).toLowerCase() === String(email).toLowerCase()),
     addTeacher(email) {
       if (!this.isTeacher(email)) append('Teachers', { email: email.toLowerCase() });
     },
-    getStudent: (id) => copy(table('Students').rows.find((s) => s.id === id)),
-    getStudentByCode: (code) => copy(table('Students').rows.find((s) => s.code === code)),
+    getStudent: (id) => copy(rows('Students').find((s) => s.id === id)),
+    getStudentByCode: (code) => copy(rows('Students').find((s) => s.code === code)),
     putStudent: (student) => upsert('Students', 'id', copy(student)),
-    listStudents: (classIds) => copy(table('Students').rows.filter((s) => classIds.includes(s.classId))),
-    listClasses: (email) => copy(table('Classes').rows.filter((c) => String(c.teacherEmail).toLowerCase() === String(email).toLowerCase())),
+    listStudents: (classIds) => copy(rows('Students').filter((s) => classIds.includes(s.classId))),
+    listClasses: (email) => copy(rows('Classes').filter((c) => String(c.teacherEmail).toLowerCase() === String(email).toLowerCase())),
     putClass: (cls) => upsert('Classes', 'id', copy(cls)),
-    listRoster: (ids) => copy(table('Roster').rows.filter((r) => ids.includes(r.studentId))),
+    listRoster: (ids) => copy(rows('Roster').filter((r) => ids.includes(r.studentId))),
     putRoster: (row) => upsert('Roster', 'studentId', copy(row)),
     appendRecord(kind, row) {
-      const tab = KIND_TAB[kind];
-      if (!tab) throw new Error(`Unknown record kind ${kind}`);
-      append(tab, copy(row));
+      const name = KIND_TAB[kind];
+      if (!name) throw new Error(`Unknown record kind ${kind}`);
+      append(name, copy(row));
     },
-    listRecords(kind, ids) {
+    // summary: true leaves out each record's "data" (answers, timing): for the dashboard.
+    listRecords(kind, ids, { summary = false } = {}) {
       const set = new Set(ids);
-      return copy(table(KIND_TAB[kind]).rows.filter((r) => set.has(r.studentId)));
+      return copy(rows(KIND_TAB[kind], { summary }).filter((r) => set.has(r.studentId)));
     },
   };
 }
@@ -135,7 +175,7 @@ function fromRow(columns, values) {
       obj[c] = v === '' ? null : v;
     }
   });
-  if (columns.includes('retired')) obj.retired = obj.retired === true || obj.retired === 'TRUE';
+  for (const c of columns) if (BOOLEAN_COLUMNS.has(c)) obj[c] = obj[c] === true || obj[c] === 'TRUE';
   return obj;
 }
 
