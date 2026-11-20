@@ -80,6 +80,16 @@ const bundleFor = async (entry, forGoogle) => (await build({
   legalComments: 'none',
 })).outputFiles[0].text.replace(/<\/script/gi, '<\\/script'); // a literal "</script" would end the tag early
 
+// Google's page server treats "//" as the start of a comment even inside quotes
+// (found by the owner: "http://www.w3.org/2000/svg" was cut off at "http:", and the
+// page never started). So in the Google copy, "//" inside code is written "\\/\\/",
+// which means the same thing in JavaScript, and whole-line comments are dropped.
+function googleSafe(js, name) {
+  const out = js.split('\n').filter((line) => !/^\s*\/\//.test(line)).join('\n').replace(/\/\//g, '\\/\\/');
+  if (/\/\//.test(out)) throw new Error(`${name}.html for Google still has "//" in its code`);
+  return out;
+}
+
 // CSS for the Google copy: no comments, and any non-ASCII character as a CSS escape.
 const asciiCss = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/[^\x00-\x7f]/g, (c) => `\\${c.codePointAt(0).toString(16)} `);
 
@@ -114,7 +124,7 @@ for (const page of PAGES) {
   const googleHead = [`<title>${page.title}</title>`, `<style>\n${asciiCss(css)}</style>`].join('\n');
   const googlePage = '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
     + '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-    + `${googleHead}\n</head>\n<body>\n${bodyWith(asciiJs(await bundleFor(page.entry, true)))}\n</body>\n</html>\n`;
+    + `${googleHead}\n</head>\n<body>\n${bodyWith(googleSafe(asciiJs(await bundleFor(page.entry, true)), page.name))}\n</body>\n</html>\n`;
   const bad = googlePage.match(/[^\x00-\x7f]/);
   if (bad) throw new Error(`${page.name}.html for Google has a non-ASCII character: ${bad[0]}`);
   mkdirSync(new URL('dist/apps-script/', root), { recursive: true });
