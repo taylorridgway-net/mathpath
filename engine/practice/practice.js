@@ -37,12 +37,15 @@ export function startPractice({ generators, plan, rules, seed }) {
   // to the check. Any problem not right on the first try ends the review, and the
   // student then does the full section.
   const review = Boolean(plan.review) && mode === 'section';
-  let phase = review ? 'check' : 'guided';
+  // Practice for a check (mode 'practice'): a fixed set of whole problems at set
+  // difficulties, like the teacher's paper test. Never gives or takes away mastery.
+  const practiceSet = mode === 'practice' ? plan.difficulties : null;
+  let phase = practiceSet ? 'practice' : review ? 'check' : 'guided';
   let current = null;
   let endedBy = null;
   let skillDifficulty = skillRule.startDifficulty;
 
-  newProblem(review ? checkRule.difficulty : guidedRule.difficulty);
+  newProblem(practiceSet ? practiceSet[0] : review ? checkRule.difficulty : guidedRule.difficulty);
 
   function newProblem(difficulty) {
     const index = problems.length;
@@ -74,6 +77,11 @@ export function startPractice({ generators, plan, rules, seed }) {
         return newProblem(mode === 'skill' ? skillDifficulty : checkRule.difficulty);
       }
       return newProblem(guidedRule.difficulty);
+    }
+
+    if (phase === 'practice') {
+      if (inPhase.length >= practiceSet.length) return end('done');
+      return newProblem(practiceSet[inPhase.length]); // after a miss this is the "similar problem"
     }
 
     if (phase === 'check') {

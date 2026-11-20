@@ -118,3 +118,10 @@ test('after "send back to redo": the old mastery and the old paper test no longe
   const redone = [...sections, record(`${SKILL}.whole`, { mastery: true, at: '2026-11-14T10:00:00Z' })];
   assert.equal(status({ diagnosticResult: gapCombine, sections: redone, verifications: [notYet], resets }).skills[SKILL], 'platform');
 });
+
+test('practice sets count as activity (days, minutes) and on their own; not as sections', () => {
+  const now = '2026-11-19T12:00:00Z';
+  const practice = [{ finishedAt: '2026-11-17T10:00:00Z', seconds: 600 }];
+  const p = participation({ sections: [], practice }, { now, expectedSections: 1 });
+  assert.deepEqual([p.daysActive, p.practiceSets, p.sectionsFinished, p.minutes, p.inactive], [1, 1, 0, 10, false]);
+});

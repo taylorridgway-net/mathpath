@@ -27,12 +27,13 @@ import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
 import { seedFor } from '../../engine/seeds.js';
-import { practicePlan } from '../../engine/lessons/plan.js';
+import { practicePlan, practiceSetPlan } from '../../engine/lessons/plan.js';
 import { h, section as screenEl, btn, swap, split } from '../components/dom.js';
 
 const PHASE_NAMES = {
   guided: 'Practice with help',
   check: 'Check',
+  practice: 'Practice for a check',
   mastery: 'Mastery check',
 };
 
@@ -41,7 +42,11 @@ const PHASE_NAMES = {
 // review: a quick review (the diagnostic marked this subskill "shaky"): straight to
 // the check; a miss ends it, and openFull() starts the full section.
 export function openSection({ app, lesson, sectionId, rules, curriculumVersion, studentId, nextAttempt, onFinished, onExit, review = false, openFull }) {
-  const sec = lesson.sections.find((s) => s.id === sectionId);
+  // "practice:<skill>" is practice for a check: the skill's whole problems, like the paper test.
+  const practicing = sectionId === `practice:${lesson.skill}`;
+  const sec = practicing
+    ? { id: sectionId, title: `Practice for a check: ${lesson.title}`, mode: 'practice', generator: lesson.skill, forGap: lesson.skill, explain: [], visual: null }
+    : lesson.sections.find((s) => s.id === sectionId);
   if (!sec) throw new Error(`No section "${sectionId}"`);
 
   let run = loadProgress(sectionId);
@@ -53,7 +58,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       seed: seedFor(studentId, sectionId, attemptNo),
       attemptNo,
       review: review && sec.mode === 'section',
-      stage: review && sec.mode === 'section' ? 'practice' : 'learn',
+      stage: practicing || (review && sec.mode === 'section') ? 'practice' : 'learn',
       answers: [],
       times: [],
       scaffolds: {}, // practice problem index -> step answers
@@ -66,7 +71,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     generators,
     rules,
     seed: run.seed,
-    plan: practicePlan(sec, { review: run.review }),
+    plan: practicing ? practiceSetPlan(lesson.skill, rules) : practicePlan(sec, { review: run.review }),
   };
   let practice;
   try {
@@ -239,7 +244,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       const cols = split();
       cols.main.append(problemCard(cur.problem));
       cols.main.append(feedbackBox(cur.feedback, sec.generator, run.answers.at(-1)));
-      if (cur.phase === 'guided') cols.main.append(hintToggle(cur.index, lesson.hints[sec.generator]));
+      if (cur.phase === 'guided' || cur.phase === 'practice') cols.main.append(hintToggle(cur.index, lesson.hints[sec.generator]));
       const answerHost = h('div', '');
       cols.side.append(answerHost);
       screen.append(cols.el);
@@ -251,7 +256,10 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
   function progressBar(cur) {
     const bar = h('div', 'progress');
     const done = practice.result().problems.filter((p) => p.phase === cur.phase && p.outcome);
-    if (cur.phase === 'guided') {
+    if (cur.phase === 'practice') {
+      bar.append(h('span', 'progress-text', `Problem ${Math.min(done.length + 1, rules.practice.difficulties.length)} of ${rules.practice.difficulties.length} · hints are fine here`));
+      bar.append(dots(Array.from({ length: rules.practice.difficulties.length }, (_, i) => (i >= done.length ? 'empty' : done[i].outcome === 'right-first' ? 'yes' : 'no'))));
+    } else if (cur.phase === 'guided') {
       const right = done.filter((p) => p.outcome !== 'missed').length;
       bar.append(h('span', 'progress-text', `Problem ${done.length + 1} · ${right} of ${rules.guided.rightNeeded} solved`));
     } else if (cur.phase === 'check' && sec.check?.outOf) {
@@ -464,7 +472,22 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
 
   function showDone() {
     const result = practice.result();
-    const record = {
+    const record = practicing ? {
+      type: 'practice-set',
+      saveId: `${run.seed}|${run.startedAt}`,
+      studentId,
+      skill: lesson.skill,
+      section: sectionId,
+      seed: run.seed,
+      attemptNo: run.attemptNo,
+      curriculumVersion,
+      startedAt: run.startedAt,
+      finishedAt: new Date().toISOString(),
+      answers: run.answers,
+      times: run.times,
+      hintsShown: run.hintsShown,
+      endedBy: result.endedBy,
+    } : {
       type: 'lesson-section',
       saveId: `${run.seed}|${run.startedAt}`,
       studentId,
@@ -497,7 +520,16 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
 
     const screen = frame('Done');
     const firstTry = result.problems.filter((p) => p.outcome === 'right-first').length;
-    if (result.provisionalMastery) {
+    if (practicing) {
+      // Compared with the paper test the teacher gives (5 of 6), so students know where they stand.
+      const { minScore, outOf } = rules.verification;
+      const ready = firstTry >= minScore;
+      screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', `${firstTry} of ${result.problemCount} right on the first try`));
+      screen.append(h('p', 'lede', ready
+        ? `On paper, your teacher looks for ${minScore} of ${outOf}. You’re there: you could ask for your check.`
+        : `On paper, your teacher looks for ${minScore} of ${outOf}. Practice again, or look back at the lesson for the problems that tripped you up.`));
+      screen.append(h('p', 'fine', 'Practice never changes your progress. It just helps you get ready.'));
+    } else if (result.provisionalMastery) {
       screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'You showed you can do the whole thing'));
       screen.append(h('p', 'lede', 'This counts as platform mastery for now. Your teacher will check it with a short problem set on paper.'));
     } else if (result.passed && run.review) {
@@ -513,9 +545,11 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
       screen.append(h('p', 'eyebrow', sec.title), h('h1', 'title', 'Let’s stop here for now'));
       screen.append(h('p', 'lede', 'That was a lot of problems. Your teacher will see which ones were tricky. You can come back to this section later.'));
     }
-    screen.append(h('p', 'fine', `${result.problemCount} problems · ${firstTry} right on the first try`));
+    if (!practicing) screen.append(h('p', 'fine', `${result.problemCount} problems · ${firstTry} right on the first try`));
     const actions = h('div', 'actions');
-    if (result.endedBy === 'review-missed' && openFull) {
+    if (practicing) {
+      actions.append(btn('button button-primary', 'Practice again', openFull), btn('button', 'Back to your path', onExit));
+    } else if (result.endedBy === 'review-missed' && openFull) {
       actions.append(btn('button button-primary', 'Start the full section', openFull), btn('button', 'Back to your path', onExit));
     } else {
       actions.append(btn('button button-primary', 'Back to your path', onExit));

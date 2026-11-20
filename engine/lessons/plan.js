@@ -4,6 +4,12 @@
 // the same session, or the server would grade a different session than the one
 // the student did.
 
+// Practice for a check: the skill's whole problems, as many and as hard as
+// curriculum/mastery.json "practice" says (like the paper test: 6 problems).
+export function practiceSetPlan(skillId, rules) {
+  return { generator: skillId, mode: 'practice', difficulties: [...rules.practice.difficulties] };
+}
+
 export function practicePlan(section, { review = false } = {}) {
   return {
     generator: section.generator,

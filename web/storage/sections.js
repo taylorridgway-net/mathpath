@@ -46,7 +46,7 @@ export function finishedRecords(sectionId) {
 
 // Keep a finished record and queue it for the server.
 export function saveFinished(record) {
-  if (record.type === 'lesson-section') saveLocal(key('section-records'), [...finishedRecords(), record]);
+  if (record.type !== 'diagnostic') saveLocal(key('section-records'), [...finishedRecords(), record]);
   saveLocal(key('outbox'), [...outbox(), record]);
 }
 

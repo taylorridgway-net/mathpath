@@ -307,7 +307,7 @@ function showDone() {
   next.append(pathList(path));
   const grid = h('div', 'path-grid');
   grid.append(next, strong);
-  screen.append(grid);
+  screen.append(grid, practiceCard());
 
   if (api.preview) {
     screen.append(teacherView(result), previewSections());
@@ -449,6 +449,50 @@ async function refreshFromServer() {
     loadDiagnostic();
   }
   route();
+}
+
+// ---------- practice for a check (the student's choice) ----------
+
+// Any skill, any time, to get ready for the teacher's paper test. Skills with
+// platform mastery (waiting for the paper check) come first.
+function practiceCard() {
+  const card = h('div', 'done-block practice-card');
+  card.append(h('h2', 'block-title', 'Practice for a check'));
+  card.append(h('p', 'path-note', `${masteryRules.default.practice.difficulties.length} problems like your teacher’s paper test, with hints. Practice never changes your progress.`));
+  const resetAt = (skill) => profile.summary.resets?.[skill] || '';
+  const mastered = (skill) => profile.summary.mastered?.includes(skill)
+    || finishedRecords().some((r) => r.lesson === skill && r.provisionalMastery && String(r.finishedAt) > resetAt(skill));
+  const ordered = [...lessons].sort((a, b) => Number(mastered(b.skill)) - Number(mastered(a.skill)));
+  const ol = h('ol', 'path');
+  for (const lesson of ordered) {
+    const li = h('li', 'path-item');
+    const text = h('div', 'path-text');
+    text.append(h('span', 'path-title', lesson.title));
+    if (mastered(lesson.skill)) text.append(pill('Ready for your teacher’s check', 'good'));
+    const sets = finishedRecords(`practice:${lesson.skill}`).length;
+    if (sets) text.append(h('span', 'path-note', `${sets} practice set${sets === 1 ? '' : 's'} done`));
+    li.append(text, btn('button', loadProgress(`practice:${lesson.skill}`) ? 'Continue' : 'Practice', () => goToPractice(lesson.skill)));
+    ol.append(li);
+  }
+  card.append(ol);
+  return card;
+}
+
+function goToPractice(skill) {
+  const lesson = lessons.find((l) => l.skill === skill);
+  const id = `practice:${skill}`;
+  openSection({
+    app,
+    lesson,
+    sectionId: id,
+    rules: masteryRules.default,
+    curriculumVersion: graph.curriculumVersion,
+    studentId: profile.id,
+    nextAttempt: () => Math.max(profile.summary.practiceAttempts?.[skill] || 0, finishedRecords(id).length) + 1,
+    onFinished: () => upload(),
+    onExit: route,
+    openFull: () => goToPractice(skill), // "Practice again"
+  });
 }
 
 function goToSection(sectionId, { review = false } = {}) {

@@ -203,3 +203,21 @@ test('facts check: a second miss ends it, not passed (no 20-problem marathon)', 
   assert.equal(result.passed, false);
   assert.ok(result.problems.filter((x) => x.phase === 'check').length <= 10);
 });
+
+// ---- practice for a check (student's choice) ----
+const practiceSetup = { generators, rules, seed: 'p1', plan: { generator: 'frac.add-sub', mode: 'practice', difficulties: [2, 2, 3, 3, 3, 3] } };
+
+test('practice for a check: exactly 6 whole problems at the planned levels; never mastery', () => {
+  const { result } = run(practiceSetup, (pr) => right(pr));
+  assert.equal(result.endedBy, 'done');
+  assert.deepEqual(result.problems.map((x) => x.difficulty), [2, 2, 3, 3, 3, 3]);
+  assert.equal(result.provisionalMastery, false);
+  assert.equal(result.passed, false);
+});
+
+test('practice for a check: a miss gets the usual help, and the set still ends after 6', () => {
+  const { result, responses } = run(practiceSetup, (pr, attempt, i) => (i === 1 ? {} : right(pr)));
+  assert.equal(responses[1].showSolutionFor, 1, 'worked solution after "not sure"');
+  assert.equal(result.problems.length, 6);
+  assert.equal(result.problems.filter((x) => x.outcome === 'right-first').length, 5);
+});

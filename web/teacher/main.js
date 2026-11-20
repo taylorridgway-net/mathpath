@@ -102,6 +102,7 @@ function buildClass(then = render) {
       diagnostic: diagnostic && { ...diagnostic, result },
       result,
       sections: data.sections.filter((r) => r.code === s.code),
+      practice: (data.practice || []).filter((r) => r.code === s.code),
     };
   });
   refresh();
@@ -117,7 +118,7 @@ function refresh() {
     s.resets = [...(data.resets || []), ...(live ? [] : store.resets || [])].filter((r) => r.code === s.code);
     s.status = studentStatus({ diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, resets: s.resets, graph, lessons, waitForTeacher: rules.paths?.waitForTeacherChecks });
     const hasWork = Boolean(s.status.next) && !s.status.waiting;
-    s.part = participation({ diagnostic: s.diagnostic, sections: s.sections, hasWork }, { now, expectedSections: store.expected });
+    s.part = participation({ diagnostic: s.diagnostic, sections: s.sections, practice: s.practice, hasWork }, { now, expectedSections: store.expected });
   }
 }
 
@@ -511,7 +512,7 @@ function participationTab() {
   const scroller = h('div', 't-scroll');
   const table = h('table', 't-table');
   const head = h('tr');
-  for (const t of ['Student', 'Last active', 'Days active', 'Sections', 'Minutes', '']) head.append(h('th', '', t));
+  for (const t of ['Student', 'Last active', 'Days active', 'Sections', 'Practice sets', 'Minutes', '']) head.append(h('th', '', t));
   const thead = h('thead');
   thead.append(head);
   const tbody = h('tbody');
@@ -535,6 +536,7 @@ function participationTab() {
       h('td', 'num', p.daysSinceActive === null ? 'never' : p.daysSinceActive === 0 ? 'today' : `${p.daysSinceActive} days ago`),
       h('td', 'num', String(p.daysActive)),
       h('td', 'num', String(p.sectionsFinished)),
+      h('td', 'num', String(p.practiceSets)),
       h('td', 'num', String(p.minutes)),
       flagCell,
     );
@@ -908,6 +910,14 @@ function showStudent(code) {
   partCard.append(h('h2', 't-h2', 'Last 7 days'));
   partCard.append(h('p', '', `${p.daysActive} days active · ${p.sectionsFinished} sections finished · ${p.minutes} minutes · last active ${p.lastActive ? day(p.lastActive) : 'never'}`));
   left.append(partCard);
+
+  // Practice for a check (the student's own choice; never changes mastery).
+  const practiceCard = h('div', 't-card');
+  practiceCard.append(h('h2', 't-h2', 'Practice for a check'));
+  const sets = [...s.practice].sort((a, b) => b.finishedAt.localeCompare(a.finishedAt));
+  const skillTitle = (id) => lessons.find((l) => l.skill === id)?.title || id;
+  practiceCard.append(list(sets.map((r) => `${day(r.finishedAt)}: ${skillTitle(r.skillId)}, ${r.firstTry} of ${r.problemCount} right on the first try`), 'No practice sets yet.'));
+  left.append(practiceCard);
 
   // Change log.
   const mine = (live ? data.log || [] : store.log).filter((l) => l.code === s.code);

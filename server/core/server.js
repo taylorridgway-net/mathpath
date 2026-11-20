@@ -17,7 +17,7 @@ import { replayDiagnostic } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { verificationRecord } from '../../engine/teacher/verification.js';
 import { sectionSummary } from '../../engine/teacher/section-summary.js';
-import { practicePlan } from '../../engine/lessons/plan.js';
+import { practicePlan, practiceSetPlan } from '../../engine/lessons/plan.js';
 
 const MAX_SAVE_IDS = 200; // recent saveIds kept per student to spot repeats
 const WORDS_A = ['maple', 'river', 'cedar', 'stone', 'amber', 'cloud', 'birch', 'coral', 'frost', 'ember', 'meadow', 'harbor', 'canyon', 'willow', 'summit', 'pebble', 'acorn', 'delta', 'orbit', 'prism', 'quartz', 'tundra', 'lagoon', 'aspen'];
@@ -81,7 +81,8 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
 
       const checked = record.type === 'diagnostic' ? checkDiagnostic(student, record)
         : record.type === 'lesson-section' ? checkSection(student, record)
-          : fail('bad-record', `Unknown record type ${record.type}`);
+          : record.type === 'practice-set' ? checkPracticeSet(student, record)
+            : fail('bad-record', `Unknown record type ${record.type}`);
       if (checked.error) return checked;
 
       summary.saveIds = [...summary.saveIds, record.saveId].slice(-MAX_SAVE_IDS);
@@ -155,6 +156,37 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     };
   }
 
+  // Practice for a check (the student's choice). Re-graded like everything else,
+  // but it never changes mastery or the path: it only counts as participation.
+  function checkPracticeSet(student, record) {
+    const summary = student.summary;
+    const skillId = record.skill;
+    if (!setup.lessons.some((l) => l.skill === skillId)) return fail('bad-record', `No practice for ${skillId}.`);
+    const attempts = summary.practiceAttempts || {};
+    const attemptNo = (attempts[skillId] || 0) + 1;
+    if (record.attemptNo !== attemptNo) return fail('wrong-attempt', `Expected practice set ${attemptNo} for ${skillId}.`);
+    const seed = seedFor(student.id, `practice:${skillId}`, attemptNo);
+    if (record.seed !== seed) return fail('wrong-seed', 'Seed doesn’t match.');
+    let result;
+    try {
+      result = replayPractice({ generators: setup.generators, rules: setup.rules, seed, plan: practiceSetPlan(skillId, setup.rules) }, record.answers || []).result();
+    } catch (e) {
+      return fail('regrade-failed', String(e.message || e));
+    }
+    if (!result.finished) return fail('not-finished', 'The practice set isn’t finished.');
+    summary.practiceAttempts = { ...attempts, [skillId]: attemptNo };
+    const short = sectionSummary(result, record.times || []);
+    return {
+      kind: 'practice',
+      result: { firstTry: short.firstTry, problemCount: short.problemCount },
+      row: {
+        studentId: student.id, saveId: record.saveId, skillId, attemptNo, seed, answers: record.answers, times: record.times || [],
+        hintsShown: record.hintsShown || [], startedAt: record.startedAt, finishedAt: record.finishedAt, receivedAt: now(),
+        curriculumVersion: setup.graph.curriculumVersion, ...short,
+      },
+    };
+  }
+
   // ---------------- teachers ----------------
 
   function teacherOnly(email, fn) {
@@ -192,6 +224,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         verifications: withCode(store.listRecords('verifications', ids)),
         clearances: withCode(store.listRecords('clearances', ids)),
         resets: withCode(store.listRecords('resets', ids)),
+        practice: withCode(store.listRecords('practice', ids, { summary: true })).map((r) => ({ type: 'practice-set', ...r })),
         log: withCode(store.listRecords('log', ids)),
       };
     });

@@ -203,3 +203,24 @@ test('send back to redo: platform mastery cleared, "Putting it together" not don
   server.student.saveRecord(kid.code, sectionRecord(kid.id, 'frac.add-sub.whole', 2));
   assert.deepEqual(server.student.login(kid.code).summary.mastered, ['frac.add-sub']);
 });
+
+test('practice for a check: re-graded, stored once, counted per skill; never changes mastery', () => {
+  const { server, store, kid } = fresh();
+  const skill = 'frac.add-sub';
+  const seed = seedFor(kid.id, `practice:${skill}`, 1);
+  const p = startPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: skill, mode: 'practice', difficulties: setup.rules.practice.difficulties } });
+  const answers = [];
+  for (let c = p.currentProblem(); c; c = p.currentProblem()) { answers.push(right(c.problem)); p.submit(answers.at(-1)); }
+  const rec = { type: 'practice-set', saveId: 'pr1', skill, attemptNo: 1, seed, answers, times: answers.map(() => 30000) };
+  const res = server.student.saveRecord(kid.code, rec);
+  assert.equal(res.ok, true, JSON.stringify(res));
+  assert.equal(res.result.firstTry, 6);
+  assert.deepEqual(res.summary.mastered, [], 'practice never gives mastery');
+  assert.equal(res.summary.practiceAttempts[skill], 1);
+  assert.equal(server.student.saveRecord(kid.code, rec).duplicate, true);
+  assert.equal(store.data.records.practice.length, 1);
+  assert.equal(server.student.saveRecord(kid.code, { ...rec, saveId: 'pr2', seed: 'easy' }).error, 'wrong-attempt');
+  const data = server.teacher.teacherData(T1);
+  assert.equal(data.practice.length, 1);
+  assert.equal(data.practice[0].answers, undefined, 'the dashboard gets the summary only');
+});

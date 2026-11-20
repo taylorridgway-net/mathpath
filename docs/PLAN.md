@@ -191,6 +191,7 @@ Updated 2026-11-19 (end of session 2). Read this first in a new session.
 - **Waiting on owner:** review the whole-number lesson text in the preview; `speedCheck()` number (load test).
 - **Also done (2026-11-20):** students never wait for the teacher (owner decision; one setting); "Send back to redo" a skill (dashboard profile and paper tests; server `resetSkill`, Sheets tab `Resets`); paper tests for the three whole-number skills (versions A/B, answer keys checked by `tests/curriculum/paper-whole.test.js`) with a skill picker on the Paper tests tab.
 - **Waiting on owner:** review the whole-number lesson text and paper items in the previews; paste the new files into Apps Script and make a new deployment version (the new `Resets` tab is added automatically on the first save or by running setup() again); `speedCheck()` number.
+- **Also done:** "Practice for a check" (owner request): any skill, any time, 6 paper-test-style problems with hints, compared with the 5-of-6 rule at the end; never changes mastery; counts as participation; on the dashboard in Participation ("Practice sets") and each student's profile.
 - **Next:** equivalent fractions (`frac.equivalent`: scale, missing number, simplify), the main thing still showing as "With your teacher first"; then understand fractions, compare, multiply, divide, negative fractions. Later: teacher assignments/exemptions; retention checks.
 
 ## 4. Build order for the fractions prototype

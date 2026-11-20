@@ -16,7 +16,7 @@ import { buildPath } from '../engine/lessons/path.js';
 import { reduce } from '../engine/math/fraction.js';
 import { simulatedStudent } from './simulated-student.js';
 import { sectionSummary } from '../engine/teacher/section-summary.js';
-import { practicePlan } from '../engine/lessons/plan.js';
+import { practicePlan, practiceSetPlan } from '../engine/lessons/plan.js';
 
 const DAY = 24 * 60 * 60 * 1000;
 
@@ -56,6 +56,7 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
   const sections = [];
   const verifications = [];
   const clearances = [];
+  const practice = [];
   const usedCodes = new Set();
   let n = 0;
 
@@ -123,6 +124,29 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
         if (!passed || t >= end) break;
       }
 
+      // ---- some students with platform mastery practise for the paper test ----
+      for (const m of sections.filter((r) => r.code === code && r.provisionalMastery)) {
+        const sets = rng.chance(0.5) ? rng.int(1, 2) : 0;
+        for (let k = 1; k <= sets; k++) {
+          const at = new Date(m.finishedAt).getTime() + k * DAY;
+          if (at >= end) break;
+          const pseed = `${seed}:${code}:practice:${m.lesson}:${k}`;
+          const pr = startPractice({ generators, rules, seed: pseed, plan: practiceSetPlan(m.lesson, rules) });
+          const answers = [];
+          const times = [];
+          for (let c = pr.currentProblem(); c; c = pr.currentProblem()) {
+            const a = rng.chance(c.attempt === 1 ? 0.8 : 0.9) ? correct(c.problem) : mistake(c.problem, []);
+            answers.push(a);
+            times.push(rng.int(30, 120) * 1000);
+            pr.submit(a);
+          }
+          practice.push({
+            type: 'practice-set', code, skillId: m.lesson, attemptNo: k, seed: pseed, answers, times,
+            startedAt: iso(at), finishedAt: iso(at + sum(times)), ...sectionSummary(pr.result(), times),
+          });
+        }
+      }
+
       // ---- some students with platform mastery already took the paper test ----
       const mastered = sections.find((r) => r.code === code && r.provisionalMastery);
       if (mastered && rng.chance(0.6)) {
@@ -142,7 +166,7 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
     }
   });
 
-  return { synthetic: true, generatedFor: now, classes, students, roster, diagnostics, sections, verifications, clearances };
+  return { synthetic: true, generatedFor: now, classes, students, roster, diagnostics, sections, verifications, clearances, practice };
 }
 
 // One finished section, played with the real practice engine.

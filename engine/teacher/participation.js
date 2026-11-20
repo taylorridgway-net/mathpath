@@ -8,12 +8,15 @@
 
 const DAY = 24 * 60 * 60 * 1000;
 
-export function participation({ diagnostic, sections = [], hasWork = true }, { now, windowDays = 7, expectedSections = 3 }) {
+// practice: practice-for-a-check sets (the student's choice). They count as activity
+// (days, minutes) and are reported on their own; they don't count toward expectedSections.
+export function participation({ diagnostic, sections = [], practice = [], hasWork = true }, { now, windowDays = 7, expectedSections = 3 }) {
   const end = new Date(now).getTime();
   const start = end - windowDays * DAY;
   const events = [];
   if (diagnostic) events.push({ at: diagnostic.finishedAt, ms: sum(diagnostic.times), section: false });
   for (const r of sections) events.push({ at: r.finishedAt, ms: r.seconds !== undefined ? r.seconds * 1000 : sum(r.times), section: true });
+  for (const r of practice) events.push({ at: r.finishedAt, ms: r.seconds !== undefined ? r.seconds * 1000 : sum(r.times), practice: true });
 
   const inWindow = events.filter((e) => {
     const t = new Date(e.at).getTime();
@@ -26,6 +29,7 @@ export function participation({ diagnostic, sections = [], hasWork = true }, { n
   return {
     daysActive: days.size,
     sectionsFinished,
+    practiceSets: inWindow.filter((e) => e.practice).length,
     minutes: Math.round(inWindow.reduce((n, e) => n + e.ms, 0) / 60000),
     lastActive: last,
     daysSinceActive: last ? Math.floor((end - new Date(last).getTime()) / DAY) : null,
