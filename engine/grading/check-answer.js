@@ -88,6 +88,13 @@ function checkFraction(problem, raw) {
   if (!read.ok) return { status: 'invalid', reason: read.reason };
 
   const { value: correct, form = 'any' } = problem.answer;
+  // "Write the new fraction (don't simplify it)": only exactly n/d counts.
+  if (form === 'exact') {
+    if (read.shape === 'fraction' && raw.num === problem.answer.n && raw.den === problem.answer.d && !raw.negative) return { status: 'correct' };
+    const exactMatch = (problem.misconceptions || []).find((m) => m.exact && equals(fraction(m.value.n, m.value.d), read.value));
+    if (exactMatch) return { status: 'wrong', misconception: exactMatch.id };
+    return wrong(problem, (m) => !m.exact && equals(fraction(m.value.n, m.value.d), read.value));
+  }
   if (!equals(read.value, correct)) {
     return wrong(problem, (m) => equals(fraction(m.value.n, m.value.d), read.value));
   }

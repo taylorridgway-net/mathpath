@@ -201,6 +201,7 @@ function correct(problem) {
   const a = problem.answer;
   if (a.type === 'quotient-remainder') return { whole: a.quotient, rem: a.remainder };
   if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
+  if (a.form === 'exact') return { num: a.n, den: a.d };
   if (a.type === 'integer') return { whole: a.value };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);

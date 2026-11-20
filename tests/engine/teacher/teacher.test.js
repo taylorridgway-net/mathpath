@@ -43,9 +43,9 @@ test('platform mastery and verified mastery are separate', () => {
 });
 
 test('with waiting switched on, a student is marked waiting until the check is cleared', () => {
-  const r = { ...gapCombine, uncheckedCauses: ['frac.equivalent'] };
+  const r = { ...gapCombine, uncheckedCauses: ['frac.meaning'] };
   assert.equal(status({ diagnosticResult: r, waitForTeacher: true }).waiting, true);
-  assert.equal(status({ diagnosticResult: r, cleared: ['frac.equivalent'], waitForTeacher: true }).waiting, false);
+  assert.equal(status({ diagnosticResult: r, cleared: ['frac.meaning'], waitForTeacher: true }).waiting, false);
   assert.equal(status({ diagnosticResult: r }).waiting, false, 'by default (owner decision) nobody waits');
 });
 

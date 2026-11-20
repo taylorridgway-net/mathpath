@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "skill": "frac.equivalent",
+  "title": "Equivalent fractions and simplest form",
+  "status": "draft: written by Claude, waiting for owner review",
+  "sections": [
+    {
+      "id": "frac.equivalent.scale",
+      "forGap": "frac.equivalent.scale",
+      "title": "Make an equivalent fraction",
+      "objective": "Multiply the top and bottom by the same number to get an equal fraction.",
+      "mode": "section",
+      "generator": "frac.equivalent.scale",
+      "explain": [
+        "Equivalent fractions are the same amount written with different numbers. {2/3} and {8/12} are the same amount: the pieces are smaller, and there are more of them.",
+        "To make one, multiply the top and the bottom by the same number. {2/3} × {4/4} = {8/12}. Since {4/4} is 1, multiplying by it doesn't change the amount.",
+        "Multiply both. Multiplying only the top makes a bigger amount. Adding the same number to the top and bottom changes the amount too."
+      ],
+      "visual": {
+        "widget": "fraction-bars",
+        "params": { "bars": [[2, 3]], "task": "recut", "recutInto": 12 },
+        "caption": "Cut each third into smaller pieces. The shaded amount stays the same."
+      }
+    },
+    {
+      "id": "frac.equivalent.missing",
+      "forGap": "frac.equivalent.missing",
+      "title": "Find the missing number",
+      "objective": "Fill in the box so two fractions are equal.",
+      "mode": "section",
+      "generator": "frac.equivalent.missing",
+      "example": { "difficulty": 3 },
+      "explain": [
+        "In {3/4} = {?/20}, ask: what do I multiply 4 by to get 20? 4 × 5 = 20. Do the same to the top: 3 × 5 = 15. So {3/4} = {15/20}.",
+        "If the box is on the bottom, work from the tops instead: in {2/5} = 8/?, 2 × 4 = 8, so the bottom is 5 × 4 = 20.",
+        "If the numbers don't fit nicely, simplify the first fraction first. {6/9} = {?/15}: {6/9} is {2/3}, and 3 × 5 = 15, so the answer is 2 × 5 = 10."
+      ],
+      "visual": null
+    },
+    {
+      "id": "frac.equivalent.simplify",
+      "forGap": "frac.equivalent.simplify",
+      "title": "Write a fraction in simplest form",
+      "objective": "Divide the top and bottom by a common factor until nothing else divides both.",
+      "mode": "section",
+      "generator": "frac.equivalent.simplify",
+      "explain": [
+        "A fraction is in simplest form when no number bigger than 1 divides both the top and the bottom.",
+        "Divide the top and the bottom by the same number. {18/24}: 6 divides both, so {18/24} = {3/4}. Using the greatest common factor gets there in one step.",
+        "If you used a smaller number, keep going: {18/24} ÷ 2 is {9/12}, and 3 still divides both, so divide again to get {3/4}. Always divide both the top and the bottom."
+      ],
+      "visual": null
+    },
+    {
+      "id": "frac.equivalent.whole",
+      "forGap": "frac.equivalent",
+      "title": "Putting it together",
+      "objective": "Make equivalent fractions, fill in missing numbers, and simplify, mixed together.",
+      "mode": "skill",
+      "generator": "frac.equivalent",
+      "explain": [
+        "Now the problems are mixed. Read what each one asks for.",
+        "Making an equal fraction: multiply the top and bottom by the same number. Simplifying: divide the top and bottom by the same number until nothing else divides both."
+      ],
+      "visual": null
+    }
+  ],
+  "hints": {
+    "frac.equivalent.scale": "Multiply the top by the number, then multiply the bottom by the same number.",
+    "frac.equivalent.missing": "What do you multiply by to get from one bottom to the other (or one top to the other)? Do the same to the other number.",
+    "frac.equivalent.simplify": "Find a number that divides both the top and the bottom. Divide both by it, and check whether you can keep going.",
+    "frac.equivalent": "Read what the problem asks for: an equal fraction, a missing number, or simplest form."
+  },
+  "simplifyHint": "That's the right amount, but it isn't in simplest form yet. Is there a number that still divides both the top and the bottom?",
+  "misconceptionMessages": {
+    "frac.eq-top-only": "Multiply the bottom by the same number too. If only the top changes, the amount changes.",
+    "frac.eq-added": "Adding the same number to the top and bottom changes the amount. Multiply them by the same number instead.",
+    "frac.eq-scaled-back": "That's the fraction you started with. The question asks you to multiply the top and bottom, and write the new fraction.",
+    "frac.eq-missing-added": "Adding the same amount to the top and bottom changes the fraction. Find what you multiply by, and multiply the other number by the same.",
+    "frac.eq-divided-top-only": "Divide the bottom by the same number too. Simplifying changes both numbers, not the amount."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it."
+}

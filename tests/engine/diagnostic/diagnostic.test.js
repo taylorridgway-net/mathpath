@@ -59,9 +59,10 @@ test('adds across (1/2 + 1/3 = 2/5): finds the combine gap, without blaming simp
 
 test('can do everything but simplify: finds the simplifying gap and points below it', () => {
   const { result } = diagnose({ lacks: ['frac.equivalent.simplify'] });
-  assert.deepEqual(result.rootGaps, [SUB('simplify-result')]);
+  // Simplifying now has questions of its own: confirmed as the root, under the add/subtract step.
+  assert.deepEqual(result.rootGaps, ['frac.equivalent.simplify']);
+  assert.equal(statusOf(result, SUB('simplify-result')), 'gap');
   for (const s of ['common-denom', 'rewrite', 'combine']) assert.equal(statusOf(result, SUB(s)), 'known', s);
-  assert.ok(result.uncheckedCauses.includes('frac.equivalent.simplify'));
   assert.equal(result.questions[0].status, 'not-simplified');
 });
 

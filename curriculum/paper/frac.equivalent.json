@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "frac.equivalent",
+  "title": "Equivalent fractions and simplest form",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings and word problems. Each item is worth 1 point. 'math' is the calculation behind the item, used only by the test that checks the answer key.",
+  "directions": "Show your work. When a question asks for simplest form, simplify all the way.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Write a fraction equal to {3/5} with a denominator of 20.",
+          "math": "scale 3/5 20",
+          "answer": "12/20"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "What number goes in the box?  {4/7} = 12/☐",
+          "math": "missing-den 4/7 12",
+          "answer": "21"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Write {21/28} in simplest form.",
+          "math": "simplify 21/28",
+          "answer": "3/4"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Are {6/9} and {10/15} equal? Show how you know.",
+          "math": "same 6/9 10/15",
+          "answer": "Yes (both are 2/3)"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A pizza is cut into 8 slices and Ana eats 6 of them. What fraction of the pizza did she eat? Write it in simplest form.",
+          "math": "simplify 6/8",
+          "answer": "3/4"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "A recipe needs {2/3} cup of milk. Your measuring cup is marked in twelfths. How many twelfths of a cup do you need?",
+          "math": "scale 2/3 12",
+          "answer": "8/12 (8 twelfths)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Write a fraction equal to {2/9} with a denominator of 36.",
+          "math": "scale 2/9 36",
+          "answer": "8/36"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "What number goes in the box?  {5/6} = {?/30}",
+          "math": "missing-num 5/6 30",
+          "answer": "25"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Write {24/40} in simplest form.",
+          "math": "simplify 24/40",
+          "answer": "3/5"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Are {4/10} and {6/15} equal? Show how you know.",
+          "math": "same 4/10 6/15",
+          "answer": "Yes (both are 2/5)"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "A class has 30 students and 12 of them walk to school. What fraction of the class walks? Write it in simplest form.",
+          "math": "simplify 12/30",
+          "answer": "2/5"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "A board is marked in sixteenths of an inch. Where is the {3/4} inch mark? Write it in sixteenths.",
+          "math": "scale 3/4 16",
+          "answer": "12/16 (12 sixteenths)"
+        }
+      ]
+    }
+  ]
+}

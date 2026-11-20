@@ -1723,6 +1723,1398 @@
    }
   ]
  },
+ "frac.equivalent": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 15
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 12
+     }
+    ],
+    "part": "frac.equivalent.missing"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 5,
+     "d": 15
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 15
+      }
+     }
+    ],
+    "part": "frac.equivalent.simplify"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply the top and the bottom by 2. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 5
+     },
+     "form": "exact",
+     "n": 4,
+     "d": 10
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 4,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 4,
+       "d": 7
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 2,
+       "d": 5
+      },
+      "exact": true
+     }
+    ],
+    "part": "frac.equivalent.scale"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 15,
+     "d": 18
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 5,
+       "d": 18
+      }
+     }
+    ],
+    "part": "frac.equivalent.simplify"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 6,
+     "d": 30
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 30
+      }
+     }
+    ],
+    "part": "frac.equivalent.simplify"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 28
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 16
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 25
+     }
+    ],
+    "part": "frac.equivalent.missing"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply the top and the bottom by 7. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 7
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 7
+     },
+     "form": "exact",
+     "n": 14,
+     "d": 49
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 14,
+       "d": 7
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 9,
+       "d": 14
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 2,
+       "d": 7
+      },
+      "exact": true
+     }
+    ],
+    "part": "frac.equivalent.scale"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 27,
+     "d": 36
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 3,
+       "d": 36
+      }
+     }
+    ],
+    "part": "frac.equivalent.simplify"
+   },
+   {
+    "generator": "frac.equivalent",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 6,
+     "d": 30
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 30
+      }
+     }
+    ],
+    "part": "frac.equivalent.simplify"
+   }
+  ]
+ },
+ "frac.equivalent.missing": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 10
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 9
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 4
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 12
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 3
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 9
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 5
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 10
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 2
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 6
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 40
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 15
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 35
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 15,
+      "d": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 24
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 18
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 10
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 30
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 3
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 21
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 15
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 10
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 14
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 6,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 10,
+      "d": {
+       "type": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 15
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 13
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.missing",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Fill in the missing number so the two fractions are equal.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": 2,
+      "d": 12
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "blank"
+      },
+      "d": 24
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-missing-added",
+      "value": 14
+     }
+    ]
+   }
+  ]
+ },
+ "frac.equivalent.scale": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply the top and the bottom by 2. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "exact",
+     "n": 2,
+     "d": 6
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 3,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 1,
+       "d": 3
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply the top and the bottom by 2. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 4
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "exact",
+     "n": 2,
+     "d": 8
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 2,
+       "d": 4
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 3,
+       "d": 6
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 1,
+       "d": 4
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply the top and the bottom by 3. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 6
+     },
+     "right": {
+      "type": "frac",
+      "n": 3,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "exact",
+     "n": 3,
+     "d": 18
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 3,
+       "d": 6
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 4,
+       "d": 9
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 1,
+       "d": 6
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply the top and the bottom by 5. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 3,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 8
+     },
+     "form": "exact",
+     "n": 15,
+     "d": 40
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 15,
+       "d": 8
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 8,
+       "d": 13
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 3,
+       "d": 8
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply the top and the bottom by 2. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 2,
+      "d": 2
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 9
+     },
+     "form": "exact",
+     "n": 2,
+     "d": 18
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 2,
+       "d": 9
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 3,
+       "d": 11
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 1,
+       "d": 9
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply the top and the bottom by 5. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 8
+     },
+     "right": {
+      "type": "frac",
+      "n": 5,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 8
+     },
+     "form": "exact",
+     "n": 25,
+     "d": 40
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 25,
+       "d": 8
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 10,
+       "d": 13
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 5,
+       "d": 8
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply the top and the bottom by 8. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 9
+     },
+     "right": {
+      "type": "frac",
+      "n": 8,
+      "d": 8
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 9
+     },
+     "form": "exact",
+     "n": 8,
+     "d": 72
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 8,
+       "d": 9
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 9,
+       "d": 17
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 1,
+       "d": 9
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply the top and the bottom by 9. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 5,
+      "d": 6
+     },
+     "right": {
+      "type": "frac",
+      "n": 9,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 6
+     },
+     "form": "exact",
+     "n": 45,
+     "d": 54
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 45,
+       "d": 6
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 14,
+       "d": 15
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 5,
+       "d": 6
+      },
+      "exact": true
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.scale",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply the top and the bottom by 7. Write the new fraction (don't simplify it).",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "frac",
+      "n": 1,
+      "d": 10
+     },
+     "right": {
+      "type": "frac",
+      "n": 7,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 10
+     },
+     "form": "exact",
+     "n": 7,
+     "d": 70
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-top-only",
+      "value": {
+       "n": 7,
+       "d": 10
+      }
+     },
+     {
+      "id": "frac.eq-added",
+      "value": {
+       "n": 8,
+       "d": 17
+      }
+     },
+     {
+      "id": "frac.eq-scaled-back",
+      "value": {
+       "n": 1,
+       "d": 10
+      },
+      "exact": true
+     }
+    ]
+   }
+  ]
+ },
+ "frac.equivalent.simplify": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 5,
+     "d": 30
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 2,
+     "d": 12
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 12
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 15,
+     "d": 25
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 3,
+       "d": 25
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 6,
+     "d": 24
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 24
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 6,
+     "d": 18
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 18
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 9,
+     "d": 12
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 3,
+       "d": 12
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 7,
+     "d": 49
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 7
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 49
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 12,
+     "d": 48
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 1,
+       "d": 48
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.equivalent.simplify",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write this fraction in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": 18,
+     "d": 30
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.eq-divided-top-only",
+      "value": {
+       "n": 3,
+       "d": 30
+      }
+     }
+    ]
+   }
+  ]
+ },
  "whole.add-sub": {
   "version": 1,
   "problems": [

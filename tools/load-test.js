@@ -37,7 +37,7 @@ const setup = {
   generators,
   misconceptions: [...read('misconceptions/frac.json').misconceptions, ...read('misconceptions/whole.json').misconceptions],
   diagnosticConfig: read('diagnostic/frac.json'),
-  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.add-sub'].map((s) => read(`lessons/${s}.json`)),
+  lessons: ['whole.add-sub', 'whole.mult-div', 'whole.factors-multiples', 'frac.equivalent', 'frac.add-sub'].map((s) => read(`lessons/${s}.json`)),
   rules: read('mastery.json').default,
 };
 
@@ -76,6 +76,9 @@ const PROFILES = [{}, { lacks: ['frac.add-sub.combine'], misconceptions: ['frac.
   { lacks: ['frac.add-sub.common-denom'] }, { failsWhole: ['frac.add-sub'] }];
 const right = (problem) => {
   const a = problem.answer;
+  if (a.type === 'quotient-remainder') return { whole: a.quotient, rem: a.remainder };
+  if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
+  if (a.form === 'exact') return { num: a.n, den: a.d };
   if (a.type === 'integer') return { whole: a.value };
   if (a.type === 'common-multiple') return { whole: a.least };
   const v = reduce(a.value);

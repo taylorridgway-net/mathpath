@@ -94,10 +94,18 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   }
 
   // Look for root causes below a gap.
+  // Follow a confirmed gap down to its prerequisites, but only after the other
+  // steps of the same skill still waiting to be asked: with many gaps, checking
+  // every step of the skill the student is on matters more than going deep on
+  // the first one (the question limit can run out).
   function descendFrom(id) {
-    doNext(graph.essentialPrereqs(id).map((p) => (
+    const descent = graph.essentialPrereqs(id).map((p) => (
       graph.get(p).kind === 'skill' ? { kind: 'skill', id: p, fromDescent: true } : { kind: 'probe', id: p, stage: 1 }
-    )));
+    ));
+    const skillId = graph.get(id).skillId;
+    let after = 0;
+    while (after < tasks.length && tasks[after].kind === 'probe' && graph.get(tasks[after].id).skillId === skillId) after++;
+    tasks = [...tasks.slice(0, after), ...descent, ...tasks.slice(after)];
   }
 
   // ---------- turning tasks into questions ----------
