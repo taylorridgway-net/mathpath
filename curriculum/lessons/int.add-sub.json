@@ -12,15 +12,31 @@
       "mode": "section",
       "generator": "int.add-sub.same-sign",
       "explain": [
-        "On a number line, adding a positive number moves right. Adding a negative number moves left.",
-        "−3 + (−5): start at −3 and move 5 to the left. You land on −8.",
-        "The rule: when both numbers are negative, add the sizes (3 + 5 = 8) and keep the negative sign. Owing $3 and then owing $5 more means you owe $8: that's −8, not 8."
+        "Owing $3 and then owing $5 more means you owe $8: that's −8, not 8."
       ],
       "visual": {
         "widget": "int-line",
-        "params": { "start": -3, "move": -5 },
+        "params": {
+          "start": -3,
+          "move": -5
+        },
         "caption": "Adding a negative moves left."
-      }
+      },
+      "key": "Adding a negative moves left. Both negative: add the sizes and keep the negative sign.",
+      "worked": [
+        {
+          "math": "−3 + (−5)",
+          "note": "Start at −3, move 5 left."
+        },
+        {
+          "math": "[[3 + 5]] = 8",
+          "note": "Add the sizes."
+        },
+        {
+          "math": "−8",
+          "note": "Keep the negative sign."
+        }
+      ]
     },
     {
       "id": "int.add-sub.different-signs",
@@ -30,15 +46,31 @@
       "mode": "section",
       "generator": "int.add-sub.different-signs",
       "explain": [
-        "−7 + 4: start at −7 and move 4 to the right. You land on −3.",
-        "The rule: when the signs are different, subtract the sizes (7 − 4 = 3) and keep the sign of the number with the bigger size. −7 has the bigger size, so the answer is −3.",
-        "Check your answer makes sense: the positive and negative partly cancel, so the answer is closer to 0 than the bigger number."
+        "They partly cancel, so the answer is closer to 0 than the bigger number."
       ],
       "visual": {
         "widget": "int-line",
-        "params": { "start": -7, "move": 4 },
+        "params": {
+          "start": -7,
+          "move": 4
+        },
         "caption": "Adding a positive moves right."
-      }
+      },
+      "key": "Different signs: subtract the sizes, and keep the sign of the number with the bigger size.",
+      "worked": [
+        {
+          "math": "−7 + 4",
+          "note": "Start at −7, move 4 right."
+        },
+        {
+          "math": "[[7 − 4]] = 3",
+          "note": "Subtract the sizes."
+        },
+        {
+          "math": "−3",
+          "note": "−7 has the bigger size, so the answer is negative."
+        }
+      ]
     },
     {
       "id": "int.add-sub.subtract",
@@ -48,15 +80,35 @@
       "mode": "section",
       "generator": "int.add-sub.subtract",
       "explain": [
-        "Subtracting a number is the same as adding its opposite. 3 − 8 = 3 + (−8): start at 3, move 8 left, land on −5. (Not 5: you went past 0.)",
-        "Subtracting a negative means adding a positive: 4 − (−6) = 4 + 6 = 10. Taking away a debt of $6 leaves you $6 better off.",
-        "So: keep the first number, change − to +, change the sign of the second number. Then add, using the rules from before."
+        "Taking away a debt of $6 leaves you $6 better off: 4 − (−6) = 10."
       ],
       "visual": {
         "widget": "int-line",
-        "params": { "start": 3, "move": -8 },
+        "params": {
+          "start": 3,
+          "move": -8
+        },
         "caption": "3 − 8 is 3 + (−8): move 8 to the left."
-      }
+      },
+      "key": "Subtracting is adding the opposite. Keep the first number, change − to +, change the sign of the second.",
+      "worked": [
+        {
+          "math": "3 − 8",
+          "note": ""
+        },
+        {
+          "math": "3 [[+ (−8)]]",
+          "note": "Add the opposite."
+        },
+        {
+          "math": "−5",
+          "note": "Move 8 left from 3: past 0."
+        },
+        {
+          "math": "4 − (−6) = 4 [[+ 6]] = 10",
+          "note": "Subtracting a negative is adding."
+        }
+      ]
     },
     {
       "id": "int.add-sub.whole",
@@ -66,10 +118,28 @@
       "mode": "skill",
       "generator": "int.add-sub",
       "explain": [
-        "Now the problems are mixed.",
-        "Subtracting? First change it to adding the opposite. Then: same signs, add the sizes and keep the sign; different signs, subtract the sizes and keep the sign of the bigger size."
+        "Now the problems are mixed."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Subtracting? Change it to adding the opposite first. Then: same signs, add the sizes; different signs, subtract the sizes and keep the bigger one's sign.",
+      "worked": [
+        {
+          "math": "−6 − (−9)",
+          "note": ""
+        },
+        {
+          "math": "−6 [[+ 9]]",
+          "note": "Add the opposite."
+        },
+        {
+          "math": "[[9 − 6]] = 3",
+          "note": "Different signs: subtract the sizes."
+        },
+        {
+          "math": "3",
+          "note": "9 has the bigger size: positive."
+        }
+      ]
     }
   ],
   "hints": {

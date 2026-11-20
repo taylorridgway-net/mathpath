@@ -12,11 +12,25 @@
       "mode": "section",
       "generator": "frac.compare.like",
       "explain": [
-        "When two fractions have the same bottom, the pieces are the same size. {5/8} is 5 eighths and {3/8} is 3 eighths.",
-        "So just compare how many pieces: 5 is more than 3, so {5/8} > {3/8}.",
-        "The open side of the sign faces the bigger amount: {3/8} < {5/8} says the same thing."
+        "The open side of the sign faces the bigger amount: {5/8} > {3/8} and {3/8} < {5/8} say the same thing."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Same bottoms means same-size pieces. Compare the tops: more pieces is bigger.",
+      "worked": [
+        {
+          "math": "{bar 5/8}",
+          "note": "5 eighths"
+        },
+        {
+          "math": "{bar 3/8}",
+          "note": "3 eighths"
+        },
+        {
+          "math": "[[{5/8} > {3/8}]]",
+          "note": "5 pieces is more than 3 pieces of the same size."
+        }
+      ],
+      "workedCaption": "Tap through to see both bars."
     },
     {
       "id": "frac.compare.benchmark",
@@ -26,12 +40,30 @@
       "mode": "section",
       "generator": "frac.compare.benchmark",
       "explain": [
-        "One half of the bottom number is the halfway point. For {3/7}: half of 7 is 3½, and 3 is less than that, so {3/7} < {1/2}.",
-        "Don't compare only the tops. {2/7} has a bigger top than {1/2}, but 2 sevenths is less than half of the bar.",
-        "A fraction equals 1 when the top equals the bottom ({7/7} = 1). If the top is bigger, it's more than 1: {9/7} > 1.",
-        "Closest to 0, {1/2} or 1? Compare the top with 0, half the bottom, and the whole bottom. {7/8}: 7 is right next to 8, so it's closest to 1."
+        "Don't compare only the tops: {2/7} has a bigger top than {1/2}, but it's less than half the bar.",
+        "Closest to 0, {1/2} or 1? See which of 0, half the bottom, or the whole bottom the top is nearest."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Half the bottom number is the halfway point. Top equal to the bottom is exactly 1.",
+      "worked": [
+        {
+          "math": "{3/7} vs {1/2}",
+          "note": "Half of 7 is 3½."
+        },
+        {
+          "math": "{bar 3/7}",
+          "note": "[[3]] is less than 3½, so less than half."
+        },
+        {
+          "math": "[[{3/7} < {1/2}]]",
+          "note": ""
+        },
+        {
+          "math": "{9/7} vs 1",
+          "note": "The top is bigger than the bottom: [[{9/7} > 1]]."
+        }
+      ],
+      "workedCaption": "Tap through: compare the top with half the bottom."
     },
     {
       "id": "frac.compare.unlike",
@@ -40,17 +72,45 @@
       "objective": "Compare fractions with different denominators by rewriting them with a common denominator.",
       "mode": "section",
       "generator": "frac.compare.unlike",
-      "example": { "difficulty": 2 },
+      "example": {
+        "difficulty": 2
+      },
       "explain": [
-        "A bigger bottom means smaller pieces. {3/5} > {3/8}: both are 3 pieces, but fifths are bigger than eighths.",
-        "When the tops and the bottoms are different, rewrite both over a common denominator, then compare the tops. {3/4} = {9/12} and {5/6} = {10/12}, so {3/4} < {5/6}.",
-        "Careful: {3/4} and {5/6} are each missing one piece, but they aren't equal. A missing sixth is smaller than a missing fourth, so {5/6} is closer to 1."
+        "Same tops? The smaller bottom means bigger pieces: {3/5} > {3/8}.",
+        "{3/4} and {5/6} are each one piece short of 1, but a sixth is smaller than a fourth, so {5/6} is closer to 1."
       ],
       "visual": {
         "widget": "fraction-bars",
-        "params": { "bars": [[3, 4], [5, 6]], "task": "cut-to-match" },
+        "params": {
+          "bars": [
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              6
+            ]
+          ],
+          "task": "cut-to-match"
+        },
         "caption": "Cut both bars into the same number of pieces. Then you can see which shading is longer."
-      }
+      },
+      "key": "Different bottoms? Rewrite both over a common denominator, then compare the tops.",
+      "worked": [
+        {
+          "math": "{3/4} vs {5/6}",
+          "note": "Common denominator: 12."
+        },
+        {
+          "math": "[[{9/12}]] vs [[{10/12}]]",
+          "note": "{3/4} = {9/12} and {5/6} = {10/12}."
+        },
+        {
+          "math": "{3/4} < {5/6}",
+          "note": "9 twelfths is less than 10 twelfths."
+        }
+      ]
     },
     {
       "id": "frac.compare.whole",
@@ -60,10 +120,25 @@
       "mode": "skill",
       "generator": "frac.compare",
       "explain": [
-        "Now the problems are mixed. Pick the quickest way for each one.",
-        "Same bottoms: compare the tops. Same tops: the smaller bottom is bigger. Otherwise: think about {1/2} and 1, or rewrite over a common denominator."
+        "Now the problems are mixed."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Pick the quickest way: same bottoms, compare tops; same tops, smaller bottom is bigger; otherwise use {1/2} or a common denominator.",
+      "worked": [
+        {
+          "math": "{4/9} vs {4/7}",
+          "note": "Same tops: sevenths are bigger pieces, so [[{4/9} < {4/7}]]."
+        },
+        {
+          "math": "{2/5} vs {5/8}",
+          "note": "{2/5} is less than half, {5/8} is more: [[{2/5} < {5/8}]]."
+        },
+        {
+          "math": "{2/3} vs {7/10}",
+          "note": "Neither shortcut works: {20/30} vs {21/30}, so [[{2/3} < {7/10}]]."
+        }
+      ],
+      "workedCaption": "Three problems, three quickest ways."
     }
   ],
   "hints": {

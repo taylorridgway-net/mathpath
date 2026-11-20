@@ -211,3 +211,5 @@
 .t-chip:hover { border-color: var(--accent); }
 .t-area-head { margin: 14px 0 4px; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
 .t-area-pick { flex-wrap: wrap; }
+
+sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }

@@ -9,10 +9,10 @@ import { loadFractions } from '../helpers/fractions-setup.js';
 
 const dir = new URL('../../curriculum/lessons/', import.meta.url);
 const lessons = readdirSync(dir).filter((f) => f.endsWith('.json')).map((f) => JSON.parse(readFileSync(new URL(f, dir), 'utf8')));
-const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area', 'int-line', 'balance', 'column', 'steps'];
+const WIDGETS = ['fraction-bars', 'area-model', 'fraction-area', 'int-line', 'balance', 'column', 'steps', 'groups', 'factor-pairs'];
 const { graph, misconceptions } = loadFractions();
 const MARKUP = /\{([^}]*)\}/g;
-const VALID = /^\d+( \d+)?\/(\d+|\?)$|^\?\/\d+$/;
+const VALID = /^\d+( \d+)?\/(\d+|\?)$|^\?\/\d+$|^(bar|dots) \d+\/\d+$|^line \d+ \d+ \d+$/; // fractions; pictures in worked lines
 
 for (const lesson of lessons) test(`${lesson.skill}: sections point at real skills and real problem generators`, () => {
   for (const s of lesson.sections) {

@@ -12,11 +12,33 @@
       "mode": "section",
       "generator": "alg.exponents.evaluate",
       "explain": [
-        "An exponent says how many times to multiply the base by itself. 2⁴ = 2 × 2 × 2 × 2 = 16.",
-        "It isn't base times exponent: 2⁴ is not 2 × 4 = 8.",
-        "Two special cases: any number to the power 1 is itself (9¹ = 9), and any number except 0 to the power 0 is 1 (7⁰ = 1). Look at the pattern: 2³ = 8, 2² = 4, 2¹ = 2, so the next one, 2⁰, is 1. Each step divides by 2."
+        "Any number to the power 1 is itself: 9¹ = 9. Any number except 0 to the power 0 is 1: 7⁰ = 1."
       ],
-      "visual": null
+      "visual": null,
+      "key": "An exponent says how many times to multiply the base by itself. 2⁴ is 2 × 2 × 2 × 2, not 2 × 4.",
+      "worked": [
+        {
+          "math": "2⁴ = 2 × 2 × 2 × 2 = 16",
+          "note": ""
+        },
+        {
+          "math": "2³ = 2 × 2 × 2 = [[8]]",
+          "note": "Each step down divides by 2."
+        },
+        {
+          "math": "2² = 2 × 2 = [[4]]",
+          "note": ""
+        },
+        {
+          "math": "2¹ = [[2]]",
+          "note": ""
+        },
+        {
+          "math": "2⁰ = [[1]]",
+          "note": "2 ÷ 2 = 1. That's why the power 0 gives 1."
+        }
+      ],
+      "workedCaption": "Follow the pattern down to the power 0."
     },
     {
       "id": "alg.exponents.negative-base",
@@ -26,11 +48,28 @@
       "mode": "section",
       "generator": "alg.exponents.negative-base",
       "explain": [
-        "(−3)² means (−3) × (−3) = 9. The parentheses make −3 the base, and a negative times a negative is positive.",
-        "−3² means −(3²) = −9. Without parentheses, only the 3 is squared; the minus sign waits until after the power.",
-        "Odd powers of a negative base stay negative: (−2)³ = (−2) × (−2) × (−2) = −8."
+        "Odd powers of a negative base stay negative: (−2)³ = −8."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Check what the base is. (−3)² squares −3; −3² squares only the 3, then puts the minus in front.",
+      "worked": [
+        {
+          "math": "(−3)² = [[(−3) × (−3)]]",
+          "note": "Parentheses: the base is −3."
+        },
+        {
+          "math": "9",
+          "note": "Negative times negative."
+        },
+        {
+          "math": "−3² = −[[(3 × 3)]]",
+          "note": "No parentheses: the base is 3."
+        },
+        {
+          "math": "−9",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "alg.exponents.in-order",
@@ -40,11 +79,28 @@
       "mode": "section",
       "generator": "alg.exponents.in-order",
       "explain": [
-        "Powers come right after parentheses: parentheses, then powers, then × and ÷, then + and −.",
-        "2 + 3²: the power first, 3² = 9. Then 2 + 9 = 11. (Not 5² = 25.)",
-        "(2 + 3)²: the parentheses first, 2 + 3 = 5, then 5² = 25. It's not 2² + 3² = 13: the power applies to the whole result in the parentheses."
+        "(2 + 3)² is not 2² + 3²: the power applies to the whole result in the parentheses."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Powers come right after parentheses: parentheses, powers, × and ÷, + and −.",
+      "worked": [
+        {
+          "math": "2 + [[3²]]",
+          "note": "Power first."
+        },
+        {
+          "math": "2 + 9 = 11",
+          "note": "Not 5² = 25."
+        },
+        {
+          "math": "[[(2 + 3)]]²",
+          "note": "Parentheses first."
+        },
+        {
+          "math": "5² = 25",
+          "note": "Not 2² + 3² = 13."
+        }
+      ]
     },
     {
       "id": "alg.exponents.whole",
@@ -54,10 +110,28 @@
       "mode": "skill",
       "generator": "alg.exponents",
       "explain": [
-        "Now the problems are mixed.",
-        "A power multiplies the base by itself. Check what the base is: (−3)² or −3². In a longer expression: parentheses, powers, × and ÷, + and −."
+        "Now the problems are mixed."
       ],
-      "visual": null
+      "visual": null,
+      "key": "A power multiplies the base by itself. Check what the base is, and do powers right after parentheses.",
+      "worked": [
+        {
+          "math": "4 × [[(−2)²]] − 3²",
+          "note": ""
+        },
+        {
+          "math": "4 × 4 − [[3²]]",
+          "note": "(−2)² = 4."
+        },
+        {
+          "math": "[[4 × 4]] − 9",
+          "note": ""
+        },
+        {
+          "math": "16 − 9 = 7",
+          "note": ""
+        }
+      ]
     }
   ],
   "hints": {

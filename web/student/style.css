@@ -441,3 +441,10 @@ mark.hl { background: var(--mark-soft); color: inherit; border-bottom: 3px solid
 .col-pic { display: flex; justify-content: center; padding: 8px 0; }
 .worked-static { display: flex; flex-direction: column; gap: 8px; }
 .worked-title { margin: 6px 0 0; font-weight: 700; }
+
+/* equal groups and factor rectangles */
+.groups-pic { max-width: 100%; height: auto; }
+.groups-pic .groups-box { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 5 3; }
+.fp-grid { gap: 2px; }
+
+sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }

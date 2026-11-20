@@ -78,14 +78,35 @@ function parseMath(inner) {
 export function renderLessonText(text, { tag = 'p', className = '', autoFractions = false } = {}) {
   const el = document.createElement(tag);
   if (className) el.className = className;
-  const draw = (piece) => (typeof piece === 'string' ? piece : renderMath(piece, { inline: true }));
+  const draw = (piece) => (typeof piece === 'string' ? withPowers(piece) : renderMath(piece, { inline: true }));
   for (const piece of parseLessonText(text, { autoFractions })) {
     if (piece.type === 'mark') {
       const mark = document.createElement('mark');
       mark.className = 'hl';
-      mark.append(...piece.pieces.map(draw));
+      mark.append(...piece.pieces.map(draw).flat());
       el.append(mark);
-    } else el.append(draw(piece));
+    } else el.append(...[draw(piece)].flat());
   }
   return el;
+}
+
+// Superscript digits (2⁴, 7⁰) drawn as raised numbers in the text's own font:
+// some system fonts have no matching ⁰ or ⁴, and the fallback glyph looks wrong.
+const SUPERS = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+const SUPER_RUN = /[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g;
+function withPowers(text) {
+  if (!SUPER_RUN.test(text)) return text;
+  SUPER_RUN.lastIndex = 0;
+  const out = [];
+  let last = 0;
+  for (const m of text.matchAll(SUPER_RUN)) {
+    if (m.index > last) out.push(text.slice(last, m.index));
+    const sup = document.createElement('sup');
+    sup.className = 'pow';
+    sup.textContent = [...m[0]].map((c) => SUPERS.indexOf(c)).join('');
+    out.push(sup);
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) out.push(text.slice(last));
+  return out;
 }

@@ -11,18 +11,43 @@
       "objective": "Know the multiplication facts up to 12 × 12, and work out the ones you don't remember.",
       "mode": "section",
       "generator": "whole.mult-div.mult-facts",
-      "example": { "difficulty": 3 },
-      "check": { "outOf": 10, "rightNeeded": 9, "difficulty": 3 },
+      "example": {
+        "difficulty": 3
+      },
+      "check": {
+        "outOf": 10,
+        "rightNeeded": 9,
+        "difficulty": 3
+      },
       "explain": [
-        "7 × 8 means 7 groups of 8, or 8 groups of 7. The order doesn't matter: 7 × 8 and 8 × 7 are the same fact.",
-        "If you don't remember a fact, split it into facts you do know. 7 × 8 is 7 × 5 plus 7 × 3: 35 + 21 = 56. For 12s, split 12 into 10 + 2: 12 × 7 is 70 + 14 = 84.",
-        "The goal is to know these without working them out, because every fraction problem uses them. The check at the end is 10 of the harder facts, and you need 9 right."
+        "7 × 8 and 8 × 7 are the same fact: the order doesn't matter.",
+        "Every fraction problem uses these facts, so the goal is to know them without working them out. The check is 10 harder facts; you need 9 right."
       ],
       "visual": {
         "widget": "area-model",
-        "params": { "rows": 7, "cols": 8, "split": 5 },
+        "params": {
+          "rows": 7,
+          "cols": 8,
+          "split": 5
+        },
         "caption": "7 × 8 as a rectangle of 7 rows of 8. Move the split to break it into two facts you know."
-      }
+      },
+      "key": "Know your facts to 12 × 12. If you forget one, split it into two facts you know.",
+      "worked": [
+        {
+          "math": "7 × 8",
+          "note": "Don't remember it? Split the 8 into 5 + 3."
+        },
+        {
+          "math": "[[7 × 5]] + [[7 × 3]]",
+          "note": "Two facts you know."
+        },
+        {
+          "math": "35 + 21 = 56",
+          "note": "So 7 × 8 = 56."
+        }
+      ],
+      "workedCaption": "Splitting a fact you forgot:"
     },
     {
       "id": "whole.mult-div.div-facts",
@@ -32,10 +57,32 @@
       "mode": "section",
       "generator": "whole.mult-div.div-facts",
       "explain": [
-        "Division undoes multiplication. 56 ÷ 7 asks: 7 times what makes 56?",
-        "Since 7 × 8 = 56, the answer is 8. Every division fact is a multiplication fact read backwards."
+        "Every division fact is a multiplication fact read backwards.",
+        "Picture it as sorting into equal groups."
       ],
-      "visual": null
+      "visual": {
+        "widget": "groups",
+        "params": {
+          "total": 24,
+          "size": 6
+        },
+        "caption": "24 ÷ 6: how many groups of 6 in 24?"
+      },
+      "key": "Division undoes multiplication: 56 ÷ 7 asks \"7 times what makes 56?\"",
+      "worked": [
+        {
+          "math": "56 ÷ 7 = ?",
+          "note": ""
+        },
+        {
+          "math": "7 × [[?]] = 56",
+          "note": "Read it backwards."
+        },
+        {
+          "math": "7 × [[8]] = 56, so 56 ÷ 7 = 8",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "whole.mult-div.remainders",
@@ -45,11 +92,36 @@
       "mode": "section",
       "generator": "whole.mult-div.remainders",
       "explain": [
-        "Sometimes the groups don't come out even. 47 ÷ 5: 5 × 9 = 45 fits, and 5 × 10 = 50 is too big. So 9 groups, with 47 − 45 = 2 left over.",
         "Write it as 9 R 2: tap R on the keypad, then type the remainder.",
-        "The remainder is always less than the number you divide by. If it isn't, another whole group fits."
+        "If your remainder is as big as the divisor, another whole group fits."
       ],
-      "visual": null
+      "visual": {
+        "widget": "groups",
+        "params": {
+          "total": 47,
+          "size": 5
+        },
+        "caption": "47 ÷ 5: make groups of 5 and see what's left."
+      },
+      "key": "Find the biggest group that fits. What's left over is the remainder, and it's always smaller than the number you divide by.",
+      "worked": [
+        {
+          "math": "47 ÷ 5",
+          "note": ""
+        },
+        {
+          "math": "5 × [[9]] = 45 ✓   5 × 10 = 50 ✗",
+          "note": "9 groups fit; 10 is too many."
+        },
+        {
+          "math": "47 − 45 = [[2]]",
+          "note": "2 left over."
+        },
+        {
+          "math": "47 ÷ 5 = 9 R 2",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "whole.mult-div.whole",
@@ -59,10 +131,28 @@
       "mode": "skill",
       "generator": "whole.mult-div",
       "explain": [
-        "Now the problems are mixed. Read the sign first.",
-        "Dividing: think of the multiplication fact. If it doesn't come out even, find the biggest group that fits and write the remainder."
+        "Now the problems are mixed."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Read the sign. Dividing: think of the multiplication fact; if it doesn't come out even, write the remainder.",
+      "worked": [
+        {
+          "math": "38 ÷ 6",
+          "note": ""
+        },
+        {
+          "math": "6 × [[6]] = 36 fits; 6 × 7 = 42 is too big",
+          "note": ""
+        },
+        {
+          "math": "38 − 36 = [[2]]",
+          "note": ""
+        },
+        {
+          "math": "38 ÷ 6 = 6 R 2",
+          "note": "2 is less than 6 ✓"
+        }
+      ]
     }
   ],
   "hints": {

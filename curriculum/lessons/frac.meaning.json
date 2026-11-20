@@ -12,11 +12,25 @@
       "mode": "section",
       "generator": "frac.meaning.read-models",
       "explain": [
-        "The bottom number of a fraction (the denominator) is how many equal parts make the whole. The top number (the numerator) is how many of those parts you're talking about.",
-        "So to name a shaded fraction: count all the equal parts for the bottom, and count the shaded parts for the top. 3 shaded parts out of 5 equal parts is {3/5}.",
-        "Compare the shaded parts to ALL the parts, not to the unshaded ones. 3 shaded and 2 not shaded is {3/5}, not {3/2}."
+        "Compare the shaded parts to ALL the parts, not to the unshaded ones."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Bottom number: how many equal parts make the whole. Top number: how many of those parts are shaded.",
+      "worked": [
+        {
+          "math": "{bar 3/5}",
+          "note": "Count all the equal parts: 5. That's the bottom."
+        },
+        {
+          "math": "[[{3/5}]]",
+          "note": "Count the shaded parts: 3. That's the top."
+        },
+        {
+          "math": "{3/5}",
+          "note": "Not {3/2}: compare to all 5 parts, not the 2 unshaded ones."
+        }
+      ],
+      "workedCaption": "Tap through: naming a fraction from a picture."
     },
     {
       "id": "frac.meaning.number-line",
@@ -25,13 +39,29 @@
       "objective": "Read a fraction from a number line, including fractions bigger than 1.",
       "mode": "section",
       "generator": "frac.meaning.number-line",
-      "example": { "difficulty": 3 },
+      "example": {
+        "difficulty": 3
+      },
       "explain": [
-        "On a number line, the whole is the distance from 0 to 1. Count how many equal spaces it's cut into: that's the bottom number. Count the spaces, not the tick marks.",
-        "Then count spaces from 0 to the dot: that's the top number. A dot 3 spaces along, with the whole cut into 4 spaces, is at {3/4}.",
-        "Keep counting past 1 the same way. 5 spaces of fourths is {5/4}, which is also {1 1/4}: one whole and one more fourth. Each whole is cut the same way, so the bottom number stays 4."
+        "Past 1, keep counting the same size spaces: the bottom number stays the same."
       ],
-      "visual": null
+      "visual": null,
+      "key": "The whole is 0 to 1. Count the spaces (not the tick marks) from 0 to 1 for the bottom, and from 0 to the dot for the top.",
+      "worked": [
+        {
+          "math": "{line 1 4 3}",
+          "note": "0 to 1 is cut into 4 spaces: fourths."
+        },
+        {
+          "math": "[[{3/4}]]",
+          "note": "So the dot is at {3/4}."
+        },
+        {
+          "math": "{line 2 4 5}",
+          "note": "Past 1: 5 spaces of fourths is {5/4}, which is also {1 1/4}."
+        }
+      ],
+      "workedCaption": "Tap through: count spaces, not ticks."
     },
     {
       "id": "frac.meaning.division",
@@ -41,11 +71,25 @@
       "mode": "section",
       "generator": "frac.meaning.division",
       "explain": [
-        "The fraction bar means divide. 3 ÷ 4 = {3/4}: if 3 pizzas are shared equally by 4 people, each person gets {3/4} of a pizza. The number being divided goes on top.",
-        "When the top divides evenly by the bottom, the fraction is a whole number. {12/4} = 12 ÷ 4 = 3, and {6/6} = 1.",
-        "When the top is bigger and doesn't divide evenly, the answer is more than 1: 7 ÷ 3 = {7/3}, which is {2 1/3}."
+        "3 pizzas shared equally by 4 people: each gets {3/4} of a pizza."
       ],
-      "visual": null
+      "visual": null,
+      "key": "The fraction bar means divide: 3 ÷ 4 = {3/4}. The number being divided goes on top.",
+      "worked": [
+        {
+          "math": "3 ÷ 4 = {3/4}",
+          "note": "Divided number on top."
+        },
+        {
+          "math": "{12/4} = 12 ÷ 4 = [[3]]",
+          "note": "When it divides evenly, it's a whole number."
+        },
+        {
+          "math": "{6/6} = [[1]]",
+          "note": "Top and bottom the same: one whole."
+        }
+      ],
+      "workedCaption": "Tap through: fractions as division."
     },
     {
       "id": "frac.meaning.whole",
@@ -55,10 +99,24 @@
       "mode": "skill",
       "generator": "frac.meaning",
       "explain": [
-        "Now the problems are mixed. In every one, ask: what is the whole, and how many equal parts is it cut into? That's the bottom number.",
-        "Then count the parts you need for the top number. For division, the number being divided goes on top."
+        "Now the problems are mixed: pictures, number lines and division."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Ask: what's the whole, and how many equal parts is it cut into? That's the bottom number.",
+      "worked": [
+        {
+          "math": "{dots 4/9}",
+          "note": "9 dots in all, 4 shaded: {4/9}."
+        },
+        {
+          "math": "{line 1 3 2}",
+          "note": "Thirds; 2 spaces from 0: {2/3}."
+        },
+        {
+          "math": "5 ÷ 8 = {5/8}",
+          "note": "Divided number on top."
+        }
+      ]
     }
   ],
   "hints": {

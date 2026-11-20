@@ -12,15 +12,35 @@
       "mode": "section",
       "generator": "frac.equivalent.scale",
       "explain": [
-        "Equivalent fractions are the same amount written with different numbers. {2/3} and {8/12} are the same amount: the pieces are smaller, and there are more of them.",
-        "To make one, multiply the top and the bottom by the same number. {2/3} × {4/4} = {8/12}. Since {4/4} is 1, multiplying by it doesn't change the amount.",
-        "Multiply both. Multiplying only the top makes a bigger amount. Adding the same number to the top and bottom changes the amount too."
+        "Multiplying by {4/4} is multiplying by 1: the pieces get smaller, and there are more of them.",
+        "Multiplying only the top, or adding to both, changes the amount."
       ],
       "visual": {
         "widget": "fraction-bars",
-        "params": { "bars": [[2, 3]], "task": "recut", "recutInto": 12 },
+        "params": {
+          "bars": [
+            [
+              2,
+              3
+            ]
+          ],
+          "task": "recut",
+          "recutInto": 12
+        },
         "caption": "Cut each third into smaller pieces. The shaded amount stays the same."
-      }
+      },
+      "key": "Multiply the top AND the bottom by the same number. The amount stays the same.",
+      "worked": [
+        {
+          "math": "{2/3} × [[{4/4}]]",
+          "note": "{4/4} is 1."
+        },
+        {
+          "math": "{2/3} = {8/12}",
+          "note": "2 × 4 = 8 on top, 3 × 4 = 12 on the bottom."
+        }
+      ],
+      "workedCaption": "The same thing, written down:"
     },
     {
       "id": "frac.equivalent.missing",
@@ -29,13 +49,29 @@
       "objective": "Fill in the box so two fractions are equal.",
       "mode": "section",
       "generator": "frac.equivalent.missing",
-      "example": { "difficulty": 3 },
+      "example": {
+        "difficulty": 3
+      },
       "explain": [
-        "In {3/4} = {?/20}, ask: what do I multiply 4 by to get 20? 4 × 5 = 20. Do the same to the top: 3 × 5 = 15. So {3/4} = {15/20}.",
-        "If the box is on the bottom, work from the tops instead: in {2/5} = 8/?, 2 × 4 = 8, so the bottom is 5 × 4 = 20.",
-        "If the numbers don't fit nicely, simplify the first fraction first. {6/9} = {?/15}: {6/9} is {2/3}, and 3 × 5 = 15, so the answer is 2 × 5 = 10."
+        "If the numbers don't fit nicely, simplify the first fraction first."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Find what one number was multiplied by, then do the same to the other number.",
+      "worked": [
+        {
+          "math": "{3/4} = {?/20}",
+          "note": "What turns 4 into 20?"
+        },
+        {
+          "math": "4 [[× 5]] = 20",
+          "note": "× 5."
+        },
+        {
+          "math": "3 [[× 5]] = 15, so {3/4} = {15/20}",
+          "note": "Do the same to the top."
+        }
+      ],
+      "workedCaption": "Tap through: find the ×, then copy it."
     },
     {
       "id": "frac.equivalent.simplify",
@@ -45,11 +81,25 @@
       "mode": "section",
       "generator": "frac.equivalent.simplify",
       "explain": [
-        "A fraction is in simplest form when no number bigger than 1 divides both the top and the bottom.",
-        "Divide the top and the bottom by the same number. {18/24}: 6 divides both, so {18/24} = {3/4}. Using the greatest common factor gets there in one step.",
-        "If you used a smaller number, keep going: {18/24} ÷ 2 is {9/12}, and 3 still divides both, so divide again to get {3/4}. Always divide both the top and the bottom."
+        "The greatest common factor gets there in one step. A smaller number works too: just keep going."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Divide the top and the bottom by the same number until nothing bigger than 1 divides both.",
+      "worked": [
+        {
+          "math": "{18/24}",
+          "note": "6 divides both 18 and 24."
+        },
+        {
+          "math": "{18/24} [[÷ {6/6}]]",
+          "note": "Divide top and bottom by 6."
+        },
+        {
+          "math": "{3/4}",
+          "note": "Nothing else divides 3 and 4: simplest form."
+        }
+      ],
+      "workedCaption": "Tap through: simplify."
     },
     {
       "id": "frac.equivalent.whole",
@@ -59,10 +109,20 @@
       "mode": "skill",
       "generator": "frac.equivalent",
       "explain": [
-        "Now the problems are mixed. Read what each one asks for.",
-        "Making an equal fraction: multiply the top and bottom by the same number. Simplifying: divide the top and bottom by the same number until nothing else divides both."
+        "Now the problems are mixed. Read what each one asks for."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Making an equal fraction: multiply top and bottom. Simplifying: divide top and bottom.",
+      "worked": [
+        {
+          "math": "{2/5} = {?/15}  →  × 3  →  {6/15}",
+          "note": "Equal fraction: multiply."
+        },
+        {
+          "math": "{10/15}  →  ÷ 5  →  {2/3}",
+          "note": "Simplest form: divide."
+        }
+      ]
     }
   ],
   "hints": {

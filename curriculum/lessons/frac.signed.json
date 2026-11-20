@@ -12,11 +12,24 @@
       "mode": "section",
       "generator": "frac.signed.sign-placement",
       "explain": [
-        "A fraction is a division: {3/5} means 3 ÷ 5. So the sign rules for dividing integers work for fractions too.",
-        "One negative, on top or on the bottom, makes the fraction negative: (−3)/5 and 3/(−5) are both −{3/5}. We usually write the sign in front.",
-        "Two negatives make a positive: (−6)/(−9) is the same as 6/9, which simplifies to {2/3}."
+        "We usually write the sign in front: −{3/5}."
       ],
-      "visual": null
+      "visual": null,
+      "key": "A fraction is a division, so the integer sign rules apply. One negative: negative. Two negatives: positive.",
+      "worked": [
+        {
+          "math": "(−3)/5 = 3/(−5) = [[−{3/5}]]",
+          "note": "One negative, top or bottom."
+        },
+        {
+          "math": "(−6)/(−9) = [[{6/9}]]",
+          "note": "Two negatives make a positive."
+        },
+        {
+          "math": "{2/3}",
+          "note": "Simplify."
+        }
+      ]
     },
     {
       "id": "frac.signed.add-sub",
@@ -26,11 +39,28 @@
       "mode": "section",
       "generator": "frac.signed.add-sub",
       "explain": [
-        "Work just like adding fractions: find a common denominator and rewrite both fractions. The sign comes along with the top.",
-        "−{1/2} + {1/3}: the common denominator is 6, so it's −{3/6} + {2/6}. Add the tops with the integer rules: −3 + 2 = −1. The answer is −{1/6}.",
-        "Subtracting? Add the opposite first. {2/5} − (−{3/4}) = {2/5} + {3/4} = {8/20} + {15/20} = {23/20}."
+        "Subtracting a negative? Add the opposite first: {2/5} − (−{3/4}) = {2/5} + {3/4}."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Same steps as adding fractions. The sign rides along with the top; add the tops with the integer rules.",
+      "worked": [
+        {
+          "math": "−{1/2} + {1/3}",
+          "note": "Common denominator: 6."
+        },
+        {
+          "math": "[[−{3/6}]] + [[{2/6}]]",
+          "note": ""
+        },
+        {
+          "math": "[[−3 + 2]] = −1",
+          "note": "Integer rules on the tops."
+        },
+        {
+          "math": "−{1/6}",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "frac.signed.mult-div",
@@ -40,11 +70,32 @@
       "mode": "section",
       "generator": "frac.signed.mult-div",
       "explain": [
-        "Same sign rule as integers: one negative gives a negative answer; two negatives give a positive answer.",
-        "−{2/3} × {3/5}: one negative, so the answer is negative. Then {2/3} × {3/5} = {6/15} = {2/5}. The answer is −{2/5}.",
-        "−{1/2} ÷ (−{3/4}): two negatives, so positive. Then {1/2} × {4/3} = {4/6} = {2/3}."
+        "Dividing? Keep, change, flip, as always."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Decide the sign first, like integers. Then multiply or divide the fractions.",
+      "worked": [
+        {
+          "math": "−{2/3} × {3/5}",
+          "note": "One negative: the answer is [[negative]]."
+        },
+        {
+          "math": "{2/3} × {3/5} = {6/15} = {2/5}",
+          "note": ""
+        },
+        {
+          "math": "[[−{2/5}]]",
+          "note": ""
+        },
+        {
+          "math": "−{1/2} ÷ (−{3/4})",
+          "note": "Two negatives: [[positive]]."
+        },
+        {
+          "math": "{1/2} × {4/3} = {4/6} = [[{2/3}]]",
+          "note": ""
+        }
+      ]
     },
     {
       "id": "frac.signed.whole",
@@ -54,10 +105,28 @@
       "mode": "skill",
       "generator": "frac.signed",
       "explain": [
-        "Now the problems are mixed.",
-        "Adding or subtracting: common denominator, then the integer rules on the tops. Multiplying or dividing: the sign first, then the fractions. Always simplify."
+        "Now the problems are mixed."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Adding or subtracting: common denominator, then integer rules on the tops. Multiplying or dividing: sign first, then the fractions. Always simplify.",
+      "worked": [
+        {
+          "math": "{1/4} − {5/6}",
+          "note": "Common denominator: 12."
+        },
+        {
+          "math": "[[{3/12}]] − [[{10/12}]]",
+          "note": ""
+        },
+        {
+          "math": "[[3 − 10]] = −7",
+          "note": "Integer rules on the tops."
+        },
+        {
+          "math": "−{7/12}",
+          "note": ""
+        }
+      ]
     }
   ],
   "hints": {

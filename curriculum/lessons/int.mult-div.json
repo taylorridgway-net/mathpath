@@ -12,11 +12,38 @@
       "mode": "section",
       "generator": "int.mult-div.multiply",
       "explain": [
-        "3 × (−4) means 3 groups of −4: −4 + (−4) + (−4) = −12. A positive times a negative is negative.",
-        "Look at the pattern: 3 × (−4) = −12, 2 × (−4) = −8, 1 × (−4) = −4, 0 × (−4) = 0. Each step goes up by 4, so the next ones are −1 × (−4) = 4 and −2 × (−4) = 8. A negative times a negative is positive.",
-        "The rule: multiply the sizes, then count the negative numbers. An even number of negatives gives a positive answer; an odd number gives a negative answer. −2 × 3 × (−5) has two negatives, so it's +30."
+        "3 × (−4) is 3 groups of −4: −12.",
+        "−2 × 3 × (−5) has two negatives, so it's +30."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Multiply the sizes, then count the negatives: even gives positive, odd gives negative.",
+      "worked": [
+        {
+          "math": "3 × (−4) = −12",
+          "note": ""
+        },
+        {
+          "math": "2 × (−4) = −8",
+          "note": "Up by 4 each step."
+        },
+        {
+          "math": "1 × (−4) = −4",
+          "note": ""
+        },
+        {
+          "math": "0 × (−4) = 0",
+          "note": ""
+        },
+        {
+          "math": "−1 × (−4) = [[4]]",
+          "note": "The pattern keeps going up."
+        },
+        {
+          "math": "−2 × (−4) = [[8]]",
+          "note": "Negative times negative is positive."
+        }
+      ],
+      "workedCaption": "Follow the pattern down the list."
     },
     {
       "id": "int.mult-div.divide",
@@ -26,10 +53,28 @@
       "mode": "section",
       "generator": "int.mult-div.divide",
       "explain": [
-        "Dividing follows the same sign rule as multiplying, because every division is a multiplication backwards: −42 ÷ 6 = −7 because 6 × (−7) = −42.",
-        "Divide the sizes (42 ÷ 6 = 7), then the sign: one negative gives a negative answer, two negatives give a positive answer. −42 ÷ (−7) = 6."
+        "Every division is a multiplication backwards."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Dividing uses the same sign rule as multiplying: one negative gives negative, two give positive.",
+      "worked": [
+        {
+          "math": "−42 ÷ 6",
+          "note": "Divide the sizes: 42 ÷ 6 = 7."
+        },
+        {
+          "math": "[[−7]]",
+          "note": "One negative."
+        },
+        {
+          "math": "Check: 6 × (−7) = −42",
+          "note": ""
+        },
+        {
+          "math": "−42 ÷ (−7) = [[6]]",
+          "note": "Two negatives: positive."
+        }
+      ]
     },
     {
       "id": "int.mult-div.whole",
@@ -39,10 +84,24 @@
       "mode": "skill",
       "generator": "int.mult-div",
       "explain": [
-        "Now the problems are mixed.",
-        "Multiply or divide the sizes. Then count the negative numbers: even gives positive, odd gives negative."
+        "Now the problems are mixed."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Multiply or divide the sizes. Then count the negatives: even gives positive, odd gives negative.",
+      "worked": [
+        {
+          "math": "(−24) ÷ (−3) × (−2)",
+          "note": "Left to right."
+        },
+        {
+          "math": "[[8]] × (−2)",
+          "note": "Two negatives: positive."
+        },
+        {
+          "math": "[[−16]]",
+          "note": "One negative: negative."
+        }
+      ]
     }
   ],
   "hints": {

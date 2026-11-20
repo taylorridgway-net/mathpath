@@ -12,17 +12,41 @@
       "objective": "Find a number both denominators divide into.",
       "mode": "section",
       "generator": "frac.add-sub.common-denom",
-      "example": { "difficulty": 2 },
+      "example": {
+        "difficulty": 2
+      },
       "explain": [
-        "To add or subtract fractions, the pieces have to be the same size. {1/2} and {1/3} are different-size pieces, so you can't count them together yet.",
-        "A common denominator is a number both denominators divide into evenly. Then both fractions can be cut into pieces of that size.",
-        "Multiplying the two denominators always works. For {1/4} and {1/6}: 4 × 6 = 24. A smaller one keeps the numbers easier: count by 6 (6, 12, ...) until you reach a number 4 also divides into. 12 works."
+        "You can only add pieces of the same size, so cut both fractions into the same size pieces first.",
+        "To find a smaller one, count by the bigger denominator until the smaller one divides in."
       ],
       "visual": {
         "widget": "fraction-bars",
-        "params": { "bars": [[1, 2], [1, 3]], "task": "cut-to-match" },
+        "params": {
+          "bars": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ]
+          ],
+          "task": "cut-to-match"
+        },
         "caption": "Cut both bars into the same number of pieces. Which numbers of pieces work for both?"
-      }
+      },
+      "key": "A common denominator is a number both denominators divide into. Multiplying them always works; a smaller one keeps the numbers easy.",
+      "worked": [
+        {
+          "math": "{1/4} and {1/6}",
+          "note": "Count by 6: 6, [[12]]. 4 divides 12."
+        },
+        {
+          "math": "Common denominator: 12",
+          "note": "(4 × 6 = 24 works too.)"
+        }
+      ]
     },
     {
       "id": "frac.add-sub.rewrite",
@@ -32,15 +56,33 @@
       "mode": "section",
       "generator": "frac.add-sub.rewrite",
       "explain": [
-        "Once you have a common denominator, rewrite each fraction so it has that denominator.",
-        "Ask: what do I multiply the old denominator by to get the new one? Then multiply the numerator by the same number. For {1/4} = {?/12}: 4 × 3 = 12, so 1 × 3 = 3, and {1/4} = {3/12}.",
-        "This works because multiplying the top and bottom by the same number is multiplying by 1 ({3/3} = 1). The amount stays the same. The pieces just get smaller, and there are more of them."
+        "Multiplying top and bottom by the same number is multiplying by 1: the amount stays the same."
       ],
       "visual": {
         "widget": "fraction-bars",
-        "params": { "bars": [[1, 4]], "task": "recut", "recutInto": 12 },
+        "params": {
+          "bars": [
+            [
+              1,
+              4
+            ]
+          ],
+          "task": "recut",
+          "recutInto": 12
+        },
         "caption": "Cut each fourth into 3 pieces. The shaded amount doesn't change."
-      }
+      },
+      "key": "Multiply the top by the same number you multiplied the bottom by.",
+      "worked": [
+        {
+          "math": "{1/4} = {?/12}",
+          "note": "4 × 3 = 12."
+        },
+        {
+          "math": "1 [[× 3]] = 3, so {1/4} = {3/12}",
+          "note": "Same × 3 on top."
+        }
+      ]
     },
     {
       "id": "frac.add-sub.combine",
@@ -50,15 +92,37 @@
       "mode": "section",
       "generator": "frac.add-sub.combine",
       "explain": [
-        "When the denominators are the same, the pieces are the same size. Add or subtract the numerators to count the pieces.",
-        "The denominator stays the same, because it tells you the size of the pieces, and that doesn't change. {2/7} + {3/7}: 2 sevenths plus 3 sevenths is 5 sevenths, {5/7}.",
-        "Adding the denominators would change the size of the pieces. {1/2} + {1/2} is one whole, not {2/4}."
+        "The bottom is the size of the pieces, and that doesn't change when you put them together.",
+        "{1/2} + {1/2} is 1 whole, not {2/4}."
       ],
       "visual": {
         "widget": "fraction-bars",
-        "params": { "bars": [[2, 7], [3, 7]], "task": "combine" },
+        "params": {
+          "bars": [
+            [
+              2,
+              7
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          "task": "combine"
+        },
         "caption": "Put the shaded pieces together. Count the pieces. Did their size change?"
-      }
+      },
+      "key": "Same denominators: add or subtract the tops, keep the bottom.",
+      "worked": [
+        {
+          "math": "{2/7} + {3/7}",
+          "note": ""
+        },
+        {
+          "math": "[[2 + 3]] sevenths = {5/7}",
+          "note": "2 sevenths + 3 sevenths = 5 sevenths."
+        }
+      ]
     },
     {
       "id": "frac.add-sub.simplify-result",
@@ -68,11 +132,25 @@
       "mode": "section",
       "generator": "frac.add-sub.simplify-result",
       "explain": [
-        "A fraction is in simplest form when no number bigger than 1 divides both the top and the bottom.",
-        "To simplify, find a number that divides both, and divide the top and bottom by it. {6/8}: 6 and 8 are both even, so divide both by 2 to get {3/4}. Keep going until nothing else divides both.",
-        "If the top and bottom are the same, the answer is 1. If the bottom becomes 1, write just the whole number."
+        "Top and bottom the same: the answer is 1. Bottom becomes 1: write the whole number."
       ],
-      "visual": null
+      "visual": null,
+      "key": "After adding or subtracting, divide the top and bottom by any number that divides both.",
+      "worked": [
+        {
+          "math": "{1/8} + {5/8} = {6/8}",
+          "note": "Add first."
+        },
+        {
+          "math": "{6/8} [[÷ {2/2}]]",
+          "note": "6 and 8 are both even."
+        },
+        {
+          "math": "{3/4}",
+          "note": "Simplest form."
+        }
+      ],
+      "workedCaption": "Tap through: add, then simplify."
     },
     {
       "id": "frac.add-sub.whole",
@@ -81,14 +159,34 @@
       "objective": "Add and subtract fractions with different denominators, start to finish.",
       "mode": "skill",
       "generator": "frac.add-sub",
-      "example": { "difficulty": 2 },
+      "example": {
+        "difficulty": 2
+      },
       "explain": [
-        "Adding or subtracting fractions with different denominators takes four steps.",
-        "1. Find a common denominator. 2. Rewrite both fractions with it. 3. Add or subtract the numerators and keep the denominator. 4. Simplify.",
-        "Example: {1/4} + {1/6}. A common denominator is 12. {1/4} = {3/12} and {1/6} = {2/12}. Then {3/12} + {2/12} = {5/12}, which is already in simplest form."
+        "Each step is one of the parts you've practised."
       ],
       "visual": null,
-      "scaffold": "In guided practice, each of the four steps gets its own answer box. In the mastery problems, the student does all four steps alone."
+      "scaffold": "In guided practice, each of the four steps gets its own answer box. In the mastery problems, the student does all four steps alone.",
+      "key": "Four steps: common denominator → rewrite both → add or subtract the tops → simplify.",
+      "worked": [
+        {
+          "math": "{1/4} + {1/6}",
+          "note": ""
+        },
+        {
+          "math": "Common denominator: [[12]]",
+          "note": "Step 1."
+        },
+        {
+          "math": "{3/12} + {2/12}",
+          "note": "Step 2: rewrite both."
+        },
+        {
+          "math": "{5/12}",
+          "note": "Step 3: add the tops. Step 4: 5 and 12 share no factor, so it's simplest."
+        }
+      ],
+      "workedCaption": "Tap through: all four steps."
     }
   ],
   "hints": {

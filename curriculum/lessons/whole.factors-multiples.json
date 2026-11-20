@@ -12,11 +12,17 @@
       "mode": "section",
       "generator": "whole.factors-multiples.factors",
       "explain": [
-        "A factor of 24 is a number that divides 24 evenly: 24 ÷ 6 = 4 with nothing left over, so 6 is a factor.",
-        "Find them in pairs so you don't miss any. Try 1, 2, 3, and so on: 1 × 24, 2 × 12, 3 × 8, 4 × 6. 5 doesn't divide 24. The next to try is 6, but you already have it, so you're done.",
-        "Factors are never bigger than the number. 48 and 72 are multiples of 24, not factors."
+        "A factor divides the number evenly. Every factor pair is a way to make a rectangle.",
+        "Factors are never bigger than the number: 48 is a multiple of 24, not a factor."
       ],
-      "visual": null
+      "visual": {
+        "widget": "factor-pairs",
+        "params": {
+          "n": 24
+        },
+        "caption": "Every rectangle you can make with 24 squares is a factor pair."
+      },
+      "key": "Factors come in pairs that multiply to the number. Try 1, 2, 3, … and stop when the pairs start repeating."
     },
     {
       "id": "whole.factors-multiples.primes",
@@ -26,11 +32,30 @@
       "mode": "section",
       "generator": "whole.factors-multiples.primes",
       "explain": [
-        "A prime number has exactly two factors: 1 and itself. 2, 3, 5, 7, 11 and 13 are prime. 1 is not prime, and 9 isn't either (3 × 3).",
-        "To write 60 as a product of primes, split it into any two factors, then keep splitting anything that isn't prime: 60 = 2 × 30, 30 = 2 × 15, 15 = 3 × 5. So 60 = 2 × 2 × 3 × 5.",
-        "Type the primes one at a time with Next. The order doesn't matter, but every number must be prime."
+        "2, 3, 5, 7, 11, 13 are prime. 1 is not prime, and neither is 9 (3 × 3).",
+        "Type the primes one at a time with Next. The order doesn't matter."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Keep splitting into factors until every number is prime. A prime has exactly two factors: 1 and itself.",
+      "worked": [
+        {
+          "math": "60 = [[2 × 30]]",
+          "note": "Split into any two factors."
+        },
+        {
+          "math": "= 2 × [[2 × 15]]",
+          "note": "30 isn't prime: split it."
+        },
+        {
+          "math": "= 2 × 2 × [[3 × 5]]",
+          "note": "15 isn't prime: split it."
+        },
+        {
+          "math": "= 2 × 2 × 3 × 5",
+          "note": "All prime. Done."
+        }
+      ],
+      "workedCaption": "Tap through: split until everything is prime."
     },
     {
       "id": "whole.factors-multiples.gcf",
@@ -40,11 +65,25 @@
       "mode": "section",
       "generator": "whole.factors-multiples.gcf",
       "explain": [
-        "A common factor divides both numbers. The greatest common factor (GCF) is the biggest one.",
-        "List the factors of each number and find the biggest one in both lists. For 24 and 36: 1, 2, 3, 4, 6, 12 are in both, so the GCF is 12.",
-        "You'll use this to simplify fractions: dividing the top and bottom of 24/36 by 12 gives 2/3 in one step."
+        "You'll use it to simplify fractions in one step: 24/36 ÷ 12/12 = 2/3."
       ],
-      "visual": null
+      "visual": null,
+      "key": "The greatest common factor is the biggest number on both factor lists.",
+      "worked": [
+        {
+          "math": "24: 1, 2, 3, 4, 6, 8, [[12]], 24",
+          "note": "Factors of 24."
+        },
+        {
+          "math": "36: 1, 2, 3, 4, 6, 9, [[12]], 18, 36",
+          "note": "Factors of 36."
+        },
+        {
+          "math": "GCF = 12",
+          "note": "The biggest one in both lists."
+        }
+      ],
+      "workedCaption": "Tap through: list, then find the biggest match."
     },
     {
       "id": "whole.factors-multiples.lcm",
@@ -54,11 +93,26 @@
       "mode": "section",
       "generator": "whole.factors-multiples.lcm",
       "explain": [
-        "Multiples of 6 are 6, 12, 18, 24, and so on. A common multiple of 6 and 8 is in both lists. The least common multiple (LCM) is the smallest one.",
-        "Count by the bigger number and stop at the first one the smaller number divides into: 8, 16, 24. 6 divides 24, so the LCM is 24.",
-        "Multiplying the two numbers (6 × 8 = 48) always gives a common multiple, but not always the least. This is the same idea as finding a common denominator."
+        "The least common multiple is the smallest number in both lists of multiples.",
+        "Multiplying the two numbers always gives a common multiple, but not always the least. It's the same idea as a common denominator."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Count by the bigger number and stop at the first one the smaller number divides into.",
+      "worked": [
+        {
+          "math": "6 and 8",
+          "note": "Count by 8."
+        },
+        {
+          "math": "8, 16, [[24]]",
+          "note": "6 doesn't go into 8 or 16, but 6 × 4 = 24."
+        },
+        {
+          "math": "LCM = 24",
+          "note": "Not 48 (6 × 8): that's a common multiple, but not the least."
+        }
+      ],
+      "workedCaption": "Tap through: count by the bigger number."
     },
     {
       "id": "whole.factors-multiples.whole",
@@ -68,10 +122,20 @@
       "mode": "skill",
       "generator": "whole.factors-multiples",
       "explain": [
-        "Now the problems are mixed. Read what each one asks for: all the factors, a product of primes, the greatest common factor, or the least common multiple.",
-        "Factors divide into a number. Multiples are what you get by counting by it. Greatest means the biggest common factor; least means the smallest common multiple."
+        "Now the problems are mixed. Read what each one asks for."
       ],
-      "visual": null
+      "visual": null,
+      "key": "Factors divide into a number. Multiples are what you get counting by it. Greatest common factor; least common multiple.",
+      "worked": [
+        {
+          "math": "Factors of 12: 1, 2, 3, 4, 6, 12",
+          "note": "They divide 12."
+        },
+        {
+          "math": "Multiples of 12: 12, 24, 36, …",
+          "note": "Counting by 12."
+        }
+      ]
     }
   ],
   "hints": {
