@@ -57,8 +57,13 @@ function build(node) {
       return wrap;
     }
     case 'root': {
+      // The radical sign is drawn (not a font character), stretched to the radicand's height,
+      // so its top stroke runs straight into the bar over the number.
       const wrap = el('span', 'm-root');
-      wrap.append(el('span', 'm-root-sign', node.index === 3 ? '\u221b' : '\u221a'));
+      if (node.index === 3) wrap.append(el('span', 'm-root-index', '3'));
+      const sign = svg('svg', { viewBox: '0 0 12 24', preserveAspectRatio: 'none', class: 'm-root-sign', 'aria-hidden': 'true' });
+      sign.append(svg('path', { d: 'M0.5 14 L3 12.5 L6.5 22.5 L11.5 1 L12 1', class: 'm-root-path' }));
+      wrap.append(sign);
       const inside = el('span', 'm-radicand');
       inside.append(build(node.of));
       wrap.append(inside);
