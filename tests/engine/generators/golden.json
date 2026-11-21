@@ -13050,6 +13050,869 @@
    }
   ]
  },
+ "alg.translate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Five times a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 0
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": 5
+      }
+     }
+    ],
+    "part": "alg.translate.expression"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "4 less than a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": -4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -1,
+       "constant": 4
+      }
+     }
+    ],
+    "part": "alg.translate.expression"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Four times a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": 0
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": 4
+      }
+     }
+    ],
+    "part": "alg.translate.expression"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Twice a number, decreased by 10 is 4. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     }
+    ],
+    "part": "alg.translate.equation"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "6 less than five times a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -5,
+       "constant": 6
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": -1
+      }
+     }
+    ],
+    "part": "alg.translate.expression"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "10 more than twice a number is 16. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     }
+    ],
+    "part": "alg.translate.equation"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "A school club pays a $10 entry fee and $6 per student for a museum trip. The total was $34. How many students went?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.translate-start-ignored",
+      "value": {
+       "n": 17,
+       "d": 3
+      }
+     }
+    ],
+    "part": "alg.translate.equation"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Maya has $26 saved. She saves $3 more each week. After how many weeks will she have $32?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.translate-start-ignored",
+      "value": {
+       "n": 32,
+       "d": 3
+      }
+     }
+    ],
+    "part": "alg.translate.equation"
+   },
+   {
+    "generator": "alg.translate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Three times the difference of a number and 5"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -15
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-sum-grouping",
+      "value": {
+       "coef": 3,
+       "constant": -5
+      }
+     },
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -3,
+       "constant": 15
+      }
+     }
+    ],
+    "part": "alg.translate.expression"
+   }
+  ]
+ },
+ "alg.translate.equation": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "A number decreased by 4 is 1. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Three times a number is 54. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 18,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 51,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "A number decreased by 4 is 1. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Six times a number, decreased by 12 is 54. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 11,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 60,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Three times a number, decreased by 8 is 1. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "n": 7,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Three times a number, decreased by 7 is 14. What is the number?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "n": -7,
+       "d": 3
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "A school club pays a $40 entry fee and $9 per student for a museum trip. The total was $121. How many students went?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 72,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.translate-start-ignored",
+      "value": {
+       "n": 121,
+       "d": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Maya has $19 saved. She saves $6 more each week. After how many weeks will she have $31?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.translate-start-ignored",
+      "value": {
+       "n": 31,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.equation",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write an equation and solve it.",
+    "expression": {
+     "type": "words",
+     "text": "Maya has $12 saved. She saves $6 more each week. After how many weeks will she have $54?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "n": 36,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.translate-start-ignored",
+      "value": {
+       "n": 9,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.translate.expression": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Twice a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": 0
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Four times a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": 0
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "The product of 6 and a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 6,
+     "constant": 0
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Five times a number, decreased by 6"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -5,
+       "constant": 6
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Three times a number, decreased by 9"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -9
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -3,
+       "constant": 9
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": -6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "8 less than five times a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -8
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -5,
+       "constant": 8
+      }
+     },
+     {
+      "id": "alg.translate-add-for-times",
+      "value": {
+       "coef": 1,
+       "constant": -3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Twice the difference of a number and 11"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": -22
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-sum-grouping",
+      "value": {
+       "coef": 2,
+       "constant": -11
+      }
+     },
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -2,
+       "constant": 22
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "Three times the difference of a number and 10"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -30
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-sum-grouping",
+      "value": {
+       "coef": 3,
+       "constant": -10
+      }
+     },
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": -3,
+       "constant": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.translate.expression",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write as an expression. Use x for the number.",
+    "expression": {
+     "type": "words",
+     "text": "7 decreased by three times a number"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -3,
+     "constant": 7
+    },
+    "misconceptions": [
+     {
+      "id": "alg.translate-order",
+      "value": {
+       "coef": 3,
+       "constant": -7
+      }
+     }
+    ]
+   }
+  ]
+ },
  "dec.add-sub": {
   "version": 1,
   "problems": [

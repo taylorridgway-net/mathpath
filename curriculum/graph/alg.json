@@ -427,6 +427,46 @@
           ]
         }
       ]
+    },
+    {
+      "id": "alg.translate",
+      "name": "Write expressions and equations from words",
+      "summary": "Turn phrases into expressions (5 less than twice a number: 2x − 5) and sentences or short stories into equations, then solve them.",
+      "typicalGrade": 6,
+      "standards": [
+        "6.EE.A.2a",
+        "6.EE.B.7",
+        "7.EE.B.4a"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.translate.expression",
+          "name": "Write an expression from words (5 less than twice a number)",
+          "prerequisites": [
+            {
+              "id": "alg.evaluate.substitute",
+              "strength": "supporting",
+              "why": "Knowing what 3x means."
+            }
+          ]
+        },
+        {
+          "id": "alg.translate.equation",
+          "name": "Write an equation from a sentence or a short story, and solve it",
+          "prerequisites": [
+            {
+              "id": "alg.translate.expression",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.equations.two-step",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -17,6 +17,7 @@ import { expressionGenerators } from './alg/expressions.js';
 import { multiStepGenerators } from './alg/multi-step.js';
 import { inequalityGenerators } from './alg/inequalities.js';
 import { inequalityGraphGenerators } from './alg/inequality-graphs.js';
+import { translateGenerators } from './alg/translate.js';
 import { substituteGenerators } from './alg/substitute.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
@@ -42,6 +43,7 @@ export const generators = {
   ...multiStepGenerators,
   ...inequalityGenerators,
   ...inequalityGraphGenerators,
+  ...translateGenerators,
   ...substituteGenerators,
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,

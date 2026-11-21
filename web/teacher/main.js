@@ -284,6 +284,7 @@ const shortName = (id) => ({
   'alg.multi-step': 'Multi-step equations',
   'alg.inequalities': 'Inequalities',
   'alg.inequality-graphs': 'Graph inequalities',
+  'alg.translate': 'Words to equations',
   'frac.multiply': 'Multiply',
   'frac.divide': 'Divide',
   'frac.signed': 'Negative fractions',

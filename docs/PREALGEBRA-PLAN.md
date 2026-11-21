@@ -75,3 +75,11 @@ test with checked keys, and diagnostic tests with pretend students.
   line for a dot, tap the dot to make it open (again to remove it), then pick the shading (left/right, or between/outside);
   answer type `numline`. One compound inequality screens graphing in the diagnostic; reading a graph is asked on its own.
   Pre-algebra check: median 14 questions, max 22; knows everything: 12.
+- **Words to expressions and equations built (2026-11-21; owner: focus on foundations from before high school):**
+  `alg.translate` (phrases to ax + b in the two boxes, recognising "4 less than x" written 4 − x, "twice x" as x + 2,
+  "twice the sum" without parentheses; sentences and short stories to an equation, then solve). One two-step sentence
+  screens both parts.
+- **Pre-algebra check split in two (2026-11-21)** once it reached nine skills (2 of 400 pretend students hit the 25-question
+  limit): the "Pre-algebra check" (order of operations, exponents, evaluating, simplifying, words to expressions:
+  median 11 questions, max 22) and then an "Equations and inequalities check" (equations, multi-step, inequalities,
+  graphing them: median 7, max 15). Offered one at a time, like the others.

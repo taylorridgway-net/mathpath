@@ -18,6 +18,7 @@ import { solveRatio } from './rat.js';
 import { solveEvaluate } from './alg-evaluate.js';
 import { solveLinear } from './lin.js';
 import { solveInequalityGraph } from './alg-inequality-graphs.js';
+import { solveTranslate } from './alg-translate.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
@@ -30,6 +31,7 @@ export function solve(problem) {
   if (kind.startsWith('alg.multi-step')) return solveMultiStep(problem);
   if (kind.startsWith('alg.inequalities')) return solveInequality(problem);
   if (kind.startsWith('alg.inequality-graphs')) return solveInequalityGraph(problem);
+  if (kind.startsWith('alg.translate')) return solveTranslate(problem);
   if (kind.startsWith('alg.evaluate')) return solveEvaluate(problem);
   if (kind.startsWith('alg.expressions')) return solveExpression(problem);
   if (kind.startsWith('alg.')) return solveAlg(problem);

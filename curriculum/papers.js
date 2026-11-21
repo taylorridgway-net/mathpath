@@ -19,6 +19,7 @@ import algExpressionsPaper from './paper/alg.expressions.json';
 import algMultiStepPaper from './paper/alg.multi-step.json';
 import algInequalitiesPaper from './paper/alg.inequalities.json';
 import algInequalityGraphsPaper from './paper/alg.inequality-graphs.json';
+import algTranslatePaper from './paper/alg.translate.json';
 import algEvaluatePaper from './paper/alg.evaluate.json';
 import decPlaceValuePaper from './paper/dec.place-value.json';
 import decConvertPaper from './paper/dec.convert.json';
@@ -36,4 +37,4 @@ import linFormsPaper from './paper/lin.forms.json';
 import linParallelPaper from './paper/lin.parallel.json';
 import linGraphingPaper from './paper/lin.graphing.json';
 
-export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper];
+export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algTranslatePaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper];

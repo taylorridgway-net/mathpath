@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.translate",
+  "title": "Write expressions and equations from words",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "alg.translate.expression": "Times, twice, product: multiply (3x). More than, increased by, plus: add. Less than: the number comes SECOND (5 less than x is x − 5). Subtract A from B is B − A.",
+    "alg.translate.equation": "Write the words as an expression, then \"is\" means =. Solve the equation you wrote, then check it in the words.",
+    "alg.translate": "Translate piece by piece: times means multiply, less than flips the order, \"is\" means =. Then solve and check."
+  },
+  "misconceptionMessages": {
+    "alg.translate-order": "Careful with \"less than\" and \"subtract from\": they flip the order. 4 less than x is x − 4, and subtract x from 10 is 10 − x.",
+    "alg.translate-add-for-times": "\"Twice\", \"times\" and \"product\" mean multiply: twice a number is 2x, not x + 2.",
+    "alg.translate-sum-grouping": "\"Twice the sum of a number and 3\" doubles the WHOLE sum: 2(x + 3) = 2x + 6.",
+    "alg.translate-start-ignored": "Don't forget the starting amount: start + (rate × number) = total."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "alg.translate.expression",
+      "forGap": "alg.translate.expression",
+      "title": "Words to expressions",
+      "objective": "Write phrases like \"5 less than twice a number\" as expressions.",
+      "mode": "section",
+      "generator": "alg.translate.expression",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Call the unknown number x and translate piece by piece.",
+        "Most words go in the order you read them. \"Less than\" and \"subtract … from\" flip the order."
+      ],
+      "visual": null,
+      "key": "Times, twice, product: multiply. More than, increased by, plus: add. \"Less than\" flips the order: 5 less than x is x − 5.",
+      "worked": [
+        {
+          "math": "twice a number",
+          "note": "times: multiply"
+        },
+        {
+          "math": "[[2x]]",
+          "note": ""
+        },
+        {
+          "math": "5 less than twice a number",
+          "note": "take 5 away, after"
+        },
+        {
+          "math": "2x [[− 5]]",
+          "note": "not 5 − 2x"
+        },
+        {
+          "math": "subtract x from 10",
+          "note": ""
+        },
+        {
+          "math": "[[10 − x]]",
+          "note": "the order flips"
+        },
+        {
+          "math": "twice the sum of x and 3",
+          "note": ""
+        },
+        {
+          "math": "2(x + 3) = [[2x + 6]]",
+          "note": "the whole sum is doubled"
+        }
+      ]
+    },
+    {
+      "id": "alg.translate.equation",
+      "forGap": "alg.translate.equation",
+      "title": "Words to equations",
+      "objective": "Write an equation from a sentence or a short story, and solve it.",
+      "mode": "section",
+      "generator": "alg.translate.equation",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "\"Is\" (or \"equals\", \"the total was\") becomes the equals sign.",
+        "In a story, find the starting amount, the amount that repeats, and the total."
+      ],
+      "visual": null,
+      "key": "Write the words as an expression; \"is\" means =. In a story: start + rate × n = total. Solve, then check in the words.",
+      "worked": [
+        {
+          "math": "Five more than three times a number is 26.",
+          "note": ""
+        },
+        {
+          "math": "[[3x + 5]] = 26",
+          "note": "\"is\" means ="
+        },
+        {
+          "math": "3x = 21",
+          "note": "subtract 5"
+        },
+        {
+          "math": "x = [[7]]",
+          "note": "divide by 3"
+        },
+        {
+          "math": "$12 saved, $5 more each week, want $47",
+          "note": ""
+        },
+        {
+          "math": "12 + [[5n]] = 47",
+          "note": "start + rate × weeks"
+        },
+        {
+          "math": "n = [[7]] weeks",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "alg.translate.whole",
+      "forGap": "alg.translate",
+      "title": "Putting it together",
+      "objective": "Expressions and equations from words, mixed.",
+      "mode": "skill",
+      "generator": "alg.translate",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Translate piece by piece: times means multiply, less than flips the order, \"is\" means =. Then solve and check.",
+      "worked": [
+        {
+          "math": "4 less than six times a number is 32.",
+          "note": ""
+        },
+        {
+          "math": "[[6x − 4]] = 32",
+          "note": ""
+        },
+        {
+          "math": "6x = 36,  x = [[6]]",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

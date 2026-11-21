@@ -443,9 +443,14 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
   // After today's fractions check: the later checks, one at a time (pre-algebra, then decimals).
   const now = compactResult(diagnose({}).result);
-  const ALG = ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.equations', 'alg.expressions', 'alg.multi-step', 'alg.inequalities', 'alg.inequality-graphs'];
-  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ALG);
-  assert.equal(catchUpName(fractions.config, ALG), 'Pre-algebra check');
+  const PRE = ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.expressions', 'alg.translate'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), PRE);
+  assert.equal(catchUpName(fractions.config, PRE), 'Pre-algebra check');
+  const afterPre = { ...now, nodes: { ...now.nodes, ...Object.fromEntries(PRE.map((id) => [id, { status: 'known' }])) } };
+  const EQS = ['alg.equations', 'alg.multi-step', 'alg.inequalities', 'alg.inequality-graphs'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterPre }), EQS);
+  assert.equal(catchUpName(fractions.config, EQS), 'Equations and inequalities check');
+  const ALG = [...PRE, ...EQS];
   const afterAlg = { ...now, nodes: { ...now.nodes, ...Object.fromEntries(ALG.map((id) => [id, { status: 'known' }])) } };
   const DEC = ['dec.place-value', 'dec.convert', 'dec.add-sub', 'dec.multiply', 'dec.divide', 'dec.signed'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterAlg }), DEC);
@@ -511,16 +516,20 @@ test('looking under a simplifying gap: only factors and GCF are checked, not pri
 function preAlgebra(traits) {
   const student = simulatedStudent({ graph: fractions.graph, generators: fractions.generators, ...traits });
   const prior = compactResult(runWithStudent(startDiagnostic({ ...fractions, seed: 'first' }), student));
-  const targets = catchUpTargets({ ...fractions, prior });
+  // Both pre-algebra checks' skills at once (the "Pre-algebra" and "Equations and inequalities"
+  // checks are offered one after the other; asking them together tests the same logic).
+  const [pre, eqs] = fractions.config.moreChecks;
+  const targets = [...pre.targets, ...eqs.targets];
   return runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'pre', prior }), student);
 }
 
-test('pre-algebra check: knows everything -> one problem each for order of operations, powers, evaluating, equations, expressions, multi-step equations, inequalities and graphing them (plus reading a graph), plus the negative-number parts', () => {
+test('pre-algebra check: knows everything -> one problem each for order of operations, powers, evaluating, equations, expressions, multi-step equations, inequalities and graphing them (plus reading a graph), words to equations, plus the negative-number parts', () => {
   const result = preAlgebra({});
   assert.deepEqual(result.rootGaps, []);
   assert.equal(result.skills['alg.evaluate'], 'known');
   assert.equal(result.skills['alg.inequality-graphs'], 'known');
-  assert.equal(result.questionCount, 12);
+  assert.equal(result.skills['alg.translate'], 'known');
+  assert.equal(result.questionCount, 13);
   assert.equal(result.skills['alg.multi-step'], 'known');
   assert.equal(result.skills['alg.inequalities'], 'known');
   assert.equal(result.skills['alg.expressions'], 'known');
@@ -537,7 +546,7 @@ test('pre-algebra check: works left to right (2 + 3 × 4 = 20) -> gap on the ord
   // Parentheses and powers-in-expressions rest on it: "can't check yet", not asked.
   assert.ok(result.nodes['alg.order-ops.parens'].blockedBy || result.nodes['alg.order-ops.parens'].status === 'not-tested');
   assert.equal(statusOf(result, 'alg.exponents.evaluate'), 'known');
-  assert.ok(result.questionCount <= 11, `took ${result.questionCount}`);
+  assert.ok(result.questionCount <= 12, `took ${result.questionCount}`);
 });
 
 test('pre-algebra check: can\'t multiply integers -> the negative-number parts lead back to integer multiplying', () => {

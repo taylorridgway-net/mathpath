@@ -24,8 +24,15 @@
         "alg.order-ops",
         "alg.exponents",
         "alg.evaluate",
-        "alg.equations",
         "alg.expressions",
+        "alg.translate"
+      ]
+    },
+    {
+      "id": "equations",
+      "name": "Equations and inequalities check",
+      "targets": [
+        "alg.equations",
         "alg.multi-step",
         "alg.inequalities",
         "alg.inequality-graphs"
