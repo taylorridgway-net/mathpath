@@ -180,7 +180,6 @@ let classFilter = 'all';
 let expandedSkill = null;
 let heatArea = 'frac'; // the every-student table opens on fractions (owner decision); other areas are a tap away
 let sortBy = 'name';
-let onlyWaiting = false;
 
 const TABS = [
   ['overview', 'Class overview'],
@@ -276,7 +275,6 @@ const shortName = (id) => ({
   'frac.meaning': 'Understand fractions',
   'frac.equivalent': 'Equivalent & simplest form',
   'frac.compare': 'Compare & order',
-  'frac.mixed': 'Mixed numbers',
   'frac.add-sub': 'Fractions: add & subtract',
   'alg.order-ops': 'Order of operations',
   'alg.exponents': 'Exponents',
@@ -306,14 +304,12 @@ const shortName = (id) => ({
 function overview() {
   const screen = frame('Class overview');
   const list_ = shown();
-  const waitingCount = list_.filter((s) => s.status.openChecks.length).length;
   const toVerify = list_.filter((s) => ALL_SKILLS.some((k) => s.status.skills[k] === 'platform')).length;
 
   // Quick numbers a teacher acts on.
   const stats = h('div', 't-stats');
   stats.append(
     stat(String(list_.length), 'students'),
-    stat(String(waitingCount), 'have a foundation for you to check', waitingCount ? () => { tab = 'groups'; render(); } : null),
     stat(String(toVerify), 'have platform mastery to verify on paper', toVerify ? () => { tab = 'paper'; render(); } : null),
     stat(String(list_.filter((s) => s.part.inactive).length), 'not active in the last 7 days'),
   );
@@ -376,13 +372,7 @@ function overview() {
   for (const [v, l] of [['name', 'Sort: name'], ['help', 'Sort: needs most help'], ['active', 'Sort: least active']]) sort.append(new Option(l, v));
   sort.value = sortBy;
   sort.addEventListener('change', () => { sortBy = sort.value; render(); });
-  const wait = h('label', 't-check');
-  const box = h('input');
-  box.type = 'checkbox';
-  box.checked = onlyWaiting;
-  box.addEventListener('change', () => { onlyWaiting = box.checked; render(); });
-  wait.append(box, ' Only students with a check for me');
-  controls.append(sort, wait);
+  controls.append(sort);
   // Which area's skills the table shows.
   const areaPick = h('div', 't-controls t-area-pick');
   areaPick.setAttribute('role', 'group');
@@ -397,7 +387,7 @@ function overview() {
     ? `Showing the parts of “${shortName(expandedSkill)}”. Click its heading again to close.`
     : 'Click a skill’s heading to see its parts. Click a student for their profile.'));
 
-  let rows = onlyWaiting ? list_.filter((s) => s.status.openChecks.length) : [...list_];
+  let rows = [...list_];
   const helpScore = (s) => Object.values(s.status.skills).filter((x) => x === 'gap' || x === 'working').length * 10
     + Object.values(s.status.subskills).filter((x) => x === 'gap').length;
   rows.sort((a, b) => (sortBy === 'help' ? helpScore(b) - helpScore(a)

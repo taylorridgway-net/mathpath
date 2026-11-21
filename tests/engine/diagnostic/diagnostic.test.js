@@ -70,13 +70,6 @@ test('can do everything but simplify: finds the simplifying gap and points below
   assert.equal(result.questions[0].status, 'not-simplified');
 });
 
-test('mixed numbers never come up in the diagnostic (owner decision: supporting skill only)', () => {
-  const { result } = diagnose({ lacks: ['frac.mixed'] });
-  assert.deepEqual(result.rootGaps, []);
-  assert.equal(statusOf(result, 'frac.mixed'), 'not-tested');
-  assert.ok(!fractions.config.targets.includes('frac.mixed'));
-});
-
 test('missing multiplication facts: confirmed with real fact questions, as the root under the common-denominator gap', () => {
   const { result } = diagnose({ lacks: ['whole.mult-div.mult-facts'] });
   assert.ok(withStatus(result, 'gap').includes(SUB('common-denom')));
@@ -248,7 +241,7 @@ test('a blank answer counts as a miss, not a crash', () => {
 test('random students: never claims a gap the student does not have; finds every real gap it can check', () => {
   const candidates = [
     SUB('common-denom'), SUB('rewrite'), SUB('combine'), SUB('simplify-result'),
-    'frac.equivalent.simplify', 'frac.equivalent', 'frac.mixed', 'whole.mult-div.mult-facts',
+    'frac.equivalent.simplify', 'frac.equivalent', 'whole.mult-div.mult-facts',
     'whole.factors-multiples', 'whole.add-sub', 'frac.meaning',
   ];
   const allMisconceptions = fractions.misconceptions.map((m) => m.id);

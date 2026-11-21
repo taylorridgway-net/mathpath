@@ -17,7 +17,7 @@ Builds on the stubs already in `curriculum/graph/whole.json` (IDs kept where the
 | `whole.mult-div` Multiply and divide | `.mult-facts` facts to 12 × 12; `.div-facts` (56 ÷ 7); `.remainders` (47 ÷ 5 = 9 R 2) | `.div-facts` ← `.mult-facts`; `.remainders` ← `.div-facts` |
 | `whole.factors-multiples` Factors and multiples | `.factors` list all factors, divisibility by 2, 3, 5, 9, 10; `.primes` prime or not, prime factorization; `.gcf`; `.lcm` | `whole.mult-div.mult-facts`, `.div-facts` |
 
-Not now (owner decision): 2-digit multiplication and long division. Also not now: place value and rounding (needed for decimals, not fractions).
+Not building (owner decision, confirmed 2026-11-21: calculators): 2-digit multiplication and long division. Also not now: place value and rounding (needed for decimals, not fractions).
 
 ## 2. Diagnostic
 

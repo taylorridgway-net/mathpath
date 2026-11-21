@@ -56,21 +56,6 @@
       ]
     },
     {
-      "id": "frac.mixed",
-      "name": "Mixed numbers and improper fractions",
-      "summary": "Convert between mixed numbers and improper fractions. Supporting skill only (owner decision): useful for word problems and measurement, never in the diagnostic, teacher can assign it.",
-      "typicalGrade": 4,
-      "standards": ["4.NF.B.3"],
-      "status": "draft",
-      "prerequisites": [ { "id": "frac.meaning", "strength": "essential" } ],
-      "subskills": [
-        { "id": "frac.mixed.to-improper", "name": "Write a mixed number as an improper fraction",
-          "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential" } ] },
-        { "id": "frac.mixed.to-mixed", "name": "Write an improper fraction as a mixed number",
-          "prerequisites": [ { "id": "whole.mult-div.remainders", "strength": "essential" } ] }
-      ]
-    },
-    {
       "id": "frac.add-sub",
       "name": "Add and subtract fractions",
       "summary": "Add and subtract fractions with like and unlike denominators.",
