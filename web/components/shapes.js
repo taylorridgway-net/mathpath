@@ -81,6 +81,47 @@ export function drawShape(node) {
       text(120, 155, L.b); text(42, 88, L.a, 'end'); text(128, 78, L.c, 'start');
       break;
     }
+    case 'angles-comp': {
+      // A right angle split by a ray: known + x = 90.
+      line([[60, 140], [210, 140]]); line([[60, 140], [60, 15]]); line([[60, 140], [190, 45]]);
+      rightMark(60, 140, 12, -12);
+      text(140, 128, L.a, 'start'); text(92, 70, L.b);
+      break;
+    }
+    case 'angles-supp': {
+      // A straight line with a ray: known + x = 180.
+      line([[15, 125], [225, 125]]); line([[120, 125], [175, 30]]);
+      text(170, 113, L.a, 'start'); text(85, 105, L.b, 'end');
+      root.append(svg('circle', { cx: 120, cy: 125, r: 3, class: 'shape-dot' }));
+      break;
+    }
+    case 'angles-vertical': {
+      // Two crossing lines; the angle on the left and the one on the right are vertical angles.
+      line([[25, 40], [215, 130]]); line([[25, 130], [215, 40]]);
+      text(70, 90, L.a, 'end'); text(170, 90, L.b, 'start');
+      break;
+    }
+    case 'triangle-angles': {
+      poly([[30, 135], [210, 135], [120, 25]]);
+      text(58, 128, L.a, 'start'); text(182, 128, L.b, 'end'); text(120, 55, L.c);
+      break;
+    }
+    case 'parallel': {
+      // Two parallel lines (arrows) cut by a transversal; angles numbered 1-4 at the top crossing,
+      // 5-8 at the bottom: 1 top-left, 2 top-right, 3 bottom-left, 4 bottom-right.
+      const ys = [50, 120];
+      const xAt = (y) => 70 + (165 - y) * (110 / 160); // the transversal leans to the right going up
+      for (const y of ys) { line([[10, y], [230, y]]); line([[200, y - 5], [210, y], [200, y + 5]], 'shape-thin'); }
+      line([[xAt(165), 165], [xAt(0), 0]]);
+      const spots = { 1: [-24, -8], 2: [16, -8], 3: [-16, 18], 4: [22, 18] };
+      for (const [k, v] of Object.entries(L)) {
+        const n = Number(k);
+        const y = n <= 4 ? ys[0] : ys[1];
+        const [dx, dy] = spots[n <= 4 ? n : n - 4];
+        text(xAt(y) + dx, y + dy, v);
+      }
+      break;
+    }
     default: throw new Error(`drawShape: unknown kind "${node.kind}"`);
   }
   root.setAttribute('aria-label', shapeWords(node));
@@ -89,7 +130,7 @@ export function drawShape(node) {
 
 // Plain words for a shape (screen readers and the text form).
 export function shapeWords({ kind, labels: L = {} }) {
-  const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle' }[kind];
+  const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle', 'angles-comp': 'a right angle split in two', 'angles-supp': 'a straight angle split in two', 'angles-vertical': 'two crossing lines', 'triangle-angles': 'a triangle', parallel: 'two parallel lines cut by a transversal' }[kind];
   const parts = Object.entries(L).filter(([, v]) => v !== undefined).map(([k, v]) => `${({ w: 'width', h: 'height', l: 'length', r: 'radius', d: 'diameter', a: 'leg', b: 'leg', c: 'hypotenuse', top: 'top', bottom: 'bottom', right: 'right side', base: 'base', height: 'height', side: 'side' })[k] || k} ${v}`);
   return `[${name}: ${parts.join(', ')}]`;
 }

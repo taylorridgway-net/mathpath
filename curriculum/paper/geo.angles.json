@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.angles",
+  "title": "Angle relationships",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation in JavaScript form (answers in terms of π give the number in front of π), or 'yes'/'no'; the test checks the answer key's number against it.",
+  "directions": "Show your work. Include units.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Two angles are complementary. One is 28°. Find the other.",
+          "math": "90 - 28",
+          "answer": "62°"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Two angles are supplementary. One is 115°. Find the other.",
+          "math": "180 - 115",
+          "answer": "65°"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Two lines cross. One angle is 72°. What is the angle opposite it?",
+          "math": "72",
+          "answer": "72°"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "A triangle has angles of 48° and 67°. Find the third angle.",
+          "math": "180 - 48 - 67",
+          "answer": "65°"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A ramp makes a 20° angle with the flat ground. What angle does it make with the ground on the other side (along the straight line)?",
+          "math": "180 - 20",
+          "answer": "160°"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Ty says a triangle with angles 90° and 40° has a third angle of 230°. Is he right? Explain, and find it.",
+          "math": "180 - 90 - 40",
+          "answer": "50° (No: a triangle's angles add to 180°)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Two angles are complementary. One is 55°. Find the other.",
+          "math": "90 - 55",
+          "answer": "35°"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Two angles are supplementary. One is 98°. Find the other.",
+          "math": "180 - 98",
+          "answer": "82°"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "An isosceles triangle has a 40° angle between its two equal sides. Find each of the other two angles.",
+          "math": "(180 - 40) / 2",
+          "answer": "70°"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Two parallel lines are cut by a transversal. One angle is 110°. Its same-side interior angle is x. Find x.",
+          "math": "180 - 110",
+          "answer": "70°"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "Two streets cross. One corner makes a 65° angle. What angle is the corner diagonally across?",
+          "math": "65",
+          "answer": "65°"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Rosa says the angles 35° and 45° are complementary. Is she right? Explain, and find the complement of 35°.",
+          "math": "90 - 35",
+          "answer": "55° (No: 35 + 45 = 80, not 90)"
+        }
+      ]
+    }
+  ]
+}

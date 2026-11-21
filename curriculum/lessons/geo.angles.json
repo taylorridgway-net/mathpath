@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.angles",
+  "title": "Angle relationships",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "geo.angles.pairs": "A right angle is 90°, a straight line 180°. Vertical angles (opposite where lines cross) are equal.",
+    "geo.angles.triangle": "The three angles of a triangle add to 180°.",
+    "geo.angles.parallel": "Parallel lines and a transversal make only two sizes of angle: the small ones are equal, the big ones are equal, and small + big = 180°.",
+    "geo.angles": "Right angle 90°, straight line 180°, triangle 180°, vertical angles equal."
+  },
+  "misconceptionMessages": {
+    "geo.comp-supp-swap": "Complementary angles add to 90° (a right angle); supplementary angles add to 180° (a straight line).",
+    "geo.vertical-supplementary": "Vertical angles (opposite each other) are equal, not adding to 180°.",
+    "geo.triangle-360": "A triangle's angles add to 180°, not 360°.",
+    "geo.triangle-90": "A triangle's angles add to 180°.",
+    "geo.isosceles-not-halved": "There are two equal angles sharing what's left: halve it.",
+    "geo.parallel-equal-supp": "Is one angle small and the other big? Then they add to 180°. Both the same size? Then they're equal."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "geo.angles.pairs",
+      "forGap": "geo.angles.pairs",
+      "title": "Angle pairs",
+      "objective": "Use complementary, supplementary and vertical angles.",
+      "mode": "section",
+      "generator": "geo.angles.pairs",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Angles that make a right angle together are complementary (90°). Angles that make a straight line are supplementary (180°).",
+        "Where two lines cross, the opposite angles are vertical angles: they're equal."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "angles-supp",
+            "labels": {
+              "a": "130°",
+              "b": "x"
+            }
+          },
+          "steps": [
+            "The two angles make a straight line, so they add to 180°.",
+            "180 − 130 = 50.",
+            "x = 50°."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Right angle: add to 90°. Straight line: add to 180°. Vertical angles: equal."
+    },
+    {
+      "id": "geo.angles.triangle",
+      "forGap": "geo.angles.triangle",
+      "title": "Angles in a triangle",
+      "objective": "Find a missing angle in a triangle.",
+      "mode": "section",
+      "generator": "geo.angles.triangle",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Tear the three corners off any triangle and they fit together on a straight line: 180°."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "triangle-angles",
+            "labels": {
+              "a": "70°",
+              "b": "45°",
+              "c": "x"
+            }
+          },
+          "steps": [
+            "The angles add to 180°.",
+            "70 + 45 = 115.",
+            "180 − 115 = 65, so x = 65°."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "The three angles of a triangle add to 180°. Subtract the ones you know."
+    },
+    {
+      "id": "geo.angles.parallel",
+      "forGap": "geo.angles.parallel",
+      "title": "Parallel lines",
+      "objective": "Find angles where a line crosses two parallel lines.",
+      "mode": "section",
+      "generator": "geo.angles.parallel",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A line crossing two parallel lines (a transversal) makes the same angles at both crossings.",
+        "There are only two sizes: small and big, and small + big = 180°."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "parallel",
+            "labels": {
+              "2": "60°",
+              "6": "x"
+            }
+          },
+          "steps": [
+            "Angles 2 and 6 are in the same spot at each crossing (corresponding angles).",
+            "They're both small angles, so they're equal.",
+            "x = 60°."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Same size (both small or both big): equal. One small and one big: they add to 180°."
+    },
+    {
+      "id": "geo.angles.whole",
+      "forGap": "geo.angles",
+      "title": "Putting it together",
+      "objective": "Angle relationships, mixed.",
+      "mode": "skill",
+      "generator": "geo.angles",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "90° for a right angle, 180° for a straight line and for a triangle. Vertical angles are equal.",
+      "worked": [
+        {
+          "math": "triangle with 90° and 35°",
+          "note": ""
+        },
+        {
+          "math": "90 + 35 = [[125]]",
+          "note": ""
+        },
+        {
+          "math": "180 − 125 = [[55]]°",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

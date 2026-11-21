@@ -467,7 +467,11 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   const EXP = ['exp.rules', 'exp.roots', 'exp.scinot'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterGeo }), EXP);
   assert.equal(catchUpName(fractions.config, EXP), 'Exponents and roots check');
-  const afterRat = { ...afterGeo, nodes: { ...afterGeo.nodes, ...Object.fromEntries(EXP.map((id) => [id, { status: 'known' }])) } };
+  const afterExp = { ...afterGeo, nodes: { ...afterGeo.nodes, ...Object.fromEntries(EXP.map((id) => [id, { status: 'known' }])) } };
+  const GEOM = ['geo.angles', 'geo.pythag'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterExp }), GEOM);
+  assert.equal(catchUpName(fractions.config, GEOM), 'Geometry check');
+  const afterRat = { ...afterExp, nodes: { ...afterExp.nodes, ...Object.fromEntries(GEOM.map((id) => [id, { status: 'known' }])) } };
   const LIN = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel', 'lin.graphing'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat }), LIN);
   assert.equal(catchUpName(fractions.config, LIN), 'Linear functions check');

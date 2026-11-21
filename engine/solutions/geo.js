@@ -94,6 +94,55 @@ export function solveGeo(problem) {
         { say: `${r} × ${r} = ${r * r}, times ${h} is ${r * r * h}${cone ? `, and a third of that is ${a.value}` : ''}. So the volume is ${ans}.` },
       ];
     }
+    case 'geo.angles.pairs': {
+      let kindName; let a;
+      if ((m = /are (\w+)\. One of them is (\d+)°/.exec(t))) [kindName, a] = [m[1], +m[2]];
+      else { a = label(t, 'angle a'); kindName = t.includes('right angle') ? 'complementary' : t.includes('straight') ? 'supplementary' : 'vertical'; }
+      if (kindName === 'vertical') return [{ say: `Vertical angles sit opposite each other where two lines cross. They are equal.` }, { say: `So the angle is ${ans}.` }];
+      const total = kindName === 'complementary' ? 90 : 180;
+      return [
+        { say: `${kindName === 'complementary' ? 'The two angles make a right angle: they add to 90°' : 'The two angles make a straight line: they add to 180°'}.` },
+        { say: `${total} − ${a} = ${total - a}. So the angle is ${ans}.` },
+      ];
+    }
+    case 'geo.angles.triangle': {
+      if ((m = /third angle is (\d+)°/.exec(t))) return [{ say: `The three angles of a triangle add to 180°. Take away the third angle: 180 − ${m[1]} = ${180 - m[1]}.` }, { say: `The two equal angles share that: ${180 - m[1]} ÷ 2 = ${a.value}. So each one is ${ans}.` }];
+      const [x, y] = [label(t, 'angle a'), label(t, 'angle b')];
+      return [{ say: `The three angles of a triangle add to 180°. The two you know: ${x} + ${y} = ${x + y}.` }, { say: `180 − ${x + y} = ${180 - x - y}. So x is ${ans}.` }];
+    }
+    case 'geo.angles.parallel': {
+      m = /angle (\d) (\d+)°/.exec(t);
+      const ask = Number(/angle (\d) x/.exec(t)[1]);
+      const group = (k) => ([2, 3, 6, 7].includes(k) ? 'B' : 'A');
+      const same = group(+m[1]) === group(ask);
+      return [
+        { say: `With parallel lines, the transversal makes just two sizes of angle: all the small ones are equal and all the big ones are equal, and a small one and a big one add to 180°.` },
+        same ? { say: `Angle ${m[1]} and angle ${ask} are the same size. So x is ${ans}.` } : { say: `One is small and one is big, so they add to 180°: 180 − ${m[2]} = ${180 - m[2]}. So x is ${ans}.` },
+      ];
+    }
+    case 'geo.pythag.hypotenuse': {
+      const [p, q] = (m = /goes (\d+) \w+ east and then (\d+)/.exec(t)) ? [+m[1], +m[2]] : [...t.matchAll(/leg (\d+)/g)].map((v) => +v[1]);
+      return [
+        { say: `In a right triangle, a² + b² = c², where c is the longest side (across from the right angle).` },
+        { say: `${p}² + ${q}² = ${p * p} + ${q * q} = ${p * p + q * q}.` },
+        { say: `c is the square root: √${p * p + q * q} = ${a.value}. So the answer is ${ans}.` },
+      ];
+    }
+    case 'geo.pythag.leg': {
+      const [p, c] = (m = /A (\d+) \w+ ladder .* foot is (\d+)/.exec(t)) ? [+m[2], +m[1]] : [label(t, 'leg'), label(t, 'hypotenuse')];
+      return [
+        { say: `a² + b² = c², and this time you know c (the longest side). So b² = c² − a².` },
+        { say: `${c}² − ${p}² = ${c * c} − ${p * p} = ${c * c - p * p}.` },
+        { say: `b is the square root: √${c * c - p * p} = ${a.value}. So the answer is ${ans}.` },
+      ];
+    }
+    case 'geo.pythag.converse': {
+      const [x, y, z] = /sides are (\d+), (\d+), (\d+)/.exec(t).slice(1).map(Number).sort((u, v) => u - v);
+      return [
+        { say: `Test a² + b² = c² with the longest side as c: ${z}.` },
+        { say: `${x}² + ${y}² = ${x * x} + ${y * y} = ${x * x + y * y}, and ${z}² = ${z * z}. ${x * x + y * y === z * z ? 'They match' : "They don't match"}. So the answer is ${ans}.` },
+      ];
+    }
     default: throw new Error(`No worked solution for "${kind}"`);
   }
 }

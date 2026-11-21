@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.pythag",
+  "title": "The Pythagorean theorem",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "geo.pythag.hypotenuse": "a² + b² = c²: square the two shorter sides, add, then take the square root.",
+    "geo.pythag.leg": "c² − a² = b²: square both, subtract, then take the square root.",
+    "geo.pythag.converse": "Square the two shorter sides and add. If that equals the longest side squared, it's a right triangle.",
+    "geo.pythag": "a² + b² = c², with c the longest side. Square, add or subtract, then square root."
+  },
+  "misconceptionMessages": {
+    "geo.pythag-added": "Don't add the sides: square them first (a² + b² = c²), then take the square root.",
+    "geo.pythag-no-root": "That's c². Take the square root to get c.",
+    "geo.pythag-subtract-sides": "Subtract the squares, not the sides: b² = c² − a².",
+    "geo.pythag-wrong-side": "Use the longest side as c, wherever it's written in the list."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "geo.pythag.hypotenuse",
+      "forGap": "geo.pythag.hypotenuse",
+      "title": "Find the hypotenuse",
+      "objective": "Find the longest side of a right triangle.",
+      "mode": "section",
+      "generator": "geo.pythag.hypotenuse",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "In any right triangle, the squares on the two legs add up to the square on the hypotenuse (the side across from the right angle)."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "right-triangle",
+            "labels": {
+              "a": "6 cm",
+              "b": "8 cm",
+              "c": "?"
+            }
+          },
+          "steps": [
+            "a² + b² = c²",
+            "6² + 8² = 36 + 64 = 100",
+            "c = √100 = 10 cm"
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "a² + b² = c². Square the legs, add them, then take the square root."
+    },
+    {
+      "id": "geo.pythag.leg",
+      "forGap": "geo.pythag.leg",
+      "title": "Find a leg",
+      "objective": "Find a shorter side of a right triangle.",
+      "mode": "section",
+      "generator": "geo.pythag.leg",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "When you know the hypotenuse, subtract instead of adding."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "right-triangle",
+            "labels": {
+              "a": "?",
+              "b": "5 m",
+              "c": "13 m"
+            }
+          },
+          "steps": [
+            "c² − b² = a²",
+            "13² − 5² = 169 − 25 = 144",
+            "a = √144 = 12 m"
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "b² = c² − a². Square both, subtract, then take the square root."
+    },
+    {
+      "id": "geo.pythag.converse",
+      "forGap": "geo.pythag.converse",
+      "title": "Is it a right triangle?",
+      "objective": "Tell whether three sides make a right triangle.",
+      "mode": "section",
+      "generator": "geo.pythag.converse",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "The theorem works backwards too: if a² + b² = c² with c the longest side, the triangle has a right angle."
+      ],
+      "visual": null,
+      "key": "Square the two shorter sides and add. Equal to the longest side squared? Then it's a right triangle.",
+      "worked": [
+        {
+          "math": "sides 9, 15, 12",
+          "note": "the longest is 15"
+        },
+        {
+          "math": "9² + 12² = 81 + 144 = [[225]]",
+          "note": ""
+        },
+        {
+          "math": "15² = [[225]]",
+          "note": "they match: yes"
+        },
+        {
+          "math": "sides 4, 5, 7: 16 + 25 = 41, 49",
+          "note": "no"
+        }
+      ]
+    },
+    {
+      "id": "geo.pythag.whole",
+      "forGap": "geo.pythag",
+      "title": "Putting it together",
+      "objective": "The Pythagorean theorem, mixed.",
+      "mode": "skill",
+      "generator": "geo.pythag",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "a² + b² = c², with c the longest side.",
+      "worked": [
+        {
+          "math": "ladder 10 ft, foot 6 ft from the wall",
+          "note": ""
+        },
+        {
+          "math": "10² − 6² = 100 − 36 = [[64]]",
+          "note": ""
+        },
+        {
+          "math": "√64 = [[8]] ft up the wall",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

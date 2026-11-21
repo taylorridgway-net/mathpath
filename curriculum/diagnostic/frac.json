@@ -79,6 +79,14 @@
       ]
     },
     {
+      "id": "geometry",
+      "name": "Geometry check",
+      "targets": [
+        "geo.angles",
+        "geo.pythag"
+      ]
+    },
+    {
       "id": "linear",
       "name": "Linear functions check",
       "targets": [

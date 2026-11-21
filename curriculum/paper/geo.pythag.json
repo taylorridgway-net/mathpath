@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.pythag",
+  "title": "The Pythagorean theorem",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation in JavaScript form (answers in terms of π give the number in front of π), or 'yes'/'no'; the test checks the answer key's number against it.",
+  "directions": "Show your work. Include units.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "A right triangle has legs 9 cm and 12 cm. Find the hypotenuse.",
+          "math": "Math.sqrt(9*9 + 12*12)",
+          "answer": "15 cm"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "A right triangle has hypotenuse 13 m and one leg 5 m. Find the other leg.",
+          "math": "Math.sqrt(13*13 - 5*5)",
+          "answer": "12 m"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Can 8, 15 and 17 be the sides of a right triangle?",
+          "math": "yes",
+          "answer": "Yes (64 + 225 = 289 = 17²)"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Can 5, 7 and 9 be the sides of a right triangle?",
+          "math": "no",
+          "answer": "No (25 + 49 = 74, not 81)"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A TV screen is 24 in wide and 18 in tall. How long is its diagonal?",
+          "math": "Math.sqrt(24*24 + 18*18)",
+          "answer": "30 in"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Ben says a right triangle with legs 6 and 8 has hypotenuse 14. Is he right? Explain, and find it.",
+          "math": "Math.sqrt(6*6 + 8*8)",
+          "answer": "10 (No: square, add, then square root)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "A right triangle has legs 7 ft and 24 ft. Find the hypotenuse.",
+          "math": "Math.sqrt(7*7 + 24*24)",
+          "answer": "25 ft"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "A right triangle has hypotenuse 17 cm and one leg 8 cm. Find the other leg.",
+          "math": "Math.sqrt(17*17 - 8*8)",
+          "answer": "15 cm"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Can 20, 12 and 16 be the sides of a right triangle?",
+          "math": "yes",
+          "answer": "Yes (144 + 256 = 400 = 20²)"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Can 6, 9 and 11 be the sides of a right triangle?",
+          "math": "no",
+          "answer": "No (36 + 81 = 117, not 121)"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "A 15 ft ladder leans on a wall with its foot 9 ft away. How high does it reach?",
+          "math": "Math.sqrt(15*15 - 9*9)",
+          "answer": "12 ft"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Zoe says the missing leg of a right triangle with hypotenuse 10 and leg 6 is 4. Is she right? Explain, and find it.",
+          "math": "Math.sqrt(10*10 - 6*6)",
+          "answer": "8 (No: subtract the squares, 100 − 36)"
+        }
+      ]
+    }
+  ]
+}

@@ -188,6 +188,103 @@
           ]
         }
       ]
+    },
+    {
+      "id": "geo.angles",
+      "name": "Angle relationships",
+      "summary": "Complementary, supplementary and vertical angles, the angles of a triangle (180°), and parallel lines cut by a transversal.",
+      "typicalGrade": 7,
+      "standards": [
+        "7.G.B.5",
+        "8.G.A.5"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "geo.angles.pairs",
+          "name": "Complementary, supplementary and vertical angles",
+          "prerequisites": [
+            {
+              "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "geo.angles.triangle",
+          "name": "The angles of a triangle add to 180°",
+          "prerequisites": [
+            {
+              "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            },
+            {
+              "id": "geo.angles.pairs",
+              "strength": "supporting",
+              "why": "Using angle facts."
+            }
+          ]
+        },
+        {
+          "id": "geo.angles.parallel",
+          "name": "Parallel lines and a transversal",
+          "prerequisites": [
+            {
+              "id": "geo.angles.pairs",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "geo.pythag",
+      "name": "The Pythagorean theorem",
+      "summary": "Find the hypotenuse or a leg of a right triangle with a² + b² = c², and tell whether three sides make a right triangle.",
+      "typicalGrade": 8,
+      "standards": [
+        "8.G.B.6",
+        "8.G.B.7"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "geo.pythag.hypotenuse",
+          "name": "Find the hypotenuse",
+          "prerequisites": [
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            },
+            {
+              "id": "exp.roots.perfect",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "geo.pythag.leg",
+          "name": "Find a leg",
+          "prerequisites": [
+            {
+              "id": "geo.pythag.hypotenuse",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "geo.pythag.converse",
+          "name": "Is it a right triangle?",
+          "prerequisites": [
+            {
+              "id": "geo.pythag.hypotenuse",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

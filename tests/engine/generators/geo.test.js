@@ -26,6 +26,7 @@ function factor(a, b) {
   return null;
 }
 const label = (t, name) => { const m = new RegExp(`${name} (\\d+)`).exec(t); return m ? Number(m[1]) : null; };
+let m; // eslint-disable-line no-unused-vars
 
 function expected(id, p) {
   const t = toText(p.expression);
@@ -74,6 +75,29 @@ function expected(id, p) {
       const h = label(t, 'height');
       return t.startsWith('[a cone') ? F(r * r * h, 3) : F(r * r * h);
     }
+    case 'geo.angles.pairs': {
+      if ((m = /are (\w+)\. One of them is (\d+)°/.exec(t))) return F({ complementary: 90 - m[2], supplementary: 180 - m[2], vertical: +m[2] }[m[1]]);
+      const a = label(t, 'angle a');
+      return F(t.includes('right angle') ? 90 - a : t.includes('straight') ? 180 - a : a);
+    }
+    case 'geo.angles.triangle':
+      if ((m = /third angle is (\d+)°/.exec(t))) return F((180 - m[1]) / 2);
+      return F(180 - label(t, 'angle a') - label(t, 'angle b'));
+    case 'geo.angles.parallel': {
+      // Same size when both are in {2, 3, 6, 7} or both in {1, 4, 5, 8} (the transversal leans right).
+      m = /angle (\d) (\d+)°/.exec(t);
+      const ask = Number(/angle (\d) x/.exec(t)[1]);
+      const group = (k) => ([2, 3, 6, 7].includes(k) ? 'B' : 'A');
+      return F(group(+m[1]) === group(ask) ? +m[2] : 180 - m[2]);
+    }
+    case 'geo.pythag.hypotenuse': {
+      const [a, b] = (m = /goes (\d+) \w+ east and then (\d+)/.exec(t)) ? [+m[1], +m[2]] : [...t.matchAll(/leg (\d+)/g)].map((x) => +x[1]);
+      return F(Math.round(Math.sqrt(a * a + b * b)));
+    }
+    case 'geo.pythag.leg': {
+      const [a, c] = (m = /A (\d+) \w+ ladder .* foot is (\d+)/.exec(t)) ? [+m[2], +m[1]] : [label(t, 'leg'), label(t, 'hypotenuse')];
+      return F(Math.round(Math.sqrt(c * c - a * a)));
+    }
     default: throw new Error(id);
   }
 }
@@ -83,8 +107,15 @@ for (const id of PARTS) {
     for (const d of DIFFICULTIES) for (const seed of SEEDS) {
       const p = generateProblem(id, seed, d);
       const t = toText(p.expression);
-      const want = expected(id, p);
       const a = p.answer;
+      if (a.type === 'choice') { // is it a right triangle?
+        const [x, y, z] = /sides are (\d+), (\d+), (\d+)/.exec(t).slice(1).map(Number).sort((u, v) => u - v);
+        assert.equal(a.options[a.correct], x * x + y * y === z * z ? 'Yes' : 'No', t);
+        for (const m of p.misconceptions) { assert.ok(catalog.get(m.id)); assert.equal(checkAnswer(p, { choice: m.choice }).misconception, m.id); }
+        continue;
+      }
+      const want = expected(id, p);
+      assert.ok(Number.isInteger(want.n / want.d) || id.startsWith('geo.area') || id.startsWith('geo.units') || id.startsWith('geo.circles'), `${t}: whole-number answer`);
       assert.ok(equals(parseDecimal(a.value), want), `${t}: ${a.value} vs ${want.n}/${want.d}`);
       assert.ok(a.suffix, 'a unit after the box');
       assert.equal(checkAnswer(p, { decimal: a.value }).status, 'correct', t);
@@ -98,9 +129,8 @@ for (const id of PARTS) {
   });
 }
 
-test('measurement: every catalog mistake is generated', () => {
+test('geometry and measurement: every catalog mistake is generated', () => {
   const seen = new Set();
   for (const id of PARTS) for (const d of DIFFICULTIES) for (const s of SEEDS) for (const m of generateProblem(id, s, d).misconceptions) seen.add(m.id);
-  const measurementIds = [...catalog.keys()].filter((k) => /^geo\.(units|area|perimeter|parallelogram|missing|triangle|trapezoid|composite|circle|half|volume|cone)/.test(k));
-  for (const k of measurementIds) assert.ok(seen.has(k), k);
+  assert.deepEqual([...seen].sort(), [...catalog.keys()].sort());
 });

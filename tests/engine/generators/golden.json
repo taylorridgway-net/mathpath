@@ -35010,6 +35010,944 @@
    }
   ]
  },
+ "geo.angles": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-supp",
+     "labels": {
+      "a": "100°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "80",
+     "suffix": "°"
+    },
+    "misconceptions": [],
+    "part": "geo.angles.pairs"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle-angles",
+     "labels": {
+      "a": "50°",
+      "b": "42°",
+      "c": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "88",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "268"
+     }
+    ],
+    "part": "geo.angles.triangle"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-supp",
+     "labels": {
+      "a": "50°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "130",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "40"
+     }
+    ],
+    "part": "geo.angles.pairs"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "3": "78°",
+      "6": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "78",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "102"
+     }
+    ],
+    "part": "geo.angles.parallel"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "4": "133°",
+      "5": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "133",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "47"
+     }
+    ],
+    "part": "geo.angles.parallel"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-vertical",
+     "labels": {
+      "a": "60°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "60",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.vertical-supplementary",
+      "value": "120"
+     }
+    ],
+    "part": "geo.angles.pairs"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the angle.",
+    "expression": {
+     "type": "words",
+     "text": "Two angles are vertical. One of them is 80°. What is the other?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "80",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.vertical-supplementary",
+      "value": "100"
+     }
+    ],
+    "part": "geo.angles.pairs"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the angle.",
+    "expression": {
+     "type": "words",
+     "text": "Two angles are supplementary. One of them is 39°. What is the other?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "141",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "51"
+     }
+    ],
+    "part": "geo.angles.pairs"
+   },
+   {
+    "generator": "geo.angles",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the angle.",
+    "expression": {
+     "type": "words",
+     "text": "Two angles are vertical. One of them is 88°. What is the other?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "88",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.vertical-supplementary",
+      "value": "92"
+     }
+    ],
+    "part": "geo.angles.pairs"
+   }
+  ]
+ },
+ "geo.angles.pairs": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-supp",
+     "labels": {
+      "a": "64°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "116",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "26"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-supp",
+     "labels": {
+      "a": "60°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "120",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "30"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-supp",
+     "labels": {
+      "a": "127°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "53",
+     "suffix": "°"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-comp",
+     "labels": {
+      "a": "24°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "66",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "156"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-comp",
+     "labels": {
+      "a": "55°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "35",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "125"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "angles-vertical",
+     "labels": {
+      "a": "147°",
+      "b": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "147",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.vertical-supplementary",
+      "value": "33"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the angle.",
+    "expression": {
+     "type": "words",
+     "text": "Two angles are complementary. One of them is 58°. What is the other?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "32",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "122"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the angle.",
+    "expression": {
+     "type": "words",
+     "text": "Two angles are vertical. One of them is 40°. What is the other?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "40",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.vertical-supplementary",
+      "value": "140"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.pairs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the angle.",
+    "expression": {
+     "type": "words",
+     "text": "Two angles are complementary. One of them is 68°. What is the other?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "22",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.comp-supp-swap",
+      "value": "112"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.angles.parallel": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "3": "x",
+      "7": "60°"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "60",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "120"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "4": "x",
+      "8": "137°"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "137",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "43"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "2": "74°",
+      "6": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "74",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "106"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "5": "x",
+      "8": "140°"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "140",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "40"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "3": "64°",
+      "6": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "64",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "116"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "5": "x",
+      "8": "119°"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "119",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "61"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "4": "144°",
+      "6": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "36",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "144"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "4": "x",
+      "6": "73°"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "107",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "73"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.parallel",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "The two lines are parallel. Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallel",
+     "labels": {
+      "4": "123°",
+      "6": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "57",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallel-equal-supp",
+      "value": "123"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.angles.triangle": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle-angles",
+     "labels": {
+      "a": "62°",
+      "b": "51°",
+      "c": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "67",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "247"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle-angles",
+     "labels": {
+      "a": "55°",
+      "b": "103°",
+      "c": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "22",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "202"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle-angles",
+     "labels": {
+      "a": "77°",
+      "b": "55°",
+      "c": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "48",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "228"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle-angles",
+     "labels": {
+      "a": "90°",
+      "b": "44°",
+      "c": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "46",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "226"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle-angles",
+     "labels": {
+      "a": "90°",
+      "b": "48°",
+      "c": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "42",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "222"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find x.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle-angles",
+     "labels": {
+      "a": "90°",
+      "b": "37°",
+      "c": "x"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "53",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "233"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find one of the two equal angles.",
+    "expression": {
+     "type": "words",
+     "text": "An isosceles triangle has two equal angles. The third angle is 104°. How big is each of the equal angles?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "38",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "128"
+     },
+     {
+      "id": "geo.isosceles-not-halved",
+      "value": "76"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find one of the two equal angles.",
+    "expression": {
+     "type": "words",
+     "text": "An isosceles triangle has two equal angles. The third angle is 104°. How big is each of the equal angles?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "38",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "128"
+     },
+     {
+      "id": "geo.isosceles-not-halved",
+      "value": "76"
+     }
+    ]
+   },
+   {
+    "generator": "geo.angles.triangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find one of the two equal angles.",
+    "expression": {
+     "type": "words",
+     "text": "An isosceles triangle has two equal angles. The third angle is 56°. How big is each of the equal angles?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "62",
+     "suffix": "°"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-360",
+      "value": "152"
+     },
+     {
+      "id": "geo.isosceles-not-halved",
+      "value": "124"
+     }
+    ]
+   }
+  ]
+ },
  "geo.area": {
   "version": 1,
   "problems": [
@@ -37164,6 +38102,1009 @@
      {
       "id": "geo.circle-area-circumference",
       "value": "100"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.pythag": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 8, 15, 16."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "geo.pythag.converse"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 9, 12, 16."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "geo.pythag.converse"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 15, 8, 16."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "geo.pythag.converse"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "?",
+      "b": "16 m",
+      "c": "20 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "4"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "144"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "36"
+     }
+    ],
+    "part": "geo.pythag.leg"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 21, 20, 29."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "geo.pythag.converse"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "8 m",
+      "b": "15 m",
+      "c": "?"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "17",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "23"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "289"
+     }
+    ],
+    "part": "geo.pythag.hypotenuse"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "words",
+     "text": "A park path goes 20 cm east and then 21 cm north. How far is it in a straight line back to the start?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "29",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "41"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "841"
+     }
+    ],
+    "part": "geo.pythag.hypotenuse"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A 25 m ladder leans against a wall. Its foot is 7 m from the wall. How high up the wall does it reach?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "18"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "576"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "32"
+     }
+    ],
+    "part": "geo.pythag.leg"
+   },
+   {
+    "generator": "geo.pythag",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A 13 m ladder leans against a wall. Its foot is 12 m from the wall. How high up the wall does it reach?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "1"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "25"
+     }
+    ],
+    "part": "geo.pythag.leg"
+   }
+  ]
+ },
+ "geo.pythag.converse": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 16, 12, 21."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 8, 6, 10."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 20, 21, 28."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 24, 7, 25."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 12, 16, 19."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 8, 6, 10."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 14, 9, 12."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 15, 9, 12."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-wrong-side",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.converse",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Can these be the sides of a right triangle?",
+    "expression": {
+     "type": "words",
+     "text": "The sides are 17, 8, 15."
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Yes",
+      "No"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-wrong-side",
+      "choice": 1
+     }
+    ]
+   }
+  ]
+ },
+ "geo.pythag.hypotenuse": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "6 ft",
+      "b": "8 ft",
+      "c": "?"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "14"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "100"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "3 m",
+      "b": "4 m",
+      "c": "?"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "7"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "25"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "6 in",
+      "b": "8 in",
+      "c": "?"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "14"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "100"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "5 m",
+      "b": "12 m",
+      "c": "?"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "13",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "17"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "169"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "5 cm",
+      "b": "12 cm",
+      "c": "?"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "13",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "17"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "169"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "12 m",
+      "b": "16 m",
+      "c": "?"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "28"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "400"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "words",
+     "text": "A park path goes 12 ft east and then 16 ft north. How far is it in a straight line back to the start?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "28"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "400"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "words",
+     "text": "A park path goes 9 cm east and then 12 cm north. How far is it in a straight line back to the start?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "21"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "225"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.hypotenuse",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the length of the longest side.",
+    "expression": {
+     "type": "words",
+     "text": "A park path goes 12 cm east and then 16 cm north. How far is it in a straight line back to the start?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-added",
+      "value": "28"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "400"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.pythag.leg": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "?",
+      "b": "4 m",
+      "c": "5 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "1"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "9"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "?",
+      "b": "8 ft",
+      "c": "10 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "2"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "36"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "?",
+      "b": "6 cm",
+      "c": "10 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "4"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "64"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "?",
+      "b": "5 ft",
+      "c": "13 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "8"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "144"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "?",
+      "b": "16 cm",
+      "c": "20 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "4"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "144"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "36"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "shape",
+     "kind": "right-triangle",
+     "labels": {
+      "a": "?",
+      "b": "12 ft",
+      "c": "13 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "1"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "25"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A 13 m ladder leans against a wall. Its foot is 5 m from the wall. How high up the wall does it reach?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "8"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "144"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A 20 cm ladder leans against a wall. Its foot is 16 cm from the wall. How high up the wall does it reach?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "4"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "144"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "36"
+     }
+    ]
+   },
+   {
+    "generator": "geo.pythag.leg",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A 29 ft ladder leans against a wall. Its foot is 21 ft from the wall. How high up the wall does it reach?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.pythag-subtract-sides",
+      "value": "8"
+     },
+     {
+      "id": "geo.pythag-no-root",
+      "value": "400"
+     },
+     {
+      "id": "geo.pythag-added",
+      "value": "50"
      }
     ]
    }

@@ -96,6 +96,56 @@
       "id": "geo.cone-no-third",
       "description": "Forgets the ⅓ in a cone's volume.",
       "pointsTo": "geo.volume.cylinder"
+    },
+    {
+      "id": "geo.comp-supp-swap",
+      "description": "Mixes up complementary (add to 90°) and supplementary (add to 180°).",
+      "pointsTo": "geo.angles.pairs"
+    },
+    {
+      "id": "geo.vertical-supplementary",
+      "description": "Thinks vertical angles add to 180° (they're equal).",
+      "pointsTo": "geo.angles.pairs"
+    },
+    {
+      "id": "geo.triangle-360",
+      "description": "Uses 360° for the angles of a triangle (they add to 180°).",
+      "pointsTo": "geo.angles.triangle"
+    },
+    {
+      "id": "geo.triangle-90",
+      "description": "Uses 90° for the angles of a triangle (they add to 180°).",
+      "pointsTo": "geo.angles.triangle"
+    },
+    {
+      "id": "geo.isosceles-not-halved",
+      "description": "Forgets that an isosceles triangle has two equal angles sharing what's left: 180° − apex, not halved.",
+      "pointsTo": "geo.angles.triangle"
+    },
+    {
+      "id": "geo.parallel-equal-supp",
+      "description": "With parallel lines, mixes up angles that are equal (corresponding, alternate) with angles that add to 180° (same-side).",
+      "pointsTo": "geo.angles.parallel"
+    },
+    {
+      "id": "geo.pythag-added",
+      "description": "Adds the sides instead of using a² + b² = c².",
+      "pointsTo": "geo.pythag.hypotenuse"
+    },
+    {
+      "id": "geo.pythag-no-root",
+      "description": "Forgets the square root at the end: c² = 25 means c = 5.",
+      "pointsTo": "geo.pythag.hypotenuse"
+    },
+    {
+      "id": "geo.pythag-subtract-sides",
+      "description": "Subtracts the sides instead of their squares to find a leg.",
+      "pointsTo": "geo.pythag.leg"
+    },
+    {
+      "id": "geo.pythag-wrong-side",
+      "description": "Uses the last side listed as the hypotenuse instead of the longest side.",
+      "pointsTo": "geo.pythag.converse"
     }
   ]
 }

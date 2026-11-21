@@ -307,6 +307,8 @@ const shortName = (id) => ({
   'geo.area': 'Area & perimeter',
   'geo.circles': 'Circles',
   'geo.volume': 'Volume',
+  'geo.angles': 'Angles',
+  'geo.pythag': 'Pythagorean theorem',
   'exp.rules': 'Exponent rules',
   'exp.roots': 'Roots',
   'exp.scinot': 'Scientific notation',

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.volume",
+  "title": "Volume",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation in JavaScript form (answers in terms of π give the number in front of π), or 'yes'/'no'; the test checks the answer key's number against it.",
+  "directions": "Show your work. Include units.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Find the volume of a box 6 cm by 4 cm by 5 cm.",
+          "math": "6 * 4 * 5",
+          "answer": "120 cm³"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Find the volume of a cylinder with radius 3 m and height 7 m, in terms of π.",
+          "math": "3 * 3 * 7",
+          "answer": "63π m³"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Find the volume of a cylinder with diameter 4 in and height 10 in, in terms of π.",
+          "math": "2 * 2 * 10",
+          "answer": "40π in³"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Find the volume of a cone with radius 3 cm and height 8 cm, in terms of π.",
+          "math": "3 * 3 * 8 / 3",
+          "answer": "24π cm³"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A shoebox is 12 in long, 6 in wide and 4 in tall. How much does it hold?",
+          "math": "12 * 6 * 4",
+          "answer": "288 in³"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Dev says a 2 by 3 by 4 box has volume 9. Is he right? Explain, and find the volume.",
+          "math": "2 * 3 * 4",
+          "answer": "24 (cubic units) (No: multiply, don't add)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Find the volume of a box 8 ft by 5 ft by 2 ft.",
+          "math": "8 * 5 * 2",
+          "answer": "80 ft³"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Find the volume of a cylinder with radius 2 cm and height 9 cm, in terms of π.",
+          "math": "2 * 2 * 9",
+          "answer": "36π cm³"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Find the volume of a cylinder with diameter 6 m and height 5 m, in terms of π.",
+          "math": "3 * 3 * 5",
+          "answer": "45π m³"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Find the volume of a cone with radius 6 in and height 5 in, in terms of π.",
+          "math": "6 * 6 * 5 / 3",
+          "answer": "60π in³"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "A fish tank is 20 in long, 10 in wide and 12 in tall. How much water does it hold?",
+          "math": "20 * 10 * 12",
+          "answer": "2400 in³"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Mia says a cone with radius 3 cm and height 4 cm has volume 36π cm³. Is she right? Explain, and find the volume.",
+          "math": "3 * 3 * 4 / 3",
+          "answer": "12π cm³ (No: a cone is one third of the cylinder)"
+        }
+      ]
+    }
+  ]
+}

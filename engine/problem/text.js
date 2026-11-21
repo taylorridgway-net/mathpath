@@ -93,9 +93,10 @@ export function toText(node) {
     case 'shape': {
       // Same words as web/components/shapes.js shapeWords (kept here so the engine has no web import).
       const L = node.labels || {};
-      const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle' }[node.kind];
-      const words = { w: 'width', h: 'height', l: 'length', r: 'radius', d: 'diameter', a: 'leg', b: 'leg', c: 'hypotenuse', top: 'top', bottom: 'bottom', right: 'right side', base: 'base', height: 'height', side: 'side' };
-      return `[${name}: ${Object.entries(L).filter(([, v]) => v !== undefined).map(([k, v]) => `${words[k] || k} ${v}`).join(', ')}]`;
+      const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle', 'angles-comp': 'a right angle split in two', 'angles-supp': 'a straight angle split in two', 'angles-vertical': 'two crossing lines', 'triangle-angles': 'a triangle', parallel: 'two parallel lines cut by a transversal' }[node.kind];
+      const angles = /^(angles-|triangle-angles|parallel)/.test(node.kind);
+      const words = angles ? {} : { w: 'width', h: 'height', l: 'length', r: 'radius', d: 'diameter', a: 'leg', b: 'leg', c: 'hypotenuse', top: 'top', bottom: 'bottom', right: 'right side', base: 'base', height: 'height', side: 'side' };
+      return `[${name}: ${Object.entries(L).filter(([, v]) => v !== undefined).map(([k, v]) => `${words[k] || (angles ? `angle ${k}` : k)} ${v}`).join(', ')}]`;
     }
     case 'factors':
       return node.items.map((i) => `(${toText(i)})`).join('');
