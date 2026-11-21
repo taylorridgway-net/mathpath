@@ -113,12 +113,22 @@ export function drawShape(node) {
       const xAt = (y) => 70 + (165 - y) * (110 / 160); // the transversal leans to the right going up
       for (const y of ys) { line([[10, y], [230, y]]); line([[200, y - 5], [210, y], [200, y + 5]], 'shape-thin'); }
       line([[xAt(165), 165], [xAt(0), 0]]);
-      const spots = { 1: [-24, -8], 2: [16, -8], 3: [-16, 18], 4: [22, 18] };
+      // Each angle sits between two rays; its label goes out along the ray halfway between them,
+      // with a small arc marking the angle. Ray directions (degrees, counterclockwise from "right"):
+      const up = (Math.atan2(160, 110) * 180) / Math.PI; // the transversal going up and to the right
+      const region = { 1: [up, 180], 2: [0, up], 3: [180, 180 + up], 4: [180 + up, 360] };
       for (const [k, v] of Object.entries(L)) {
         const n = Number(k);
         const y = n <= 4 ? ys[0] : ys[1];
-        const [dx, dy] = spots[n <= 4 ? n : n - 4];
-        text(xAt(y) + dx, y + dy, v);
+        const x0 = xAt(y);
+        const [from, to] = region[n <= 4 ? n : n - 4];
+        const pt = (deg, r) => [x0 + r * Math.cos((deg * Math.PI) / 180), y - r * Math.sin((deg * Math.PI) / 180)];
+        const [ax, ay] = pt(from, 13);
+        const [bx, by] = pt(to, 13);
+        root.append(svg('path', { d: `M ${ax} ${ay} A 13 13 0 0 0 ${bx} ${by}`, class: 'shape-thin' }));
+        const mid = (from + to) / 2;
+        const [lx, ly] = pt(mid, 36);
+        text(lx, ly + 5, v);
       }
       break;
     }
