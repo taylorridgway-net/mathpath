@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "skill": "stat.displays",
+  "title": "Reading data displays",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "stat.displays.dotplot": "Each dot is one data value. Count dots, not columns.",
+    "stat.displays.bars": "Read each bar against the scale. \"How many more\" means subtract; \"in all\" means add.",
+    "stat.displays.boxplot": "The line in the box is the median. The box edges are Q1 and Q3; the whiskers end at the min and max.",
+    "stat.displays": "Dot plot: each dot is one value. Bar graph: read the scale. Box plot: the line is the median, the box is Q1 to Q3."
+  },
+  "misconceptionMessages": {
+    "stat.dotplot-columns": "Count every dot, not the columns. Each dot is one data value.",
+    "stat.dotplot-middle-value": "The median is the middle dot, not the middle of the number line. Count dots from the left.",
+    "stat.bar-read-one": "That's one bar. Read the question again: it asks for a difference or a total.",
+    "stat.bar-added": "\"How many more\" means subtract the two bars.",
+    "stat.box-quartile": "That's a box edge (a quartile). The median is the line inside the box; the IQR is the width of the box.",
+    "stat.box-middle": "The median is the line inside the box. It isn't always halfway between the ends.",
+    "stat.iqr-range": "Range = max − min (whisker to whisker). Interquartile range = Q3 − Q1 (the width of the box)."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "stat.displays.dotplot",
+      "forGap": "stat.displays.dotplot",
+      "title": "Dot plots",
+      "objective": "Read counts, the mode and the median from a dot plot.",
+      "mode": "section",
+      "generator": "stat.displays.dotplot",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A dot plot puts one dot above the number line for every data value."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "type": "shape",
+            "kind": "dotplot",
+            "lo": 0,
+            "hi": 6,
+            "counts": {
+              "1": 1,
+              "2": 3,
+              "3": 2,
+              "5": 1
+            }
+          },
+          "steps": [
+            "7 dots: 7 data values",
+            "Tallest column at 2: the mode is 2",
+            "The middle dot is number 4: it's at 2, so the median is 2"
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Each dot is one value. Tallest column = the mode. Median = the middle dot, counting from the left."
+    },
+    {
+      "id": "stat.displays.bars",
+      "forGap": "stat.displays.bars",
+      "title": "Bar graphs",
+      "objective": "Read a bar, compare two bars and find a total.",
+      "mode": "section",
+      "generator": "stat.displays.bars",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Each bar's height, read against the scale, is how many are in that group."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "type": "shape",
+            "kind": "bars",
+            "bars": [
+              [
+                "Red",
+                8
+              ],
+              [
+                "Blue",
+                14
+              ],
+              [
+                "Green",
+                6
+              ]
+            ],
+            "max": 16,
+            "step": 4
+          },
+          "steps": [
+            "Blue reaches 14, Red reaches 8",
+            "How many more chose Blue than Red? 14 − 8 = 6",
+            "How many in all? 8 + 14 + 6 = 28"
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Read across to the scale. \"How many more\": subtract. \"How many in all\": add every bar."
+    },
+    {
+      "id": "stat.displays.boxplot",
+      "forGap": "stat.displays.boxplot",
+      "title": "Box plots",
+      "objective": "Read the median, range and interquartile range.",
+      "mode": "section",
+      "generator": "stat.displays.boxplot",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A box plot shows five numbers: the minimum, Q1, the median, Q3 and the maximum. The box holds the middle half of the data."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "type": "shape",
+            "kind": "boxplot",
+            "lo": 0,
+            "hi": 20,
+            "min": 2,
+            "q1": 6,
+            "med": 9,
+            "q3": 14,
+            "max": 18
+          },
+          "steps": [
+            "Whiskers end at the min (2) and max (18)",
+            "The box goes from Q1 = 6 to Q3 = 14; the line is the median, 9",
+            "Range = 18 − 2 = 16.  IQR = 14 − 6 = 8"
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "The line in the box is the median. Range = max − min. Interquartile range (IQR) = Q3 − Q1, the width of the box."
+    },
+    {
+      "id": "stat.displays.whole",
+      "forGap": "stat.displays",
+      "title": "Putting it together",
+      "objective": "Data displays, mixed.",
+      "mode": "skill",
+      "generator": "stat.displays",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the displays are mixed. Look at what kind of picture it is, then read what the question asks."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "type": "shape",
+            "kind": "boxplot",
+            "lo": 10,
+            "hi": 40,
+            "min": 12,
+            "q1": 18,
+            "med": 25,
+            "q3": 30,
+            "max": 38
+          },
+          "steps": [
+            "Median: the line, 25",
+            "IQR: 30 − 18 = 12",
+            "Range: 38 − 12 = 26"
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Dot plot: each dot is one value. Bar graph: read the scale. Box plot: line = median, box = Q1 to Q3."
+    }
+  ]
+}

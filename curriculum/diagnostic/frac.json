@@ -87,6 +87,15 @@
       ]
     },
     {
+      "id": "statistics",
+      "name": "Statistics and probability check",
+      "targets": [
+        "stat.center",
+        "stat.displays",
+        "stat.prob"
+      ]
+    },
+    {
       "id": "linear",
       "name": "Linear functions check",
       "targets": [

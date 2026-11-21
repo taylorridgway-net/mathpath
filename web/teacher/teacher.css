@@ -149,6 +149,7 @@
   .p-item { font-size: 12.5pt; line-height: 2; min-height: 0.95in; break-inside: avoid; }
   .p-item-key { min-height: 0; margin-bottom: 10pt; }
   .p-a { font-weight: 700; margin: 0; }
+  .p-shape svg { width: 2.6in; height: auto; }
   .p-page .math-inline { font-size: 1.15em; }
   .p-page .m-top { border-bottom-color: #000; }
   @page { margin: 0.5in; }
@@ -177,6 +178,8 @@
 .p-onscreen .p-item-key { min-height: 0; }
 .p-onscreen .p-q, .p-onscreen .p-a { margin: 0; }
 .p-onscreen .p-a { font-weight: 700; }
+.p-shape { margin: 4px 0; --ink: #111; --accent-soft: #e4e4e4; --surface: #fff; --line: #bbb; --mark: #111; }
+.p-shape svg { width: 260px; max-width: 100%; height: auto; }
 .p-onscreen .m-top { border-bottom-color: #111; }
 .t-problem { margin: 0; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--bad-soft); color: var(--bad); border: 1px solid var(--bad); font-weight: 600; }
 .t-wide { width: 14rem; }

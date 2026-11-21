@@ -542,3 +542,4 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .shape-dot { fill: var(--ink); }
 .shape-label { font-family: var(--font-math); font-size: 15px; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
 .shape-ask { font-weight: 700; fill: var(--mark); }
+.shape-grid { stroke: var(--line); stroke-width: 1; }

@@ -11,7 +11,8 @@
     "lin",
     "poly",
     "exp",
-    "geo"
+    "geo",
+    "stat"
   ],
   "lessons": [
     "whole.add-sub",
@@ -53,6 +54,9 @@
     "exp.scinot",
     "geo.angles",
     "geo.pythag",
+    "stat.center",
+    "stat.displays",
+    "stat.prob",
     "lin.functions",
     "lin.slope",
     "lin.slope-intercept",
@@ -102,6 +106,9 @@
     "exp.scinot",
     "geo.angles",
     "geo.pythag",
+    "stat.center",
+    "stat.displays",
+    "stat.prob",
     "lin.functions",
     "lin.slope",
     "lin.slope-intercept",

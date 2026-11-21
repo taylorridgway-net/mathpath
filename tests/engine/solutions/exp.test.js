@@ -15,10 +15,14 @@ test('exponent solutions: arithmetic right, answer last', () => {
     const steps = solve(p);
     const all = steps.map((s) => s.say).join(' / ');
     assert.doesNotMatch(all, /undefined|NaN/, all);
-    for (const m of all.matchAll(/(?<![\d.−^])(\(?−?\d+\)?) ([×+÷−]) (\(?−?\d+\)?) = (−?\d+)(?![\d/.])/g)) {
+    // Whole chains (9 + 7 + 9 = 25), worked left to right; only + and − chains, or one operation.
+    for (const m of all.matchAll(/(?<![\d.−^×+÷] ?)((?:\(?−?\d+\)? [×+÷−] )+\(?−?\d+\)?) = (−?\d+)(?![\d/]|\.\d)/g)) {
       const v = (t) => Number(t.replace(/[()]/g, '').replace('−', '-'));
-      const [x, y] = [v(m[1]), v(m[3])];
-      assert.equal({ '×': x * y, '+': x + y, '÷': x / y, '−': x - y }[m[2]], v(m[4]), `${m[0]} in ${all}`);
+      const tok = m[1].split(' ');
+      if (tok.length > 3 && tok.some((t, i) => i % 2 && /[×÷]/.test(t))) continue;
+      let acc = v(tok[0]);
+      for (let i = 1; i < tok.length; i += 2) { const y = v(tok[i + 1]); acc = { '×': acc * y, '+': acc + y, '÷': acc / y, '−': acc - y }[tok[i]]; }
+      assert.equal(acc, v(m[2]), `${m[0]} in ${all}`);
     }
     const a = p.answer;
     const ans = a.type === 'choice' ? a.options[a.correct] : a.type === 'integer' ? n(a.value) : a.type === 'decimal' ? a.value : a.value.d === 1 ? n(a.value.n) : `${a.value.n < 0 ? '−' : ''}${Math.abs(a.value.n)}/${a.value.d}`;

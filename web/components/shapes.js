@@ -132,6 +132,45 @@ export function drawShape(node) {
       }
       break;
     }
+    case 'dotplot': {
+      // counts: { value: how many } on a number line from lo to hi; one dot per data value.
+      const { lo, hi, counts } = node;
+      const step = 200 / (hi - lo);
+      const X = (v) => 20 + (v - lo) * step;
+      line([[10, 140], [230, 140]]);
+      for (let v = lo; v <= hi; v++) { line([[X(v), 136], [X(v), 144]], 'shape-thin'); text(X(v), 160, String(v)); }
+      for (const [v, c] of Object.entries(counts)) for (let i = 0; i < c; i++) root.append(svg('circle', { cx: X(Number(v)), cy: 128 - i * 14, r: 5.5, class: 'shape-dot' }));
+      // Crop the empty space above the tallest column.
+      const top = Math.min(100, 128 - (Math.max(...Object.values(counts)) - 1) * 14 - 16);
+      root.setAttribute('viewBox', `0 ${top} 240 ${170 - top}`);
+      break;
+    }
+    case 'bars': {
+      // bars: [[name, value], ...] with a scale from 0 to max (gridlines every step).
+      const { bars, max, step: gs } = node;
+      const Y = (v) => 140 - (v / max) * 120;
+      for (let v = 0; v <= max; v += gs) { line([[34, Y(v)], [230, Y(v)]], 'shape-grid'); text(28, Y(v) + 4, String(v), 'end'); }
+      const w = 190 / bars.length;
+      bars.forEach(([name, v], i) => {
+        root.append(svg('rect', { x: 40 + i * w + w * 0.15, y: Y(v), width: w * 0.7, height: 140 - Y(v), class: 'shape-fill' }));
+        text(40 + i * w + w / 2, 158, name);
+      });
+      break;
+    }
+    case 'boxplot': {
+      const { lo, hi, min, q1, med, q3, max } = node;
+      const X = (v) => 20 + ((v - lo) / (hi - lo)) * 200;
+      line([[10, 130], [230, 130]]);
+      const tick = Math.max(1, Math.round((hi - lo) / 10));
+      const every = (hi - lo) / tick > 7 ? 2 : 1; // label every other tick when they'd crowd
+      for (let v = lo, i = 0; v <= hi; v += tick, i++) { line([[X(v), 126], [X(v), 134]], 'shape-thin'); if (i % every === 0) text(X(v), 150, String(v)); }
+      line([[X(min), 70], [X(q1), 70]]); line([[X(q3), 70], [X(max), 70]]);
+      line([[X(min), 60], [X(min), 80]]); line([[X(max), 60], [X(max), 80]]);
+      root.append(svg('rect', { x: X(q1), y: 45, width: X(q3) - X(q1), height: 50, class: 'shape-fill' }));
+      line([[X(med), 45], [X(med), 95]]);
+      root.setAttribute('viewBox', '0 35 240 125');
+      break;
+    }
     default: throw new Error(`drawShape: unknown kind "${node.kind}"`);
   }
   root.setAttribute('aria-label', shapeWords(node));
@@ -139,7 +178,11 @@ export function drawShape(node) {
 }
 
 // Plain words for a shape (screen readers and the text form).
-export function shapeWords({ kind, labels: L = {} }) {
+export function shapeWords(node) {
+  const { kind, labels: L = {} } = node;
+  if (kind === 'dotplot') return `A dot plot: ${Object.entries(node.counts).filter(([, c]) => c).map(([v, c]) => `${c} at ${v}`).join(', ')}.`;
+  if (kind === 'bars') return `A bar graph: ${node.bars.map(([n, v]) => `${n} ${v}`).join(', ')}.`;
+  if (kind === 'boxplot') return `A box plot: minimum ${node.min}, first quartile ${node.q1}, median ${node.med}, third quartile ${node.q3}, maximum ${node.max}.`;
   const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle', 'angles-comp': 'a right angle split in two', 'angles-supp': 'a straight angle split in two', 'angles-vertical': 'two crossing lines', 'triangle-angles': 'a triangle', parallel: 'two parallel lines cut by a transversal' }[kind];
   const parts = Object.entries(L).filter(([, v]) => v !== undefined).map(([k, v]) => `${({ w: 'width', h: 'height', l: 'length', r: 'radius', d: 'diameter', a: 'leg', b: 'leg', c: 'hypotenuse', top: 'top', bottom: 'bottom', right: 'right side', base: 'base', height: 'height', side: 'side' })[k] || k} ${v}`);
   return `[${name}: ${parts.join(', ')}]`;

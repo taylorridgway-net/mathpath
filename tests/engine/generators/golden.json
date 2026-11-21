@@ -61050,6 +61050,2972 @@
    }
   ]
  },
+ "stat.center": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 4, 9, 10, 18, 22"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-mean",
+      "value": "12.6"
+     }
+    ],
+    "part": "stat.center.median"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 8, 13, 16, 23, 24"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "16"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-mean",
+      "value": "16.8"
+     }
+    ],
+    "part": "stat.center.median"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 7, 9, 10, 15, 17, 19, 20, 22, 28"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "17"
+    },
+    "misconceptions": [],
+    "part": "stat.center.median"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 28, 15, 22, 30, 29, 4, 30"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "28"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "30"
+     }
+    ],
+    "part": "stat.center.median"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the mode.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 15, 1, 11, 9, 9, 9, 4, 19"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "3"
+     }
+    ],
+    "part": "stat.center.mode-range"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the mean.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 6, 7, 17, 11, 13"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10.8"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "54"
+     },
+     {
+      "id": "stat.mean-wrong-count",
+      "value": "13.5"
+     }
+    ],
+    "part": "stat.center.mean"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 22, 19, 14, 16, 10, 23"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "17.5"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "15"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "16"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "19"
+     }
+    ],
+    "part": "stat.center.median"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "words",
+     "text": "The mean of 5 numbers is 19. 4 of them are 16, 27, 19, 14. What is the last number?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "19"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "95"
+     }
+    ],
+    "part": "stat.center.mean"
+   },
+   {
+    "generator": "stat.center",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "words",
+     "text": "The mean of 6 numbers is 16. 5 of them are 22, 14, 23, 8, 19. What is the last number?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "96"
+     },
+     {
+      "id": "stat.mean-missing-average",
+      "value": "16"
+     }
+    ],
+    "part": "stat.center.mean"
+   }
+  ]
+ },
+ "stat.center.mean": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the mean.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 15, 13, 3, 13, 7, 9"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "60"
+     },
+     {
+      "id": "stat.mean-wrong-count",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the mean.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 9, 17, 3, 11"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "40"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the mean.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 19, 19, 13, 2, 3, 4"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "60"
+     },
+     {
+      "id": "stat.mean-wrong-count",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the mean.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 10, 16, 19, 3, 9, 12"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "11.5"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "69"
+     },
+     {
+      "id": "stat.mean-wrong-count",
+      "value": "13.8"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the mean.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 5, 13, 17, 2, 16"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10.6"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "53"
+     },
+     {
+      "id": "stat.mean-wrong-count",
+      "value": "13.25"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the mean.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 19, 3, 17, 17, 8"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12.8"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "64"
+     },
+     {
+      "id": "stat.mean-wrong-count",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "words",
+     "text": "The mean of 4 numbers is 19. 3 of them are 12, 19, 15. What is the last number?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "76"
+     },
+     {
+      "id": "stat.mean-missing-average",
+      "value": "19"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "words",
+     "text": "The mean of 4 numbers is 10. 3 of them are 5, 15, 2. What is the last number?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "18"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "40"
+     },
+     {
+      "id": "stat.mean-missing-average",
+      "value": "10"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mean",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the missing number.",
+    "expression": {
+     "type": "words",
+     "text": "The mean of 5 numbers is 13. 4 of them are 5, 5, 5, 21. What is the last number?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "29"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mean-sum",
+      "value": "65"
+     },
+     {
+      "id": "stat.mean-missing-average",
+      "value": "13"
+     }
+    ]
+   }
+  ]
+ },
+ "stat.center.median": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 5, 5, 12, 13, 14, 18, 24, 27, 29"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "14"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 1, 8, 9, 12, 22, 24, 30"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 4, 6, 7, 10, 13, 20, 22"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 29, 23, 2, 30, 8, 9, 6, 10, 3"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "8"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 22, 30, 30, 1, 27, 3, 26, 11, 25"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "27"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 17, 3, 8, 30, 19, 7, 22"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "17"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "30"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 1, 6, 28, 9"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7.5"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "17"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "6"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "9"
+     },
+     {
+      "id": "stat.median-mean",
+      "value": "11"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 22, 29, 30, 4"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25.5"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "29.5"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "22"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "29"
+     },
+     {
+      "id": "stat.median-mean",
+      "value": "21.25"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.median",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the median.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 21, 3, 24, 17"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "19"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-unsorted",
+      "value": "13.5"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "17"
+     },
+     {
+      "id": "stat.median-even",
+      "value": "21"
+     },
+     {
+      "id": "stat.median-mean",
+      "value": "16.25"
+     }
+    ]
+   }
+  ]
+ },
+ "stat.center.mode-range": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the range.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 37, 10, 23, 10, 20, 5, 38"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "33"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.range-ends",
+      "value": "1"
+     },
+     {
+      "id": "stat.range-max",
+      "value": "38"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the range.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 39, 35, 35, 15, 27, 23"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.range-ends",
+      "value": "16"
+     },
+     {
+      "id": "stat.range-max",
+      "value": "39"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the range.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 15, 18, 13, 2, 7, 23, 32"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.range-ends",
+      "value": "17"
+     },
+     {
+      "id": "stat.range-max",
+      "value": "32"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the mode.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 14, 15, 5, 14, 14"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "14"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "3"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the mode.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 5, 3, 3, 11, 3, 17"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-median",
+      "value": "5"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the mode.",
+    "expression": {
+     "type": "words",
+     "text": "Data: 11, 9, 3, 9, 18, 8, 9, 20"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "3"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the range.",
+    "expression": {
+     "type": "words",
+     "text": "Morning temperatures (°F): 5, 9, 13, -8, -3, 8"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "21"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.range-ends",
+      "value": "3"
+     },
+     {
+      "id": "stat.range-max",
+      "value": "13"
+     },
+     {
+      "id": "stat.range-sign",
+      "value": "5"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the range.",
+    "expression": {
+     "type": "words",
+     "text": "Morning temperatures (°F): -9, 12, -6, 9, 6, 3"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "21"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.range-ends",
+      "value": "12"
+     },
+     {
+      "id": "stat.range-sign",
+      "value": "3"
+     }
+    ]
+   },
+   {
+    "generator": "stat.center.mode-range",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the range.",
+    "expression": {
+     "type": "words",
+     "text": "Morning temperatures (°F): -1, -6, -2, 8, 8, -4, 11"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "17"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.range-ends",
+      "value": "12"
+     },
+     {
+      "id": "stat.range-max",
+      "value": "11"
+     },
+     {
+      "id": "stat.range-sign",
+      "value": "5"
+     }
+    ]
+   }
+  ]
+ },
+ "stat.displays": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 0,
+     "hi": 20,
+     "min": 1,
+     "q1": 3,
+     "med": 8,
+     "q3": 10,
+     "max": 17
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.box-quartile",
+      "value": "3"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "10"
+     },
+     {
+      "id": "stat.box-middle",
+      "value": "9"
+     }
+    ],
+    "part": "stat.displays.boxplot"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 5,
+     "hi": 25,
+     "min": 8,
+     "q1": 12,
+     "med": 14,
+     "q3": 18,
+     "max": 25
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "14"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.box-quartile",
+      "value": "12"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "18"
+     },
+     {
+      "id": "stat.box-middle",
+      "value": "16.5"
+     }
+    ],
+    "part": "stat.displays.boxplot"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 5,
+     "hi": 30,
+     "min": 8,
+     "q1": 12,
+     "med": 16,
+     "q3": 19,
+     "max": 27
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "16"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.box-quartile",
+      "value": "12"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "19"
+     },
+     {
+      "id": "stat.box-middle",
+      "value": "17.5"
+     }
+    ],
+    "part": "stat.displays.boxplot"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is the mode?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 4,
+     "hi": 11,
+     "counts": {
+      "4": 2,
+      "5": 1,
+      "6": 2,
+      "7": 3,
+      "8": 1,
+      "9": 2,
+      "10": 2,
+      "11": 2
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "3"
+     }
+    ],
+    "part": "stat.displays.dotplot"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the mode?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 4,
+     "hi": 9,
+     "counts": {
+      "4": 3,
+      "5": 0,
+      "6": 1,
+      "7": 4,
+      "8": 2,
+      "9": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "4"
+     }
+    ],
+    "part": "stat.displays.dotplot"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "How many more students chose Apples than Pears?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Pears",
+       6
+      ],
+      [
+       "Plums",
+       14
+      ],
+      [
+       "Grapes",
+       12
+      ],
+      [
+       "Apples",
+       16
+      ]
+     ],
+     "max": 18,
+     "step": 2
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "16"
+     },
+     {
+      "id": "stat.bar-added",
+      "value": "22"
+     }
+    ],
+    "part": "stat.displays.bars"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "How many students were asked in all?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Plums",
+       35
+      ],
+      [
+       "Bananas",
+       35
+      ],
+      [
+       "Apples",
+       15
+      ],
+      [
+       "Grapes",
+       35
+      ]
+     ],
+     "max": 40,
+     "step": 5
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "120"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "35"
+     }
+    ],
+    "part": "stat.displays.bars"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 5,
+     "hi": 11,
+     "counts": {
+      "5": 3,
+      "6": 4,
+      "7": 1,
+      "8": 2,
+      "9": 0,
+      "10": 4,
+      "11": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": [],
+    "part": "stat.displays.dotplot"
+   },
+   {
+    "generator": "stat.displays",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 3,
+     "hi": 9,
+     "counts": {
+      "3": 1,
+      "4": 4,
+      "5": 1,
+      "6": 3,
+      "7": 1,
+      "8": 1,
+      "9": 4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.median-mean",
+      "value": "6.2"
+     }
+    ],
+    "part": "stat.displays.dotplot"
+   }
+  ]
+ },
+ "stat.displays.bars": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "How many students chose Bananas?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Grapes",
+       20
+      ],
+      [
+       "Bananas",
+       10
+      ],
+      [
+       "Plums",
+       10
+      ],
+      [
+       "Apples",
+       5
+      ]
+     ],
+     "max": 25,
+     "step": 5
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "How many students chose Plums?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Plums",
+       40
+      ],
+      [
+       "Apples",
+       60
+      ],
+      [
+       "Bananas",
+       80
+      ],
+      [
+       "Grapes",
+       60
+      ]
+     ],
+     "max": 90,
+     "step": 10
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "40"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "How many students chose Apples?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Apples",
+       10
+      ],
+      [
+       "Plums",
+       4
+      ],
+      [
+       "Grapes",
+       8
+      ],
+      [
+       "Pears",
+       2
+      ]
+     ],
+     "max": 12,
+     "step": 2
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "How many more students chose Pears than Grapes?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Pears",
+       40
+      ],
+      [
+       "Apples",
+       40
+      ],
+      [
+       "Bananas",
+       70
+      ],
+      [
+       "Grapes",
+       10
+      ]
+     ],
+     "max": 80,
+     "step": 10
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "40"
+     },
+     {
+      "id": "stat.bar-added",
+      "value": "50"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "How many more students chose Plums than Bananas?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Plums",
+       4
+      ],
+      [
+       "Bananas",
+       2
+      ],
+      [
+       "Grapes",
+       6
+      ],
+      [
+       "Apples",
+       4
+      ]
+     ],
+     "max": 8,
+     "step": 2
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "4"
+     },
+     {
+      "id": "stat.bar-added",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "How many more students chose Bananas than Apples?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Bananas",
+       4
+      ],
+      [
+       "Pears",
+       4
+      ],
+      [
+       "Grapes",
+       4
+      ],
+      [
+       "Apples",
+       2
+      ]
+     ],
+     "max": 6,
+     "step": 2
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "4"
+     },
+     {
+      "id": "stat.bar-added",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "How many students were asked in all?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Grapes",
+       5
+      ],
+      [
+       "Apples",
+       15
+      ],
+      [
+       "Plums",
+       25
+      ],
+      [
+       "Pears",
+       25
+      ]
+     ],
+     "max": 30,
+     "step": 5
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "70"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "25"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "How many students were asked in all?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Grapes",
+       6
+      ],
+      [
+       "Apples",
+       2
+      ],
+      [
+       "Bananas",
+       6
+      ],
+      [
+       "Plums",
+       4
+      ]
+     ],
+     "max": 8,
+     "step": 2
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "18"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.bars",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "How many students were asked in all?",
+    "expression": {
+     "type": "shape",
+     "kind": "bars",
+     "bars": [
+      [
+       "Grapes",
+       60
+      ],
+      [
+       "Plums",
+       20
+      ],
+      [
+       "Pears",
+       10
+      ],
+      [
+       "Apples",
+       10
+      ]
+     ],
+     "max": 70,
+     "step": 10
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "100"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.bar-read-one",
+      "value": "60"
+     }
+    ]
+   }
+  ]
+ },
+ "stat.displays.boxplot": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 0,
+     "hi": 25,
+     "min": 4,
+     "q1": 7,
+     "med": 10,
+     "q3": 16,
+     "max": 21
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.box-quartile",
+      "value": "7"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "16"
+     },
+     {
+      "id": "stat.box-middle",
+      "value": "12.5"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 5,
+     "hi": 30,
+     "min": 8,
+     "q1": 11,
+     "med": 17,
+     "q3": 23,
+     "max": 28
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "17"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.box-quartile",
+      "value": "11"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "23"
+     },
+     {
+      "id": "stat.box-middle",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 10,
+     "hi": 30,
+     "min": 10,
+     "q1": 13,
+     "med": 17,
+     "q3": 21,
+     "max": 26
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "17"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.box-quartile",
+      "value": "13"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "21"
+     },
+     {
+      "id": "stat.box-middle",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is the range?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 0,
+     "hi": 15,
+     "min": 4,
+     "q1": 6,
+     "med": 8,
+     "q3": 10,
+     "max": 15
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "11"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.iqr-range",
+      "value": "4"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the range?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 5,
+     "hi": 20,
+     "min": 6,
+     "q1": 9,
+     "med": 12,
+     "q3": 16,
+     "max": 19
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "13"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.iqr-range",
+      "value": "7"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What is the range?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 0,
+     "hi": 25,
+     "min": 3,
+     "q1": 5,
+     "med": 11,
+     "q3": 14,
+     "max": 21
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "18"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.iqr-range",
+      "value": "9"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What is the interquartile range (IQR)?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 0,
+     "hi": 25,
+     "min": 3,
+     "q1": 9,
+     "med": 11,
+     "q3": 17,
+     "max": 25
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.iqr-range",
+      "value": "22"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "17"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the interquartile range (IQR)?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 0,
+     "hi": 25,
+     "min": 3,
+     "q1": 9,
+     "med": 11,
+     "q3": 16,
+     "max": 23
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.iqr-range",
+      "value": "20"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.boxplot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the interquartile range (IQR)?",
+    "expression": {
+     "type": "shape",
+     "kind": "boxplot",
+     "lo": 5,
+     "hi": 20,
+     "min": 7,
+     "q1": 12,
+     "med": 16,
+     "q3": 18,
+     "max": 20
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.iqr-range",
+      "value": "13"
+     },
+     {
+      "id": "stat.box-quartile",
+      "value": "18"
+     }
+    ]
+   }
+  ]
+ },
+ "stat.displays.dotplot": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "How many data values are shown?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 2,
+     "hi": 8,
+     "counts": {
+      "2": 3,
+      "3": 1,
+      "4": 3,
+      "5": 1,
+      "6": 0,
+      "7": 1,
+      "8": 4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "13"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.dotplot-columns",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "How many data values are shown?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 2,
+     "hi": 8,
+     "counts": {
+      "2": 4,
+      "3": 1,
+      "4": 3,
+      "5": 1,
+      "6": 2,
+      "7": 2,
+      "8": 2
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.dotplot-columns",
+      "value": "7"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "How many data values are shown?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 0,
+     "hi": 6,
+     "counts": {
+      "0": 4,
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 2,
+      "5": 3,
+      "6": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.dotplot-columns",
+      "value": "7"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is the mode?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 1,
+     "hi": 7,
+     "counts": {
+      "1": 3,
+      "2": 3,
+      "3": 0,
+      "4": 3,
+      "5": 0,
+      "6": 4,
+      "7": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "4"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the mode?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 3,
+     "hi": 8,
+     "counts": {
+      "3": 3,
+      "4": 3,
+      "5": 4,
+      "6": 3,
+      "7": 0,
+      "8": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "4"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What is the mode?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 1,
+     "hi": 8,
+     "counts": {
+      "1": 3,
+      "2": 1,
+      "3": 2,
+      "4": 0,
+      "5": 2,
+      "6": 4,
+      "7": 3,
+      "8": 1
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.mode-count",
+      "value": "4"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 3,
+     "hi": 10,
+     "counts": {
+      "3": 2,
+      "4": 3,
+      "5": 3,
+      "6": 1,
+      "7": 1,
+      "8": 3,
+      "9": 4,
+      "10": 4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.dotplot-middle-value",
+      "value": "7"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 2,
+     "hi": 8,
+     "counts": {
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 0,
+      "6": 2,
+      "7": 4,
+      "8": 0
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.dotplot-middle-value",
+      "value": "5"
+     }
+    ]
+   },
+   {
+    "generator": "stat.displays.dotplot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the median?",
+    "expression": {
+     "type": "shape",
+     "kind": "dotplot",
+     "lo": 4,
+     "hi": 11,
+     "counts": {
+      "4": 1,
+      "5": 1,
+      "6": 2,
+      "7": 4,
+      "8": 3,
+      "9": 4,
+      "10": 1,
+      "11": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": []
+   }
+  ]
+ },
+ "stat.prob": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 2 red, 9 blue and 9 green marbles. You pick one without looking. What is the probability it's red?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 10
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 1,
+       "d": 9
+      }
+     },
+     {
+      "id": "stat.prob-wrong-total",
+      "value": {
+       "n": 2,
+       "d": 9
+      }
+     }
+    ],
+    "part": "stat.prob.simple"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 6 red, 9 blue and 7 green marbles. You pick one without looking. What is the probability it's red?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 11
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 3,
+       "d": 8
+      }
+     },
+     {
+      "id": "stat.prob-wrong-total",
+      "value": {
+       "n": 6,
+       "d": 7
+      }
+     }
+    ],
+    "part": "stat.prob.simple"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting heads on a coin and a 4 on a number cube?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 12
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     }
+    ],
+    "part": "stat.prob.compound"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 1 red, 3 blue and 9 green marbles. You pick one without looking. What is the probability it's NOT blue?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 10,
+      "d": 13
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-complement",
+      "value": {
+       "n": 3,
+       "d": 13
+      }
+     },
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 10,
+       "d": 3
+      }
+     }
+    ],
+    "part": "stat.prob.simple"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 9 red, 3 blue and 2 green marbles. You pick one without looking. What is the probability it's NOT blue?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 11,
+      "d": 14
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-complement",
+      "value": {
+       "n": 3,
+       "d": 14
+      }
+     },
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 11,
+       "d": 3
+      }
+     }
+    ],
+    "part": "stat.prob.simple"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting red on a spinner with 3 equal parts (1 red) and a 2 on a number cube?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 18
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ],
+    "part": "stat.prob.compound"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "You spin a spinner with 4 equal parts (1 of them blue) 100 times. About how many times would you expect blue?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.expected-complement",
+      "value": "75"
+     }
+    ],
+    "part": "stat.prob.compound"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "You spin a spinner with 4 equal parts (1 of them blue) 112 times. About how many times would you expect blue?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "28"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.expected-complement",
+      "value": "84"
+     }
+    ],
+    "part": "stat.prob.compound"
+   },
+   {
+    "generator": "stat.prob",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "You roll a number cube (1 to 6). What is the probability of rolling a multiple of 3?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ],
+    "part": "stat.prob.simple"
+   }
+  ]
+ },
+ "stat.prob.compound": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting tails on a coin and an even number on a number cube?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting tails on a coin and an even number on a number cube?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting heads on the first coin and heads on the second coin?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting a number less than 3 on a number cube and an odd number on a second number cube?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting a number less than 3 on a number cube and an odd number on a second number cube?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "What is the probability of getting a number less than 3 on a number cube and an odd number on a second number cube?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 6
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-added",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "You flip a coin 50 times. About how many times would you expect heads?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "You roll a number cube 16 times. About how many times would you expect an even number?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "stat.prob.compound",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "You flip a coin 18 times. About how many times would you expect heads?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9"
+    },
+    "misconceptions": []
+   }
+  ]
+ },
+ "stat.prob.simple": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 1 red, 9 blue and 1 green marbles. You pick one without looking. What is the probability it's red?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 11
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 1,
+       "d": 10
+      }
+     },
+     {
+      "id": "stat.prob-wrong-total",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 3 red, 7 blue and 5 green marbles. You pick one without looking. What is the probability it's red?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     },
+     {
+      "id": "stat.prob-wrong-total",
+      "value": {
+       "n": 3,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 2 red, 7 blue and 6 green marbles. You pick one without looking. What is the probability it's red?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 15
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 2,
+       "d": 13
+      }
+     },
+     {
+      "id": "stat.prob-wrong-total",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 8 red, 6 blue and 2 green marbles. You pick one without looking. What is the probability it's NOT blue?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 8
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-complement",
+      "value": {
+       "n": 3,
+       "d": 8
+      }
+     },
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 5,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 2 red, 8 blue and 6 green marbles. You pick one without looking. What is the probability it's NOT blue?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 2
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 2 red, 9 blue and 4 green marbles. You pick one without looking. What is the probability it's NOT blue?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 5
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-complement",
+      "value": {
+       "n": 3,
+       "d": 5
+      }
+     },
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "A bag has 4 red, 9 blue and 2 green marbles. You pick one without looking. What is the probability it's red or blue?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 13,
+      "d": 15
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-multiplied",
+      "value": {
+       "n": 4,
+       "d": 25
+      }
+     },
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 13,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "You roll a number cube (1 to 6). What is the probability of rolling a multiple of 3?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "stat.prob.simple",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the probability. Write a fraction in simplest form.",
+    "expression": {
+     "type": "words",
+     "text": "You roll a number cube (1 to 6). What is the probability of rolling a number greater than 4?"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "stat.prob-part-part",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ]
+   }
+  ]
+ },
  "whole.add-sub": {
   "version": 1,
   "problems": [

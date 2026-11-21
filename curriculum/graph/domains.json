@@ -43,6 +43,11 @@
       "file": "exp.json"
     },
     {
+      "id": "stat",
+      "name": "Statistics and probability",
+      "file": "stat.json"
+    },
+    {
       "id": "lin",
       "name": "Linear functions",
       "file": "lin.json"

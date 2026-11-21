@@ -91,6 +91,9 @@ export function toText(node) {
     case 'list':
       return node.items.map(toText).join(` ${node.word || 'and'} `);
     case 'shape': {
+      if (node.kind === 'dotplot') return `[a dot plot: ${Object.entries(node.counts).filter(([, c]) => c).map(([v, c]) => `${c} at ${v}`).join(', ')}]`;
+      if (node.kind === 'bars') return `[a bar graph: ${node.bars.map(([n, v]) => `${n} ${v}`).join(', ')}]`;
+      if (node.kind === 'boxplot') return `[a box plot: min ${node.min}, Q1 ${node.q1}, median ${node.med}, Q3 ${node.q3}, max ${node.max}]`;
       // Same words as web/components/shapes.js shapeWords (kept here so the engine has no web import).
       const L = node.labels || {};
       const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle', 'angles-comp': 'a right angle split in two', 'angles-supp': 'a straight angle split in two', 'angles-vertical': 'two crossing lines', 'triangle-angles': 'a triangle', parallel: 'two parallel lines cut by a transversal' }[node.kind];

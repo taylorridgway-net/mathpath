@@ -471,7 +471,11 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   const GEOM = ['geo.angles', 'geo.pythag'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterExp }), GEOM);
   assert.equal(catchUpName(fractions.config, GEOM), 'Geometry check');
-  const afterRat = { ...afterExp, nodes: { ...afterExp.nodes, ...Object.fromEntries(GEOM.map((id) => [id, { status: 'known' }])) } };
+  const afterGeom = { ...afterExp, nodes: { ...afterExp.nodes, ...Object.fromEntries(GEOM.map((id) => [id, { status: 'known' }])) } };
+  const STAT = ['stat.center', 'stat.displays', 'stat.prob'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterGeom }), STAT);
+  assert.equal(catchUpName(fractions.config, STAT), 'Statistics and probability check');
+  const afterRat = { ...afterGeom, nodes: { ...afterGeom.nodes, ...Object.fromEntries(STAT.map((id) => [id, { status: 'known' }])) } };
   const LIN = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel', 'lin.graphing'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat }), LIN);
   assert.equal(catchUpName(fractions.config, LIN), 'Linear functions check');

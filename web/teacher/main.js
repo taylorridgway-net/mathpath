@@ -27,6 +27,7 @@ import { scorePaperTest, verificationRecord } from '../../engine/teacher/verific
 import { syntheticClass } from '../../tools/synthetic-class.js';
 import { diagnosticReport } from '../components/diagnostic-report.js';
 import { renderLessonText } from '../components/lesson-text.js';
+import { drawShape } from '../components/shapes.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadLocal, saveLocal } from '../storage/local.js';
 import { createApi } from '../api/client.js';
@@ -309,6 +310,9 @@ const shortName = (id) => ({
   'geo.volume': 'Volume',
   'geo.angles': 'Angles',
   'geo.pythag': 'Pythagorean theorem',
+  'stat.center': 'Mean, median, mode',
+  'stat.displays': 'Data displays',
+  'stat.prob': 'Probability',
   'exp.rules': 'Exponent rules',
   'exp.roots': 'Roots',
   'exp.scinot': 'Scientific notation',
@@ -876,6 +880,7 @@ function paper() {
   for (const item of version.items) {
     const li = h('li', 't-paper-item');
     li.append(renderLessonText(item.prompt, { className: 't-paper-q' }));
+    if (item.shape && !samePicture(version.items, item)) li.append(paperPicture(item.shape));
     li.append(h('p', 't-paper-a', `Answer: ${item.answer}${item.kind === 'word' ? ' · word problem' : ''}`));
     sheet.append(li);
   }
@@ -970,6 +975,19 @@ function scoreCard(s, skillId, version) {
 }
 
 // Printing: the test (or key) goes in a print-only area; the browser prints just that.
+// A paper item's picture (a data display, a shape): the same drawing the student app uses.
+// "Using the same dot plot…": an item whose picture matches the one before it isn't drawn again.
+function samePicture(items, item) {
+  const before = items[items.indexOf(item) - 1];
+  return Boolean(before?.shape) && JSON.stringify(before.shape) === JSON.stringify(item.shape);
+}
+
+function paperPicture(node) {
+  const box = h('div', 'p-shape');
+  box.append(drawShape(node));
+  return box;
+}
+
 function printPaper(test, version, key) {
   const root = document.getElementById('print-root');
   root.replaceChildren();
@@ -983,6 +1001,7 @@ function printPaper(test, version, key) {
   for (const item of version.items) {
     const li = h('li', key ? 'p-item p-item-key' : 'p-item');
     li.append(renderLessonText(item.prompt, { className: 'p-q' }));
+    if (item.shape && !samePicture(version.items, item)) li.append(paperPicture(item.shape));
     if (key) li.append(h('p', 'p-a', item.answer));
     ol.append(li);
   }

@@ -30,6 +30,7 @@ import { factoringGenerators } from './poly/factoring.js';
 import { expAreaGenerators } from './exp/exponents.js';
 import { measurementGenerators } from './geo/measurement.js';
 import { geometryGenerators } from './geo/geometry.js';
+import { statisticsGenerators } from './stat/statistics.js';
 
 export const generators = {
   ...addSubGenerators,
@@ -60,6 +61,7 @@ export const generators = {
   ...expAreaGenerators,
   ...measurementGenerators,
   ...geometryGenerators,
+  ...statisticsGenerators,
 };
 
 export const DIFFICULTIES = [1, 2, 3];

@@ -22,6 +22,7 @@ import { solveTranslate } from './alg-translate.js';
 import { solvePoly } from './poly.js';
 import { solveExponent } from './exp.js';
 import { solveGeo } from './geo.js';
+import { solveStat } from './stat.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
@@ -32,6 +33,7 @@ export function solve(problem) {
   if (kind.startsWith('poly.')) return solvePoly(problem);
   if (kind.startsWith('exp.')) return solveExponent(problem);
   if (kind.startsWith('geo.')) return solveGeo(problem);
+  if (kind.startsWith('stat.')) return solveStat(problem);
   if (kind.startsWith('int.')) return solveInt(problem);
   if (kind.startsWith('alg.equations')) return solveEquation(problem);
   if (kind.startsWith('alg.multi-step')) return solveMultiStep(problem);

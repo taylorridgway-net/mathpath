@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "skill": "stat.prob",
+  "title": "Probability",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "stat.prob.simple": "Probability = the ways it can happen ÷ all the possible outcomes. Simplify the fraction.",
+    "stat.prob.compound": "Two separate events together: multiply the probabilities. Expected count = probability × number of tries.",
+    "stat.prob": "Ways it can happen ÷ all outcomes. Two events together: multiply."
+  },
+  "misconceptionMessages": {
+    "stat.prob-part-part": "Compare to all the outcomes, not just the other ones. The bottom of the fraction is the total.",
+    "stat.prob-wrong-total": "Count every possible outcome for the total.",
+    "stat.prob-complement": "Read again: it asks for NOT that. Count the outcomes that aren't it.",
+    "stat.prob-multiplied": "With one pick, \"red or blue\" adds: count the red and the blue marbles together.",
+    "stat.prob-added": "Two separate events both happening: multiply the probabilities, don't add.",
+    "stat.expected-complement": "That's how many times it wouldn't happen. Multiply the probability of the event by the number of tries."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "stat.prob.simple",
+      "forGap": "stat.prob.simple",
+      "title": "Probability of one event",
+      "objective": "Find the probability of an event, of NOT the event, and of \"this or that\".",
+      "mode": "section",
+      "generator": "stat.prob.simple",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Probability is a number from 0 (impossible) to 1 (certain). When every outcome is equally likely, it's a fraction."
+      ],
+      "visual": null,
+      "key": "Probability = the ways it can happen ÷ all the possible outcomes. NOT the event: count everything else.",
+      "worked": [
+        {
+          "math": "3 red, 4 blue, 1 green",
+          "note": "[[8]] marbles in all"
+        },
+        {
+          "math": "P(red) = 3/8",
+          "note": ""
+        },
+        {
+          "math": "P(not blue) = 4/8 = [[1/2]]",
+          "note": "red or green: 3 + 1 = 4"
+        },
+        {
+          "math": "number cube, even: 2, 4, 6",
+          "note": "3/6 = [[1/2]]"
+        }
+      ]
+    },
+    {
+      "id": "stat.prob.compound",
+      "forGap": "stat.prob.compound",
+      "title": "Two events, and expected counts",
+      "objective": "Find the probability of two separate events together, and how often to expect something.",
+      "mode": "section",
+      "generator": "stat.prob.compound",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "When two things happen separately (a coin and a number cube), the chance of both is smaller than either one alone."
+      ],
+      "visual": null,
+      "key": "Both of two separate events: multiply the probabilities. Expected count = probability × number of tries.",
+      "worked": [
+        {
+          "math": "heads on a coin: 1/2",
+          "note": "a 4 on a cube: 1/6"
+        },
+        {
+          "math": "1/2 × 1/6 = [[1/12]]",
+          "note": "multiply, don't add"
+        },
+        {
+          "math": "roll a cube 60 times: expect a 4?",
+          "note": ""
+        },
+        {
+          "math": "1/6 × 60 = [[10]] times",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "stat.prob.whole",
+      "forGap": "stat.prob",
+      "title": "Putting it together",
+      "objective": "Probability, mixed.",
+      "mode": "skill",
+      "generator": "stat.prob",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the questions are mixed. One event or two?"
+      ],
+      "visual": null,
+      "key": "One event: ways ÷ all outcomes. Two separate events: multiply. Expected count: probability × tries.",
+      "worked": [
+        {
+          "math": "spinner with 4 equal parts (1 blue), and a coin",
+          "note": "1/4 and 1/2"
+        },
+        {
+          "math": "1/4 × 1/2 = [[1/8]]",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

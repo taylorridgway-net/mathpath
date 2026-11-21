@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about statistics and probability. 'pointsTo' is the subskill to work on. Claude's draft (2026-11-21), waiting for owner review.",
+  "misconceptions": [
+    {
+      "id": "stat.mean-sum",
+      "description": "Adds the data but forgets to divide by how many there are (or, for a missing value, doesn't take the others away).",
+      "pointsTo": "stat.center.mean"
+    },
+    {
+      "id": "stat.mean-wrong-count",
+      "description": "Divides by the wrong number of values.",
+      "pointsTo": "stat.center.mean"
+    },
+    {
+      "id": "stat.mean-missing-average",
+      "description": "Gives the mean itself as the missing value.",
+      "pointsTo": "stat.center.mean"
+    },
+    {
+      "id": "stat.median-unsorted",
+      "description": "Takes the middle of the list as written, without putting it in order first.",
+      "pointsTo": "stat.center.median"
+    },
+    {
+      "id": "stat.median-even",
+      "description": "With an even number of values, picks one of the two middle numbers instead of averaging them.",
+      "pointsTo": "stat.center.median"
+    },
+    {
+      "id": "stat.median-mean",
+      "description": "Finds the mean when the question asks for the median.",
+      "pointsTo": "stat.center.median"
+    },
+    {
+      "id": "stat.mode-count",
+      "description": "Gives how many times the mode appears instead of the value itself.",
+      "pointsTo": "stat.center.mode-range"
+    },
+    {
+      "id": "stat.mode-median",
+      "description": "Gives the middle value instead of the most common one.",
+      "pointsTo": "stat.center.mode-range"
+    },
+    {
+      "id": "stat.range-ends",
+      "description": "Subtracts the first value listed from the last instead of smallest from largest.",
+      "pointsTo": "stat.center.mode-range"
+    },
+    {
+      "id": "stat.range-max",
+      "description": "Gives the largest value as the range.",
+      "pointsTo": "stat.center.mode-range"
+    },
+    {
+      "id": "stat.range-sign",
+      "description": "Loses the negative when finding a range with negatives: 15 − (−4) done as 15 − 4.",
+      "pointsTo": "stat.center.mode-range"
+    },
+    {
+      "id": "stat.dotplot-columns",
+      "description": "Counts the columns of a dot plot instead of the dots.",
+      "pointsTo": "stat.displays.dotplot"
+    },
+    {
+      "id": "stat.dotplot-middle-value",
+      "description": "Takes the middle of the number line as the median, instead of the middle dot.",
+      "pointsTo": "stat.displays.dotplot"
+    },
+    {
+      "id": "stat.bar-read-one",
+      "description": "Reads one bar when the question needs a difference or a total.",
+      "pointsTo": "stat.displays.bars"
+    },
+    {
+      "id": "stat.bar-added",
+      "description": "Adds the bars when the question asks how many more.",
+      "pointsTo": "stat.displays.bars"
+    },
+    {
+      "id": "stat.box-quartile",
+      "description": "Reads a box edge (a quartile) as the median, or as the answer for the IQR.",
+      "pointsTo": "stat.displays.boxplot"
+    },
+    {
+      "id": "stat.box-middle",
+      "description": "Takes the median as halfway between the minimum and maximum.",
+      "pointsTo": "stat.displays.boxplot"
+    },
+    {
+      "id": "stat.iqr-range",
+      "description": "Mixes up the range (max − min) and the interquartile range (Q3 − Q1).",
+      "pointsTo": "stat.displays.boxplot"
+    },
+    {
+      "id": "stat.prob-part-part",
+      "description": "Compares the favorable outcomes to the unfavorable ones (3 red to 5 others: 3/5) instead of to all outcomes (3/8).",
+      "pointsTo": "stat.prob.simple"
+    },
+    {
+      "id": "stat.prob-wrong-total",
+      "description": "Leaves some outcomes out of the total.",
+      "pointsTo": "stat.prob.simple"
+    },
+    {
+      "id": "stat.prob-complement",
+      "description": "Gives the probability of the event when the question asks for NOT the event.",
+      "pointsTo": "stat.prob.simple"
+    },
+    {
+      "id": "stat.prob-multiplied",
+      "description": "Multiplies the probabilities for \"red or blue\" from one pick (they add).",
+      "pointsTo": "stat.prob.simple"
+    },
+    {
+      "id": "stat.prob-added",
+      "description": "Adds the probabilities of two separate events happening together (they multiply).",
+      "pointsTo": "stat.prob.compound"
+    },
+    {
+      "id": "stat.expected-complement",
+      "description": "Counts the times the event wouldn't happen.",
+      "pointsTo": "stat.prob.compound"
+    }
+  ]
+}

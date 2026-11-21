@@ -13,7 +13,7 @@ test('translating solutions: arithmetic right, answer last', () => {
     const steps = solve(p);
     const all = steps.map((s) => s.say).join(' / ');
     assert.doesNotMatch(all, /undefined|NaN/, all);
-    for (const m of all.matchAll(/(?<![\d)] [+−×÷] )((?:\d+ [+−×] )+\d+) = (\d+)(?![\d/x])/g)) {
+    for (const m of all.matchAll(/(?<![\d)] [+−×÷] )((?:\d+ [+−×] )+\d+) = (\d+)(?![\d/]|\.\d)/g)) {
       assert.equal(Function(`"use strict"; return (${m[1].replace(/×/g, '*').replace(/−/g, '-')});`)(), Number(m[2]), `${m[0]} in ${all}`);
     }
     const last = steps.at(-1).say;

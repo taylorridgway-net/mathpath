@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "domain": {
+    "id": "stat",
+    "name": "Statistics and probability"
+  },
+  "skills": [
+    {
+      "id": "stat.center",
+      "name": "Mean, median, mode and range",
+      "summary": "Find the mean (including a missing value), the median (even and odd counts), the mode and the range.",
+      "typicalGrade": 6,
+      "standards": [
+        "6.SP.A.3",
+        "6.SP.B.5c"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "stat.center.mean",
+          "name": "The mean (average)",
+          "prerequisites": [
+            {
+              "id": "whole.add-sub.add-regroup",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.divide.by-whole",
+              "strength": "supporting",
+              "why": "Means can be decimals."
+            }
+          ]
+        },
+        {
+          "id": "stat.center.median",
+          "name": "The median (the middle value)",
+          "prerequisites": [
+            {
+              "id": "dec.add-sub.line-up",
+              "strength": "supporting",
+              "why": "Averaging the middle two."
+            }
+          ]
+        },
+        {
+          "id": "stat.center.mode-range",
+          "name": "The mode and the range",
+          "prerequisites": [
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "supporting",
+              "why": "Ranges with negative numbers."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stat.displays",
+      "name": "Reading data displays",
+      "summary": "Read dot plots, bar graphs and box plots: counts, differences, totals, the median, range and interquartile range.",
+      "typicalGrade": 6,
+      "standards": [
+        "6.SP.B.4",
+        "6.SP.B.5"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "stat.displays.dotplot",
+          "name": "Dot plots",
+          "prerequisites": [
+            {
+              "id": "stat.center.median",
+              "strength": "supporting"
+            }
+          ]
+        },
+        {
+          "id": "stat.displays.bars",
+          "name": "Bar graphs",
+          "prerequisites": [
+            {
+              "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "stat.displays.boxplot",
+          "name": "Box plots (median, range, IQR)",
+          "prerequisites": [
+            {
+              "id": "stat.center.median",
+              "strength": "essential"
+            },
+            {
+              "id": "stat.center.mode-range",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stat.prob",
+      "name": "Probability",
+      "summary": "The probability of an event, of NOT the event, of either of two outcomes, of two separate events together, and expected counts.",
+      "typicalGrade": 7,
+      "standards": [
+        "7.SP.C.5",
+        "7.SP.C.7",
+        "7.SP.C.8"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "stat.prob.simple",
+          "name": "Probability of one event (and its complement)",
+          "prerequisites": [
+            {
+              "id": "frac.equivalent.simplify",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.add-sub.combine",
+              "strength": "supporting",
+              "why": "\"Or\" adds."
+            }
+          ]
+        },
+        {
+          "id": "stat.prob.compound",
+          "name": "Two events together, and expected counts",
+          "prerequisites": [
+            {
+              "id": "stat.prob.simple",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.multiply.by-fraction",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
