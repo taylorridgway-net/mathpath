@@ -186,6 +186,31 @@
       "id": "alg.ineq-wrong-inverse",
       "description": "Undoes the number the wrong way (2x − 5 ≥ 7 -> 2x ≥ 2).",
       "pointsTo": "alg.inequalities.solve"
+    },
+    {
+      "id": "alg.eval-concatenate",
+      "description": "Writes the number next to the coefficient instead of multiplying (3x when x = 4 read as 34).",
+      "pointsTo": "alg.evaluate.substitute"
+    },
+    {
+      "id": "alg.eval-coefficient-squared",
+      "description": "Squares the coefficient too (3x² when x = 2 read as (3 × 2)² = 36).",
+      "pointsTo": "alg.evaluate.substitute"
+    },
+    {
+      "id": "alg.eval-sign-dropped",
+      "description": "Drops the negative sign when putting the number in (10 − x when x = −2 gives 8).",
+      "pointsTo": "alg.evaluate.negative"
+    },
+    {
+      "id": "alg.eval-square-sign",
+      "description": "Squares a negative number to a negative ((−3)² = −9).",
+      "pointsTo": "alg.evaluate.negative"
+    },
+    {
+      "id": "alg.eval-swapped",
+      "description": "Puts each number in for the wrong letter.",
+      "pointsTo": "alg.evaluate.two-letters"
     }
   ]
 }

@@ -45,7 +45,9 @@ function openSpreadsheet() {
 }
 
 function server() {
-  const store = createSheetsStore({ spreadsheet: openSpreadsheet(), lockService: LockService, memo: CacheService.getScriptCache() });
+  // Google's script cache makes saves faster; without it everything still works (just slower).
+  const memo = typeof CacheService !== 'undefined' ? CacheService.getScriptCache() : null;
+  const store = createSheetsStore({ spreadsheet: openSpreadsheet(), lockService: LockService, memo });
   return createServer({ store, setup: setupData, random });
 }
 

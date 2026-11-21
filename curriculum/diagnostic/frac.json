@@ -23,6 +23,7 @@
       "targets": [
         "alg.order-ops",
         "alg.exponents",
+        "alg.evaluate",
         "alg.equations",
         "alg.expressions",
         "alg.multi-step",

@@ -41,6 +41,7 @@ function build(node) {
         else if (c !== 1) wrap.append(el('span', 'm-num', c < 0 ? `\u2212${-c}` : String(c)));
       } else wrap.append(build(c));
       wrap.append(el('span', 'm-var', node.name));
+      if (node.exp) wrap.append(el('sup', 'm-exp', String(node.exp)));
       return wrap;
     }
     case 'pow': {

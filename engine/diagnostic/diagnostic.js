@@ -81,6 +81,17 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
   const stuck = (s) => statusOf(s) === 'gap' || (statusOf(s) === 'not-tested' && Boolean(nodes.get(s)?.blockedBy));
   const gapsUnder = (id) => graph.essentialPrereqs(id).filter((p) => stuck(p)
     || (graph.get(p).kind === 'skill' && graph.subskillsOf(p).some(stuck)));
+  // Gaps further down, through steps nobody has checked yet (a screening question can rest
+  // on a gap two levels down: "evaluate with a negative" -> "put in a number" -> order of operations).
+  const deepGapsUnder = (id, seen = new Set()) => {
+    const out = [...gapsUnder(id)];
+    for (const p of graph.essentialPrereqs(id)) {
+      if (seen.has(p) || out.includes(p) || isSettled(p)) continue;
+      seen.add(p);
+      out.push(...deepGapsUnder(p, seen));
+    }
+    return [...new Set(out)];
+  };
   const hasGenerator = (id) => Boolean(generators[id]);
   const subskillsWithProblems = (skillId) => graph.subskillsOf(skillId).filter(hasGenerator);
   const isSettled = (id) => statusOf(id) !== 'not-tested' && statusOf(id) !== 'unchecked';
@@ -140,7 +151,7 @@ export function startDiagnostic({ graph, generators, misconceptions = [], config
       // ...unless it names one part whose right answer shows the rest (compare: one
       // hard comparison stands for the easier ones; owner: "unless proven otherwise").
       if (hasGenerator(id) && !generators[id].mixed) return ask(task, id, difficulty.screen);
-      if (hasGenerator(id) && generators[id].screener && !gapsUnder(generators[id].screener).length) {
+      if (hasGenerator(id) && generators[id].screener && !deepGapsUnder(generators[id].screener).length) {
         return ask(task, generators[id].screener, difficulty.screen);
       }
       const subs = subskillsWithProblems(id).filter((s) => !task.only || task.only.includes(s));

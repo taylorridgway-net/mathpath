@@ -15,6 +15,7 @@ import { solveDecimal } from './dec.js';
 import { solveMultiStep } from './alg-multi-step.js';
 import { solveInequality } from './alg-inequalities.js';
 import { solveRatio } from './rat.js';
+import { solveEvaluate } from './alg-evaluate.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
@@ -25,6 +26,7 @@ export function solve(problem) {
   if (kind.startsWith('alg.equations')) return solveEquation(problem);
   if (kind.startsWith('alg.multi-step')) return solveMultiStep(problem);
   if (kind.startsWith('alg.inequalities')) return solveInequality(problem);
+  if (kind.startsWith('alg.evaluate')) return solveEvaluate(problem);
   if (kind.startsWith('alg.expressions')) return solveExpression(problem);
   if (kind.startsWith('alg.')) return solveAlg(problem);
   if (kind.startsWith('frac.equivalent')) return solveEquivalent(problem);

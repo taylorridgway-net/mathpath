@@ -316,6 +316,67 @@
           ]
         }
       ]
+    },
+    {
+      "id": "alg.evaluate",
+      "name": "Evaluate expressions",
+      "summary": "Put numbers in for the letters and find the value: 3x + 2 when x = 4, x² when x = −3, formulas like A = lw.",
+      "typicalGrade": 6,
+      "standards": [
+        "6.EE.A.2c"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.evaluate.substitute",
+          "name": "Put in a number (3x + 2 when x = 4)",
+          "prerequisites": [
+            {
+              "id": "alg.order-ops.no-parens",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential",
+              "why": "Some have x²."
+            }
+          ]
+        },
+        {
+          "id": "alg.evaluate.negative",
+          "name": "Put in a negative number (10 − x when x = −2; x² when x = −3)",
+          "prerequisites": [
+            {
+              "id": "alg.evaluate.substitute",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.multiply",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.exponents.negative-base",
+              "strength": "supporting",
+              "why": "(−3)² = 9."
+            }
+          ]
+        },
+        {
+          "id": "alg.evaluate.two-letters",
+          "name": "Two letters and formulas (3a − 2b; A = lw)",
+          "prerequisites": [
+            {
+              "id": "alg.evaluate.substitute",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

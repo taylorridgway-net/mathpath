@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.evaluate",
+  "title": "Evaluate expressions",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators. Each item is worth 1 point. 'math' is the calculation with the numbers put in, used only by the test that checks the answer key.",
+  "directions": "Show your work: write the expression with the numbers put in, then find the value.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Find the value of 4x − 7 when x = 5.",
+          "math": "4*5 - 7",
+          "answer": "13"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Find the value of x² + 3x when x = 4.",
+          "math": "4**2 + 3*4",
+          "answer": "28"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Find the value of 8 − x when x = −6.",
+          "math": "8 - (-6)",
+          "answer": "14"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Find the value of 2a + 3b when a = 7 and b = −4.",
+          "math": "2*7 + 3*(-4)",
+          "answer": "2"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "Renting a bike costs C = 6h + 10 dollars for h hours. How much does it cost for 3 hours?",
+          "math": "6*3 + 10",
+          "answer": "28 (dollars)"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Jay says that when x = −5, x² = −25. Is he right? Explain, and give the correct value.",
+          "math": "(-5)**2",
+          "answer": "25 (No: (−5) × (−5) = 25)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Find the value of 6x + 9 when x = 4.",
+          "math": "6*4 + 9",
+          "answer": "33"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Find the value of 3x² when x = 2.",
+          "math": "3*2**2",
+          "answer": "12"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Find the value of −2x + 1 when x = −3.",
+          "math": "-2*(-3) + 1",
+          "answer": "7"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Find the value of ab − c when a = 4, b = −2 and c = 5.",
+          "math": "4*(-2) - 5",
+          "answer": "-13"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "The perimeter of a rectangle is P = 2l + 2w. Find the perimeter when l = 9 cm and w = 4 cm.",
+          "math": "2*9 + 2*4",
+          "answer": "26 (cm)"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Mia says that when x = 3, 5x = 53. Is she right? Explain, and give the correct value.",
+          "math": "5*3",
+          "answer": "15 (No: 5x means 5 times x)"
+        }
+      ]
+    }
+  ]
+}

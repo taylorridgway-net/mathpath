@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.evaluate",
+  "title": "Evaluate expressions",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "alg.evaluate.substitute": "Put the number in for x. A number next to x means multiply: 3x is 3 × x. Then use the order of operations.",
+    "alg.evaluate.negative": "Put the negative number in with parentheses: x = −3 makes x² into (−3)² = 9, and 10 − x into 10 − (−3) = 13.",
+    "alg.evaluate.two-letters": "Put each number in for its own letter, then use the order of operations.",
+    "alg.evaluate": "Put each number in (negatives in parentheses), then do the order of operations."
+  },
+  "misconceptionMessages": {
+    "alg.eval-concatenate": "3x means 3 times x. When x = 4, 3x = 3 × 4 = 12, not 34.",
+    "alg.eval-coefficient-squared": "Only x is squared in 3x². Square x first, then multiply by 3: when x = 2, 3x² = 3 × 4 = 12.",
+    "alg.eval-sign-dropped": "Keep the negative sign: put the number in with parentheses. 10 − (−2) = 10 + 2 = 12.",
+    "alg.eval-square-sign": "A negative times a negative is positive: (−3)² = (−3) × (−3) = 9.",
+    "alg.eval-swapped": "Check which number goes with which letter, then put each one in its own place."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "alg.evaluate.substitute",
+      "forGap": "alg.evaluate.substitute",
+      "title": "Put in a number",
+      "objective": "Find the value of an expression like 3x + 2 when x = 4.",
+      "mode": "section",
+      "generator": "alg.evaluate.substitute",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Replace the letter with the number.",
+        "Then it's an order-of-operations problem: powers, then × and ÷, then + and −."
+      ],
+      "visual": null,
+      "key": "Replace x with its number. A number next to x means multiply: 3x is 3 × x. Then follow the order of operations.",
+      "worked": [
+        {
+          "math": "3x + 2, x = 4",
+          "note": ""
+        },
+        {
+          "math": "3 [[× 4]] + 2",
+          "note": "3x means 3 times x"
+        },
+        {
+          "math": "[[12]] + 2",
+          "note": ""
+        },
+        {
+          "math": "14",
+          "note": ""
+        },
+        {
+          "math": "x² + 5, x = 3: [[3²]] + 5 = 9 + 5 = 14",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "alg.evaluate.negative",
+      "forGap": "alg.evaluate.negative",
+      "title": "Put in a negative number",
+      "objective": "Evaluate expressions when the letter is a negative number.",
+      "mode": "section",
+      "generator": "alg.evaluate.negative",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Put the negative number in parentheses so you keep its sign.",
+        "Then use the integer rules: subtracting a negative is adding, and a negative squared is positive."
+      ],
+      "visual": null,
+      "key": "Put a negative number in with parentheses. 10 − x with x = −2 is 10 − (−2) = 12. (−3)² = 9.",
+      "worked": [
+        {
+          "math": "10 − x, x = −2",
+          "note": ""
+        },
+        {
+          "math": "10 − [[(−2)]]",
+          "note": "parentheses keep the sign"
+        },
+        {
+          "math": "10 + 2 = [[12]]",
+          "note": "subtracting a negative is adding"
+        },
+        {
+          "math": "x², x = −3: [[(−3)²]] = 9",
+          "note": "negative times negative"
+        }
+      ]
+    },
+    {
+      "id": "alg.evaluate.two-letters",
+      "forGap": "alg.evaluate.two-letters",
+      "title": "Two letters and formulas",
+      "objective": "Evaluate expressions with two letters, and formulas like A = lw.",
+      "mode": "section",
+      "generator": "alg.evaluate.two-letters",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Each letter gets its own number.",
+        "A formula is the same idea: A = lw means multiply the length by the width."
+      ],
+      "visual": null,
+      "key": "Put each number in for its own letter, then follow the order of operations.",
+      "worked": [
+        {
+          "math": "3a − 2b, a = 5, b = 4",
+          "note": ""
+        },
+        {
+          "math": "3 × [[5]] − 2 × [[4]]",
+          "note": ""
+        },
+        {
+          "math": "15 − 8 = [[7]]",
+          "note": ""
+        },
+        {
+          "math": "A = lw, l = 8, w = 3: A = 8 × 3 = [[24]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "alg.evaluate.whole",
+      "forGap": "alg.evaluate",
+      "title": "Putting it together",
+      "objective": "Evaluating expressions of every kind.",
+      "mode": "skill",
+      "generator": "alg.evaluate",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Put each number in (negatives in parentheses), then do the order of operations.",
+      "worked": [
+        {
+          "math": "2x² − x, x = −3",
+          "note": ""
+        },
+        {
+          "math": "2 × [[(−3)²]] − [[(−3)]]",
+          "note": ""
+        },
+        {
+          "math": "2 × 9 + 3",
+          "note": ""
+        },
+        {
+          "math": "18 + 3 = [[21]]",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

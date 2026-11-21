@@ -2133,6 +2133,1219 @@
    }
   ]
  },
+ "alg.evaluate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value when a = 5 and b = 8.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "var",
+      "name": "a"
+     },
+     "right": {
+      "type": "var",
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 5,
+     "b": 8
+    },
+    "answer": {
+     "type": "integer",
+     "value": 13,
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "alg.evaluate.two-letters"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value when a = 2 and b = 5.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "var",
+      "name": "a"
+     },
+     "right": {
+      "type": "var",
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 2,
+     "b": 5
+    },
+    "answer": {
+     "type": "integer",
+     "value": 7,
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "alg.evaluate.two-letters"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value when a = 3 and b = 2.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "var",
+      "name": "a"
+     },
+     "right": {
+      "type": "var",
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 3,
+     "b": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "alg.evaluate.two-letters"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = 9.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "values": {
+     "x": 9
+    },
+    "answer": {
+     "type": "integer",
+     "value": 84,
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "alg.evaluate.substitute"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value when a = 1 and b = −9.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "a"
+     },
+     "right": {
+      "type": "term",
+      "coef": 4,
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 1,
+     "b": -9
+    },
+    "answer": {
+     "type": "integer",
+     "value": 38,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": 57
+     },
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": -34
+     },
+     {
+      "id": "alg.eval-swapped",
+      "value": -22
+     }
+    ],
+    "part": "alg.evaluate.two-letters"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = 3.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 7
+     }
+    },
+    "values": {
+     "x": 3
+    },
+    "answer": {
+     "type": "integer",
+     "value": 16,
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "alg.evaluate.substitute"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = −3.",
+    "expression": {
+     "type": "term",
+     "coef": -1,
+     "name": "x",
+     "exp": 2
+    },
+    "values": {
+     "x": -3
+    },
+    "answer": {
+     "type": "integer",
+     "value": -9,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-square-sign",
+      "value": 9
+     }
+    ],
+    "part": "alg.evaluate.negative"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value when x = 7.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "values": {
+     "x": 7
+    },
+    "answer": {
+     "type": "integer",
+     "value": 107,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-coefficient-squared",
+      "value": 205
+     }
+    ],
+    "part": "alg.evaluate.substitute"
+   },
+   {
+    "generator": "alg.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = 4.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "term",
+      "coef": 1,
+      "name": "x"
+     }
+    },
+    "values": {
+     "x": 4
+    },
+    "answer": {
+     "type": "integer",
+     "value": 28,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-coefficient-squared",
+      "value": 60
+     }
+    ],
+    "part": "alg.evaluate.substitute"
+   }
+  ]
+ },
+ "alg.evaluate.negative": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = −6.",
+    "expression": {
+     "type": "term",
+     "coef": 4,
+     "name": "x"
+    },
+    "values": {
+     "x": -6
+    },
+    "answer": {
+     "type": "integer",
+     "value": -24,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 24
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value when x = −5.",
+    "expression": {
+     "type": "term",
+     "coef": 7,
+     "name": "x"
+    },
+    "values": {
+     "x": -5
+    },
+    "answer": {
+     "type": "integer",
+     "value": -35,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 35
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = −6.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "var",
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "values": {
+     "x": -6
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = −3.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "int",
+      "value": 14
+     },
+     "right": {
+      "type": "var",
+      "name": "x"
+     }
+    },
+    "values": {
+     "x": -3
+    },
+    "answer": {
+     "type": "integer",
+     "value": 17,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 11
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value when x = −8.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "values": {
+     "x": -8
+    },
+    "answer": {
+     "type": "integer",
+     "value": -10,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 22
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = −7.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 4,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "values": {
+     "x": -7
+    },
+    "answer": {
+     "type": "integer",
+     "value": -16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 40
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = −8.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "values": {
+     "x": -8
+    },
+    "answer": {
+     "type": "integer",
+     "value": 70,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-square-sign",
+      "value": -58
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value when x = −4.",
+    "expression": {
+     "type": "term",
+     "coef": -1,
+     "name": "x",
+     "exp": 2
+    },
+    "values": {
+     "x": -4
+    },
+    "answer": {
+     "type": "integer",
+     "value": -16,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-square-sign",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.negative",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = −2.",
+    "expression": {
+     "type": "term",
+     "coef": -1,
+     "name": "x",
+     "exp": 2
+    },
+    "values": {
+     "x": -2
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-square-sign",
+      "value": 4
+     }
+    ]
+   }
+  ]
+ },
+ "alg.evaluate.substitute": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = 8.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 13
+     }
+    },
+    "values": {
+     "x": 8
+    },
+    "answer": {
+     "type": "integer",
+     "value": 3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": 15
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value when x = 2.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 5,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "values": {
+     "x": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": 43
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = 6.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 3,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "values": {
+     "x": 6
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": 26
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = 5.",
+    "expression": {
+     "type": "scaled",
+     "coef": 2,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "values": {
+     "x": 5
+    },
+    "answer": {
+     "type": "integer",
+     "value": 24,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value when x = 5.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "values": {
+     "x": 5
+    },
+    "answer": {
+     "type": "integer",
+     "value": 34,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = 6.",
+    "expression": {
+     "type": "scaled",
+     "coef": 3,
+     "of": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "values": {
+     "x": 6
+    },
+    "answer": {
+     "type": "integer",
+     "value": 39,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value when x = 5.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "term",
+      "coef": 1,
+      "name": "x"
+     }
+    },
+    "values": {
+     "x": 5
+    },
+    "answer": {
+     "type": "integer",
+     "value": 45,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-coefficient-squared",
+      "value": 95
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value when x = 4.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 5,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "term",
+      "coef": 1,
+      "name": "x"
+     }
+    },
+    "values": {
+     "x": 4
+    },
+    "answer": {
+     "type": "integer",
+     "value": 76,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-coefficient-squared",
+      "value": 396
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.substitute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value when x = 3.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 5,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "values": {
+     "x": 3
+    },
+    "answer": {
+     "type": "integer",
+     "value": 46,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-coefficient-squared",
+      "value": 226
+     }
+    ]
+   }
+  ]
+ },
+ "alg.evaluate.two-letters": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value when a = 2 and b = 5.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 5,
+      "name": "a"
+     },
+     "right": {
+      "type": "var",
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 2,
+     "b": 5
+    },
+    "answer": {
+     "type": "integer",
+     "value": 15,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": 57
+     },
+     {
+      "id": "alg.eval-swapped",
+      "value": 27
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value when a = 2 and b = 1.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "var",
+      "name": "a"
+     },
+     "right": {
+      "type": "var",
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 2,
+     "b": 1
+    },
+    "answer": {
+     "type": "integer",
+     "value": 3,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value when a = 6 and b = 7.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "a"
+     },
+     "right": {
+      "type": "var",
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 6,
+     "b": 7
+    },
+    "answer": {
+     "type": "integer",
+     "value": 19,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": 33
+     },
+     {
+      "id": "alg.eval-swapped",
+      "value": 20
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value when a = −6 and b = 8.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 5,
+      "name": "a"
+     },
+     "right": {
+      "type": "term",
+      "coef": 4,
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": -6,
+     "b": 8
+    },
+    "answer": {
+     "type": "integer",
+     "value": -62,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": -78
+     },
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": -2
+     },
+     {
+      "id": "alg.eval-swapped",
+      "value": 64
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value when a = −9 and b = 2.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "ab"
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "values": {
+     "a": -9,
+     "b": 2
+    },
+    "answer": {
+     "type": "integer",
+     "value": -21,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 15
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value when a = 6 and b = −1.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 2,
+      "name": "a"
+     },
+     "right": {
+      "type": "term",
+      "coef": 5,
+      "name": "b"
+     }
+    },
+    "values": {
+     "a": 6,
+     "b": -1
+    },
+    "answer": {
+     "type": "integer",
+     "value": 17,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "alg.eval-concatenate",
+      "value": 31
+     },
+     {
+      "id": "alg.eval-sign-dropped",
+      "value": 7
+     },
+     {
+      "id": "alg.eval-swapped",
+      "value": -32
+     }
+    ]
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find d when r = 60 and t = 6.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "d"
+     },
+     "right": {
+      "type": "term",
+      "coef": 1,
+      "name": "rt"
+     }
+    },
+    "values": {
+     "r": 60,
+     "t": 6
+    },
+    "answer": {
+     "type": "integer",
+     "value": 360,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find A when l = 6 and w = 4.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "A"
+     },
+     "right": {
+      "type": "term",
+      "coef": 1,
+      "name": "lw"
+     }
+    },
+    "values": {
+     "l": 6,
+     "w": 4
+    },
+    "answer": {
+     "type": "integer",
+     "value": 24,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.evaluate.two-letters",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find A when l = 3 and w = 5.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "A"
+     },
+     "right": {
+      "type": "term",
+      "coef": 1,
+      "name": "lw"
+     }
+    },
+    "values": {
+     "l": 3,
+     "w": 5
+    },
+    "answer": {
+     "type": "integer",
+     "value": 15,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   }
+  ]
+ },
  "alg.exponents": {
   "version": 1,
   "problems": [

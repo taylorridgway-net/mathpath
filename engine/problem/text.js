@@ -54,7 +54,8 @@ export function toText(node) {
       return node.name;
     case 'term': {
       const c = node.coef;
-      if (typeof c === 'number') return c === 1 ? node.name : c === -1 ? `-${node.name}` : `${c < 0 ? `-${-c}` : c}${node.name}`;
+      const name = `${node.name}${node.exp ? `^${node.exp}` : ''}`; // 3x^2
+      if (typeof c === 'number') return c === 1 ? name : c === -1 ? `-${name}` : `${c < 0 ? `-${-c}` : c}${name}`;
       return `(${toText(c)})${node.name}`;
     }
     case 'column': {
