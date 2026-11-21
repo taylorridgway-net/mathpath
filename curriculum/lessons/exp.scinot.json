@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "skill": "exp.scinot",
+  "title": "Scientific notation",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "exp.scinot.write": "The number in front is between 1 and 10. Count how many places the point moves: big numbers get a positive exponent, small numbers (less than 1) a negative one.",
+    "exp.scinot.standard": "× 10ⁿ moves the decimal point n places: right for positive n (bigger), left for negative n (smaller).",
+    "exp.scinot.operate": "Multiply (or divide) the numbers in front, then add (or subtract) the exponents of 10.",
+    "exp.scinot": "Front number between 1 and 10; the exponent counts how far the point moves."
+  },
+  "misconceptionMessages": {
+    "exp.sci-sign": "Check the sign: numbers less than 1 have a negative exponent, big numbers a positive one.",
+    "exp.sci-count-zeros": "Count the places the decimal point moves, not the zeros: 45000 = 4.5 × 10⁴ (4 places).",
+    "exp.sci-not-between": "The number in front has to be at least 1 and less than 10.",
+    "exp.sci-wrong-way": "Positive exponent: the number gets bigger (point moves right). Negative: smaller (point moves left).",
+    "exp.sci-off-by-one": "Move the point exactly that many places: 4.5 × 10³ = 4500 (the 5 uses one of the places)."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "exp.scinot.write",
+      "forGap": "exp.scinot.write",
+      "title": "Write in scientific notation",
+      "objective": "Write 45000 and 0.0032 in scientific notation.",
+      "mode": "section",
+      "generator": "exp.scinot.write",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Scientific notation writes very big and very small numbers as (a number from 1 to 10) × (a power of 10).",
+        "The exponent says how many places the decimal point moved."
+      ],
+      "visual": null,
+      "key": "Number in front: at least 1, less than 10. Exponent: how many places the point moves. Big numbers positive, small numbers negative.",
+      "worked": [
+        {
+          "math": "45000",
+          "note": ""
+        },
+        {
+          "math": "4.5 × 10[[⁴]]",
+          "note": "the point moves 4 places"
+        },
+        {
+          "math": "0.0032",
+          "note": ""
+        },
+        {
+          "math": "3.2 × 10[[⁻³]]",
+          "note": "small: negative, 3 places"
+        }
+      ]
+    },
+    {
+      "id": "exp.scinot.standard",
+      "forGap": "exp.scinot.standard",
+      "title": "Back to standard form",
+      "objective": "Write 3.2 × 10⁴ as 32000.",
+      "mode": "section",
+      "generator": "exp.scinot.standard",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Multiplying by 10 slides every digit one place left; × 10⁴ does it four times."
+      ],
+      "visual": {
+        "widget": "place-chart",
+        "params": {
+          "number": "3.2",
+          "buttons": true
+        },
+        "caption": "× 10 four times: 3.2 becomes 32000."
+      },
+      "key": "× 10ⁿ moves the decimal point n places: right (bigger) for positive n, left (smaller) for negative n. Fill in zeros."
+    },
+    {
+      "id": "exp.scinot.operate",
+      "forGap": "exp.scinot.operate",
+      "title": "Multiply and divide",
+      "objective": "Multiply and divide numbers in scientific notation.",
+      "mode": "section",
+      "generator": "exp.scinot.operate",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "The numbers in front and the powers of 10 are handled separately."
+      ],
+      "visual": null,
+      "key": "Multiply (or divide) the numbers in front. Add (or subtract) the exponents of 10.",
+      "worked": [
+        {
+          "math": "(2 × 10³)(4 × 10⁵)",
+          "note": ""
+        },
+        {
+          "math": "2 × 4 = [[8]]",
+          "note": "the numbers in front"
+        },
+        {
+          "math": "10³ · 10⁵ = 10[[⁸]]",
+          "note": "add the exponents"
+        },
+        {
+          "math": "8 × 10⁸",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "exp.scinot.whole",
+      "forGap": "exp.scinot",
+      "title": "Putting it together",
+      "objective": "Scientific notation, mixed.",
+      "mode": "skill",
+      "generator": "exp.scinot",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Front number between 1 and 10; the exponent counts places. Multiply: add exponents. Divide: subtract.",
+      "worked": [
+        {
+          "math": "(6 × 10⁸) ÷ (2 × 10³)",
+          "note": ""
+        },
+        {
+          "math": "6 ÷ 2 = [[3]]",
+          "note": ""
+        },
+        {
+          "math": "10⁸⁻³ = 10[[⁵]]",
+          "note": ""
+        },
+        {
+          "math": "3 × 10⁵",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

@@ -33,6 +33,11 @@
       "file": "rat.json"
     },
     {
+      "id": "exp",
+      "name": "Exponents and roots",
+      "file": "exp.json"
+    },
+    {
       "id": "lin",
       "name": "Linear functions",
       "file": "lin.json"

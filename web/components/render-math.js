@@ -51,7 +51,17 @@ function build(node) {
       const negBase = node.base.type === 'int' && node.base.value < 0;
       if (negBase) wrap.append(el('span', 'm-paren', '('), build(node.base), el('span', 'm-paren', ')'));
       else wrap.append(build(node.base));
-      wrap.append(el('sup', 'm-exp', String(node.exp)));
+      // The exponent: a number (negatives with a real minus sign) or a box to fill in.
+      if (node.exp === 'blank') wrap.append(el('sup', 'm-exp m-exp-blank', '?'));
+      else wrap.append(el('sup', 'm-exp', node.exp < 0 ? `\u2212${-node.exp}` : String(node.exp)));
+      return wrap;
+    }
+    case 'root': {
+      const wrap = el('span', 'm-root');
+      wrap.append(el('span', 'm-root-sign', node.index === 3 ? '\u221b' : '\u221a'));
+      const inside = el('span', 'm-radicand');
+      inside.append(build(node.of));
+      wrap.append(inside);
       return wrap;
     }
     case 'neg': {

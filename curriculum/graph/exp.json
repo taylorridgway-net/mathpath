@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 1,
+  "domain": {
+    "id": "exp",
+    "name": "Exponents and roots"
+  },
+  "skills": [
+    {
+      "id": "exp.rules",
+      "name": "Exponent rules",
+      "summary": "Multiply and divide powers with the same base, a power of a power, and zero and negative exponents (2⁻³ = 1/8).",
+      "typicalGrade": 8,
+      "standards": [
+        "8.EE.A.1"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "exp.rules.product",
+          "name": "Multiply powers: add the exponents (x³ · x⁴ = x⁷)",
+          "prerequisites": [
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.different-signs",
+              "strength": "supporting",
+              "why": "Adding negative exponents."
+            }
+          ]
+        },
+        {
+          "id": "exp.rules.quotient",
+          "name": "Divide powers: subtract the exponents (x⁷ / x³ = x⁴)",
+          "prerequisites": [
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "supporting",
+              "why": "Answers can be negative."
+            }
+          ]
+        },
+        {
+          "id": "exp.rules.power",
+          "name": "A power of a power: multiply the exponents ((x²)³ = x⁶)",
+          "prerequisites": [
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "exp.rules.negative",
+          "name": "Zero and negative exponents (7⁰ = 1, 2⁻³ = 1/8)",
+          "prerequisites": [
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.divide.reciprocal",
+              "strength": "essential",
+              "why": "A negative exponent means the reciprocal."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exp.roots",
+      "name": "Square and cube roots",
+      "summary": "Perfect squares and cubes (√49 = 7, ∛27 = 3), estimating square roots (√50 is between 7 and 8), and rational vs. irrational numbers.",
+      "typicalGrade": 8,
+      "standards": [
+        "8.EE.A.2",
+        "8.NS.A.1",
+        "8.NS.A.2"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "exp.roots.perfect",
+          "name": "Square roots and cube roots of perfect squares and cubes",
+          "prerequisites": [
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.exponents.evaluate",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "exp.roots.estimate",
+          "name": "Estimate a square root between two whole numbers",
+          "prerequisites": [
+            {
+              "id": "exp.roots.perfect",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "exp.roots.rational",
+          "name": "Rational or irrational?",
+          "prerequisites": [
+            {
+              "id": "exp.roots.perfect",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.convert.repeating",
+              "strength": "supporting",
+              "why": "Repeating decimals are fractions."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exp.scinot",
+      "name": "Scientific notation",
+      "summary": "Write numbers in scientific notation (45000 = 4.5 × 10⁴, 0.0032 = 3.2 × 10⁻³), back to standard form, and multiply or divide them.",
+      "typicalGrade": 8,
+      "standards": [
+        "8.EE.A.3",
+        "8.EE.A.4"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "exp.scinot.write",
+          "name": "Write a number in scientific notation",
+          "prerequisites": [
+            {
+              "id": "dec.multiply.powers-of-ten",
+              "strength": "essential"
+            },
+            {
+              "id": "exp.rules.negative",
+              "strength": "supporting",
+              "why": "Small numbers have negative exponents."
+            }
+          ]
+        },
+        {
+          "id": "exp.scinot.standard",
+          "name": "Scientific notation to standard form",
+          "prerequisites": [
+            {
+              "id": "dec.multiply.powers-of-ten",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "exp.scinot.operate",
+          "name": "Multiply and divide in scientific notation",
+          "prerequisites": [
+            {
+              "id": "exp.scinot.write",
+              "strength": "essential"
+            },
+            {
+              "id": "exp.rules.product",
+              "strength": "essential"
+            },
+            {
+              "id": "exp.rules.quotient",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

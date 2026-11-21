@@ -9,7 +9,8 @@
     "dec",
     "rat",
     "lin",
-    "poly"
+    "poly",
+    "exp"
   ],
   "lessons": [
     "whole.add-sub",
@@ -42,6 +43,9 @@
     "rat.ratios",
     "rat.percent",
     "rat.percent-change",
+    "exp.rules",
+    "exp.roots",
+    "exp.scinot",
     "lin.functions",
     "lin.slope",
     "lin.slope-intercept",
@@ -82,6 +86,9 @@
     "rat.ratios",
     "rat.percent",
     "rat.percent-change",
+    "exp.rules",
+    "exp.roots",
+    "exp.scinot",
     "lin.functions",
     "lin.slope",
     "lin.slope-intercept",

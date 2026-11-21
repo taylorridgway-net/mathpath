@@ -459,7 +459,11 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   const RAT = ['rat.ratios', 'rat.percent', 'rat.percent-change'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterDec }), RAT);
   assert.equal(catchUpName(fractions.config, RAT), 'Ratios and percents check');
-  const afterRat = { ...afterDec, nodes: { ...afterDec.nodes, ...Object.fromEntries(RAT.map((id) => [id, { status: 'known' }])) } };
+  const afterRat0 = { ...afterDec, nodes: { ...afterDec.nodes, ...Object.fromEntries(RAT.map((id) => [id, { status: 'known' }])) } };
+  const EXP = ['exp.rules', 'exp.roots', 'exp.scinot'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat0 }), EXP);
+  assert.equal(catchUpName(fractions.config, EXP), 'Exponents and roots check');
+  const afterRat = { ...afterRat0, nodes: { ...afterRat0.nodes, ...Object.fromEntries(EXP.map((id) => [id, { status: 'known' }])) } };
   const LIN = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel', 'lin.graphing'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat }), LIN);
   assert.equal(catchUpName(fractions.config, LIN), 'Linear functions check');

@@ -19378,6 +19378,5164 @@
    }
   ]
  },
+ "exp.roots": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 69
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "exp.roots.rational"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 51
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "exp.roots.rational"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 64
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 32,
+       "d": 1
+      }
+     }
+    ],
+    "part": "exp.roots.perfect"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "frac",
+      "n": 4,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 2,
+       "d": 9
+      }
+     }
+    ],
+    "part": "exp.roots.perfect"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 141
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "70 and 71",
+      "10 and 11",
+      "11 and 12",
+      "12 and 13"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 0
+     }
+    ],
+    "part": "exp.roots.estimate"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 120
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "9 and 10",
+      "10 and 11",
+      "60 and 61",
+      "11 and 12"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 2
+     }
+    ],
+    "part": "exp.roots.estimate"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "dec",
+     "value": "0.898989…"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.repeating-irrational",
+      "choice": 1
+     }
+    ],
+    "part": "exp.roots.rational"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which whole number is √63 closest to?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 63
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "7",
+      "8"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "exp.roots.estimate"
+   },
+   {
+    "generator": "exp.roots",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Which whole number is √79 closest to?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 79
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "8",
+      "9"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [],
+    "part": "exp.roots.estimate"
+   }
+  ]
+ },
+ "exp.roots.estimate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 31
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "4 and 5",
+      "15 and 16",
+      "6 and 7",
+      "5 and 6"
+     ],
+     "correct": 3
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 43
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "6 and 7",
+      "7 and 8",
+      "21 and 22",
+      "5 and 6"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 10
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "5 and 6",
+      "2 and 3",
+      "4 and 5",
+      "3 and 4"
+     ],
+     "correct": 3
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 143
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "12 and 13",
+      "71 and 72",
+      "10 and 11",
+      "11 and 12"
+     ],
+     "correct": 3
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 143
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "71 and 72",
+      "11 and 12",
+      "10 and 11",
+      "12 and 13"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Between which two whole numbers is this square root?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 54
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "7 and 8",
+      "27 and 28",
+      "6 and 7",
+      "8 and 9"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which whole number is √57 closest to?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 57
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "7",
+      "8"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which whole number is √94 closest to?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 94
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "9",
+      "10"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "exp.roots.estimate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Which whole number is √88 closest to?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 88
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "9",
+      "10"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   }
+  ]
+ },
+ "exp.roots.perfect": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 81
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 9,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 81,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 64
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 32,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 25
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 25,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 196
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 14,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 98,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 225
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 15,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 225,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the square root.",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 196
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 14,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.root-halved",
+      "value": {
+       "n": 98,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the cube root.",
+    "expression": {
+     "type": "root",
+     "index": 3,
+     "of": {
+      "type": "int",
+      "value": -125
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.cube-root-sign",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the cube root.",
+    "expression": {
+     "type": "root",
+     "index": 3,
+     "of": {
+      "type": "int",
+      "value": -1
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.cube-root-sign",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.perfect",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the cube root.",
+    "expression": {
+     "type": "root",
+     "index": 3,
+     "of": {
+      "type": "int",
+      "value": -1
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.cube-root-sign",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "exp.roots.rational": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 100
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.roots-all-irrational",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.roots-all-irrational",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.roots-all-irrational",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "dec",
+     "value": "0.777…"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.repeating-irrational",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "dec",
+     "value": "4.77"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "dec",
+     "value": "0.444…"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.repeating-irrational",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "dec",
+     "value": "0.202020…"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "exp.repeating-irrational",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 26
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "exp.roots.rational",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Is this number rational or irrational?",
+    "expression": {
+     "type": "root",
+     "index": 2,
+     "of": {
+      "type": "int",
+      "value": 29
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Rational",
+      "Irrational"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   }
+  ]
+ },
+ "exp.rules": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 8
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.divided-exponents",
+      "value": 4
+     },
+     {
+      "id": "exp.quotient-added",
+      "value": 10
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -6
+     }
+    ],
+    "part": "exp.rules.quotient"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 7
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 9
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -5
+     }
+    ],
+    "part": "exp.rules.quotient"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 4
+     },
+     "exp": -3
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 64
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -64,
+       "d": 1
+      }
+     },
+     {
+      "id": "exp.base-times-exponent",
+      "value": {
+       "n": -12,
+       "d": 1
+      }
+     },
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -1,
+       "d": 64
+      }
+     }
+    ],
+    "part": "exp.rules.negative"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 3
+       },
+       "exp": 4
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 3
+       },
+       "exp": 7
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 3
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 11,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 28
+     }
+    ],
+    "part": "exp.rules.product"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "int",
+         "value": 3
+        },
+        "exp": 5
+       }
+      },
+      "exp": 4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 3
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 20,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 9
+     }
+    ],
+    "part": "exp.rules.power"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 7
+       },
+       "exp": 5
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 7
+       },
+       "exp": 6
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 7
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 11,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 30
+     }
+    ],
+    "part": "exp.rules.product"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "frac",
+       "n": 2,
+       "d": 5
+      }
+     },
+     "exp": -1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -2,
+       "d": 5
+      }
+     },
+     {
+      "id": "exp.negative-not-flipped",
+      "value": {
+       "n": 2,
+       "d": 5
+      }
+     }
+    ],
+    "part": "exp.rules.negative"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 4
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 5
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 9
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": 1
+     }
+    ],
+    "part": "exp.rules.quotient"
+   },
+   {
+    "generator": "exp.rules",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 7
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": -9
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -2,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": -63
+     }
+    ],
+    "part": "exp.rules.product"
+   }
+  ]
+ },
+ "exp.rules.negative": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 3
+     },
+     "exp": -3
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 27
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -27,
+       "d": 1
+      }
+     },
+     {
+      "id": "exp.base-times-exponent",
+      "value": {
+       "n": -9,
+       "d": 1
+      }
+     },
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -1,
+       "d": 27
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 3
+     },
+     "exp": -1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     },
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -1,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "int",
+      "value": 2
+     },
+     "exp": -2
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     },
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -1,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write with a positive exponent. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": -9
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "int",
+       "value": 1
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 9,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-kept",
+      "value": -9
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write with a positive exponent. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": -6
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "int",
+       "value": 1
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-kept",
+      "value": -6
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write with a positive exponent. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": -2
+     },
+     "right": {
+      "type": "frac",
+      "n": {
+       "type": "int",
+       "value": 1
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 2,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-kept",
+      "value": -2
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "frac",
+       "n": 2,
+       "d": 5
+      }
+     },
+     "exp": -2
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 25,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -4,
+       "d": 25
+      }
+     },
+     {
+      "id": "exp.negative-not-flipped",
+      "value": {
+       "n": 4,
+       "d": 25
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "frac",
+       "n": 3,
+       "d": 4
+      }
+     },
+     "exp": -2
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 16,
+      "d": 9
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -9,
+       "d": 16
+      }
+     },
+     {
+      "id": "exp.negative-not-flipped",
+      "value": {
+       "n": 9,
+       "d": 16
+      }
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.negative",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the value. Write a fraction if you need to.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "frac",
+       "n": 2,
+       "d": 5
+      }
+     },
+     "exp": -1
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.negative-means-negative",
+      "value": {
+       "n": -2,
+       "d": 5
+      }
+     },
+     {
+      "id": "exp.negative-not-flipped",
+      "value": {
+       "n": 2,
+       "d": 5
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "exp.rules.power": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "var",
+         "name": "x"
+        },
+        "exp": 3
+       }
+      },
+      "exp": 4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "var",
+         "name": "x"
+        },
+        "exp": 3
+       }
+      },
+      "exp": 4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "var",
+         "name": "x"
+        },
+        "exp": 5
+       }
+      },
+      "exp": 4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 20,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 9
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "int",
+         "value": 5
+        },
+        "exp": 3
+       }
+      },
+      "exp": 4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 5
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "int",
+         "value": 5
+        },
+        "exp": 4
+       }
+      },
+      "exp": 2
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 5
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 6
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "int",
+         "value": 8
+        },
+        "exp": 4
+       }
+      },
+      "exp": 3
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 8
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "var",
+         "name": "x"
+        },
+        "exp": 2
+       }
+      },
+      "exp": -4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": -2
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "var",
+         "name": "x"
+        },
+        "exp": 1
+       }
+      },
+      "exp": -4
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": -3
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.power",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "pow",
+      "base": {
+       "type": "group",
+       "of": {
+        "type": "pow",
+        "base": {
+         "type": "var",
+         "name": "x"
+        },
+        "exp": 2
+       }
+      },
+      "exp": -2
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.power-added",
+      "value": 0
+     }
+    ]
+   }
+  ]
+ },
+ "exp.rules.product": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 6
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 3
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 9,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 18
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 3
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 5
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 15
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 8
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 6
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 14,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 48
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 2
+       },
+       "exp": 2
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 2
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 2
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 3
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 6
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 4
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 9,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 18
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 8
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 4
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 10,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 5
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": -8
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": -40
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 6
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": -8
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -2,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": -48
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.product",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 3
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": -3
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 0,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": -9
+     }
+    ]
+   }
+  ]
+ },
+ "exp.rules.quotient": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 10
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 5
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.divided-exponents",
+      "value": 2
+     },
+     {
+      "id": "exp.quotient-added",
+      "value": 15
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -5
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 6
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 2
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.divided-exponents",
+      "value": 3
+     },
+     {
+      "id": "exp.quotient-added",
+      "value": 8
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -4
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 7
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 3
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 10
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -4
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 9
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 3
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 4
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.divided-exponents",
+      "value": 3
+     },
+     {
+      "id": "exp.quotient-added",
+      "value": 12
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -6
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 12
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 4
+       },
+       "exp": 5
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 4
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 7,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 17
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -7
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 5
+       },
+       "exp": 9
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 5
+       },
+       "exp": 3
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 5
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.divided-exponents",
+      "value": 3
+     },
+     {
+      "id": "exp.quotient-added",
+      "value": 12
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": -6
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 2
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 7
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 9
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": 5
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 3
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 7
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 10
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": 4
+     }
+    ]
+   },
+   {
+    "generator": "exp.rules.quotient",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Type the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "frac",
+      "n": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 4
+      },
+      "d": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 7
+      }
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "var",
+       "name": "x"
+      },
+      "exp": "blank"
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 11
+     },
+     {
+      "id": "exp.quotient-backwards",
+      "value": 3
+     }
+    ]
+   }
+  ]
+ },
+ "exp.scinot": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 8
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 4
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 9
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 32
+     }
+    ],
+    "part": "exp.scinot.operate"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "7.1"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": 5
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "710000"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "0.000071"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "71000"
+     }
+    ],
+    "part": "exp.scinot.standard"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 5
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 2
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 6
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 11,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 30
+     }
+    ],
+    "part": "exp.scinot.operate"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 6
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 8
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 6
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 2,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 14
+     }
+    ],
+    "part": "exp.scinot.operate"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "0.0006"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "6"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": 4
+     }
+    ],
+    "part": "exp.scinot.write"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "0.009"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "9"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": 3
+     }
+    ],
+    "part": "exp.scinot.write"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Fill in the number in front.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "70000000"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "blank"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-not-between",
+      "value": "70"
+     }
+    ],
+    "part": "exp.scinot.write"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Fill in the number in front.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "2400"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "blank"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2.4"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-not-between",
+      "value": "24"
+     }
+    ],
+    "part": "exp.scinot.write"
+   },
+   {
+    "generator": "exp.scinot",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "7.1"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": 6
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7100000"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "0.0000071"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "710000"
+     }
+    ],
+    "part": "exp.scinot.standard"
+   }
+  ]
+ },
+ "exp.scinot.operate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 9
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 4
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 9
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 13,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 36
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 2
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 9
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 2
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 6
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 4
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 15,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 54
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "·",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 4
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 2
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 4
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 8,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.multiplied-exponents",
+      "value": 16
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 9
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 6
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 6
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 3
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 0,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 12
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 8
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 4
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 2
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 3
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 4
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 6
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 3
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 5
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -2,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 8
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 4
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": 8
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 2
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": -4
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": 4
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 4
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": -2
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 2
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": -1
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": -3
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.operate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "÷",
+      "left": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 6
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": -5
+        }
+       }
+      },
+      "right": {
+       "type": "group",
+       "of": {
+        "type": "op",
+        "op": "×",
+        "left": {
+         "type": "int",
+         "value": 3
+        },
+        "right": {
+         "type": "pow",
+         "base": {
+          "type": "int",
+          "value": 10
+         },
+         "exp": -1
+        }
+       }
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.quotient-added",
+      "value": -6
+     }
+    ]
+   }
+  ]
+ },
+ "exp.scinot.standard": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "6.3"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6300"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "0.0063"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "630"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "3"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": 4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30000"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "0.0003"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "3000"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "3"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": 3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3000"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "0.003"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "300"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "3.5"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": -2
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.035"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "350"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "0.35"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "4"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": -1
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.4"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "40"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "4"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "6"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": -4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.0006"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "60000"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "0.006"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "1.4"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": 4
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "14000"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "0.00014"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "1400"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "2.4"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": -1
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.24"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "24"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "2.4"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.standard",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write in standard form.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "4"
+     },
+     "right": {
+      "type": "pow",
+      "base": {
+       "type": "int",
+       "value": 10
+      },
+      "exp": -2
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.04"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-wrong-way",
+      "value": "400"
+     },
+     {
+      "id": "exp.sci-off-by-one",
+      "value": "0.4"
+     }
+    ]
+   }
+  ]
+ },
+ "exp.scinot.write": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "9000000"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "9"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": -6
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "900000"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "9"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": -5
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "910000"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "9.1"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": -5
+     },
+     {
+      "id": "exp.sci-count-zeros",
+      "value": 4
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "0.08"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "8"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -2,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": 2
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "0.003"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "3"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -3,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": 3
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Fill in the exponent.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "0.91"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "dec",
+       "value": "9.1"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": "blank"
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": -1,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-sign",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Fill in the number in front.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "4000"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "blank"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-not-between",
+      "value": "40"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Fill in the number in front.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "8100"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "blank"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8.1"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-not-between",
+      "value": "81"
+     }
+    ]
+   },
+   {
+    "generator": "exp.scinot.write",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Fill in the number in front.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "dec",
+      "value": "70000000"
+     },
+     "right": {
+      "type": "op",
+      "op": "×",
+      "left": {
+       "type": "blank"
+      },
+      "right": {
+       "type": "pow",
+       "base": {
+        "type": "int",
+        "value": 10
+       },
+       "exp": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7"
+    },
+    "misconceptions": [
+     {
+      "id": "exp.sci-not-between",
+      "value": "70"
+     }
+    ]
+   }
+  ]
+ },
  "frac.add-sub": {
   "version": 1,
   "problems": [

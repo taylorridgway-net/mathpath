@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "exp.roots",
+  "title": "Square and cube roots",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation in JavaScript form, used only by the test that checks the answer key: 'exponent: <expr>' (the key is a power of x with that exponent), 'value: <expr>' (the key is that number), 'between: <n>' (the key names the two whole numbers around √n), 'kind: rational|irrational', 'sci: <mantissa> <exponent>' (the key is mantissa × 10^exponent).",
+  "directions": "Show your thinking.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Find:  √81",
+          "math": "value: Math.sqrt(81)",
+          "answer": "9"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Find:  ∛64",
+          "math": "value: Math.cbrt(64)",
+          "answer": "4"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Between which two whole numbers is √40?",
+          "math": "between: 40",
+          "answer": "6 and 7"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Is √36 rational or irrational? Explain.",
+          "math": "kind: rational",
+          "answer": "Rational (√36 = 6)"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A square rug has an area of 49 square feet. How long is each side?",
+          "math": "value: Math.sqrt(49)",
+          "answer": "7 (feet)"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Tia says √100 = 50. Is she right? Explain, and find √100.",
+          "math": "value: Math.sqrt(100)",
+          "answer": "10 (No: 10 × 10 = 100)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Find:  √144",
+          "math": "value: Math.sqrt(144)",
+          "answer": "12"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Find:  ∛125",
+          "math": "value: Math.cbrt(125)",
+          "answer": "5"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Between which two whole numbers is √70?",
+          "math": "between: 70",
+          "answer": "8 and 9"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Is √12 rational or irrational? Explain.",
+          "math": "kind: irrational",
+          "answer": "Irrational (12 is not a perfect square)"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "A cube-shaped box holds 27 cubic inches. How long is each edge?",
+          "math": "value: Math.cbrt(27)",
+          "answer": "3 (inches)"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Max says 0.777… is irrational because it never ends. Is he right? Explain.",
+          "math": "kind: rational",
+          "answer": "Rational (No: it repeats, so it's a fraction, 7/9)"
+        }
+      ]
+    }
+  ]
+}

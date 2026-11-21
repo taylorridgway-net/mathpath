@@ -30,6 +30,9 @@ import decSignedPaper from './paper/dec.signed.json';
 import ratRatiosPaper from './paper/rat.ratios.json';
 import ratPercentPaper from './paper/rat.percent.json';
 import ratPercentChangePaper from './paper/rat.percent-change.json';
+import expRulesPaper from './paper/exp.rules.json';
+import expRootsPaper from './paper/exp.roots.json';
+import expScinotPaper from './paper/exp.scinot.json';
 import linFunctionsPaper from './paper/lin.functions.json';
 import linSlopePaper from './paper/lin.slope.json';
 import linSlopeInterceptPaper from './paper/lin.slope-intercept.json';
@@ -39,4 +42,4 @@ import linGraphingPaper from './paper/lin.graphing.json';
 import polyMultiplyPaper from './paper/poly.multiply.json';
 import polyFactorPaper from './paper/poly.factor.json';
 
-export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algTranslatePaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper, polyMultiplyPaper, polyFactorPaper];
+export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algTranslatePaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, expRulesPaper, expRootsPaper, expScinotPaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper, polyMultiplyPaper, polyFactorPaper];

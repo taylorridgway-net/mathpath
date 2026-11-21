@@ -77,7 +77,9 @@ export function toText(node) {
     case 'scaled':
       return `${node.coef === 1 ? '' : node.coef === -1 ? '-' : node.coef < 0 ? `-${-node.coef}` : node.coef}(${toText(node.of)})`;
     case 'pow':
-      return `${node.base.type === 'int' && node.base.value < 0 ? `(${toText(node.base)})` : toText(node.base)}^${node.exp}`;
+      return `${node.base.type === 'int' && node.base.value < 0 ? `(${toText(node.base)})` : toText(node.base)}^${node.exp === 'blank' ? '?' : node.exp}`;
+    case 'root':
+      return `${node.index === 3 ? '∛' : '√'}${node.of.type === 'int' ? toText(node.of) : `(${toText(node.of)})`}`;
     case 'mixed':
       return `${node.whole} ${node.n}/${node.d}`;
     case 'op':

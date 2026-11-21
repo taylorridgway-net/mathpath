@@ -27,6 +27,7 @@ import { ratioGenerators } from './rat/ratios.js';
 import { linearGenerators } from './lin/linear.js';
 import { graphingGenerators } from './lin/graphing.js';
 import { factoringGenerators } from './poly/factoring.js';
+import { expAreaGenerators } from './exp/exponents.js';
 
 export const generators = {
   ...addSubGenerators,
@@ -54,6 +55,7 @@ export const generators = {
   ...linearGenerators,
   ...graphingGenerators,
   ...factoringGenerators,
+  ...expAreaGenerators,
 };
 
 export const DIFFICULTIES = [1, 2, 3];

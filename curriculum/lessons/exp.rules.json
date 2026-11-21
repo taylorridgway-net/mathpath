@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "skill": "exp.rules",
+  "title": "Exponent rules",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "exp.rules.product": "Same base, multiplying: add the exponents.",
+    "exp.rules.quotient": "Same base, dividing: subtract the exponents, top minus bottom.",
+    "exp.rules.power": "A power of a power: multiply the exponents.",
+    "exp.rules.negative": "A negative exponent means one over the positive power: 2⁻³ = 1/2³. Anything (but 0) to the 0 power is 1.",
+    "exp.rules": "Multiply: add exponents. Divide: subtract. Power of a power: multiply. Negative: one over."
+  },
+  "misconceptionMessages": {
+    "exp.multiplied-exponents": "Multiplying powers ADDS the exponents: x³ · x⁴ is 3 x's and 4 x's, 7 x's in all.",
+    "exp.divided-exponents": "Dividing powers SUBTRACTS the exponents: x⁶ / x² = x⁴ (two x's cancel from six).",
+    "exp.quotient-added": "For dividing, subtract the exponents (top minus bottom), don't add.",
+    "exp.quotient-backwards": "Subtract top minus bottom: x² / x⁶ = x²⁻⁶ = x⁻⁴.",
+    "exp.power-added": "A power of a power MULTIPLIES: (x²)³ = x² · x² · x² = x⁶.",
+    "exp.negative-means-negative": "A negative exponent doesn't make the number negative: it means one over. 2⁻³ = 1/8.",
+    "exp.base-times-exponent": "An exponent isn't multiplying: 2⁻³ = 1/2³ = 1/8.",
+    "exp.negative-kept": "Moving it to the bottom makes the exponent positive: x⁻⁴ = 1/x⁴.",
+    "exp.negative-not-flipped": "A negative exponent flips the fraction: (2/3)⁻² = (3/2)² = 9/4.",
+    "exp.zero-is-zero": "Anything (except 0) to the 0 power is 1, not 0.",
+    "exp.zero-is-base": "A number to the 0 power is 1: each step down divides by the base, and 7¹ ÷ 7 = 1."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "exp.rules.product",
+      "forGap": "exp.rules.product",
+      "title": "Multiplying powers",
+      "objective": "Multiply powers with the same base: x³ · x⁴ = x⁷.",
+      "mode": "section",
+      "generator": "exp.rules.product",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "An exponent counts how many times the base is multiplied: x³ = x · x · x.",
+        "Multiplying two powers of x puts all those x's together."
+      ],
+      "visual": null,
+      "key": "Same base, multiplying: add the exponents. x³ · x⁴ = x⁷.",
+      "worked": [
+        {
+          "math": "x³ · x⁴",
+          "note": ""
+        },
+        {
+          "math": "(x · x · x)(x · x · x · x)",
+          "note": "3 x's and 4 x's"
+        },
+        {
+          "math": "x[[⁷]]",
+          "note": "3 + 4 = 7"
+        },
+        {
+          "math": "2⁵ · 2⁻² = 2[[³]]",
+          "note": "5 + (−2) = 3"
+        }
+      ]
+    },
+    {
+      "id": "exp.rules.quotient",
+      "forGap": "exp.rules.quotient",
+      "title": "Dividing powers",
+      "objective": "Divide powers with the same base: x⁷ / x³ = x⁴.",
+      "mode": "section",
+      "generator": "exp.rules.quotient",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Dividing cancels matching factors from the top and bottom."
+      ],
+      "visual": null,
+      "key": "Same base, dividing: subtract the exponents, top minus bottom. x⁷ / x³ = x⁴.",
+      "worked": [
+        {
+          "math": "x⁶ / x²",
+          "note": ""
+        },
+        {
+          "math": "(x · x · x · x · [[x · x]]) / [[(x · x)]]",
+          "note": "two x's cancel"
+        },
+        {
+          "math": "x[[⁴]]",
+          "note": "6 − 2 = 4"
+        },
+        {
+          "math": "x² / x⁶ = x[[⁻⁴]]",
+          "note": "2 − 6 = −4: more on the bottom"
+        }
+      ]
+    },
+    {
+      "id": "exp.rules.power",
+      "forGap": "exp.rules.power",
+      "title": "A power of a power",
+      "objective": "Raise a power to a power: (x²)³ = x⁶.",
+      "mode": "section",
+      "generator": "exp.rules.power",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "(x²)³ means x² multiplied three times."
+      ],
+      "visual": null,
+      "key": "A power of a power: multiply the exponents. (x²)³ = x⁶.",
+      "worked": [
+        {
+          "math": "(x²)³",
+          "note": ""
+        },
+        {
+          "math": "x² · x² · x²",
+          "note": "three copies"
+        },
+        {
+          "math": "x[[⁶]]",
+          "note": "2 + 2 + 2 = 2 × 3"
+        },
+        {
+          "math": "(x⁴)⁻² = x[[⁻⁸]]",
+          "note": "4 × (−2)"
+        }
+      ]
+    },
+    {
+      "id": "exp.rules.negative",
+      "forGap": "exp.rules.negative",
+      "title": "Zero and negative exponents",
+      "objective": "Understand 7⁰ = 1 and 2⁻³ = 1/8.",
+      "mode": "section",
+      "generator": "exp.rules.negative",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Going down the powers of 2, each step divides by 2: 2³ = 8, 2² = 4, 2¹ = 2, 2⁰ = 1, 2⁻¹ = 1/2, 2⁻² = 1/4.",
+        "So a zero exponent gives 1, and negative exponents give fractions, never negative numbers."
+      ],
+      "visual": null,
+      "key": "Anything (except 0) to the 0 power is 1. A negative exponent means one over: 2⁻³ = 1/2³ = 1/8.",
+      "worked": [
+        {
+          "math": "2³ = 8,  2² = 4,  2¹ = 2",
+          "note": "each step ÷ 2"
+        },
+        {
+          "math": "2⁰ = [[1]]",
+          "note": "2 ÷ 2"
+        },
+        {
+          "math": "2⁻¹ = [[{1/2}]],  2⁻² = [[{1/4}]]",
+          "note": "keep dividing by 2"
+        },
+        {
+          "math": "2⁻³ = 1/2³ = [[{1/8}]]",
+          "note": "not −8"
+        },
+        {
+          "math": "x⁻⁴ = [[1/x⁴]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "exp.rules.whole",
+      "forGap": "exp.rules",
+      "title": "Putting it together",
+      "objective": "Every exponent rule, mixed.",
+      "mode": "skill",
+      "generator": "exp.rules",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Multiply: add exponents. Divide: subtract. Power of a power: multiply. Negative: one over. Zero: 1.",
+      "worked": [
+        {
+          "math": "x⁵ · x⁻⁸",
+          "note": ""
+        },
+        {
+          "math": "x[[⁻³]]",
+          "note": "5 + (−8)"
+        },
+        {
+          "math": "= [[1/x³]]",
+          "note": "one over"
+        }
+      ]
+    }
+  ]
+}

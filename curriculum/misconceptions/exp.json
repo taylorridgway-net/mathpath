@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about exponents, roots and scientific notation. 'pointsTo' is the subskill to work on. Claude's draft (2026-11-21), waiting for owner review.",
+  "misconceptions": [
+    {
+      "id": "exp.multiplied-exponents",
+      "description": "Multiplies the exponents when multiplying powers: x³ · x⁴ = x¹² (they add).",
+      "pointsTo": "exp.rules.product"
+    },
+    {
+      "id": "exp.divided-exponents",
+      "description": "Divides the exponents when dividing powers: x⁶ / x² = x³ (they subtract).",
+      "pointsTo": "exp.rules.quotient"
+    },
+    {
+      "id": "exp.quotient-added",
+      "description": "Adds the exponents when dividing: x⁶ / x² = x⁸.",
+      "pointsTo": "exp.rules.quotient"
+    },
+    {
+      "id": "exp.quotient-backwards",
+      "description": "Subtracts the exponents the wrong way round: x² / x⁶ = x⁴.",
+      "pointsTo": "exp.rules.quotient"
+    },
+    {
+      "id": "exp.power-added",
+      "description": "Adds the exponents for a power of a power: (x²)³ = x⁵ (they multiply).",
+      "pointsTo": "exp.rules.power"
+    },
+    {
+      "id": "exp.negative-means-negative",
+      "description": "Thinks a negative exponent makes the number negative: 2⁻³ = −8.",
+      "pointsTo": "exp.rules.negative"
+    },
+    {
+      "id": "exp.base-times-exponent",
+      "description": "Multiplies the base by the exponent: 2⁻³ = −6.",
+      "pointsTo": "exp.rules.negative"
+    },
+    {
+      "id": "exp.negative-kept",
+      "description": "Keeps the negative sign when moving the power to the bottom: x⁻⁴ = 1/x⁻⁴.",
+      "pointsTo": "exp.rules.negative"
+    },
+    {
+      "id": "exp.negative-not-flipped",
+      "description": "Ignores the negative exponent's flip: (2/3)⁻² = 4/9 (it's 9/4).",
+      "pointsTo": "exp.rules.negative"
+    },
+    {
+      "id": "exp.zero-is-zero",
+      "description": "Thinks anything to the 0 power is 0 (it's 1).",
+      "pointsTo": "exp.rules.negative"
+    },
+    {
+      "id": "exp.zero-is-base",
+      "description": "Thinks a number to the 0 power is the number itself (7⁰ = 7; it's 1).",
+      "pointsTo": "exp.rules.negative"
+    },
+    {
+      "id": "exp.root-halved",
+      "description": "Halves instead of taking the square root: √64 = 32.",
+      "pointsTo": "exp.roots.perfect"
+    },
+    {
+      "id": "exp.root-divided",
+      "description": "Divides by 3 for a cube root: ∛27 = 9.",
+      "pointsTo": "exp.roots.perfect"
+    },
+    {
+      "id": "exp.cube-root-sign",
+      "description": "Drops the sign of a cube root of a negative number: ∛−8 = 2 (it's −2).",
+      "pointsTo": "exp.roots.perfect"
+    },
+    {
+      "id": "exp.roots-all-irrational",
+      "description": "Thinks every square root is irrational (√16 = 4 is rational).",
+      "pointsTo": "exp.roots.rational"
+    },
+    {
+      "id": "exp.repeating-irrational",
+      "description": "Thinks a repeating decimal (0.333…) is irrational; it's a fraction, so it's rational.",
+      "pointsTo": "exp.roots.rational"
+    },
+    {
+      "id": "exp.pi-rational",
+      "description": "Thinks π is rational (3.14 is only close to π).",
+      "pointsTo": "exp.roots.rational"
+    },
+    {
+      "id": "exp.sci-sign",
+      "description": "Gets the sign of the exponent wrong: small numbers (less than 1) have negative exponents.",
+      "pointsTo": "exp.scinot.write"
+    },
+    {
+      "id": "exp.sci-count-zeros",
+      "description": "Counts the zeros instead of the places the point moves: 45000 = 4.5 × 10³.",
+      "pointsTo": "exp.scinot.write"
+    },
+    {
+      "id": "exp.sci-not-between",
+      "description": "Writes a number in front that isn't between 1 and 10: 32 × 10⁵.",
+      "pointsTo": "exp.scinot.write"
+    },
+    {
+      "id": "exp.sci-wrong-way",
+      "description": "Moves the decimal point the wrong way: 3.2 × 10³ = 0.0032.",
+      "pointsTo": "exp.scinot.standard"
+    },
+    {
+      "id": "exp.sci-off-by-one",
+      "description": "Writes as many zeros as the exponent after the digits: 4.5 × 10³ = 45000 (it's 4500).",
+      "pointsTo": "exp.scinot.standard"
+    }
+  ]
+}
