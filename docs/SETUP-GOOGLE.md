@@ -3,7 +3,7 @@
 About 15 minutes, once. You copy four files into a Google Apps Script project,
 run one setup step, and publish it as a web app. No installing anything.
 
-**Use made-up student names until the pilot.** Real students only after telling the school admin (CLAUDE.md).
+**The school admin knows about the pilot (2026-11-20).** For demo day, see `docs/DEMO-DAY.md`.
 
 ## What you need
 
