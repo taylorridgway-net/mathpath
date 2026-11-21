@@ -13,6 +13,7 @@
 // Every function returns a plain object; failures are { error: 'kind', message }.
 
 import { seedFor } from '../../engine/seeds.js';
+import { heldSkills } from '../../engine/courses/courses.js';
 import { replayDiagnostic, compactResult, catchUpTargets, resultFromVerdicts, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
 import { replayPractice } from '../../engine/practice/practice.js';
 import { verificationRecord } from '../../engine/teacher/verification.js';
@@ -25,7 +26,8 @@ const MAX_SAVE_IDS = 200; // recent saveIds kept per student to spot repeats
 const WORDS_A = ['maple', 'river', 'cedar', 'stone', 'amber', 'cloud', 'birch', 'coral', 'frost', 'ember', 'meadow', 'harbor', 'canyon', 'willow', 'summit', 'pebble', 'acorn', 'delta', 'orbit', 'prism', 'quartz', 'tundra', 'lagoon', 'aspen'];
 const WORDS_B = ['tiger', 'otter', 'falcon', 'heron', 'fox', 'bison', 'lynx', 'raven', 'panda', 'gecko', 'moose', 'koala', 'eagle', 'shark', 'llama', 'wolf', 'owl', 'yak', 'newt', 'crane', 'seal', 'wren', 'hare', 'orca'];
 
-// setup: { graph, generators, misconceptions, diagnosticConfig, lessons, rules }
+// setup: { graph, generators, misconceptions, diagnosticConfig, lessons, rules, courses }
+//   courses (curriculum/courses.json, optional): a class's course holds back skills it hasn't taught yet.
 // now(): ISO time. random(): a number in [0, 1) (crypto-strength in production).
 export function createServer({ store, setup, now = () => new Date().toISOString(), random }) {
   const fail = (error, message) => ({ error, message });
@@ -53,6 +55,15 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     for (let i = 0; i < 12; i++) s += 'abcdefghijkmnpqrstuvwxyz23456789'[Math.floor(random() * 32)];
     return s;
   }
+
+  // Skills the student's class hasn't been taught yet (its course; the teacher opens them).
+  function heldFor(student) {
+    if (!setup.courses || !store.getClass) return [];
+    const cls = store.getClass(student.classId);
+    return heldSkills({ courses: setup.courses, course: cls?.course, opened: cls?.opened || [] });
+  }
+  // What the student's device gets: their summary, plus what their class holds back.
+  const studentSummary = (student, summary = student.summary) => ({ ...publicSummary(summary), held: heldFor(student) });
 
   // ---------------- students ----------------
 
@@ -84,7 +95,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         return fresh;
       });
     }
-    return { student: { id: student.id, nickname: student.nickname || '' }, summary: publicSummary(student.summary) };
+    return { student: { id: student.id, nickname: student.nickname || '' }, summary: studentSummary(student) };
   }
 
   // The latest diagnostic's result as saved (older saves: rebuilt from their verdicts).
@@ -111,7 +122,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       if (!student || student.retired) return fail('unknown-code', 'Sign in again.');
       if (!record || typeof record.saveId !== 'string') return fail('bad-record', 'Missing saveId.');
       const summary = student.summary;
-      if (summary.saveIds.includes(record.saveId)) return { ok: true, duplicate: true, summary: publicSummary(summary) };
+      if (summary.saveIds.includes(record.saveId)) return { ok: true, duplicate: true, summary: studentSummary(student, summary) };
 
       const checked = record.type === 'diagnostic' ? checkDiagnostic(student, record)
         : record.type === 'lesson-section' ? checkSection(student, record)
@@ -123,7 +134,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       summary.saveIds = [...summary.saveIds, record.saveId].slice(-MAX_SAVE_IDS);
       store.appendRecord(checked.kind, checked.row);
       store.putStudent({ ...student, summary });
-      return { ok: true, result: checked.result, summary: publicSummary(summary) };
+      return { ok: true, result: checked.result, summary: studentSummary(student, summary) };
     });
   }
 
@@ -149,7 +160,7 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
         ({ targets } = plan);
         prior = plan.prior;
       } else {
-        targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config, prior });
+        targets = catchUpTargets({ graph: setup.graph, generators: setup.generators, config, prior, held: heldFor(student) });
       }
       if (!targets.length) return fail('nothing-to-catch-up', 'There’s nothing new to check.');
       config = { ...config, targets };
@@ -446,6 +457,36 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
     }));
   }
 
+  // A class's course (im1 / im2 / im3, or '' for none): skills it hasn't taught yet are held back.
+  function setCourse(email, classId, course) {
+    return teacherOnly(email, () => store.withLock(() => {
+      const cls = store.listClasses(email).find((c) => c.id === classId);
+      if (!cls) return fail('not-your-class', 'That class isn’t yours.');
+      const value = String(course || '');
+      if (value && !(setup.courses?.courses || []).some((c) => c.id === value)) return fail('bad-course', 'Unknown course.');
+      if ((cls.course || '') === value) return { ok: true, already: true };
+      const name = (id) => (setup.courses?.courses || []).find((c) => c.id === id)?.name || 'no course';
+      store.putClass({ ...cls, course: value });
+      for (const st of store.listStudents([classId])) log(email, st.id, `Class course set to ${name(value)}`, name(cls.course), name(value));
+      return { ok: true };
+    }));
+  }
+
+  // Open a held-back skill for a class (its unit has been taught), or hold it back again.
+  function openSkill(email, classId, skillId, open = true) {
+    return teacherOnly(email, () => store.withLock(() => {
+      const cls = store.listClasses(email).find((c) => c.id === classId);
+      if (!cls) return fail('not-your-class', 'That class isn’t yours.');
+      if (!setup.graph.has(skillId)) return fail('bad-skill', 'Unknown skill.');
+      const opened = cls.opened || [];
+      if (opened.includes(skillId) === Boolean(open)) return { ok: true, already: true };
+      store.putClass({ ...cls, opened: open ? [...opened, skillId] : opened.filter((s) => s !== skillId) });
+      const what = `${setup.graph.get(skillId).name}: ${open ? 'opened for the class (taught)' : 'held back again (not taught yet)'}`;
+      for (const st of store.listStudents([classId])) log(email, st.id, what, open ? 'not taught yet' : 'open', open ? 'open' : 'not taught yet');
+      return { ok: true };
+    }));
+  }
+
   function resetCode(email, studentId) {
     return teacherOnly(email, () => store.withLock(() => {
       const student = ownStudent(email, studentId);
@@ -555,6 +596,8 @@ export function createServer({ store, setup, now = () => new Date().toISOString(
       shareClass,
       unshareClass,
       changePath,
+      setCourse,
+      openSkill,
     },
   };
 }

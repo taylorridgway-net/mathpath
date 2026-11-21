@@ -13,5 +13,6 @@ export function loadClassSetup() {
     diagnosticConfig: f.config,
     lessons: read('index.json').lessons.map((s) => read(`lessons/${s}.json`)),
     rules: read('mastery.json').default,
+    courses: read('courses.json'),
   };
 }

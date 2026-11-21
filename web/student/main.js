@@ -5,7 +5,7 @@
 // Work is saved in this browser first, then uploaded once per finished
 // diagnostic or section; anything not uploaded yet is retried on the next load.
 
-import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules } from '../../curriculum/all.js';
+import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules, courses } from '../../curriculum/all.js';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
 import { replayDiagnostic, compactResult, catchUpTargets, catchUpName, fixedGaps, recheckPlan } from '../../engine/diagnostic/diagnostic.js';
@@ -30,12 +30,14 @@ const lessons = allLessons;
 const graph = buildGraphIndex(domainsIndex, graphFiles);
 const misconceptions = misconceptionList;
 const api = createApi({
-  setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default },
+  setup: { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules: masteryRules.default, courses },
 });
+// Skills this student's class hasn't been taught yet (the server works it out from the class's course).
+const held = () => profile?.summary?.held || [];
 // A catch-up check starts from the saved result and asks only about skills added since.
 const setupFor = (seed, catchUp = null) => ({
   graph, generators, misconceptions, seed,
-  config: catchUp ? { ...fracDiagnostic, targets: catchUp.targets || catchUpTargets({ graph, generators, config: fracDiagnostic, prior: catchUp.prior }) } : fracDiagnostic,
+  config: catchUp ? { ...fracDiagnostic, targets: catchUp.targets || catchUpTargets({ graph, generators, config: fracDiagnostic, prior: catchUp.prior, held: held() }) } : fracDiagnostic,
   prior: catchUp?.prior || null,
 });
 // A finished diagnostic as saved: used as it is, never re-run (re-running old answers
@@ -222,7 +224,7 @@ function recheck() {
 // Skills with questions now that this student's diagnostic didn't have yet.
 function catchUpSkills() {
   if (!session?.finished || !diagnostic) return [];
-  return catchUpTargets({ graph, generators, config: fracDiagnostic, prior: diagnostic.result() });
+  return catchUpTargets({ graph, generators, config: fracDiagnostic, prior: diagnostic.result(), held: held() });
 }
 
 function route() {
@@ -242,7 +244,7 @@ function showStart() {
       h('p', 'lede', 'If you don’t know an answer, tap “I’m not sure”. That helps too.'),
     );
   } else if (session?.catchUp && !session.finished) {
-    const named = catchUpName(fracDiagnostic, catchUpTargets({ graph, generators, config: fracDiagnostic, prior: session.catchUp.prior }));
+    const named = catchUpName(fracDiagnostic, catchUpTargets({ graph, generators, config: fracDiagnostic, prior: session.catchUp.prior, held: held() }));
     screen.append(
       h('p', 'eyebrow', named || 'Catch-up check'),
       h('h1', 'title', named ? 'Let’s see what you already know' : 'A few questions on new topics'),
@@ -356,7 +358,7 @@ function showDone() {
     .filter((id) => result.nodes[id].status === 'known' && graph.get(id).kind === 'subskill');
   const path = buildPath({
     result, lessons, graph, cleared: profile.summary.cleared || [], waitForTeacher: masteryRules.default.paths?.waitForTeacherChecks,
-    assigned: profile.summary.assigned || [], skipped: profile.summary.skipped || [],
+    assigned: profile.summary.assigned || [], skipped: profile.summary.skipped || [], held: held(),
   });
 
   const screen = section('screen screen-done');

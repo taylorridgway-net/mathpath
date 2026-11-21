@@ -445,12 +445,13 @@ export function compactResult(result) {
 // nothing about the skill or its parts was asked, credited or blocked. These are
 // what a catch-up check asks about. That covers skills added after the student's
 // check, and the later checks in config.moreChecks (e.g. the pre-algebra check).
-export function catchUpTargets({ graph, generators, config, prior }) {
+// held: skills the class's course hasn't taught yet (engine/courses/courses.js): never asked.
+export function catchUpTargets({ graph, generators, config, prior, held = [] }) {
   const nothingKnown = (id) => {
     const n = prior?.nodes?.[id];
     return !n || ((n.status === 'not-tested' || n.status === 'unchecked') && !n.blockedBy);
   };
-  const open = (ids) => ids.filter((id) => graph.has(id)
+  const open = (ids) => ids.filter((id) => graph.has(id) && !held.includes(id)
     && (generators[id] || graph.subskillsOf(id).some((s) => generators[s]))
     && [id, ...graph.subskillsOf(id)].every(nothingKnown));
   // New skills in the first check come first; then the further checks, ONE at a time,

@@ -11,7 +11,7 @@
 //   apiStudent(name, args)     student requests (sign in, save); students need no Google account
 //   apiTeacher(name, args)     teacher requests; Google tells us who is signed in
 
-import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules } from '../../curriculum/all.js';
+import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules, courses } from '../../curriculum/all.js';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators } from '../../engine/generators/index.js';
 import { createServer } from '../core/server.js';
@@ -22,7 +22,7 @@ import { createSheetsStore, ensureTabs } from './store-sheets.js';
 const SHEET_ID_KEY = 'MATHPATH_SPREADSHEET_ID';
 const STUDENT_CALLS = ['login', 'saveRecord', 'setNickname'];
 const TEACHER_CALLS = ['teacherData', 'studentDetail', 'addClass', 'addStudents', 'resetCode', 'clearFoundation', 'resetSkill', 'verify',
-  'removeStudent', 'restoreStudent', 'removeClass', 'restoreClass', 'shareClass', 'unshareClass', 'changePath'];
+  'removeStudent', 'restoreStudent', 'removeClass', 'restoreClass', 'shareClass', 'unshareClass', 'changePath', 'setCourse', 'openSkill'];
 
 const setupData = {
   graph: buildGraphIndex(domainsIndex, graphFiles),
@@ -31,6 +31,7 @@ const setupData = {
   diagnosticConfig: fracDiagnostic,
   lessons: allLessons,
   rules: masteryRules.default,
+  courses,
 };
 
 // Random numbers for codes and ids, from Google's UUID generator (not guessable).

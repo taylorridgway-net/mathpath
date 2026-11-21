@@ -61,8 +61,17 @@
 .st-credited, .st-partly { color: var(--muted); }
 .st-blocked, .st-unchecked { background: var(--bg); color: var(--muted); border-color: var(--line); border-style: dashed; }
 .st-not-tested { background: none; color: var(--muted); }
+.st-not-taught { background: var(--bg); color: var(--muted); border-color: var(--line); }
+.t-course { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.t-course-label { font-weight: 600; }
+.t-units { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.t-unit { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+.t-unit-name { font-weight: 600; width: 100%; }
+.t-unit-skill { color: var(--muted); }
+.t-unit-skill.is-open { color: var(--ink); }
 .t-seg.st-known { background: color-mix(in srgb, var(--good) 25%, var(--surface)); }
 .t-seg.st-not-tested { background: var(--line); }
+.t-seg.st-not-taught { background: var(--line); opacity: 0.5; }
 .t-seg.st-working { border: 0; }
 
 .t-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 0.75rem; color: var(--muted); }
@@ -161,6 +170,7 @@
 .t-seg.st-shaky, .t-swatch.st-shaky { background: var(--warn); opacity: 0.6; }
 .t-swatch.st-known { background: color-mix(in srgb, var(--good) 25%, var(--surface)); }
 .t-swatch.st-not-tested { background: var(--line); }
+.t-swatch.st-not-taught { background: var(--line); opacity: 0.5; }
 .t-who-flag { font-size: 0.6875rem; font-weight: 700; color: var(--warn); }
 .t-screen > .back-link { align-self: flex-start; }
 .t-card p { margin: 0; }

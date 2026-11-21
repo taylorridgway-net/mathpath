@@ -27,6 +27,7 @@ import geoMisconceptions from './misconceptions/geo.json';
 import statMisconceptions from './misconceptions/stat.json';
 import diagnosticConfig from './diagnostic/frac.json';
 import masteryRules from './mastery.json';
+import courses from './courses.json';
 import wholePlaceValueLesson from './lessons/whole.place-value.json';
 import wholeAddSubLesson from './lessons/whole.add-sub.json';
 import wholeMultDivLesson from './lessons/whole.mult-div.json';
@@ -81,7 +82,7 @@ import linGraphingLesson from './lessons/lin.graphing.json';
 import polyMultiplyLesson from './lessons/poly.multiply.json';
 import polyFactorLesson from './lessons/poly.factor.json';
 
-export { domainsIndex, diagnosticConfig, masteryRules };
+export { domainsIndex, diagnosticConfig, masteryRules, courses };
 export const graphFiles = { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph, 'dec.json': decGraph, 'rat.json': ratGraph, 'lin.json': linGraph, 'poly.json': polyGraph, 'exp.json': expGraph, 'geo.json': geoGraph, 'stat.json': statGraph };
 export const misconceptionList = [...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...fracMisconceptions.misconceptions, ...algMisconceptions.misconceptions, ...decMisconceptions.misconceptions, ...ratMisconceptions.misconceptions, ...linMisconceptions.misconceptions, ...polyMisconceptions.misconceptions, ...expMisconceptions.misconceptions, ...geoMisconceptions.misconceptions, ...statMisconceptions.misconceptions];
 export const lessons = [wholePlaceValueLesson, wholeAddSubLesson, wholeMultDivLesson, wholeFactorsMultiplesLesson, fracMeaningLesson, fracEquivalentLesson, fracCompareLesson, fracAddSubLesson, fracMultiplyLesson, fracDivideLesson, intCompareLesson, intAddSubLesson, intMultDivLesson, fracSignedLesson, algOrderOpsLesson, algExponentsLesson, algEquationsLesson, algExpressionsLesson, algMultiStepLesson, algInequalitiesLesson, algInequalityGraphsLesson, algSystemsLesson, algTranslateLesson, algEvaluateLesson, decPlaceValueLesson, decConvertLesson, decAddSubLesson, decMultiplyLesson, decDivideLesson, decSignedLesson, ratRatiosLesson, ratPercentLesson, ratPercentChangeLesson, geoUnitsLesson, geoAreaLesson, geoCirclesLesson, geoVolumeLesson, expRulesLesson, expRootsLesson, expScinotLesson, geoAnglesLesson, geoPythagLesson, statCenterLesson, statDisplaysLesson, statProbLesson, linFunctionsLesson, linSlopeLesson, linSlopeInterceptLesson, linFormsLesson, linParallelLesson, linGraphingLesson, polyMultiplyLesson, polyFactorLesson];

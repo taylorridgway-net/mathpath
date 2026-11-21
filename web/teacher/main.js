@@ -10,7 +10,7 @@
 //
 // All the thinking is in engine/teacher/ (tested); this file draws.
 
-import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules } from '../../curriculum/all.js';
+import { domainsIndex, graphFiles, misconceptionList, lessons as allLessons, diagnosticConfig as fracDiagnostic, masteryRules, courses } from '../../curriculum/all.js';
 import { paperList } from '../../curriculum/papers.js';
 import { buildGraphIndex } from '../../engine/graph/graph-index.js';
 import { generators, generateProblem } from '../../engine/generators/index.js';
@@ -20,6 +20,7 @@ import { practicePlan } from '../../engine/lessons/plan.js';
 import { toText } from '../../engine/problem/text.js';
 import { createRng } from '../../engine/random.js';
 import { studentStatus, countStatuses } from '../../engine/teacher/student-status.js';
+import { heldSkills, courseUnits } from '../../engine/courses/courses.js';
 import { LOG_STATES } from '../../engine/teacher/assignments.js';
 import { teachTogether } from '../../engine/teacher/groups.js';
 import { participation } from '../../engine/teacher/participation.js';
@@ -41,7 +42,7 @@ const misconceptions = misconceptionList;
 const lessons = allLessons;
 const papers = Object.fromEntries(paperList.map((p) => [p.skill, p]));
 const rules = masteryRules.default;
-const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules };
+const setup = { graph, generators, misconceptions, diagnosticConfig: fracDiagnostic, lessons, rules, courses };
 const wholeSectionIds = new Set(lessons.flatMap((l) => l.sections.filter((x) => x.mode === 'skill').map((x) => x.id)));
 const sectionTitle = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, s.title])));
 const misconceptionInfo = new Map(misconceptions.map((m) => [m.id, m]));
@@ -61,7 +62,7 @@ if (live) document.querySelector('.preview-banner')?.remove();
 function withPreviewChanges(d) {
   const gone = new Set(store.removedStudents);
   const goneClasses = new Set(store.removedClasses);
-  const classes = d.classes.map((c) => ({ ...c, teacherEmail: c.teacherEmail || ME, coTeachers: store.shares[c.id] || [] }));
+  const classes = d.classes.map((c) => ({ ...c, teacherEmail: c.teacherEmail || ME, coTeachers: store.shares[c.id] || [], course: store.courses[c.id] || '', opened: store.opened[c.id] || [] }));
   const nameOf = new Map(d.roster.map((r) => [r.code, r.realName]));
   return {
     ...d,
@@ -89,6 +90,8 @@ function classAction(call, ...args) {
   if (call === 'restoreClass') store.removedClasses = without(store.removedClasses, id);
   if (call === 'shareClass') store.shares[id] = [...without(store.shares[id] || [], other), other];
   if (call === 'unshareClass') store.shares[id] = without(store.shares[id] || [], other);
+  if (call === 'setCourse') store.courses[id] = other;
+  if (call === 'openSkill') store.opened[id] = args[2] === false ? without(store.opened[id] || [], other) : [...without(store.opened[id] || [], other), other];
   persist();
   buildClass(() => { tab = 'roster'; render(); });
 }
@@ -111,6 +114,7 @@ const store = Object.assign(
   {
     periods: 3, classSeed: 'sample-1', expected: 3, verifications: [], clearances: [], resets: [], log: [], codeChanges: {},
     removedStudents: [], removedClasses: [], shares: {}, // preview: removing and sharing, on this device only
+    courses: {}, opened: {}, // preview: each class's course and the skills opened for it, on this device only
     assignments: [], // preview: assigning and skipping lessons, on this device only
   },
   loadLocal(STORE_KEY) || {},
@@ -164,7 +168,10 @@ function refresh() {
     s.cleared = [...data.clearances, ...(live ? [] : store.clearances)].filter((c) => c.code === s.code).map((c) => c.gap);
     s.resets = [...(data.resets || []), ...(live ? [] : store.resets || [])].filter((r) => r.code === s.code);
     s.assignments = [...(data.assignments || []), ...(live ? [] : store.assignments || [])].filter((r) => r.code === s.code);
+    const cls = data.classes.find((c) => c.id === s.classId);
+    s.held = heldSkills({ courses, course: cls?.course, opened: cls?.opened || [] });
     s.status = studentStatus({
+      held: s.held,
       diagnosticResult: s.result, sections: s.sections, verifications: s.verifications, cleared: s.cleared, resets: s.resets,
       memory: s.memory, retention: rules.retention, now, assignments: s.assignments, graph, lessons, waitForTeacher: rules.paths?.waitForTeacherChecks,
     });
@@ -247,6 +254,7 @@ const STATUS_LOOK = {
   partly: ['Partly', 'Diagnostic: some parts right, others not asked'],
   blocked: ['Blocked', 'Diagnostic: couldn’t check, needs another gap first'],
   unchecked: ['Can’t check', 'Possible cause; the app has no questions for it yet'],
+  'not-taught': ['Not taught', 'Not taught yet in this class’s course (not a gap)'],
   'not-tested': ['—', 'Not tested yet'],
 };
 
@@ -259,7 +267,7 @@ function cell(status) {
 
 function legend() {
   const box = h('div', 't-legend');
-  for (const s of ['verified', 'platform', 'slipping', 'practised', 'working', 'gap', 'shaky', 'known', 'credited', 'unchecked', 'not-tested']) {
+  for (const s of ['verified', 'platform', 'slipping', 'practised', 'working', 'gap', 'shaky', 'known', 'credited', 'unchecked', 'not-taught', 'not-tested']) {
     const item = h('span', 't-legend-item');
     item.append(cell(s), h('span', '', STATUS_LOOK[s][1].split(' (')[0]));
     box.append(item);
@@ -344,7 +352,7 @@ function overview() {
   // Per-skill bars.
   const bars = h('div', 't-bars');
   bars.append(h('h2', 't-h2', 'Skills across the class'));
-  const BAR_KEY = [['verified', 'Verified'], ['platform', 'Platform'], ['slipping', 'Slipping (memory check)'], ['working', 'Working on it'], ['gap', 'Gap'], ['shaky', 'Shaky'], ['known', 'Showed or credited in the diagnostic'], ['not-tested', 'Not tested']];
+  const BAR_KEY = [['verified', 'Verified'], ['platform', 'Platform'], ['slipping', 'Slipping (memory check)'], ['working', 'Working on it'], ['gap', 'Gap'], ['shaky', 'Shaky'], ['known', 'Showed or credited in the diagnostic'], ['not-taught', 'Not taught yet (course)'], ['not-tested', 'Not tested']];
   const key = h('div', 't-legend');
   for (const [st, label] of BAR_KEY) {
     const item = h('span', 't-legend-item');
@@ -368,6 +376,7 @@ function overview() {
     const groups = [
       ['verified', counts.verified], ['platform', counts.platform], ['slipping', counts.slipping], ['working', counts.working + counts.practised],
       ['gap', counts.gap], ['shaky', counts.shaky], ['known', counts.known + counts.credited + counts.partly],
+      ['not-taught', counts['not-taught']],
       ['not-tested', counts['not-tested'] + counts.unchecked + counts.blocked],
     ];
     for (const [st, n] of groups) {
@@ -380,6 +389,7 @@ function overview() {
     const parts = [
       [counts.verified, 'verified'], [counts.platform, 'platform'], [counts.slipping, 'slipping'], [counts.working + counts.practised, 'working on it'],
       [counts.gap, 'gap'], [counts.shaky, 'shaky'], [counts.known + counts.credited + counts.partly, 'showed or credited'],
+      [counts['not-taught'], 'not taught yet'],
     ].filter(([n]) => n).map(([n, l]) => `${n} ${l}`);
     row.append(bar, h('span', 't-bar-note', parts.join(' · ')));
     bars.append(row);
@@ -1122,10 +1132,45 @@ function classesCard() {
       if (email.value.trim()) classAction('shareClass', c.id, email.value.trim().toLowerCase());
     });
     share.append(email, add, confirmBtn('t-link', 'Remove class', `Tap again: remove ${c.name} and its students`, () => classAction('removeClass', c.id)));
-    row.append(who, share);
+    row.append(who, share, courseControls(c));
     card.append(row);
   }
   return card;
+}
+
+// A class's course: skills it hasn't taught yet are held back (no check questions, no lessons,
+// "Not taught" on the dashboard) until opened here, unit by unit, as they're taught.
+function courseControls(c) {
+  const box = h('div', 't-course');
+  const row = h('div', 't-controls');
+  const pick = h('select', 't-select');
+  pick.setAttribute('aria-label', `Course for ${c.name}`);
+  pick.append(new Option('No course set (nothing held back)', ''));
+  for (const k of courses.courses) pick.append(new Option(k.name, k.id));
+  pick.value = c.course || '';
+  pick.addEventListener('change', () => classAction('setCourse', c.id, pick.value));
+  row.append(h('span', 't-course-label', 'Course:'), pick);
+  box.append(row);
+  if (!c.course) return box;
+  const held = heldSkills({ courses, course: c.course, opened: c.opened || [] });
+  const later = held.filter((id) => !courseUnits({ courses, course: c.course }).some((u) => u.skills.some((x) => x.id === id)));
+  box.append(h('p', 't-card-sub', 'Skills this course teaches stay out of students’ checks and paths until you open them. Open a unit’s skills when you’ve taught it.'));
+  const list = h('ul', 't-units');
+  for (const u of courseUnits({ courses, course: c.course, opened: c.opened || [] })) {
+    if (!u.skills.length) continue;
+    const li = h('li', 't-unit');
+    li.append(h('span', 't-unit-name', u.name));
+    for (const sk of u.skills) {
+      const item = h('span', `t-unit-skill${sk.open ? ' is-open' : ''}`);
+      item.append(h('span', '', `${graph.get(sk.id).name}: ${sk.open ? 'open' : 'not taught yet'} `));
+      item.append(btn('t-link', sk.open ? 'hold back' : 'open', () => classAction('openSkill', c.id, sk.id, !sk.open)));
+      li.append(item);
+    }
+    list.append(li);
+  }
+  box.append(list);
+  if (later.length) box.append(h('p', 't-card-sub', `Later courses (held back): ${later.map((id) => graph.get(id).name).join(', ')}.`));
+  return box;
 }
 
 // Removed classes and students, with a way back. Nothing was deleted.

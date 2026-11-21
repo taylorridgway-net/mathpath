@@ -32,10 +32,13 @@
 // The teacher's changes (engine/teacher/assignments.js): `assigned` lessons or steps
 // come right after the foundations, marked assigned (the teacher decides the order);
 // `skipped` ones are left off.
+//
+// `held` (engine/courses/courses.js): skills the class's course hasn't taught yet. Their
+// lessons stay off the path, whatever the diagnostic found, unless the teacher assigns them.
 
 import { sectionsOf } from '../teacher/assignments.js';
 
-export function buildPath({ result, lessons, graph, cleared = [], waitForTeacher = false, assigned = [], skipped = [] }) {
+export function buildPath({ result, lessons, graph, cleared = [], waitForTeacher = false, assigned = [], skipped = [], held = [] }) {
   const status = (id) => result.nodes[id]?.status;
   const taughtGaps = new Set(lessons.flatMap((l) => l.sections.map((s) => s.forGap)));
   const hasLesson = (id) => taughtGaps.has(id) || graph.subskillsOf(id).some((s) => taughtGaps.has(s));
@@ -50,6 +53,7 @@ export function buildPath({ result, lessons, graph, cleared = [], waitForTeacher
 
   const items = [...foundations];
   for (const lesson of [...lessons].sort((a, b) => depth(a.skill) - depth(b.skill))) {
+    if (held.includes(lesson.skill)) continue;
     const parts = lesson.sections.filter((s) => s.mode === 'section' && ['gap', 'shaky'].includes(status(s.forGap)));
     const whole = lesson.sections.find((s) => s.mode === 'skill');
     const wholeNeeded = parts.some((s) => status(s.forGap) === 'gap') || status(lesson.skill) === 'gap';

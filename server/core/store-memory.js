@@ -38,6 +38,7 @@ export function createMemoryStore(initial = {}) {
     listStudents: (classIds) => copy(data.students.filter((s) => classIds.includes(s.classId))),
     // A teacher's classes: the ones they made, and ones shared with them.
     listClasses: (email) => copy(data.classes.filter((c) => c.teacherEmail === email || (c.coTeachers || []).includes(String(email).toLowerCase()))),
+    getClass: (id) => copy(data.classes.find((c) => c.id === id)),
     putClass(cls) {
       const i = data.classes.findIndex((c) => c.id === cls.id);
       if (i >= 0) data.classes[i] = copy(cls);

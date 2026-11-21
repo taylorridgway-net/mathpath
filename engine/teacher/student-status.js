@@ -30,6 +30,7 @@ export const STATUSES = [
   'partly', // diagnostic: some subskills right, others not asked
   'blocked', // diagnostic: couldn't check because it needs another gap first
   'unchecked', // diagnostic: possible cause, no questions for it yet
+  'not-taught', // the class's course hasn't taught it yet (engine/courses/courses.js)
   'not-tested',
 ];
 
@@ -46,7 +47,7 @@ const FROM_DIAGNOSTIC = {
 // resets: [{ skillId, at }] when the teacher sent the student back to redo a skill.
 // memory: memory-check records [{ skillId, held, finishedAt }]; retention: mastery.json "retention"; now: ISO time.
 // assignments: the teacher's assign/skip records for this student (engine/teacher/assignments.js).
-export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], resets = [], memory = [], retention = null, now = null, assignments = [], graph, lessons, waitForTeacher = false }) {
+export function studentStatus({ diagnosticResult: result, sections = [], verifications = [], cleared = [], resets = [], memory = [], retention = null, now = null, assignments = [], graph, lessons, waitForTeacher = false, held = [] }) {
   const sectionOf = new Map(lessons.flatMap((l) => l.sections.map((s) => [s.id, { ...s, lesson: l.skill }])));
   const byTime = (a, b) => String(a.at ?? a.finishedAt).localeCompare(String(b.at ?? b.finishedAt));
   // After a reset, that skill's "Putting it together" and paper tests from before don't count.
@@ -66,7 +67,7 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
 
   // ---- path with progress ----
   const changes = pathChanges(assignments);
-  const path = result ? buildPath({ result, lessons, graph, cleared, waitForTeacher, ...changes }) : [];
+  const path = result ? buildPath({ result, lessons, graph, cleared, waitForTeacher, ...changes, held }) : [];
   const sectionProgress = (id) => {
     const mine = records.filter((r) => r.section === id);
     if (mine.some((r) => r.passed)) return 'done';
@@ -94,12 +95,15 @@ export function studentStatus({ diagnosticResult: result, sections = [], verific
     if (platformAt[skillId]) return memoryOf[skillId]?.status === 'slipping' ? 'slipping' : 'platform';
     const diag = result?.skills?.[skillId];
     if (diag === 'gap' && touched.has(skillId)) return 'working';
+    // Not taught yet in this class's course: not a gap, whatever an early check found
+    // (unless the student has already started it, e.g. the teacher assigned it).
+    if (held.includes(skillId) && !touched.has(skillId)) return 'not-taught';
     return FROM_DIAGNOSTIC[diag] ?? 'not-tested';
   };
   const subskillStatus = (id) => {
     const skillId = graph.get(id).skillId;
     const whole = skillStatus(skillId);
-    if (whole === 'verified' || whole === 'platform' || whole === 'slipping') return whole;
+    if (whole === 'verified' || whole === 'platform' || whole === 'slipping' || whole === 'not-taught') return whole;
     const section = [...sectionOf.values()].find((s) => s.forGap === id);
     if (section) {
       const p = sectionProgress(section.id);

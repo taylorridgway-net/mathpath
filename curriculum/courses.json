@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "about": "Course mapping: the Integrated Math courses, their units, and which MathPath skills each unit first teaches. Kept out of the skill graph on purpose. A class's course only holds back skills its course hasn't taught yet (this year's and later courses' skills) until the teacher opens them for the class; it never adds, removes or reorders foundations.",
+  "source": "Draft from the California Mathematics Framework, Integrated Pathway (Math I, II, III), until the district's instructional guides can be read (owner, 2026-11-21: 'use the California one for now, we can always adjust later').",
+  "status": "draft",
+  "courses": [
+    {
+      "id": "im1",
+      "name": "Integrated Math 1",
+      "units": [
+        { "name": "Relationships between quantities", "skills": [] },
+        { "name": "Linear and exponential relationships", "skills": ["lin.functions", "lin.slope", "lin.slope-intercept", "lin.graphing", "lin.forms"] },
+        { "name": "Reasoning with equations (incl. systems)", "skills": ["alg.systems"] },
+        { "name": "Descriptive statistics", "skills": [] },
+        { "name": "Congruence, proof and constructions", "skills": [] },
+        { "name": "Connecting algebra and geometry through coordinates", "skills": ["lin.parallel"] }
+      ]
+    },
+    {
+      "id": "im2",
+      "name": "Integrated Math 2",
+      "units": [
+        { "name": "Extending the number system", "skills": [] },
+        { "name": "Quadratic functions and modeling", "skills": ["poly.multiply"] },
+        { "name": "Expressions and equations (incl. factoring)", "skills": ["poly.factor"] },
+        { "name": "Applications of probability", "skills": [] },
+        { "name": "Similarity, right triangle trigonometry and proof", "skills": [] },
+        { "name": "Circles with and without coordinates", "skills": [] }
+      ]
+    },
+    {
+      "id": "im3",
+      "name": "Integrated Math 3",
+      "units": [
+        { "name": "Inferences and conclusions from data", "skills": [] },
+        { "name": "Polynomial, rational and radical relationships", "skills": [] },
+        { "name": "Trigonometry of general triangles and trigonometric functions", "skills": [] },
+        { "name": "Mathematical modeling", "skills": [] }
+      ]
+    }
+  ]
+}

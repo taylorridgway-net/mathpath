@@ -15,7 +15,7 @@
 
 export const TABS = {
   Teachers: ['email'],
-  Classes: ['id', 'name', 'teacherEmail', 'createdAt', 'coTeachers', 'archived'],
+  Classes: ['id', 'name', 'teacherEmail', 'createdAt', 'coTeachers', 'archived', 'course', 'opened'],
   Students: ['id', 'code', 'nickname', 'classId', 'createdAt', 'retired', 'summary'],
   Roster: ['studentId', 'classId', 'realName'],
   Diagnostics: ['studentId', 'saveId', 'attemptNo', 'seed', 'startedAt', 'finishedAt', 'receivedAt', 'curriculumVersion', 'questionCount', 'rootGaps', 'data'],
@@ -32,7 +32,7 @@ export const TABS = {
   Assignments: ['studentId', 'action', 'lesson', 'section', 'by', 'at'],
   Log: ['at', 'by', 'studentId', 'what', 'before', 'after'],
 };
-const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks', 'misconceptions', 'coTeachers']);
+const JSON_COLUMNS = new Set(['summary', 'data', 'rootGaps', 'marks', 'misconceptions', 'coTeachers', 'opened']);
 const BOOLEAN_COLUMNS = new Set(['retired', 'review', 'passed', 'provisionalMastery', 'archived', 'held']);
 const KIND_TAB = { diagnostics: 'Diagnostics', sections: 'Sections', verifications: 'Verifications', clearances: 'Clearances', resets: 'Resets', practice: 'Practice', memory: 'Memory', assignments: 'Assignments', log: 'Log' };
 
@@ -196,6 +196,7 @@ export function createSheetsStore({ spreadsheet, lockService, memo = null }) {
       const me = String(email).toLowerCase();
       return copy(rows('Classes').filter((c) => String(c.teacherEmail).toLowerCase() === me || (c.coTeachers || []).includes(me)));
     },
+    getClass: (id) => copy(rows('Classes').find((c) => c.id === id)),
     putClass: (cls) => upsert('Classes', 'id', copy(cls)),
     listRoster: (ids) => copy(rows('Roster').filter((r) => ids.includes(r.studentId))),
     putRoster: (row) => upsert('Roster', 'studentId', copy(row)),
