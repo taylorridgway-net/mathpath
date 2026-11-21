@@ -22,6 +22,7 @@ import { createRng } from '../../engine/random.js';
 import { studentStatus, countStatuses } from '../../engine/teacher/student-status.js';
 import { heldSkills, courseUnits } from '../../engine/courses/courses.js';
 import { unitReadiness } from '../../engine/courses/readiness.js';
+import { classResults } from '../../engine/teacher/results.js';
 import { LOG_STATES } from '../../engine/teacher/assignments.js';
 import { teachTogether } from '../../engine/teacher/groups.js';
 import { participation } from '../../engine/teacher/participation.js';
@@ -195,6 +196,7 @@ const TABS = [
   ['groups', 'Teach together'],
   ['units', 'Units'],
   ['participation', 'Participation'],
+  ['results', 'Results'],
   ['paper', 'Paper tests'],
   ['lessons', 'Lessons'],
   ['roster', 'Roster'],
@@ -238,7 +240,7 @@ function frame(title, { tabs = true } = {}) {
 }
 
 function render() {
-  ({ overview, groups, units: unitsTab, participation: participationTab, paper, lessons: lessonsTab, roster })[tab]();
+  ({ overview, groups, units: unitsTab, participation: participationTab, results: resultsTab, paper, lessons: lessonsTab, roster })[tab]();
 }
 
 // ---------- status cells ----------
@@ -748,6 +750,63 @@ function sendBackButton(s, skillId, then) {
 }
 
 // ---------- Participation ----------
+
+// Results: is MathPath working? (engine/teacher/results.js). Usage stays on the Participation tab.
+function resultsTab() {
+  const screen = frame('Results');
+  screen.append(h('p', 'lede', 'Is MathPath working for these students? Worked out from their records; most useful after a few weeks. Effort and usage are on the Participation tab.'));
+  const r = classResults(shown(), { lessons });
+  const pct = (n, of) => (of ? `${Math.round((100 * n) / of)}%` : '—');
+  const stats = h('div', 't-stats');
+  stats.append(
+    stat(pct(r.gaps.mastered, r.gaps.found), `of the gaps the checks found are now mastered (${r.gaps.mastered} of ${r.gaps.found}; ${r.gaps.verified} verified on paper)`),
+    stat(pct(r.paper.confirmed, r.paper.tests), `of paper tests after platform mastery said verified (${r.paper.confirmed} of ${r.paper.tests})`),
+    stat(pct(r.memory.held, r.memory.taken), `of memory checks held up (${r.memory.held} of ${r.memory.taken}); ${r.memory.slipping} slipping now, ${r.memory.kept} kept`),
+  );
+  screen.append(stats);
+
+  const checks = h('div', 't-card');
+  checks.append(h('h2', 't-h2', 'How accurate is it?'));
+  const items = h('ul', 't-results-list');
+  const line = (strong, rest) => { const li = h('li'); li.append(h('strong', '', strong), ` ${rest}`); items.append(li); };
+  line(`Platform mastery held up on paper: ${pct(r.paper.confirmed, r.paper.tests)}.`, r.paper.tests
+    ? `Of ${r.paper.tests} paper tests taken after platform mastery, ${r.paper.confirmed} ended verified and ${r.paper.notYet} not yet. If this is low, practice is letting students through too easily.`
+    : 'No paper tests after platform mastery yet.');
+  line(`Your call matched the ${rules.verification.minScore}-of-${rules.verification.outOf} suggestion: ${pct(r.paper.agreed, r.paper.tests)}.`, r.paper.tests
+    ? 'If you often decide differently, the paper rule (or the paper tests) may need changing.'
+    : '');
+  line(`Gap steps aced from the start: ${pct(r.overFlagged.perfect, r.overFlagged.started)}.`, r.overFlagged.started
+    ? `${r.overFlagged.perfect} of ${r.overFlagged.started} gap steps students started were done with every practice problem right on the first try. A high number means the checks may be flagging things students can already do.`
+    : 'No gap steps started yet.');
+  checks.append(items);
+  screen.append(checks);
+
+  const card = h('div', 't-card');
+  card.append(h('h2', 't-h2', 'By skill: gaps and time to mastery'));
+  card.append(h('p', 't-card-sub', 'Time to mastery is from first starting a skill’s lessons to platform mastery (middle student). Only skills with something to show are listed.'));
+  if (!r.bySkill.length) card.append(h('p', 'empty', 'Nothing yet.'));
+  else {
+    const scroller = h('div', 't-scroll');
+    const table = h('table', 't-table');
+    const head = h('tr');
+    for (const t of ['Skill', 'Gaps found', 'Mastered now', 'Verified', 'Reached mastery', 'Days', 'Problems', 'Minutes']) head.append(h('th', '', t));
+    const thead = h('thead');
+    thead.append(head);
+    const tbody = h('tbody');
+    const order = (id) => ALL_SKILLS.indexOf(id);
+    const num = (v, digits = 0) => (v === null ? '—' : String(Math.round(v * 10 ** digits) / 10 ** digits));
+    for (const row of [...r.bySkill].sort((a, b) => order(a.skill) - order(b.skill))) {
+      const tr = h('tr');
+      for (const v of [shortName(row.skill), row.gapped, row.mastered, row.verified, row.reached, num(row.medianDays, 1), num(row.medianProblems), num(row.medianMinutes)]) tr.append(h('td', '', String(v)));
+      tbody.append(tr);
+    }
+    table.append(thead, tbody);
+    scroller.append(table);
+    card.append(scroller);
+  }
+  screen.append(card);
+  swap(app, screen);
+}
 
 function participationTab() {
   const screen = frame('Participation');

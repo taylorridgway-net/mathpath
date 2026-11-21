@@ -237,3 +237,4 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .t-unit-card > summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
 .t-unit-card > summary .t-bar { flex: 1 1 100%; }
 .t-unit-need { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid var(--line); margin-top: 8px; }
+.t-results-list { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; line-height: 1.45; }
