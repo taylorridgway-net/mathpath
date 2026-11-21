@@ -61,6 +61,17 @@ function build(node) {
       return el('span', 'm-num', node.value < 0 ? `−${-node.value}` : String(node.value));
     case 'words':
       return el('span', 'm-words', node.text);
+    case 'call': {
+      const wrap = el('span', 'm-row');
+      wrap.append(el('span', 'm-var', node.name), el('span', 'm-paren', '('), build(node.arg), el('span', 'm-paren', ')'));
+      return wrap;
+    }
+    case 'point':
+      return el('span', 'm-num', `(${minus(node.x)}, ${minus(node.y)})`);
+    case 'table':
+      return xyTable(node.rows);
+    case 'graph':
+      return lineGraph(node.points);
     case 'ratio': {
       const wrap = el('span', 'm-row');
       wrap.append(build(node.a), el('span', 'm-op', ':'), build(node.b));
@@ -112,6 +123,52 @@ function build(node) {
     default:
       throw new Error(`renderMath: unknown expression type "${node.type}"`);
   }
+}
+
+const minus = (v) => (v < 0 ? `\u2212${-v}` : String(v));
+
+// An x/y table, two rows.
+function xyTable(rows) {
+  const t = el('span', 'm-table');
+  for (const [label, i] of [['x', 0], ['y', 1]]) {
+    const row = el('span', 'm-table-row');
+    row.append(el('span', 'm-table-head', label), ...rows.map((r) => el('span', 'm-table-cell', minus(r[i]))));
+    t.append(row);
+  }
+  return t;
+}
+
+// A line on a −6..6 grid through two marked points, drawn right across the grid.
+function lineGraph([[x1, y1], [x2, y2]]) {
+  const R = 6;
+  const unit = 18;
+  const size = (2 * R + 1) * unit;
+  const X = (v) => (v + R + 0.5) * unit;
+  const Y = (v) => (R - v + 0.5) * unit;
+  const root = svg('svg', { viewBox: `0 0 ${size} ${size}`, width: 280, class: 'm-pic m-graph', 'aria-hidden': 'true' });
+  for (let v = -R; v <= R; v++) {
+    root.append(svg('line', { x1: X(v), y1: Y(-R), x2: X(v), y2: Y(R), class: v === 0 ? 'pic-line' : 'graph-grid' }));
+    root.append(svg('line', { x1: X(-R), y1: Y(v), x2: X(R), y2: Y(v), class: v === 0 ? 'pic-line' : 'graph-grid' }));
+  }
+  for (const v of [-5, 5]) {
+    const lx = svg('text', { x: X(v), y: Y(0) + 14, 'text-anchor': 'middle', class: 'graph-label' });
+    lx.textContent = minus(v);
+    const ly = svg('text', { x: X(0) - 6, y: Y(v) + 4, 'text-anchor': 'end', class: 'graph-label' });
+    ly.textContent = minus(v);
+    root.append(lx, ly);
+  }
+  // Extend the line to the edges of the grid, and no further (clip to the square).
+  const [dx, dy] = [x2 - x1, y2 - y1];
+  let lo = -Infinity; let hi = Infinity;
+  for (const [p, d] of [[x1, dx], [y1, dy]]) {
+    if (d === 0) continue;
+    const [a, b] = [(-R - p) / d, (R - p) / d];
+    lo = Math.max(lo, Math.min(a, b)); hi = Math.min(hi, Math.max(a, b));
+  }
+  const [ax, ay, bx, by] = [x1 + lo * dx, y1 + lo * dy, x1 + hi * dx, y1 + hi * dy];
+  root.append(svg('line', { x1: X(ax), y1: Y(ay), x2: X(bx), y2: Y(by), class: 'graph-line' }));
+  for (const [px, py] of [[x1, y1], [x2, y2]]) root.append(svg('circle', { cx: X(px), cy: Y(py), r: 5, class: 'pic-dot' }));
+  return root;
 }
 
 function fractionEl(n, d) {

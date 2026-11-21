@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about linear functions. 'pointsTo' is the subskill to work on. Claude's draft (2026-11-21).",
+  "misconceptions": [
+    {
+      "id": "lin.f-input-output",
+      "description": "Mixes up the input and the output: finds f(11) when asked for the x that gives f(x) = 11.",
+      "pointsTo": "lin.functions.evaluate"
+    },
+    {
+      "id": "lin.f-sign",
+      "description": "Drops the minus sign of a negative input (f(−2) worked as f(2)).",
+      "pointsTo": "lin.functions.evaluate"
+    },
+    {
+      "id": "lin.table-swapped",
+      "description": "Gives the input back instead of the output.",
+      "pointsTo": "lin.functions.table"
+    },
+    {
+      "id": "lin.table-add-step",
+      "description": "Adds one step of the pattern, however far x jumps.",
+      "pointsTo": "lin.functions.table"
+    },
+    {
+      "id": "lin.slope-run-over-rise",
+      "description": "Divides the change in x by the change in y (run over rise).",
+      "pointsTo": "lin.slope.points"
+    },
+    {
+      "id": "lin.slope-mixed-order",
+      "description": "Subtracts the y's in one order and the x's in the other, so the sign comes out wrong.",
+      "pointsTo": "lin.slope.points"
+    },
+    {
+      "id": "lin.slope-rise-only",
+      "description": "Gives the change in y without dividing by the change in x.",
+      "pointsTo": "lin.slope.points"
+    },
+    {
+      "id": "lin.mb-swapped",
+      "description": "Swaps the slope and the y-intercept.",
+      "pointsTo": "lin.slope-intercept.read"
+    },
+    {
+      "id": "lin.mb-sign",
+      "description": "Drops the sign of the slope or the intercept (y = −2x − 7 has slope 2).",
+      "pointsTo": "lin.slope-intercept.read"
+    },
+    {
+      "id": "lin.intercept-x",
+      "description": "Uses where the line crosses the x-axis as b.",
+      "pointsTo": "lin.slope-intercept.write"
+    },
+    {
+      "id": "lin.b-from-point",
+      "description": "Uses a point's y-value as the y-intercept, when that point isn't on the y-axis.",
+      "pointsTo": "lin.slope-intercept.two-points"
+    }
+  ]
+}

@@ -27331,6 +27331,4356 @@
    }
   ]
  },
+ "lin.functions": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is y when x = 5?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       9
+      ],
+      [
+       2,
+       12
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       18
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 21,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.functions.table"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find h(9).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "h",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 7,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 64,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "lin.functions.evaluate"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is y when x = 5?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       9
+      ],
+      [
+       3,
+       12
+      ],
+      [
+       4,
+       15
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 18,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.functions.table"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find f(3).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "f",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -16,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "lin.functions.evaluate"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find h(3).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "h",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 0,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "lin.functions.evaluate"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find f(−1).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "f",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-sign",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.functions.evaluate"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find h(−3).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "h",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 24,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-sign",
+      "value": {
+       "n": -6,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.functions.evaluate"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find h(4).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "h",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "pow",
+       "base": {
+        "type": "var",
+        "name": "x"
+       },
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [],
+    "part": "lin.functions.evaluate"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "g(x) = 4x + 7. For what x is g(x) = 3?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "g",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-input-output",
+      "value": {
+       "n": 19,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.functions.evaluate"
+   }
+  ]
+ },
+ "lin.functions.evaluate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find f(4).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "f",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 20,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find g(2).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "g",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 11
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 21,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find g(8).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "g",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 32,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find g(−4).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "g",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -22,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-sign",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find g(−6).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "g",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -27,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-sign",
+      "value": {
+       "n": 9,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find f(3).",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "f",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -14,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "f(x) = 3x + 5. For what x is f(x) = 2?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "f",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-input-output",
+      "value": {
+       "n": 11,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "h(x) = 3x − 4. For what x is h(x) = 14?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "h",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 6,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-input-output",
+      "value": {
+       "n": 38,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.evaluate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "f(x) = 2x − 9. For what x is f(x) = 7?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "call",
+      "name": "f",
+      "arg": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.f-input-output",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.functions.table": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is y when x = 5?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       9
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       21
+      ],
+      [
+       4,
+       27
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 33,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is y when x = 5?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       5
+      ],
+      [
+       2,
+       9
+      ],
+      [
+       3,
+       13
+      ],
+      [
+       4,
+       17
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 21,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is y when x = 5?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       6
+      ],
+      [
+       2,
+       11
+      ],
+      [
+       3,
+       16
+      ],
+      [
+       4,
+       21
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 26,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is y when x = 10?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       -2
+      ],
+      [
+       2,
+       3
+      ],
+      [
+       3,
+       8
+      ],
+      [
+       4,
+       13
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 43,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is y when x = 10?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       13
+      ],
+      [
+       2,
+       19
+      ],
+      [
+       3,
+       25
+      ],
+      [
+       4,
+       31
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 67,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": 37,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What is y when x = 8?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       2
+      ],
+      [
+       2,
+       0
+      ],
+      [
+       3,
+       -2
+      ],
+      [
+       4,
+       -4
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -12,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 8,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -6,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What is y when x = 0?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       2,
+       -2
+      ],
+      [
+       3,
+       -7
+      ],
+      [
+       4,
+       -12
+      ],
+      [
+       5,
+       -17
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -22,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is y when x = 0?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       2,
+       -1
+      ],
+      [
+       3,
+       0
+      ],
+      [
+       4,
+       1
+      ],
+      [
+       5,
+       2
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.table",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is y when x = 0?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       2,
+       -10
+      ],
+      [
+       3,
+       -11
+      ],
+      [
+       4,
+       -12
+      ],
+      [
+       5,
+       -13
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -14,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -9,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.slope": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 5,
+       "y": 0
+      },
+      {
+       "type": "point",
+       "x": 6,
+       "y": 5
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope.points"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 0,
+       "y": 4
+      },
+      {
+       "type": "point",
+       "x": 2,
+       "y": 6
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope.points"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 4,
+       "y": 5
+      },
+      {
+       "type": "point",
+       "x": 7,
+       "y": 17
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope.points"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -1
+      ],
+      [
+       2,
+       2
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -3,
+       "d": 2
+      }
+     }
+    ],
+    "part": "lin.slope.graph"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       0
+      ],
+      [
+       2,
+       1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -1,
+       "d": 2
+      }
+     }
+    ],
+    "part": "lin.slope.graph"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       4
+      ],
+      [
+       2,
+       1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     }
+    ],
+    "part": "lin.slope.graph"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -2
+      ],
+      [
+       2,
+       -3
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ],
+    "part": "lin.slope.graph"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 1,
+       "y": -20
+      },
+      {
+       "type": "point",
+       "x": -3,
+       "y": 4
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -6,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -1,
+       "d": 6
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 24,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope.points"
+   },
+   {
+    "generator": "lin.slope",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       -1,
+       -4
+      ],
+      [
+       1,
+       -7
+      ],
+      [
+       3,
+       -10
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope.points"
+   }
+  ]
+ },
+ "lin.slope-intercept": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line with slope 2 and y-intercept 6.",
+    "expression": {
+     "type": "words",
+     "text": "y = mx + b"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": 6,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 6,
+       "constant": 2
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.write"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 6,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 6,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 9,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -6,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.read"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 9,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.read"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -2
+      ],
+      [
+       1,
+       2
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": -2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -2,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -4,
+       "constant": -2
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.write"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.read"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.read"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       2
+      ],
+      [
+       1,
+       -1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -3,
+     "constant": 2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 2,
+       "constant": -3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 3,
+       "constant": 2
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.write"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 3,
+       "y": -14
+      },
+      {
+       "type": "point",
+       "x": 4,
+       "y": -16
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": -8,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -2,
+       "constant": -14
+      }
+     },
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -8,
+       "constant": -2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 2,
+       "constant": -20
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.two-points"
+   },
+   {
+    "generator": "lin.slope-intercept",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "int",
+       "value": -2
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.slope-intercept.read"
+   }
+  ]
+ },
+ "lin.slope-intercept.read": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 9
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 9,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 7,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 11
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 11,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 12
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -12,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -7,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 10
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -10,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": -7,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -7,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -7,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": 7,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "int",
+       "value": -1
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "int",
+       "value": 8
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": -8,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.read",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "int",
+       "value": 4
+      },
+      "right": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.mb-sign",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.slope-intercept.two-points": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 0,
+       "y": -8
+      },
+      {
+       "type": "point",
+       "x": 1,
+       "y": -3
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -8,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -8,
+       "constant": 5
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -5,
+       "constant": -8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 0,
+       "y": 2
+      },
+      {
+       "type": "point",
+       "x": 1,
+       "y": 6
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": 2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 2,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -4,
+       "constant": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 0,
+       "y": -5
+      },
+      {
+       "type": "point",
+       "x": 1,
+       "y": -1
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": -5,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -5,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -4,
+       "constant": -5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 4,
+       "y": 12
+      },
+      {
+       "type": "point",
+       "x": 7,
+       "y": 18
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": 4,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 2,
+       "constant": 12
+      }
+     },
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 4,
+       "constant": 2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -2,
+       "constant": 20
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 3,
+       "y": -4
+      },
+      {
+       "type": "point",
+       "x": 5,
+       "y": -2
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": -7,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 1,
+       "constant": -4
+      }
+     },
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -7,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -1,
+       "constant": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 4,
+       "y": 21
+      },
+      {
+       "type": "point",
+       "x": 6,
+       "y": 31
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 1,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 5,
+       "constant": 21
+      }
+     },
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 1,
+       "constant": 5
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -5,
+       "constant": 41
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 3,
+       "y": -4
+      },
+      {
+       "type": "point",
+       "x": 6,
+       "y": -10
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": 2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -2,
+       "constant": -4
+      }
+     },
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 2,
+       "constant": -2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 2,
+       "constant": -10
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 4,
+       "y": 4
+      },
+      {
+       "type": "point",
+       "x": 7,
+       "y": 1
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -1,
+     "constant": 8,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -1,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 8,
+       "constant": -1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 1,
+       "constant": 0
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.two-points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line through these points.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 4,
+       "y": -14
+      },
+      {
+       "type": "point",
+       "x": 6,
+       "y": -22
+      }
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -4,
+     "constant": 2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -4,
+       "constant": -14
+      }
+     },
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 2,
+       "constant": -4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 4,
+       "constant": -30
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.slope-intercept.write": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line with slope 5 and y-intercept 9.",
+    "expression": {
+     "type": "words",
+     "text": "y = mx + b"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 9,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 9,
+       "constant": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line with slope 3 and y-intercept −2.",
+    "expression": {
+     "type": "words",
+     "text": "y = mx + b"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -2,
+       "constant": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line with slope 2 and y-intercept −7.",
+    "expression": {
+     "type": "words",
+     "text": "y = mx + b"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": -7,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -7,
+       "constant": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -3
+      ],
+      [
+       1,
+       -2
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": -3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -3,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "coef": 1,
+       "constant": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -1,
+       "constant": -3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       2
+      ],
+      [
+       2,
+       4
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": 2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 2,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "coef": 1,
+       "constant": -2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -1,
+       "constant": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -1
+      ],
+      [
+       2,
+       3
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": -1,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": -1,
+       "constant": 2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": -2,
+       "constant": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       3
+      ],
+      [
+       2,
+       -1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": 3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 3,
+       "constant": -2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 2,
+       "constant": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -2
+      ],
+      [
+       2,
+       -6
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": -2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "coef": -2,
+       "constant": -1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 2,
+       "constant": -2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope-intercept.write",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       3
+      ],
+      [
+       1,
+       -1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -4,
+     "constant": 3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "coef": 3,
+       "constant": -4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "coef": 4,
+       "constant": 3
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.slope.graph": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -4
+      ],
+      [
+       1,
+       -1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -3
+      ],
+      [
+       1,
+       -1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       4
+      ],
+      [
+       1,
+       6
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -3
+      ],
+      [
+       2,
+       -6
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -2
+      ],
+      [
+       3,
+       -1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -1,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       -3
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -1,
+       "d": 4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -1
+      ],
+      [
+       3,
+       -2
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       -4
+      ],
+      [
+       3,
+       -5
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 1,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the slope of the line.",
+    "expression": {
+     "type": "graph",
+     "points": [
+      [
+       0,
+       2
+      ],
+      [
+       3,
+       0
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -2,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -3,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.slope.points": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 4,
+       "y": 0
+      },
+      {
+       "type": "point",
+       "x": 7,
+       "y": 12
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 12,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 0,
+       "y": 4
+      },
+      {
+       "type": "point",
+       "x": 1,
+       "y": 6
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 2,
+       "y": 2
+      },
+      {
+       "type": "point",
+       "x": 4,
+       "y": 12
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 0,
+       "y": 0
+      },
+      {
+       "type": "point",
+       "x": 2,
+       "y": 3
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -3,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 0,
+       "y": -5
+      },
+      {
+       "type": "point",
+       "x": 4,
+       "y": -11
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": -6,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 4,
+       "y": -3
+      },
+      {
+       "type": "point",
+       "x": 7,
+       "y": -1
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       2,
+       -4
+      ],
+      [
+       6,
+       -1
+      ],
+      [
+       10,
+       2
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 4,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -3,
+       "d": 4
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       -6,
+       -3
+      ],
+      [
+       -5,
+       -2
+      ],
+      [
+       -4,
+       -1
+      ]
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": -1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.slope.points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the slope.",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "point",
+       "x": 9,
+       "y": -15
+      },
+      {
+       "type": "point",
+       "x": 3,
+       "y": -5
+      }
+     ]
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -5,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -3,
+       "d": 5
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "n": 5,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.slope-rise-only",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
  "rat.percent": {
   "version": 1,
   "problems": [

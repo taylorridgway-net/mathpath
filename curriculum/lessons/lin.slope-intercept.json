@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.slope-intercept",
+  "title": "Slope-intercept form",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "lin.slope-intercept.read": "In y = mx + b, m (the number with x) is the slope and b (the number on its own) is the y-intercept. Keep the signs.",
+    "lin.slope-intercept.write": "Find the slope and where the line crosses the y-axis. Then write y = (slope)x + (intercept).",
+    "lin.slope-intercept.two-points": "Find the slope first. Then put one point into y = mx + b and solve for b.",
+    "lin.slope-intercept": "y = mx + b: m is the slope, b is where the line crosses the y-axis. From two points: slope first, then b."
+  },
+  "misconceptionMessages": {
+    "lin.mb-swapped": "m goes with x (the slope) and b is the number on its own (the y-intercept). Check you haven't swapped them.",
+    "lin.mb-sign": "Keep the sign: in y = −2x − 7, the slope is −2 and the y-intercept is −7.",
+    "lin.intercept-x": "b is where the line crosses the y-axis (the up-and-down one), where x = 0.",
+    "lin.b-from-point": "A point's y is only the y-intercept when its x is 0. Put the point into y = mx + b and solve for b."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "lin.slope-intercept.read",
+      "forGap": "lin.slope-intercept.read",
+      "title": "Read m and b",
+      "objective": "Read the slope and the y-intercept from y = mx + b.",
+      "mode": "section",
+      "generator": "lin.slope-intercept.read",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "m is the number multiplying x; b is the number on its own.",
+        "The order they're written in doesn't matter: y = 4 − 3x has slope −3 and y-intercept 4."
+      ],
+      "visual": null,
+      "key": "In y = mx + b, the number with x is the slope (m) and the number on its own is the y-intercept (b). Keep the signs.",
+      "worked": [
+        {
+          "math": "y = [[3]]x + [[5]]",
+          "note": "slope 3, y-intercept 5"
+        },
+        {
+          "math": "y = [[−2]]x − [[7]]",
+          "note": "slope −2, y-intercept −7"
+        },
+        {
+          "math": "y = 4 − 3x = [[−3]]x + [[4]]",
+          "note": "the order doesn't matter"
+        }
+      ]
+    },
+    {
+      "id": "lin.slope-intercept.write",
+      "forGap": "lin.slope-intercept.write",
+      "title": "Write the equation",
+      "objective": "Write y = mx + b from a slope and y-intercept, or from a graph.",
+      "mode": "section",
+      "generator": "lin.slope-intercept.write",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "From a graph: the y-intercept is where the line crosses the y-axis; the slope is rise over run.",
+        "Then write y = (slope)x + (intercept)."
+      ],
+      "visual": {
+        "widget": "slope-graph",
+        "params": {
+          "points": [
+            [
+              0,
+              -2
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "intercept": true
+        },
+        "caption": "Tap through: run, rise, slope, and where it crosses the y-axis."
+      },
+      "key": "Find the slope (m) and where the line crosses the y-axis (b). Then write y = mx + b."
+    },
+    {
+      "id": "lin.slope-intercept.two-points",
+      "forGap": "lin.slope-intercept.two-points",
+      "title": "From two points",
+      "objective": "Write y = mx + b for the line through two points.",
+      "mode": "section",
+      "generator": "lin.slope-intercept.two-points",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Find the slope from the two points.",
+        "Put either point into y = mx + b and solve for b."
+      ],
+      "visual": null,
+      "key": "Slope first. Then put one point into y = mx + b and solve for b.",
+      "worked": [
+        {
+          "math": "(1, 5) and (3, 11)",
+          "note": ""
+        },
+        {
+          "math": "slope = 6/2 = [[3]]",
+          "note": ""
+        },
+        {
+          "math": "5 = 3(1) + b",
+          "note": "put in (1, 5)"
+        },
+        {
+          "math": "b = [[2]]",
+          "note": ""
+        },
+        {
+          "math": "y = 3x + 2",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "lin.slope-intercept.whole",
+      "forGap": "lin.slope-intercept",
+      "title": "Putting it together",
+      "objective": "Slope-intercept form of every kind.",
+      "mode": "skill",
+      "generator": "lin.slope-intercept",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "y = mx + b: m is the slope, b is where the line crosses the y-axis. From two points: slope first, then b.",
+      "worked": [
+        {
+          "math": "(2, 1) and (4, −3)",
+          "note": ""
+        },
+        {
+          "math": "slope = −4/2 = [[−2]]",
+          "note": ""
+        },
+        {
+          "math": "1 = −2(2) + b, b = [[5]]",
+          "note": ""
+        },
+        {
+          "math": "y = −2x + 5",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

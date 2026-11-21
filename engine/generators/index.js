@@ -22,6 +22,7 @@ import { wholeMultDivGenerators } from './whole/mult-div.js';
 import { wholeFactorGenerators } from './whole/factors.js';
 import { decimalGenerators } from './dec/decimals.js';
 import { ratioGenerators } from './rat/ratios.js';
+import { linearGenerators } from './lin/linear.js';
 
 export const generators = {
   ...addSubGenerators,
@@ -44,6 +45,7 @@ export const generators = {
   ...wholeFactorGenerators,
   ...decimalGenerators,
   ...ratioGenerators,
+  ...linearGenerators,
 };
 
 export const DIFFICULTIES = [1, 2, 3];

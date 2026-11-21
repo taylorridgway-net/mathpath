@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.functions",
+  "title": "Function inputs and outputs",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "lin.functions.evaluate": "f(3) means: put 3 in for x in the rule. Negative inputs go in parentheses.",
+    "lin.functions.table": "Find how much y changes each time x goes up 1. Then count the steps to the x you want.",
+    "lin.functions": "f(3): put 3 in for x. Tables: find the change for each step, then count steps."
+  },
+  "misconceptionMessages": {
+    "lin.f-input-output": "Here you know the OUTPUT, f(x) = 11. Set the rule equal to 11 and solve for x.",
+    "lin.f-sign": "Keep the input's minus sign: put it in with parentheses. f(−2) with f(x) = 3x + 1 is 3(−2) + 1 = −5.",
+    "lin.table-swapped": "The question asks for y, the output. Find the pattern in the y row.",
+    "lin.table-add-step": "Count how many steps x jumps, and add the change that many times, not just once."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "lin.functions.evaluate",
+      "forGap": "lin.functions.evaluate",
+      "title": "Function notation",
+      "objective": "Find f(3) for a rule like f(x) = 2x + 5.",
+      "mode": "section",
+      "generator": "lin.functions.evaluate",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "f(x) = 2x + 5 is a rule: put in an x, get out a y.",
+        "f(3) means the output when the input is 3."
+      ],
+      "visual": null,
+      "key": "f(3) means: put 3 in for x in the rule and work it out. f(3) is the output; 3 is the input.",
+      "worked": [
+        {
+          "math": "f(x) = 2x + 5",
+          "note": ""
+        },
+        {
+          "math": "f([[3]]) = 2([[3]]) + 5",
+          "note": "put 3 in for x"
+        },
+        {
+          "math": "= 6 + 5 = [[11]]",
+          "note": ""
+        },
+        {
+          "math": "f(−2) = 2([[−2]]) + 5 = 1",
+          "note": "negative inputs in parentheses"
+        }
+      ]
+    },
+    {
+      "id": "lin.functions.table",
+      "forGap": "lin.functions.table",
+      "title": "Tables",
+      "objective": "Read and extend an x/y table.",
+      "mode": "section",
+      "generator": "lin.functions.table",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "In a linear table, y changes by the same amount every time x goes up 1.",
+        "Count the steps to the x you want."
+      ],
+      "visual": null,
+      "key": "Find how much y changes each time x goes up 1. Then count the steps to the x you want.",
+      "worked": [
+        {
+          "math": "x: 1, 2, 3, 4   y: 5, 8, 11, 14",
+          "note": ""
+        },
+        {
+          "math": "y goes up [[3]] each step",
+          "note": ""
+        },
+        {
+          "math": "x = 10: 6 more steps from x = 4",
+          "note": ""
+        },
+        {
+          "math": "14 + 6 × 3 = [[32]]",
+          "note": ""
+        },
+        {
+          "math": "x = 0: one step back from x = 1: 5 − 3 = [[2]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "lin.functions.whole",
+      "forGap": "lin.functions",
+      "title": "Putting it together",
+      "objective": "Function notation and tables, mixed.",
+      "mode": "skill",
+      "generator": "lin.functions",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "f(3): put 3 in for x. A table: find the change per step, then count steps.",
+      "worked": [
+        {
+          "math": "f(x) = 4x − 1, f(x) = 11. Find x.",
+          "note": ""
+        },
+        {
+          "math": "4x − 1 = 11",
+          "note": "set the rule equal to the output"
+        },
+        {
+          "math": "4x = 12, x = [[3]]",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

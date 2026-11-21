@@ -34,6 +34,7 @@ import { createPlaceChart } from '../components/place-chart.js';
 import { createBalanceSteps } from '../components/balance-steps.js';
 import { createFlipLine } from '../components/flip-line.js';
 import { createRatioTable } from '../components/ratio-table.js';
+import { createSlopeGraph } from '../components/slope-graph.js';
 import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
@@ -219,7 +220,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     const WIDGETS = {
       'fraction-bars': createFractionBars, 'area-model': createAreaModel, 'fraction-area': createFractionArea,
       'int-line': createIntLine, balance: createBalance, column: createColumnSteps, steps: createStepThrough,
-      groups: createGroups, 'factor-pairs': createFactorPairs, 'place-chart': createPlaceChart, 'balance-steps': createBalanceSteps, 'flip-line': createFlipLine, 'ratio-table': createRatioTable,
+      groups: createGroups, 'factor-pairs': createFactorPairs, 'place-chart': createPlaceChart, 'balance-steps': createBalanceSteps, 'flip-line': createFlipLine, 'ratio-table': createRatioTable, 'slope-graph': createSlopeGraph,
     };
     if (WIDGETS[visual?.widget]) {
       const box = h('figure', 'visual');

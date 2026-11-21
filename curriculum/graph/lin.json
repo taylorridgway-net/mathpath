@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "domain": {
+    "id": "lin",
+    "name": "Linear functions"
+  },
+  "skills": [
+    {
+      "id": "lin.functions",
+      "name": "Function inputs and outputs",
+      "summary": "Function notation (find f(3) for f(x) = 2x − 5, or the x that gives an output) and reading x/y tables.",
+      "typicalGrade": 8,
+      "standards": [
+        "8.F.A.1",
+        "F-IF.A.2"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "lin.functions.evaluate",
+          "name": "Function notation: find f(3)",
+          "prerequisites": [
+            {
+              "id": "alg.evaluate.substitute",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.evaluate.negative",
+              "strength": "supporting",
+              "why": "Some inputs are negative."
+            }
+          ]
+        },
+        {
+          "id": "lin.functions.table",
+          "name": "Read and extend an x/y table",
+          "prerequisites": [
+            {
+              "id": "alg.evaluate.substitute",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.different-signs",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lin.slope",
+      "name": "Slope",
+      "summary": "Slope as rise over run: from two points, a table, or a graph; positive, negative and fraction slopes.",
+      "typicalGrade": 8,
+      "standards": [
+        "8.EE.B.6",
+        "8.F.B.4"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "lin.slope.points",
+          "name": "Slope from two points or a table",
+          "prerequisites": [
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.divide",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.equivalent.simplify",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "lin.slope.graph",
+          "name": "Slope from a graph",
+          "prerequisites": [
+            {
+              "id": "int.mult-div.divide",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.equivalent.simplify",
+              "strength": "essential"
+            },
+            {
+              "id": "lin.slope.points",
+              "strength": "supporting",
+              "why": "Counting rise and run is the same idea."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lin.slope-intercept",
+      "name": "Slope-intercept form",
+      "summary": "y = mx + b: read the slope and y-intercept, write the equation from them or from a graph, and from two points.",
+      "typicalGrade": 8,
+      "standards": [
+        "8.EE.B.6",
+        "8.F.B.4",
+        "F-LE.A.2"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "lin.slope-intercept.read",
+          "name": "Read m and b from y = mx + b",
+          "prerequisites": [
+            {
+              "id": "lin.functions.evaluate",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "lin.slope-intercept.write",
+          "name": "Write y = mx + b from a slope and intercept, or a graph",
+          "prerequisites": [
+            {
+              "id": "lin.slope-intercept.read",
+              "strength": "essential"
+            },
+            {
+              "id": "lin.slope.graph",
+              "strength": "supporting",
+              "why": "From a graph, find the slope first."
+            }
+          ]
+        },
+        {
+          "id": "lin.slope-intercept.two-points",
+          "name": "Write y = mx + b from two points",
+          "prerequisites": [
+            {
+              "id": "lin.slope.points",
+              "strength": "essential"
+            },
+            {
+              "id": "lin.slope-intercept.write",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.equations.two-step",
+              "strength": "essential",
+              "why": "Solve for b."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

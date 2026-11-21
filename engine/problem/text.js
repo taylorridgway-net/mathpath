@@ -21,6 +21,10 @@
 //   { type: 'blank' }
 //   { type: 'ratio', a, b }           a ratio a : b (either may be a blank)
 //   { type: 'pct', value }            a percent: "35%" (value is decimal text)
+//   { type: 'call', name, arg }       function notation: f(x), g(3)
+//   { type: 'point', x, y }           a point: (2, -3)
+//   { type: 'table', rows }           an x/y table: rows [[x, y], ...]
+//   { type: 'graph', points }         a line on a grid through two marked points [[x, y], [x, y]]
 //   { type: 'words', text }           a short word problem's question, shown as text
 //   { type: 'model', shape: 'bar' | 'area' | 'set', parts, shaded, rows?, cols? }
 //                                     a picture: parts equal pieces (or dots), the first `shaded` shaded
@@ -36,6 +40,14 @@ export function toText(node) {
       return '?';
     case 'words':
       return node.text;
+    case 'call':
+      return `${node.name}(${toText(node.arg)})`;
+    case 'point':
+      return `(${node.x}, ${node.y})`;
+    case 'table':
+      return `[a table: x ${node.rows.map((r) => r[0]).join(', ')}; y ${node.rows.map((r) => r[1]).join(', ')}]`;
+    case 'graph':
+      return `[a line on a grid through (${node.points[0].join(', ')}) and (${node.points[1].join(', ')})]`;
     case 'ratio':
       return `${toText(node.a)} : ${toText(node.b)}`;
     case 'pct':

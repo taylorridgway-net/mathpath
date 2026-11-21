@@ -39,7 +39,7 @@ export function substitute(node, values, how = 'right') {
         const p = power(product, node.exp);
         return c === 1 ? p : c === -1 ? neg(p) : op('×', int(c), p);
       }
-      return c === 1 ? product : c === -1 ? neg(product) : op('×', int(c), product);
+      return c === 1 ? product : c === -1 ? (product.type === 'int' ? int(-product.value) : neg(product)) : op('×', int(c), product);
     }
     case 'scaled': return op('×', int(node.coef), group(substitute(node.of, values, how)));
     case 'pow': {

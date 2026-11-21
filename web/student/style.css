@@ -477,3 +477,19 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .rtable-cell.is-hidden { border-style: dashed; background: none; }
 .rtable-cell.is-new { background: var(--mark-soft); border-color: var(--mark); }
 .rtable-times { font-size: 0.8rem; color: var(--accent); text-align: center; font-weight: 700; }
+
+/* linear functions: tables and graphs */
+.m-table { display: inline-grid; font-family: var(--font-math); font-size: 0.8em; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.m-table-row { display: flex; }
+.m-table-row + .m-table-row { border-top: 1px solid var(--line); }
+.m-table-head, .m-table-cell { min-width: 2.4em; padding: 4px 8px; text-align: center; }
+.m-table-head { background: var(--accent-soft); font-style: italic; }
+.m-table-cell + .m-table-cell, .m-table-head + .m-table-cell { border-left: 1px solid var(--line); }
+.m-graph { max-width: 100%; height: auto; }
+.graph-grid { stroke: var(--line); stroke-width: 1; }
+.graph-line { stroke: var(--accent); stroke-width: 3; }
+.graph-label { font-size: 11px; fill: var(--muted); font-family: var(--font-ui); }
+.slope-run { stroke: var(--info); stroke-width: 3; stroke-dasharray: 6 4; }
+.slope-rise { stroke: var(--mark); stroke-width: 3; stroke-dasharray: 6 4; }
+.slope-label { font-size: 12px; font-weight: 700; fill: var(--ink); font-family: var(--font-ui); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.slope-b { fill: none; stroke: var(--bad); stroke-width: 3; }

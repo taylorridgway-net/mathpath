@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.slope",
+  "title": "Slope",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item ('slope X Y X Y ...': the slope through those points, all on one line; 'rise R run N': R over N), used only by the test that checks the answer key.",
+  "directions": "Show your work. Slope = change in y ÷ change in x. Write fractions in simplest form.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Find the slope of the line through (2, 5) and (6, 17).", "math": "slope 2 5 6 17", "answer": "3" },
+        { "id": "A2", "kind": "computation", "prompt": "Find the slope of the line through (−1, 4) and (3, −4).", "math": "slope -1 4 3 -4", "answer": "−2" },
+        { "id": "A3", "kind": "computation", "prompt": "A line passes through (0, 1) and (6, 5). What is its slope?", "math": "slope 0 1 6 5", "answer": "2/3" },
+        { "id": "A4", "kind": "computation", "prompt": "The points in this table are on one line. x: 0, 2, 4, 6. y: 7, 4, 1, −2. What is the slope?", "math": "slope 0 7 2 4 4 1 6 -2", "answer": "−3/2" },
+        { "id": "A5", "kind": "word", "prompt": "A wheelchair ramp rises 2 feet over a flat distance of 24 feet. What is the slope of the ramp? Write it as a fraction in simplest form.", "math": "rise 2 run 24", "answer": "1/12" },
+        { "id": "A6", "kind": "word", "prompt": "Kim found the slope of the line through (1, 2) and (3, 10) like this: (3 − 1) ÷ (10 − 2) = 2/8 = 1/4. Is she right? Explain, and give the correct slope.", "math": "slope 1 2 3 10", "answer": "4 (No: she divided the change in x by the change in y; slope = (10 − 2) ÷ (3 − 1) = 8 ÷ 2)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "What is the slope of the line through (3, 1) and (5, 11)?", "math": "slope 3 1 5 11", "answer": "5" },
+        { "id": "B2", "kind": "computation", "prompt": "A line passes through (−2, 6) and (4, 2). What is its slope?", "math": "slope -2 6 4 2", "answer": "−2/3" },
+        { "id": "B3", "kind": "computation", "prompt": "Find the slope of the line through (1, −5) and (5, −5).", "math": "slope 1 -5 5 -5", "answer": "0 (the line is flat)" },
+        { "id": "B4", "kind": "word", "prompt": "Marcus saves the same amount each week. Week (x): 2, 4, 6, 8. Savings in dollars (y): 30, 50, 70, 90. What is the slope, and what does it mean?", "math": "slope 2 30 4 50 6 70 8 90", "answer": "10 (he saves $10 per week)" },
+        { "id": "B5", "kind": "word", "prompt": "A road climbs 15 feet for every 300 feet you drive forward. What is the slope of the road? Write it as a fraction in simplest form.", "math": "rise 15 run 300", "answer": "1/20" },
+        { "id": "B6", "kind": "word", "prompt": "Luis found the slope of the line through (2, 7) and (5, 1) like this: (1 − 7) ÷ (2 − 5) = −6 ÷ (−3) = 2. Is he right? Explain, and give the correct slope.", "math": "slope 2 7 5 1", "answer": "−2 (No: he subtracted the points in a different order on the top and the bottom; (1 − 7) ÷ (5 − 2) = −6 ÷ 3)" }
+      ]
+    }
+  ]
+}

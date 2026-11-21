@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.slope",
+  "title": "Slope",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "lin.slope.points": "Slope = change in y ÷ change in x. Subtract the y's and the x's in the same order.",
+    "lin.slope.graph": "Pick two points on the line. Count the run across and the rise up (down is negative). Slope = rise ÷ run.",
+    "lin.slope": "Slope = rise ÷ run = change in y ÷ change in x. Same order for both; simplify."
+  },
+  "misconceptionMessages": {
+    "lin.slope-run-over-rise": "It's rise over run: the change in y goes on top, the change in x on the bottom.",
+    "lin.slope-mixed-order": "Subtract in the same order both times: (y₂ − y₁) and (x₂ − x₁). A line going down from left to right has a negative slope.",
+    "lin.slope-rise-only": "That's the rise. Divide it by the run (the change in x) to get the slope."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "lin.slope.points",
+      "forGap": "lin.slope.points",
+      "title": "Slope from two points",
+      "objective": "Find the slope between two points, or from a table.",
+      "mode": "section",
+      "generator": "lin.slope.points",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Slope measures how steep a line is: how much y changes for each 1 that x changes.",
+        "Subtract the y's, subtract the x's in the same order, divide, and simplify."
+      ],
+      "visual": null,
+      "key": "Slope = change in y ÷ change in x. Subtract in the same order both times.",
+      "worked": [
+        {
+          "math": "(1, 3) and (4, 9)",
+          "note": ""
+        },
+        {
+          "math": "rise: 9 − 3 = [[6]]",
+          "note": ""
+        },
+        {
+          "math": "run: 4 − 1 = [[3]]",
+          "note": "same order"
+        },
+        {
+          "math": "slope = 6/3 = [[2]]",
+          "note": ""
+        },
+        {
+          "math": "(0, 5) and (3, 3): −2/3",
+          "note": "going down: negative"
+        }
+      ]
+    },
+    {
+      "id": "lin.slope.graph",
+      "forGap": "lin.slope.graph",
+      "title": "Slope from a graph",
+      "objective": "Count rise and run on a graph.",
+      "mode": "section",
+      "generator": "lin.slope.graph",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Pick two points where the line crosses the grid exactly.",
+        "Count across (run), then up or down (rise). Down is negative."
+      ],
+      "visual": {
+        "widget": "slope-graph",
+        "params": {
+          "points": [
+            [
+              -2,
+              -1
+            ],
+            [
+              2,
+              5
+            ]
+          ],
+          "intercept": false
+        },
+        "caption": "Tap to draw the run, then the rise."
+      },
+      "key": "Count the run across and the rise up (down is negative) between two points on the line. Slope = rise ÷ run."
+    },
+    {
+      "id": "lin.slope.whole",
+      "forGap": "lin.slope",
+      "title": "Putting it together",
+      "objective": "Slope from points, tables and graphs, mixed.",
+      "mode": "skill",
+      "generator": "lin.slope",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Slope = rise ÷ run. Same order for both; down is negative; simplify.",
+      "worked": [
+        {
+          "math": "(−2, 4) and (2, −2)",
+          "note": ""
+        },
+        {
+          "math": "rise: −2 − 4 = [[−6]]",
+          "note": ""
+        },
+        {
+          "math": "run: 2 − (−2) = [[4]]",
+          "note": ""
+        },
+        {
+          "math": "slope = −6/4 = [[−3/2]]",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

@@ -296,6 +296,9 @@ const shortName = (id) => ({
   'rat.ratios': 'Ratios & rates',
   'rat.percent': 'Percents',
   'rat.percent-change': 'Percent change',
+  'lin.functions': 'Functions & tables',
+  'lin.slope': 'Slope',
+  'lin.slope-intercept': 'y = mx + b',
 }[id] || graph.get(id).name);
 
 // ---------- Class overview ----------

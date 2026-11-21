@@ -49,6 +49,15 @@
         "rat.percent",
         "rat.percent-change"
       ]
+    },
+    {
+      "id": "linear",
+      "name": "Linear functions check",
+      "targets": [
+        "lin.functions",
+        "lin.slope",
+        "lin.slope-intercept"
+      ]
     }
   ]
 }
