@@ -71,15 +71,36 @@ function headerOf(sheet, tab) {
   return header;
 }
 
-export function createSheetsStore({ spreadsheet, lockService }) {
+// memo (optional): Google's script cache (CacheService.getScriptCache()), shared between
+// requests. It remembers each tab's header row and each student's row number, so a
+// save reads ONE student row instead of the whole Students tab, and no header rows
+// (measured on Google: about 1 s for the Students tab and 0.6 s per header). Rows never
+// move (students are only added or updated), and every remembered row is checked
+// against the code it should hold; anything that doesn't match falls back to a full read.
+// (Don't insert or reorder columns in the Sheet by hand; MathPath adds columns itself.)
+const MEMO_SECONDS = 6 * 60 * 60;
+
+export function createSheetsStore({ spreadsheet, lockService, memo = null }) {
   const headers = new Map(); // tab -> { sheet, header }
   const cache = new Map(); // `${tab}|full` or `${tab}|summary` -> rows
+  const rowNumbers = new Map(); // `${tab}|full` -> sheet row number of each row in cache
+  const studentRow = new Map(); // student id -> sheet row (rows never move, so this outlives the lock)
 
   function tab(name) {
     if (!headers.has(name)) {
       // A tab added in a newer version of MathPath is made the first time it's needed.
       const sheet = spreadsheet.getSheetByName(name) || spreadsheet.insertSheet(name);
-      headers.set(name, { sheet, header: headerOf(sheet, name) });
+      let header = null;
+      const saved = memo && memo.get(`hdr:${name}`);
+      if (saved) {
+        const h = JSON.parse(saved);
+        if (TABS[name].every((c) => h.includes(c))) header = h; // a newer version may need new columns
+      }
+      if (!header) {
+        header = headerOf(sheet, name);
+        if (memo) memo.put(`hdr:${name}`, JSON.stringify(header), MEMO_SECONDS);
+      }
+      headers.set(name, { sheet, header });
     }
     return headers.get(name);
   }
@@ -93,9 +114,33 @@ export function createSheetsStore({ spreadsheet, lockService }) {
       const lastRow = sheet.getLastRow();
       const width = summary && header[header.length - 1] === 'data' ? header.length - 1 : header.length;
       const values = lastRow < 2 ? [] : sheet.getRange(2, 1, lastRow - 1, width).getValues();
-      cache.set(key, values.filter((r) => r.some((v) => v !== '')).map((r) => fromRow(header.slice(0, width), r)));
+      // Keep each row's sheet row number (blank rows are skipped, so it isn't just the index).
+      const kept = values.map((r, i) => [r, i + 2]).filter(([r]) => r.some((v) => v !== ''));
+      cache.set(key, kept.map(([r]) => fromRow(header.slice(0, width), r)));
+      rowNumbers.set(key, kept.map(([, n]) => n));
+      if (name === 'Students' && !summary) {
+        cache.get(key).forEach((st, i) => studentRow.set(st.id, kept[i][1]));
+        if (memo && kept.length) memo.putAll(Object.fromEntries(cache.get(key).map((st, i) => [`row:${st.code}`, String(kept[i][1])])), MEMO_SECONDS);
+      }
     }
     return cache.get(key);
+  }
+
+  // One student by code: the remembered row only, if it still holds that code.
+  function studentByCode(code) {
+    if (memo && !cache.has('Students|full')) {
+      const remembered = Number(memo.get(`row:${code}`));
+      if (remembered >= 2) {
+        const { sheet, header } = tab('Students');
+        const [values] = sheet.getRange(remembered, 1, 1, header.length).getValues();
+        const st = values && values.some((v) => v !== '') ? fromRow(header, values) : null;
+        if (st && st.code === code) {
+          studentRow.set(st.id, remembered);
+          return st;
+        }
+      }
+    }
+    return rows('Students').find((st) => st.code === code);
   }
 
   // Add a row without reading the tab (a save never re-reads past saves).
@@ -106,12 +151,22 @@ export function createSheetsStore({ spreadsheet, lockService }) {
   }
 
   function upsert(name, key, obj) {
+    // A student whose row we know (read this request): write it straight back.
+    if (name === 'Students' && studentRow.has(obj.id) && !cache.has('Students|full')) {
+      const { sheet, header } = tab(name);
+      const row = studentRow.get(obj.id);
+      sheet.getRange(row, 1, 1, header.length).setValues([toRow(header, obj)]);
+      if (memo) memo.put(`row:${obj.code}`, String(row), MEMO_SECONDS);
+      return;
+    }
     const all = rows(name);
     const i = all.findIndex((r) => r[key] === obj[key]);
     if (i < 0) return append(name, obj);
     const { sheet, header } = tab(name);
-    sheet.getRange(i + 2, 1, 1, header.length).setValues([toRow(header, obj)]);
+    const row = rowNumbers.get(`${name}|full`)[i];
+    sheet.getRange(row, 1, 1, header.length).setValues([toRow(header, obj)]);
     all[i] = obj;
+    if (name === 'Students' && memo) memo.put(`row:${obj.code}`, String(row), MEMO_SECONDS);
   }
 
   const copy = (x) => (x ? JSON.parse(JSON.stringify(x)) : x);
@@ -122,6 +177,7 @@ export function createSheetsStore({ spreadsheet, lockService }) {
       lock.waitLock(25000); // throws if it can't get the lock in 25 s; the browser retries
       try {
         cache.clear(); // someone may have written while we waited
+        rowNumbers.clear();
         return fn();
       } finally {
         lock.releaseLock();
@@ -132,7 +188,7 @@ export function createSheetsStore({ spreadsheet, lockService }) {
       if (!this.isTeacher(email)) append('Teachers', { email: email.toLowerCase() });
     },
     getStudent: (id) => copy(rows('Students').find((s) => s.id === id)),
-    getStudentByCode: (code) => copy(rows('Students').find((s) => s.code === code)),
+    getStudentByCode: (code) => copy(studentByCode(code)),
     putStudent: (student) => upsert('Students', 'id', copy(student)),
     listStudents: (classIds) => copy(rows('Students').filter((s) => classIds.includes(s.classId))),
     // A teacher's classes: the ones they made, and ones shared with them.

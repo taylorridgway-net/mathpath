@@ -150,3 +150,74 @@ test('someone who isn\'t on the Teachers tab gets nothing', () => {
   const { server } = fresh();
   assert.equal(server().teacher.teacherData('student@school.org').error, 'not-a-teacher');
 });
+
+// ---------- remembered rows and headers (Google's script cache) ----------
+import { fakeCache } from '../helpers/fake-sheets.js';
+
+function withMemo() {
+  const spreadsheet = fakeSpreadsheet();
+  ensureTabs(spreadsheet);
+  const locks = fakeLockService();
+  const memo = fakeCache();
+  const request = () => createSheetsStore({ spreadsheet, lockService: locks, memo });
+  request().addTeacher(T);
+  const rng = createRng('memo');
+  const server = () => createServer({ store: request(), setup, now: () => '2026-11-20T10:00:00.000Z', random: rng.next });
+  const cls = server().teacher.addClass(T, 'P1').class;
+  const kids = server().teacher.addStudents(T, cls.id, Array.from({ length: 30 }, (_, i) => `Kid ${i}`)).students;
+  return { spreadsheet, memo, request, server, kids };
+}
+
+test('with the script cache: after one full read, a student is read from ONE row, with no header reads', () => {
+  const { spreadsheet, server, kids } = withMemo();
+  server().student.login(kids[0].code); // first time: full read, remembers every row
+  const students = spreadsheet.getSheetByName('Students');
+  const sections = spreadsheet.getSheetByName('Sections');
+  const before = { reads: students.reads, sectionReads: sections.reads };
+  const kid = kids[17];
+  const res = server().student.setNickname(kid.code, 'Nova');
+  assert.equal(res.ok, true);
+  assert.equal(students.reads - before.reads, 1, 'one row read, not the whole tab');
+  assert.equal(sections.reads, before.sectionReads, 'no header read');
+  assert.equal(server().student.login(kid.code).student.nickname, 'Nova', 'written back to the right row');
+  const others = kids.filter((k) => k !== kid).map((k) => server().student.login(k.code).student.nickname);
+  assert.ok(others.every((n) => n === ''), 'no other student changed');
+});
+
+test('a remembered row that no longer matches (code reset) falls back to the full read, safely', () => {
+  const { memo, server, kids } = withMemo();
+  server().student.login(kids[3].code);
+  const [a, b] = [kids[3], kids[4]];
+  // Point a's code at b's row by mistake: the store must notice and not touch b.
+  memo.put(`row:${a.code}`, memo.get(`row:${b.code}`));
+  server().student.setNickname(a.code, 'Ace');
+  assert.equal(server().student.login(a.code).student.nickname, 'Ace');
+  assert.equal(server().student.login(b.code).student.nickname, '');
+  // A code reset: the old code stops working, the new one finds the same row.
+  const { code } = server().teacher.resetCode(T, a.id);
+  assert.equal(server().student.login(a.code).error, 'unknown-code');
+  assert.equal(server().student.login(code).student.nickname, 'Ace');
+});
+
+test('a remembered header missing a column a newer version needs is read again', () => {
+  const { memo, request } = withMemo();
+  memo.put('hdr:Students', JSON.stringify(['id', 'code']));
+  assert.ok(request().listStudents(['nope']).length === 0);
+  assert.ok(JSON.parse(memo.get('hdr:Students')).includes('summary'));
+});
+
+test('the full save path with the cache: a student finishes a section, the server re-grades and stores it once', () => {
+  const { server, kids, spreadsheet } = withMemo();
+  const kid = kids[5];
+  server().student.login(kid.code);
+  const sec = setup.lessons.flatMap((l) => l.sections).find((s) => s.id === 'frac.add-sub.combine');
+  const seed = seedFor(kid.id, sec.id, 1);
+  const p = startPractice({ generators: setup.generators, rules: setup.rules, seed, plan: { generator: sec.generator, mode: sec.mode } });
+  const answers = [];
+  for (let c = p.currentProblem(); c; c = p.currentProblem()) { answers.push(right(c.problem)); p.submit(answers.at(-1)); }
+  const rec = { type: 'lesson-section', saveId: 's1', section: sec.id, attemptNo: 1, seed, answers, times: [], startedAt: 'a', finishedAt: 'b' };
+  assert.equal(server().student.saveRecord(kid.code, rec).ok, true);
+  assert.equal(server().student.saveRecord(kid.code, rec).duplicate, true);
+  assert.deepEqual(server().student.login(kid.code).summary.sectionsPassed, [sec.id]);
+  assert.equal(spreadsheet.getSheetByName('Sections').getLastRow(), 2);
+});

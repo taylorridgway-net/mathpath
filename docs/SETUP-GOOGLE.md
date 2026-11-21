@@ -62,8 +62,13 @@ If the access list doesn't offer "Anyone within [your school]", the district may
 ## Speed check (once, for the load test)
 
 1. In the editor, open **Code.gs**, choose **speedCheck** in the function dropdown, and click **Run**.
-2. The log at the bottom lists how long each spreadsheet step took and ends with "One save takes about N ms".
+2. The log at the bottom lists how long each spreadsheet step took and ends with "A save holds the lock for about N ms".
 3. Tell Claude that number. It replaces the guess in the load test. It uses a scratch tab that it deletes again; your data isn't touched.
+
+First measurement (owner, 2026-11-21): open the spreadsheet 1285 ms, read the whole Students tab 1048 ms, a header
+row 605 ms, add a row 338 ms, update a row 86 ms, lock 322 ms. Since then a save reads only its own student's row
+and remembers header rows (Google's script cache), so it holds the lock for about 1.1 s instead of about 2.4 s.
+Run speedCheck() again after updating to see the new number.
 
 ## Updating later
 

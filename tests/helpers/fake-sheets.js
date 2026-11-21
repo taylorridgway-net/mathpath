@@ -49,3 +49,16 @@ export function fakeLockService() {
   const lock = { held: false, waitLock() { if (this.held) throw new Error('lock busy'); this.held = true; }, releaseLock() { this.held = false; } };
   return { lock, getScriptLock: () => lock };
 }
+
+// Google's CacheService script cache: strings by key (expiry ignored). Counts reads.
+export function fakeCache() {
+  const items = new Map();
+  return {
+    items,
+    gets: 0,
+    get(k) { this.gets++; return items.has(k) ? items.get(k) : null; },
+    put(k, v) { items.set(k, String(v)); },
+    putAll(obj) { for (const [k, v] of Object.entries(obj)) items.set(k, String(v)); },
+    remove(k) { items.delete(k); },
+  };
+}

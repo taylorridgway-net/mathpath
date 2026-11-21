@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import { randomUUID } from 'node:crypto';
 import { bundleServer, ENTRY_POINTS } from '../../tools/bundle-server.js';
-import { fakeSpreadsheet, fakeLockService } from '../helpers/fake-sheets.js';
+import { fakeSpreadsheet, fakeLockService, fakeCache } from '../helpers/fake-sheets.js';
 
 const OWNER = 'teacher@school.org';
 
@@ -20,6 +20,7 @@ async function googleWorld() {
     SpreadsheetApp: { create: () => spreadsheet, openById: (id) => (id === 'fake-sheet-id' ? spreadsheet : null) },
     PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => props.get(k) ?? null, setProperty: (k, v) => props.set(k, v) }) },
     LockService: fakeLockService(),
+    CacheService: (() => { const c = fakeCache(); return { getScriptCache: () => c }; })(),
     Session: { getEffectiveUser: () => ({ getEmail: () => OWNER }), getActiveUser: () => ({ getEmail: () => activeUser }) },
     Utilities: { getUuid: () => randomUUID() },
     HtmlService: {

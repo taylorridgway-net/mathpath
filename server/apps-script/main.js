@@ -17,7 +17,7 @@ import { generators } from '../../engine/generators/index.js';
 import { createServer } from '../core/server.js';
 import { createSheetsStore, ensureTabs } from './store-sheets.js';
 
-/* global SpreadsheetApp, LockService, PropertiesService, HtmlService, Session, Utilities, Logger */
+/* global SpreadsheetApp, LockService, CacheService, PropertiesService, HtmlService, Session, Utilities, Logger */
 
 const SHEET_ID_KEY = 'MATHPATH_SPREADSHEET_ID';
 const STUDENT_CALLS = ['login', 'saveRecord', 'setNickname'];
@@ -45,7 +45,7 @@ function openSpreadsheet() {
 }
 
 function server() {
-  const store = createSheetsStore({ spreadsheet: openSpreadsheet(), lockService: LockService });
+  const store = createSheetsStore({ spreadsheet: openSpreadsheet(), lockService: LockService, memo: CacheService.getScriptCache() });
   return createServer({ store, setup: setupData, random });
 }
 
@@ -79,7 +79,9 @@ export function speedCheck() {
   };
   const spreadsheet = time('open the spreadsheet', openSpreadsheet);
   const students = spreadsheet.getSheetByName('Students');
-  time('read the Students tab', () => students.getRange(1, 1, Math.max(1, students.getLastRow()), students.getLastColumn()).getValues());
+  const width = students.getLastColumn();
+  time('read the Students tab', () => students.getRange(1, 1, Math.max(1, students.getLastRow()), width).getValues());
+  time('read one student row', () => students.getRange(Math.min(2, Math.max(1, students.getLastRow())), 1, 1, width).getValues());
   const scratch = spreadsheet.insertSheet(`SpeedCheck ${Date.now()}`);
   try {
     time('read a header row', () => scratch.getLastRow());
@@ -93,10 +95,11 @@ export function speedCheck() {
   } finally {
     spreadsheet.deleteSheet(scratch);
   }
-  // A save: open + read Students + read Sections header + add a row + update the student row, inside the lock.
-  const save = ms['open the spreadsheet'] + ms['read the Students tab'] + ms['read a header row'] + ms['add a row'] + ms['update a row'] + ms['take and release the lock'];
+  // What a save does while it holds the lock (the spreadsheet is opened before taking it,
+  // header rows and row numbers are remembered): one student row, add a row, update a row.
+  const save = ms['take and release the lock'] + ms['read one student row'] + ms['add a row'] + ms['update a row'];
   const lines = Object.entries(ms).map(([k, v]) => `${k}: ${v} ms`);
-  Logger.log(`${lines.join('\n')}\nOne save takes about ${save} ms. Tell Claude this number (for npm run load-test -- --save-ms ${save}).`);
+  Logger.log(`${lines.join('\n')}\nA save holds the lock for about ${save} ms. Tell Claude this number (for npm run load-test -- --save-ms ${save}).`);
   return { ...ms, save };
 }
 
