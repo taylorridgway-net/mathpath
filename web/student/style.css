@@ -101,6 +101,10 @@ button:focus-visible, summary:focus-visible { outline: 3px solid var(--mark); ou
 .m-top, .m-bottom { padding-inline: 0.18em; line-height: 1.15; }
 .m-top { border-bottom: 2px solid currentColor; padding-bottom: 0.06em; }
 .m-bottom { padding-top: 0.08em; }
+.m-frac-stacked { font-size: 1em; }
+.m-frac-stacked > .m-top { border-bottom-width: 3px; padding-bottom: 0.12em; }
+.m-frac-stacked > .m-top, .m-frac-stacked > .m-bottom { padding-inline: 0.55em; }
+.m-frac-stacked > .m-bottom { padding-top: 0.14em; }
 .m-num { font-variant-numeric: lining-nums tabular-nums; }
 .m-blank {
   display: inline-block; min-width: 1.4em; border: 2px dashed var(--mark); border-radius: 6px;

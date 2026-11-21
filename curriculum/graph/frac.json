@@ -115,7 +115,9 @@
           "prerequisites": [ { "id": "whole.mult-div.mult-facts", "strength": "essential", "why": "4 wholes are 4 × 3 = 12 thirds." } ] },
         { "id": "frac.divide.reciprocal", "name": "Write the reciprocal of a fraction or whole number", "prerequisites": [] },
         { "id": "frac.divide.multiply-reciprocal", "name": "Divide by multiplying by the reciprocal of the divisor",
-          "prerequisites": [ { "id": "frac.multiply.by-fraction", "strength": "essential" } ] }
+          "prerequisites": [ { "id": "frac.multiply.by-fraction", "strength": "essential" } ] },
+        { "id": "frac.divide.stacked", "name": "Stacked fractions: a fraction over a fraction (the big bar means divide)",
+          "prerequisites": [ { "id": "frac.divide.multiply-reciprocal", "strength": "essential" }, { "id": "frac.meaning.division", "strength": "essential", "why": "A fraction bar means divide." } ] }
       ]
     },
     {

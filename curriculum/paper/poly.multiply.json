@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "poly.multiply",
+  "title": "Multiply binomials",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, an area word problem, and an 'is this right?' item. Each item is worth 1 point. 'math' is the product in JavaScript form; the answer key must equal it at several values of x and be written as ax² + bx + c.",
+  "directions": "Multiply. Write each answer as ax² + bx + c. Show your work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Multiply:  (x + 6)(x + 2)",
+          "math": "(x + 6)*(x + 2)",
+          "answer": "x² + 8x + 12"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Multiply:  (x − 7)(x + 3)",
+          "math": "(x - 7)*(x + 3)",
+          "answer": "x² − 4x − 21"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Multiply:  (3x + 2)(x − 4)",
+          "math": "(3*x + 2)*(x - 4)",
+          "answer": "3x² − 10x − 8"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Multiply:  (x + 5)²",
+          "math": "(x + 5)*(x + 5)",
+          "answer": "x² + 10x + 25"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A garden is (x + 4) meters long and (x + 9) meters wide. Write its area as ax² + bx + c.",
+          "math": "(x + 4)*(x + 9)",
+          "answer": "x² + 13x + 36 (square meters)"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Sam says (x − 3)² = x² + 9. Is he right? Explain, and multiply it correctly.",
+          "math": "(x - 3)*(x - 3)",
+          "answer": "x² − 6x + 9 (No: the middle term −6x is missing)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Multiply:  (x + 8)(x + 1)",
+          "math": "(x + 8)*(x + 1)",
+          "answer": "x² + 9x + 8"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Multiply:  (x − 5)(x − 6)",
+          "math": "(x - 5)*(x - 6)",
+          "answer": "x² − 11x + 30"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Multiply:  (2x − 3)(4x + 1)",
+          "math": "(2*x - 3)*(4*x + 1)",
+          "answer": "8x² − 10x − 3"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Multiply:  (x + 9)(x − 9)",
+          "math": "(x + 9)*(x - 9)",
+          "answer": "x² − 81"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "A picture is (2x + 1) inches wide and (x + 6) inches tall. Write its area as ax² + bx + c.",
+          "math": "(2*x + 1)*(x + 6)",
+          "answer": "2x² + 13x + 6 (square inches)"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Ana multiplied (x + 2)(x + 7) and got x² + 9x + 9. Is she right? Explain, and multiply it correctly.",
+          "math": "(x + 2)*(x + 7)",
+          "answer": "x² + 9x + 14 (No: the last term is 2 × 7 = 14, not 2 + 7)"
+        }
+      ]
+    }
+  ]
+}

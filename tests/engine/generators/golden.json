@@ -23658,6 +23658,404 @@
    }
   ]
  },
+ "frac.divide.stacked": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "int",
+      "value": 4
+     },
+     "d": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 16,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 4,
+       "d": 20
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "int",
+      "value": 2
+     },
+     "d": {
+      "type": "frac",
+      "n": 1,
+      "d": 4
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 8,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 2,
+       "d": 4
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 1,
+       "d": 8
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "int",
+      "value": 6
+     },
+     "d": {
+      "type": "frac",
+      "n": 2,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 15,
+      "d": 1
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 12,
+       "d": 5
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 2,
+       "d": 30
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "frac",
+      "n": 1,
+      "d": 8
+     },
+     "d": {
+      "type": "frac",
+      "n": 3,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 24
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 3,
+       "d": 40
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 24,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "frac",
+      "n": 5,
+      "d": 8
+     },
+     "d": {
+      "type": "frac",
+      "n": 4,
+      "d": 5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 25,
+      "d": 32
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 20,
+       "d": 40
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 32,
+       "d": 25
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "frac",
+      "n": 1,
+      "d": 2
+     },
+     "d": {
+      "type": "frac",
+      "n": 6,
+      "d": 7
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 12
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 6,
+       "d": 14
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 12,
+       "d": 7
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     },
+     "d": {
+      "type": "frac",
+      "n": 2,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 2
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 2,
+       "d": 27
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 6,
+       "d": 9
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "frac",
+      "n": 4,
+      "d": 9
+     },
+     "d": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 3
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 4,
+       "d": 27
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 9,
+       "d": 12
+      }
+     }
+    ]
+   },
+   {
+    "generator": "frac.divide.stacked",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Simplify. Write your answer in simplest form.",
+    "expression": {
+     "type": "frac",
+     "n": {
+      "type": "frac",
+      "n": 1,
+      "d": 3
+     },
+     "d": {
+      "type": "frac",
+      "n": 7,
+      "d": 9
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 7
+     },
+     "form": "any"
+    },
+    "misconceptions": [
+     {
+      "id": "frac.div-no-flip",
+      "value": {
+       "n": 7,
+       "d": 27
+      }
+     },
+     {
+      "id": "frac.div-flip-first",
+      "value": {
+       "n": 21,
+       "d": 9
+      }
+     }
+    ]
+   }
+  ]
+ },
  "frac.equivalent": {
   "version": 1,
   "problems": [

@@ -12,6 +12,17 @@ const PIECES = { 2: 'halves', 3: 'thirds', 4: 'fourths', 5: 'fifths', 6: 'sixths
 
 export function solveDivide(problem) {
   const kind = problem.part || problem.generator;
+  if (kind === 'frac.divide.stacked') {
+    // The big fraction bar means divide: top ÷ bottom. Then divide as usual.
+    const { n: top, d: bottom } = problem.expression;
+    const [a, b] = val(top);
+    const [c, d] = val(bottom);
+    const asDivision = op('÷', top, bottom);
+    return [
+      { say: `The big fraction bar means divide: the top ÷ the bottom. So this is ${t(a, b)} ÷ ${t(c, d)}.`, show: eq(problem.expression, asDivision) },
+      ...solveDivide({ ...problem, part: 'frac.divide.multiply-reciprocal', expression: asDivision }),
+    ];
+  }
   const e = problem.expression;
   if (kind === 'frac.divide.reciprocal') {
     const [a, b] = val(e);

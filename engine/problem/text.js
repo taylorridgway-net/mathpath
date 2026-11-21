@@ -120,5 +120,6 @@ function wrapNegative(node) {
 
 function part(x) {
   if (typeof x === 'number') return x < 0 ? `(-${-x})` : String(x); // 3/(-5)
+  if (x.type === 'frac') return `(${toText(x)})`; // a stacked fraction: (3/4)/(1/2)
   return toText(x);
 }

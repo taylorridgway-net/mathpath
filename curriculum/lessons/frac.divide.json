@@ -108,6 +108,45 @@
       ]
     },
     {
+      "id": "frac.divide.stacked",
+      "forGap": "frac.divide.stacked",
+      "title": "Stacked fractions",
+      "objective": "Simplify a fraction over a fraction, like 3/4 over 1/2, or 3 over 1/4.",
+      "mode": "section",
+      "generator": "frac.divide.stacked",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A fraction bar means divide: 6 over 3 is 6 ÷ 3. The same goes for a big bar with fractions above and below it.",
+        "Rewrite it as top ÷ bottom, then keep, change, flip."
+      ],
+      "visual": null,
+      "key": "The big fraction bar means divide: top ÷ bottom. Then keep the top, change ÷ to ×, flip the bottom.",
+      "worked": [
+        {
+          "math": "{3/4} over {1/2}",
+          "note": "a stacked fraction"
+        },
+        {
+          "math": "[[{3/4} ÷ {1/2}]]",
+          "note": "the big bar means divide"
+        },
+        {
+          "math": "{3/4} × [[{2/1}]]",
+          "note": "keep, change, flip"
+        },
+        {
+          "math": "= {6/4} = [[{3/2}]]",
+          "note": "simplify"
+        },
+        {
+          "math": "3 over {1/4} = 3 × 4 = [[12]]",
+          "note": "a whole number on top works the same way"
+        }
+      ]
+    },
+    {
       "id": "frac.divide.whole",
       "forGap": "frac.divide",
       "title": "Putting it together",
@@ -143,7 +182,8 @@
     "frac.divide.meaning": "Count in the small pieces: how many of those pieces are in the first number? Then how many pieces does each group use?",
     "frac.divide.reciprocal": "Swap the top and the bottom. A whole number is that number over 1.",
     "frac.divide.multiply-reciprocal": "Keep the first number, change ÷ to ×, flip the second number. Then multiply.",
-    "frac.divide": "Keep, change, flip: keep the first number, change ÷ to ×, flip the second. Then multiply and simplify."
+    "frac.divide": "Keep, change, flip: keep the first number, change ÷ to ×, flip the second. Then multiply and simplify.",
+    "frac.divide.stacked": "The big fraction bar means divide: top ÷ bottom. Then keep, change, flip."
   },
   "simplifyHint": "That's the right amount, but it isn't in simplest form yet. Is there a number that still divides both the top and the bottom?",
   "misconceptionMessages": {

@@ -183,7 +183,9 @@ function lineGraph([[x1, y1], [x2, y2]]) {
 }
 
 function fractionEl(n, d) {
-  const f = el('span', 'm-frac');
+  // A stacked fraction (a fraction above or below the bar) gets a longer, heavier main bar.
+  const stacked = [n, d].some((x) => typeof x === 'object' && (x.type === 'frac' || x.type === 'neg'));
+  const f = el('span', stacked ? 'm-frac m-frac-stacked' : 'm-frac');
   const part = (x) => (typeof x === 'number' ? el('span', 'm-num', x < 0 ? `\u2212${-x}` : String(x)) : build(x));
   const top = el('span', 'm-top');
   top.append(part(n));

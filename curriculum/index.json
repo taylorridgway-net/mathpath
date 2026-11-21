@@ -87,6 +87,8 @@
     "lin.slope-intercept",
     "lin.forms",
     "lin.parallel",
-    "lin.graphing"
+    "lin.graphing",
+    "poly.multiply",
+    "poly.factor"
   ]
 }

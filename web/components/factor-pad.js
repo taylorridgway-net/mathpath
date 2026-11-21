@@ -78,7 +78,7 @@ export function createFactorPad({ host, form, onSubmit, onSkip }) {
     else if (k === 'next') focus = (focus + 1) % n;
     render();
   }
-  const ready = () => digits.every((d) => d !== '');
+  function ready() { return digits.every((d) => d !== ''); }
   function submit() {
     if (!ready()) return;
     onSubmit({ boxes: digits.map((d, i) => (neg[i] ? -1 : 1) * Number(d)) });

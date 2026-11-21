@@ -130,12 +130,30 @@ const multiplyReciprocal = {
   },
 };
 
+// ---------- stacked fractions (a fraction bar with fractions above and below) ----------
+//   1: a whole number over a fraction (3 over 1/4 = 12);  2: a fraction over a fraction (3/4 over 1/2 = 3/2);
+//   3: a fraction over a whole number, or needing simplifying (2/3 over 4 = 1/6; 5/6 over 10/9 = 3/4)
+// The big fraction bar means divide: top ÷ bottom.
+const stacked = {
+  version: 1,
+  ifNotSimplified: 'frac.multiply.simplify',
+  alsoUses: ['frac.divide.multiply-reciprocal'],
+  generate(rng, difficulty) {
+    let x; let y;
+    if (difficulty === 1) [x, y] = [[rng.int(2, 9), 1], rng.pick(proper(8))];
+    else if (difficulty === 2) [x, y] = rng.pick(pool(2, true));
+    else [x, y] = rng.chance(0.5) ? [rng.pick(proper(9)), [rng.int(2, 6), 1]] : rng.pick(pool(2, false));
+    const p = divisionProblem(x, y);
+    return { ...p, instruction: 'Simplify. Write your answer in simplest form.', expression: frac(show(x), show(y)) };
+  },
+};
+
 // ---------- whole skill ----------
 //   1: two fractions, already simplest;  2: two fractions, needs simplifying;
 //   3: needs simplifying, with whole numbers or bigger denominators
 const full = {
   version: 1,
-  covers: ['frac.divide.meaning', 'frac.divide.reciprocal', 'frac.divide.multiply-reciprocal'],
+  covers: ['frac.divide.meaning', 'frac.divide.reciprocal', 'frac.divide.multiply-reciprocal', 'frac.divide.stacked'],
   ifNotSimplified: 'frac.multiply.simplify',
   generate(rng, difficulty) {
     if (difficulty === 1) return divisionProblem(...rng.pick(pool(2, true)));
@@ -149,4 +167,5 @@ export const divideGenerators = {
   'frac.divide.meaning': meaning,
   'frac.divide.reciprocal': reciprocal,
   'frac.divide.multiply-reciprocal': multiplyReciprocal,
+  'frac.divide.stacked': stacked,
 };
