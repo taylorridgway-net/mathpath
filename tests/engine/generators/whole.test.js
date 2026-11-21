@@ -42,7 +42,7 @@ function solve(p) {
   throw new Error(`can't solve ${kind}`);
 }
 
-const IDS = Object.keys(generators).filter((id) => id.startsWith('whole.'));
+const IDS = Object.keys(generators).filter((id) => id.startsWith('whole.') && !id.startsWith('whole.place-value')); // place value: its own tests
 function each(fn) {
   for (const id of IDS) for (const d of DIFFICULTIES) for (const seed of SEEDS) fn(generateProblem(id, seed, d), id, d);
 }

@@ -7,7 +7,7 @@ import { generateProblem, generators, DIFFICULTIES } from '../../../engine/gener
 import { solve } from '../../../engine/solutions/index.js';
 
 const SEEDS = Array.from({ length: 100 }, (_, i) => `sol-${i}`);
-const IDS = Object.keys(generators).filter((id) => id.startsWith('whole.'));
+const IDS = Object.keys(generators).filter((id) => id.startsWith('whole.') && !id.startsWith('whole.place-value')); // place value: its own tests
 const gcd = (a, b) => (b ? gcd(b, a % b) : a);
 
 function expectedText(p) {

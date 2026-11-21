@@ -62,6 +62,8 @@ export function toText(node) {
       return `-${toText(node.of)}`;
     case 'group':
       return `(${toText(node.of)})`;
+    case 'abs':
+      return `|${toText(node.of)}|`;
     case 'var':
       return node.name;
     case 'term': {

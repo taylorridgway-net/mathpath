@@ -311,6 +311,8 @@ const shortName = (id) => ({
   'geo.angles': 'Angles',
   'geo.pythag': 'Pythagorean theorem',
   'stat.center': 'Mean, median, mode',
+  'whole.place-value': 'Place value, rounding',
+  'int.compare': 'Compare, absolute value',
   'stat.displays': 'Data displays',
   'stat.prob': 'Probability',
   'exp.rules': 'Exponent rules',

@@ -465,6 +465,8 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .pchart-digit:not(.is-empty) { background: var(--mark-soft); border-radius: 6px; }
 .pchart-point { font-family: var(--font-math); font-size: 2.2rem; line-height: 1.4; font-weight: 700; }
 .pchart-head.pchart-point { border-bottom: 2px solid var(--line); }
+.pchart-whole { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.pchart-digit.is-key { background: var(--accent); color: var(--surface); }
 .key-tool.key-point { font-size: 2.4rem; font-weight: 800; line-height: 0.5; }
 .path-group.path-teacher { color: var(--info); }
 
@@ -534,6 +536,8 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .m-radicand { border-top: 2px solid currentColor; padding: 0.12em 0.18em 0; }
 .m-root-index { position: absolute; left: -0.05em; top: 0.05em; font-size: 0.5em; }
 .m-shape { max-width: 100%; height: auto; }
+.m-abs { gap: 0.08em; }
+.m-abs-bar { padding: 0 0.04em; font-weight: 300; transform: scaleY(1.25); display: inline-block; }
 .shape-fill { fill: var(--accent-soft); stroke: var(--ink); stroke-width: 2; }
 .shape-noedge { stroke: none; }
 .shape-edge { fill: none; stroke: var(--ink); stroke-width: 2; }

@@ -442,7 +442,11 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   // New skills in the first check come first, on their own.
   assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
   // After today's fractions check: the later checks, one at a time (pre-algebra, then decimals).
-  const now = compactResult(diagnose({}).result);
+  const today = compactResult(diagnose({}).result);
+  const NUM = ['whole.place-value', 'int.compare'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: today }), NUM);
+  assert.equal(catchUpName(fractions.config, NUM), 'Number sense check');
+  const now = { ...today, nodes: { ...today.nodes, ...Object.fromEntries(NUM.map((id) => [id, { status: 'known' }])) } };
   const PRE = ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.expressions', 'alg.translate'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), PRE);
   assert.equal(catchUpName(fractions.config, PRE), 'Pre-algebra check');
@@ -538,7 +542,8 @@ function preAlgebra(traits) {
   const prior = compactResult(runWithStudent(startDiagnostic({ ...fractions, seed: 'first' }), student));
   // Both pre-algebra checks' skills at once (the "Pre-algebra" and "Equations and inequalities"
   // checks are offered one after the other; asking them together tests the same logic).
-  const [pre, eqs] = fractions.config.moreChecks;
+  const pre = fractions.config.moreChecks.find((c) => c.id === 'prealgebra');
+  const eqs = fractions.config.moreChecks[fractions.config.moreChecks.indexOf(pre) + 1];
   const targets = [...pre.targets, ...eqs.targets];
   return runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'pre', prior }), student);
 }

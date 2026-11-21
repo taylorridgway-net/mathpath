@@ -41839,6 +41839,814 @@
    }
   ]
  },
+ "int.compare": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "abs",
+     "of": {
+      "type": "int",
+      "value": -10
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 10,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.abs-opposite",
+      "value": -10
+     }
+    ],
+    "part": "int.compare.abs"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -3
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "int.compare.order"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -6
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 2
+     }
+    ],
+    "part": "int.compare.order"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -13
+     },
+     "right": {
+      "type": "int",
+      "value": -2
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 2
+     }
+    ],
+    "part": "int.compare.order"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -16
+     },
+     "right": {
+      "type": "int",
+      "value": -17
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 0
+     }
+    ],
+    "part": "int.compare.order"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -14
+     },
+     "right": {
+      "type": "int",
+      "value": -11
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 2
+     }
+    ],
+    "part": "int.compare.order"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "How far apart are −7 and 46 on the number line?"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 53,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.distance-subtracted-sizes",
+      "value": 39
+     }
+    ],
+    "part": "int.compare.abs"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "How far apart are −48 and 18 on the number line?"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 66,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.distance-subtracted-sizes",
+      "value": 30
+     }
+    ],
+    "part": "int.compare.abs"
+   },
+   {
+    "generator": "int.compare",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "How far apart are −28 and 13 on the number line?"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 41,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.distance-subtracted-sizes",
+      "value": 15
+     }
+    ],
+    "part": "int.compare.abs"
+   }
+  ]
+ },
+ "int.compare.abs": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "abs",
+     "of": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.abs-opposite",
+      "value": -5
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "abs",
+     "of": {
+      "type": "int",
+      "value": -5
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 5,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.abs-opposite",
+      "value": -5
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "abs",
+     "of": {
+      "type": "int",
+      "value": -6
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 6,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.abs-opposite",
+      "value": -6
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "abs",
+      "of": {
+       "type": "int",
+       "value": -7
+      }
+     },
+     "right": {
+      "type": "abs",
+      "of": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 13,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.abs-opposite",
+      "value": -1
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "abs",
+     "of": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "int",
+       "value": 8
+      },
+      "right": {
+       "type": "int",
+       "value": 12
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 4,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.abs-opposite",
+      "value": -4
+     },
+     {
+      "id": "int.abs-each-first",
+      "value": 20
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the value.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "abs",
+      "of": {
+       "type": "int",
+       "value": -16
+      }
+     },
+     "right": {
+      "type": "abs",
+      "of": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "integer",
+     "value": 20,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.abs-opposite",
+      "value": -12
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "At night it was −21 °F. At noon it was 27 °F. How many degrees warmer was it at noon?"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 48,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.distance-subtracted-sizes",
+      "value": 6
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A diver is at −2 feet. A bird is at 33 feet. How many feet apart are they?"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 35,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.distance-subtracted-sizes",
+      "value": 31
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.abs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "How far apart are −6 and 35 on the number line?"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 41,
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "int.distance-subtracted-sizes",
+      "value": 29
+     }
+    ]
+   }
+  ]
+ },
+ "int.compare.order": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -6
+     },
+     "right": {
+      "type": "int",
+      "value": 0
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": 0
+     },
+     "right": {
+      "type": "int",
+      "value": -4
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -10
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -17
+     },
+     "right": {
+      "type": "int",
+      "value": -19
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -18
+     },
+     "right": {
+      "type": "int",
+      "value": -3
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Which sign goes in the box?",
+    "expression": {
+     "type": "compare",
+     "left": {
+      "type": "int",
+      "value": -11
+     },
+     "right": {
+      "type": "int",
+      "value": -7
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "<",
+      "=",
+      ">"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Which number is the least?",
+    "expression": {
+     "type": "words",
+     "text": "42,  −14,  −27,  −12"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "42",
+      "−14",
+      "−27",
+      "−12"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 3
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Which number is the greatest?",
+    "expression": {
+     "type": "words",
+     "text": "10,  −27,  14,  −33"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "10",
+      "−27",
+      "14",
+      "−33"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 3
+     }
+    ]
+   },
+   {
+    "generator": "int.compare.order",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Which number is the least?",
+    "expression": {
+     "type": "words",
+     "text": "−37,  −38,  46,  28"
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "−37",
+      "−38",
+      "46",
+      "28"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "int.compare-size",
+      "choice": 3
+     },
+     {
+      "id": "int.compare-closest-negative",
+      "choice": 0
+     }
+    ]
+   }
+  ]
+ },
  "int.mult-div": {
   "version": 1,
   "problems": [
@@ -67822,6 +68630,729 @@
        "quotient": 3,
        "remainder": 0
       }
+     }
+    ]
+   }
+  ]
+ },
+ "whole.place-value": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Round to the nearest ten.",
+    "expression": {
+     "type": "words",
+     "text": "385"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 390
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-truncate",
+      "value": 380
+     }
+    ],
+    "part": "whole.place-value.round"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the value of the 2?",
+    "expression": {
+     "type": "words",
+     "text": "209"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 200
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 2
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 2000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 20
+     }
+    ],
+    "part": "whole.place-value.digits"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the value of the 7?",
+    "expression": {
+     "type": "words",
+     "text": "9,578"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 70
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 7
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 700
+     }
+    ],
+    "part": "whole.place-value.digits"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is the value of the 8?",
+    "expression": {
+     "type": "words",
+     "text": "63,485"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 80
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 8
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 800
+     }
+    ],
+    "part": "whole.place-value.digits"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the value of the 9?",
+    "expression": {
+     "type": "words",
+     "text": "82,906"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 900
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 9
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 9000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 90
+     }
+    ],
+    "part": "whole.place-value.digits"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Round to the nearest hundred.",
+    "expression": {
+     "type": "words",
+     "text": "15,204"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 15200
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-wrong-way",
+      "value": 15300
+     }
+    ],
+    "part": "whole.place-value.round"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What is the value of the 1?",
+    "expression": {
+     "type": "words",
+     "text": "372,109"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 100
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 1
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 1000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 10
+     }
+    ],
+    "part": "whole.place-value.digits"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the value of the 4?",
+    "expression": {
+     "type": "words",
+     "text": "543,102"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 40000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 4
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 400000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 4000
+     }
+    ],
+    "part": "whole.place-value.digits"
+   },
+   {
+    "generator": "whole.place-value",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the value of the 2?",
+    "expression": {
+     "type": "words",
+     "text": "674,321"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 20
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 2
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 200
+     }
+    ],
+    "part": "whole.place-value.digits"
+   }
+  ]
+ },
+ "whole.place-value.digits": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is the value of the 3?",
+    "expression": {
+     "type": "words",
+     "text": "314"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 300
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 3
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 3000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 30
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the value of the 9?",
+    "expression": {
+     "type": "words",
+     "text": "987"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 900
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 9
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 9000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 90
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the value of the 4?",
+    "expression": {
+     "type": "words",
+     "text": "941"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 40
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 4
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 400
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is the value of the 4?",
+    "expression": {
+     "type": "words",
+     "text": "58,432"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 400
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 4
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 4000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 40
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the value of the 7?",
+    "expression": {
+     "type": "words",
+     "text": "17,962"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 7000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 7
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 70000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 700
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What is the value of the 1?",
+    "expression": {
+     "type": "words",
+     "text": "82,175"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 100
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 1
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 1000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 10
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "The 6 in 6,000 is how many times the value of the 6 in 600?"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 10
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-count-zeros",
+      "value": 1
+     },
+     {
+      "id": "whole.place-value-count-zeros",
+      "value": 5400
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the value of the 6?",
+    "expression": {
+     "type": "words",
+     "text": "687,015"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 600000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 6
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 6000000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 60000
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.digits",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the value of the 9?",
+    "expression": {
+     "type": "words",
+     "text": "792,536"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 90000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.place-value-digit",
+      "value": 9
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 900000
+     },
+     {
+      "id": "whole.place-value-off-by-one",
+      "value": 9000
+     }
+    ]
+   }
+  ]
+ },
+ "whole.place-value.round": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Round to the nearest ten.",
+    "expression": {
+     "type": "words",
+     "text": "162"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 160
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-wrong-way",
+      "value": 170
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Round to the nearest hundred.",
+    "expression": {
+     "type": "words",
+     "text": "617"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 600
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-wrong-way",
+      "value": 700
+     },
+     {
+      "id": "whole.round-wrong-place",
+      "value": 620
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Round to the nearest ten.",
+    "expression": {
+     "type": "words",
+     "text": "598"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 600
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-truncate",
+      "value": 590
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Round to the nearest hundred.",
+    "expression": {
+     "type": "words",
+     "text": "35,338"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 35300
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-wrong-way",
+      "value": 35400
+     },
+     {
+      "id": "whole.round-wrong-place",
+      "value": 35340
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Round to the nearest hundred.",
+    "expression": {
+     "type": "words",
+     "text": "49,984"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 50000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-truncate",
+      "value": 49900
+     },
+     {
+      "id": "whole.round-wrong-place",
+      "value": 49980
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Round to the nearest hundred.",
+    "expression": {
+     "type": "words",
+     "text": "12,496"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 12500
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-truncate",
+      "value": 12400
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Round to the nearest hundred.",
+    "expression": {
+     "type": "words",
+     "text": "1,954"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 2000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-truncate",
+      "value": 1900
+     },
+     {
+      "id": "whole.round-wrong-place",
+      "value": 1950
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Round to the nearest hundred.",
+    "expression": {
+     "type": "words",
+     "text": "2,967"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 3000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-truncate",
+      "value": 2900
+     },
+     {
+      "id": "whole.round-wrong-place",
+      "value": 2970
+     }
+    ]
+   },
+   {
+    "generator": "whole.place-value.round",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Round to the nearest thousand.",
+    "expression": {
+     "type": "words",
+     "text": "19,784"
+    },
+    "answer": {
+     "type": "integer",
+     "value": 20000
+    },
+    "misconceptions": [
+     {
+      "id": "whole.round-truncate",
+      "value": 19000
+     },
+     {
+      "id": "whole.round-wrong-place",
+      "value": 19800
      }
     ]
    }

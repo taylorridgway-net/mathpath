@@ -6,6 +6,36 @@
   },
   "skills": [
     {
+      "id": "whole.place-value",
+      "name": "Place value and rounding",
+      "summary": "The value of a digit (up to hundred thousands), each place 10 times the one to its right, and rounding to the nearest ten, hundred or thousand.",
+      "typicalGrade": 4,
+      "standards": [
+        "4.NBT.A.1",
+        "4.NBT.A.2",
+        "4.NBT.A.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "whole.place-value.digits",
+          "name": "The value of a digit",
+          "prerequisites": []
+        },
+        {
+          "id": "whole.place-value.round",
+          "name": "Round whole numbers",
+          "prerequisites": [
+            {
+              "id": "whole.place-value.digits",
+              "strength": "supporting"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "whole.add-sub",
       "name": "Add and subtract whole numbers",
       "summary": "Add and subtract 2- and 3-digit whole numbers, carrying and borrowing (including across zeros).",

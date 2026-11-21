@@ -294,8 +294,8 @@ test('catch-up check: only the new skills; re-graded from the saved result; the 
   assert.equal(after.skills['frac.multiply'], 'known');
   assert.equal(res.summary.diagnostic.catchUp, true);
   assert.deepEqual(store.data.records.diagnostics.at(-1).targets, targets);
-  // Next comes the pre-algebra check (one check at a time).
-  assert.deepEqual(catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior: after }), ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.expressions', 'alg.translate']);
+  // Next comes the number sense check (one check at a time).
+  assert.deepEqual(catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior: after }), ['whole.place-value', 'int.compare']);
 });
 
 test('catch-up answers re-graded as a full diagnostic (or the other way round) are refused', () => {

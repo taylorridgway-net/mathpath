@@ -18,6 +18,14 @@
   "about": "The first check every student takes (fractions, and the whole-number and integer skills under them). 'moreChecks' are taken afterwards, from the path: each asks only its own skills, starting from what the student already showed.",
   "moreChecks": [
     {
+      "id": "number-sense",
+      "name": "Number sense check",
+      "targets": [
+        "whole.place-value",
+        "int.compare"
+      ]
+    },
+    {
       "id": "prealgebra",
       "name": "Pre-algebra check",
       "targets": [

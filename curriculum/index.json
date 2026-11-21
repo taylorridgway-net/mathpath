@@ -15,6 +15,7 @@
     "stat"
   ],
   "lessons": [
+    "whole.place-value",
     "whole.add-sub",
     "whole.mult-div",
     "whole.factors-multiples",
@@ -24,6 +25,7 @@
     "frac.add-sub",
     "frac.multiply",
     "frac.divide",
+    "int.compare",
     "int.add-sub",
     "int.mult-div",
     "frac.signed",
@@ -67,6 +69,7 @@
     "poly.factor"
   ],
   "papers": [
+    "whole.place-value",
     "whole.add-sub",
     "whole.mult-div",
     "whole.factors-multiples",
@@ -76,6 +79,7 @@
     "frac.add-sub",
     "frac.multiply",
     "frac.divide",
+    "int.compare",
     "int.add-sub",
     "int.mult-div",
     "frac.signed",

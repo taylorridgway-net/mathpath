@@ -1,5 +1,6 @@
 // The paper tests (teacher dashboard only). Listed in curriculum/index.json; a test checks this file matches.
 
+import wholePlaceValuePaper from './paper/whole.place-value.json';
 import wholeAddSubPaper from './paper/whole.add-sub.json';
 import wholeMultDivPaper from './paper/whole.mult-div.json';
 import wholeFactorsMultiplesPaper from './paper/whole.factors-multiples.json';
@@ -9,6 +10,7 @@ import fracComparePaper from './paper/frac.compare.json';
 import fracAddSubPaper from './paper/frac.add-sub.json';
 import fracMultiplyPaper from './paper/frac.multiply.json';
 import fracDividePaper from './paper/frac.divide.json';
+import intComparePaper from './paper/int.compare.json';
 import intAddSubPaper from './paper/int.add-sub.json';
 import intMultDivPaper from './paper/int.mult-div.json';
 import fracSignedPaper from './paper/frac.signed.json';
@@ -51,4 +53,4 @@ import linGraphingPaper from './paper/lin.graphing.json';
 import polyMultiplyPaper from './paper/poly.multiply.json';
 import polyFactorPaper from './paper/poly.factor.json';
 
-export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algTranslatePaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, geoUnitsPaper, geoAreaPaper, geoCirclesPaper, geoVolumePaper, expRulesPaper, expRootsPaper, expScinotPaper, geoAnglesPaper, geoPythagPaper, statCenterPaper, statDisplaysPaper, statProbPaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper, polyMultiplyPaper, polyFactorPaper];
+export const paperList = [wholePlaceValuePaper, wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intComparePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algTranslatePaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, geoUnitsPaper, geoAreaPaper, geoCirclesPaper, geoVolumePaper, expRulesPaper, expRootsPaper, expScinotPaper, geoAnglesPaper, geoPythagPaper, statCenterPaper, statDisplaysPaper, statProbPaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper, polyMultiplyPaper, polyFactorPaper];

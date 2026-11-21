@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "whole.place-value",
+  "title": "Place value and rounding",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the answer in JavaScript form (a number, or a sign '<' '>' '=' as text, or the chosen number); the test checks the answer key against it.",
+  "directions": "Show your work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "What is the value of the 7 in 372,915?",
+          "math": "70000",
+          "answer": "70,000"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Round 6,849 to the nearest hundred.",
+          "math": "Math.round(6849/100)*100",
+          "answer": "6,800"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "Round 23,519 to the nearest thousand.",
+          "math": "Math.round(23519/1000)*1000",
+          "answer": "24,000"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "The 3 in 3,000 is how many times the value of the 3 in 30?",
+          "math": "3000/30",
+          "answer": "100"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "A stadium holds 48,652 people. About how many is that, to the nearest thousand?",
+          "math": "Math.round(48652/1000)*1000",
+          "answer": "49,000"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Theo rounded 7,960 to the nearest hundred and got 7,900. Is he right? Explain, and round it.",
+          "math": "Math.round(7960/100)*100",
+          "answer": "8,000 (No: the 6 tells you to round up)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "What is the value of the 4 in 841,067?",
+          "math": "40000",
+          "answer": "40,000"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Round 3,251 to the nearest hundred.",
+          "math": "Math.round(3251/100)*100",
+          "answer": "3,300"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "Round 67,482 to the nearest thousand.",
+          "math": "Math.round(67482/1000)*1000",
+          "answer": "67,000"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "The 5 in 50,000 is how many times the value of the 5 in 500?",
+          "math": "50000/500",
+          "answer": "100"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "A town has 9,738 people. About how many is that, to the nearest hundred?",
+          "math": "Math.round(9738/100)*100",
+          "answer": "9,700"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Ava says the 2 in 32,618 is worth 2. Is she right? Explain, and give its value.",
+          "math": "2000",
+          "answer": "2,000 (No: it's in the thousands place)"
+        }
+      ]
+    }
+  ]
+}

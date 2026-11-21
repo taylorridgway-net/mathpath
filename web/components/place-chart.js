@@ -4,20 +4,28 @@
 // student sees that the digits move (the point doesn't). Exact: engine/math/decimal.js.
 // Settings come from the lesson file:
 //   "visual": { "widget": "place-chart", "params": { "number": "4.5", "buttons": true } }
+// Whole numbers (place value lesson): "whole": true shows hundred thousands ... ones,
+// and "highlight": 3 marks the digit in that place (10^3: the thousands).
 
 import { parseDecimal, decimalText } from '../../engine/math/decimal.js';
 import { fraction } from '../../engine/math/fraction.js';
 
-const COLUMNS = [
+const DECIMAL_COLUMNS = [
   { name: 'hundreds', power: 2 }, { name: 'tens', power: 1 }, { name: 'ones', power: 0 },
   { name: 'tenths', power: -1, note: '1/10' }, { name: 'hundred\u00adths', power: -2, note: '1/100' }, { name: 'thousand\u00adths', power: -3, note: '1/1000' },
 ];
 
+const WHOLE_COLUMNS = [
+  { name: 'hundred thousands', power: 5 }, { name: 'ten thousands', power: 4 }, { name: 'thousands', power: 3 },
+  { name: 'hundreds', power: 2 }, { name: 'tens', power: 1 }, { name: 'ones', power: 0 },
+];
+
 export function createPlaceChart({ host, params }) {
   const start = params.number;
+  const COLUMNS = params.whole ? WHOLE_COLUMNS : DECIMAL_COLUMNS;
   let shift = 0; // times 10^shift
   const wrap = el('div', 'area pchart-wrap');
-  const table = el('div', 'pchart');
+  const table = el('div', params.whole ? 'pchart pchart-whole' : 'pchart');
   table.setAttribute('role', 'img');
   const text = el('p', 'area-sums');
   text.setAttribute('aria-live', 'polite');
@@ -52,7 +60,7 @@ export function createPlaceChart({ host, params }) {
   }
   function fits(textValue) {
     const [whole, part = ''] = textValue.split('.');
-    return whole.length <= 3 && part.length <= 3;
+    return params.whole ? whole.length <= 6 && !part : whole.length <= 3 && part.length <= 3;
   }
   function move(dir) {
     if (!fits(valueText(shift + dir))) return;
@@ -73,10 +81,14 @@ export function createPlaceChart({ host, params }) {
     });
     COLUMNS.forEach((c, i) => {
       if (c.power === -1) table.append(el('span', 'pchart-point', '.'));
-      table.append(el('span', `pchart-digit${digits[i] === null ? ' is-empty' : ''}`, digits[i] ?? ''));
+      table.append(el('span', `pchart-digit${digits[i] === null ? ' is-empty' : ''}${c.power === params.highlight ? ' is-key' : ''}`, digits[i] ?? ''));
     });
     const factor = 10 ** Math.abs(shift);
-    text.textContent = shift === 0
+    const commas = (v) => (params.whole ? v.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : v);
+    const key = params.highlight !== undefined && digits[COLUMNS.findIndex((c) => c.power === params.highlight)];
+    text.textContent = key && shift === 0
+      ? `In ${commas(now)}, the ${key} is in the ${COLUMNS.find((c) => c.power === params.highlight).name} place: it is worth ${commas(String(key * 10 ** params.highlight))}.`
+      : shift === 0
       ? (params.buttons ? `${start}. Tap × 10 or ÷ 10 and watch the digits move.` : `${now}: each place is 10 times the place to its right.`)
       : `${start} ${shift > 0 ? '×' : '÷'} ${factor} = ${now}. Every digit moved ${Math.abs(shift)} ${Math.abs(shift) === 1 ? 'place' : 'places'} ${shift > 0 ? 'left' : 'right'}.`;
     if (params.buttons) {

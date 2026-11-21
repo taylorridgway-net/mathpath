@@ -23,9 +23,11 @@ import { solvePoly } from './poly.js';
 import { solveExponent } from './exp.js';
 import { solveGeo } from './geo.js';
 import { solveStat } from './stat.js';
+import { solveNumberSense } from './number-sense.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
+  if (kind.startsWith('whole.place-value') || kind.startsWith('int.compare')) return solveNumberSense(problem);
   if (kind.startsWith('whole.')) return solveWhole(problem);
   if (kind.startsWith('dec.')) return solveDecimal(problem);
   if (kind.startsWith('rat.')) return solveRatio(problem);

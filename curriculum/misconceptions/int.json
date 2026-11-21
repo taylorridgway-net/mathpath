@@ -46,6 +46,36 @@
       "id": "int.div-sign",
       "description": "Gets the sign wrong when dividing (−42 ÷ −7 = −6).",
       "pointsTo": "int.mult-div.divide"
+    },
+    {
+      "id": "int.compare-size",
+      "description": "Compares negative numbers by their size, ignoring the sign (−8 > −3 because 8 > 3).",
+      "pointsTo": "int.compare.order"
+    },
+    {
+      "id": "int.compare-closest-negative",
+      "description": "Picks the negative closest to 0 as the least (−2 instead of −9).",
+      "pointsTo": "int.compare.order"
+    },
+    {
+      "id": "int.abs-opposite",
+      "description": "Thinks absolute value means the opposite (|−7| = −7, |12| = −12), or keeps a negative inside the bars.",
+      "pointsTo": "int.compare.abs"
+    },
+    {
+      "id": "int.abs-outside-negative",
+      "description": "Lets the bars cancel a negative sign outside them (−|−5| = 5).",
+      "pointsTo": "int.compare.abs"
+    },
+    {
+      "id": "int.abs-each-first",
+      "description": "Makes every number positive before working inside the bars (|3 − 8| = 3 + 8).",
+      "pointsTo": "int.compare.abs"
+    },
+    {
+      "id": "int.distance-subtracted-sizes",
+      "description": "Finds the distance between a negative and a positive number by subtracting their sizes (−4 and 6 are 2 apart).",
+      "pointsTo": "int.compare.abs"
     }
   ]
 }

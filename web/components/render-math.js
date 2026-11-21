@@ -20,6 +20,11 @@ export function renderMath(node, { inline = false } = {}) {
 
 function build(node) {
   switch (node.type) {
+    case 'abs': {
+      const wrap = el('span', 'm-row m-abs');
+      wrap.append(el('span', 'm-abs-bar', '|'), build(node.of), el('span', 'm-abs-bar', '|'));
+      return wrap;
+    }
     case 'group': {
       const wrap = el('span', 'm-row m-group');
       wrap.append(el('span', 'm-paren', '('), build(node.of), el('span', 'm-paren', ')'));
@@ -224,6 +229,7 @@ function el(tag, className, text) {
 // "3/4 + 1 1/2" -> "3 over 4 plus 1 and 1 over 2"
 function spoken(text) {
   return text
+    .replace(/\|([^|]+)\|/g, 'the absolute value of $1,')
     .replace(/\((-\d+)\)(?!\^)/g, '$1') // 3/(-5) -> 3/-5, 5 - (-3) -> 5 - -3 (but not (-3)^2)
     .replace(/(\d+) (\d+)\/(\d+)/g, '$1 and $2 over $3')
     .replace(/(-?\d+|\?)\/(-?\d+|\?)/g, '$1 over $2')

@@ -30,6 +30,20 @@
         { "id": "int.mult-div.divide", "name": "Divide integers (−42 ÷ 6)",
           "prerequisites": [ { "id": "whole.mult-div.div-facts", "strength": "essential" } ] }
       ]
+    },
+    {
+      "id": "int.compare",
+      "name": "Compare integers and absolute value",
+      "summary": "Compare and order positive and negative numbers; absolute value as distance from 0; distance between two numbers.",
+      "typicalGrade": 6,
+      "standards": ["6.NS.C.7"],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        { "id": "int.compare.order", "name": "Compare and order integers (−8 < −3)", "prerequisites": [] },
+        { "id": "int.compare.abs", "name": "Absolute value and distance (|−7|, −4 to 6)",
+          "prerequisites": [ { "id": "int.add-sub.subtract", "strength": "supporting", "why": "Distance across 0 is a subtraction." } ] }
+      ]
     }
   ]
 }
