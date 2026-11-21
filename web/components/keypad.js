@@ -47,6 +47,7 @@ function keypadKindFor(problem) {
   const type = problem.answer.type;
   if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
   if (type === 'factored') return { answerKind: 'factored', form: problem.answer.form };
+  if (type === 'point') return { answerKind: 'factored', form: 'pair' };
   if (type === 'gridpoints') return { answerKind: 'grid', count: problem.answer.count, line: problem.answer.mode === 'line' };
   if (type === 'numline') return { answerKind: 'numline', lo: problem.answer.lo, hi: problem.answer.hi, count: problem.answer.points.length };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };

@@ -313,6 +313,7 @@ const shortName = (id) => ({
   'stat.center': 'Mean, median, mode',
   'whole.place-value': 'Place value, rounding',
   'int.compare': 'Compare, absolute value',
+  'alg.systems': 'Systems of equations',
   'stat.displays': 'Data displays',
   'stat.prob': 'Probability',
   'exp.rules': 'Exponent rules',

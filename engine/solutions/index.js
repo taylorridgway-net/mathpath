@@ -24,6 +24,7 @@ import { solveExponent } from './exp.js';
 import { solveGeo } from './geo.js';
 import { solveStat } from './stat.js';
 import { solveNumberSense } from './number-sense.js';
+import { solveSystem } from './alg-systems.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
@@ -37,6 +38,7 @@ export function solve(problem) {
   if (kind.startsWith('geo.')) return solveGeo(problem);
   if (kind.startsWith('stat.')) return solveStat(problem);
   if (kind.startsWith('int.')) return solveInt(problem);
+  if (kind.startsWith('alg.systems')) return solveSystem(problem);
   if (kind.startsWith('alg.equations')) return solveEquation(problem);
   if (kind.startsWith('alg.multi-step')) return solveMultiStep(problem);
   if (kind.startsWith('alg.inequalities')) return solveInequality(problem);

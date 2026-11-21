@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.systems",
+  "title": "Systems of equations",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "alg.systems.graph": "The solution is the point on both lines: where they cross. Same slope? Then they're parallel (no solution) or the same line (infinitely many).",
+    "alg.systems.substitute": "Put what y equals into the other equation, solve for x, then find y.",
+    "alg.systems.eliminate": "Add or subtract the equations so one letter cancels. If nothing cancels yet, multiply one equation first (every term).",
+    "alg.systems": "Find the point that works in both equations: substitute, eliminate, or read where the lines cross."
+  },
+  "misconceptionMessages": {
+    "alg.systems-swapped": "Write the solution as (x, y): x first, then y.",
+    "alg.systems-intercept": "That's where one line crosses the y-axis. The solution is where the two lines cross each other.",
+    "alg.systems-parallel-one": "The slopes are the same, so the lines are parallel and never cross: no solution.",
+    "alg.systems-same-line-one": "Rewrite the second equation as y = mx + b. It's the same line, so every point on it works: infinitely many.",
+    "alg.systems-same-line-none": "Rewrite the second equation as y = mx + b. Same slope AND same intercept means the same line: infinitely many.",
+    "alg.systems-distribute": "When you put (x + 4) in for y, multiply everything inside: 3(x + 4) = 3x + 12.",
+    "alg.systems-forgot-divide": "Adding gave 2x, not x. Divide by 2 to get x.",
+    "alg.systems-subtract-one-side": "Whatever you do to the left side, do to the right side too: subtract the numbers on the right as well.",
+    "alg.systems-multiply-one-side": "Multiply every term of the equation, including the number on the right."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "alg.systems.graph",
+      "forGap": "alg.systems.graph",
+      "title": "Solve by graphing",
+      "objective": "Read the solution where two lines cross, and tell how many solutions a system has.",
+      "mode": "section",
+      "generator": "alg.systems.graph",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A system is two equations that must both be true. Each equation is a line; the point on both lines makes both equations true."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "graph": {
+            "lines": [
+              [
+                [
+                  0,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              [
+                [
+                  0,
+                  4
+                ],
+                [
+                  3,
+                  1
+                ]
+              ]
+            ]
+          },
+          "steps": [
+            "Solid line: y = 2x + 1.  Dashed line: y = −x + 4.",
+            "They cross at x = 1, y = 3.",
+            "Check: 2(1) + 1 = 3 and −1 + 4 = 3. The solution is (1, 3)."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "The solution is where the lines cross, written (x, y). Parallel lines (same slope): no solution. The same line: infinitely many.",
+      "worked": [
+        {
+          "math": "y = 2x + 1 and y = 2x − 3",
+          "note": "same slope, different intercepts"
+        },
+        {
+          "math": "parallel: [[no solution]]",
+          "note": ""
+        },
+        {
+          "math": "y = x + 2 and 2y = 2x + 4",
+          "note": "divide by 2: y = x + 2"
+        },
+        {
+          "math": "the same line: [[infinitely many]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "alg.systems.substitute",
+      "forGap": "alg.systems.substitute",
+      "title": "Solve by substitution",
+      "objective": "Put what y equals into the other equation.",
+      "mode": "section",
+      "generator": "alg.systems.substitute",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "When one equation already says what y is, you can swap that in for y in the other equation. Then there's only x left to solve."
+      ],
+      "visual": null,
+      "key": "Swap in what y equals, solve for x, then put x back in to find y. Write (x, y) and check both equations.",
+      "worked": [
+        {
+          "math": "y = 3x − 2 and 2x + y = 13",
+          "note": ""
+        },
+        {
+          "math": "2x + [[(3x − 2)]] = 13",
+          "note": "swap in for y"
+        },
+        {
+          "math": "5x − 2 = 13, so x = [[3]]",
+          "note": ""
+        },
+        {
+          "math": "y = 3(3) − 2 = [[7]]",
+          "note": "solution (3, 7)"
+        }
+      ]
+    },
+    {
+      "id": "alg.systems.eliminate",
+      "forGap": "alg.systems.eliminate",
+      "title": "Solve by elimination",
+      "objective": "Add or subtract the equations so one letter cancels.",
+      "mode": "section",
+      "generator": "alg.systems.eliminate",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Adding two true equations gives another true equation. If the y-terms are opposites, adding makes them disappear."
+      ],
+      "visual": null,
+      "key": "Add (or subtract) so one letter cancels. If nothing cancels yet, multiply one whole equation first, both sides.",
+      "worked": [
+        {
+          "math": "x + y = 10 and x − y = 4",
+          "note": ""
+        },
+        {
+          "math": "add: [[2x]] = 14",
+          "note": "the y's cancel"
+        },
+        {
+          "math": "x = 7, then 7 + y = 10, y = [[3]]",
+          "note": "solution (7, 3)"
+        },
+        {
+          "math": "2x + 3y = 12 and x + y = 5",
+          "note": "multiply the second by 2"
+        },
+        {
+          "math": "[[2x + 2y = 10]]",
+          "note": "every term"
+        },
+        {
+          "math": "subtract: y = [[2]], then x = [[3]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "alg.systems.whole",
+      "forGap": "alg.systems",
+      "title": "Putting it together",
+      "objective": "Systems of equations, mixed.",
+      "mode": "skill",
+      "generator": "alg.systems",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the systems are mixed. Use whichever method fits; only the solution counts."
+      ],
+      "visual": null,
+      "key": "Find the point that works in both equations. Check it in both.",
+      "worked": [
+        {
+          "math": "y = x + 1 and 3x + y = 9",
+          "note": ""
+        },
+        {
+          "math": "3x + (x + 1) = 9, 4x = 8, x = [[2]]",
+          "note": ""
+        },
+        {
+          "math": "y = 2 + 1 = [[3]]",
+          "note": "(2, 3): 6 + 3 = 9 ✓"
+        }
+      ]
+    }
+  ]
+}

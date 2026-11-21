@@ -13050,6 +13050,2330 @@
    }
   ]
  },
+ "alg.systems": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 2,
+     "y": -1
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -1,
+       "y": 2
+      }
+     },
+     {
+      "id": "alg.systems-forgot-divide",
+      "value": {
+       "x": 4,
+       "y": -3
+      }
+     }
+    ],
+    "part": "alg.systems.eliminate"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 10
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 6,
+     "y": -4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -4,
+       "y": 6
+      }
+     },
+     {
+      "id": "alg.systems-forgot-divide",
+      "value": {
+       "x": 12,
+       "y": -10
+      }
+     }
+    ],
+    "part": "alg.systems.eliminate"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 10
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": -2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 6
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -4,
+     "y": 2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 2,
+       "y": -4
+      }
+     }
+    ],
+    "part": "alg.systems.substitute"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 2,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 12
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 2,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 8
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 4,
+     "y": 2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 2,
+       "y": 4
+      }
+     }
+    ],
+    "part": "alg.systems.eliminate"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "The graph shows a system of two equations. What is its solution? Type it as (x, y).",
+    "expression": {
+     "type": "graph",
+     "lines": [
+      [
+       [
+        -4,
+        -1
+       ],
+       [
+        0,
+        -3
+       ]
+      ],
+      [
+       [
+        -3,
+        -3
+       ],
+       [
+        -1,
+        -1
+       ]
+      ]
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -2,
+     "y": -2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-intercept",
+      "value": {
+       "x": 0,
+       "y": -3
+      }
+     }
+    ],
+    "part": "alg.systems.graph"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 3,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 4,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 3,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 18
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 6,
+     "y": -2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -2,
+       "y": 6
+      }
+     },
+     {
+      "id": "alg.systems-subtract-one-side",
+      "value": {
+       "x": -12,
+       "y": 10
+      }
+     }
+    ],
+    "part": "alg.systems.eliminate"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "How many solutions does the system have?",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 6
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "One solution",
+      "No solution",
+      "Infinitely many"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "alg.systems.graph"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "How many solutions does the system have?",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 6
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 11
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "One solution",
+      "No solution",
+      "Infinitely many"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-parallel-one",
+      "choice": 0
+     }
+    ],
+    "part": "alg.systems.graph"
+   },
+   {
+    "generator": "alg.systems",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 2,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 20
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 6,
+     "y": -1
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -1,
+       "y": 6
+      }
+     }
+    ],
+    "part": "alg.systems.eliminate"
+   }
+  ]
+ },
+ "alg.systems.eliminate": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 2,
+     "y": -1
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -1,
+       "y": 2
+      }
+     },
+     {
+      "id": "alg.systems-forgot-divide",
+      "value": {
+       "x": 4,
+       "y": -3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 1,
+     "y": 4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 4,
+       "y": 1
+      }
+     },
+     {
+      "id": "alg.systems-forgot-divide",
+      "value": {
+       "x": 2,
+       "y": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -1
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 3,
+     "y": 4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 4,
+       "y": 3
+      }
+     },
+     {
+      "id": "alg.systems-forgot-divide",
+      "value": {
+       "x": 6,
+       "y": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 4,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 2,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -2
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 2,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -19
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -3,
+     "y": 5
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 5,
+       "y": -3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -8
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -1,
+     "y": -6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -6,
+       "y": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -5
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -4
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -3,
+     "y": -2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -2,
+       "y": -3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 2,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -3
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 3,
+     "y": -6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -6,
+       "y": 3
+      }
+     },
+     {
+      "id": "alg.systems-multiply-one-side",
+      "value": {
+       "x": -1,
+       "y": 0
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 2,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 4,
+     "y": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 3,
+       "y": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.eliminate",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 3,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 14
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -8
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -2,
+     "y": -6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -6,
+       "y": -2
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.systems.graph": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "The graph shows a system of two equations. What is its solution? Type it as (x, y).",
+    "expression": {
+     "type": "graph",
+     "lines": [
+      [
+       [
+        3,
+        4
+       ],
+       [
+        5,
+        0
+       ]
+      ],
+      [
+       [
+        3,
+        5
+       ],
+       [
+        5,
+        -1
+       ]
+      ]
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 4,
+     "y": 2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 2,
+       "y": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "The graph shows a system of two equations. What is its solution? Type it as (x, y).",
+    "expression": {
+     "type": "graph",
+     "lines": [
+      [
+       [
+        0,
+        2
+       ],
+       [
+        2,
+        6
+       ]
+      ],
+      [
+       [
+        0,
+        5
+       ],
+       [
+        2,
+        3
+       ]
+      ]
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 1,
+     "y": 4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 4,
+       "y": 1
+      }
+     },
+     {
+      "id": "alg.systems-intercept",
+      "value": {
+       "x": 0,
+       "y": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "The graph shows a system of two equations. What is its solution? Type it as (x, y).",
+    "expression": {
+     "type": "graph",
+     "lines": [
+      [
+       [
+        3,
+        5
+       ],
+       [
+        5,
+        1
+       ]
+      ],
+      [
+       [
+        3,
+        2
+       ],
+       [
+        5,
+        4
+       ]
+      ]
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 4,
+     "y": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 3,
+       "y": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "The graph shows a system of two equations. What is its solution? Type it as (x, y).",
+    "expression": {
+     "type": "graph",
+     "lines": [
+      [
+       [
+        -5,
+        -5
+       ],
+       [
+        -3,
+        -1
+       ]
+      ],
+      [
+       [
+        -5,
+        -4
+       ],
+       [
+        -3,
+        -2
+       ]
+      ]
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -4,
+     "y": -3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -3,
+       "y": -4
+      }
+     },
+     {
+      "id": "alg.systems-intercept",
+      "value": {
+       "x": 0,
+       "y": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "The graph shows a system of two equations. What is its solution? Type it as (x, y).",
+    "expression": {
+     "type": "graph",
+     "lines": [
+      [
+       [
+        0,
+        -1
+       ],
+       [
+        2,
+        1
+       ]
+      ],
+      [
+       [
+        -1,
+        1
+       ],
+       [
+        3,
+        -1
+       ]
+      ]
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 1,
+     "y": 0
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 0,
+       "y": 1
+      }
+     },
+     {
+      "id": "alg.systems-intercept",
+      "value": {
+       "x": 0,
+       "y": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "The graph shows a system of two equations. What is its solution? Type it as (x, y).",
+    "expression": {
+     "type": "graph",
+     "lines": [
+      [
+       [
+        -1,
+        -4
+       ],
+       [
+        1,
+        0
+       ]
+      ],
+      [
+       [
+        -1,
+        -5
+       ],
+       [
+        1,
+        1
+       ]
+      ]
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 0,
+     "y": -2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -2,
+       "y": 0
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "How many solutions does the system have?",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "term",
+        "coef": -2,
+        "name": "x"
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": -1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 2
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "One solution",
+      "No solution",
+      "Infinitely many"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "How many solutions does the system have?",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": -3,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 3
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": -9,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 9
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "One solution",
+      "No solution",
+      "Infinitely many"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-same-line-one",
+      "choice": 0
+     },
+     {
+      "id": "alg.systems-same-line-none",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "How many solutions does the system have?",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 2
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 4
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "One solution",
+      "No solution",
+      "Infinitely many"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-same-line-one",
+      "choice": 0
+     },
+     {
+      "id": "alg.systems-same-line-none",
+      "choice": 1
+     }
+    ]
+   }
+  ]
+ },
+ "alg.systems.substitute": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": -2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 8
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": -1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 2
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 6,
+     "y": -4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -4,
+       "y": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 3
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 8
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -5,
+     "y": -2
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -2,
+       "y": -5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 7
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 3
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 4,
+     "y": 5
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 5,
+       "y": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 3
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": -3,
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 11
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -4,
+     "y": -1
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -1,
+       "y": -4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": -1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 7
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": -2,
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -4
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -1,
+     "y": -6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -6,
+       "y": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": -1,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 8
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "var",
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": 12
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 2,
+     "y": 6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 6,
+       "y": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 1
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 2,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 3,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -19
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -2,
+     "y": -5
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -5,
+       "y": -2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": -2,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 7
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 3,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -15
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": -2,
+     "y": -3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": -3,
+       "y": -2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.systems.substitute",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve the system. Type the solution as (x, y).",
+    "expression": {
+     "type": "system",
+     "eqs": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "var",
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 3
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": -2,
+         "name": "x"
+        },
+        "right": {
+         "type": "term",
+         "coef": 3,
+         "name": "y"
+        }
+       },
+       "right": {
+        "type": "int",
+        "value": -5
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "point",
+     "x": 4,
+     "y": 1
+    },
+    "misconceptions": [
+     {
+      "id": "alg.systems-swapped",
+      "value": {
+       "x": 1,
+       "y": 4
+      }
+     },
+     {
+      "id": "alg.systems-distribute",
+      "value": {
+       "x": -2,
+       "y": -5
+      }
+     }
+    ]
+   }
+  ]
+ },
  "alg.translate": {
   "version": 1,
   "problems": [

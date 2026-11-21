@@ -496,6 +496,10 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .m-graph { max-width: 100%; height: auto; }
 .graph-grid { stroke: var(--line); stroke-width: 1; }
 .graph-line { stroke: var(--accent); stroke-width: 3; }
+.graph-line-2 { stroke: var(--mark); stroke-dasharray: 9 5; }
+.m-system { display: inline-flex; align-items: center; gap: 0.15em; }
+.m-brace { font-size: 2.6em; font-weight: 200; line-height: 1; transform: scaleX(0.7); }
+.m-system-rows { display: flex; flex-direction: column; align-items: flex-start; gap: 0.25em; }
 .graph-label { font-size: 11px; fill: var(--muted); font-family: var(--font-ui); }
 .slope-run { stroke: var(--info); stroke-width: 3; stroke-dasharray: 6 4; }
 .slope-rise { stroke: var(--mark); stroke-width: 3; stroke-dasharray: 6 4; }
@@ -521,6 +525,7 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .gridpad-where { text-align: center; font-family: var(--font-math); font-size: 1.1rem; min-height: 1.4em; margin: 4px 0 0; }
 .factor-answer { flex-wrap: wrap; row-gap: 6px; }
 .factor-paren { font-size: 1.8rem; font-family: var(--font-math); }
+.factor-comma { font-size: 1.8rem; font-family: var(--font-math); margin-right: 0.2em; }
 .m-factors { gap: 0; }
 .boxm { display: grid; grid-template-columns: 2.5rem repeat(2, minmax(4.5rem, 1fr)); gap: 4px; max-width: 320px; margin: 0 auto 8px; font-family: var(--font-math); font-size: 1.3rem; text-align: center; }
 .boxm-corner { color: var(--muted); align-self: center; }

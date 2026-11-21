@@ -97,6 +97,8 @@ export function checkAnswer(problem, raw) {
       return checkGridPoints(problem, raw);
     case 'factored':
       return checkFactored(problem, raw);
+    case 'point':
+      return checkPoint(problem, raw);
     default:
       throw new Error(`checkAnswer: unknown answer type "${expected.type}"`);
   }
@@ -226,6 +228,15 @@ export function multiplyOut(form, b) {
   return [b[0] * b[2], b[0] * b[3] + b[1] * b[2], b[1] * b[3]]; // binomials-a
 }
 const COUNT = { product: 3, binomials: 2, gcf: 3, 'binomials-a': 4 };
+// The solution of a system, typed as (x, y): raw { boxes: [x, y] }.
+function checkPoint(problem, raw) {
+  const b = raw?.boxes;
+  if (!Array.isArray(b) || b.length !== 2 || !b.every(Number.isSafeInteger)) return { status: 'invalid', reason: 'empty' };
+  const { x, y } = problem.answer;
+  if (b[0] === x && b[1] === y) return { status: 'correct' };
+  return wrong(problem, (m) => m.value?.x === b[0] && m.value?.y === b[1]);
+}
+
 function checkFactored(problem, raw) {
   const a = problem.answer;
   const b = raw?.boxes;

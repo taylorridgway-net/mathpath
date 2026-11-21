@@ -3,6 +3,7 @@
 //   binomials    (x + [ ])(x + [ ])           (x² + 7x + 12, x² − 25)
 //   gcf          [ ]([ ]x + [ ])              (6x + 9)
 //   binomials-a  ([ ]x + [ ])([ ]x + [ ])     (2x² + 7x + 3)
+//   pair         ([ ], [ ])                   (the solution of a system: x and y)
 // Each box holds a whole number with its own sign; the + or − in front of a box shows its
 // sign ((−) changes the box you're in). Tap a box or press Next to move. Keys on a keyboard:
 // digits, "-", Backspace, Tab / Space / arrows, Enter.
@@ -13,8 +14,9 @@ const TEMPLATES = {
   binomials: ['(', 'x', { box: 0 }, ')', '(', 'x', { box: 1 }, ')'],
   gcf: [{ box: 0, lead: true }, '(', { box: 1, lead: true }, 'x', { box: 2 }, ')'],
   'binomials-a': ['(', { box: 0, lead: true }, 'x', { box: 1 }, ')', '(', { box: 2, lead: true }, 'x', { box: 3 }, ')'],
+  pair: ['(', { box: 0, lead: true }, ',', { box: 1, lead: true }, ')'],
 };
-export const BOX_COUNT = { product: 3, binomials: 2, gcf: 3, 'binomials-a': 4 };
+export const BOX_COUNT = { product: 3, binomials: 2, gcf: 3, 'binomials-a': 4, pair: 2 };
 const MAX_DIGITS = 3;
 
 export function createFactorPad({ host, form, onSubmit, onSkip }) {
@@ -102,7 +104,7 @@ export function createFactorPad({ host, form, onSubmit, onSkip }) {
     for (const t of template) {
       if (typeof t === 'string') {
         const s = document.createElement('span');
-        s.className = t === '(' || t === ')' ? 'answer-r factor-paren' : 'answer-x';
+        s.className = t === '(' || t === ')' ? 'answer-r factor-paren' : t === ',' ? 'answer-r factor-comma' : 'answer-x';
         s.textContent = t;
         display.append(s);
         continue;

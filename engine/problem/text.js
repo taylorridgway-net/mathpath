@@ -46,7 +46,10 @@ export function toText(node) {
       return `(${node.x}, ${node.y})`;
     case 'table':
       return `[a table: x ${node.rows.map((r) => r[0]).join(', ')}; y ${node.rows.map((r) => r[1]).join(', ')}]`;
+    case 'system':
+      return node.eqs.map(toText).join(' and ');
     case 'graph':
+      if (node.lines) return `[lines on a grid: ${node.lines.map(([a, b]) => `through (${a.join(', ')}) and (${b.join(', ')})`).join('; ')}]`;
       return `[a line on a grid through (${node.points[0].join(', ')}) and (${node.points[1].join(', ')})]`;
     case 'ratio':
       return `${toText(node.a)} : ${toText(node.b)}`;

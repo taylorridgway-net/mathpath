@@ -94,7 +94,16 @@ function build(node) {
     case 'table':
       return xyTable(node.rows);
     case 'graph':
-      return lineGraph(node.points);
+      return lineGraph(node.lines || [node.points], !node.lines);
+    case 'system': {
+      // Two equations stacked, with a brace in front.
+      const wrap = el('span', 'm-system');
+      wrap.append(el('span', 'm-brace', '{'));
+      const rows = el('span', 'm-system-rows');
+      for (const e of node.eqs) rows.append(build(e));
+      wrap.append(rows);
+      return wrap;
+    }
     case 'shape':
       return drawShape(node);
     case 'factors': {
@@ -173,7 +182,8 @@ function xyTable(rows) {
 }
 
 // A line on a −6..6 grid through two marked points, drawn right across the grid.
-function lineGraph([[x1, y1], [x2, y2]]) {
+// Lines through two grid points each (one line, or a system's two). dots: mark the points.
+function lineGraph(lines, dots) {
   const R = 6;
   const unit = 18;
   const size = (2 * R + 1) * unit;
@@ -191,17 +201,19 @@ function lineGraph([[x1, y1], [x2, y2]]) {
     ly.textContent = minus(v);
     root.append(lx, ly);
   }
-  // Extend the line to the edges of the grid, and no further (clip to the square).
-  const [dx, dy] = [x2 - x1, y2 - y1];
-  let lo = -Infinity; let hi = Infinity;
-  for (const [p, d] of [[x1, dx], [y1, dy]]) {
-    if (d === 0) continue;
-    const [a, b] = [(-R - p) / d, (R - p) / d];
-    lo = Math.max(lo, Math.min(a, b)); hi = Math.min(hi, Math.max(a, b));
-  }
-  const [ax, ay, bx, by] = [x1 + lo * dx, y1 + lo * dy, x1 + hi * dx, y1 + hi * dy];
-  root.append(svg('line', { x1: X(ax), y1: Y(ay), x2: X(bx), y2: Y(by), class: 'graph-line' }));
-  for (const [px, py] of [[x1, y1], [x2, y2]]) root.append(svg('circle', { cx: X(px), cy: Y(py), r: 5, class: 'pic-dot' }));
+  lines.forEach(([[x1, y1], [x2, y2]], i) => {
+    // Extend the line to the edges of the grid, and no further (clip to the square).
+    const [dx, dy] = [x2 - x1, y2 - y1];
+    let lo = -Infinity; let hi = Infinity;
+    for (const [p, d] of [[x1, dx], [y1, dy]]) {
+      if (d === 0) continue;
+      const [a, b] = [(-R - p) / d, (R - p) / d];
+      lo = Math.max(lo, Math.min(a, b)); hi = Math.min(hi, Math.max(a, b));
+    }
+    const [ax, ay, bx, by] = [x1 + lo * dx, y1 + lo * dy, x1 + hi * dx, y1 + hi * dy];
+    root.append(svg('line', { x1: X(ax), y1: Y(ay), x2: X(bx), y2: Y(by), class: i ? 'graph-line graph-line-2' : 'graph-line' }));
+    if (dots) for (const [px, py] of [[x1, y1], [x2, y2]]) root.append(svg('circle', { cx: X(px), cy: Y(py), r: 5, class: 'pic-dot' }));
+  });
   return root;
 }
 

@@ -21,6 +21,7 @@ import algExpressionsPaper from './paper/alg.expressions.json';
 import algMultiStepPaper from './paper/alg.multi-step.json';
 import algInequalitiesPaper from './paper/alg.inequalities.json';
 import algInequalityGraphsPaper from './paper/alg.inequality-graphs.json';
+import algSystemsPaper from './paper/alg.systems.json';
 import algTranslatePaper from './paper/alg.translate.json';
 import algEvaluatePaper from './paper/alg.evaluate.json';
 import decPlaceValuePaper from './paper/dec.place-value.json';
@@ -53,4 +54,4 @@ import linGraphingPaper from './paper/lin.graphing.json';
 import polyMultiplyPaper from './paper/poly.multiply.json';
 import polyFactorPaper from './paper/poly.factor.json';
 
-export const paperList = [wholePlaceValuePaper, wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intComparePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algTranslatePaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, geoUnitsPaper, geoAreaPaper, geoCirclesPaper, geoVolumePaper, expRulesPaper, expRootsPaper, expScinotPaper, geoAnglesPaper, geoPythagPaper, statCenterPaper, statDisplaysPaper, statProbPaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper, polyMultiplyPaper, polyFactorPaper];
+export const paperList = [wholePlaceValuePaper, wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intComparePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algInequalityGraphsPaper, algSystemsPaper, algTranslatePaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, geoUnitsPaper, geoAreaPaper, geoCirclesPaper, geoVolumePaper, expRulesPaper, expRootsPaper, expScinotPaper, geoAnglesPaper, geoPythagPaper, statCenterPaper, statDisplaysPaper, statProbPaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper, linGraphingPaper, polyMultiplyPaper, polyFactorPaper];

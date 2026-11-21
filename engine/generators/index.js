@@ -10,6 +10,7 @@ import { multiplyGenerators } from './frac/multiply.js';
 import { divideGenerators } from './frac/divide.js';
 import { integerGenerators } from './int/integers.js';
 import { intCompareGenerators } from './int/compare.js';
+import { systemsGenerators } from './alg/systems.js';
 import { placeValueGenerators } from './whole/place-value.js';
 import { signedGenerators } from './frac/signed.js';
 import { orderOpsGenerators } from './alg/order-ops.js';
@@ -43,6 +44,7 @@ export const generators = {
   ...divideGenerators,
   ...integerGenerators,
   ...intCompareGenerators,
+  ...systemsGenerators,
   ...placeValueGenerators,
   ...signedGenerators,
   ...orderOpsGenerators,

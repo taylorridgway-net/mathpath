@@ -251,6 +251,51 @@
       "id": "alg.translate-start-ignored",
       "description": "Leaves out the starting amount in a story (the $12 already saved, the monthly fee).",
       "pointsTo": "alg.translate.equation"
+    },
+    {
+      "id": "alg.systems-swapped",
+      "description": "Writes the solution with x and y the wrong way round ((3, 2) for x = 2, y = 3).",
+      "pointsTo": "alg.systems.graph"
+    },
+    {
+      "id": "alg.systems-intercept",
+      "description": "Reads where one line crosses the y-axis instead of where the two lines cross.",
+      "pointsTo": "alg.systems.graph"
+    },
+    {
+      "id": "alg.systems-parallel-one",
+      "description": "Thinks two lines with the same slope (parallel) still cross once.",
+      "pointsTo": "alg.systems.graph"
+    },
+    {
+      "id": "alg.systems-same-line-one",
+      "description": "Doesn't see that two equations are the same line written differently (infinitely many solutions), and says one solution.",
+      "pointsTo": "alg.systems.graph"
+    },
+    {
+      "id": "alg.systems-same-line-none",
+      "description": "Says the same line written two ways has no solution.",
+      "pointsTo": "alg.systems.graph"
+    },
+    {
+      "id": "alg.systems-distribute",
+      "description": "Substitutes but doesn't distribute: 2x + 3(x + 4) done as 2x + 3x + 4.",
+      "pointsTo": "alg.systems.substitute"
+    },
+    {
+      "id": "alg.systems-forgot-divide",
+      "description": "Adds the equations to get 2x = 14, then uses 14 as x.",
+      "pointsTo": "alg.systems.eliminate"
+    },
+    {
+      "id": "alg.systems-subtract-one-side",
+      "description": "Subtracts the equations on the left but adds (or forgets to subtract) on the right.",
+      "pointsTo": "alg.systems.eliminate"
+    },
+    {
+      "id": "alg.systems-multiply-one-side",
+      "description": "Multiplies an equation on the left side only, not the number on the right.",
+      "pointsTo": "alg.systems.eliminate"
     }
   ]
 }

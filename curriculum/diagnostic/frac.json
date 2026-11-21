@@ -43,7 +43,8 @@
         "alg.equations",
         "alg.multi-step",
         "alg.inequalities",
-        "alg.inequality-graphs"
+        "alg.inequality-graphs",
+        "alg.systems"
       ]
     },
     {

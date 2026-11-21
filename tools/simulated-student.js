@@ -38,6 +38,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.type === 'numline') return { points: a.points.map((q) => ({ ...q })), shade: a.shade };
     if (a.type === 'gridpoints') return { points: (a.mode === 'line' ? a.example : a.points).map((q) => [...q]) };
     if (a.type === 'factored') return { boxes: [...a.boxes] };
+    if (a.type === 'point') return { boxes: [a.x, a.y] };
     if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
     if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least };
@@ -55,6 +56,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.type === 'numline') return { points: a.points.map((q) => ({ ...q, closed: !q.closed })), shade: a.shade };
     if (a.type === 'gridpoints') return { points: (a.mode === 'line' ? a.example : a.points).map(([u, v]) => [u, v + 1]) };
     if (a.type === 'factored') return { boxes: a.boxes.map((v, i) => (i === a.boxes.length - 1 ? v + 1 : v)) };
+    if (a.type === 'point') return { boxes: [a.x, a.y + 1] };
     if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };
     if (a.type === 'linear') return { coef: a.coef + 1, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least + 1 };
@@ -96,6 +98,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
       if (typeof held.value === 'number') return { whole: Math.abs(held.value), ...(held.value < 0 ? { negative: true } : {}) };
       if (held.value.quotient !== undefined) return { whole: held.value.quotient, rem: held.value.remainder };
       if (held.value.coef !== undefined) return { coef: held.value.coef, constant: held.value.constant };
+      if (held.value.x !== undefined) return { boxes: [held.value.x, held.value.y] };
       return { num: Math.abs(held.value.n), den: held.value.d, ...(held.value.n < 0 ? { negative: true } : {}) };
     }
     return wrongAnswer(problem);

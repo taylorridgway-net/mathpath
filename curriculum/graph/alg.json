@@ -467,6 +467,58 @@
           ]
         }
       ]
+    },
+    {
+      "id": "alg.systems",
+      "name": "Systems of equations",
+      "summary": "Solve two linear equations together: read the solution from a graph, tell how many solutions there are, and solve by substitution or elimination.",
+      "typicalGrade": 8,
+      "standards": [
+        "8.EE.C.8"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.systems.graph",
+          "name": "Solve by graphing (and how many solutions)",
+          "prerequisites": [
+            {
+              "id": "lin.graphing.points",
+              "strength": "supporting",
+              "why": "Reading the point where the lines cross."
+            }
+          ]
+        },
+        {
+          "id": "alg.systems.substitute",
+          "name": "Solve by substitution",
+          "prerequisites": [
+            {
+              "id": "alg.multi-step.both-sides",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.multi-step.distribute",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "alg.systems.eliminate",
+          "name": "Solve by elimination",
+          "prerequisites": [
+            {
+              "id": "alg.equations.two-step",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "supporting"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
