@@ -15,8 +15,8 @@ Answers: numbers (whole, negative, or a fraction in simplest form for slopes), a
 two boxes `y = [ ]x + [ ]` (the expressions keypad), so classic mistakes like swapping m and b are recognised.
 Graphs are pictures to read (a line through grid points), not something students draw: no new input method.
 
-Out for now: plotting points or drawing lines, point-slope form, standard form, parallel/perpendicular,
-systems of equations, linear vs. nonlinear tables, domain and range.
+Out for now: plotting points or drawing lines (next, needs a tap-on-the-grid input), systems of equations,
+domain and range.
 
 ## Decisions (Claude's defaults)
 
@@ -37,3 +37,9 @@ systems of equations, linear vs. nonlinear tables, domain and range.
 - Equations are typed in `y = [ ]x + [ ]` (two boxes, each with its own sign); integer slopes there. Fraction
   slopes are answered on their own (slope questions).
 - 400 pretend students, Linear functions check: median 6 questions, max 12; knows everything: 5.
+- Built 2026-11-21 (owner: "linear functions ... sound good to build next"): "linear or not?" (a new part of function
+  inputs and outputs: tables, including uneven x steps, and equations; answered with buttons), point-slope and standard
+  form (`lin.forms`: rewrite as y = mx + b, intercepts and slope of Ax + By = C), parallel and perpendicular lines
+  (`lin.parallel`: slopes, "parallel, perpendicular or neither?", the line through a point; the equation question screens
+  both). Equation answers are kept to whole-number slopes and intercepts (the two boxes take whole numbers).
+  Linear functions check: median 10 questions, max 20; knows everything: 9.

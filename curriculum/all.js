@@ -50,8 +50,10 @@ import ratPercentChangeLesson from './lessons/rat.percent-change.json';
 import linFunctionsLesson from './lessons/lin.functions.json';
 import linSlopeLesson from './lessons/lin.slope.json';
 import linSlopeInterceptLesson from './lessons/lin.slope-intercept.json';
+import linFormsLesson from './lessons/lin.forms.json';
+import linParallelLesson from './lessons/lin.parallel.json';
 
 export { domainsIndex, diagnosticConfig, masteryRules };
 export const graphFiles = { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph, 'dec.json': decGraph, 'rat.json': ratGraph, 'lin.json': linGraph };
 export const misconceptionList = [...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...fracMisconceptions.misconceptions, ...algMisconceptions.misconceptions, ...decMisconceptions.misconceptions, ...ratMisconceptions.misconceptions, ...linMisconceptions.misconceptions];
-export const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsMultiplesLesson, fracMeaningLesson, fracEquivalentLesson, fracCompareLesson, fracAddSubLesson, fracMultiplyLesson, fracDivideLesson, intAddSubLesson, intMultDivLesson, fracSignedLesson, algOrderOpsLesson, algExponentsLesson, algEquationsLesson, algExpressionsLesson, algMultiStepLesson, algInequalitiesLesson, algEvaluateLesson, decPlaceValueLesson, decConvertLesson, decAddSubLesson, decMultiplyLesson, decDivideLesson, decSignedLesson, ratRatiosLesson, ratPercentLesson, ratPercentChangeLesson, linFunctionsLesson, linSlopeLesson, linSlopeInterceptLesson];
+export const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsMultiplesLesson, fracMeaningLesson, fracEquivalentLesson, fracCompareLesson, fracAddSubLesson, fracMultiplyLesson, fracDivideLesson, intAddSubLesson, intMultDivLesson, fracSignedLesson, algOrderOpsLesson, algExponentsLesson, algEquationsLesson, algExpressionsLesson, algMultiStepLesson, algInequalitiesLesson, algEvaluateLesson, decPlaceValueLesson, decConvertLesson, decAddSubLesson, decMultiplyLesson, decDivideLesson, decSignedLesson, ratRatiosLesson, ratPercentLesson, ratPercentChangeLesson, linFunctionsLesson, linSlopeLesson, linSlopeInterceptLesson, linFormsLesson, linParallelLesson];

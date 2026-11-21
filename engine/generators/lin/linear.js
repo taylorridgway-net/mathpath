@@ -56,6 +56,18 @@ function lineOnGrid(rng, { whole = false, negativeOk = true } = {}) {
   }
 }
 const graph = (points) => ({ type: 'graph', points });
+const scaled = (coef, of) => ({ type: 'scaled', coef, of });
+const yTerm = (coef) => (coef === 1 ? y : { type: 'term', coef, name: 'y' });
+// "x − 3" or "x + 2" (shown with the sign the point's coordinate needs).
+const shift = (v, c) => op(c < 0 ? '+' : '-', v, int(Math.abs(c)));
+// A slope as a number or a fraction node, for y = (slope)x + b in a question.
+const slopeNode = (m) => (m.d === 1 ? m.n : m.n < 0 ? { type: 'neg', of: { type: 'frac', n: -m.n, d: m.d } } : { type: 'frac', n: m.n, d: m.d });
+const lineF = (m, b) => {
+  const t = slopeNode(m);
+  const tx = t === 1 ? x : { type: 'term', coef: t, name: 'x' };
+  return b === 0 ? tx : op(b < 0 ? '-' : '+', tx, int(Math.abs(b)));
+};
+const minus = (v) => (v < 0 ? `−${-v}` : String(v));
 
 // ======================= Function inputs and outputs =======================
 
@@ -103,6 +115,55 @@ const table = {
       { id: 'lin.table-add-step', value: askX !== last[0] + 1 ? F(last[1] + m) : null }, // one more step, however far x jumped
       { id: 'lin.table-add-step', value: askX === 0 ? F(rows[0][1] - m) : null }, // went back one step instead of two to x = 0
     ]);
+  },
+};
+
+
+// ---------- linear or not? ----------
+//   1: a table with x going up by 1 (constant change, or not);  2: an equation (y = 5 − 2x vs. y = x² + 1);
+//   3: a table whose x values jump unevenly (x 0, 1, 3, 4): compare change in y with change in x
+const linearOrNot = {
+  version: 1,
+  generate(rng, difficulty) {
+    const options = ['Linear', 'Not linear'];
+    if (difficulty === 2) {
+      const kind = rng.pick(['line', 'line-backwards', 'square', 'square', 'distribute']);
+      const [m, b] = [nonZero(rng, -5, 6), nonZero(rng, -9, 9)];
+      let right;
+      if (kind === 'line') right = line(m, b);
+      else if (kind === 'line-backwards') right = op(m < 0 ? '-' : '+', int(b), term(Math.abs(m)));
+      else if (kind === 'distribute') right = scaled(rng.int(2, 5), op('+', x, int(rng.int(1, 6))));
+      else right = op(b < 0 ? '-' : '+', { type: 'pow', base: x, exp: 2 }, int(Math.abs(b)));
+      const isLinear = kind !== 'square';
+      return {
+        instruction: 'Is this function linear?',
+        expression: eq(y, right),
+        answer: { type: 'choice', options, correct: isLinear ? 0 : 1 },
+        misconceptions: isLinear ? [] : [{ id: 'lin.nonlinear-power', choice: 0 }],
+      };
+    }
+    const xs = difficulty === 1 ? [1, 2, 3, 4] : rng.pick([[0, 1, 3, 4], [0, 2, 3, 5], [1, 2, 4, 7]]);
+    const isLinear = rng.chance(0.5);
+    const [m, b] = [nonZero(rng, -4, 5), rng.int(-5, 9)];
+    let ys;
+    if (isLinear) ys = xs.map((v) => m * v + b);
+    else if (difficulty === 1) {
+      const k = rng.pick(['square', 'double', 'grow']);
+      ys = k === 'square' ? xs.map((v) => v * v + b) : k === 'double' ? xs.map((v) => 2 ** v + b) : xs.map((v, i) => b + (i * (i + 1)) / 2 + v); // the change grows
+    } else {
+      const step = nonZero(rng, -4, 5); // y changes by the same amount each row, though x jumps unevenly
+      ys = xs.map((_, i) => b + i * step);
+    }
+    const increasing = ys.every((v, i) => i === 0 || v > ys[i - 1]);
+    const misconceptions = [];
+    if (!isLinear && increasing && difficulty === 1) misconceptions.push({ id: 'lin.nonlinear-increasing', choice: 0 });
+    if (difficulty === 3) misconceptions.push({ id: 'lin.uneven-x-steps', choice: isLinear ? 1 : 0 });
+    return {
+      instruction: 'Is this function linear?',
+      expression: { type: 'table', rows: xs.map((v, i) => [v, ys[i]]) },
+      answer: { type: 'choice', options, correct: isLinear ? 0 : 1 },
+      misconceptions,
+    };
   },
 };
 
@@ -215,10 +276,147 @@ const twoPoints = {
   },
 };
 
+
+// ======================= Other forms of a line =======================
+
+// ---------- point-slope form ----------
+//   1: y − 4 = 2(x − 1) to y = mx + b;  2: with negatives (y + 3 = −2(x − 4));
+//   3: from words: slope −3 through (−2, 5)
+const pointSlope = {
+  version: 1,
+  generate(rng, difficulty) {
+    let m;
+    do m = difficulty === 1 ? rng.int(2, 5) : nonZero(rng, -5, 5); while (difficulty === 2 && Math.abs(m) === 1); // 1(x − 2) would look odd
+    const [x1, y1] = difficulty === 1 ? [rng.int(1, 5), rng.int(1, 9)] : [nonZero(rng, -5, 5), nonZero(rng, -8, 8)];
+    const b = y1 - m * x1;
+    const candidates = [
+      { id: 'lin.ps-distribute', coef: m, constant: y1 - x1 }, // y − 4 = 2x − 1: the 2 not multiplied into the 1
+      { id: 'lin.ps-sign', coef: m, constant: -y1 - m * x1 }, // moved the 4 the wrong way
+      { id: 'lin.b-from-point', coef: m, constant: y1 },
+    ];
+    if (difficulty === 3) {
+      return equationProblem(`Write the equation of the line with slope ${minus(m)} through (${minus(x1)}, ${minus(y1)}).`,
+        { type: 'words', text: 'y = mx + b' }, m, b, candidates);
+    }
+    return equationProblem('Write this line in the form y = mx + b.', eq(shift(y, y1), scaled(m, shift(x, x1))), m, b, candidates);
+  },
+};
+
+// ---------- standard form ----------
+//   1: an intercept of 2x + 3y = 12 (cover up the other letter);  2: rewrite as y = mx + b (4x + 2y = 10 -> y = −2x + 5);
+//   3: the slope of Ax + By = C, often a fraction (2x + 3y = 6 -> −2/3)
+const standard = {
+  version: 1,
+  generate(rng, difficulty) {
+    const show = (A, B, C) => eq(op(B < 0 ? '-' : '+', term(A), yTerm(Math.abs(B))), int(C));
+    if (difficulty === 1) {
+      let A; let B;
+      do [A, B] = [rng.int(1, 6), rng.int(1, 6)]; while (A === B);
+      const C = (A * B) / gcd(A, B) * rng.int(1, 3);
+      const askX = rng.chance(0.5);
+      return numberProblem(`What is the ${askX ? 'x' : 'y'}-intercept?`, show(A, B, C), F(askX ? C / A : C / B), [
+        { id: 'lin.std-intercept-swap', value: F(askX ? C / B : C / A) },
+        { id: 'lin.std-intercept-c', value: F(C) },
+      ]);
+    }
+    if (difficulty === 2) {
+      const B = rng.pick([1, -1, 2, 3, 2]);
+      const m = nonZero(rng, -5, 5);
+      const b = nonZero(rng, -6, 6);
+      const [A, C] = [-m * B, b * B];
+      return equationProblem('Write this line in the form y = mx + b.', show(A, B, C), m, b, [
+        { id: 'lin.std-sign', coef: -m, constant: b }, // didn't change the x term's sign when moving it
+        { id: 'lin.std-not-divided', coef: Math.abs(B) === 1 ? null : -A, constant: C }, // forgot to divide by B
+        { id: 'lin.std-not-divided', coef: m, constant: Math.abs(B) === 1 ? null : C },
+      ]);
+    }
+    let A; let B;
+    do [A, B] = [rng.int(1, 6), nonZero(rng, -6, 6)]; while (A === Math.abs(B) || gcd(A, B) !== 1 || B === 1); // x term positive, as usually written
+    const C = A * B * rng.int(1, 2);
+    return numberProblem('What is the slope?', show(A, B, C), F(-A, B), [
+      { id: 'lin.std-sign', value: F(A, B) },
+      { id: 'lin.std-slope-a', value: F(A) }, // "the number in front of x"
+      { id: 'lin.slope-run-over-rise', value: F(-B, A) },
+    ]);
+  },
+};
+
+// ======================= Parallel and perpendicular lines =======================
+
+// A slope for these questions: whole (2, −3) or a unit fraction (1/2, −1/3), so the
+// perpendicular slope is whole or a unit fraction too.
+function niceSlope(rng, { fraction: frac = true } = {}) {
+  const k = rng.int(1, 5);
+  const sign = rng.chance(0.5) ? -1 : 1;
+  return frac && rng.chance(0.5) ? F(sign, k === 1 ? 2 : k) : F(sign * (k === 1 ? rng.int(2, 4) : k));
+}
+const perp = (m) => F(-m.d, m.n);
+
+// ---------- the slopes ----------
+//   1: parallel to y = mx + b;  2: perpendicular (negative reciprocal);
+//   3: parallel, perpendicular or neither? (two equations)
+const parallelSlopes = {
+  version: 1,
+  generate(rng, difficulty) {
+    const m = niceSlope(rng);
+    const b = nonZero(rng, -8, 8);
+    if (difficulty < 3) {
+      const par = difficulty === 1;
+      return numberProblem(`What is the slope of a line ${par ? 'parallel' : 'perpendicular'} to this one?`, eq(y, lineF(m, b)), par ? m : perp(m), [
+        { id: 'lin.perp-for-parallel', value: par ? perp(m) : m }, // mixed up the two
+        { id: 'lin.perp-no-negative', value: par ? null : F(m.d, m.n) }, // flipped but kept the sign
+        { id: 'lin.perp-no-flip', value: par ? null : F(-m.n, m.d) }, // changed the sign only
+      ]);
+    }
+    const kind = rng.pick(['parallel', 'perpendicular', 'reciprocal', 'negative']);
+    const m2 = { parallel: m, perpendicular: perp(m), reciprocal: F(m.d, m.n), negative: F(-m.n, m.d) }[kind];
+    let b2 = nonZero(rng, -8, 8);
+    if (kind === 'parallel' && b2 === b) b2 = b + 3;
+    const correct = kind === 'parallel' ? 0 : kind === 'perpendicular' ? 1 : 2;
+    const misconceptions = [];
+    if (kind === 'reciprocal') misconceptions.push({ id: 'lin.perp-no-negative', choice: 1 });
+    if (kind === 'negative') misconceptions.push({ id: 'lin.perp-no-flip', choice: 1 });
+    return {
+      instruction: 'Are these lines parallel, perpendicular, or neither?',
+      expression: { type: 'list', items: [eq(y, lineF(m, b)), eq(y, lineF(m2, b2))] },
+      answer: { type: 'choice', options: ['Parallel', 'Perpendicular', 'Neither'], correct },
+      misconceptions,
+    };
+  },
+};
+
+// ---------- the equation through a point ----------
+//   1: parallel to y = 3x − 1, through (2, 4);  2: perpendicular to y = −(1/2)x + 3, through (1, 5);
+//   3: either, through a point with negatives, the given line written in standard form (2x + y = 5)
+const parallelEquation = {
+  version: 1,
+  alsoUses: ['lin.parallel.slopes', 'lin.slope-intercept.two-points'],
+  generate(rng, difficulty) {
+    const par = difficulty === 1 || (difficulty === 3 && rng.chance(0.5));
+    // The new line's slope must be whole: parallel to a whole slope, perpendicular to a unit fraction or ±1.
+    const given = par ? F(nonZero(rng, -5, 5)) : rng.chance(0.3) ? F(rng.pick([1, -1])) : F(rng.pick([1, -1]), rng.int(2, 5));
+    const m = par ? given.n : perp(given).n / perp(given).d;
+    const c = nonZero(rng, -8, 8);
+    const [x1, y1] = difficulty === 3 ? [nonZero(rng, -4, 4), nonZero(rng, -6, 6)] : [rng.int(1, 4), rng.int(1, 9)];
+    const b = y1 - m * x1;
+    // Standard form only for a whole slope: 2x + y = 5 is y = −2x + 5.
+    const lineShown = difficulty === 3 && given.d === 1
+      ? eq(op('+', term(-given.n), y), int(c))
+      : eq(y, lineF(given, c));
+    const candidates = [
+      { id: 'lin.b-from-point', coef: m, constant: y1 },
+      { id: 'lin.parallel-copied', coef: m, constant: c }, // kept the old line's intercept
+      { id: 'lin.perp-for-parallel', coef: par ? null : given.d === 1 ? given.n : null, constant: par ? null : y1 - given.n * x1 }, // used the old slope
+      { id: 'lin.perp-no-negative', coef: par ? null : -m, constant: y1 + m * x1 },
+    ];
+    return equationProblem(`Write the equation of the line through (${minus(x1)}, ${minus(y1)}) that is ${par ? 'parallel' : 'perpendicular'} to this line.`, lineShown, m, b, candidates);
+  },
+};
+
 // ======================= whole skills =======================
 
-const mixedOf = ({ covers, screener, parts: own }) => ({
-  version: 1,
+const mixedOf = ({ covers, screener, parts: own, version = 1 }) => ({
+  version,
   mixed: true,
   ...(screener ? { screener } : {}),
   covers,
@@ -232,20 +430,29 @@ const mixedOf = ({ covers, screener, parts: own }) => ({
 const parts = {
   'lin.functions.evaluate': evaluateF,
   'lin.functions.table': table,
+  'lin.functions.linear': linearOrNot,
   'lin.slope.points': slopePoints,
   'lin.slope.graph': slopeGraph,
   'lin.slope-intercept.read': readMB,
   'lin.slope-intercept.write': writeEquation,
   'lin.slope-intercept.two-points': twoPoints,
+  'lin.forms.point-slope': pointSlope,
+  'lin.forms.standard': standard,
+  'lin.parallel.slopes': parallelSlopes,
+  'lin.parallel.equation': parallelEquation,
 };
 
 export const linearGenerators = {
-  // f(x) and tables rest on different ideas: both asked.
-  'lin.functions': mixedOf({ covers: ['lin.functions.evaluate', 'lin.functions.table'] }),
+  // f(x), tables, and telling linear from not rest on different ideas: each asked.
+  'lin.functions': mixedOf({ version: 2, covers: ['lin.functions.evaluate', 'lin.functions.table', 'lin.functions.linear'] }),
   // Slope from points and from a graph: both asked (reading a graph is its own skill).
   'lin.slope': mixedOf({ covers: ['lin.slope.points', 'lin.slope.graph'] }),
   // The equation through two points needs everything in the skill: it stands for all three.
   'lin.slope-intercept': mixedOf({ screener: 'lin.slope-intercept.two-points', covers: ['lin.slope-intercept.read', 'lin.slope-intercept.write', 'lin.slope-intercept.two-points'] }),
+  // Point-slope and standard form rest on different algebra (distributing vs. solving for y): both asked.
+  'lin.forms': mixedOf({ covers: ['lin.forms.point-slope', 'lin.forms.standard'] }),
+  // A parallel or perpendicular line through a point needs the slopes too.
+  'lin.parallel': mixedOf({ screener: 'lin.parallel.equation', covers: ['lin.parallel.slopes', 'lin.parallel.equation'] }),
   ...parts,
 };
 

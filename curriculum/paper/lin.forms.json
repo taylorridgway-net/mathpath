@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.forms",
+  "title": "Point-slope and standard form",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item ('ps M X Y': the line y − Y = M(x − X) written as y = mx + b; 'std A B C slope|xint|yint|intercepts|line': the slope, x-intercept, y-intercept, both intercepts, or y = mx + b form of the line Ax + By = C), used only by the test that checks the answer key.",
+  "directions": "Show your work. Write equations in the form y = mx + b. Write fractions in simplest form.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Write y + 3 = 4(x − 2) in the form y = mx + b.", "math": "ps 4 2 -3", "answer": "y = 4x − 11 (y + 3 = 4x − 8, then subtract 3)" },
+        { "id": "A2", "kind": "word", "prompt": "Water is pumped into a tank at 3 gallons per minute. After 4 minutes the tank holds 20 gallons. Write an equation for the gallons y in the tank after x minutes, in the form y = mx + b.", "math": "ps 3 4 20", "answer": "y = 3x + 8 (y − 20 = 3(x − 4); the tank started with 8 gallons)" },
+        { "id": "A3", "kind": "computation", "prompt": "Find the x-intercept and the y-intercept of the line 3x + 4y = 24.", "math": "std 3 4 24 intercepts", "answer": "x-intercept 8, y-intercept 6 (the points (8, 0) and (0, 6))" },
+        { "id": "A4", "kind": "computation", "prompt": "Rewrite 6x − 2y = 8 in the form y = mx + b.", "math": "std 6 -2 8 line", "answer": "y = 3x − 4 (−2y = −6x + 8, then divide every term by −2)" },
+        { "id": "A5", "kind": "word", "prompt": "At a school fair, adult tickets cost $5 and student tickets cost $2. The fair took in $60, so 5x + 2y = 60, where x is the number of adult tickets and y the number of student tickets. If no adult tickets were sold, how many student tickets were sold?", "math": "std 5 2 60 yint", "answer": "30 (student tickets; put x = 0: 2y = 60)" },
+        { "id": "A6", "kind": "word", "prompt": "Priya rewrites 2x + 5y = 10 in slope-intercept form and gets y = −2x + 10. Is she right? Explain, and write the correct equation.", "math": "std 2 5 10 line", "answer": "y = −(2/5)x + 2 (No: after 5y = −2x + 10 she must divide every term by 5)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Write y − 6 = −3(x + 1) in the form y = mx + b.", "math": "ps -3 -1 6", "answer": "y = −3x + 3 (y − 6 = −3x − 3, then add 6)" },
+        { "id": "B2", "kind": "computation", "prompt": "A line has a slope of 1/2 and passes through the point (4, −1). Write its equation in the form y = mx + b.", "math": "ps 1/2 4 -1", "answer": "y = (1/2)x − 3 (y + 1 = (1/2)(x − 4) = (1/2)x − 2)" },
+        { "id": "B3", "kind": "computation", "prompt": "What is the slope of the line 5x − 2y = 10?", "math": "std 5 -2 10 slope", "answer": "5/2 (−2y = −5x + 10, so y = (5/2)x − 5)" },
+        { "id": "B4", "kind": "computation", "prompt": "Rewrite 8x + 4y = 12 in the form y = mx + b.", "math": "std 8 4 12 line", "answer": "y = −2x + 3" },
+        { "id": "B5", "kind": "word", "prompt": "A club orders sandwiches at $4 each and salads at $3 each, and spends exactly $48: 4x + 3y = 48, where x is the number of sandwiches and y the number of salads. If they order only sandwiches, how many do they get?", "math": "std 4 3 48 xint", "answer": "12 (sandwiches; put y = 0: 4x = 48)" },
+        { "id": "B6", "kind": "word", "prompt": "Devon wants the line with slope 5 through the point (2, 3). He writes y − 2 = 5(x − 3), which gives y = 5x − 13. Is he right? Explain, and write the correct equation.", "math": "ps 5 2 3", "answer": "y = 5x − 7 (No: he swapped x and y; it is y − 3 = 5(x − 2), so y = 5x − 10 + 3)" }
+      ]
+    }
+  ]
+}

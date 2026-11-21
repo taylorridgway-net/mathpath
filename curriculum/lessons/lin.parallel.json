@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.parallel",
+  "title": "Parallel and perpendicular lines",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "lin.parallel.slopes": "Parallel: the same slope. Perpendicular: flip the slope and change its sign (2 becomes −1/2).",
+    "lin.parallel.equation": "Find the new slope (same for parallel, flipped with the sign changed for perpendicular). Then put the point into y = mx + b to find b.",
+    "lin.parallel": "Parallel: same slope. Perpendicular: negative reciprocal. Then use the point to find b."
+  },
+  "misconceptionMessages": {
+    "lin.perp-for-parallel": "Parallel lines never meet, so they go the same way: the SAME slope. Perpendicular lines meet at a right angle: flip and change the sign.",
+    "lin.perp-no-negative": "Flip it AND change the sign: perpendicular to 2 is −1/2, not 1/2. One line goes up, the other goes down.",
+    "lin.perp-no-flip": "Change the sign AND flip it: perpendicular to 2 is −1/2, not −2.",
+    "lin.parallel-copied": "The new line has its own y-intercept. Put the point into y = mx + b and solve for b."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "lin.parallel.slopes",
+      "forGap": "lin.parallel.slopes",
+      "title": "Parallel and perpendicular slopes",
+      "objective": "Find parallel and perpendicular slopes, and tell which a pair of lines is.",
+      "mode": "section",
+      "generator": "lin.parallel.slopes",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Parallel lines never meet: they have the same slope (and different y-intercepts).",
+        "Perpendicular lines meet at a right angle: their slopes are negative reciprocals, so they multiply to −1."
+      ],
+      "visual": null,
+      "key": "Parallel: the same slope. Perpendicular: flip the slope and change its sign (2 and −1/2 multiply to −1).",
+      "worked": [
+        {
+          "math": "y = 2x + 1",
+          "note": ""
+        },
+        {
+          "math": "parallel slope: [[2]]",
+          "note": "the same"
+        },
+        {
+          "math": "perpendicular slope: [[−{1/2}]]",
+          "note": "flip 2 to 1/2, change the sign"
+        },
+        {
+          "math": "y = −{1/3}x and y = 3x",
+          "note": "−1/3 flipped and sign changed is 3: [[perpendicular]]"
+        },
+        {
+          "math": "y = 2x and y = {1/2}x",
+          "note": "flipped but same sign: [[neither]]"
+        }
+      ]
+    },
+    {
+      "id": "lin.parallel.equation",
+      "forGap": "lin.parallel.equation",
+      "title": "A line through a point",
+      "objective": "Write the line through a point parallel or perpendicular to another.",
+      "mode": "section",
+      "generator": "lin.parallel.equation",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "First the new slope: the same for parallel, the negative reciprocal for perpendicular.",
+        "Then the point gives b: put it into y = mx + b and solve."
+      ],
+      "visual": null,
+      "key": "New slope first (same, or flip and change the sign). Then put the point into y = mx + b to find b.",
+      "worked": [
+        {
+          "math": "through (2, 5), perpendicular to y = −{1/2}x + 3",
+          "note": ""
+        },
+        {
+          "math": "new slope: [[2]]",
+          "note": "flip and change the sign"
+        },
+        {
+          "math": "5 = 2(2) + b",
+          "note": "put in the point"
+        },
+        {
+          "math": "b = [[1]]",
+          "note": ""
+        },
+        {
+          "math": "y = 2x + 1",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "lin.parallel.whole",
+      "forGap": "lin.parallel",
+      "title": "Putting it together",
+      "objective": "Parallel and perpendicular lines, mixed.",
+      "mode": "skill",
+      "generator": "lin.parallel",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Parallel: same slope. Perpendicular: negative reciprocal. Then the point gives b.",
+      "worked": [
+        {
+          "math": "through (1, 2), parallel to y = 3x − 4",
+          "note": ""
+        },
+        {
+          "math": "slope [[3]]",
+          "note": "the same"
+        },
+        {
+          "math": "2 = 3(1) + b, b = [[−1]]",
+          "note": ""
+        },
+        {
+          "math": "y = 3x − 1",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

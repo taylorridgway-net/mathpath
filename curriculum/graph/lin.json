@@ -8,7 +8,7 @@
     {
       "id": "lin.functions",
       "name": "Function inputs and outputs",
-      "summary": "Function notation (find f(3) for f(x) = 2x − 5, or the x that gives an output) and reading x/y tables.",
+      "summary": "Function notation (find f(3) for f(x) = 2x − 5, or the x that gives an output) and reading x/y tables. Tell a linear table or equation from one that isn't.",
       "typicalGrade": 8,
       "standards": [
         "8.F.A.1",
@@ -42,6 +42,16 @@
             },
             {
               "id": "int.add-sub.different-signs",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "lin.functions.linear",
+          "name": "Linear or not? (tables and equations)",
+          "prerequisites": [
+            {
+              "id": "lin.functions.table",
               "strength": "essential"
             }
           ]
@@ -153,6 +163,96 @@
               "id": "alg.equations.two-step",
               "strength": "essential",
               "why": "Solve for b."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lin.forms",
+      "name": "Point-slope and standard form",
+      "summary": "Rewrite y − 4 = 2(x − 1) and 2x + 3y = 12 as y = mx + b; find the intercepts and slope of a standard-form line.",
+      "typicalGrade": 9,
+      "standards": [
+        "HSA.CED.A.2",
+        "HSF.IF.C.8",
+        "HSA.SSE.A.1"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "lin.forms.point-slope",
+          "name": "Point-slope form (y − 4 = 2(x − 1))",
+          "prerequisites": [
+            {
+              "id": "lin.slope-intercept.read",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.expressions.distribute",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.equations.add-sub",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "lin.forms.standard",
+          "name": "Standard form (2x + 3y = 12): intercepts, slope, y = mx + b",
+          "prerequisites": [
+            {
+              "id": "lin.slope-intercept.read",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.equations.two-step",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lin.parallel",
+      "name": "Parallel and perpendicular lines",
+      "summary": "Parallel lines have the same slope; perpendicular slopes are negative reciprocals. Write the line through a point parallel or perpendicular to another.",
+      "typicalGrade": 9,
+      "standards": [
+        "HSG.GPE.B.5"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "lin.parallel.slopes",
+          "name": "Parallel and perpendicular slopes",
+          "prerequisites": [
+            {
+              "id": "lin.slope-intercept.read",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.divide.reciprocal",
+              "strength": "essential",
+              "why": "Perpendicular slopes are negative reciprocals."
+            }
+          ]
+        },
+        {
+          "id": "lin.parallel.equation",
+          "name": "The equation of a parallel or perpendicular line through a point",
+          "prerequisites": [
+            {
+              "id": "lin.parallel.slopes",
+              "strength": "essential"
+            },
+            {
+              "id": "lin.slope-intercept.two-points",
+              "strength": "essential",
+              "why": "Finding b from a point."
             }
           ]
         }

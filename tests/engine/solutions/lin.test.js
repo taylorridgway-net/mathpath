@@ -24,7 +24,9 @@ test('every stated calculation is right; the answer is in the last step', () => 
     }
     const a = p.answer;
     const last = steps.at(-1).say;
-    if (a.type === 'linear') {
+    if (a.type === 'choice') {
+      assert.ok(last.includes(a.options[a.correct]), `${toText(p.expression)}: ${last}`);
+    } else if (a.type === 'linear') {
       const m = a.coef; const b = a.constant;
       const eq = `y = ${m === 1 ? '' : m === -1 ? '−' : n(m)}x${b === 0 ? '' : b < 0 ? ` − ${-b}` : ` + ${b}`}`;
       assert.ok(last.includes(eq), `${toText(p.expression)}: ${last} (want ${eq})`);

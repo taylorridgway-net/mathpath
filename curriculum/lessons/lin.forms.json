@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.forms",
+  "title": "Point-slope and standard form",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "lin.forms.point-slope": "y − y₁ = m(x − x₁): distribute the m into both terms, then move the number on the y side across.",
+    "lin.forms.standard": "For an intercept, set the other letter to 0. For the slope or y = mx + b, get y alone: move the x term, then divide every term by the number in front of y.",
+    "lin.forms": "Every form can become y = mx + b: distribute (point-slope) or get y alone (standard form)."
+  },
+  "misconceptionMessages": {
+    "lin.ps-distribute": "Multiply the slope into BOTH terms in the parentheses: 2(x − 1) = 2x − 2.",
+    "lin.ps-sign": "To get y alone from y − 4, ADD 4 to both sides (do the opposite).",
+    "lin.std-intercept-swap": "For the x-intercept, y is 0: cover up the y term and divide C by the number in front of x.",
+    "lin.std-intercept-c": "Divide: 2x = 12 means x = 6, not 12.",
+    "lin.std-sign": "Moving the x term to the other side changes its sign: 2x + y = 5 becomes y = −2x + 5.",
+    "lin.std-not-divided": "Divide EVERY term by the number in front of y, the x term and the number.",
+    "lin.std-slope-a": "In Ax + By = C the number in front of x isn't the slope. Get y alone first (slope = −A/B)."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "lin.forms.point-slope",
+      "forGap": "lin.forms.point-slope",
+      "title": "Point-slope form",
+      "objective": "Change y − 4 = 2(x − 1) to y = mx + b, and use a slope and a point.",
+      "mode": "section",
+      "generator": "lin.forms.point-slope",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Point-slope form y − y₁ = m(x − x₁) shows the slope m and a point (x₁, y₁) on the line.",
+        "It's handy when you know a slope and one point. Turn it into y = mx + b by distributing and moving the number."
+      ],
+      "visual": null,
+      "key": "y − y₁ = m(x − x₁): slope m through (x₁, y₁). Distribute m into both terms, then move the y-side number across.",
+      "worked": [
+        {
+          "math": "y − 4 = 2(x − 1)",
+          "note": "slope 2, through (1, 4)"
+        },
+        {
+          "math": "y − 4 = [[2x − 2]]",
+          "note": "distribute the 2"
+        },
+        {
+          "math": "y = 2x [[+ 2]]",
+          "note": "add 4 to both sides: −2 + 4 = 2"
+        },
+        {
+          "math": "slope −3 through (−2, 5):  y − 5 = −3(x + 2)",
+          "note": ""
+        },
+        {
+          "math": "y − 5 = −3x − 6,  y = [[−3x − 1]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "lin.forms.standard",
+      "forGap": "lin.forms.standard",
+      "title": "Standard form",
+      "objective": "Find the intercepts and slope of 2x + 3y = 12, and write it as y = mx + b.",
+      "mode": "section",
+      "generator": "lin.forms.standard",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Standard form is Ax + By = C. The intercepts are quick: set the other letter to 0.",
+        "For the slope, get y alone: it becomes y = mx + b."
+      ],
+      "visual": null,
+      "key": "Intercepts: set the other letter to 0 and divide. Slope: get y alone (move the x term, then divide every term by the number in front of y).",
+      "worked": [
+        {
+          "math": "2x + 3y = 12",
+          "note": ""
+        },
+        {
+          "math": "x-intercept: 2x = 12, x = [[6]]",
+          "note": "y = 0"
+        },
+        {
+          "math": "y-intercept: 3y = 12, y = [[4]]",
+          "note": "x = 0"
+        },
+        {
+          "math": "3y = [[−2x]] + 12",
+          "note": "move the x term: its sign changes"
+        },
+        {
+          "math": "y = [[−{2/3}]]x + 4",
+          "note": "divide every term by 3"
+        }
+      ]
+    },
+    {
+      "id": "lin.forms.whole",
+      "forGap": "lin.forms",
+      "title": "Putting it together",
+      "objective": "Point-slope and standard form, mixed.",
+      "mode": "skill",
+      "generator": "lin.forms",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Point-slope: distribute, then move the number. Standard: get y alone, dividing every term.",
+      "worked": [
+        {
+          "math": "4x + 2y = 10",
+          "note": ""
+        },
+        {
+          "math": "2y = −4x + 10",
+          "note": ""
+        },
+        {
+          "math": "y = [[−2x + 5]]",
+          "note": "divide every term by 2"
+        }
+      ]
+    }
+  ]
+}

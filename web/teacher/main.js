@@ -298,6 +298,8 @@ const shortName = (id) => ({
   'lin.functions': 'Functions & tables',
   'lin.slope': 'Slope',
   'lin.slope-intercept': 'y = mx + b',
+  'lin.forms': 'Point-slope & standard',
+  'lin.parallel': 'Parallel & perpendicular',
 }[id] || graph.get(id).name);
 
 // ---------- Class overview ----------

@@ -20,9 +20,65 @@ const rule = (t) => Function('x', `"use strict"; return (${t.replace(/(\d)x/g, '
 const pts = (t) => [...t.matchAll(/\((-?\d+), (-?\d+)\)/g)].map((m) => [Number(m[1]), Number(m[2])]);
 const typedNumber = (f) => { const r = reduce(f); return r.d === 1 ? { whole: Math.abs(r.n), ...(r.n < 0 ? { negative: true } : {}) } : { num: Math.abs(r.n), den: r.d, ...(r.n < 0 ? { negative: true } : {}) }; };
 
+// The slope of "y = (1/2)x + 5", "y = -3x - 6", "y = x" as a fraction.
+function slopeOf(t) {
+  const m = /y = (\((-?\d+)\/(\d+)\)|-?\d*)x/.exec(t);
+  if (m[2]) return F(Number(m[2]), Number(m[3]));
+  return F(m[1] === '' ? 1 : m[1] === '-' ? -1 : Number(m[1]));
+}
+// Ax + By = C ("2x - 3y = 6", "-x + y = 4") as numbers.
+function standardOf(t) {
+  const m = /^(-?\d*)x ([+-]) (\d*)y = (-?\d+)$/.exec(t);
+  const c = (v) => (v === '' ? 1 : v === '-' ? -1 : Number(v));
+  return { A: c(m[1]), B: (m[2] === '-' ? -1 : 1) * c(m[3]), C: Number(m[4]) };
+}
+
 function expected(id, p) {
   const t = toText(p.expression);
   switch (id) {
+    case 'lin.functions.linear': {
+      if (t.startsWith('y = ')) return t.includes('^2') ? 1 : 0;
+      const xs = /x ([^;]+);/.exec(t)[1].split(', ').map(Number);
+      const ys = /y (.+)\]/.exec(t)[1].split(', ').map(Number);
+      const rates = xs.slice(1).map((v, i) => F(ys[i + 1] - ys[i], v - xs[i]));
+      return rates.every((r) => equals(r, rates[0])) ? 0 : 1;
+    }
+    case 'lin.forms.point-slope': {
+      let m; let x1; let y1;
+      const words = /slope (−?\d+) through \((−?\d+), (−?\d+)\)/.exec(p.instruction);
+      if (words) [m, x1, y1] = words.slice(1).map(num);
+      else {
+        const e = /^y ([+-]) (\d+) = (-?\d*)\(x ([+-]) (\d+)\)$/.exec(t);
+        y1 = (e[1] === '-' ? 1 : -1) * Number(e[2]);
+        m = e[3] === '' ? 1 : e[3] === '-' ? -1 : Number(e[3]);
+        x1 = (e[4] === '-' ? 1 : -1) * Number(e[5]);
+      }
+      return { m, b: y1 - m * x1 };
+    }
+    case 'lin.forms.standard': {
+      const { A, B, C } = standardOf(t);
+      if (/x-intercept/.test(p.instruction)) return F(C, A);
+      if (/y-intercept/.test(p.instruction)) return F(C, B);
+      if (p.answer.type === 'linear') return { m: -A / B, b: C / B };
+      return F(-A, B);
+    }
+    case 'lin.parallel.slopes': {
+      if (p.answer.type === 'choice') {
+        const [l1, l2] = t.split(' and ');
+        const [m1, m2] = [slopeOf(l1), slopeOf(l2)];
+        const prod = reduce(fraction(m1.n * m2.n, m1.d * m2.d));
+        return equals(m1, m2) ? 0 : prod.n === -1 && prod.d === 1 ? 1 : 2;
+      }
+      const m = slopeOf(t);
+      return /parallel/.test(p.instruction) ? m : F(-m.d, m.n);
+    }
+    case 'lin.parallel.equation': {
+      const given = t.startsWith('y = ') ? slopeOf(t) : F(-standardOf(t).A / standardOf(t).B);
+      const [x1, y1] = /through \((−?\d+), (−?\d+)\)/.exec(p.instruction).slice(1).map(num);
+      const m = /parallel/.test(p.instruction) ? given : F(-given.d, given.n);
+      assert.equal(m.d, 1, 'the new slope is whole');
+      return { m: m.n, b: y1 - m.n * x1 };
+    }
     case 'lin.functions.evaluate': {
       const f = rule(t.split(' = ')[1]);
       const back = /is \w\(x\) = (−?\d+)\?/.exec(p.instruction);
@@ -67,7 +123,10 @@ for (const id of PARTS) {
       const t = toText(p.expression);
       const want = expected(id, p);
       const a = p.answer;
-      if (a.type === 'linear') {
+      if (a.type === 'choice') {
+        assert.equal(a.correct, want, `${p.instruction} ${t}`);
+        assert.equal(checkAnswer(p, { choice: a.correct }).status, 'correct');
+      } else if (a.type === 'linear') {
         assert.deepEqual([a.coef, a.constant], [want.m, want.b], `${p.instruction} ${t}`);
         assert.equal(keypadOptionsFor(p).answerKind, 'linear');
         assert.equal(keypadOptionsFor(p).prefix, 'y =');
@@ -78,7 +137,7 @@ for (const id of PARTS) {
       }
       for (const m of p.misconceptions) {
         assert.ok(catalog.get(m.id)?.startsWith('lin.'), m.id);
-        const raw = a.type === 'linear' ? { coef: m.value.coef, constant: m.value.constant } : typedNumber(m.value);
+        const raw = a.type === 'choice' ? { choice: m.choice } : a.type === 'linear' ? { coef: m.value.coef, constant: m.value.constant } : typedNumber(m.value);
         const r = checkAnswer(p, raw);
         assert.equal(r.status, 'wrong', `${t}: ${m.id}`);
         assert.equal(r.misconception, m.id);

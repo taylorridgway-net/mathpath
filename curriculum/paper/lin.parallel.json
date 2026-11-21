@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.parallel",
+  "title": "Parallel and perpendicular lines",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item ('par M' / 'perp M': the slope of a line parallel / perpendicular to a line with slope M; 'par M through X Y' / 'perp M through X Y': that line through (X, Y), as y = mx + b; 'relation M1 M2': whether lines with slopes M1 and M2 are parallel, perpendicular or neither), used only by the test that checks the answer key.",
+  "directions": "Show your work. Write equations in the form y = mx + b. Write fractions in simplest form.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "What is the slope of a line perpendicular to y = (2/3)x − 5?", "math": "perp 2/3", "answer": "−3/2 (flip 2/3 and change the sign)" },
+        { "id": "A2", "kind": "computation", "prompt": "Are the lines y = 3x + 2 and y = −(1/3)x − 4 parallel, perpendicular, or neither? Explain.", "math": "relation 3 -1/3", "answer": "Perpendicular (3 × (−1/3) = −1)" },
+        { "id": "A3", "kind": "computation", "prompt": "Write the equation of the line through (2, 7) that is parallel to y = 5x − 1.", "math": "par 5 through 2 7", "answer": "y = 5x − 3 (slope 5; 7 = 5 × 2 + b, so b = −3)" },
+        { "id": "A4", "kind": "computation", "prompt": "Write the equation of the line through (4, 1) that is perpendicular to y = 2x + 6.", "math": "perp 2 through 4 1", "answer": "y = −(1/2)x + 3 (slope −1/2; 1 = −2 + b, so b = 3)" },
+        { "id": "A5", "kind": "word", "prompt": "On a park map, a bike path follows the line y = (1/2)x + 4. A second path will run parallel to it and pass the fountain at (6, 1). Write the equation of the second path.", "math": "par 1/2 through 6 1", "answer": "y = (1/2)x − 2 (same slope; 1 = 3 + b, so b = −2)" },
+        { "id": "A6", "kind": "word", "prompt": "Lucia says the lines y = 4x + 1 and y = −4x + 3 are perpendicular because their slopes are opposites. Is she right? Explain.", "math": "relation 4 -4", "answer": "Neither (No: perpendicular slopes multiply to −1, and 4 × (−4) = −16; a line perpendicular to slope 4 has slope −1/4)" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "What is the slope of a line perpendicular to y = −5x + 2?", "math": "perp -5", "answer": "1/5 (flip −5/1 and change the sign)" },
+        { "id": "B2", "kind": "computation", "prompt": "Are the lines y = 7 − (2/5)x and y = −(2/5)x + 1 parallel, perpendicular, or neither? Explain.", "math": "relation -2/5 -2/5", "answer": "Parallel (both slopes are −2/5; the y-intercepts are different)" },
+        { "id": "B3", "kind": "computation", "prompt": "Write the equation of the line through (−1, 4) that is perpendicular to y = −(1/3)x + 2.", "math": "perp -1/3 through -1 4", "answer": "y = 3x + 7 (slope 3; 4 = 3 × (−1) + b, so b = 7)" },
+        { "id": "B4", "kind": "computation", "prompt": "Write the equation of the line through (3, −2) that is parallel to y = −2x + 9.", "math": "par -2 through 3 -2", "answer": "y = −2x + 4 (slope −2; −2 = −6 + b, so b = 4)" },
+        { "id": "B5", "kind": "word", "prompt": "On a map grid, two railroad tracks run side by side and never meet. One track follows y = 3x − 5. The other passes through the station at (1, 8). Write the equation of the second track.", "math": "par 3 through 1 8", "answer": "y = 3x + 5 (same slope; 8 = 3 + b, so b = 5)" },
+        { "id": "B6", "kind": "word", "prompt": "Kai wants the line through (2, 6) that is perpendicular to y = 2x − 3. He writes y = (1/2)x + 5. Is he right? Explain, and write the correct equation.", "math": "perp 2 through 2 6", "answer": "y = −(1/2)x + 7 (No: he flipped the slope but did not change its sign; the slope is −1/2, and 6 = −1 + b, so b = 7)" }
+      ]
+    }
+  ]
+}

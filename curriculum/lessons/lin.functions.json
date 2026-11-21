@@ -6,13 +6,17 @@
   "hints": {
     "lin.functions.evaluate": "f(3) means: put 3 in for x in the rule. Negative inputs go in parentheses.",
     "lin.functions.table": "Find how much y changes each time x goes up 1. Then count the steps to the x you want.",
-    "lin.functions": "f(3): put 3 in for x. Tables: find the change for each step, then count steps."
+    "lin.functions": "f(3): put 3 in for x. Tables: find the change for each step, then count steps.",
+    "lin.functions.linear": "Linear means the rate is the same: change in y ÷ change in x is the same between every pair of rows. An equation with x² isn't linear."
   },
   "misconceptionMessages": {
     "lin.f-input-output": "Here you know the OUTPUT, f(x) = 11. Set the rule equal to 11 and solve for x.",
     "lin.f-sign": "Keep the input's minus sign: put it in with parentheses. f(−2) with f(x) = 3x + 1 is 3(−2) + 1 = −5.",
     "lin.table-swapped": "The question asks for y, the output. Find the pattern in the y row.",
-    "lin.table-add-step": "Count how many steps x jumps, and add the change that many times, not just once."
+    "lin.table-add-step": "Count how many steps x jumps, and add the change that many times, not just once.",
+    "lin.nonlinear-increasing": "Going up isn't enough: in a linear table y goes up by the same amount for each step in x. Check the changes.",
+    "lin.nonlinear-power": "x² makes it curve: the changes in y grow. Linear equations have x only to the first power (y = mx + b).",
+    "lin.uneven-x-steps": "Look at how far x jumps too. Divide each change in y by its change in x; linear means that's the same every time."
   },
   "similarProblemIntro": "Here's the worked solution. Now try one like it.",
   "sections": [
@@ -87,6 +91,49 @@
         {
           "math": "x = 0: one step back from x = 1: 5 − 3 = [[2]]",
           "note": ""
+        }
+      ]
+    },
+    {
+      "id": "lin.functions.linear",
+      "forGap": "lin.functions.linear",
+      "title": "Linear or not?",
+      "objective": "Tell whether a table or an equation is linear.",
+      "mode": "section",
+      "generator": "lin.functions.linear",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A linear function changes at a constant rate: the same change in y for each step in x. Its graph is a straight line.",
+        "Equations like y = 3x − 2 are linear; y = x² + 1 is not."
+      ],
+      "visual": null,
+      "key": "Linear means a constant rate: change in y ÷ change in x is the same between every pair of rows. x² (or x in the bottom) means not linear.",
+      "worked": [
+        {
+          "math": "x: 1, 2, 3, 4   y: 3, 5, 7, 9",
+          "note": ""
+        },
+        {
+          "math": "+2, +2, +2",
+          "note": "the same each step: [[linear]]"
+        },
+        {
+          "math": "x: 1, 2, 3, 4   y: 1, 4, 9, 16",
+          "note": ""
+        },
+        {
+          "math": "+3, +5, +7",
+          "note": "growing: [[not linear]]"
+        },
+        {
+          "math": "x: 0, 1, 3, 4   y: 1, 3, 7, 9",
+          "note": "x jumps by 2 in the middle"
+        },
+        {
+          "math": "{2/1}, [[{4/2}]], {2/1}",
+          "note": "all 2: linear"
         }
       ]
     },

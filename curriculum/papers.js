@@ -31,5 +31,7 @@ import ratPercentChangePaper from './paper/rat.percent-change.json';
 import linFunctionsPaper from './paper/lin.functions.json';
 import linSlopePaper from './paper/lin.slope.json';
 import linSlopeInterceptPaper from './paper/lin.slope-intercept.json';
+import linFormsPaper from './paper/lin.forms.json';
+import linParallelPaper from './paper/lin.parallel.json';
 
-export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper];
+export const paperList = [wholeAddSubPaper, wholeMultDivPaper, wholeFactorsMultiplesPaper, fracMeaningPaper, fracEquivalentPaper, fracComparePaper, fracAddSubPaper, fracMultiplyPaper, fracDividePaper, intAddSubPaper, intMultDivPaper, fracSignedPaper, algOrderOpsPaper, algExponentsPaper, algEquationsPaper, algExpressionsPaper, algMultiStepPaper, algInequalitiesPaper, algEvaluatePaper, decPlaceValuePaper, decConvertPaper, decAddSubPaper, decMultiplyPaper, decDividePaper, decSignedPaper, ratRatiosPaper, ratPercentPaper, ratPercentChangePaper, linFunctionsPaper, linSlopePaper, linSlopeInterceptPaper, linFormsPaper, linParallelPaper];

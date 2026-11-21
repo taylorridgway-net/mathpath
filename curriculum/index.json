@@ -41,7 +41,9 @@
     "rat.percent-change",
     "lin.functions",
     "lin.slope",
-    "lin.slope-intercept"
+    "lin.slope-intercept",
+    "lin.forms",
+    "lin.parallel"
   ],
   "papers": [
     "whole.add-sub",
@@ -74,6 +76,8 @@
     "rat.percent-change",
     "lin.functions",
     "lin.slope",
-    "lin.slope-intercept"
+    "lin.slope-intercept",
+    "lin.forms",
+    "lin.parallel"
   ]
 }

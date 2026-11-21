@@ -57,7 +57,9 @@
       "targets": [
         "lin.functions",
         "lin.slope",
-        "lin.slope-intercept"
+        "lin.slope-intercept",
+        "lin.forms",
+        "lin.parallel"
       ]
     }
   ]

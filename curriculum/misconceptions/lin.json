@@ -56,6 +56,76 @@
       "id": "lin.b-from-point",
       "description": "Uses a point's y-value as the y-intercept, when that point isn't on the y-axis.",
       "pointsTo": "lin.slope-intercept.two-points"
+    },
+    {
+      "id": "lin.nonlinear-increasing",
+      "description": "Thinks a table is linear because y keeps going up, without checking the change is the same each time.",
+      "pointsTo": "lin.functions.linear"
+    },
+    {
+      "id": "lin.nonlinear-power",
+      "description": "Thinks an equation with x² (or any x) is linear.",
+      "pointsTo": "lin.functions.linear"
+    },
+    {
+      "id": "lin.uneven-x-steps",
+      "description": "Compares only the changes in y when x jumps unevenly (x 0, 1, 3, 4), instead of change in y over change in x.",
+      "pointsTo": "lin.functions.linear"
+    },
+    {
+      "id": "lin.ps-distribute",
+      "description": "Doesn't multiply the slope into the second term (y − 4 = 2(x − 1) becomes y − 4 = 2x − 1).",
+      "pointsTo": "lin.forms.point-slope"
+    },
+    {
+      "id": "lin.ps-sign",
+      "description": "Moves the number on the y side the wrong way (y − 4 = ... becomes y = ... − 4).",
+      "pointsTo": "lin.forms.point-slope"
+    },
+    {
+      "id": "lin.std-intercept-swap",
+      "description": "Mixes up the intercepts of Ax + By = C (divides by the y number for the x-intercept).",
+      "pointsTo": "lin.forms.standard"
+    },
+    {
+      "id": "lin.std-intercept-c",
+      "description": "Gives C itself as the intercept, without dividing.",
+      "pointsTo": "lin.forms.standard"
+    },
+    {
+      "id": "lin.std-sign",
+      "description": "Keeps the x term's sign when moving it across (2x + y = 5 becomes y = 2x + 5).",
+      "pointsTo": "lin.forms.standard"
+    },
+    {
+      "id": "lin.std-not-divided",
+      "description": "Solves for y but forgets to divide every term by the number in front of y.",
+      "pointsTo": "lin.forms.standard"
+    },
+    {
+      "id": "lin.std-slope-a",
+      "description": "Takes the number in front of x in Ax + By = C as the slope.",
+      "pointsTo": "lin.forms.standard"
+    },
+    {
+      "id": "lin.perp-for-parallel",
+      "description": "Mixes up parallel (same slope) and perpendicular (negative reciprocal).",
+      "pointsTo": "lin.parallel.slopes"
+    },
+    {
+      "id": "lin.perp-no-negative",
+      "description": "Flips the slope for a perpendicular line but keeps its sign (2 -> 1/2).",
+      "pointsTo": "lin.parallel.slopes"
+    },
+    {
+      "id": "lin.perp-no-flip",
+      "description": "Changes the sign for a perpendicular line but doesn't flip it (2 -> −2).",
+      "pointsTo": "lin.parallel.slopes"
+    },
+    {
+      "id": "lin.parallel-copied",
+      "description": "Keeps the given line's y-intercept instead of finding the new line's from the point.",
+      "pointsTo": "lin.parallel.equation"
     }
   ]
 }

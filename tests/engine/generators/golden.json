@@ -28425,40 +28425,108 @@
    }
   ]
  },
- "lin.functions": {
+ "lin.forms": {
   "version": 1,
   "problems": [
    {
-    "generator": "lin.functions",
+    "generator": "lin.forms",
     "version": 1,
     "difficulty": 1,
     "seed": "golden-1",
-    "instruction": "What is y when x = 5?",
+    "instruction": "Write this line in the form y = mx + b.",
     "expression": {
-     "type": "table",
-     "rows": [
-      [
-       1,
-       9
-      ],
-      [
-       2,
-       12
-      ],
-      [
-       3,
-       15
-      ],
-      [
-       4,
-       18
-      ]
-     ]
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 2,
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": 1,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 2,
+       "constant": 3
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 2,
+       "constant": -9
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 2,
+       "constant": 5
+      }
+     }
+    ],
+    "part": "lin.forms.point-slope"
+   },
+   {
+    "generator": "lin.forms",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the x-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 60
+     }
     },
     "answer": {
      "type": "fraction",
      "value": {
-      "n": 21,
+      "n": 15,
       "d": 1
      },
      "form": "any",
@@ -28466,88 +28534,1496 @@
     },
     "misconceptions": [
      {
-      "id": "lin.table-swapped",
+      "id": "lin.std-intercept-swap",
       "value": {
-       "n": 5,
+       "n": 12,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.std-intercept-c",
+      "value": {
+       "n": 60,
        "d": 1
       }
      }
     ],
-    "part": "lin.functions.table"
+    "part": "lin.forms.standard"
    },
    {
-    "generator": "lin.functions",
+    "generator": "lin.forms",
     "version": 1,
     "difficulty": 1,
-    "seed": "golden-2",
-    "instruction": "Find h(9).",
+    "seed": "golden-3",
+    "instruction": "Write this line in the form y = mx + b.",
     "expression": {
      "type": "eq",
      "left": {
-      "type": "call",
-      "name": "h",
-      "arg": {
+      "type": "op",
+      "op": "-",
+      "left": {
        "type": "var",
-       "name": "x"
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
       }
      },
      "right": {
+      "type": "scaled",
+      "coef": 5,
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -13,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 5,
+       "constant": -1
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 5,
+       "constant": -17
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 5,
+       "constant": 2
+      }
+     }
+    ],
+    "part": "lin.forms.point-slope"
+   },
+   {
+    "generator": "lin.forms",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 4,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": 21,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 4,
+       "constant": 9
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 4,
+       "constant": 11
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 4,
+       "constant": 5
+      }
+     }
+    ],
+    "part": "lin.forms.point-slope"
+   },
+   {
+    "generator": "lin.forms",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
       "type": "op",
       "op": "+",
       "left": {
        "type": "term",
-       "coef": 7,
+       "coef": -6,
        "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 2,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -6,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "coef": -3,
+       "constant": -6
+      }
+     },
+     {
+      "id": "lin.std-not-divided",
+      "value": {
+       "coef": 6,
+       "constant": -12
+      }
+     },
+     {
+      "id": "lin.std-not-divided",
+      "value": {
+       "coef": 3,
+       "constant": -12
+      }
+     }
+    ],
+    "part": "lin.forms.standard"
+   },
+   {
+    "generator": "lin.forms",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -1,
+     "constant": 2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "coef": 1,
+       "constant": 2
+      }
+     }
+    ],
+    "part": "lin.forms.standard"
+   },
+   {
+    "generator": "lin.forms",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 6,
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -6
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 6,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "n": -6,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 6
+      }
+     }
+    ],
+    "part": "lin.forms.standard"
+   },
+   {
+    "generator": "lin.forms",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -12
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     },
+     {
+      "id": "lin.std-slope-a",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     }
+    ],
+    "part": "lin.forms.standard"
+   },
+   {
+    "generator": "lin.forms",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 4,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "n": 3,
+       "d": 4
+      }
+     },
+     {
+      "id": "lin.std-slope-a",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -4,
+       "d": 3
+      }
+     }
+    ],
+    "part": "lin.forms.standard"
+   }
+  ]
+ },
+ "lin.forms.point-slope": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 3,
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -1,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 3,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 3,
+       "constant": -5
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 3,
+       "constant": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 5,
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -4,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 5,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 5,
+       "constant": -16
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 5,
+       "constant": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "y"
       },
       "right": {
        "type": "int",
        "value": 1
       }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 3,
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -8,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 3,
+       "constant": -2
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 3,
+       "constant": -10
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 3,
+       "constant": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 3,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 3,
+       "constant": -4
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 3,
+       "constant": 8
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 3,
+       "constant": -5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 2,
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 2,
+     "constant": -3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 2,
+       "constant": 2
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 2,
+       "constant": -17
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 2,
+       "constant": 7
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "y"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 4,
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": -9,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": 4,
+       "constant": -3
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": 4,
+       "constant": -7
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 4,
+       "constant": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line with slope −2 through (−3, 3).",
+    "expression": {
+     "type": "words",
+     "text": "y = mx + b"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": -3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": -2,
+       "constant": 6
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": -2,
+       "constant": -9
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -2,
+       "constant": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line with slope −1 through (3, −4).",
+    "expression": {
+     "type": "words",
+     "text": "y = mx + b"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -1,
+     "constant": -1,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": -1,
+       "constant": -7
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": -1,
+       "constant": 7
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -1,
+       "constant": -4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.point-slope",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line with slope −3 through (3, 7).",
+    "expression": {
+     "type": "words",
+     "text": "y = mx + b"
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -3,
+     "constant": 16,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.ps-distribute",
+      "value": {
+       "coef": -3,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.ps-sign",
+      "value": {
+       "coef": -3,
+       "constant": 2
+      }
+     },
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -3,
+       "constant": 7
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.forms.standard": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is the y-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 60
      }
     },
     "answer": {
      "type": "fraction",
      "value": {
-      "n": 64,
+      "n": 12,
       "d": 1
      },
      "form": "any",
      "allowNegative": true
     },
-    "misconceptions": [],
-    "part": "lin.functions.evaluate"
+    "misconceptions": [
+     {
+      "id": "lin.std-intercept-swap",
+      "value": {
+       "n": 15,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.std-intercept-c",
+      "value": {
+       "n": 60,
+       "d": 1
+      }
+     }
+    ]
    },
    {
-    "generator": "lin.functions",
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the x-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 6,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 2,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 18
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 3,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-intercept-swap",
+      "value": {
+       "n": 9,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.std-intercept-c",
+      "value": {
+       "n": 18,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.standard",
     "version": 1,
     "difficulty": 1,
     "seed": "golden-3",
+    "instruction": "What is the x-intercept?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 30
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 6,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-intercept-swap",
+      "value": {
+       "n": 10,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.std-intercept-c",
+      "value": {
+       "n": 30,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -5,
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -6
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -5,
+     "constant": 6,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "coef": 5,
+       "constant": 6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 5
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": -5,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "coef": -5,
+       "constant": -5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write this line in the form y = mx + b.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": -2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "coef": -4,
+       "constant": -2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -5
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 2,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -3,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "n": 3,
+       "d": 2
+      }
+     },
+     {
+      "id": "lin.std-slope-a",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": -2,
+       "d": 3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.forms.standard",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "What is the slope?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 6,
+       "name": "x"
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -60
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 6,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.std-sign",
+      "value": {
+       "n": -6,
+       "d": 5
+      }
+     },
+     {
+      "id": "lin.std-slope-a",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "n": 5,
+       "d": 6
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.functions": {
+  "version": 2,
+  "problems": [
+   {
+    "generator": "lin.functions",
+    "version": 2,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       10
+      ],
+      [
+       2,
+       12
+      ],
+      [
+       3,
+       14
+      ],
+      [
+       4,
+       16
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "lin.functions.linear"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 2,
+    "difficulty": 1,
+    "seed": "golden-2",
     "instruction": "What is y when x = 5?",
     "expression": {
      "type": "table",
      "rows": [
       [
        1,
-       6
-      ],
-      [
-       2,
-       9
-      ],
-      [
-       3,
        12
       ],
       [
+       2,
+       17
+      ],
+      [
+       3,
+       22
+      ],
+      [
        4,
-       15
+       27
       ]
      ]
     },
     "answer": {
      "type": "fraction",
      "value": {
-      "n": 18,
+      "n": 32,
       "d": 1
      },
      "form": "any",
@@ -28566,49 +30042,99 @@
    },
    {
     "generator": "lin.functions",
-    "version": 1,
+    "version": 2,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       3
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       -1
+      ],
+      [
+       4,
+       -3
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [],
+    "part": "lin.functions.linear"
+   },
+   {
+    "generator": "lin.functions",
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-1",
-    "instruction": "Find f(3).",
+    "instruction": "What is y when x = 8?",
     "expression": {
-     "type": "eq",
-     "left": {
-      "type": "call",
-      "name": "f",
-      "arg": {
-       "type": "var",
-       "name": "x"
-      }
-     },
-     "right": {
-      "type": "op",
-      "op": "-",
-      "left": {
-       "type": "term",
-       "coef": -3,
-       "name": "x"
-      },
-      "right": {
-       "type": "int",
-       "value": 7
-      }
-     }
+     "type": "table",
+     "rows": [
+      [
+       1,
+       -7
+      ],
+      [
+       2,
+       -10
+      ],
+      [
+       3,
+       -13
+      ],
+      [
+       4,
+       -16
+      ]
+     ]
     },
     "answer": {
      "type": "fraction",
      "value": {
-      "n": -16,
+      "n": -28,
       "d": 1
      },
      "form": "any",
      "allowNegative": true
     },
-    "misconceptions": [],
-    "part": "lin.functions.evaluate"
+    "misconceptions": [
+     {
+      "id": "lin.table-swapped",
+      "value": {
+       "n": 8,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -19,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.functions.table"
    },
    {
     "generator": "lin.functions",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-2",
     "instruction": "Find h(3).",
@@ -28650,38 +30176,35 @@
    },
    {
     "generator": "lin.functions",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-3",
-    "instruction": "Find f(−1).",
+    "instruction": "What is y when x = 12?",
     "expression": {
-     "type": "eq",
-     "left": {
-      "type": "call",
-      "name": "f",
-      "arg": {
-       "type": "var",
-       "name": "x"
-      }
-     },
-     "right": {
-      "type": "op",
-      "op": "+",
-      "left": {
-       "type": "term",
-       "coef": -4,
-       "name": "x"
-      },
-      "right": {
-       "type": "int",
-       "value": 4
-      }
-     }
+     "type": "table",
+     "rows": [
+      [
+       1,
+       -8
+      ],
+      [
+       2,
+       -10
+      ],
+      [
+       3,
+       -12
+      ],
+      [
+       4,
+       -14
+      ]
+     ]
     },
     "answer": {
      "type": "fraction",
      "value": {
-      "n": 8,
+      "n": -30,
       "d": 1
      },
      "form": "any",
@@ -28689,18 +30212,25 @@
     },
     "misconceptions": [
      {
-      "id": "lin.f-sign",
+      "id": "lin.table-swapped",
       "value": {
-       "n": 0,
+       "n": 12,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -16,
        "d": 1
       }
      }
     ],
-    "part": "lin.functions.evaluate"
+    "part": "lin.functions.table"
    },
    {
     "generator": "lin.functions",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-1",
     "instruction": "Find h(−3).",
@@ -28754,7 +30284,7 @@
    },
    {
     "generator": "lin.functions",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-2",
     "instruction": "Find h(4).",
@@ -28800,38 +30330,35 @@
    },
    {
     "generator": "lin.functions",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-3",
-    "instruction": "g(x) = 4x + 7. For what x is g(x) = 3?",
+    "instruction": "What is y when x = 0?",
     "expression": {
-     "type": "eq",
-     "left": {
-      "type": "call",
-      "name": "g",
-      "arg": {
-       "type": "var",
-       "name": "x"
-      }
-     },
-     "right": {
-      "type": "op",
-      "op": "+",
-      "left": {
-       "type": "term",
-       "coef": 4,
-       "name": "x"
-      },
-      "right": {
-       "type": "int",
-       "value": 7
-      }
-     }
+     "type": "table",
+     "rows": [
+      [
+       2,
+       -7
+      ],
+      [
+       3,
+       -6
+      ],
+      [
+       4,
+       -5
+      ],
+      [
+       5,
+       -4
+      ]
+     ]
     },
     "answer": {
      "type": "fraction",
      "value": {
-      "n": -1,
+      "n": -9,
       "d": 1
      },
      "form": "any",
@@ -28839,14 +30366,28 @@
     },
     "misconceptions": [
      {
-      "id": "lin.f-input-output",
+      "id": "lin.table-swapped",
       "value": {
-       "n": 19,
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.table-add-step",
+      "value": {
+       "n": -8,
        "d": 1
       }
      }
     ],
-    "part": "lin.functions.evaluate"
+    "part": "lin.functions.table"
    }
   ]
  },
@@ -29259,6 +30800,362 @@
        "n": 5,
        "d": 1
       }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.functions.linear": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       4
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       -2
+      ],
+      [
+       4,
+       -5
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       7
+      ],
+      [
+       2,
+       12
+      ],
+      [
+       3,
+       17
+      ],
+      [
+       4,
+       22
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       -5
+      ],
+      [
+       2,
+       -7
+      ],
+      [
+       3,
+       -9
+      ],
+      [
+       4,
+       -11
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 5,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "int",
+       "value": 6
+      },
+      "right": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      }
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "scaled",
+      "coef": 4,
+      "of": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      }
+     }
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       0,
+       -2
+      ],
+      [
+       1,
+       -6
+      ],
+      [
+       3,
+       -14
+      ],
+      [
+       4,
+       -18
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "lin.uneven-x-steps",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       1,
+       -4
+      ],
+      [
+       2,
+       -3
+      ],
+      [
+       4,
+       -1
+      ],
+      [
+       7,
+       2
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "lin.uneven-x-steps",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "lin.functions.linear",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Is this function linear?",
+    "expression": {
+     "type": "table",
+     "rows": [
+      [
+       0,
+       3
+      ],
+      [
+       2,
+       1
+      ],
+      [
+       3,
+       -1
+      ],
+      [
+       5,
+       -3
+      ]
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Linear",
+      "Not linear"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "lin.uneven-x-steps",
+      "choice": 0
      }
     ]
    }
@@ -29743,6 +31640,1579 @@
       }
      }
     ]
+   }
+  ]
+ },
+ "lin.parallel": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is the slope of a line parallel to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 2
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.parallel.slopes"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the slope of a line parallel to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": -1,
+       "d": 4
+      }
+     }
+    ],
+    "part": "lin.parallel.slopes"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the slope of a line parallel to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 2
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -1,
+      "d": 2
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": 2,
+       "d": 1
+      }
+     }
+    ],
+    "part": "lin.parallel.slopes"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through (2, 1) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 1,
+        "d": 2
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": 5,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -2,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": -2,
+       "constant": -4
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "coef": 2,
+       "constant": -3
+      }
+     }
+    ],
+    "part": "lin.parallel.equation"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through (4, 5) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 4
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 4,
+     "constant": -11,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 4,
+       "constant": 5
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": 4,
+       "constant": -5
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "coef": -4,
+       "constant": 21
+      }
+     }
+    ],
+    "part": "lin.parallel.equation"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line through (1, 8) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 5
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 5,
+     "constant": 3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 5,
+       "constant": 8
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": 5,
+       "constant": -7
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "coef": -5,
+       "constant": 13
+      }
+     }
+    ],
+    "part": "lin.parallel.equation"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through (1, −1) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": -2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 1,
+       "constant": -1
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": 1,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "coef": -1,
+       "constant": 0
+      }
+     }
+    ],
+    "part": "lin.parallel.equation"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through (3, 3) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 1,
+        "d": 3
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -3,
+     "constant": 12,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -3,
+       "constant": 3
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": -3,
+       "constant": 6
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "coef": 3,
+       "constant": -6
+      }
+     }
+    ],
+    "part": "lin.parallel.equation"
+   },
+   {
+    "generator": "lin.parallel",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Are these lines parallel, perpendicular, or neither?",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 3,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 4
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": -3,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 2
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Parallel",
+      "Perpendicular",
+      "Neither"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-no-flip",
+      "choice": 1
+     }
+    ],
+    "part": "lin.parallel.slopes"
+   }
+  ]
+ },
+ "lin.parallel.equation": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through (1, 6) that is parallel to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -4,
+     "constant": 10,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -4,
+       "constant": 6
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": -4,
+       "constant": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through (3, 2) that is parallel to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -7,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 3,
+       "constant": 2
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": 3,
+       "constant": -3
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line through (4, 4) that is parallel to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -3,
+     "constant": 16,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -3,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": -3,
+       "constant": -6
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through (4, 5) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 3
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -7,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 3,
+       "constant": 5
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": 3,
+       "constant": 8
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "coef": -3,
+       "constant": 17
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through (4, 1) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": -3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 1,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": 1,
+       "constant": 6
+      }
+     },
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "coef": -1,
+       "constant": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line through (2, 1) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -1,
+     "constant": 3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -1,
+       "constant": 1
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": -1,
+       "constant": 8
+      }
+     },
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "coef": 1,
+       "constant": -1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the equation of the line through (1, 4) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "var",
+       "name": "y"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 1,
+     "constant": 3,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 1,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "coef": -1,
+       "constant": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the equation of the line through (−2, −4) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 1,
+        "d": 2
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": -2,
+     "constant": -8,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": -2,
+       "constant": -4
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": -2,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "coef": 2,
+       "constant": 0
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.equation",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write the equation of the line through (−1, −5) that is perpendicular to this line.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 3
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     }
+    },
+    "answer": {
+     "type": "linear",
+     "coef": 3,
+     "constant": -2,
+     "prefix": "y ="
+    },
+    "misconceptions": [
+     {
+      "id": "lin.b-from-point",
+      "value": {
+       "coef": 3,
+       "constant": -5
+      }
+     },
+     {
+      "id": "lin.parallel-copied",
+      "value": {
+       "coef": 3,
+       "constant": 4
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "coef": -3,
+       "constant": -8
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.parallel.slopes": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "What is the slope of a line parallel to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 1,
+        "d": 5
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 5
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "What is the slope of a line parallel to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -2,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": -2,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": 1,
+       "d": 2
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "What is the slope of a line parallel to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 1,
+        "d": 3
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 3
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": -3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "What is the slope of a line perpendicular to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": -4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 1,
+      "d": 4
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "n": -1,
+       "d": 4
+      }
+     },
+     {
+      "id": "lin.perp-no-flip",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "What is the slope of a line perpendicular to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 5
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 8
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 5,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": -1,
+       "d": 5
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.perp-no-flip",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "What is the slope of a line perpendicular to this one?",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 4
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 4,
+      "d": 1
+     },
+     "form": "any",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-for-parallel",
+      "value": {
+       "n": -1,
+       "d": 4
+      }
+     },
+     {
+      "id": "lin.perp-no-negative",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     },
+     {
+      "id": "lin.perp-no-flip",
+      "value": {
+       "n": 1,
+       "d": 4
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Are these lines parallel, perpendicular, or neither?",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 5,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 5
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": {
+          "type": "neg",
+          "of": {
+           "type": "frac",
+           "n": 1,
+           "d": 5
+          }
+         },
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 7
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Parallel",
+      "Perpendicular",
+      "Neither"
+     ],
+     "correct": 1
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Are these lines parallel, perpendicular, or neither?",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": 4,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 3
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": -4,
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 5
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Parallel",
+      "Perpendicular",
+      "Neither"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "lin.perp-no-flip",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "lin.parallel.slopes",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Are these lines parallel, perpendicular, or neither?",
+    "expression": {
+     "type": "list",
+     "items": [
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "-",
+        "left": {
+         "type": "term",
+         "coef": {
+          "type": "frac",
+          "n": 1,
+          "d": 5
+         },
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 7
+        }
+       }
+      },
+      {
+       "type": "eq",
+       "left": {
+        "type": "var",
+        "name": "y"
+       },
+       "right": {
+        "type": "op",
+        "op": "+",
+        "left": {
+         "type": "term",
+         "coef": {
+          "type": "frac",
+          "n": 1,
+          "d": 5
+         },
+         "name": "x"
+        },
+        "right": {
+         "type": "int",
+         "value": 2
+        }
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "Parallel",
+      "Perpendicular",
+      "Neither"
+     ],
+     "correct": 0
+    },
+    "misconceptions": []
    }
   ]
  },

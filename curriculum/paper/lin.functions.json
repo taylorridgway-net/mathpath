@@ -3,7 +3,7 @@
   "skill": "lin.functions",
   "title": "Function inputs and outputs",
   "status": "draft: written by Claude, waiting for owner review",
-  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item ('f RULE at X': the rule's output for input X; 'solve RULE = Y': the input that gives output Y; 'table X Y X Y ... at X': the pattern in the table continued to X), used only by the test that checks the answer key.",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. 'math' is the calculation behind the item ('f RULE at X': the rule's output for input X; 'solve RULE = Y': the input that gives output Y; 'table X Y X Y ... at X': the pattern in the table continued to X; 'linear table X Y ...' / 'linear eq RULE': whether the table or y = RULE is linear), used only by the test that checks the answer key.",
   "directions": "Show your work. When you put in a negative number, use parentheses.",
   "versions": [
     {
@@ -13,7 +13,7 @@
         { "id": "A2", "kind": "computation", "prompt": "f(x) = 2x + 9. Find f(−6).", "math": "f 2*x+9 at -6", "answer": "−3" },
         { "id": "A3", "kind": "computation", "prompt": "f(x) = 3x − 1. For what value of x is f(x) = 11?", "math": "solve 3*x-1 = 11", "answer": "4 (3x − 1 = 11, so 3x = 12)" },
         { "id": "A4", "kind": "word", "prompt": "Ana saves the same amount every week. Week (x): 1, 2, 3, 4. Dollars saved (y): 26, 32, 38, 44. If the pattern keeps going, how much will she have after week 7?", "math": "table 1 26 2 32 3 38 4 44 at 7", "answer": "$62 (she adds $6 a week)" },
-        { "id": "A5", "kind": "computation", "prompt": "The table follows a pattern. x: 2, 4, 6, 8. y: 9, 15, 21, 27. What is y when x = 0?", "math": "table 2 9 4 15 6 21 8 27 at 0", "answer": "3 (y goes up 6 for every 2 steps in x, so go back from 9 by 6)" },
+        { "id": "A5", "kind": "computation", "prompt": "Is this function linear? Explain. x: 1, 2, 4, 7. y: 5, 8, 14, 23.", "math": "linear table 1 5 2 8 4 14 7 23", "answer": "Linear (x jumps by 1, 2, 3 and y by 3, 6, 9: always 3 for each 1 that x goes up)" },
         { "id": "A6", "kind": "word", "prompt": "f(x) = 5x + 20. Jordan says f(−3) = 35, because 5 × 3 = 15 and 15 + 20 = 35. Is he right? Explain, and give the correct value of f(−3).", "math": "f 5*x+20 at -3", "answer": "5 (No: he dropped the negative sign; 5 × (−3) = −15, and −15 + 20 = 5)" }
       ]
     },
@@ -24,7 +24,7 @@
         { "id": "B2", "kind": "computation", "prompt": "f(x) = −3x + 1. Find f(−5).", "math": "f -3*x+1 at -5", "answer": "16 (−3 × (−5) = 15, and 15 + 1 = 16)" },
         { "id": "B3", "kind": "word", "prompt": "A gym charges a $25 sign-up fee plus $10 a month. The total cost after m months is f(m) = 10m + 25. Lena has paid $85 in all. How many months has she been a member? (Find m so that f(m) = 85.)", "math": "solve 10*x+25 = 85", "answer": "6 (months)" },
         { "id": "B4", "kind": "word", "prompt": "A candle burns down at a steady rate. Hours burning (x): 1, 2, 3, 4. Height in cm (y): 22, 19, 16, 13. How tall was the candle at 0 hours, when it was lit?", "math": "table 1 22 2 19 3 16 4 13 at 0", "answer": "25 (cm; it loses 3 cm each hour)" },
-        { "id": "B5", "kind": "computation", "prompt": "The table follows a pattern. x: 1, 3, 5, 7. y: 4, 10, 16, 22. What is y when x = 10?", "math": "table 1 4 3 10 5 16 7 22 at 10", "answer": "31" },
+        { "id": "B5", "kind": "computation", "prompt": "Is the function y = 3x² + 2 linear? Explain.", "math": "linear eq 3*x^2+2", "answer": "Not linear (x is squared; from x = 0 to 1, y goes up 3, but from x = 1 to 2 it goes up 9)" },
         { "id": "B6", "kind": "word", "prompt": "f(x) = 2x + 3. A question asks: for what value of x is f(x) = 11? Sam answered 25, because 2 × 11 + 3 = 25. Is he right? Explain, and give the correct answer.", "math": "solve 2*x+3 = 11", "answer": "4 (No: he found f(11); the output is 11, so solve 2x + 3 = 11)" }
       ]
     }
