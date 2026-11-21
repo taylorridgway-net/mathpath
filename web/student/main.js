@@ -168,6 +168,9 @@ async function upload() {
   uploadState = 'idle';
   retries = 0;
   refreshStatus();
+  // A quick check can only be offered once the server has the work it rests on: if the path
+  // is showing and one has just become available (or gone), draw the path again.
+  if (document.querySelector('.screen-done') && Boolean(recheck()) !== Boolean(document.querySelector('[data-quick-check]'))) showDone();
 }
 
 function refreshStatus() {
@@ -369,6 +372,22 @@ function showDone() {
   next.append(pathList(path));
   const grid = h('div', 'path-grid');
   grid.append(next, strong);
+  // A quick check on questions that were "can't check yet" (the student has since fixed
+  // what they rested on) comes first: it's short and about what they just worked on.
+  // It doesn't wait for the next check (owner left it to Claude, 2026-11-21): either can go first.
+  const plan = recheck();
+  if (plan) {
+    const card = h('div', 'done-block catch-up');
+    card.dataset.quickCheck = 'yes';
+    card.append(
+      h('h2', 'block-title', 'Ready for a quick check'),
+      h('p', 'lede', `You worked on ${plan.fixed.map(name).join(', ').toLowerCase()}. Now we can check ${plan.targets.map(name).join(', ').toLowerCase()}, which builds on it. A few questions.`),
+    );
+    const actions = h('div', 'actions');
+    actions.append(btn('button button-primary', 'Start the quick check', () => beginCatchUp(plan)));
+    card.append(actions);
+    screen.append(card);
+  }
   const newSkills = catchUpSkills();
   if (newSkills.length) {
     const named = catchUpName(fracDiagnostic, newSkills);
@@ -380,22 +399,9 @@ function showDone() {
         : `MathPath has new topics since your check: ${newSkills.map(name).join(', ')}. Answer a few questions so your path includes them.`),
     );
     const actions = h('div', 'actions');
-    actions.append(btn('button button-primary', named ? `Start the ${named.toLowerCase()}` : 'Start the catch-up check', () => beginCatchUp()));
+    actions.append(btn(plan ? 'button' : 'button button-primary', named ? `Start the ${named.toLowerCase()}` : 'Start the catch-up check', () => beginCatchUp()));
     card.append(actions);
     screen.append(card);
-  } else {
-    const plan = recheck();
-    if (plan) {
-      const card = h('div', 'done-block catch-up');
-      card.append(
-        h('h2', 'block-title', 'Ready for a quick check'),
-        h('p', 'lede', `You worked on ${plan.fixed.map(name).join(', ').toLowerCase()}. Now we can check ${plan.targets.map(name).join(', ').toLowerCase()}, which builds on it. A few questions.`),
-      );
-      const actions = h('div', 'actions');
-      actions.append(btn('button button-primary', 'Start the quick check', () => beginCatchUp(plan)));
-      card.append(actions);
-      screen.append(card);
-    }
   }
   const memory = memoryCard();
   if (memory) screen.append(memory);
