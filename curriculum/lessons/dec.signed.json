@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "skill": "dec.signed",
+  "title": "Negative decimals",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "dec.signed.add-sub": "Subtracting a negative? Add the opposite. Same signs: add the sizes and keep the sign. Different signs: subtract the sizes; the answer takes the sign of the one farther from 0.",
+    "dec.signed.mult-div": "Multiply or divide as if there were no signs. Then: one negative makes it negative, two negatives make it positive.",
+    "dec.signed": "Same rules as integers. Add/subtract: sizes and the sign of the one farther from 0. Multiply/divide: one negative is negative, two are positive."
+  },
+  "misconceptionMessages": {
+    "dec.signed-wrong-sign": "The size is right, but check the sign. With different signs, the answer takes the sign of the number farther from 0.",
+    "dec.signed-sub-ignored-sign": "Subtracting a negative is adding: 3.25 − (−1.4) = 3.25 + 1.4.",
+    "dec.signed-mult-sign": "The digits are right; check the sign. One negative makes the answer negative; two negatives make it positive."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "dec.signed.add-sub",
+      "forGap": "dec.signed.add-sub",
+      "title": "Add and subtract negative decimals",
+      "objective": "Use the integer rules with decimals: −3.5 + 1.2, 3.25 − (−1.4).",
+      "mode": "section",
+      "generator": "dec.signed.add-sub",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Decimals follow the same sign rules as integers. Line up the points to work out the size.",
+        "Subtracting is adding the opposite: 2.4 − 5.15 = 2.4 + (−5.15)."
+      ],
+      "visual": {
+        "widget": "int-line",
+        "params": {
+          "start": -2.5,
+          "move": 4
+        },
+        "caption": "−2.5 + 4: start at −2.5 and move 4 to the right."
+      },
+      "key": "Same signs: add the sizes, keep the sign. Different signs: subtract the sizes; the answer takes the sign of the one farther from 0.",
+      "worked": [
+        {
+          "math": "−3.5 + 1.2",
+          "note": "different signs"
+        },
+        {
+          "math": "3.5 − 1.2 = [[2.3]]",
+          "note": "subtract the sizes"
+        },
+        {
+          "math": "[[−2.3]]",
+          "note": "3.5 is farther from 0, and it's negative"
+        },
+        {
+          "math": "3.25 − (−1.4) = 3.25 + [[1.4]]",
+          "note": "add the opposite"
+        },
+        {
+          "math": "= [[4.65]]",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "dec.signed.mult-div",
+      "forGap": "dec.signed.mult-div",
+      "title": "Multiply and divide negative decimals",
+      "objective": "Multiply and divide decimals with signs: −0.3 × 4, −0.48 ÷ (−0.6).",
+      "mode": "section",
+      "generator": "dec.signed.mult-div",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Work out the digits the usual way: count places when multiplying; move both points when dividing by a decimal.",
+        "Then decide the sign, just like integers."
+      ],
+      "visual": null,
+      "key": "Ignore the signs and multiply or divide. Then: one negative makes the answer negative; two negatives make it positive.",
+      "worked": [
+        {
+          "math": "−0.3 × 4",
+          "note": ""
+        },
+        {
+          "math": "0.3 × 4 = [[1.2]]",
+          "note": "the size"
+        },
+        {
+          "math": "[[−1.2]]",
+          "note": "one negative: negative"
+        },
+        {
+          "math": "−0.48 ÷ (−0.6)",
+          "note": ""
+        },
+        {
+          "math": "4.8 ÷ 6 = [[0.8]]",
+          "note": "move both points one place"
+        },
+        {
+          "math": "[[0.8]]",
+          "note": "two negatives: positive"
+        }
+      ]
+    },
+    {
+      "id": "dec.signed.whole",
+      "forGap": "dec.signed",
+      "title": "Putting it together",
+      "objective": "All four operations with negative decimals, mixed.",
+      "mode": "skill",
+      "generator": "dec.signed",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Add/subtract: sizes, then the sign of the one farther from 0. Multiply/divide: one negative is negative, two are positive.",
+      "worked": [
+        {
+          "math": "−1.2 − 0.35 = −1.2 + (−0.35)",
+          "note": "add the opposite"
+        },
+        {
+          "math": "1.2 + 0.35 = [[1.55]]",
+          "note": "same signs: add the sizes"
+        },
+        {
+          "math": "[[−1.55]]",
+          "note": "keep the sign"
+        }
+      ]
+    }
+  ]
+}

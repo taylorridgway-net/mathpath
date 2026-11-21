@@ -14,7 +14,7 @@ Claude's defaults below; the owner can change any of them.
 | Multiply decimals (`dec.multiply`) | by 10, 100, 1000 and by 0.1, 0.01 (the point moves); multiply decimals (0.3 × 0.2 = 0.06) | multiplication facts |
 | Divide decimals (`dec.divide`) | by a whole number (4.8 ÷ 6); by a decimal (2.4 ÷ 0.3: move both points) | division facts |
 
-Not in this plan (later): negative decimals, repeating decimals (1/3 = 0.333...), percents, long division.
+Later additions: negative decimals and repeating decimals (built 2026-11-21). Percents are in the ratios area. Long division: not building (owner, calculators).
 Division problems keep to fact-sized digits (long division is out for whole numbers too).
 
 ## Decisions (Claude's defaults)
@@ -39,3 +39,8 @@ Division problems keep to fact-sized digits (long division is out for whole numb
   pre-algebra check). 400 pretend students: median 10 questions, 90th percentile 14, max 21, none at the limit; one who knows
   everything: 8. No gap reported that the pretend student could actually do.
 - Waiting on the owner: review the lessons and paper items; the defaults above.
+- **Built (2026-11-21, owner: "decimals ... sound good to build next"):** negative decimals (`dec.signed`: add/subtract,
+  multiply/divide; each part asked in the diagnostic, like negative fractions; number line in the lesson) and repeating
+  decimals (`dec.convert.repeating`: pick 2/3 = 0.666… from buttons, "does it end or repeat?", 0.555… = 5/9 and
+  0.2727… = 3/11 with the 10x − x reasoning in the worked solution). Paper test for negative decimals; one repeating item
+  per version in the fractions-and-decimals paper. Decimals check with 400 pretend students: median 13, max 21; knows everything: 11.

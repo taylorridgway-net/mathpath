@@ -291,6 +291,7 @@ const shortName = (id) => ({
   'dec.add-sub': 'Decimals: add & subtract',
   'dec.multiply': 'Decimals: multiply',
   'dec.divide': 'Decimals: divide',
+  'dec.signed': 'Negative decimals',
   'rat.ratios': 'Ratios & rates',
   'rat.percent': 'Percents',
   'rat.percent-change': 'Percent change',

@@ -55,7 +55,7 @@
     {
       "id": "dec.convert",
       "name": "Fractions and decimals",
-      "summary": "Write a fraction as a decimal (3/4 = 0.75, 3/8 = 0.375) and a decimal as a fraction in simplest form (0.35 = 7/20). Only decimals that end, for now.",
+      "summary": "Write a fraction as a decimal (3/4 = 0.75, 3/8 = 0.375) and a decimal as a fraction in simplest form (0.35 = 7/20). Repeating decimals: 2/3 = 0.666…, whether a fraction's decimal ends or repeats, and 0.555… = 5/9.",
       "typicalGrade": 7,
       "standards": [
         "4.NF.C.6",
@@ -85,6 +85,20 @@
           "prerequisites": [
             {
               "id": "dec.place-value.read",
+              "strength": "essential"
+            },
+            {
+              "id": "frac.equivalent.simplify",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "dec.convert.repeating",
+          "name": "Repeating decimals (2/3 = 0.666…; does 7/12 end or repeat?; 0.555… = 5/9)",
+          "prerequisites": [
+            {
+              "id": "dec.convert.to-decimal",
               "strength": "essential"
             },
             {
@@ -223,6 +237,62 @@
               "id": "dec.multiply.powers-of-ten",
               "strength": "essential",
               "why": "Moving both points is multiplying both numbers by 10 or 100."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dec.signed",
+      "name": "Negative decimals",
+      "summary": "Add, subtract, multiply and divide decimals with negative signs (−3.5 + 1.2, 3.25 − (−1.4), −0.48 ÷ (−0.6)).",
+      "typicalGrade": 7,
+      "standards": [
+        "7.NS.A.1",
+        "7.NS.A.2",
+        "7.NS.A.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "dec.signed.add-sub",
+          "name": "Add and subtract negative decimals",
+          "prerequisites": [
+            {
+              "id": "int.add-sub.same-sign",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.different-signs",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.subtract",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.add-sub",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "dec.signed.mult-div",
+          "name": "Multiply and divide negative decimals",
+          "prerequisites": [
+            {
+              "id": "int.mult-div.multiply",
+              "strength": "essential",
+              "why": "The sign rule. Dividing uses the same rule, but not division facts."
+            },
+            {
+              "id": "dec.multiply.place",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.divide.by-decimal",
+              "strength": "essential"
             }
           ]
         }

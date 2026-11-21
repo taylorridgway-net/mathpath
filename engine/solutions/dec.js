@@ -3,7 +3,7 @@
 // twice. A solution is a list of steps: { say, show? }.
 
 import { fraction, reduce, gcd } from '../math/fraction.js';
-import { fromScaled, toScaled, placesOf, parseDecimal, decimalText } from '../math/decimal.js';
+import { fromScaled, toScaled, placesOf, parseDecimal, decimalText, terminates } from '../math/decimal.js';
 import { columnLayout } from '../problem/column.js';
 import { toText } from '../problem/text.js';
 
@@ -25,6 +25,9 @@ export function solveDecimal(problem) {
     case 'dec.place-value.round': return roundSteps(problem);
     case 'dec.convert.to-decimal': return toDecimalSteps(problem);
     case 'dec.convert.to-fraction': return toFractionSteps(problem);
+    case 'dec.convert.repeating': return repeatingSteps(problem);
+    case 'dec.signed.add-sub': return signedAddSubSteps(problem);
+    case 'dec.signed.mult-div': return signedMultDivSteps(problem);
     case 'dec.add-sub.line-up':
     case 'dec.add-sub.whole-numbers': return columnSteps(e.op, textOf(e.left), textOf(e.right));
     case 'dec.multiply.powers-of-ten': return powersSteps(problem);
@@ -216,5 +219,111 @@ function byDecimalSteps(problem) {
     { say: `Make the number you divide by a whole number: move its point ${k} ${k === 1 ? 'place' : 'places'} right. ${b} becomes ${newB}.` },
     { say: `Move the point in ${a} the same ${k} ${k === 1 ? 'place' : 'places'} right: ${newA}. (Both numbers are ${10 ** k} times bigger, so the answer doesn't change.)` },
     { say: `Now divide: ${newA} ÷ ${newB} = ${problem.answer.value}.`, show: eq(e, dec(problem.answer.value)) },
+  ];
+}
+
+// ---------- repeating decimals ----------
+
+const MINUS = (t) => t.replace(/^-/, '−');
+
+function repeatingSteps(problem) {
+  const e = problem.expression;
+  const a = problem.answer;
+  if (/end, or repeat/.test(problem.instruction)) {
+    const r = reduce(fraction(e.n, e.d));
+    const factors = [];
+    let d = r.d;
+    for (let q = 2; d > 1; q++) while (d % q === 0) { factors.push(q); d /= q; }
+    const ends = terminates(r);
+    const steps = [];
+    if (r.d !== e.d) steps.push({ say: `Simplify first: ${e.n}/${e.d} = ${r.n}/${r.d}.` });
+    steps.push({ say: `A fraction's decimal ends only when the bottom (in simplest form) is made of 2s and 5s, because 10 = 2 × 5. Here the bottom is ${r.d}${factors.length > 1 ? ` = ${factors.join(' × ')}` : ''}.` });
+    steps.push({ say: ends ? `Only 2s and 5s, so it ends: ${r.n}/${r.d} = ${decimalText(r)}. ${a.options[a.correct]}.`
+      : `It has a ${factors.find((q) => q !== 2 && q !== 5)}, so the dividing never comes out even: ${a.options[a.correct]}.` });
+    return steps;
+  }
+  if (a.type === 'choice') {
+    // Long division, until a remainder comes back.
+    const { n, d } = e;
+    const lines = [];
+    const seen = new Map();
+    let rem = n % d;
+    let digits = '';
+    while (!seen.has(rem) && lines.length < 6) {
+      seen.set(rem, digits.length);
+      const q = Math.floor((rem * 10) / d);
+      lines.push(`${d} goes into ${rem * 10} ${q === 0 ? 'no times' : q === 1 ? 'once' : `${q} times`}, ${(rem * 10) % d} left over`);
+      digits += q;
+      rem = (rem * 10) % d;
+    }
+    // Options within a tenth of the value (0.6 and 0.67 for 2/3, not 0.23).
+    const close = a.options.filter((o, i) => i !== a.correct && /^0\.\d+$/.test(o)
+      && Math.abs(parseDecimal(o).n * d - n * parseDecimal(o).d) * 10 < parseDecimal(o).d * d);
+    return [
+      { say: `${n}/${d} means ${n} ÷ ${d}. Divide: ${lines.join('; ')}.` },
+      { say: `That leftover ${rem} already came up, so the same digits come round again forever. The decimal repeats: ${a.options[a.correct]} (also written with a bar over the repeating part).` },
+      { say: `${close.length ? `Numbers that stop, like ${close.join(' or ')}, are close but not equal to ${n}/${d}. ` : ''}So ${n}/${d} = ${a.options[a.correct]}` },
+    ];
+  }
+  // 0.555… or 0.2727… as a fraction.
+  const text = e.value;
+  const body = text.slice(2, -1);
+  const len = body[0] === body[1] ? 1 : 2;
+  const block = body.slice(0, len);
+  const over = 10 ** len - 1;
+  const r = a.value;
+  const g = gcd(Number(block), over);
+  const steps = [{ say: len === 1
+    ? `One digit repeats. Call the number x. Then 10x = ${block}.${block.repeat(4)}…, and taking x away leaves 9x = ${block}, so x = ${block}/9. (1/9 = 0.111…, so ${block}/9 = ${text}.)`
+    : `Two digits repeat. Call the number x. Then 100x = ${block}.${block.repeat(3)}…, and taking x away leaves 99x = ${Number(block)}, so x = ${Number(block)}/99.`,
+  show: eq(dec(text), { type: 'frac', n: Number(block), d: over }) }];
+  if (g > 1) steps.push({ say: `Simplify: divide the top and bottom by ${g}. ${Number(block)}/${over} = ${r.n}/${r.d}.`, show: eq(dec(text), { type: 'frac', n: r.n, d: r.d }) });
+  else steps.push({ say: `It's already in simplest form: ${r.n}/${r.d}.` });
+  return steps;
+}
+
+// ---------- negative decimals ----------
+
+function signedAddSubSteps(problem) {
+  const e = problem.expression;
+  const [a, b0] = [textOf(e.left), textOf(e.right)];
+  const steps = [];
+  // Subtracting is adding the opposite.
+  const b = e.op === '-' ? (b0.startsWith('-') ? b0.slice(1) : `-${b0}`) : b0;
+  if (e.op === '-') steps.push({ say: `Subtracting is adding the opposite: ${MINUS(a)} − ${b0.startsWith('-') ? `(${MINUS(b0)})` : b0} is the same as ${MINUS(a)} + ${b.startsWith('-') ? `(${MINUS(b)})` : b}.` });
+  const [sa, sb] = [a.replace('-', ''), b.replace('-', '')];
+  const [na, nb] = [a.startsWith('-'), b.startsWith('-')];
+  const answer = problem.answer.value;
+  if (na === nb) {
+    steps.push({ say: `Both are ${na ? 'negative' : 'positive'}: add their sizes and keep the sign.` });
+    steps.push(...columnSteps('+', sa, sb).slice(0, -1));
+    steps.push({ say: `${sa} + ${sb} = ${answer.replace('-', '')}, ${na ? 'negative' : 'positive'}. So the answer is ${MINUS(answer)}.`, show: eq(e, dec(answer)) });
+  } else {
+    const [x, y] = [parseDecimal(sa), parseDecimal(sb)];
+    const aBigger = x.n * y.d > y.n * x.d;
+    const [big, small] = aBigger ? [sa, sb] : [sb, sa];
+    const bigNeg = aBigger ? na : nb;
+    steps.push({ say: `One is negative and one is positive: subtract the smaller size from the bigger. The answer takes the sign of ${MINUS(aBigger ? a : b)}, the one farther from 0.` });
+    steps.push(...columnSteps('-', big, small).slice(0, -1));
+    steps.push({ say: `${big} − ${small} = ${answer.replace('-', '')}, and it's ${bigNeg ? 'negative' : 'positive'}. So the answer is ${MINUS(answer)}.`, show: eq(e, dec(answer)) });
+  }
+  return steps;
+}
+
+function signedMultDivSteps(problem) {
+  const e = problem.expression;
+  const [a, b] = [textOf(e.left), textOf(e.right)];
+  const negatives = [a, b].filter((t) => t.startsWith('-')).length;
+  const size = problem.answer.value.replace('-', '');
+  const abs = (node) => (node.type === 'dec' ? dec(node.value.replace('-', '')) : { type: 'int', value: Math.abs(node.value) });
+  const unsigned = { ...problem, expression: { ...e, left: abs(e.left), right: abs(e.right) }, answer: { ...problem.answer, value: size } };
+  const divide = e.op === '÷';
+  const [, , b2] = [0, 0, textOf(unsigned.expression.right)];
+  const part = !divide ? 'dec.multiply.place' : b2.includes('.') ? 'dec.divide.by-decimal' : 'dec.divide.by-whole';
+  const inner = solveDecimal({ ...unsigned, part }).map(({ say }) => ({ say }));
+  return [
+    { say: `First ${divide ? 'divide' : 'multiply'} the sizes, then decide the sign.` },
+    ...inner,
+    { say: `Signs: ${negatives === 2 ? 'two negatives make a positive' : 'one negative makes the answer negative'}. So ${MINUS(a)} ${e.op} ${b.startsWith('-') ? `(${MINUS(b)})` : b} = ${MINUS(problem.answer.value)}.`, show: eq(e, dec(problem.answer.value)) },
   ];
 }

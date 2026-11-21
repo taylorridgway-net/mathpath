@@ -447,7 +447,7 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ALG);
   assert.equal(catchUpName(fractions.config, ALG), 'Pre-algebra check');
   const afterAlg = { ...now, nodes: { ...now.nodes, ...Object.fromEntries(ALG.map((id) => [id, { status: 'known' }])) } };
-  const DEC = ['dec.place-value', 'dec.convert', 'dec.add-sub', 'dec.multiply', 'dec.divide'];
+  const DEC = ['dec.place-value', 'dec.convert', 'dec.add-sub', 'dec.multiply', 'dec.divide', 'dec.signed'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterAlg }), DEC);
   assert.equal(catchUpName(fractions.config, DEC), 'Decimals check');
   const afterDec = { ...afterAlg, nodes: { ...afterAlg.nodes, ...Object.fromEntries(DEC.map((id) => [id, { status: 'known' }])) } };

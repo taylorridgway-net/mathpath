@@ -81,6 +81,36 @@
       "id": "dec.move-one-point",
       "description": "Moves the point in only one of the numbers when dividing by a decimal (2.4 ÷ 0.3 = 0.8).",
       "pointsTo": "dec.divide.by-decimal"
+    },
+    {
+      "id": "dec.repeat-cut-off",
+      "description": "Thinks a repeating decimal equals a cut-off or rounded one (2/3 = 0.6 or 0.67).",
+      "pointsTo": "dec.convert.repeating"
+    },
+    {
+      "id": "dec.repeat-odd-even",
+      "description": "Decides whether a decimal ends by the denominator being odd or even (thinks 7/12 ends, 3/15 repeats), instead of checking for only 2s and 5s after simplifying.",
+      "pointsTo": "dec.convert.repeating"
+    },
+    {
+      "id": "dec.repeat-as-ending",
+      "description": "Writes a repeating decimal as if it ended (0.555… = 5/10, 0.2727… = 27/100).",
+      "pointsTo": "dec.convert.repeating"
+    },
+    {
+      "id": "dec.signed-wrong-sign",
+      "description": "Adds or subtracts the decimals right but gets the sign wrong (−3.5 + 1.2 = 2.3).",
+      "pointsTo": "dec.signed.add-sub"
+    },
+    {
+      "id": "dec.signed-sub-ignored-sign",
+      "description": "Ignores the second number's sign when subtracting (3.25 − (−1.4) worked as 3.25 − 1.4).",
+      "pointsTo": "dec.signed.add-sub"
+    },
+    {
+      "id": "dec.signed-mult-sign",
+      "description": "Multiplies or divides right but gets the sign wrong (−0.3 × (−0.2) = −0.06).",
+      "pointsTo": "dec.signed.mult-div"
     }
   ]
 }

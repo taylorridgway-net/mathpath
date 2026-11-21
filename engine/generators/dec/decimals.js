@@ -8,8 +8,8 @@
 // lining up the right-hand digits (3.5 + 1.25 = 1.60), the point placed from one
 // factor (0.3 × 0.2 = 0.6), moving only one point (2.4 ÷ 0.3 = 0.8), and so on.
 
-import { fraction, reduce } from '../../math/fraction.js';
-import { fromScaled, toScaled, placesOf, parseDecimal, decimalText } from '../../math/decimal.js';
+import { fraction, reduce, add, sub, mul, div } from '../../math/fraction.js';
+import { fromScaled, toScaled, placesOf, parseDecimal, decimalText, terminates } from '../../math/decimal.js';
 
 const dec = (value) => ({ type: 'dec', value });
 const int = (value) => ({ type: 'int', value });
@@ -281,6 +281,77 @@ const toFraction = {
   },
 };
 
+
+// ---------- repeating decimals ----------
+//   1: pick the decimal for n/3 or n/9 from buttons (2/3 = 0.666…, not 0.6 or 0.67)
+//   2: write 0.555… as a fraction (n/9, simplest form: 0.666… = 2/3), or pick the decimal for 1/6, 5/6, n/11
+//   3: does it end or repeat? (7/12 repeats, 3/15 = 1/5 ends), or a two-digit repeat as a fraction (0.2727… = 3/11)
+const repeatText = (block, times = 3) => `0.${block.repeat(times)}…`;
+const REPEATING = {
+  1: [[1, 3, '3'], [2, 3, '6'], [1, 9, '1'], [2, 9, '2'], [4, 9, '4'], [5, 9, '5'], [7, 9, '7'], [8, 9, '8']],
+  2: [[1, 6, '1', '6'], [5, 6, '8', '3'], [1, 11, '09'], [2, 11, '18'], [3, 11, '27'], [5, 11, '45']],
+};
+// The decimal text for a repeating fraction: [n, d, start, block?] -> "0.1666…" / "0.0909…".
+const repeatingOf = ([, , a, b]) => (b ? `0.${a}${b.repeat(3)}…` : a.length > 1 ? `0.${a.repeat(2)}…` : repeatText(a));
+
+const repeating = {
+  version: 1,
+  ifNotSimplified: 'frac.equivalent.simplify',
+  generate(rng, difficulty) {
+    const kind = difficulty === 1 ? 'choose' : difficulty === 2 ? rng.pick(['choose', 'to-fraction']) : rng.pick(['ends', 'to-fraction']);
+    if (kind === 'choose') {
+      const item = rng.pick(REPEATING[difficulty]);
+      const [n, d] = item;
+      const right = repeatingOf(item);
+      const cut = `0.${item[2]}${item[3] || ''}`; // stopped after one repeat: 0.6 for 0.666…, 0.16 for 0.1666…
+      const rounded = decimalText(fraction(Math.round((n * 100) / d), 100)); // 0.67
+      const pool = [
+        { label: right },
+        { label: cut, id: 'dec.repeat-cut-off' },
+        { label: rounded, id: 'dec.repeat-cut-off' },
+        { label: `0.${n}${d}`, id: 'dec.convert-digits' },
+      ];
+      const seen = new Set();
+      const options = shuffled(rng, pool.filter((o) => (seen.has(o.label) ? false : seen.add(o.label))));
+      return {
+        instruction: 'Which decimal is equal to this fraction?',
+        expression: frac(n, d),
+        answer: { type: 'choice', options: options.map((o) => o.label), correct: options.findIndex((o) => o.label === right) },
+        misconceptions: options.map((o, i) => (o.id ? { id: o.id, choice: i } : null)).filter(Boolean)
+          .filter((m, i, all) => all.findIndex((x) => x.id === m.id) === i),
+      };
+    }
+    if (kind === 'ends') {
+      // Ends exactly when the simplified denominator has only 2s and 5s.
+      const pool = [[7, 12], [1, 12], [5, 6], [3, 14], [4, 15], [3, 15], [6, 15], [7, 20], [9, 25], [3, 8], [2, 7], [5, 18], [9, 12], [11, 40], [14, 35]];
+      const [n, d] = rng.pick(pool);
+      const ends = terminates(fraction(n, d));
+      // "Odd denominators repeat, even ones end."
+      const oddEven = d % 2 === 1 ? 1 : 0;
+      return {
+        instruction: 'Does the decimal for this fraction end, or repeat forever?',
+        expression: frac(n, d),
+        answer: { type: 'choice', options: ['It ends', 'It repeats'], correct: ends ? 0 : 1 },
+        misconceptions: oddEven !== (ends ? 0 : 1) ? [{ id: 'dec.repeat-odd-even', choice: oddEven }] : [],
+      };
+    }
+    // A repeating decimal as a fraction: 0.555… = 5/9; 0.2727… = 27/99 = 3/11.
+    const two = difficulty === 3;
+    const block = two ? rng.pick(['27', '18', '36', '45', '63', '81', '12', '24', '15', '42']) : String(rng.int(1, 8));
+    const shown = two ? `0.${block.repeat(3)}…` : repeatText(block, 4);
+    const over = two ? 99 : 9;
+    const value = reduce(fraction(Number(block), over));
+    return {
+      instruction: 'Write as a fraction in simplest form.',
+      expression: dec(shown),
+      answer: { type: 'fraction', value },
+      misconceptions: [
+        { id: 'dec.repeat-as-ending', value: reduce(fraction(Number(block), two ? 100 : 10)) }, // 0.555… = 5/10
+      ].filter((m) => m.value.n * value.d !== value.n * m.value.d),
+    };
+  },
+};
+
 // ======================= Add and subtract decimals =======================
 
 // ---------- line up the points ----------
@@ -477,10 +548,106 @@ const byDecimal = {
   },
 };
 
+
+// ======================= Negative decimals =======================
+
+const signedText = (f) => decimalText(f);
+const negText = (t) => (t.startsWith('-') ? t.slice(1) : `-${t}`);
+// Signed wrong answers: keep those that differ from the right one and from each other.
+function signedWrongs(right, list) {
+  const out = [];
+  const same = (x, y) => { const a = parseDecimal(x); const b = parseDecimal(y); return a && b && a.n * b.d === b.n * a.d; };
+  for (const m of list) {
+    if (!m || m.value == null || same(m.value, right) || out.some((o) => same(o.value, m.value))) continue;
+    out.push(m);
+  }
+  return out;
+}
+const answerSigned = (value) => ({ type: 'decimal', value, allowNegative: true });
+
+// ---------- add and subtract ----------
+//   1: add, one negative, same places (−3.5 + 1.2, 4.6 + (−2.8));
+//   2: subtract into the negatives, or a negative minus a positive, different places (2.4 − 5.15, −1.2 − 0.35);
+//   3: subtract a negative (3.25 − (−1.4), −0.6 − (−2.45))
+const signedAddSub = {
+  version: 1,
+  generate(rng, difficulty) {
+    for (;;) {
+      const p = difficulty === 1 ? rng.pick([1, 2]) : 0;
+      let [a, b] = difficulty === 1 ? [randomDecimal(rng, 9, p), randomDecimal(rng, 9, p)]
+        : rng.chance(0.5) ? [randomDecimal(rng, 9, 1), randomDecimal(rng, 9, 2)] : [randomDecimal(rng, 9, 2), randomDecimal(rng, 9, 1)];
+      let sym;
+      if (difficulty === 1) {
+        sym = '+';
+        if (rng.chance(0.5)) a = negText(a); else b = negText(b);
+      } else if (difficulty === 2) {
+        sym = '-';
+        if (rng.chance(0.5)) a = negText(a); // −1.2 − 0.35
+        else if (parseDecimal(a).n * parseDecimal(b).d > parseDecimal(b).n * parseDecimal(a).d) [a, b] = [b, a]; // 2.4 − 5.15
+      } else {
+        sym = '-';
+        b = negText(b);
+        if (rng.chance(0.5)) a = negText(a);
+      }
+      const [x, y] = [parseDecimal(a), parseDecimal(b)];
+      const value = sym === '+' ? add(x, y) : sub(x, y);
+      if (value.n === 0) continue;
+      const right = signedText(value);
+      return {
+        instruction: sym === '+' ? 'Add.' : 'Subtract.',
+        expression: op(sym, dec(a), dec(b)),
+        answer: answerSigned(right),
+        misconceptions: signedWrongs(right, [
+          { id: 'dec.signed-wrong-sign', value: negText(right) },
+          // 3.25 − (−1.4) worked as 3.25 − 1.4
+          { id: 'dec.signed-sub-ignored-sign', value: sym === '-' && y.n < 0 ? signedText(add(x, y)) : null },
+        ]),
+      };
+    }
+  },
+};
+
+// ---------- multiply and divide ----------
+//   1: multiply, one negative (−0.3 × 4, 6 × (−0.7));  2: divide, one negative (−4.8 ÷ 6, 2.4 ÷ (−0.3));
+//   3: two negatives, decimal by decimal (−0.3 × (−0.2), −0.48 ÷ (−0.6))
+const signedMultDiv = {
+  version: 1,
+  generate(rng, difficulty) {
+    const divide = difficulty === 2 || (difficulty === 3 && rng.chance(0.5));
+    let a;
+    let b;
+    if (!divide) {
+      const f = rng.int(2, 9);
+      const g = rng.int(2, 9);
+      if (difficulty === 1) [a, b] = rng.chance(0.5) ? [fromScaled(f, 1), String(g)] : [String(g), fromScaled(f, 1)];
+      else [a, b] = [fromScaled(f, rng.pick([1, 2])), fromScaled(g, 1)];
+    } else {
+      const g = rng.int(2, 9); // the quotient's digit
+      const f = rng.int(2, 9); // the divisor's digit
+      const byDecimalToo = difficulty === 3 || rng.chance(0.5);
+      const divisor = byDecimalToo ? fromScaled(f, 1) : String(f);
+      const q = byDecimalToo ? fraction(g, rng.pick([1, 10])) : fraction(g, 10);
+      [a, b] = [decimalText(mul(q, parseDecimal(divisor))), divisor];
+    }
+    const signs = difficulty === 3 ? [-1, -1] : rng.pick([[-1, 1], [1, -1]]);
+    if (signs[0] < 0) a = negText(a);
+    if (signs[1] < 0) b = negText(b);
+    const [x, y] = [parseDecimal(a), parseDecimal(b)];
+    const right = signedText(divide ? div(x, y) : mul(x, y));
+    const show = (t) => (t.replace('-', '').includes('.') ? dec(t) : int(Number(t)));
+    return {
+      instruction: divide ? 'Divide.' : 'Multiply.',
+      expression: op(divide ? '÷' : '×', show(a), show(b)),
+      answer: answerSigned(right),
+      misconceptions: signedWrongs(right, [{ id: 'dec.signed-mult-sign', value: negText(right) }]),
+    };
+  },
+};
+
 // ======================= whole skills =======================
 
-const mixedOf = ({ covers, screener, parts: own }) => ({
-  version: 1,
+const mixedOf = ({ covers, screener, parts: own, version = 1 }) => ({
+  version,
   mixed: true,
   ...(screener ? { screener } : {}),
   covers,
@@ -497,24 +664,29 @@ const parts = {
   'dec.place-value.round': round,
   'dec.convert.to-decimal': toDecimal,
   'dec.convert.to-fraction': toFraction,
+  'dec.convert.repeating': repeating,
   'dec.add-sub.line-up': lineUp,
   'dec.add-sub.whole-numbers': wholeNumbers,
   'dec.multiply.powers-of-ten': powersOfTen,
   'dec.multiply.place': multiplyPlace,
   'dec.divide.by-whole': byWhole,
   'dec.divide.by-decimal': byDecimal,
+  'dec.signed.add-sub': signedAddSub,
+  'dec.signed.mult-div': signedMultDiv,
 };
 
 export const decimalGenerators = {
   // One hard comparison (0.5 ? 0.45) stands for reading place value too; rounding is asked on its own.
   'dec.place-value': mixedOf({ screener: 'dec.place-value.compare', covers: ['dec.place-value.read', 'dec.place-value.compare'], parts: ['dec.place-value.read', 'dec.place-value.compare', 'dec.place-value.round'] }),
   // The two directions rest on different fraction skills: each is asked.
-  'dec.convert': mixedOf({ covers: ['dec.convert.to-decimal', 'dec.convert.to-fraction'] }),
+  'dec.convert': mixedOf({ version: 2, covers: ['dec.convert.to-decimal', 'dec.convert.to-fraction', 'dec.convert.repeating'] }),
   // A whole number minus a decimal (6 − 2.35) needs lining up too.
   'dec.add-sub': mixedOf({ screener: 'dec.add-sub.whole-numbers', covers: ['dec.add-sub.line-up', 'dec.add-sub.whole-numbers'] }),
   // Multiplying decimals and moving the point by 10, 100 are different ideas: both asked.
   'dec.multiply': mixedOf({ screener: 'dec.multiply.place', covers: ['dec.multiply.place'], parts: ['dec.multiply.powers-of-ten', 'dec.multiply.place'] }),
   // Dividing by a decimal (2.4 ÷ 0.3) needs dividing by a whole number too.
   'dec.divide': mixedOf({ screener: 'dec.divide.by-decimal', covers: ['dec.divide.by-whole', 'dec.divide.by-decimal'] }),
+  // Adding and multiplying with negatives rest on different integer skills: each is asked.
+  'dec.signed': mixedOf({ covers: ['dec.signed.add-sub', 'dec.signed.mult-div'] }),
   ...parts,
 };

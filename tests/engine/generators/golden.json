@@ -11550,11 +11550,11 @@
   ]
  },
  "dec.convert": {
-  "version": 1,
+  "version": 2,
   "problems": [
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-1",
     "instruction": "Write as a fraction in simplest form.",
@@ -11582,7 +11582,7 @@
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-2",
     "instruction": "Write as a decimal.",
@@ -11609,35 +11609,35 @@
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-3",
-    "instruction": "Write as a fraction in simplest form.",
+    "instruction": "Which decimal is equal to this fraction?",
     "expression": {
-     "type": "dec",
-     "value": "0.9"
+     "type": "frac",
+     "n": 8,
+     "d": 9
     },
     "answer": {
-     "type": "fraction",
-     "value": {
-      "n": 9,
-      "d": 10
-     }
+     "type": "choice",
+     "options": [
+      "0.8",
+      "0.89",
+      "0.888…"
+     ],
+     "correct": 2
     },
     "misconceptions": [
      {
-      "id": "dec.place-value-shift",
-      "value": {
-       "n": 9,
-       "d": 100
-      }
+      "id": "dec.repeat-cut-off",
+      "choice": 0
      }
     ],
-    "part": "dec.convert.to-fraction"
+    "part": "dec.convert.repeating"
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-1",
     "instruction": "Write as a fraction in simplest form.",
@@ -11672,7 +11672,7 @@
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-2",
     "instruction": "Write as a decimal.",
@@ -11699,42 +11699,35 @@
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-3",
     "instruction": "Write as a fraction in simplest form.",
     "expression": {
      "type": "dec",
-     "value": "0.52"
+     "value": "0.6666…"
     },
     "answer": {
      "type": "fraction",
      "value": {
-      "n": 13,
-      "d": 25
+      "n": 2,
+      "d": 3
      }
     },
     "misconceptions": [
      {
-      "id": "dec.convert-over-ten",
+      "id": "dec.repeat-as-ending",
       "value": {
-       "n": 52,
-       "d": 10
-      }
-     },
-     {
-      "id": "dec.place-value-shift",
-      "value": {
-       "n": 52,
-       "d": 1000
+       "n": 3,
+       "d": 5
       }
      }
     ],
-    "part": "dec.convert.to-fraction"
+    "part": "dec.convert.repeating"
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-1",
     "instruction": "Write as a fraction in simplest form.",
@@ -11762,42 +11755,29 @@
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-2",
-    "instruction": "Write as a fraction in simplest form.",
+    "instruction": "Does the decimal for this fraction end, or repeat forever?",
     "expression": {
-     "type": "dec",
-     "value": "0.875"
+     "type": "frac",
+     "n": 9,
+     "d": 12
     },
     "answer": {
-     "type": "fraction",
-     "value": {
-      "n": 7,
-      "d": 8
-     }
+     "type": "choice",
+     "options": [
+      "It ends",
+      "It repeats"
+     ],
+     "correct": 0
     },
-    "misconceptions": [
-     {
-      "id": "dec.convert-over-ten",
-      "value": {
-       "n": 875,
-       "d": 10
-      }
-     },
-     {
-      "id": "dec.place-value-shift",
-      "value": {
-       "n": 875,
-       "d": 10000
-      }
-     }
-    ],
-    "part": "dec.convert.to-fraction"
+    "misconceptions": [],
+    "part": "dec.convert.repeating"
    },
    {
     "generator": "dec.convert",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-3",
     "instruction": "Write as a fraction in simplest form.",
@@ -11829,6 +11809,270 @@
      }
     ],
     "part": "dec.convert.to-fraction"
+   }
+  ]
+ },
+ "dec.convert.repeating": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Which decimal is equal to this fraction?",
+    "expression": {
+     "type": "frac",
+     "n": 7,
+     "d": 9
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0.78",
+      "0.777…",
+      "0.7",
+      "0.79"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-cut-off",
+      "choice": 0
+     },
+     {
+      "id": "dec.convert-digits",
+      "choice": 3
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Which decimal is equal to this fraction?",
+    "expression": {
+     "type": "frac",
+     "n": 2,
+     "d": 9
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0.22",
+      "0.222…",
+      "0.29",
+      "0.2"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-cut-off",
+      "choice": 0
+     },
+     {
+      "id": "dec.convert-digits",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Which decimal is equal to this fraction?",
+    "expression": {
+     "type": "frac",
+     "n": 4,
+     "d": 9
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0.44",
+      "0.444…",
+      "0.49",
+      "0.4"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-cut-off",
+      "choice": 0
+     },
+     {
+      "id": "dec.convert-digits",
+      "choice": 2
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write as a fraction in simplest form.",
+    "expression": {
+     "type": "dec",
+     "value": "0.2222…"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 2,
+      "d": 9
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-as-ending",
+      "value": {
+       "n": 1,
+       "d": 5
+      }
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Which decimal is equal to this fraction?",
+    "expression": {
+     "type": "frac",
+     "n": 2,
+     "d": 11
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "0.211",
+      "0.18",
+      "0.1818…"
+     ],
+     "correct": 2
+    },
+    "misconceptions": [
+     {
+      "id": "dec.convert-digits",
+      "choice": 0
+     },
+     {
+      "id": "dec.repeat-cut-off",
+      "choice": 1
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write as a fraction in simplest form.",
+    "expression": {
+     "type": "dec",
+     "value": "0.7777…"
+    },
+    "answer": {
+     "type": "fraction",
+     "value": {
+      "n": 7,
+      "d": 9
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-as-ending",
+      "value": {
+       "n": 7,
+       "d": 10
+      }
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Does the decimal for this fraction end, or repeat forever?",
+    "expression": {
+     "type": "frac",
+     "n": 3,
+     "d": 14
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "It ends",
+      "It repeats"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-odd-even",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Does the decimal for this fraction end, or repeat forever?",
+    "expression": {
+     "type": "frac",
+     "n": 3,
+     "d": 14
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "It ends",
+      "It repeats"
+     ],
+     "correct": 1
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-odd-even",
+      "choice": 0
+     }
+    ]
+   },
+   {
+    "generator": "dec.convert.repeating",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Does the decimal for this fraction end, or repeat forever?",
+    "expression": {
+     "type": "frac",
+     "n": 3,
+     "d": 15
+    },
+    "answer": {
+     "type": "choice",
+     "options": [
+      "It ends",
+      "It repeats"
+     ],
+     "correct": 0
+    },
+    "misconceptions": [
+     {
+      "id": "dec.repeat-odd-even",
+      "choice": 1
+     }
+    ]
    }
   ]
  },
@@ -15139,6 +15383,856 @@
      {
       "id": "dec.round-truncate",
       "value": "3.9"
+     }
+    ]
+   }
+  ]
+ },
+ "dec.signed": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "int",
+      "value": 9
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.9"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-8.1",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "8.1"
+     }
+    ],
+    "part": "dec.signed.mult-div"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "dec",
+      "value": "3.3"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-5.2"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-1.9",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "1.9"
+     }
+    ],
+    "part": "dec.signed.add-sub"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "0.7"
+     },
+     "right": {
+      "type": "int",
+      "value": -3
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-2.1",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "2.1"
+     }
+    ],
+    "part": "dec.signed.mult-div"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "dec",
+      "value": "-1.8"
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-0.3",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "0.3"
+     }
+    ],
+    "part": "dec.signed.mult-div"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "-4.2"
+     },
+     "right": {
+      "type": "dec",
+      "value": "6.57"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-10.77",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "10.77"
+     }
+    ],
+    "part": "dec.signed.add-sub"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "-9.96"
+     },
+     "right": {
+      "type": "dec",
+      "value": "3.1"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-13.06",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "13.06"
+     }
+    ],
+    "part": "dec.signed.add-sub"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "-0.04"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.9"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.036",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "-0.036"
+     }
+    ],
+    "part": "dec.signed.mult-div"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "-9.3"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-8.41"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-0.89",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "0.89"
+     },
+     {
+      "id": "dec.signed-sub-ignored-sign",
+      "value": "-17.71"
+     }
+    ],
+    "part": "dec.signed.add-sub"
+   },
+   {
+    "generator": "dec.signed",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": -3
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.6"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "-5"
+     }
+    ],
+    "part": "dec.signed.mult-div"
+   }
+  ]
+ },
+ "dec.signed.add-sub": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "dec",
+      "value": "-4.9"
+     },
+     "right": {
+      "type": "dec",
+      "value": "2.2"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-2.7",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "2.7"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "dec",
+      "value": "-9.87"
+     },
+     "right": {
+      "type": "dec",
+      "value": "6.74"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-3.13",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "3.13"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Add.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "dec",
+      "value": "0.7"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.6"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.1",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "-0.1"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "-8.6"
+     },
+     "right": {
+      "type": "dec",
+      "value": "8.27"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-16.87",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "16.87"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "0.2"
+     },
+     "right": {
+      "type": "dec",
+      "value": "9.98"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-9.78",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "9.78"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "-4.1"
+     },
+     "right": {
+      "type": "dec",
+      "value": "2.84"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-6.94",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "6.94"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "0.7"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-4.69"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5.39",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "-5.39"
+     },
+     {
+      "id": "dec.signed-sub-ignored-sign",
+      "value": "-3.99"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "-5.72"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-5.4"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-0.32",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "0.32"
+     },
+     {
+      "id": "dec.signed-sub-ignored-sign",
+      "value": "-11.12"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.add-sub",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Subtract.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "dec",
+      "value": "-7.4"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-2.34"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-5.06",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-wrong-sign",
+      "value": "5.06"
+     },
+     {
+      "id": "dec.signed-sub-ignored-sign",
+      "value": "-9.74"
+     }
+    ]
+   }
+  ]
+ },
+ "dec.signed.mult-div": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "-0.8"
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-4.8",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "4.8"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "0.5"
+     },
+     "right": {
+      "type": "int",
+      "value": -7
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-3.5",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "3.5"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "-0.3"
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-2.4",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "2.4"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "dec",
+      "value": "-0.24"
+     },
+     "right": {
+      "type": "dec",
+      "value": "0.8"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-0.3",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "0.3"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "int",
+      "value": 3
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.5"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-6",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "dec",
+      "value": "4.2"
+     },
+     "right": {
+      "type": "int",
+      "value": -7
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "-0.6",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "0.6"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "-0.08"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.4"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.032",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "-0.032"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply.",
+    "expression": {
+     "type": "op",
+     "op": "×",
+     "left": {
+      "type": "dec",
+      "value": "-0.3"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.8"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.24",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "-0.24"
+     }
+    ]
+   },
+   {
+    "generator": "dec.signed.mult-div",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Divide.",
+    "expression": {
+     "type": "op",
+     "op": "÷",
+     "left": {
+      "type": "dec",
+      "value": "-0.81"
+     },
+     "right": {
+      "type": "dec",
+      "value": "-0.9"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.9",
+     "allowNegative": true
+    },
+    "misconceptions": [
+     {
+      "id": "dec.signed-mult-sign",
+      "value": "-0.9"
      }
     ]
    }

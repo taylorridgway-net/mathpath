@@ -38,7 +38,8 @@
         "dec.convert",
         "dec.add-sub",
         "dec.multiply",
-        "dec.divide"
+        "dec.divide",
+        "dec.signed"
       ]
     },
     {

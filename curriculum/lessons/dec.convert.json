@@ -6,12 +6,16 @@
   "hints": {
     "dec.convert.to-decimal": "Make the bottom 10, 100 or 1000 by multiplying the top and bottom by the same number. Then write it as tenths, hundredths or thousandths.",
     "dec.convert.to-fraction": "Count the places after the point: 1 place is tenths, 2 hundredths, 3 thousandths. Write it over 10, 100 or 1000, then simplify.",
-    "dec.convert": "Fraction to decimal: make the bottom 10, 100 or 1000. Decimal to fraction: write it over 10, 100 or 1000 and simplify."
+    "dec.convert": "Fraction to decimal: make the bottom 10, 100 or 1000. Decimal to fraction: write it over 10, 100 or 1000 and simplify. Repeating: one digit over 9, two digits over 99.",
+    "dec.convert.repeating": "Divide the top by the bottom; if a leftover comes back, the digits repeat. To end, the simplified bottom must be only 2s and 5s. One repeating digit is that digit over 9."
   },
   "misconceptionMessages": {
     "dec.convert-digits": "The digits of the fraction aren't the decimal. Make the bottom 10, 100 or 1000 first: 3/4 = 75/100 = 0.75.",
     "dec.convert-flipped": "A fraction is the top divided by the bottom, not the other way round. 4/5 is less than 1, so its decimal is less than 1.",
-    "dec.convert-over-ten": "Count the places: 0.35 has 2 places, so it's 35 hundredths: 35/100. Then simplify."
+    "dec.convert-over-ten": "Count the places: 0.35 has 2 places, so it's 35 hundredths: 35/100. Then simplify.",
+    "dec.repeat-cut-off": "Close, but not equal: 2/3 is 0.666… with the 6s going on forever. 0.6 and 0.67 stop, so they're a little off.",
+    "dec.repeat-odd-even": "Odd or even doesn't decide it. Simplify, then look at the bottom: only 2s and 5s means it ends (3/15 = 1/5 = 0.2); anything else, like a 3, means it repeats (7/12).",
+    "dec.repeat-as-ending": "0.555… isn't 5/10: the 5s never stop. One repeating digit goes over 9 (0.555… = 5/9); two repeating digits go over 99."
   },
   "similarProblemIntro": "Here's the worked solution. Now try one like it.",
   "sections": [
@@ -90,10 +94,53 @@
       ]
     },
     {
+      "id": "dec.convert.repeating",
+      "forGap": "dec.convert.repeating",
+      "title": "Repeating decimals",
+      "objective": "Write fractions like 2/3 as repeating decimals, tell if a decimal ends, and write 0.555… as a fraction.",
+      "mode": "section",
+      "generator": "dec.convert.repeating",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Some fractions never come out even when you divide: 2 ÷ 3 = 0.666… forever. We write a bar over the part that repeats.",
+        "A fraction's decimal ends only when its bottom, in simplest form, is made of 2s and 5s (because 10 = 2 × 5)."
+      ],
+      "visual": null,
+      "key": "Divide top by bottom: if a leftover comes back, the digits repeat forever. Only 2s and 5s in the simplified bottom means it ends. One repeating digit over 9: 0.555… = 5/9.",
+      "worked": [
+        {
+          "math": "{2/3} = 2 ÷ 3",
+          "note": "3 goes into 20 six times, 2 left over"
+        },
+        {
+          "math": "= [[0.666…]]",
+          "note": "the 2 keeps coming back"
+        },
+        {
+          "math": "{7/12}: 12 = 2 × 2 × [[3]]",
+          "note": "a 3, so it repeats"
+        },
+        {
+          "math": "{3/15} = {1/5}: [[ends]]",
+          "note": "simplify first: 1/5 = 0.2"
+        },
+        {
+          "math": "0.555… = [[{5/9}]]",
+          "note": "one digit repeats: over 9"
+        },
+        {
+          "math": "0.2727… = {27/99} = [[{3/11}]]",
+          "note": "two digits: over 99"
+        }
+      ]
+    },
+    {
       "id": "dec.convert.whole",
       "forGap": "dec.convert",
       "title": "Putting it together",
-      "objective": "Fractions to decimals and decimals to fractions, mixed.",
+      "objective": "Fractions and decimals both ways, including repeating decimals, mixed.",
       "mode": "skill",
       "generator": "dec.convert",
       "example": {

@@ -1,15 +1,16 @@
 // The integer number line, used in the integer lessons: a dot at `start`; the
 // button shows the move for adding `move` (right for positive, left for negative)
 // and where you land. Settings come from the lesson file:
-//   "visual": { "widget": "int-line", "params": { "start": -3, "move": 7 } }
+//   "visual": { "widget": "int-line", "params": { "start": -3, "move": 7 } }  (or -2.5 and 4)
 
 const NS = 'http://www.w3.org/2000/svg';
 
 export function createIntLine({ host, params }) {
   const { start, move } = params;
-  const end = start + move;
-  const lo = Math.min(start, end, 0) - 1;
-  const hi = Math.max(start, end, 0) + 1;
+  // Decimals work too (−2.5 + 4): ticks stay on whole numbers; the landing point is exact to hundredths.
+  const end = Math.round((start + move) * 100) / 100;
+  const lo = Math.floor(Math.min(start, end, 0)) - 1;
+  const hi = Math.ceil(Math.max(start, end, 0)) + 1;
   const unit = 30;
   const width = (hi - lo) * unit + 40;
   const x = (v) => 20 + (v - lo) * unit;

@@ -33,7 +33,7 @@ test('every stated calculation is right; no undefined or float junk; the answer 
     const last = steps.at(-1).say;
     const a = p.answer;
     const shown = a.type === 'decimal' ? a.value : a.type === 'choice' ? a.options[a.correct] : a.type === 'fraction' ? `${a.value.n}/${a.value.d}` : String(a.value);
-    assert.ok(last.includes(shown), `${toText(p.expression)}: "${last}" should include ${shown}`);
+    assert.ok(last.replace(/−/g, '-').includes(shown), `${toText(p.expression)}: "${last}" should include ${shown}`);
   }
 });
 

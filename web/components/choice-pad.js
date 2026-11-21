@@ -8,7 +8,8 @@ export function createChoicePad({ host, options, onSubmit, onSkip }) {
   host.replaceChildren();
   host.classList.add('answer-area');
   const row = document.createElement('div');
-  row.className = 'choices';
+  // Longer labels (0.777…, It repeats) get wider buttons, two to a row on a phone.
+  row.className = options.some((o) => o.length > 4) ? 'choices choices-wide' : 'choices';
   row.setAttribute('role', 'group');
   row.setAttribute('aria-label', 'Choose your answer');
   options.forEach((label, i) => {
