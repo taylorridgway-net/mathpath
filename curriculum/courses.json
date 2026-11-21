@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "about": "Course mapping: the Integrated Math courses, their units, and which MathPath skills each unit first teaches. Kept out of the skill graph on purpose. A class's course only holds back skills its course hasn't taught yet (this year's and later courses' skills) until the teacher opens them for the class; it never adds, removes or reorders foundations.",
+  "about": "Course mapping: the Integrated Math courses, their units, which MathPath skills each unit first teaches ('skills'), and which skills it relies on ('reliesOn', for the unit readiness view). Kept out of the skill graph on purpose. A class's course only holds back skills its course hasn't taught yet (this year's and later courses' skills) until the teacher opens them for the class; it never adds, removes or reorders foundations.",
   "source": "Draft from the California Mathematics Framework, Integrated Pathway (Math I, II, III), until the district's instructional guides can be read (owner, 2026-11-21: 'use the California one for now, we can always adjust later').",
   "status": "draft",
   "courses": [
@@ -8,34 +8,196 @@
       "id": "im1",
       "name": "Integrated Math 1",
       "units": [
-        { "name": "Relationships between quantities", "skills": [] },
-        { "name": "Linear and exponential relationships", "skills": ["lin.functions", "lin.slope", "lin.slope-intercept", "lin.graphing", "lin.forms"] },
-        { "name": "Reasoning with equations (incl. systems)", "skills": ["alg.systems"] },
-        { "name": "Descriptive statistics", "skills": [] },
-        { "name": "Congruence, proof and constructions", "skills": [] },
-        { "name": "Connecting algebra and geometry through coordinates", "skills": ["lin.parallel"] }
+        {
+          "name": "Relationships between quantities",
+          "skills": [],
+          "reliesOn": [
+            "alg.expressions",
+            "alg.evaluate",
+            "alg.translate",
+            "rat.ratios",
+            "geo.units"
+          ]
+        },
+        {
+          "name": "Linear and exponential relationships",
+          "skills": [
+            "lin.functions",
+            "lin.slope",
+            "lin.slope-intercept",
+            "lin.graphing",
+            "lin.forms"
+          ],
+          "reliesOn": [
+            "alg.evaluate",
+            "alg.equations",
+            "rat.ratios",
+            "int.add-sub",
+            "int.mult-div",
+            "frac.divide",
+            "exp.rules"
+          ]
+        },
+        {
+          "name": "Reasoning with equations (incl. systems)",
+          "skills": [
+            "alg.systems"
+          ],
+          "reliesOn": [
+            "alg.equations",
+            "alg.multi-step",
+            "alg.inequalities",
+            "alg.inequality-graphs",
+            "alg.expressions"
+          ]
+        },
+        {
+          "name": "Descriptive statistics",
+          "skills": [],
+          "reliesOn": [
+            "stat.center",
+            "stat.displays",
+            "rat.percent",
+            "dec.divide"
+          ]
+        },
+        {
+          "name": "Congruence, proof and constructions",
+          "skills": [],
+          "reliesOn": [
+            "geo.angles",
+            "int.add-sub"
+          ]
+        },
+        {
+          "name": "Connecting algebra and geometry through coordinates",
+          "skills": [
+            "lin.parallel"
+          ],
+          "reliesOn": [
+            "geo.pythag",
+            "geo.area",
+            "exp.roots",
+            "int.add-sub"
+          ]
+        }
       ]
     },
     {
       "id": "im2",
       "name": "Integrated Math 2",
       "units": [
-        { "name": "Extending the number system", "skills": [] },
-        { "name": "Quadratic functions and modeling", "skills": ["poly.multiply"] },
-        { "name": "Expressions and equations (incl. factoring)", "skills": ["poly.factor"] },
-        { "name": "Applications of probability", "skills": [] },
-        { "name": "Similarity, right triangle trigonometry and proof", "skills": [] },
-        { "name": "Circles with and without coordinates", "skills": [] }
+        {
+          "name": "Extending the number system",
+          "skills": [],
+          "reliesOn": [
+            "exp.rules",
+            "exp.roots",
+            "frac.multiply"
+          ]
+        },
+        {
+          "name": "Quadratic functions and modeling",
+          "skills": [
+            "poly.multiply"
+          ],
+          "reliesOn": [
+            "alg.evaluate",
+            "exp.rules",
+            "lin.functions",
+            "lin.graphing",
+            "whole.factors-multiples"
+          ]
+        },
+        {
+          "name": "Expressions and equations (incl. factoring)",
+          "skills": [
+            "poly.factor"
+          ],
+          "reliesOn": [
+            "alg.expressions",
+            "whole.factors-multiples",
+            "int.mult-div",
+            "exp.roots"
+          ]
+        },
+        {
+          "name": "Applications of probability",
+          "skills": [],
+          "reliesOn": [
+            "stat.prob",
+            "frac.multiply",
+            "frac.add-sub",
+            "rat.percent"
+          ]
+        },
+        {
+          "name": "Similarity, right triangle trigonometry and proof",
+          "skills": [],
+          "reliesOn": [
+            "rat.ratios",
+            "geo.pythag",
+            "geo.angles",
+            "exp.roots",
+            "dec.divide"
+          ]
+        },
+        {
+          "name": "Circles with and without coordinates",
+          "skills": [],
+          "reliesOn": [
+            "geo.circles",
+            "geo.pythag",
+            "lin.slope"
+          ]
+        }
       ]
     },
     {
       "id": "im3",
       "name": "Integrated Math 3",
       "units": [
-        { "name": "Inferences and conclusions from data", "skills": [] },
-        { "name": "Polynomial, rational and radical relationships", "skills": [] },
-        { "name": "Trigonometry of general triangles and trigonometric functions", "skills": [] },
-        { "name": "Mathematical modeling", "skills": [] }
+        {
+          "name": "Inferences and conclusions from data",
+          "skills": [],
+          "reliesOn": [
+            "stat.center",
+            "stat.displays",
+            "rat.percent",
+            "dec.multiply"
+          ]
+        },
+        {
+          "name": "Polynomial, rational and radical relationships",
+          "skills": [],
+          "reliesOn": [
+            "poly.factor",
+            "poly.multiply",
+            "exp.rules",
+            "frac.add-sub",
+            "frac.divide"
+          ]
+        },
+        {
+          "name": "Trigonometry of general triangles and trigonometric functions",
+          "skills": [],
+          "reliesOn": [
+            "rat.ratios",
+            "geo.pythag",
+            "geo.angles",
+            "geo.circles"
+          ]
+        },
+        {
+          "name": "Mathematical modeling",
+          "skills": [],
+          "reliesOn": [
+            "lin.slope-intercept",
+            "rat.percent-change",
+            "exp.rules",
+            "alg.multi-step"
+          ]
+        }
       ]
     }
   ]

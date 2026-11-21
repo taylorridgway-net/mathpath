@@ -21,6 +21,7 @@ import { toText } from '../../engine/problem/text.js';
 import { createRng } from '../../engine/random.js';
 import { studentStatus, countStatuses } from '../../engine/teacher/student-status.js';
 import { heldSkills, courseUnits } from '../../engine/courses/courses.js';
+import { unitReadiness } from '../../engine/courses/readiness.js';
 import { LOG_STATES } from '../../engine/teacher/assignments.js';
 import { teachTogether } from '../../engine/teacher/groups.js';
 import { participation } from '../../engine/teacher/participation.js';
@@ -192,6 +193,7 @@ let sortBy = 'name';
 const TABS = [
   ['overview', 'Class overview'],
   ['groups', 'Teach together'],
+  ['units', 'Units'],
   ['participation', 'Participation'],
   ['paper', 'Paper tests'],
   ['lessons', 'Lessons'],
@@ -236,7 +238,7 @@ function frame(title, { tabs = true } = {}) {
 }
 
 function render() {
-  ({ overview, groups, participation: participationTab, paper, lessons: lessonsTab, roster })[tab]();
+  ({ overview, groups, units: unitsTab, participation: participationTab, paper, lessons: lessonsTab, roster })[tab]();
 }
 
 // ---------- status cells ----------
@@ -572,6 +574,60 @@ function groups() {
   }
   cols.append(nextCol, mistakeCol);
   screen.append(cols);
+  swap(app, screen);
+}
+
+// Unit readiness: before teaching a unit, who has the skills it relies on (curriculum/courses.json).
+function unitsTab() {
+  const screen = frame('Units');
+  screen.append(h('p', 'lede', 'Before you start a unit: who has the earlier skills it relies on, and who needs work on which one. One tap puts that lesson on their paths. Units come from the class’s course (Roster tab).'));
+  const byClass = data.classes.filter((c) => classFilter === 'all' || c.id === classFilter);
+  const withCourse = byClass.filter((c) => c.course);
+  if (!withCourse.length) {
+    screen.append(h('p', 'empty', byClass.length > 1 ? 'None of these classes has a course yet. Set one in the Roster tab.' : 'This class has no course yet. Set one in the Roster tab.'));
+    swap(app, screen);
+    return;
+  }
+  for (const c of withCourse) {
+    const course = courses.courses.find((k) => k.id === c.course);
+    const kids = students.filter((st) => st.classId === c.id);
+    screen.append(h('h2', 't-h2 t-area', `${c.name} · ${course.name}`));
+    for (const unit of course.units) {
+      const r = unitReadiness(unit, kids);
+      const card = h('details', 't-card t-unit-card');
+      const sum = h('summary', 't-unit-summary');
+      sum.append(h('strong', '', unit.name));
+      const counts = h('span', 't-hint', ` ${r.ready.length} ready · ${r.notReady.length} need work · ${kids.length - r.ready.length - r.notReady.length} not checked on everything yet`);
+      sum.append(counts);
+      const bar = h('span', 't-bar');
+      for (const [st, n] of [['platform', r.ready.length], ['gap', r.notReady.length], ['not-tested', kids.length - r.ready.length - r.notReady.length]]) {
+        if (!n) continue;
+        const seg = h('span', `t-seg st-${st}`);
+        seg.style.flexGrow = String(n);
+        bar.append(seg);
+      }
+      sum.append(bar);
+      card.append(sum);
+      card.append(h('p', 't-card-sub', `Relies on: ${unit.reliesOn.map(shortName).join(', ')}.`));
+      if (!r.needs.length) card.append(h('p', 't-hint', 'Nobody needs work on these.'));
+      for (const { skill, codes } of r.needs) {
+        const row = h('div', 't-unit-need');
+        row.append(h('h3', 't-card-title', `${shortName(skill)}: ${codes.length} need${codes.length === 1 ? 's' : ''} work`));
+        row.append(chips(codes));
+        const lesson = lessons.find((l) => l.skill === skill);
+        if (lesson) {
+          const all = codes.every((code) => students.find((x) => x.code === code).status.assigned.some((a) => a.lesson === skill && !a.section));
+          row.append(all ? h('p', 't-hint', `“${lesson.title}” is on their paths (from you).`)
+            : btn('button', `Put “${lesson.title}” at the top of their paths`, () => changePath(codes, 'assign', skill, null, render)));
+        }
+        card.append(row);
+      }
+      if (r.unknown.length) {
+        card.append(h('p', 't-hint', `Not checked yet: ${r.unknown.map(({ skill, codes }) => `${shortName(skill)} (${codes.length})`).join(', ')}. Their later checks ask about these.`));
+      }
+      screen.append(card);
+    }
+  }
   swap(app, screen);
 }
 

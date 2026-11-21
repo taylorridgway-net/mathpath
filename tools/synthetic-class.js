@@ -10,7 +10,7 @@
 // Deterministic: the same settings and seed always make the same class.
 
 import { createRng } from '../engine/random.js';
-import { startDiagnostic, compactResult } from '../engine/diagnostic/diagnostic.js';
+import { startDiagnostic, compactResult, catchUpTargets } from '../engine/diagnostic/diagnostic.js';
 import { startPractice } from '../engine/practice/practice.js';
 import { buildPath } from '../engine/lessons/path.js';
 import { reduce } from '../engine/math/fraction.js';
@@ -44,6 +44,30 @@ const ACTIVITY = [
 const WORDS_A = ['maple', 'river', 'cedar', 'stone', 'amber', 'cloud', 'birch', 'coral', 'frost', 'ember', 'meadow', 'harbor', 'canyon', 'willow', 'summit', 'pebble'];
 const WORDS_B = ['tiger', 'otter', 'falcon', 'heron', 'fox', 'bison', 'lynx', 'raven', 'panda', 'gecko', 'moose', 'koala', 'eagle', 'shark', 'llama', 'wolf'];
 const NICKNAMES = ['Ace', 'Sky', 'JJ', 'Nova', 'Rex', 'Lu', 'Kit', 'Bo', 'Zee', 'Max', 'Jo', 'Remy'];
+
+// The later checks a pretend student took after the fractions check, each starting from the
+// result so far (the real catch-up machinery). Some students have a few gaps in those areas too.
+// Returns the combined result (what the server saves after each check).
+function laterChecks({ first, code, seed, setup, traits }) {
+  const { graph, generators, misconceptions, diagnosticConfig } = setup;
+  const rng = createRng(`later|${seed}|${code}`);
+  const checks = diagnosticConfig.moreChecks || [];
+  const howMany = rng.chance(0.25) ? 0 : rng.int(1, checks.length);
+  if (!howMany) return first;
+  const laterParts = checks.flatMap((c) => c.targets).flatMap((id) => graph.subskillsOf(id)).filter((id) => generators[id]);
+  const extra = Array.from({ length: rng.pick([0, 0, 1, 2, 3]) }, () => rng.pick(laterParts));
+  const pretend = simulatedStudent({ graph, generators, ...traits, lacks: [...(traits.lacks || []), ...extra] });
+  let result = first;
+  for (let i = 0; i < howMany; i++) {
+    const prior = compactResult(result);
+    const targets = catchUpTargets({ graph, generators, config: diagnosticConfig, prior });
+    if (!targets.length) break;
+    const d = startDiagnostic({ graph, generators, misconceptions, config: { ...diagnosticConfig, targets }, seed: `${seed}:${code}:later${i}`, prior });
+    for (let q = d.nextQuestion(); q; q = d.nextQuestion()) d.submit(pretend.answer(q.problem));
+    result = d.result();
+  }
+  return result;
+}
 
 // periods: [{ name, size }]. now: ISO date string. setup: the real engine pieces.
 export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
@@ -88,7 +112,9 @@ export function syntheticClass({ periods, seed = 'sample-class', now, setup }) {
       }
       // Started somewhere in the last 9 to 35 days (so some memory checks have come due).
       let t = end - rng.int(9, 35) * DAY + rng.int(8, 14) * 3600 * 1000;
-      const result = diag.result();
+      // ---- then some of the later checks (number sense, pre-algebra, ...), one after another ----
+      // Their own random numbers, so the fractions part of the class stays the same.
+      const result = laterChecks({ first: diag.result(), code, seed, setup, traits: profile.traits });
       diagnostics.push({
         type: 'diagnostic', code, seed: diagSeed, answers, times, curriculumVersion: graph.curriculumVersion,
         startedAt: iso(t - sum(times)), finishedAt: iso(t), result: compactResult(result),

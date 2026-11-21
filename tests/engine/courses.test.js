@@ -80,3 +80,37 @@ test('path: a held-back skill\'s lessons stay off, even after a missed early che
   assert.equal(status.subskills['alg.systems.substitute'], 'not-taught');
   assert.equal(studentStatus({ diagnosticResult: prior, graph: setup.graph, lessons: setup.lessons }).skills['alg.systems'], 'gap');
 });
+
+// ---------- unit readiness ----------
+import { unitReadiness, readinessOf } from '../../engine/courses/readiness.js';
+
+test('each unit relies on real skills with lessons, all from earlier courses or foundations', () => {
+  courses.courses.forEach((c, at) => {
+    for (const u of c.units) {
+      assert.ok(u.reliesOn.length >= 2, u.name);
+      for (const id of u.reliesOn) {
+        assert.ok(setup.graph.has(id) && setup.graph.get(id).kind === 'skill', `${u.name}: ${id}`);
+        assert.ok(setup.lessons.some((l) => l.skill === id), `${id} has a lesson to assign`);
+        assert.ok(courseIndexOf(courses, id) < at, `${u.name} relies on ${id}, which its own or a later course teaches`);
+      }
+    }
+  });
+});
+
+test('readiness: ready only with every skill shown; gaps listed by skill; unchecked kept apart; held-back skills ignored', () => {
+  const unit = { name: 'U', reliesOn: ['int.add-sub', 'alg.equations', 'lin.slope'] };
+  const st = (code, skills, held = []) => ({ code, held, status: { skills } });
+  const r = unitReadiness(unit, [
+    st('a', { 'int.add-sub': 'known', 'alg.equations': 'verified', 'lin.slope': 'platform' }),
+    st('b', { 'int.add-sub': 'gap', 'alg.equations': 'credited', 'lin.slope': 'known' }),
+    st('c', { 'int.add-sub': 'known', 'alg.equations': 'not-tested', 'lin.slope': 'known' }),
+    st('d', { 'int.add-sub': 'working', 'alg.equations': 'not-tested', 'lin.slope': 'gap' }),
+    st('e', { 'int.add-sub': 'known', 'alg.equations': 'known', 'lin.slope': 'not-taught' }, ['lin.slope']),
+  ]);
+  assert.deepEqual(r.ready, ['a', 'e']);
+  assert.deepEqual(r.notReady, ['b', 'd']);
+  assert.deepEqual(r.needs, [{ skill: 'int.add-sub', codes: ['b', 'd'] }, { skill: 'lin.slope', codes: ['d'] }]);
+  assert.deepEqual(r.unknown, [{ skill: 'alg.equations', codes: ['c', 'd'] }]);
+  assert.equal(readinessOf('slipping'), 'needs');
+  assert.equal(readinessOf('partly'), 'unknown');
+});
