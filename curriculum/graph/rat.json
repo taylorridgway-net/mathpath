@@ -8,7 +8,7 @@
     {
       "id": "rat.ratios",
       "name": "Ratios and rates",
-      "summary": "Equivalent ratios, unit rates (price for one, speed), and proportions.",
+      "summary": "Equivalent ratios, unit rates (price for one, speed), and proportions. Scale drawings and maps.",
       "typicalGrade": 6,
       "standards": [
         "6.RP.A.1",
@@ -64,6 +64,21 @@
             {
               "id": "whole.mult-div.mult-facts",
               "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "rat.ratios.scale",
+          "name": "Scale drawings and maps (1 inch = 20 miles; 2 cm : 15 m)",
+          "prerequisites": [
+            {
+              "id": "rat.ratios.proportion",
+              "strength": "essential"
+            },
+            {
+              "id": "dec.multiply.place",
+              "strength": "supporting",
+              "why": "Some distances are decimals (3.5 inches)."
             }
           ]
         }
@@ -130,7 +145,7 @@
     {
       "id": "rat.percent-change",
       "name": "Percent change",
-      "summary": "The new amount after a percent increase or decrease (sales, tax, tips), and the percent change between two amounts.",
+      "summary": "The new amount after a percent increase or decrease (sales, tax, tips), and the percent change between two amounts. Simple interest.",
       "typicalGrade": 7,
       "standards": [
         "7.RP.A.3"
@@ -162,6 +177,20 @@
             },
             {
               "id": "whole.add-sub.sub-regroup",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "rat.percent-change.interest",
+          "name": "Simple interest (I = P × r × t; the interest or the total)",
+          "prerequisites": [
+            {
+              "id": "rat.percent.of",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.mult-facts",
               "strength": "essential"
             }
           ]

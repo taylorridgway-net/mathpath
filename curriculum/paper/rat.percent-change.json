@@ -9,7 +9,7 @@
     {
       "id": "A",
       "items": [
-        { "id": "A1", "kind": "computation", "prompt": "Increase 60 by 15%.", "math": "up 60 15", "answer": "69" },
+        { "id": "A1", "kind": "word", "prompt": "Dev lends his sister $300 and charges her 2% simple interest per year. She pays him back after 5 years. How much interest does she owe him?", "math": "interest 300 2 5", "answer": "$30 (2% of $300 is $6 a year, and 5 × $6 = $30)" },
         { "id": "A2", "kind": "computation", "prompt": "Decrease 80 by 35%.", "math": "down 80 35", "answer": "52" },
         { "id": "A3", "kind": "word", "prompt": "Your pizza order comes to $36. You add a 20% tip for the driver. How much do you pay in all?", "math": "up 36 20", "answer": "$43.20" },
         { "id": "A4", "kind": "word", "prompt": "The price of gas went from $3.20 a gallon to $4.00 a gallon. By what percent did it change? Say if it is an increase or a decrease.", "math": "change 3.20 4.00", "answer": "25% increase" },
@@ -20,7 +20,7 @@
     {
       "id": "B",
       "items": [
-        { "id": "B1", "kind": "computation", "prompt": "Increase 120 by 5%.", "math": "up 120 5", "answer": "126" },
+        { "id": "B1", "kind": "word", "prompt": "Grandpa buys a $250 savings bond that earns 4% simple interest per year. What will the bond be worth after 3 years, counting the $250 and the interest?", "math": "total 250 4 3", "answer": "$280 (interest: 4% of $250 is $10 a year, 3 × $10 = $30; $250 + $30 = $280)" },
         { "id": "B2", "kind": "word", "prompt": "Sneakers cost $65. The sales tax is 8%. What is the total cost with tax?", "math": "up 65 8", "answer": "$70.20" },
         { "id": "B3", "kind": "word", "prompt": "A store marks a $90 desk chair down by 30%. What is the new price?", "math": "down 90 30", "answer": "$63" },
         { "id": "B4", "kind": "computation", "prompt": "Find the percent change from 40 to 58. Is it an increase or a decrease?", "math": "change 40 58", "answer": "45% increase" },

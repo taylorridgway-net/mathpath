@@ -224,6 +224,61 @@ const whatPercent = {
   },
 };
 
+
+// ---------- scale drawings and maps ----------
+//   1: map to real, "1 inch stands for 20 miles" (4 inches -> 80 miles);
+//   2: real to drawing (1 cm for 5 m; a 12 m room -> 2.4 cm);
+//   3: a scale like 2 cm : 15 m, either way (7 cm -> 52.5 m; 45 m -> 6 cm)
+const scale = {
+  version: 1,
+  alsoUses: ['rat.ratios.proportion'],
+  generate(rng, difficulty) {
+    // Each context has realistic scales: maps cover miles or km, plans and blueprints a few m or feet.
+    const plan = rng.chance(0.5);
+    const [small, big, thing, pair, long] = plan
+      ? rng.pick([['cm', 'm', 'floor plan', 'Two doors', 'A hallway'], ['inch', 'feet', 'blueprint', 'Two windows', 'A wall']])
+      : rng.pick([['inch', 'miles', 'map', 'Two towns', 'A trail'], ['cm', 'km', 'map', 'Two cities', 'A bike path']]);
+    const smalls = small === 'inch' ? 'inches' : small;
+    const mistakes = [];
+    let story; let value; let unit;
+    if (difficulty === 1) {
+      const per = plan ? rng.pick([2, 3, 4, 5]) : rng.pick([5, 10, 20, 25, 50]);
+      const draw = rng.int(2, 9);
+      value = F(draw * per);
+      unit = big;
+      story = `On a ${thing}, 1 ${small} stands for ${per} ${big}. ${pair} are ${draw} ${smalls} apart on the ${thing}. How far apart are they really?`;
+      mistakes.push({ id: 'rat.scale-wrong-way', value: F(draw, per) }, { id: 'rat.additive', value: F(draw + per) });
+    } else if (difficulty === 2) {
+      const per = plan ? rng.pick([2, 4, 5]) : rng.pick([2, 4, 5, 10]);
+      const draw = div(F(rng.int(3, plan ? 12 : 19)), F(rng.pick([1, 2]))); // 1.5, 7, 9.5 ...
+      const real = mul(draw, F(per));
+      if (real.d !== 1) return scale.generate(rng, difficulty);
+      value = draw;
+      unit = smalls;
+      story = `A ${thing} uses 1 ${small} for every ${per} ${big}. ${long} is ${real.n} ${big} long in real life. How long is it on the ${thing}?`;
+      mistakes.push({ id: 'rat.scale-wrong-way', value: mul(real, F(per)) });
+    } else {
+      const [a, b] = plan ? rng.pick([[2, 5], [2, 3], [4, 5], [5, 8]]) : rng.pick([[2, 15], [3, 10], [4, 25], [2, 25]]);
+      const k = div(F(rng.int(3, 16)), F(2)); // how many copies of the scale
+      const toReal = rng.chance(0.5);
+      const draw = mul(k, F(a));
+      const real = mul(k, F(b));
+      if (!ends(draw) || !ends(real)) return scale.generate(rng, difficulty);
+      const scaleText = `${a} ${smalls} on the ${thing} stand for ${b} ${big}`;
+      if (toReal) {
+        value = real; unit = big;
+        story = `The scale is: ${scaleText}. ${pair} are ${text(draw)} ${smalls} apart on the ${thing}. How far apart are they really?`;
+        mistakes.push({ id: 'rat.scale-ignored-first', value: mul(draw, F(b)) }, { id: 'rat.scale-wrong-way', value: div(mul(draw, F(a)), F(b)) });
+      } else {
+        value = draw; unit = smalls;
+        story = `The scale is: ${scaleText}. ${long} is ${text(real)} ${big} long. How long is it on the ${thing}?`;
+        mistakes.push({ id: 'rat.scale-ignored-first', value: div(real, F(b)) }, { id: 'rat.scale-wrong-way', value: div(mul(real, F(b)), F(a)) });
+      }
+    }
+    return problem('Answer the question.', words(story), value, { suffix: unit }, mistakes);
+  },
+};
+
 // ======================= Percent change =======================
 
 // ---------- the new amount ----------
@@ -275,10 +330,42 @@ const findChange = {
   },
 };
 
+
+// ---------- simple interest (I = P x r x t) ----------
+//   1: one year's interest ($200 at 5%);  2: interest for several years ($400 at 3% for 4 years);
+//   3: the total after several years, saving or borrowing ($1,500 at 4% for 3 years -> $1,680), or a rate like 2.5%
+const interest = {
+  version: 1,
+  alsoUses: ['rat.percent.of'],
+  generate(rng, difficulty) {
+    const P = difficulty === 1 ? rng.int(1, 10) * 100 : difficulty === 2 ? rng.int(2, 12) * 100 : rng.int(4, 30) * 100;
+    const r = difficulty === 3 && rng.chance(0.3) ? F(5, 2) : F(difficulty === 1 ? rng.pick([2, 3, 4, 5, 10]) : rng.pick([2, 3, 4, 5, 6, 8]));
+    const t = difficulty === 1 ? 1 : rng.int(2, difficulty === 2 ? 5 : 6);
+    const yearly = div(mul(F(P), r), F(100));
+    const I = mul(yearly, F(t));
+    const total = difficulty === 3;
+    const rate = text(r);
+    const dollars = P >= 1000 ? `${Math.floor(P / 1000)},${String(P % 1000).padStart(3, '0')}` : String(P);
+    const years = t === 1 ? '1 year' : `${t} years`;
+    const borrow = total && rng.chance(0.5);
+    const story = borrow
+      ? `You borrow $${dollars} at ${rate}% simple interest a year. You pay it all back after ${years}. How much do you pay back in all?`
+      : total
+        ? `You put $${dollars} in a savings account that pays ${rate}% simple interest a year. How much is in the account after ${years}?`
+        : `You put $${dollars} in a savings account that pays ${rate}% simple interest a year. How much interest do you earn in ${years}?`;
+    const value = total ? add(F(P), I) : I;
+    return problem(total ? 'Find the total.' : 'Find the interest.', words(story), value, { prefix: '$' }, [
+      { id: 'rat.interest-one-year', value: t > 1 ? (total ? add(F(P), yearly) : yearly) : null }, // forgot the years
+      { id: 'rat.percent-not-hundred', value: total ? add(F(P), mul(mul(F(P), r), F(t))) : mul(mul(F(P), r), F(t)) }, // forgot to divide by 100
+      { id: 'rat.interest-total', value: total ? I : add(F(P), I) }, // interest vs. the total
+    ]);
+  },
+};
+
 // ======================= whole skills =======================
 
-const mixedOf = ({ covers, screener, parts: own }) => ({
-  version: 1,
+const mixedOf = ({ covers, screener, parts: own, version = 1 }) => ({
+  version,
   mixed: true,
   ...(screener ? { screener } : {}),
   covers,
@@ -293,19 +380,23 @@ const parts = {
   'rat.ratios.equivalent': equivalent,
   'rat.ratios.unit-rate': unitRate,
   'rat.ratios.proportion': proportion,
+  'rat.ratios.scale': scale,
   'rat.percent.convert': convert,
   'rat.percent.of': percentOf,
   'rat.percent.what-percent': whatPercent,
   'rat.percent-change.apply': applyChange,
   'rat.percent-change.find': findChange,
+  'rat.percent-change.interest': interest,
 };
 
 export const ratioGenerators = {
-  // A proportion solved right shows equivalent ratios too; unit rates are asked on their own.
-  'rat.ratios': mixedOf({ screener: 'rat.ratios.proportion', covers: ['rat.ratios.equivalent', 'rat.ratios.proportion'], parts: ['rat.ratios.equivalent', 'rat.ratios.unit-rate', 'rat.ratios.proportion'] }),
+  // A proportion solved right shows equivalent ratios and scale drawings (a scale is a proportion) too;
+  // unit rates are asked on their own.
+  'rat.ratios': mixedOf({ version: 2, screener: 'rat.ratios.proportion', covers: ['rat.ratios.equivalent', 'rat.ratios.proportion', 'rat.ratios.scale'], parts: ['rat.ratios.equivalent', 'rat.ratios.unit-rate', 'rat.ratios.proportion', 'rat.ratios.scale'] }),
   // A percent of a number shows converting too; "what percent?" is asked on its own.
   'rat.percent': mixedOf({ screener: 'rat.percent.of', covers: ['rat.percent.convert', 'rat.percent.of'], parts: ['rat.percent.convert', 'rat.percent.of', 'rat.percent.what-percent'] }),
   // The two directions rest on different percent skills: both asked.
-  'rat.percent-change': mixedOf({ covers: ['rat.percent-change.apply', 'rat.percent-change.find'] }),
+  // Simple interest is a new amount from a percent, over several years: asked on its own too.
+  'rat.percent-change': mixedOf({ version: 2, covers: ['rat.percent-change.apply', 'rat.percent-change.find', 'rat.percent-change.interest'] }),
   ...parts,
 };

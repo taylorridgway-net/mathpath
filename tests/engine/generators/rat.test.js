@@ -36,6 +36,13 @@ function expected(id, p) {
       return / off\./.test(t) ? sub(n[0], change) : add(n[0], change);
     }
     case 'rat.percent-change.find': return mul(div(sub(n[1], n[0]), n[0]), F(/decrease/.test(t) ? -100 : 100));
+    case 'rat.ratios.scale': // "a units stand for b units": real = drawing × b ÷ a, drawing = real × a ÷ b
+      return /How far apart/.test(t) ? div(mul(n[2], n[1]), n[0]) : div(mul(n[2], n[0]), n[1]);
+    case 'rat.percent-change.interest': { // P, r%, t years (P may have a thousands comma)
+      const [P, r, years] = nums(t.replace(/(\d),(\d{3})/g, '$1$2'));
+      const I = div(mul(mul(P, r), years), F(100));
+      return p.instruction === 'Find the total.' ? add(P, I) : I;
+    }
     default: throw new Error(id);
   }
 }

@@ -6,14 +6,17 @@
   "hints": {
     "rat.percent-change.apply": "Find the change first (the percent of the original), then subtract it for a discount or add it for tax, a tip or an increase.",
     "rat.percent-change.find": "Find how much it changed, then divide by the ORIGINAL amount and multiply by 100.",
-    "rat.percent-change": "New amount: find the change, then add or subtract. Percent change: change ÷ original × 100."
+    "rat.percent-change": "New amount: find the change, then add or subtract. Percent change: change ÷ original × 100.",
+    "rat.percent-change.interest": "Find one year's interest (the percent of the amount), then multiply by the years. For the total, add what you started with."
   },
   "misconceptionMessages": {
     "rat.change-only-amount": "That's the amount of the change. Now take it off (or add it on) to get the new amount.",
     "rat.change-wrong-way": "Check the direction: a discount makes the price smaller; tax, a tip or an increase makes it bigger.",
     "rat.change-subtract-percent": "The percent isn't dollars. Find 25% OF the price first, then subtract that amount.",
     "rat.change-wrong-base": "Compare the change with the ORIGINAL amount (the starting number), not the new one.",
-    "rat.change-amount-as-percent": "That's how much it changed. To get the percent, divide the change by the original amount and multiply by 100."
+    "rat.change-amount-as-percent": "That's how much it changed. To get the percent, divide the change by the original amount and multiply by 100.",
+    "rat.interest-one-year": "That's one year's interest. Simple interest is the same every year, so multiply by the number of years.",
+    "rat.interest-total": "Read the question again: does it ask for the interest, or for the total (what you started with plus the interest)?"
   },
   "similarProblemIntro": "Here's the worked solution. Now try one like it.",
   "sections": [
@@ -84,6 +87,41 @@
         {
           "math": "[[20%]] decrease",
           "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.percent-change.interest",
+      "forGap": "rat.percent-change.interest",
+      "title": "Simple interest",
+      "objective": "Find simple interest and the total after several years: I = P × r × t.",
+      "mode": "section",
+      "generator": "rat.percent-change.interest",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Interest is money paid for saving (or charged for borrowing). Simple interest is the same amount every year.",
+        "P is the amount you start with, r the rate per year as a decimal, t the number of years."
+      ],
+      "visual": null,
+      "key": "One year's interest is r% of the amount. Multiply by the years: I = P × r × t. The total is the amount plus the interest.",
+      "worked": [
+        {
+          "math": "$400 at 3% for 4 years",
+          "note": ""
+        },
+        {
+          "math": "3% of 400 = 0.03 × 400 = [[$12]]",
+          "note": "one year"
+        },
+        {
+          "math": "12 × 4 = [[$48]]",
+          "note": "interest for 4 years"
+        },
+        {
+          "math": "400 + 48 = [[$448]]",
+          "note": "the total in the account"
         }
       ]
     },

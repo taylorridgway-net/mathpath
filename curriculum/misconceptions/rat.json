@@ -91,6 +91,26 @@
       "id": "rat.change-amount-as-percent",
       "description": "Gives the amount of the change as the percent (50 -> 40 is a 10% decrease).",
       "pointsTo": "rat.percent-change.find"
+    },
+    {
+      "id": "rat.scale-wrong-way",
+      "description": "Divides by the scale when it should multiply, or the other way round (4 inches at 1 inch = 20 miles -> 0.2 miles).",
+      "pointsTo": "rat.ratios.scale"
+    },
+    {
+      "id": "rat.scale-ignored-first",
+      "description": "Uses only the second number of a scale like 2 cm : 15 m (7 cm -> 7 × 15 = 105 m).",
+      "pointsTo": "rat.ratios.scale"
+    },
+    {
+      "id": "rat.interest-one-year",
+      "description": "Finds one year's interest and forgets to multiply by the number of years.",
+      "pointsTo": "rat.percent-change.interest"
+    },
+    {
+      "id": "rat.interest-total",
+      "description": "Gives the total when asked for the interest, or just the interest when asked for the total.",
+      "pointsTo": "rat.percent-change.interest"
     }
   ]
 }

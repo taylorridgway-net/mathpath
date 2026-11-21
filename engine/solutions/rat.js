@@ -15,7 +15,9 @@ export function solveRatio(problem) {
   const text = toText(problem.expression);
   const n = nums(text);
   const a = problem.answer;
-  const shown = a.type === 'choice' ? a.options[a.correct] : `${a.prefix || ''}${a.value}${a.suffix || ''}`;
+  // "$12", "25%", or "80 miles" (a word unit gets a space).
+  const unit = a.suffix && a.suffix.length > 1 ? ` ${a.suffix}` : a.suffix || '';
+  const shown = a.type === 'choice' ? a.options[a.correct] : `${a.prefix || ''}${a.value}${unit}`;
   switch (kind) {
     case 'rat.ratios.equivalent': {
       const [x, y, z] = n;
@@ -113,6 +115,37 @@ export function solveRatio(problem) {
         { say: `Compare it with the ORIGINAL amount: ${t(change)} ÷ ${t(old)} = ${t(div(change, old))}.` },
         { say: `As a percent, times 100: ${shown}.` },
       ];
+    }
+    case 'rat.ratios.scale': {
+      // "a units on the drawing stand for b real units".
+      const [da, rb, given] = n;
+      const toReal = /How far apart/.test(text);
+      if (da.n === da.d) {
+        return [toReal
+          ? { say: `Each ${t(da)} on the drawing is ${t(rb)} in real life, and real distances are bigger: multiply. ${t(given)} × ${t(rb)} = ${t(mul(given, rb))}.` }
+          : { say: `Each ${t(rb)} in real life is 1 on the drawing, and drawings are smaller: divide. ${t(given)} ÷ ${t(rb)} = ${t(div(given, rb))}.` },
+        { say: `So the answer is ${shown}.` }];
+      }
+      // A scale like 2 : 15: how many copies of the scale fit?
+      const k = div(given, toReal ? da : rb);
+      return [
+        { say: `How many times does the scale fit? ${t(given)} ÷ ${t(toReal ? da : rb)} = ${t(k)}.` },
+        { say: `So the ${toReal ? 'real distance' : 'drawing'} is ${t(k)} times ${t(toReal ? rb : da)}: ${t(k)} × ${t(toReal ? rb : da)} = ${t(mul(k, toReal ? rb : da))}.` },
+        { say: `So the answer is ${shown}.` },
+      ];
+    }
+    case 'rat.percent-change.interest': {
+      const [P, r, years] = nums(text.replace(/(\d),(\d{3})/g, '$1$2'));
+      const yearly = div(mul(P, r), F(100));
+      const I = mul(yearly, years);
+      const total = problem.instruction === 'Find the total.';
+      const steps = [
+        { say: `Simple interest is the same every year: ${t(r)}% of $${t(P)} = ${t(div(r, F(100)))} × ${t(P)} = $${t(yearly)} a year.` },
+      ];
+      if (years.n !== 1) steps.push({ say: `For ${t(years)} years: $${t(yearly)} × ${t(years)} = $${t(I)} of interest. (That's I = P × r × t.)` });
+      if (total) steps.push({ say: `The total is what you started with plus the interest: $${t(P)} + $${t(I)} = $${t(add(P, I))}.` });
+      steps.push({ say: `So the answer is ${shown}.` });
+      return steps;
     }
     default: throw new Error(`No worked solution for "${kind}"`);
   }

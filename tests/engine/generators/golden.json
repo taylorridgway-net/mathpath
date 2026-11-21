@@ -33031,56 +33031,65 @@
   ]
  },
  "rat.percent-change": {
-  "version": 1,
+  "version": 2,
   "problems": [
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-1",
-    "instruction": "Find the percent decrease.",
+    "instruction": "Find the interest.",
     "expression": {
      "type": "words",
-     "text": "A number goes from 20 to 10. What is the percent decrease?"
+     "text": "You put $200 in a savings account that pays 10% simple interest a year. How much interest do you earn in 1 year?"
     },
     "answer": {
      "type": "decimal",
-     "value": "50",
-     "suffix": "%"
+     "value": "20",
+     "prefix": "$"
     },
     "misconceptions": [
      {
-      "id": "rat.change-wrong-base",
-      "value": "100"
+      "id": "rat.percent-not-hundred",
+      "value": "2000"
      },
      {
-      "id": "rat.change-amount-as-percent",
-      "value": "10"
+      "id": "rat.interest-total",
+      "value": "220"
      }
     ],
-    "part": "rat.percent-change.find"
+    "part": "rat.percent-change.interest"
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-2",
-    "instruction": "Find the percent decrease.",
+    "instruction": "Find the interest.",
     "expression": {
      "type": "words",
-     "text": "A number goes from 100 to 75. What is the percent decrease?"
+     "text": "You put $900 in a savings account that pays 5% simple interest a year. How much interest do you earn in 1 year?"
     },
     "answer": {
      "type": "decimal",
-     "value": "25",
-     "suffix": "%"
+     "value": "45",
+     "prefix": "$"
     },
-    "misconceptions": [],
-    "part": "rat.percent-change.find"
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "4500"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "945"
+     }
+    ],
+    "part": "rat.percent-change.interest"
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-3",
     "instruction": "Find the percent increase.",
@@ -33103,7 +33112,7 @@
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-1",
     "instruction": "Find the new amount.",
@@ -33134,7 +33143,7 @@
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-2",
     "instruction": "Find the new amount.",
@@ -33165,7 +33174,7 @@
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-3",
     "instruction": "Find the percent decrease.",
@@ -33188,30 +33197,38 @@
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-1",
-    "instruction": "Find the percent decrease.",
+    "instruction": "Find the total.",
     "expression": {
      "type": "words",
-     "text": "A bike's price changed from $200 to $180. What is the percent decrease?"
+     "text": "You put $700 in a savings account that pays 2.5% simple interest a year. How much is in the account after 6 years?"
     },
     "answer": {
      "type": "decimal",
-     "value": "10",
-     "suffix": "%"
+     "value": "805",
+     "prefix": "$"
     },
     "misconceptions": [
      {
-      "id": "rat.change-amount-as-percent",
-      "value": "20"
+      "id": "rat.interest-one-year",
+      "value": "717.5"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "11200"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "105"
      }
     ],
-    "part": "rat.percent-change.find"
+    "part": "rat.percent-change.interest"
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-2",
     "instruction": "Find the new amount.",
@@ -33242,26 +33259,34 @@
    },
    {
     "generator": "rat.percent-change",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-3",
-    "instruction": "Find the percent increase.",
+    "instruction": "Find the total.",
     "expression": {
      "type": "words",
-     "text": "A bike's price changed from $200 to $260. What is the percent increase?"
+     "text": "You borrow $2,600 at 2% simple interest a year. You pay it all back after 6 years. How much do you pay back in all?"
     },
     "answer": {
      "type": "decimal",
-     "value": "30",
-     "suffix": "%"
+     "value": "2912",
+     "prefix": "$"
     },
     "misconceptions": [
      {
-      "id": "rat.change-amount-as-percent",
-      "value": "60"
+      "id": "rat.interest-one-year",
+      "value": "2652"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "33800"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "312"
      }
     ],
-    "part": "rat.percent-change.find"
+    "part": "rat.percent-change.interest"
    }
   ]
  },
@@ -33738,6 +33763,269 @@
      {
       "id": "rat.change-amount-as-percent",
       "value": "6"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.percent-change.interest": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the interest.",
+    "expression": {
+     "type": "words",
+     "text": "You put $900 in a savings account that pays 3% simple interest a year. How much interest do you earn in 1 year?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "27",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "2700"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "927"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the interest.",
+    "expression": {
+     "type": "words",
+     "text": "You put $600 in a savings account that pays 4% simple interest a year. How much interest do you earn in 1 year?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "2400"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "624"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the interest.",
+    "expression": {
+     "type": "words",
+     "text": "You put $500 in a savings account that pays 3% simple interest a year. How much interest do you earn in 1 year?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "15",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "1500"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "515"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the interest.",
+    "expression": {
+     "type": "words",
+     "text": "You put $700 in a savings account that pays 2% simple interest a year. How much interest do you earn in 2 years?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "28",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.interest-one-year",
+      "value": "14"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "2800"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "728"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the interest.",
+    "expression": {
+     "type": "words",
+     "text": "You put $600 in a savings account that pays 4% simple interest a year. How much interest do you earn in 3 years?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "72",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.interest-one-year",
+      "value": "24"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "7200"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "672"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the interest.",
+    "expression": {
+     "type": "words",
+     "text": "You put $800 in a savings account that pays 3% simple interest a year. How much interest do you earn in 4 years?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "96",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.interest-one-year",
+      "value": "24"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "9600"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "896"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the total.",
+    "expression": {
+     "type": "words",
+     "text": "You put $600 in a savings account that pays 8% simple interest a year. How much is in the account after 6 years?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "888",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.interest-one-year",
+      "value": "648"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "29400"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "288"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the total.",
+    "expression": {
+     "type": "words",
+     "text": "You borrow $1,300 at 2.5% simple interest a year. You pay it all back after 5 years. How much do you pay back in all?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "1462.5",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.interest-one-year",
+      "value": "1332.5"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "17550"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "162.5"
+     }
+    ]
+   },
+   {
+    "generator": "rat.percent-change.interest",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the total.",
+    "expression": {
+     "type": "words",
+     "text": "You put $2,900 in a savings account that pays 3% simple interest a year. How much is in the account after 2 years?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3074",
+     "prefix": "$"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.interest-one-year",
+      "value": "2987"
+     },
+     {
+      "id": "rat.percent-not-hundred",
+      "value": "20300"
+     },
+     {
+      "id": "rat.interest-total",
+      "value": "174"
      }
     ]
    }
@@ -34525,11 +34813,11 @@
   ]
  },
  "rat.ratios": {
-  "version": 1,
+  "version": 2,
   "problems": [
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-1",
     "instruction": "Find the missing number.",
@@ -34571,7 +34859,7 @@
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-2",
     "instruction": "Find the unit price.",
@@ -34598,7 +34886,7 @@
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 1,
     "seed": "golden-3",
     "instruction": "Find the unit price.",
@@ -34621,83 +34909,53 @@
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-1",
-    "instruction": "Solve the proportion.",
+    "instruction": "Answer the question.",
     "expression": {
-     "type": "eq",
-     "left": {
-      "type": "frac",
-      "n": {
-       "type": "var",
-       "name": "x"
-      },
-      "d": 15
-     },
-     "right": {
-      "type": "frac",
-      "n": 2,
-      "d": 10
-     }
+     "type": "words",
+     "text": "A map uses 1 inch for every 2 miles. A trail is 24 miles long in real life. How long is it on the map?"
     },
     "answer": {
      "type": "decimal",
-     "value": "3"
+     "value": "12",
+     "suffix": "inches"
     },
     "misconceptions": [
      {
-      "id": "rat.proportion-cross-wrong",
-      "value": "75"
-     },
-     {
-      "id": "rat.additive",
-      "value": "7"
+      "id": "rat.scale-wrong-way",
+      "value": "48"
      }
     ],
-    "part": "rat.ratios.proportion"
+    "part": "rat.ratios.scale"
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-2",
-    "instruction": "Solve the proportion.",
+    "instruction": "Answer the question.",
     "expression": {
-     "type": "eq",
-     "left": {
-      "type": "frac",
-      "n": {
-       "type": "var",
-       "name": "x"
-      },
-      "d": 6
-     },
-     "right": {
-      "type": "frac",
-      "n": 2,
-      "d": 4
-     }
+     "type": "words",
+     "text": "A floor plan uses 1 cm for every 2 m. A hallway is 5 m long in real life. How long is it on the floor plan?"
     },
     "answer": {
      "type": "decimal",
-     "value": "3"
+     "value": "2.5",
+     "suffix": "cm"
     },
     "misconceptions": [
      {
-      "id": "rat.proportion-cross-wrong",
-      "value": "12"
-     },
-     {
-      "id": "rat.additive",
-      "value": "4"
+      "id": "rat.scale-wrong-way",
+      "value": "10"
      }
     ],
-    "part": "rat.ratios.proportion"
+    "part": "rat.ratios.scale"
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 2,
     "seed": "golden-3",
     "instruction": "Find the missing number.",
@@ -34743,7 +35001,7 @@
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-1",
     "instruction": "Which is the better buy (less for each one)?",
@@ -34769,55 +35027,56 @@
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-2",
-    "instruction": "Which is the better buy (less for each one)?",
+    "instruction": "Answer the question.",
     "expression": {
      "type": "words",
-     "text": "Pack A: 2 for $2.50.  Pack B: 4 for $3."
+     "text": "A car goes 10 miles on 2 gallons of gas. At that rate, how many miles does it go on 4 gallons?"
     },
     "answer": {
-     "type": "choice",
-     "options": [
-      "Pack A",
-      "Pack B"
-     ],
-     "correct": 1
+     "type": "decimal",
+     "value": "20"
     },
     "misconceptions": [
      {
-      "id": "rat.better-buy-total",
-      "choice": 0
+      "id": "rat.proportion-cross-wrong",
+      "value": "0.8"
+     },
+     {
+      "id": "rat.additive",
+      "value": "12"
      }
     ],
-    "part": "rat.ratios.unit-rate"
+    "part": "rat.ratios.proportion"
    },
    {
     "generator": "rat.ratios",
-    "version": 1,
+    "version": 2,
     "difficulty": 3,
     "seed": "golden-3",
     "instruction": "Answer the question.",
     "expression": {
      "type": "words",
-     "text": "A car goes 24 miles on 9 gallons of gas. At that rate, how many miles does it go on 15 gallons?"
+     "text": "The scale is: 4 cm on the map stand for 25 km. Two cities are 22 cm apart on the map. How far apart are they really?"
     },
     "answer": {
      "type": "decimal",
-     "value": "40"
+     "value": "137.5",
+     "suffix": "km"
     },
     "misconceptions": [
      {
-      "id": "rat.proportion-cross-wrong",
-      "value": "5.625"
+      "id": "rat.scale-ignored-first",
+      "value": "550"
      },
      {
-      "id": "rat.additive",
-      "value": "30"
+      "id": "rat.scale-wrong-way",
+      "value": "3.52"
      }
     ],
-    "part": "rat.ratios.proportion"
+    "part": "rat.ratios.scale"
    }
   ]
  },
@@ -35440,6 +35699,225 @@
      {
       "id": "rat.additive",
       "value": "46"
+     }
+    ]
+   }
+  ]
+ },
+ "rat.ratios.scale": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "On a floor plan, 1 cm stands for 4 m. Two doors are 2 cm apart on the floor plan. How far apart are they really?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-wrong-way",
+      "value": "0.5"
+     },
+     {
+      "id": "rat.additive",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "On a map, 1 inch stands for 10 miles. Two towns are 7 inches apart on the map. How far apart are they really?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "70",
+     "suffix": "miles"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-wrong-way",
+      "value": "0.7"
+     },
+     {
+      "id": "rat.additive",
+      "value": "17"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "On a map, 1 cm stands for 10 km. Two cities are 5 cm apart on the map. How far apart are they really?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "50",
+     "suffix": "km"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-wrong-way",
+      "value": "0.5"
+     },
+     {
+      "id": "rat.additive",
+      "value": "15"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A map uses 1 cm for every 4 km. A bike path is 36 km long in real life. How long is it on the map?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-wrong-way",
+      "value": "144"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A blueprint uses 1 inch for every 2 feet. A wall is 20 feet long in real life. How long is it on the blueprint?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "inches"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-wrong-way",
+      "value": "40"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "A blueprint uses 1 inch for every 4 feet. A wall is 40 feet long in real life. How long is it on the blueprint?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "inches"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-wrong-way",
+      "value": "160"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "The scale is: 2 inches on the blueprint stand for 3 feet. Two windows are 16 inches apart on the blueprint. How far apart are they really?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "suffix": "feet"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-ignored-first",
+      "value": "48"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "The scale is: 2 inches on the map stand for 15 miles. Two towns are 16 inches apart on the map. How far apart are they really?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "120",
+     "suffix": "miles"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-ignored-first",
+      "value": "240"
+     }
+    ]
+   },
+   {
+    "generator": "rat.ratios.scale",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Answer the question.",
+    "expression": {
+     "type": "words",
+     "text": "The scale is: 4 inches on the blueprint stand for 5 feet. Two windows are 26 inches apart on the blueprint. How far apart are they really?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "32.5",
+     "suffix": "feet"
+    },
+    "misconceptions": [
+     {
+      "id": "rat.scale-ignored-first",
+      "value": "130"
+     },
+     {
+      "id": "rat.scale-wrong-way",
+      "value": "20.8"
      }
     ]
    }

@@ -7,7 +7,8 @@
     "rat.ratios.equivalent": "Find what one number was multiplied by, and multiply the other number by the same.",
     "rat.ratios.unit-rate": "For one, divide the total by how many. To compare deals, find the price for one in each.",
     "rat.ratios.proportion": "Match the parts that go together. Find what the bottom was multiplied by, and do the same to the top.",
-    "rat.ratios": "Ratios grow by multiplying both numbers by the same thing. For one, divide."
+    "rat.ratios": "Ratios grow by multiplying both numbers by the same thing. For one, divide.",
+    "rat.ratios.scale": "Real distances are bigger: multiply by what 1 unit stands for. Drawing lengths are smaller: divide. For a scale like 2 cm : 15 m, count how many times the scale fits."
   },
   "misconceptionMessages": {
     "rat.additive": "Ratios grow by multiplying, not adding: 3 : 4 doubled is 6 : 8, not 6 : 7.",
@@ -15,7 +16,9 @@
     "rat.rate-flipped": "For the amount for ONE, divide the total by how many: $12 ÷ 4.",
     "rat.rate-multiplied": "You're finding the amount for one, so the answer should be smaller: divide, don't multiply.",
     "rat.better-buy-total": "The cheaper pack isn't always the better buy. Find the price for ONE in each pack and compare.",
-    "rat.proportion-cross-wrong": "Line up the matching parts first: top with top, bottom with bottom. Then multiply across the right way."
+    "rat.proportion-cross-wrong": "Line up the matching parts first: top with top, bottom with bottom. Then multiply across the right way.",
+    "rat.scale-wrong-way": "Check the direction: the real thing is bigger than the drawing. Drawing to real, multiply; real to drawing, divide.",
+    "rat.scale-ignored-first": "The scale is 2 cm for 15 m, not 1 cm for 15 m. Count how many 2s fit in the drawing length, then take that many 15s."
   },
   "similarProblemIntro": "Here's the worked solution. Now try one like it.",
   "sections": [
@@ -138,6 +141,63 @@
         },
         {
           "math": "x = 2 [[× 2]] = 4",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "rat.ratios.scale",
+      "forGap": "rat.ratios.scale",
+      "title": "Scale drawings and maps",
+      "objective": "Use a scale like 1 inch = 20 miles or 2 cm : 15 m to go between a drawing and real life.",
+      "mode": "section",
+      "generator": "rat.ratios.scale",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A scale is a ratio: drawing length : real length. It stays the same everywhere on the map or plan.",
+        "Real things are bigger than their drawing, so check your answer goes the right way."
+      ],
+      "visual": {
+        "widget": "ratio-table",
+        "params": {
+          "top": [
+            1,
+            "inch on the map"
+          ],
+          "bottom": [
+            20,
+            "miles"
+          ],
+          "times": [
+            2,
+            3,
+            5
+          ]
+        },
+        "caption": "1 inch for 20 miles. Tap to see 2, 3 and 5 inches."
+      },
+      "key": "A scale is a ratio that stays the same. Drawing to real: multiply. Real to drawing: divide. For 2 cm : 15 m, count how many times the scale fits.",
+      "worked": [
+        {
+          "math": "1 inch : 20 miles",
+          "note": ""
+        },
+        {
+          "math": "4 inches → 4 × 20 = [[80 miles]]",
+          "note": "real is bigger: multiply"
+        },
+        {
+          "math": "1 cm : 5 m;  12 m → 12 ÷ 5 = [[2.4 cm]]",
+          "note": "drawing is smaller: divide"
+        },
+        {
+          "math": "2 cm : 15 m;  7 cm → 7 ÷ 2 = [[3.5]] scales",
+          "note": "how many times it fits"
+        },
+        {
+          "math": "3.5 × 15 = [[52.5 m]]",
           "note": ""
         }
       ]

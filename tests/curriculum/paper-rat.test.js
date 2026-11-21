@@ -18,6 +18,20 @@ const isNumber = (s) => /^\d+(\.\d+)?$/.test(s);
 const numKey = (key, want) => [isNumber(key) && close(Number(key), want), String(want)];
 const fraction = (s) => s.split('/').map(Number);
 
+// Exact fractions for the scale and interest keys (never floating point): [numerator, denominator] as BigInt.
+const exact = (s) => {
+  const m = /^(\d+)(?:\.(\d+))?$/.exec(s);
+  if (!m) throw new Error(`not a number: ${s}`);
+  const places = (m[2] ?? '').length;
+  return [BigInt(m[1] + (m[2] ?? '')), 10n ** BigInt(places)];
+};
+const times = (...fs) => fs.reduce(([a, b], [c, d]) => [a * c, b * d], [1n, 1n]);
+const plus = ([a, b], [c, d]) => [a * d + c * b, b * d];
+const over = ([a, b], [c, d]) => [a * d, b * c];
+const equal = ([a, b], [c, d]) => a * d === c * b;
+const show = ([a, b]) => { const g = (x, y) => (y ? g(y, x % y) : x); const k = g(a, b); return b / k === 1n ? `${a / k}` : `${a / k}/${b / k}`; };
+const exactKey = (key, want) => [isNumber(key) && equal(exact(key), want), show(want)];
+
 // Returns [ok, what the calculation gives]; throws on an unknown calculation.
 function check(math, answer) {
   const [kind, ...args] = math.split(' ');
@@ -51,6 +65,17 @@ function check(math, answer) {
     const word = now > old ? 'increase' : 'decrease';
     const [first, second] = answer.split(' ');
     return [first.endsWith('%') && numKey(key, want)[0] && second === word, `${want}% ${word}`];
+  }
+  if (kind === 'scale') { // "scale 2 15 real 7": 2 units on the drawing stand for 15 real; 7 on the drawing is how far really ("draw": the other way)
+    const [a, b, way, n] = args;
+    assert.ok(way === 'real' || way === 'draw', math);
+    const ratio = way === 'real' ? over(exact(b), exact(a)) : over(exact(a), exact(b));
+    return exactKey(key, times(exact(n), ratio));
+  }
+  if (kind === 'interest' || kind === 'total') { // "interest 400 3 4": $400 at 3% simple interest for 4 years (I = P × r × t); "total": P + I
+    const [P, r, t] = args.map(exact);
+    const I = times(P, r, t, [1n, 100n]);
+    return exactKey(key, kind === 'total' ? plus(P, I) : I);
   }
   if (kind === 'better') { // "better 6-pack 6 4.50 10-pack 10 7.00": label count price, twice
     const [l1, n1, t1, l2, n2, t2] = args;

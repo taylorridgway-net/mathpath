@@ -28,7 +28,8 @@ test('every stated calculation is right, and the answer is in the last step', ()
       assert.equal(acc.n * r.d, r.n * acc.d, `${m[0]} in: ${all}`);
     }
     const a = p.answer;
-    const shown = a.type === 'choice' ? a.options[a.correct] : `${a.prefix || ''}${a.value}${a.suffix || ''}`;
+    const unit = a.suffix && a.suffix.length > 1 ? ` ${a.suffix}` : a.suffix || ''; // "80 miles", "25%"
+    const shown = a.type === 'choice' ? a.options[a.correct] : `${a.prefix || ''}${a.value}${unit}`;
     assert.ok(steps.at(-1).say.includes(shown), `${toText(p.expression)}: "${steps.at(-1).say}" should include ${shown}`);
   }
 });
