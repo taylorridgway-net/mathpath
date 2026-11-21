@@ -121,7 +121,7 @@ function interceptsKey(answer) {
 const moves = ([x, y]) => [x > 0 ? `right ${x}` : x < 0 ? `left ${-x}` : '', y > 0 ? `up ${y}` : y < 0 ? `down ${-y}` : '']
   .filter(Boolean).join(', ') || 'at the origin';
 function pointsKey(answer) {
-  const body = norm(answer).split(' (')[0];
+  const body = norm(answer).split(/ \((?![-\d])/)[0]; // a note: ' (' not followed by a coordinate
   const out = [];
   for (const part of body.split('; ')) {
     const m = /^\((-?\d+), (-?\d+)\): (.+)$/.exec(part);
