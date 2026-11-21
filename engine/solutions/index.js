@@ -19,6 +19,7 @@ import { solveEvaluate } from './alg-evaluate.js';
 import { solveLinear } from './lin.js';
 import { solveInequalityGraph } from './alg-inequality-graphs.js';
 import { solveTranslate } from './alg-translate.js';
+import { solvePoly } from './poly.js';
 
 export function solve(problem) {
   const kind = problem.part || problem.generator;
@@ -26,6 +27,7 @@ export function solve(problem) {
   if (kind.startsWith('dec.')) return solveDecimal(problem);
   if (kind.startsWith('rat.')) return solveRatio(problem);
   if (kind.startsWith('lin.')) return solveLinear(problem);
+  if (kind.startsWith('poly.')) return solvePoly(problem);
   if (kind.startsWith('int.')) return solveInt(problem);
   if (kind.startsWith('alg.equations')) return solveEquation(problem);
   if (kind.startsWith('alg.multi-step')) return solveMultiStep(problem);

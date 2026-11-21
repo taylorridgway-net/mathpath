@@ -74,6 +74,11 @@ function build(node) {
       return xyTable(node.rows);
     case 'graph':
       return lineGraph(node.points);
+    case 'factors': {
+      const wrap = el('span', 'm-row m-factors');
+      for (const item of node.items) wrap.append(el('span', 'm-paren', '('), build(item), el('span', 'm-paren', ')'));
+      return wrap;
+    }
     case 'numline':
       return drawNumberLine(node).root;
     case 'gridanswer':

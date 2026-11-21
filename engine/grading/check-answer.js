@@ -95,6 +95,8 @@ export function checkAnswer(problem, raw) {
       return checkNumberLine(problem, raw);
     case 'gridpoints':
       return checkGridPoints(problem, raw);
+    case 'factored':
+      return checkFactored(problem, raw);
     default:
       throw new Error(`checkAnswer: unknown answer type "${expected.type}"`);
   }
@@ -209,6 +211,32 @@ function checkGridPoints(problem, raw) {
   const key = (list) => list.map((p) => p.join(',')).sort().join(' ');
   if (key(pts) === key(a.points)) return { status: 'correct' };
   return wrong(problem, (m) => m.value?.points && key(m.value.points) === key(pts));
+}
+
+// Boxes in a factored-form template (see web/components/factor-pad.js): raw { boxes: [...] }.
+// 'product' (ax² + bx + c from multiplying) must match exactly. The factored forms are
+// right when the boxes multiply out to the polynomial (any order, signs both flipped);
+// a GCF smaller than the greatest gets one more try. A misconception matches by the
+// polynomial the boxes multiply out to, or by the exact boxes.
+const GCD = (a, b) => (b ? GCD(b, a % b) : Math.abs(a));
+export function multiplyOut(form, b) {
+  if (form === 'product') return [b[0], b[1], b[2]];
+  if (form === 'binomials') return [1, b[0] + b[1], b[0] * b[1]];
+  if (form === 'gcf') return [0, b[0] * b[1], b[0] * b[2]];
+  return [b[0] * b[2], b[0] * b[3] + b[1] * b[2], b[1] * b[3]]; // binomials-a
+}
+const COUNT = { product: 3, binomials: 2, gcf: 3, 'binomials-a': 4 };
+function checkFactored(problem, raw) {
+  const a = problem.answer;
+  const b = raw?.boxes;
+  if (!Array.isArray(b) || b.length !== COUNT[a.form] || !b.every(Number.isSafeInteger)) return { status: 'invalid', reason: 'empty' };
+  const got = multiplyOut(a.form, b);
+  const same = (p, q) => p.every((v, i) => v === q[i]);
+  if (same(got, a.poly)) {
+    if (a.form === 'gcf' && Math.abs(b[0]) !== GCD(a.poly[1], a.poly[2])) return { status: 'not-simplified', hint: 'simplify' };
+    return { status: 'correct' };
+  }
+  return wrong(problem, (m) => (m.value?.poly && same(m.value.poly, got)) || (m.value?.boxes && same(m.value.boxes, b)));
 }
 
 // One of the answer buttons (<, =, >; or 0, 1/2, 1). A wrong button may match a

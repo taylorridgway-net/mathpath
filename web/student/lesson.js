@@ -36,6 +36,7 @@ import { createFlipLine } from '../components/flip-line.js';
 import { createRatioTable } from '../components/ratio-table.js';
 import { createSlopeGraph } from '../components/slope-graph.js';
 import { createIneqLine } from '../components/ineq-line.js';
+import { createBoxMethod } from '../components/box-method.js';
 import { createKeypad, keypadOptionsFor } from '../components/keypad.js';
 import { rawToText } from '../components/answer-editor.js';
 import { loadProgress, saveProgress, clearProgress, saveFinished } from '../storage/sections.js';
@@ -221,7 +222,7 @@ export function openSection({ app, lesson, sectionId, rules, curriculumVersion, 
     const WIDGETS = {
       'fraction-bars': createFractionBars, 'area-model': createAreaModel, 'fraction-area': createFractionArea,
       'int-line': createIntLine, balance: createBalance, column: createColumnSteps, steps: createStepThrough,
-      groups: createGroups, 'factor-pairs': createFactorPairs, 'place-chart': createPlaceChart, 'balance-steps': createBalanceSteps, 'flip-line': createFlipLine, 'ratio-table': createRatioTable, 'slope-graph': createSlopeGraph, 'ineq-line': createIneqLine,
+      groups: createGroups, 'factor-pairs': createFactorPairs, 'place-chart': createPlaceChart, 'balance-steps': createBalanceSteps, 'flip-line': createFlipLine, 'ratio-table': createRatioTable, 'slope-graph': createSlopeGraph, 'ineq-line': createIneqLine, 'box-method': createBoxMethod,
     };
     if (WIDGETS[visual?.widget]) {
       const box = h('figure', 'visual');

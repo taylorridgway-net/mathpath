@@ -37,6 +37,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.type === 'choice') return { choice: a.correct };
     if (a.type === 'numline') return { points: a.points.map((q) => ({ ...q })), shade: a.shade };
     if (a.type === 'gridpoints') return { points: (a.mode === 'line' ? a.example : a.points).map((q) => [...q]) };
+    if (a.type === 'factored') return { boxes: [...a.boxes] };
     if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
     if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least };
@@ -53,6 +54,7 @@ export function simulatedStudent({ graph, generators, lacks = [], misconceptions
     if (a.type === 'choice') return { choice: (a.correct + 1) % a.options.length };
     if (a.type === 'numline') return { points: a.points.map((q) => ({ ...q, closed: !q.closed })), shade: a.shade };
     if (a.type === 'gridpoints') return { points: (a.mode === 'line' ? a.example : a.points).map(([u, v]) => [u, v + 1]) };
+    if (a.type === 'factored') return { boxes: a.boxes.map((v, i) => (i === a.boxes.length - 1 ? v + 1 : v)) };
     if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };
     if (a.type === 'linear') return { coef: a.coef + 1, constant: a.constant };
     if (a.type === 'common-multiple') return { whole: a.least + 1 };

@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "domain": {
+    "id": "poly",
+    "name": "Factoring"
+  },
+  "skills": [
+    {
+      "id": "poly.multiply",
+      "name": "Multiply binomials",
+      "summary": "Multiply (x + 3)(x + 5) and (2x − 1)(3x + 5): every term times every term, then combine like terms.",
+      "typicalGrade": 9,
+      "standards": [
+        "HSA.APR.A.1"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "poly.multiply.binomials",
+          "name": "Multiply (x + a)(x + b)",
+          "prerequisites": [
+            {
+              "id": "alg.expressions.distribute",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.expressions.like-terms",
+              "strength": "essential"
+            },
+            {
+              "id": "int.mult-div.multiply",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "poly.multiply.leading",
+          "name": "Multiply (ax + b)(cx + d)",
+          "prerequisites": [
+            {
+              "id": "poly.multiply.binomials",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "poly.factor",
+      "name": "Factoring",
+      "summary": "Factor out the greatest common factor, factor x² + bx + c and ax² + bx + c into two binomials, and factor a difference of squares.",
+      "typicalGrade": 9,
+      "standards": [
+        "HSA.SSE.A.2",
+        "HSA.SSE.B.3a"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "poly.factor.gcf",
+          "name": "Factor out the greatest common factor (6x + 9 = 3(2x + 3))",
+          "prerequisites": [
+            {
+              "id": "whole.factors-multiples.gcf",
+              "strength": "essential"
+            },
+            {
+              "id": "alg.expressions.distribute",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "poly.factor.trinomial",
+          "name": "Factor x² + bx + c",
+          "prerequisites": [
+            {
+              "id": "poly.multiply.binomials",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.factors-multiples.factors",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.different-signs",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "poly.factor.diff-squares",
+          "name": "Factor a difference of squares (x² − 25)",
+          "prerequisites": [
+            {
+              "id": "poly.factor.trinomial",
+              "strength": "essential"
+            },
+            {
+              "id": "whole.mult-div.mult-facts",
+              "strength": "supporting",
+              "why": "Recognising perfect squares."
+            }
+          ]
+        },
+        {
+          "id": "poly.factor.leading",
+          "name": "Factor ax² + bx + c (2x² + 7x + 3)",
+          "prerequisites": [
+            {
+              "id": "poly.factor.trinomial",
+              "strength": "essential"
+            },
+            {
+              "id": "poly.multiply.leading",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

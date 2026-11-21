@@ -36,6 +36,11 @@
       "id": "lin",
       "name": "Linear functions",
       "file": "lin.json"
+    },
+    {
+      "id": "poly",
+      "name": "Factoring",
+      "file": "poly.json"
     }
   ]
 }

@@ -88,6 +88,8 @@ export function toText(node) {
       return `${toText(node.left)} ${node.op} ${toText(node.right)}`;
     case 'list':
       return node.items.map(toText).join(` ${node.word || 'and'} `);
+    case 'factors':
+      return node.items.map((i) => `(${toText(i)})`).join('');
     case 'gridanswer':
       return `[a grid: ${node.points.map(([a, b]) => `(${a}, ${b})`).join(' and ')}${node.line ? ' and the line through them' : ''}]`;
     case 'numline': {

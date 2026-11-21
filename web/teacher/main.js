@@ -303,6 +303,8 @@ const shortName = (id) => ({
   'lin.forms': 'Point-slope & standard',
   'lin.parallel': 'Parallel & perpendicular',
   'lin.graphing': 'Graph points & lines',
+  'poly.multiply': 'Multiply binomials',
+  'poly.factor': 'Factoring',
 }[id] || graph.get(id).name);
 
 // ---------- Class overview ----------

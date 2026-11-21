@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about multiplying and factoring polynomials. 'pointsTo' is the subskill to work on. Claude's draft (2026-11-21), waiting for owner review.",
+  "misconceptions": [
+    {
+      "id": "poly.foil-middle",
+      "description": "Leaves out the middle term when multiplying: (x + 4)² = x² + 16, (x + 3)(x + 5) = x² + 15.",
+      "pointsTo": "poly.multiply.binomials"
+    },
+    {
+      "id": "poly.foil-last-added",
+      "description": "Adds the last terms instead of multiplying them: (x + 3)(x + 5) = x² + 8x + 8.",
+      "pointsTo": "poly.multiply.binomials"
+    },
+    {
+      "id": "poly.foil-sign",
+      "description": "Loses the sign of the last term: (x + 3)(x − 5) = x² − 2x + 15.",
+      "pointsTo": "poly.multiply.binomials"
+    },
+    {
+      "id": "poly.foil-one-middle",
+      "description": "Multiplies only the outer (or only the inner) terms for the middle: (2x + 1)(x + 3) = 2x² + 6x + 3.",
+      "pointsTo": "poly.multiply.leading"
+    },
+    {
+      "id": "poly.gcf-one-term",
+      "description": "Divides only one term by the common factor: 6x + 9 = 3(2x + 9).",
+      "pointsTo": "poly.factor.gcf"
+    },
+    {
+      "id": "poly.gcf-subtracted",
+      "description": "Subtracts the common factor instead of dividing: 6x + 9 = 3(3x + 6).",
+      "pointsTo": "poly.factor.gcf"
+    },
+    {
+      "id": "poly.factor-signs",
+      "description": "Gets the signs in the factors backwards: x² + 7x + 12 as (x − 3)(x − 4).",
+      "pointsTo": "poly.factor.trinomial"
+    },
+    {
+      "id": "poly.factor-sum",
+      "description": "Finds numbers that multiply to c but don't add to b: x² + 7x + 12 as (x + 2)(x + 6).",
+      "pointsTo": "poly.factor.trinomial"
+    },
+    {
+      "id": "poly.diff-squares-same-sign",
+      "description": "Factors x² − 25 as (x − 5)(x − 5) or (x + 5)(x + 5): one factor needs + and the other −.",
+      "pointsTo": "poly.factor.diff-squares"
+    },
+    {
+      "id": "poly.factor-placement",
+      "description": "Puts the right numbers in the wrong factors for ax² + bx + c, so the middle term comes out wrong: 2x² + 7x + 3 as (2x + 3)(x + 1).",
+      "pointsTo": "poly.factor.leading"
+    }
+  ]
+}

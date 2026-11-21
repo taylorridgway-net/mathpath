@@ -513,3 +513,13 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .gridpad-live { cursor: pointer; touch-action: manipulation; }
 .graph-axis { font-size: 13px; font-style: italic; fill: var(--muted); font-family: var(--font-math); }
 .gridpad-where { text-align: center; font-family: var(--font-math); font-size: 1.1rem; min-height: 1.4em; margin: 4px 0 0; }
+.factor-answer { flex-wrap: wrap; row-gap: 6px; }
+.factor-paren { font-size: 1.8rem; font-family: var(--font-math); }
+.m-factors { gap: 0; }
+.boxm { display: grid; grid-template-columns: 2.5rem repeat(2, minmax(4.5rem, 1fr)); gap: 4px; max-width: 320px; margin: 0 auto 8px; font-family: var(--font-math); font-size: 1.3rem; text-align: center; }
+.boxm-corner { color: var(--muted); align-self: center; }
+.boxm-head { align-self: center; padding: 4px; font-weight: 600; }
+.boxm-cell { min-height: 3rem; border: 2px solid var(--line); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; background: var(--surface); }
+.boxm-cell.is-filled { border-color: var(--accent); }
+.boxm-cell.is-new { background: var(--mark-soft); }
+.boxm-cell.is-like { background: var(--accent-soft); }

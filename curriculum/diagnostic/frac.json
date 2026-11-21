@@ -70,6 +70,14 @@
         "lin.parallel",
         "lin.graphing"
       ]
+    },
+    {
+      "id": "factoring",
+      "name": "Factoring check",
+      "targets": [
+        "poly.multiply",
+        "poly.factor"
+      ]
     }
   ]
 }

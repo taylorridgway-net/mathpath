@@ -41370,6 +41370,5164 @@
    }
   ]
  },
+ "poly.factor": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 20,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 28
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      20,
+      28
+     ],
+     "boxes": [
+      4,
+      5,
+      7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        4,
+        5,
+        28
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        4,
+        20,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        4,
+        16,
+        24
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.gcf"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 12,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      12,
+      2
+     ],
+     "boxes": [
+      2,
+      6,
+      1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        2,
+        6,
+        2
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        2,
+        12,
+        1
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        2,
+        10,
+        0
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.gcf"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 16,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 16
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      3,
+      16,
+      16
+     ],
+     "boxes": [
+      3,
+      4,
+      1,
+      4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        3,
+        -16,
+        16
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.leading"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 7,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 28
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      7,
+      -28
+     ],
+     "boxes": [
+      7,
+      1,
+      -4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        7,
+        1,
+        -28
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        7,
+        7,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        7,
+        0,
+        -35
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.gcf"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 7,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 18
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      7,
+      -18
+     ],
+     "boxes": [
+      9,
+      -2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        -7,
+        -18
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        17,
+        -18
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.trinomial"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 54
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      -3,
+      -54
+     ],
+     "boxes": [
+      6,
+      -9
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        3,
+        -54
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        -53,
+        -54
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.trinomial"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 15,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 54
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      -15,
+      54
+     ],
+     "boxes": [
+      -9,
+      -6
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        15,
+        54
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        -55,
+        54
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.trinomial"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 6,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      -6,
+      9
+     ],
+     "boxes": [
+      -3,
+      -3
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        6,
+        9
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        -10,
+        9
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.trinomial"
+   },
+   {
+    "generator": "poly.factor",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 18,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      18,
+      9
+     ],
+     "boxes": [
+      9,
+      2,
+      1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        9,
+        2,
+        9
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        9,
+        18,
+        1
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        9,
+        9,
+        0
+       ]
+      }
+     }
+    ],
+    "part": "poly.factor.gcf"
+   }
+  ]
+ },
+ "poly.factor.diff-squares": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 16
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      0,
+      -16
+     ],
+     "boxes": [
+      4,
+      -4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        -8,
+        16
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        8,
+        16
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 25
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      0,
+      -25
+     ],
+     "boxes": [
+      5,
+      -5
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        -10,
+        25
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        10,
+        25
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 25
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      0,
+      -25
+     ],
+     "boxes": [
+      5,
+      -5
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        -10,
+        25
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        10,
+        25
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      0,
+      -1
+     ],
+     "boxes": [
+      1,
+      -1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        -2,
+        1
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        2,
+        1
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 1
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      0,
+      -1
+     ],
+     "boxes": [
+      1,
+      -1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        -2,
+        1
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        2,
+        1
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 1,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 100
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      0,
+      -100
+     ],
+     "boxes": [
+      10,
+      -10
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        -20,
+        100
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        1,
+        20,
+        100
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 25,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      25,
+      0,
+      -4
+     ],
+     "boxes": [
+      5,
+      2,
+      5,
+      -2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        25,
+        -20,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        25,
+        20,
+        4
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 9,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 16
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      9,
+      0,
+      -16
+     ],
+     "boxes": [
+      3,
+      4,
+      3,
+      -4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        9,
+        -24,
+        16
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        9,
+        24,
+        16
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.diff-squares",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 9,
+      "name": "x",
+      "exp": 2
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      9,
+      0,
+      -4
+     ],
+     "boxes": [
+      3,
+      2,
+      3,
+      -2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        9,
+        -12,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.diff-squares-same-sign",
+      "value": {
+       "poly": [
+        9,
+        12,
+        4
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "poly.factor.gcf": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 16,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 28
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      16,
+      28
+     ],
+     "boxes": [
+      4,
+      4,
+      7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        4,
+        4,
+        28
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        4,
+        16,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        4,
+        12,
+        24
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 10,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      10,
+      8
+     ],
+     "boxes": [
+      2,
+      5,
+      4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        2,
+        5,
+        8
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        2,
+        10,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        2,
+        8,
+        6
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 24,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 28
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      24,
+      28
+     ],
+     "boxes": [
+      4,
+      6,
+      7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        4,
+        6,
+        28
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        4,
+        24,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        4,
+        20,
+        24
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 48,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 56
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      48,
+      -56
+     ],
+     "boxes": [
+      8,
+      6,
+      -7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        8,
+        6,
+        -56
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        8,
+        48,
+        -7
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        8,
+        40,
+        -64
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 36,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 42
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      36,
+      42
+     ],
+     "boxes": [
+      6,
+      6,
+      7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        6,
+        6,
+        42
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        6,
+        36,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        6,
+        30,
+        36
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 36,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 42
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      36,
+      42
+     ],
+     "boxes": [
+      6,
+      6,
+      7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        6,
+        6,
+        42
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        6,
+        36,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        6,
+        30,
+        36
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 24,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 16
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      24,
+      16
+     ],
+     "boxes": [
+      8,
+      3,
+      2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        8,
+        3,
+        16
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        8,
+        24,
+        2
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        8,
+        16,
+        8
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "term",
+      "coef": 27,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      27,
+      9
+     ],
+     "boxes": [
+      9,
+      3,
+      1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        9,
+        3,
+        9
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        9,
+        27,
+        1
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        9,
+        18,
+        0
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.gcf",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Factor out the greatest common factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "term",
+      "coef": 30,
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 40
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "gcf",
+     "poly": [
+      0,
+      30,
+      -40
+     ],
+     "boxes": [
+      10,
+      3,
+      -4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        10,
+        3,
+        -40
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-one-term",
+      "value": {
+       "boxes": [
+        10,
+        30,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.gcf-subtracted",
+      "value": {
+       "boxes": [
+        10,
+        20,
+        -50
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "poly.factor.leading": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 19,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      5,
+      19,
+      12
+     ],
+     "boxes": [
+      5,
+      4,
+      1,
+      3
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-placement",
+      "value": {
+       "poly": [
+        5,
+        23,
+        12
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        5,
+        -19,
+        12
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 7,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      3,
+      7,
+      4
+     ],
+     "boxes": [
+      3,
+      4,
+      1,
+      1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-placement",
+      "value": {
+       "poly": [
+        3,
+        13,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        3,
+        -7,
+        4
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 2,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      2,
+      5,
+      2
+     ],
+     "boxes": [
+      2,
+      1,
+      1,
+      2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-placement",
+      "value": {
+       "poly": [
+        2,
+        4,
+        2
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        2,
+        -5,
+        2
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 18,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      5,
+      -18,
+      -8
+     ],
+     "boxes": [
+      5,
+      2,
+      1,
+      -4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-placement",
+      "value": {
+       "poly": [
+        5,
+        6,
+        -8
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        5,
+        18,
+        -8
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      3,
+      4,
+      -4
+     ],
+     "boxes": [
+      3,
+      -2,
+      1,
+      2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-placement",
+      "value": {
+       "poly": [
+        3,
+        -4,
+        -4
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 16,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      5,
+      -16,
+      3
+     ],
+     "boxes": [
+      5,
+      -1,
+      1,
+      -3
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-placement",
+      "value": {
+       "poly": [
+        5,
+        -8,
+        3
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        5,
+        16,
+        3
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      4,
+      -4,
+      -3
+     ],
+     "boxes": [
+      2,
+      -3,
+      2,
+      1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        4,
+        4,
+        -3
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 15
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      4,
+      4,
+      -15
+     ],
+     "boxes": [
+      2,
+      -3,
+      2,
+      5
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        4,
+        -4,
+        -15
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.leading",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 6,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 6
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials-a",
+     "poly": [
+      6,
+      -5,
+      -6
+     ],
+     "boxes": [
+      3,
+      2,
+      2,
+      -3
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-placement",
+      "value": {
+       "poly": [
+        6,
+        0,
+        -6
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        6,
+        5,
+        -6
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "poly.factor.trinomial": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 8,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 12
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      8,
+      12
+     ],
+     "boxes": [
+      6,
+      2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        -8,
+        12
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        13,
+        12
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 12,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 35
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      12,
+      35
+     ],
+     "boxes": [
+      7,
+      5
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        -12,
+        35
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        36,
+        35
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 15,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 54
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      15,
+      54
+     ],
+     "boxes": [
+      6,
+      9
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        -15,
+        54
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        55,
+        54
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      -2,
+      -3
+     ],
+     "boxes": [
+      1,
+      -3
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        2,
+        -3
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 3
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      2,
+      -3
+     ],
+     "boxes": [
+      3,
+      -1
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        -2,
+        -3
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "-",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 2,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 8
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      2,
+      -8
+     ],
+     "boxes": [
+      4,
+      -2
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        -2,
+        -8
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        7,
+        -8
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 15,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 56
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      -15,
+      56
+     ],
+     "boxes": [
+      -8,
+      -7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        15,
+        56
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        -57,
+        56
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 12,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 36
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      -12,
+      36
+     ],
+     "boxes": [
+      -6,
+      -6
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        12,
+        36
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        -37,
+        36
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.factor.trinomial",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Factor.",
+    "expression": {
+     "type": "op",
+     "op": "+",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 1,
+       "name": "x",
+       "exp": 2
+      },
+      "right": {
+       "type": "term",
+       "coef": 11,
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 30
+     }
+    },
+    "answer": {
+     "type": "factored",
+     "form": "binomials",
+     "poly": [
+      1,
+      -11,
+      30
+     ],
+     "boxes": [
+      -5,
+      -6
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.factor-signs",
+      "value": {
+       "poly": [
+        1,
+        11,
+        30
+       ]
+      }
+     },
+     {
+      "id": "poly.factor-sum",
+      "value": {
+       "poly": [
+        1,
+        -31,
+        30
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "poly.multiply": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 5,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      5,
+      17,
+      6
+     ],
+     "boxes": [
+      5,
+      17,
+      6
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        5,
+        0,
+        6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        15,
+        6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        2,
+        6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        5,
+        17,
+        5
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      4,
+      31,
+      42
+     ],
+     "boxes": [
+      4,
+      31,
+      42
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        4,
+        0,
+        42
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        24,
+        42
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        7,
+        42
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        4,
+        31,
+        13
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      3,
+      8,
+      4
+     ],
+     "boxes": [
+      3,
+      8,
+      4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        3,
+        0,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        3,
+        6,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        3,
+        2,
+        4
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      4,
+      -25,
+      6
+     ],
+     "boxes": [
+      4,
+      -25,
+      6
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        4,
+        0,
+        6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        -24,
+        6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        -1,
+        6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        4,
+        -25,
+        -7
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 9
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      -7,
+      -18
+     ],
+     "boxes": [
+      1,
+      -7,
+      -18
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        -18
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        -7,
+        -7
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-sign",
+      "value": {
+       "boxes": [
+        1,
+        -7,
+        18
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.binomials"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      3,
+      -2,
+      -21
+     ],
+     "boxes": [
+      3,
+      -2,
+      -21
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        3,
+        0,
+        -21
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        3,
+        -9,
+        -21
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        3,
+        7,
+        -21
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        3,
+        -2,
+        4
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      4,
+      6,
+      -4
+     ],
+     "boxes": [
+      4,
+      6,
+      -4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        4,
+        0,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        -2,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        8,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        4,
+        6,
+        3
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 5,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      15,
+      4,
+      -4
+     ],
+     "boxes": [
+      15,
+      4,
+      -4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        15,
+        0,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        15,
+        10,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        15,
+        -6,
+        -4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        15,
+        4,
+        0
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   },
+   {
+    "generator": "poly.multiply",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      6,
+      6,
+      -12
+     ],
+     "boxes": [
+      6,
+      6,
+      -12
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        6,
+        0,
+        -12
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        6,
+        12,
+        -12
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        6,
+        -6,
+        -12
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        6,
+        6,
+        4
+       ]
+      }
+     }
+    ],
+    "part": "poly.multiply.leading"
+   }
+  ]
+ },
+ "poly.multiply.binomials": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 8
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      12,
+      32
+     ],
+     "boxes": [
+      1,
+      12,
+      32
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        32
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        12,
+        12
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 8
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      11,
+      24
+     ],
+     "boxes": [
+      1,
+      11,
+      24
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        24
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        11,
+        11
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      5,
+      4
+     ],
+     "boxes": [
+      1,
+      5,
+      4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        5,
+        5
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      -2,
+      -3
+     ],
+     "boxes": [
+      1,
+      -2,
+      -3
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        -3
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        -2,
+        -2
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-sign",
+      "value": {
+       "boxes": [
+        1,
+        -2,
+        3
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 8
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      -15,
+      56
+     ],
+     "boxes": [
+      1,
+      -15,
+      56
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        56
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        -15,
+        -15
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 8
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 8
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      -16,
+      64
+     ],
+     "boxes": [
+      1,
+      -16,
+      64
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        64
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        -16,
+        -16
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      -8,
+      16
+     ],
+     "boxes": [
+      1,
+      -8,
+      16
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        16
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        -8,
+        -8
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      }
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      -10,
+      25
+     ],
+     "boxes": [
+      1,
+      -10,
+      25
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        25
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        -10,
+        -10
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.binomials",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "pow",
+     "base": {
+      "type": "group",
+      "of": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      }
+     },
+     "exp": 2
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      1,
+      -14,
+      49
+     ],
+     "boxes": [
+      1,
+      -14,
+      49
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        1,
+        0,
+        49
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        1,
+        -14,
+        -14
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "poly.multiply.leading": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 5,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      5,
+      21,
+      18
+     ],
+     "boxes": [
+      5,
+      21,
+      18
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        5,
+        0,
+        18
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        15,
+        18
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        6,
+        18
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        5,
+        21,
+        9
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 5,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 6
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      5,
+      36,
+      36
+     ],
+     "boxes": [
+      5,
+      36,
+      36
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        5,
+        0,
+        36
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        30,
+        36
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        6,
+        36
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        5,
+        36,
+        12
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      4,
+      10,
+      4
+     ],
+     "boxes": [
+      4,
+      10,
+      4
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        4,
+        0,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        8,
+        4
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        2,
+        4
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 5,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      5,
+      -22,
+      -15
+     ],
+     "boxes": [
+      5,
+      -22,
+      -15
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        5,
+        0,
+        -15
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        -25,
+        -15
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        5,
+        3,
+        -15
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        5,
+        -22,
+        -2
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      4,
+      -10,
+      -6
+     ],
+     "boxes": [
+      4,
+      -10,
+      -6
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        4,
+        0,
+        -6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        -12,
+        -6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        4,
+        2,
+        -6
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        4,
+        -10,
+        -1
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      2,
+      -9,
+      10
+     ],
+     "boxes": [
+      2,
+      -9,
+      10
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        2,
+        0,
+        10
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        2,
+        -4,
+        10
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        2,
+        -5,
+        10
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        2,
+        -9,
+        -7
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      },
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 5,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      10,
+      -19,
+      7
+     ],
+     "boxes": [
+      10,
+      -19,
+      7
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        10,
+        0,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        10,
+        -5,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        10,
+        -14,
+        7
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        10,
+        -19,
+        -8
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 2
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 7
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      8,
+      6,
+      -14
+     ],
+     "boxes": [
+      8,
+      6,
+      -14
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        8,
+        0,
+        -14
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        8,
+        -8,
+        -14
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        8,
+        14,
+        -14
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        8,
+        6,
+        5
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "poly.multiply.leading",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Multiply. Write the answer as ax² + bx + c.",
+    "expression": {
+     "type": "factors",
+     "items": [
+      {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      },
+      {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 4,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "factored",
+     "form": "product",
+     "poly": [
+      16,
+      4,
+      -12
+     ],
+     "boxes": [
+      16,
+      4,
+      -12
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "poly.foil-middle",
+      "value": {
+       "boxes": [
+        16,
+        0,
+        -12
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        16,
+        16,
+        -12
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-one-middle",
+      "value": {
+       "boxes": [
+        16,
+        -12,
+        -12
+       ]
+      }
+     },
+     {
+      "id": "poly.foil-last-added",
+      "value": {
+       "boxes": [
+        16,
+        4,
+        1
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ },
  "rat.percent": {
   "version": 1,
   "problems": [

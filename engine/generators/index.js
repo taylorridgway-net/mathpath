@@ -26,6 +26,7 @@ import { decimalGenerators } from './dec/decimals.js';
 import { ratioGenerators } from './rat/ratios.js';
 import { linearGenerators } from './lin/linear.js';
 import { graphingGenerators } from './lin/graphing.js';
+import { factoringGenerators } from './poly/factoring.js';
 
 export const generators = {
   ...addSubGenerators,
@@ -52,6 +53,7 @@ export const generators = {
   ...ratioGenerators,
   ...linearGenerators,
   ...graphingGenerators,
+  ...factoringGenerators,
 };
 
 export const DIFFICULTIES = [1, 2, 3];

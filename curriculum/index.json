@@ -8,7 +8,8 @@
     "alg",
     "dec",
     "rat",
-    "lin"
+    "lin",
+    "poly"
   ],
   "lessons": [
     "whole.add-sub",
@@ -46,7 +47,9 @@
     "lin.slope-intercept",
     "lin.forms",
     "lin.parallel",
-    "lin.graphing"
+    "lin.graphing",
+    "poly.multiply",
+    "poly.factor"
   ],
   "papers": [
     "whole.add-sub",
