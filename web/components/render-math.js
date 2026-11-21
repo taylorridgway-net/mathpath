@@ -5,6 +5,7 @@
 
 import { drawNumberLine } from './number-line.js';
 import { drawGrid } from './grid-pad.js';
+import { drawShape } from './shapes.js';
 import { drawColumn } from './column-view.js';
 import { toText } from '../../engine/problem/text.js';
 
@@ -89,6 +90,8 @@ function build(node) {
       return xyTable(node.rows);
     case 'graph':
       return lineGraph(node.points);
+    case 'shape':
+      return drawShape(node);
     case 'factors': {
       const wrap = el('span', 'm-row m-factors');
       for (const item of node.items) wrap.append(el('span', 'm-paren', '('), build(item), el('span', 'm-paren', ')'));

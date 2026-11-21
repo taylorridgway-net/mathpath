@@ -28,6 +28,7 @@ import { linearGenerators } from './lin/linear.js';
 import { graphingGenerators } from './lin/graphing.js';
 import { factoringGenerators } from './poly/factoring.js';
 import { expAreaGenerators } from './exp/exponents.js';
+import { measurementGenerators } from './geo/measurement.js';
 
 export const generators = {
   ...addSubGenerators,
@@ -56,6 +57,7 @@ export const generators = {
   ...graphingGenerators,
   ...factoringGenerators,
   ...expAreaGenerators,
+  ...measurementGenerators,
 };
 
 export const DIFFICULTIES = [1, 2, 3];

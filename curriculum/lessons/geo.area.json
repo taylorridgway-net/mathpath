@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.area",
+  "title": "Area and perimeter",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "geo.area.perimeter": "Perimeter is the distance all the way around: add every side, including ones that aren't labelled.",
+    "geo.area.rectangle": "Area of a rectangle or parallelogram: base × height (the height goes straight up, not along a slanted side).",
+    "geo.area.triangle": "A triangle is half a rectangle: ½ × base × height. A trapezoid: the average of the two bases × height.",
+    "geo.area.composite": "Split the L-shape into rectangles, or take the missing corner away from the big rectangle.",
+    "geo.area": "Perimeter: around the edge. Area: squares inside. Triangles: half. L-shapes: split or subtract."
+  },
+  "misconceptionMessages": {
+    "geo.area-perimeter-swap": "Area counts the squares inside (multiply); perimeter is the distance around the edge (add). Which does the question ask for?",
+    "geo.perimeter-two-sides": "A rectangle has four sides: two of each length. Add all four.",
+    "geo.perimeter-missing-sides": "An L-shape has six sides. Work out the two that aren't labelled and add all six.",
+    "geo.parallelogram-side": "Use the height (straight up, the dashed line), not the slanted side.",
+    "geo.missing-subtracted": "Area = width × length, so divide the area by the width to find the length.",
+    "geo.triangle-no-half": "A triangle is half a rectangle: don't forget the ½.",
+    "geo.trapezoid-one-base": "Use both bases: their average times the height.",
+    "geo.composite-whole-rectangle": "That's the whole rectangle. Take away the missing corner.",
+    "geo.composite-labelled": "Those two pieces overlap. Split the L into two rectangles that don't overlap."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "geo.area.perimeter",
+      "forGap": "geo.area.perimeter",
+      "title": "Perimeter",
+      "objective": "Find the distance around a shape.",
+      "mode": "section",
+      "generator": "geo.area.perimeter",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Perimeter is the distance around the outside, like a fence."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "lshape",
+            "labels": {
+              "w": "10 m",
+              "h": "8 m",
+              "top": "4 m",
+              "right": "3 m"
+            }
+          },
+          "steps": [
+            "An L-shape has six sides. Four are labelled.",
+            "The missing across side: 10 − 4 = 6 m. The missing up-and-down side: 8 − 3 = 5 m.",
+            "Add all six: 10 + 8 + 4 + 5 + 6 + 3 = 36 m."
+          ]
+        },
+        "caption": "Tap through: find the missing sides, then add all six."
+      },
+      "key": "Perimeter: add every side all the way around, including sides that aren't labelled."
+    },
+    {
+      "id": "geo.area.rectangle",
+      "forGap": "geo.area.rectangle",
+      "title": "Rectangles and parallelograms",
+      "objective": "Find the area of rectangles and parallelograms.",
+      "mode": "section",
+      "generator": "geo.area.rectangle",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Area counts the unit squares that cover a shape.",
+        "A parallelogram rearranges into a rectangle: cut off the triangle at one end and slide it to the other."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "parallelogram",
+            "labels": {
+              "base": "9 cm",
+              "height": "4 cm",
+              "side": "5 cm"
+            }
+          },
+          "steps": [
+            "Area of a parallelogram: base × height.",
+            "The height is the dashed line, 4 cm (not the slanted 5 cm side).",
+            "9 × 4 = 36 cm²."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Area = base × height. For a parallelogram, the height goes straight up (the dashed line), not along the slanted side."
+    },
+    {
+      "id": "geo.area.triangle",
+      "forGap": "geo.area.triangle",
+      "title": "Triangles and trapezoids",
+      "objective": "Find the area of triangles and trapezoids.",
+      "mode": "section",
+      "generator": "geo.area.triangle",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Two copies of a triangle make a parallelogram, so a triangle is half of base × height."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "triangle",
+            "labels": {
+              "base": "10 ft",
+              "height": "6 ft"
+            }
+          },
+          "steps": [
+            "A triangle is half of a 10 by 6 rectangle.",
+            "10 × 6 = 60.",
+            "Half of 60 is 30 ft²."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Triangle: ½ × base × height. Trapezoid: (top + bottom) ÷ 2 × height."
+    },
+    {
+      "id": "geo.area.composite",
+      "forGap": "geo.area.composite",
+      "title": "L-shapes",
+      "objective": "Find the area of shapes made of rectangles.",
+      "mode": "section",
+      "generator": "geo.area.composite",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Break the shape into rectangles that don't overlap, or start with the big rectangle and take the missing corner away."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "lshape",
+            "labels": {
+              "w": "10 m",
+              "h": "8 m",
+              "top": "4 m",
+              "right": "3 m"
+            }
+          },
+          "steps": [
+            "The whole rectangle: 10 × 8 = 80 m².",
+            "The missing corner is 10 − 4 = 6 across and 8 − 3 = 5 down: 6 × 5 = 30 m².",
+            "80 − 30 = 50 m²."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Big rectangle minus the missing corner (or split into two rectangles). Find missing sides by subtracting."
+    },
+    {
+      "id": "geo.area.whole",
+      "forGap": "geo.area",
+      "title": "Putting it together",
+      "objective": "Area and perimeter, mixed.",
+      "mode": "skill",
+      "generator": "geo.area",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Perimeter: add around the edge. Area: squares inside. Triangles: half. L-shapes: split or subtract.",
+      "worked": [
+        {
+          "math": "rectangle 7 by 4",
+          "note": ""
+        },
+        {
+          "math": "perimeter: 7 + 4 + 7 + 4 = [[22]]",
+          "note": "around"
+        },
+        {
+          "math": "area: 7 × 4 = [[28]]",
+          "note": "inside"
+        }
+      ]
+    }
+  ]
+}

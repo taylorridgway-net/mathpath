@@ -90,6 +90,13 @@ export function toText(node) {
       return `${toText(node.left)} ${node.op} ${toText(node.right)}`;
     case 'list':
       return node.items.map(toText).join(` ${node.word || 'and'} `);
+    case 'shape': {
+      // Same words as web/components/shapes.js shapeWords (kept here so the engine has no web import).
+      const L = node.labels || {};
+      const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle' }[node.kind];
+      const words = { w: 'width', h: 'height', l: 'length', r: 'radius', d: 'diameter', a: 'leg', b: 'leg', c: 'hypotenuse', top: 'top', bottom: 'bottom', right: 'right side', base: 'base', height: 'height', side: 'side' };
+      return `[${name}: ${Object.entries(L).filter(([, v]) => v !== undefined).map(([k, v]) => `${words[k] || k} ${v}`).join(', ')}]`;
+    }
     case 'factors':
       return node.items.map((i) => `(${toText(i)})`).join('');
     case 'gridanswer':

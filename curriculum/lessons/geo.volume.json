@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.volume",
+  "title": "Volume",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "geo.volume.prism": "Volume = length × width × height: the cubes that fit inside.",
+    "geo.volume.cylinder": "Cylinder: π × radius² × height. Cone: one third of that.",
+    "geo.volume": "Box: l × w × h. Cylinder: πr²h. Cone: ⅓πr²h."
+  },
+  "misconceptionMessages": {
+    "geo.volume-added": "Volume multiplies: length × width × height (and the radius is squared for a cylinder).",
+    "geo.volume-surface": "That's the surface (the faces). Volume is the space inside: length × width × height.",
+    "geo.cone-no-third": "A cone holds one third of the cylinder around it: multiply by ⅓."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "geo.volume.prism",
+      "forGap": "geo.volume.prism",
+      "title": "Volume of a box",
+      "objective": "Find the volume of rectangular prisms.",
+      "mode": "section",
+      "generator": "geo.volume.prism",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Volume counts the unit cubes that fill a shape.",
+        "One layer on the bottom has length × width cubes; there are height layers."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "prism",
+            "labels": {
+              "l": "6 cm",
+              "w": "3 cm",
+              "h": "4 cm"
+            }
+          },
+          "steps": [
+            "The bottom layer: 6 × 3 = 18 cubes.",
+            "There are 4 layers.",
+            "18 × 4 = 72 cm³."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Volume of a box = length × width × height."
+    },
+    {
+      "id": "geo.volume.cylinder",
+      "forGap": "geo.volume.cylinder",
+      "title": "Cylinders and cones",
+      "objective": "Find the volume of cylinders and cones, in terms of π.",
+      "mode": "section",
+      "generator": "geo.volume.cylinder",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A cylinder is a stack of circles: the area of the circle times the height.",
+        "A cone fits inside a cylinder three times."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "cylinder",
+            "labels": {
+              "r": "3 in",
+              "h": "5 in"
+            }
+          },
+          "steps": [
+            "The circle on the bottom: π × 3 × 3 = 9π.",
+            "Stack it 5 high: 9π × 5 = 45π.",
+            "So V = 45π in³. A cone this size would hold 15π in³."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Cylinder: π × radius² × height. Cone: ⅓ × π × radius² × height."
+    },
+    {
+      "id": "geo.volume.whole",
+      "forGap": "geo.volume",
+      "title": "Putting it together",
+      "objective": "Volume, mixed.",
+      "mode": "skill",
+      "generator": "geo.volume",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Box: l × w × h. Cylinder: πr²h. Cone: ⅓πr²h.",
+      "worked": [
+        {
+          "math": "cylinder, diameter 4, height 10",
+          "note": ""
+        },
+        {
+          "math": "radius [[2]]",
+          "note": "half the diameter"
+        },
+        {
+          "math": "π × 2 × 2 × 10 = [[40]]π",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

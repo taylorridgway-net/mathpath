@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "about": "Wrong answers that point to a specific misunderstanding about measurement and geometry. 'pointsTo' is the subskill to work on. Claude's draft (2026-11-21), waiting for owner review.",
+  "misconceptions": [
+    {
+      "id": "geo.units-wrong-way",
+      "description": "Divides when converting to a smaller unit (or multiplies going to a bigger one): 5 feet = 5/12 inch.",
+      "pointsTo": "geo.units.convert"
+    },
+    {
+      "id": "geo.units-wrong-factor",
+      "description": "Uses the wrong conversion number, often 10 or 100 for customary units: 1 foot = 10 inches.",
+      "pointsTo": "geo.units.convert"
+    },
+    {
+      "id": "geo.units-one-step",
+      "description": "Stops after one step of a two-step conversion: 2 yards = 6 (feet, not inches).",
+      "pointsTo": "geo.units.two-step"
+    },
+    {
+      "id": "geo.units-added",
+      "description": "Adds the two conversion numbers instead of multiplying: 1 yard = 3 + 12 inches.",
+      "pointsTo": "geo.units.two-step"
+    },
+    {
+      "id": "geo.area-perimeter-swap",
+      "description": "Mixes up area (squares inside) and perimeter (distance around).",
+      "pointsTo": "geo.area.rectangle"
+    },
+    {
+      "id": "geo.perimeter-two-sides",
+      "description": "Adds only the two labelled sides for a rectangle's perimeter (it has four).",
+      "pointsTo": "geo.area.perimeter"
+    },
+    {
+      "id": "geo.perimeter-missing-sides",
+      "description": "Adds only the labelled sides of an L-shape, leaving out the sides that weren't labelled.",
+      "pointsTo": "geo.area.perimeter"
+    },
+    {
+      "id": "geo.parallelogram-side",
+      "description": "Uses the slanted side instead of the height for a parallelogram's area.",
+      "pointsTo": "geo.area.rectangle"
+    },
+    {
+      "id": "geo.missing-subtracted",
+      "description": "Subtracts instead of dividing to find a missing side from the area.",
+      "pointsTo": "geo.area.rectangle"
+    },
+    {
+      "id": "geo.triangle-no-half",
+      "description": "Forgets the ½ in a triangle's (or trapezoid's) area: base × height.",
+      "pointsTo": "geo.area.triangle"
+    },
+    {
+      "id": "geo.trapezoid-one-base",
+      "description": "Uses only one base for a trapezoid's area (it's the average of the two bases × height).",
+      "pointsTo": "geo.area.triangle"
+    },
+    {
+      "id": "geo.composite-whole-rectangle",
+      "description": "Finds the area of the whole rectangle around an L-shape, without taking the cut corner away.",
+      "pointsTo": "geo.area.composite"
+    },
+    {
+      "id": "geo.composite-labelled",
+      "description": "Splits an L-shape into pieces that overlap, counting a corner twice.",
+      "pointsTo": "geo.area.composite"
+    },
+    {
+      "id": "geo.circle-diameter-radius",
+      "description": "Uses the diameter where the formula needs the radius (or the other way round).",
+      "pointsTo": "geo.circles.circumference"
+    },
+    {
+      "id": "geo.circle-area-circumference",
+      "description": "Mixes up the circle formulas: πr² for the circumference, or 2πr for the area.",
+      "pointsTo": "geo.circles.area"
+    },
+    {
+      "id": "geo.half-forgot",
+      "description": "Forgets to halve for a half circle.",
+      "pointsTo": "geo.circles.area"
+    },
+    {
+      "id": "geo.volume-added",
+      "description": "Adds the measurements (or forgets to square the radius) instead of multiplying: volume = l + w + h.",
+      "pointsTo": "geo.volume.prism"
+    },
+    {
+      "id": "geo.volume-surface",
+      "description": "Finds the surface area (the faces) instead of the volume (the space inside).",
+      "pointsTo": "geo.volume.prism"
+    },
+    {
+      "id": "geo.cone-no-third",
+      "description": "Forgets the ⅓ in a cone's volume.",
+      "pointsTo": "geo.volume.cylinder"
+    }
+  ]
+}

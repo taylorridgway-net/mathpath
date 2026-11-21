@@ -533,3 +533,12 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .m-root-path { fill: none; stroke: currentColor; stroke-width: 2px; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .m-radicand { border-top: 2px solid currentColor; padding: 0.12em 0.18em 0; }
 .m-root-index { position: absolute; left: -0.05em; top: 0.05em; font-size: 0.5em; }
+.m-shape { max-width: 100%; height: auto; }
+.shape-fill { fill: var(--accent-soft); stroke: var(--ink); stroke-width: 2; }
+.shape-noedge { stroke: none; }
+.shape-edge { fill: none; stroke: var(--ink); stroke-width: 2; }
+.shape-thin { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.shape-dash { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.shape-dot { fill: var(--ink); }
+.shape-label { font-family: var(--font-math); font-size: 15px; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.shape-ask { font-weight: 700; fill: var(--mark); }

@@ -35010,6 +35010,3665 @@
    }
   ]
  },
+ "geo.area": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "13 in",
+      "h": "2 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "26",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "30"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "15"
+     }
+    ],
+    "part": "geo.area.rectangle"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "15 m",
+      "h": "9 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "135",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "48"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "24"
+     }
+    ],
+    "part": "geo.area.rectangle"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "9 in",
+      "h": "11 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "99",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "40"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "20"
+     }
+    ],
+    "part": "geo.area.rectangle"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "words",
+     "text": "A square has sides of 3 m. What is its perimeter?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "9"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "6"
+     }
+    ],
+    "part": "geo.area.perimeter"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "9 m",
+      "height": "3 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "13.5",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "27"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "12"
+     }
+    ],
+    "part": "geo.area.triangle"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "8 m",
+      "height": "5 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "40"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "13"
+     }
+    ],
+    "part": "geo.area.triangle"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "15 cm",
+      "h": "11 cm",
+      "top": "8 cm",
+      "right": "6 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "130",
+     "suffix": "cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "165"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "178"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "52"
+     }
+    ],
+    "part": "geo.area.composite"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "14 in",
+      "h": "9 in",
+      "top": "6 in",
+      "right": "5 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "46",
+     "suffix": "in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.perimeter-missing-sides",
+      "value": "34"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "94"
+     }
+    ],
+    "part": "geo.area.perimeter"
+   },
+   {
+    "generator": "geo.area",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "9 in",
+      "h": "7 in",
+      "top": "3 in",
+      "right": "3 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "39",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "63"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "48"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "32"
+     }
+    ],
+    "part": "geo.area.composite"
+   }
+  ]
+ },
+ "geo.area.composite": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "8 cm",
+      "h": "7 cm",
+      "top": "5 cm",
+      "right": "4 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "47",
+     "suffix": "cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "56"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "67"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "30"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "10 m",
+      "h": "8 m",
+      "top": "7 m",
+      "right": "5 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "71",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "80"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "106"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "36"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "10 m",
+      "h": "7 m",
+      "top": "6 m",
+      "right": "3 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "54",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "70"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "72"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "34"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "13 in",
+      "h": "12 in",
+      "top": "3 in",
+      "right": "2 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "56",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "156"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "62"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "50"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "9 in",
+      "h": "9 in",
+      "top": "2 in",
+      "right": "6 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "60",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "81"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "72"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "36"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "12 ft",
+      "h": "9 ft",
+      "top": "2 ft",
+      "right": "2 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "38",
+     "suffix": "ft²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "108"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "42"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "14 in",
+      "h": "7 in",
+      "top": "11 in",
+      "right": "2 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "83",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "98"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "105"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "42"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "9 ft",
+      "h": "11 ft",
+      "top": "5 ft",
+      "right": "6 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "79",
+     "suffix": "ft²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "99"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "109"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "40"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.composite",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "10 m",
+      "h": "9 m",
+      "top": "7 m",
+      "right": "5 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "78",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.composite-whole-rectangle",
+      "value": "90"
+     },
+     {
+      "id": "geo.composite-labelled",
+      "value": "113"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "38"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.area.perimeter": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "7 cm",
+      "h": "11 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "36",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "77"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "8 in",
+      "h": "2 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "16"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "10"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "8 cm",
+      "h": "3 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "22",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "24"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "11"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "words",
+     "text": "A triangle has sides 11 cm, 3 cm and 13 cm. What is its perimeter?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "27",
+     "suffix": "cm"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "words",
+     "text": "A triangle has sides 7 cm, 11 cm and 6 cm. What is its perimeter?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "suffix": "cm"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "words",
+     "text": "A triangle has sides 7 m, 9 m and 13 m. What is its perimeter?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "29",
+     "suffix": "m"
+    },
+    "misconceptions": []
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "12 in",
+      "h": "10 in",
+      "top": "9 in",
+      "right": "7 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "44",
+     "suffix": "in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.perimeter-missing-sides",
+      "value": "38"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "111"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "10 cm",
+      "h": "10 cm",
+      "top": "3 cm",
+      "right": "7 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "40",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.perimeter-missing-sides",
+      "value": "30"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "79"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.perimeter",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the perimeter.",
+    "expression": {
+     "type": "shape",
+     "kind": "lshape",
+     "labels": {
+      "w": "13 ft",
+      "h": "7 ft",
+      "top": "5 ft",
+      "right": "3 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "40",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.perimeter-missing-sides",
+      "value": "28"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "59"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.area.rectangle": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "9 in",
+      "h": "12 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "108",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "42"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "21"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "13 cm",
+      "h": "8 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "104",
+     "suffix": "cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "42"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "21"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "rect",
+     "labels": {
+      "w": "10 ft",
+      "h": "2 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "ft²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "24"
+     },
+     {
+      "id": "geo.perimeter-two-sides",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallelogram",
+     "labels": {
+      "base": "13 m",
+      "height": "6 m",
+      "side": "9 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "78",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallelogram-side",
+      "value": "117"
+     },
+     {
+      "id": "geo.triangle-no-half",
+      "value": "39"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallelogram",
+     "labels": {
+      "base": "12 m",
+      "height": "2 m",
+      "side": "6 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallelogram-side",
+      "value": "72"
+     },
+     {
+      "id": "geo.triangle-no-half",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "parallelogram",
+     "labels": {
+      "base": "15 m",
+      "height": "3 m",
+      "side": "5 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "45",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.parallelogram-side",
+      "value": "75"
+     },
+     {
+      "id": "geo.triangle-no-half",
+      "value": "22.5"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A rectangle has an area of 18 m² and a width of 3 m. How long is the other side?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.missing-subtracted",
+      "value": "15"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A rectangle has an area of 77 m² and a width of 11 m. How long is the other side?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "27.5"
+     },
+     {
+      "id": "geo.missing-subtracted",
+      "value": "66"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.rectangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A rectangle has an area of 50 ft² and a width of 10 ft. How long is the other side?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "15"
+     },
+     {
+      "id": "geo.missing-subtracted",
+      "value": "40"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.area.triangle": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "5 ft",
+      "height": "12 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30",
+     "suffix": "ft²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "60"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "17"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "7 m",
+      "height": "10 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "35",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "70"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "17"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "8 in",
+      "height": "6 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "48"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "14"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "15 in",
+      "height": "10 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "75",
+     "suffix": "in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "150"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "25"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "8 m",
+      "height": "7 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "28",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "56"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "15"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "triangle",
+     "labels": {
+      "base": "10 cm",
+      "height": "6 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30",
+     "suffix": "cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "60"
+     },
+     {
+      "id": "geo.area-perimeter-swap",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "trapezoid",
+     "labels": {
+      "top": "6 m",
+      "bottom": "16 m",
+      "height": "10 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "110",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "220"
+     },
+     {
+      "id": "geo.trapezoid-one-base",
+      "value": "160"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "trapezoid",
+     "labels": {
+      "top": "8 cm",
+      "bottom": "10 cm",
+      "height": "5 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "45",
+     "suffix": "cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "90"
+     },
+     {
+      "id": "geo.trapezoid-one-base",
+      "value": "50"
+     }
+    ]
+   },
+   {
+    "generator": "geo.area.triangle",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the area.",
+    "expression": {
+     "type": "shape",
+     "kind": "trapezoid",
+     "labels": {
+      "top": "7 m",
+      "bottom": "15 m",
+      "height": "3 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "33",
+     "suffix": "m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.triangle-no-half",
+      "value": "66"
+     },
+     {
+      "id": "geo.trapezoid-one-base",
+      "value": "45"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.circles": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the circumference. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "22 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "22",
+     "suffix": "π m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "44"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "121"
+     }
+    ],
+    "part": "geo.circles.circumference"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "6 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "36",
+     "suffix": "π cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "12"
+     }
+    ],
+    "part": "geo.circles.area"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "10 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "100",
+     "suffix": "π m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "20"
+     }
+    ],
+    "part": "geo.circles.area"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "16 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "64",
+     "suffix": "π in²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "256"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "16"
+     }
+    ],
+    "part": "geo.circles.area"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "12 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "36",
+     "suffix": "π ft²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "144"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "12"
+     }
+    ],
+    "part": "geo.circles.area"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "10 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "25",
+     "suffix": "π m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "100"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "10"
+     }
+    ],
+    "part": "geo.circles.area"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the circumference.",
+    "expression": {
+     "type": "words",
+     "text": "A bike wheel is 24 in across. How far around is it? Answer in terms of π."
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "suffix": "π in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "48"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "144"
+     }
+    ],
+    "part": "geo.circles.circumference"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the circumference.",
+    "expression": {
+     "type": "words",
+     "text": "A bike wheel is 20 cm across. How far around is it? Answer in terms of π."
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "π cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "40"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "100"
+     }
+    ],
+    "part": "geo.circles.circumference"
+   },
+   {
+    "generator": "geo.circles",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the circumference.",
+    "expression": {
+     "type": "words",
+     "text": "A bike wheel is 10 cm across. How far around is it? Answer in terms of π."
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10",
+     "suffix": "π cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "20"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "25"
+     }
+    ],
+    "part": "geo.circles.circumference"
+   }
+  ]
+ },
+ "geo.circles.area": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "4 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "16",
+     "suffix": "π ft²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "8"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "6 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "36",
+     "suffix": "π m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "6 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "36",
+     "suffix": "π cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "6 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "suffix": "π m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "36"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "8 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "16",
+     "suffix": "π cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "64"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "8"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "4 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4",
+     "suffix": "π cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the area of the half circle. Answer in terms of π.",
+    "expression": {
+     "type": "words",
+     "text": "A half circle has a radius of 4 m."
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8",
+     "suffix": "π m²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.half-forgot",
+      "value": "16"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "4"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "20 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "100",
+     "suffix": "π cm²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "400"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "20"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.area",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the area. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "16 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "64",
+     "suffix": "π ft²"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "256"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "16"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.circles.circumference": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the circumference. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "16 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "16",
+     "suffix": "π cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "32"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "64"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the circumference. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "20 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "π m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "40"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "100"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the circumference. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "d": "24 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "24",
+     "suffix": "π in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "48"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "144"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the circumference. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "2 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4",
+     "suffix": "π in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "2"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the circumference. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "11 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "22",
+     "suffix": "π ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "11"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "121"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the circumference. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "circle",
+     "labels": {
+      "r": "9 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "18",
+     "suffix": "π in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "9"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "81"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the circumference.",
+    "expression": {
+     "type": "words",
+     "text": "A round table has a radius of 9 in. How far is it around the edge? Answer in terms of π."
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "18",
+     "suffix": "π in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "9"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "81"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the circumference.",
+    "expression": {
+     "type": "words",
+     "text": "A bike wheel is 12 ft across. How far around is it? Answer in terms of π."
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "12",
+     "suffix": "π ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "24"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "36"
+     }
+    ]
+   },
+   {
+    "generator": "geo.circles.circumference",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the circumference.",
+    "expression": {
+     "type": "words",
+     "text": "A round table has a radius of 10 cm. How far is it around the edge? Answer in terms of π."
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "20",
+     "suffix": "π cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "10"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "100"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.units": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "3 hours = ? seconds"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "10800",
+     "suffix": "seconds"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "180"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "360"
+     }
+    ],
+    "part": "geo.units.two-step"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "3 kilograms = ? grams"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3000",
+     "suffix": "grams"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "0.003"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "300"
+     }
+    ],
+    "part": "geo.units.convert"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "5 meters = ? centimeters"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "500",
+     "suffix": "centimeters"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "0.05"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "50"
+     }
+    ],
+    "part": "geo.units.convert"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "24 feet = ? yards"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8",
+     "suffix": "yards"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "72"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "2.4"
+     }
+    ],
+    "part": "geo.units.convert"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "7200 seconds = ? hours"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2",
+     "suffix": "hours"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "120"
+     }
+    ],
+    "part": "geo.units.two-step"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "14400 seconds = ? hours"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4",
+     "suffix": "hours"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "240"
+     }
+    ],
+    "part": "geo.units.two-step"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "5 days = ? minutes"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7200",
+     "suffix": "minutes"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "120"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "300"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "420"
+     }
+    ],
+    "part": "geo.units.two-step"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "5 days = ? minutes"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7200",
+     "suffix": "minutes"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "120"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "300"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "420"
+     }
+    ],
+    "part": "geo.units.two-step"
+   },
+   {
+    "generator": "geo.units",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "4 kilometers = ? centimeters"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "400000",
+     "suffix": "centimeters"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "4000"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "400"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "4400"
+     }
+    ],
+    "part": "geo.units.two-step"
+   }
+  ]
+ },
+ "geo.units.convert": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "4 kilometers = ? meters"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4000",
+     "suffix": "meters"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "0.004"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "400"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "5 pounds = ? ounces"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "80",
+     "suffix": "ounces"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "0.3125"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "50"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "9 minutes = ? seconds"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "540",
+     "suffix": "seconds"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "0.15"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "90"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "4000 milliliters = ? liters"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4",
+     "suffix": "liters"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "4000000"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "40"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "9000 milliliters = ? liters"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "suffix": "liters"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "9000000"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "90"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "16 quarts = ? gallons"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4",
+     "suffix": "gallons"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "64"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "1.6"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "1000 grams = ? kilograms"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "1",
+     "suffix": "kilograms"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "1000000"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "10"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "3.5 gallons = ? quarts"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "14",
+     "suffix": "quarts"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "0.875"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "35"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.convert",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "3 quarts = ? gallons"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "0.75",
+     "suffix": "gallons"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-wrong-way",
+      "value": "12"
+     },
+     {
+      "id": "geo.units-wrong-factor",
+      "value": "0.3"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.units.two-step": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "4 hours = ? seconds"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "14400",
+     "suffix": "seconds"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "240"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "480"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "4 yards = ? inches"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "144",
+     "suffix": "inches"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "12"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "48"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "60"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "2 hours = ? seconds"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "7200",
+     "suffix": "seconds"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "120"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "240"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "14400 seconds = ? hours"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "4",
+     "suffix": "hours"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "240"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "72 inches = ? yards"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2",
+     "suffix": "yards"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "24"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "6"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "108 inches = ? yards"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "3",
+     "suffix": "yards"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "36"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "9"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "2 kilometers = ? centimeters"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "200000",
+     "suffix": "centimeters"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "2000"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "200"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "2200"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "2 gallons = ? cups"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "32",
+     "suffix": "cups"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "8"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "geo.units.two-step",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Convert.",
+    "expression": {
+     "type": "words",
+     "text": "2 days = ? minutes"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "2880",
+     "suffix": "minutes"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.units-one-step",
+      "value": "48"
+     },
+     {
+      "id": "geo.units-one-step",
+      "value": "120"
+     },
+     {
+      "id": "geo.units-added",
+      "value": "168"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.volume": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "shape",
+     "kind": "prism",
+     "labels": {
+      "l": "4 ft",
+      "w": "7 ft",
+      "h": "9 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "252",
+     "suffix": "ft³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "20"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "254"
+     }
+    ],
+    "part": "geo.volume.prism"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "r": "5 ft",
+      "h": "7 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "175",
+     "suffix": "π ft³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "35"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "70"
+     }
+    ],
+    "part": "geo.volume.cylinder"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "r": "4 m",
+      "h": "6 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "96",
+     "suffix": "π m³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "24"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "48"
+     }
+    ],
+    "part": "geo.volume.cylinder"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "words",
+     "text": "A fish tank is 7 in long, 3 in wide and 3 in tall. How much water does it hold?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "63",
+     "suffix": "in³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "13"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "102"
+     }
+    ],
+    "part": "geo.volume.prism"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "words",
+     "text": "A fish tank is 2 ft long, 8 ft wide and 3 ft tall. How much water does it hold?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "48",
+     "suffix": "ft³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "13"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "92"
+     }
+    ],
+    "part": "geo.volume.prism"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "words",
+     "text": "A fish tank is 6 cm long, 7 cm wide and 4 cm tall. How much water does it hold?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "168",
+     "suffix": "cm³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "17"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "188"
+     }
+    ],
+    "part": "geo.volume.prism"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A box has a volume of 96 ft³. Its base is 4 ft by 3 ft. How tall is it?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "8",
+     "suffix": "ft"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "89"
+     }
+    ],
+    "part": "geo.volume.prism"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A box has a volume of 216 in³. Its base is 6 in by 4 in. How tall is it?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "suffix": "in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "206"
+     }
+    ],
+    "part": "geo.volume.prism"
+   },
+   {
+    "generator": "geo.volume",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A box has a volume of 378 in³. Its base is 7 in by 6 in. How tall is it?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "suffix": "in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "365"
+     }
+    ],
+    "part": "geo.volume.prism"
+   }
+  ]
+ },
+ "geo.volume.cylinder": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "r": "2 cm",
+      "h": "8 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "32",
+     "suffix": "π cm³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "16"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "r": "4 in",
+      "h": "8 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "128",
+     "suffix": "π in³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "32"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "64"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "r": "3 cm",
+      "h": "2 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "18",
+     "suffix": "π cm³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "6"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "12"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "d": "8 m",
+      "h": "8 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "128",
+     "suffix": "π m³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "512"
+     },
+     {
+      "id": "geo.volume-added",
+      "value": "32"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "64"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "d": "8 cm",
+      "h": "9 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "144",
+     "suffix": "π cm³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "576"
+     },
+     {
+      "id": "geo.volume-added",
+      "value": "36"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "72"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cylinder",
+     "labels": {
+      "d": "8 cm",
+      "h": "4 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "64",
+     "suffix": "π cm³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.circle-diameter-radius",
+      "value": "256"
+     },
+     {
+      "id": "geo.volume-added",
+      "value": "16"
+     },
+     {
+      "id": "geo.circle-area-circumference",
+      "value": "32"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cone",
+     "labels": {
+      "r": "3 in",
+      "h": "3 in"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "9",
+     "suffix": "π in³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.cone-no-third",
+      "value": "27"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cone",
+     "labels": {
+      "r": "3 cm",
+      "h": "2 cm"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "6",
+     "suffix": "π cm³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.cone-no-third",
+      "value": "18"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.cylinder",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the volume. Answer in terms of π.",
+    "expression": {
+     "type": "shape",
+     "kind": "cone",
+     "labels": {
+      "r": "3 ft",
+      "h": "10 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "30",
+     "suffix": "π ft³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.cone-no-third",
+      "value": "90"
+     }
+    ]
+   }
+  ]
+ },
+ "geo.volume.prism": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "shape",
+     "kind": "prism",
+     "labels": {
+      "l": "7 ft",
+      "w": "4 ft",
+      "h": "5 ft"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "140",
+     "suffix": "ft³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "16"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "166"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "shape",
+     "kind": "prism",
+     "labels": {
+      "l": "10 m",
+      "w": "6 m",
+      "h": "8 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "480",
+     "suffix": "m³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "24"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "376"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "shape",
+     "kind": "prism",
+     "labels": {
+      "l": "8 m",
+      "w": "6 m",
+      "h": "9 m"
+     }
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "432",
+     "suffix": "m³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "23"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "348"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "words",
+     "text": "A fish tank is 7 in long, 5 in wide and 2 in tall. How much water does it hold?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "70",
+     "suffix": "in³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "14"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "118"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "words",
+     "text": "A fish tank is 5 in long, 6 in wide and 3 in tall. How much water does it hold?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "90",
+     "suffix": "in³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "14"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "126"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Find the volume.",
+    "expression": {
+     "type": "words",
+     "text": "A fish tank is 10 in long, 6 in wide and 5 in tall. How much water does it hold?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "300",
+     "suffix": "in³"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "21"
+     },
+     {
+      "id": "geo.volume-surface",
+      "value": "280"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A box has a volume of 250 m³. Its base is 10 m by 5 m. How tall is it?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "m"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "235"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A box has a volume of 70 cm³. Its base is 7 cm by 2 cm. How tall is it?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "cm"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "61"
+     }
+    ]
+   },
+   {
+    "generator": "geo.volume.prism",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Find the missing side.",
+    "expression": {
+     "type": "words",
+     "text": "A box has a volume of 270 in³. Its base is 9 in by 6 in. How tall is it?"
+    },
+    "answer": {
+     "type": "decimal",
+     "value": "5",
+     "suffix": "in"
+    },
+    "misconceptions": [
+     {
+      "id": "geo.volume-added",
+      "value": "255"
+     }
+    ]
+   }
+  ]
+ },
  "int.add-sub": {
   "version": 1,
   "problems": [

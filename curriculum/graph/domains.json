@@ -33,6 +33,11 @@
       "file": "rat.json"
     },
     {
+      "id": "geo",
+      "name": "Geometry and measurement",
+      "file": "geo.json"
+    },
+    {
       "id": "exp",
       "name": "Exponents and roots",
       "file": "exp.json"

@@ -460,10 +460,14 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterDec }), RAT);
   assert.equal(catchUpName(fractions.config, RAT), 'Ratios and percents check');
   const afterRat0 = { ...afterDec, nodes: { ...afterDec.nodes, ...Object.fromEntries(RAT.map((id) => [id, { status: 'known' }])) } };
+  const GEO = ['geo.units', 'geo.area', 'geo.circles', 'geo.volume'];
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat0 }), GEO);
+  assert.equal(catchUpName(fractions.config, GEO), 'Measurement check');
+  const afterGeo = { ...afterRat0, nodes: { ...afterRat0.nodes, ...Object.fromEntries(GEO.map((id) => [id, { status: 'known' }])) } };
   const EXP = ['exp.rules', 'exp.roots', 'exp.scinot'];
-  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat0 }), EXP);
+  assert.deepEqual(catchUpTargets({ ...fractions, prior: afterGeo }), EXP);
   assert.equal(catchUpName(fractions.config, EXP), 'Exponents and roots check');
-  const afterRat = { ...afterRat0, nodes: { ...afterRat0.nodes, ...Object.fromEntries(EXP.map((id) => [id, { status: 'known' }])) } };
+  const afterRat = { ...afterGeo, nodes: { ...afterGeo.nodes, ...Object.fromEntries(EXP.map((id) => [id, { status: 'known' }])) } };
   const LIN = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel', 'lin.graphing'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat }), LIN);
   assert.equal(catchUpName(fractions.config, LIN), 'Linear functions check');

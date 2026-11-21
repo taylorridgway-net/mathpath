@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.units",
+  "title": "Convert units",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "geo.units.convert": "To a smaller unit: multiply (there will be more of them). To a bigger unit: divide. 1 ft = 12 in, 1 yd = 3 ft, 1 hr = 60 min, 1 m = 100 cm, 1 km = 1000 m.",
+    "geo.units.two-step": "Go through the unit in between: yards → feet → inches. Multiply the two numbers, don't add them.",
+    "geo.units": "Smaller unit: multiply. Bigger unit: divide. Two steps if there's a unit in between."
+  },
+  "misconceptionMessages": {
+    "geo.units-wrong-way": "Check the direction: going to a smaller unit gives MORE of them (multiply); going to a bigger unit gives fewer (divide).",
+    "geo.units-wrong-factor": "Customary units don't go by tens: 1 foot = 12 inches, 1 hour = 60 minutes, 1 pound = 16 ounces.",
+    "geo.units-one-step": "There's a unit in between: you've done one step. Keep going (yards → feet → inches).",
+    "geo.units-added": "Multiply the conversion numbers, don't add them: 1 yard = 3 × 12 = 36 inches."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "geo.units.convert",
+      "forGap": "geo.units.convert",
+      "title": "Convert units",
+      "objective": "Convert 5 feet to inches, or 180 minutes to hours.",
+      "mode": "section",
+      "generator": "geo.units.convert",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A conversion number tells how many small units make one big one: 1 foot = 12 inches.",
+        "Smaller units come in bigger numbers: 5 feet is 60 inches."
+      ],
+      "visual": null,
+      "key": "To a smaller unit: multiply. To a bigger unit: divide. Use the right number: 12 in a foot, 60 in an hour, 100 cm in a meter.",
+      "worked": [
+        {
+          "math": "5 feet = ? inches",
+          "note": "inches are smaller: multiply"
+        },
+        {
+          "math": "5 × [[12]] = 60 inches",
+          "note": ""
+        },
+        {
+          "math": "180 minutes = ? hours",
+          "note": "hours are bigger: divide"
+        },
+        {
+          "math": "180 ÷ [[60]] = 3 hours",
+          "note": ""
+        },
+        {
+          "math": "750 g = 750 ÷ 1000 = [[0.75]] kg",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "geo.units.two-step",
+      "forGap": "geo.units.two-step",
+      "title": "Two steps",
+      "objective": "Convert yards to inches, or hours to seconds.",
+      "mode": "section",
+      "generator": "geo.units.two-step",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "When there's a unit in between, convert to it first."
+      ],
+      "visual": null,
+      "key": "Go through the unit in between, or multiply the two conversion numbers: 1 yard = 3 × 12 = 36 inches.",
+      "worked": [
+        {
+          "math": "2 yards = ? inches",
+          "note": ""
+        },
+        {
+          "math": "2 × 3 = [[6]] feet",
+          "note": "yards to feet"
+        },
+        {
+          "math": "6 × 12 = [[72]] inches",
+          "note": "feet to inches"
+        },
+        {
+          "math": "or 2 × 36 = 72",
+          "note": "1 yard = 36 inches"
+        }
+      ]
+    },
+    {
+      "id": "geo.units.whole",
+      "forGap": "geo.units",
+      "title": "Putting it together",
+      "objective": "Conversions, mixed.",
+      "mode": "skill",
+      "generator": "geo.units",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Smaller unit: multiply. Bigger unit: divide. Two steps when there's a unit in between.",
+      "worked": [
+        {
+          "math": "7200 seconds = ? hours",
+          "note": ""
+        },
+        {
+          "math": "7200 ÷ 60 = [[120]] minutes",
+          "note": ""
+        },
+        {
+          "math": "120 ÷ 60 = [[2]] hours",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

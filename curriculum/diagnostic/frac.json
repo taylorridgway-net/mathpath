@@ -60,6 +60,16 @@
       ]
     },
     {
+      "id": "measurement",
+      "name": "Measurement check",
+      "targets": [
+        "geo.units",
+        "geo.area",
+        "geo.circles",
+        "geo.volume"
+      ]
+    },
+    {
       "id": "exponents",
       "name": "Exponents and roots check",
       "targets": [

@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "skill": "geo.circles",
+  "title": "Circles",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "geo.circles.circumference": "Circumference = π × diameter = 2 × π × radius. Write the number in front of π.",
+    "geo.circles.area": "Area = π × radius × radius. If you're given the diameter, halve it first.",
+    "geo.circles": "Around: πd. Inside: πr². Radius is half the diameter."
+  },
+  "misconceptionMessages": {
+    "geo.circle-diameter-radius": "Check radius vs. diameter: the radius goes from the center to the edge; the diameter goes all the way across (twice the radius).",
+    "geo.circle-area-circumference": "Two formulas: around the circle (circumference) is 2πr; inside (area) is πr².",
+    "geo.half-forgot": "It's a half circle: take half of the whole circle's area."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "geo.circles.circumference",
+      "forGap": "geo.circles.circumference",
+      "title": "Circumference",
+      "objective": "Find the distance around a circle, in terms of π.",
+      "mode": "section",
+      "generator": "geo.circles.circumference",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Every circle's circumference is a little more than 3 times its diameter: exactly π times.",
+        "We write answers like 10π, without multiplying out π."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "circle",
+            "labels": {
+              "r": "5 cm"
+            }
+          },
+          "steps": [
+            "The radius is 5 cm, so the diameter is 10 cm.",
+            "Circumference = π × diameter = π × 10.",
+            "So C = 10π cm."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Circumference = π × diameter = 2 × π × radius."
+    },
+    {
+      "id": "geo.circles.area",
+      "forGap": "geo.circles.area",
+      "title": "Area of a circle",
+      "objective": "Find the area of a circle, in terms of π.",
+      "mode": "section",
+      "generator": "geo.circles.area",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "The area formula uses the radius squared: radius times radius."
+      ],
+      "visual": {
+        "widget": "shape-steps",
+        "params": {
+          "shape": {
+            "kind": "circle",
+            "labels": {
+              "d": "8 m"
+            }
+          },
+          "steps": [
+            "The diameter is 8 m, so the radius is 4 m.",
+            "Area = π × 4 × 4 = 16π.",
+            "So A = 16π m² (not 64π: that would use the diameter)."
+          ]
+        },
+        "caption": "Tap through."
+      },
+      "key": "Area = π × radius². Halve the diameter first if that's what you're given."
+    },
+    {
+      "id": "geo.circles.whole",
+      "forGap": "geo.circles",
+      "title": "Putting it together",
+      "objective": "Circumference and area, mixed.",
+      "mode": "skill",
+      "generator": "geo.circles",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Around the edge: 2πr. Inside: πr². Radius = half the diameter.",
+      "worked": [
+        {
+          "math": "radius 6",
+          "note": ""
+        },
+        {
+          "math": "circumference: 2 × 6 = [[12]]π",
+          "note": ""
+        },
+        {
+          "math": "area: 6 × 6 = [[36]]π",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

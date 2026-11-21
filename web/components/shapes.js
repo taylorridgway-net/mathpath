@@ -1,0 +1,101 @@
+// Labelled shape pictures for geometry and measurement problems (a "shape" node):
+//   { type: 'shape', kind, labels: { ... } } with labels like "8 cm" or "?".
+// kinds: rect (w, h) · parallelogram (base, height, side) · triangle (base, height) ·
+// trapezoid (top, bottom, height) · lshape (w, h, a, b: the cut corner) · circle (r or d) ·
+// prism (l, w, h) · cylinder (r, h) · cone (r, h) · right-triangle (a, b, c).
+// Pictures are not to scale; the labels carry the numbers.
+
+const NS = 'http://www.w3.org/2000/svg';
+
+export function drawShape(node) {
+  const L = node.labels || {};
+  const root = svg('svg', { viewBox: '0 -6 240 176', width: 240, class: 'm-pic m-shape', role: 'img' });
+  const line = (pts, cls = 'shape-edge', extra = {}) => root.append(svg('polyline', { points: pts.map((p) => p.join(',')).join(' '), class: cls, ...extra }));
+  const poly = (pts) => root.append(svg('polygon', { points: pts.map((p) => p.join(',')).join(' '), class: 'shape-fill' }));
+  const text = (x, y, t, anchor = 'middle') => { if (t === undefined) return; const e = svg('text', { x, y, 'text-anchor': anchor, class: t === '?' ? 'shape-label shape-ask' : 'shape-label' }); e.textContent = t; root.append(e); };
+  const dashed = (pts) => line(pts, 'shape-dash');
+  const rightMark = (x, y, dx, dy) => line([[x + dx, y], [x + dx, y + dy], [x, y + dy]], 'shape-thin');
+
+  switch (node.kind) {
+    case 'rect': {
+      poly([[40, 30], [200, 30], [200, 130], [40, 130]]);
+      text(120, 150, L.w); text(208, 85, L.h, 'start');
+      break;
+    }
+    case 'parallelogram': {
+      poly([[70, 30], [210, 30], [170, 130], [30, 130]]);
+      dashed([[70, 30], [70, 130]]); rightMark(70, 130, 10, -10);
+      text(100, 150, L.base); text(74, 85, L.height, 'start'); text(200, 85, L.side, 'start');
+      break;
+    }
+    case 'triangle': {
+      poly([[30, 130], [210, 130], [140, 30]]);
+      dashed([[140, 30], [140, 130]]); rightMark(140, 130, 10, -10);
+      text(120, 150, L.base); text(146, 90, L.height, 'start');
+      break;
+    }
+    case 'trapezoid': {
+      poly([[80, 30], [170, 30], [215, 130], [25, 130]]);
+      dashed([[80, 30], [80, 130]]); rightMark(80, 130, 10, -10);
+      text(125, 22, L.top); text(120, 150, L.bottom); text(86, 85, L.height, 'start');
+      break;
+    }
+    case 'lshape': {
+      // A w × h rectangle with an a × b corner cut from the top right.
+      poly([[40, 20], [130, 20], [130, 75], [200, 75], [200, 140], [40, 140]]);
+      text(120, 160, L.w); text(30, 85, L.h, 'end'); text(85, 14, L.top); text(206, 110, L.right, 'start');
+      break;
+    }
+    case 'circle': {
+      root.append(svg('circle', { cx: 120, cy: 85, r: 62, class: 'shape-fill' }));
+      root.append(svg('circle', { cx: 120, cy: 85, r: 3, class: 'shape-dot' }));
+      if (L.d !== undefined) { line([[58, 85], [182, 85]], 'shape-thin'); text(120, 78, L.d); } else { line([[120, 85], [182, 85]], 'shape-thin'); text(151, 78, L.r); }
+      break;
+    }
+    case 'prism': {
+      poly([[40, 60], [160, 60], [160, 140], [40, 140]]);
+      line([[40, 60], [80, 25], [200, 25], [160, 60]]); line([[200, 25], [200, 105], [160, 140]]);
+      dashed([[80, 25], [80, 105], [40, 140]]); dashed([[80, 105], [200, 105]]);
+      text(100, 158, L.l); text(208, 70, L.h, 'start'); text(188, 52, L.w, 'start');
+      break;
+    }
+    case 'cylinder': {
+      root.append(svg('rect', { x: 60, y: 35, width: 120, height: 100, class: 'shape-fill shape-noedge' }));
+      root.append(svg('ellipse', { cx: 120, cy: 135, rx: 60, ry: 16, class: 'shape-fill' }));
+      root.append(svg('ellipse', { cx: 120, cy: 35, rx: 60, ry: 16, class: 'shape-fill' }));
+      line([[60, 35], [60, 135]]); line([[180, 35], [180, 135]]);
+      if (L.d !== undefined) { line([[60, 35], [180, 35]], 'shape-thin'); text(120, 13, L.d); } else { line([[120, 35], [180, 35]], 'shape-thin'); text(150, 13, L.r); }
+      text(188, 90, L.h, 'start');
+      break;
+    }
+    case 'cone': {
+      root.append(svg('ellipse', { cx: 120, cy: 135, rx: 60, ry: 16, class: 'shape-fill' }));
+      line([[60, 135], [120, 20], [180, 135]]);
+      dashed([[120, 20], [120, 135]]); line([[120, 135], [180, 135]], 'shape-thin');
+      text(126, 85, L.h, 'start'); text(150, 155, L.r);
+      break;
+    }
+    case 'right-triangle': {
+      poly([[50, 135], [190, 135], [50, 35]]);
+      rightMark(50, 135, 12, -12);
+      text(120, 155, L.b); text(42, 88, L.a, 'end'); text(128, 78, L.c, 'start');
+      break;
+    }
+    default: throw new Error(`drawShape: unknown kind "${node.kind}"`);
+  }
+  root.setAttribute('aria-label', shapeWords(node));
+  return root;
+}
+
+// Plain words for a shape (screen readers and the text form).
+export function shapeWords({ kind, labels: L = {} }) {
+  const name = { rect: 'a rectangle', parallelogram: 'a parallelogram', triangle: 'a triangle', trapezoid: 'a trapezoid', lshape: 'an L-shape', circle: 'a circle', prism: 'a box (rectangular prism)', cylinder: 'a cylinder', cone: 'a cone', 'right-triangle': 'a right triangle' }[kind];
+  const parts = Object.entries(L).filter(([, v]) => v !== undefined).map(([k, v]) => `${({ w: 'width', h: 'height', l: 'length', r: 'radius', d: 'diameter', a: 'leg', b: 'leg', c: 'hypotenuse', top: 'top', bottom: 'bottom', right: 'right side', base: 'base', height: 'height', side: 'side' })[k] || k} ${v}`);
+  return `[${name}: ${parts.join(', ')}]`;
+}
+
+function svg(tag, attrs) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  return e;
+}
