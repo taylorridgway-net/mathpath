@@ -15,8 +15,7 @@ Answers: numbers (whole, negative, or a fraction in simplest form for slopes), a
 two boxes `y = [ ]x + [ ]` (the expressions keypad), so classic mistakes like swapping m and b are recognised.
 Graphs are pictures to read (a line through grid points), not something students draw: no new input method.
 
-Out for now: plotting points or drawing lines (next, needs a tap-on-the-grid input), systems of equations,
-domain and range.
+Out for now: systems of equations, domain and range.
 
 ## Decisions (Claude's defaults)
 
@@ -43,3 +42,7 @@ domain and range.
   (`lin.parallel`: slopes, "parallel, perpendicular or neither?", the line through a point; the equation question screens
   both). Equation answers are kept to whole-number slopes and intercepts (the two boxes take whole numbers).
   Linear functions check: median 10 questions, max 20; knows everything: 9.
+- Built 2026-11-21: graphing (`lin.graphing`: plot a point, graph y = mx + b). New answer input: the grid pad
+  (`web/components/grid-pad.js`): tap grid points (tap again to remove); for a line, any two points on it are right,
+  and the line is drawn through them (answer type `gridpoints`). Graphing a line screens plotting in the diagnostic.
+  Linear functions check: median 13 questions, max 22; knows everything: 10.

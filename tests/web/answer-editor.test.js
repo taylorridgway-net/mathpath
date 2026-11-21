@@ -96,6 +96,8 @@ test('screen-reader descriptions', () => {
 test('log text', () => {
   assert.equal(rawToText({}), '(blank)');
   assert.equal(rawToText({ whole: 2, num: 3, den: 4 }), '2 3/4');
+  assert.equal(rawToText({ points: [{ v: -2, closed: false }, { v: 4, closed: true }], shade: 'between' }), 'open dot at -2 and closed dot at 4, shaded between');
+  assert.equal(rawToText({ points: [[1, -3], [2, 0]] }), '(1, -3) and (2, 0)');
   assert.equal(rawToText({ num: 3, den: 4, negative: true }), '-3/4');
   assert.equal(rawToText({ whole: 12 }), '12');
 });

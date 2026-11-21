@@ -495,3 +495,21 @@ sup.pow { font-size: 0.65em; line-height: 0; vertical-align: 0.6em; }
 .slope-rise { stroke: var(--mark); stroke-width: 3; stroke-dasharray: 6 4; }
 .slope-label { font-size: 12px; font-weight: 700; fill: var(--ink); font-family: var(--font-ui); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
 .slope-b { fill: none; stroke: var(--bad); stroke-width: 3; }
+
+/* number line (graphing inequalities): drawn in problems, and the tap-to-answer pad */
+.numline-label { fill: var(--ink); font-family: var(--font-math); font-size: 14px; }
+.numline-shade { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
+.numline-arrow { fill: var(--accent); }
+.numline-dot { fill: var(--accent); stroke: var(--accent); stroke-width: 2.5; }
+.numline-open { fill: var(--surface); stroke: var(--accent); stroke-width: 2.5; }
+.numline-host { display: flex; justify-content: center; overflow-x: auto; }
+.numline-pad { cursor: pointer; touch-action: manipulation; max-width: 100%; height: auto; }
+.numline-choice { font-family: var(--font-ui); font-size: 1.1rem; min-height: 56px; }
+.choice.chosen { border-color: var(--accent); background: var(--accent-soft); }
+.numline-check { width: 100%; margin-top: 12px; min-height: 56px; border-radius: var(--radius); }
+.numline-check:disabled { opacity: 0.5; }
+.ineq-line-title { font-family: var(--font-math); font-size: 1.4rem; text-align: center; margin: 0 0 4px; }
+.gridpad { max-width: 100%; height: auto; }
+.gridpad-live { cursor: pointer; touch-action: manipulation; }
+.graph-axis { font-size: 13px; font-style: italic; fill: var(--muted); font-family: var(--font-math); }
+.gridpad-where { text-align: center; font-family: var(--font-math); font-size: 1.1rem; min-height: 1.4em; margin: 4px 0 0; }

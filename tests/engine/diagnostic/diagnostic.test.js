@@ -443,7 +443,7 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   assert.deepEqual(catchUpTargets({ ...fractions, prior }), ['frac.multiply', 'frac.divide', 'frac.signed', 'frac.compare']);
   // After today's fractions check: the later checks, one at a time (pre-algebra, then decimals).
   const now = compactResult(diagnose({}).result);
-  const ALG = ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.equations', 'alg.expressions', 'alg.multi-step', 'alg.inequalities'];
+  const ALG = ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.equations', 'alg.expressions', 'alg.multi-step', 'alg.inequalities', 'alg.inequality-graphs'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: now }), ALG);
   assert.equal(catchUpName(fractions.config, ALG), 'Pre-algebra check');
   const afterAlg = { ...now, nodes: { ...now.nodes, ...Object.fromEntries(ALG.map((id) => [id, { status: 'known' }])) } };
@@ -455,7 +455,7 @@ test('catch-up: finds exactly the skills that had no questions back then', () =>
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterDec }), RAT);
   assert.equal(catchUpName(fractions.config, RAT), 'Ratios and percents check');
   const afterRat = { ...afterDec, nodes: { ...afterDec.nodes, ...Object.fromEntries(RAT.map((id) => [id, { status: 'known' }])) } };
-  const LIN = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel'];
+  const LIN = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel', 'lin.graphing'];
   assert.deepEqual(catchUpTargets({ ...fractions, prior: afterRat }), LIN);
   assert.equal(catchUpName(fractions.config, LIN), 'Linear functions check');
   const afterLin = { ...afterRat, nodes: { ...afterRat.nodes, ...Object.fromEntries(LIN.map((id) => [id, { status: 'known' }])) } };
@@ -515,11 +515,12 @@ function preAlgebra(traits) {
   return runWithStudent(startDiagnostic({ ...fractions, config: { ...fractions.config, targets }, seed: 'pre', prior }), student);
 }
 
-test('pre-algebra check: knows everything -> one problem each for order of operations, powers, evaluating, equations, expressions, multi-step equations and inequalities, plus the negative-number parts', () => {
+test('pre-algebra check: knows everything -> one problem each for order of operations, powers, evaluating, equations, expressions, multi-step equations, inequalities and graphing them (plus reading a graph), plus the negative-number parts', () => {
   const result = preAlgebra({});
   assert.deepEqual(result.rootGaps, []);
   assert.equal(result.skills['alg.evaluate'], 'known');
-  assert.equal(result.questionCount, 10);
+  assert.equal(result.skills['alg.inequality-graphs'], 'known');
+  assert.equal(result.questionCount, 12);
   assert.equal(result.skills['alg.multi-step'], 'known');
   assert.equal(result.skills['alg.inequalities'], 'known');
   assert.equal(result.skills['alg.expressions'], 'known');
@@ -536,7 +537,7 @@ test('pre-algebra check: works left to right (2 + 3 × 4 = 20) -> gap on the ord
   // Parentheses and powers-in-expressions rest on it: "can't check yet", not asked.
   assert.ok(result.nodes['alg.order-ops.parens'].blockedBy || result.nodes['alg.order-ops.parens'].status === 'not-tested');
   assert.equal(statusOf(result, 'alg.exponents.evaluate'), 'known');
-  assert.ok(result.questionCount <= 9, `took ${result.questionCount}`);
+  assert.ok(result.questionCount <= 11, `took ${result.questionCount}`);
 });
 
 test('pre-algebra check: can\'t multiply integers -> the negative-number parts lead back to integer multiplying', () => {

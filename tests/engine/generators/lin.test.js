@@ -12,7 +12,7 @@ import { fraction, reduce, equals } from '../../../engine/math/fraction.js';
 
 const SEEDS = Array.from({ length: 250 }, (_, i) => `lin-${i}`);
 const catalog = new Map(JSON.parse(readFileSync(new URL('../../../curriculum/misconceptions/lin.json', import.meta.url), 'utf8')).misconceptions.map((m) => [m.id, m.pointsTo]));
-const PARTS = Object.keys(generators).filter((id) => id.startsWith('lin.') && !generators[id].mixed);
+const PARTS = Object.keys(generators).filter((id) => id.startsWith('lin.') && !id.startsWith('lin.graphing') && !generators[id].mixed); // graphing: lin-graphing.test.js
 const F = (n, d = 1) => fraction(n, d);
 const num = (t) => Number(t.replace('−', '-'));
 // A rule's text ("-6x + 1", "x^2 - 3x", "4 - 3x") as a JavaScript function of x.
@@ -150,7 +150,8 @@ for (const id of PARTS) {
 
 test('every linear-functions mistake in the catalog is generated', () => {
   const seen = new Set();
-  for (const seed of SEEDS) for (const id of PARTS) for (const d of DIFFICULTIES) for (const m of generateProblem(id, seed, d).misconceptions) seen.add(m.id);
+  const all = Object.keys(generators).filter((id) => id.startsWith('lin.') && !generators[id].mixed); // graphing too
+  for (const seed of SEEDS) for (const id of all) for (const d of DIFFICULTIES) for (const m of generateProblem(id, seed, d).misconceptions) seen.add(m.id);
   assert.deepEqual([...seen].sort(), [...catalog.keys()].sort());
 });
 

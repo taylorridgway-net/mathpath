@@ -377,6 +377,56 @@
           ]
         }
       ]
+    },
+    {
+      "id": "alg.inequality-graphs",
+      "name": "Graph inequalities",
+      "summary": "Graph x > 3 or −2 ≥ x on a number line (open and closed dots, which way to shade), write the inequality a graph shows, and graph compound inequalities (−2 < x ≤ 4; x < −1 or x ≥ 3), solving first when needed.",
+      "typicalGrade": 7,
+      "standards": [
+        "6.EE.B.8",
+        "7.EE.B.4b",
+        "HSA.CED.A.1"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "alg.inequality-graphs.graph",
+          "name": "Graph an inequality on a number line",
+          "prerequisites": [
+            {
+              "id": "alg.inequalities.solve",
+              "strength": "essential"
+            },
+            {
+              "id": "int.add-sub.same-sign",
+              "strength": "supporting",
+              "why": "Reading negative numbers on the line."
+            }
+          ]
+        },
+        {
+          "id": "alg.inequality-graphs.read",
+          "name": "Write the inequality a graph shows",
+          "prerequisites": [
+            {
+              "id": "alg.inequality-graphs.graph",
+              "strength": "essential"
+            }
+          ]
+        },
+        {
+          "id": "alg.inequality-graphs.compound",
+          "name": "Graph compound inequalities (and / or)",
+          "prerequisites": [
+            {
+              "id": "alg.inequality-graphs.graph",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -3,6 +3,8 @@
 // The plain-text version is attached as a label for screen readers.
 // inline: true draws it at text size, for math inside a sentence.
 
+import { drawNumberLine } from './number-line.js';
+import { drawGrid } from './grid-pad.js';
 import { drawColumn } from './column-view.js';
 import { toText } from '../../engine/problem/text.js';
 
@@ -72,6 +74,10 @@ function build(node) {
       return xyTable(node.rows);
     case 'graph':
       return lineGraph(node.points);
+    case 'numline':
+      return drawNumberLine(node).root;
+    case 'gridanswer':
+      return drawGrid({ points: node.points, line: node.line });
     case 'ratio': {
       const wrap = el('span', 'm-row');
       wrap.append(build(node.a), el('span', 'm-op', ':'), build(node.b));
@@ -106,7 +112,7 @@ function build(node) {
     case 'list': {
       const wrap = el('span', 'm-row');
       node.items.forEach((item, i) => {
-        if (i > 0) wrap.append(el('span', 'm-word', 'and'));
+        if (i > 0) wrap.append(el('span', 'm-word', node.word || 'and'));
         wrap.append(build(item));
       });
       return wrap;

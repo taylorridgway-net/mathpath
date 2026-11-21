@@ -252,6 +252,8 @@ function correct(problem) {
   if (a.type === 'set' || a.type === 'multiset') return { list: [...a.values] };
   if (a.form === 'exact') return { num: a.n, den: a.d };
   if (a.type === 'choice') return { choice: a.correct };
+  if (a.type === 'numline') return { points: a.points.map((q) => ({ ...q })), shade: a.shade };
+  if (a.type === 'gridpoints') return { points: (a.mode === 'line' ? a.example : a.points).map((q) => [...q]) };
   if (a.type === 'integer') return { whole: Math.abs(a.value), ...(a.value < 0 ? { negative: true } : {}) };
   if (a.type === 'linear') return { coef: a.coef, constant: a.constant };
   if (a.type === 'common-multiple') return { whole: a.least };
@@ -268,11 +270,16 @@ function mistake(problem, held) {
     if (typeof m.value === 'string') return { decimal: m.value };
     if (m.value.quotient !== undefined) return { whole: m.value.quotient, rem: m.value.remainder };
     if (m.value.coef !== undefined) return { coef: m.value.coef, constant: m.value.constant };
+    if (m.value.points && m.value.shade) return { points: m.value.points, shade: m.value.shade };
+    if (m.value.points) return { points: m.value.points };
+    if (m.value.m) return { points: [[0, 99], [1, 99]] }; // a wrong line (any wrong answer will do)
     return { num: Math.abs(m.value.n), den: m.value.d, ...(m.value.n < 0 ? { negative: true } : {}) };
   }
   const a = problem.answer;
   if (m?.test) return { list: [1] };
   if (a.type === 'choice') return { choice: m?.choice ?? (a.correct + 1) % a.options.length };
+  if (a.type === 'numline') return { points: a.points.map((q) => ({ ...q, closed: !q.closed })), shade: a.shade };
+  if (a.type === 'gridpoints') return { points: (a.mode === 'line' ? a.example : a.points).map(([u, v]) => [u, v + 1]) };
   if (a.type === 'quotient-remainder') return { whole: a.quotient + 1, rem: a.remainder };
   if (a.type === 'set' || a.type === 'multiset') return { list: a.values.slice(1) };
   if (a.type === 'integer') return { whole: Math.abs(a.value + 1), ...(a.value + 1 < 0 ? { negative: true } : {}) };

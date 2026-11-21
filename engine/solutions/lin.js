@@ -176,6 +176,25 @@ export function solveLinear(problem) {
       steps.push({ say: `So the equation is ${eqText(m, b)}.` });
       return steps;
     }
+    case 'lin.graphing.points': {
+      const [[px, py]] = a.points;
+      const across = px === 0 ? 'Stay on the y-axis (x is 0)' : `Start at (0, 0). Go ${px > 0 ? 'right' : 'left'} ${Math.abs(px)}`;
+      const up = py === 0 ? 'stay on the x-axis (y is 0)' : `go ${py > 0 ? 'up' : 'down'} ${Math.abs(py)}`;
+      return [
+        { say: `In (${n(px)}, ${n(py)}), the first number is x (across) and the second is y (up or down).` },
+        { say: `${across}, then ${up}. Put the point there.`, show: { type: 'gridanswer', points: a.points, line: false } },
+      ];
+    }
+    case 'lin.graphing.line': {
+      const [[, b], [run, top]] = a.example;
+      const rise = top - b;
+      const slope = run === 1 ? n(rise) : `${n(rise)}/${run}`;
+      return [
+        { say: `In ${toText(e).replace(/-/g, '−')}, b = ${n(b)}: the line crosses the y-axis at (0, ${n(b)}). Put the first point there.` },
+        { say: `The slope is ${slope}: rise ${n(rise)} for every run of ${run}. From (0, ${n(b)}) go right ${run} and ${rise > 0 ? 'up' : 'down'} ${Math.abs(rise)} to (${run}, ${n(top)}).` },
+        { say: `Draw the line through (0, ${n(b)}) and (${run}, ${n(top)}). (Any two points on it are right.)`, show: { type: 'gridanswer', points: a.example, line: true } },
+      ];
+    }
     default: throw new Error(`No worked solution for "${kind}"`);
   }
 }

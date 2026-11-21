@@ -16,6 +16,7 @@ import { equationGenerators } from './alg/equations.js';
 import { expressionGenerators } from './alg/expressions.js';
 import { multiStepGenerators } from './alg/multi-step.js';
 import { inequalityGenerators } from './alg/inequalities.js';
+import { inequalityGraphGenerators } from './alg/inequality-graphs.js';
 import { substituteGenerators } from './alg/substitute.js';
 import { wholeAddSubGenerators } from './whole/add-sub.js';
 import { wholeMultDivGenerators } from './whole/mult-div.js';
@@ -23,6 +24,7 @@ import { wholeFactorGenerators } from './whole/factors.js';
 import { decimalGenerators } from './dec/decimals.js';
 import { ratioGenerators } from './rat/ratios.js';
 import { linearGenerators } from './lin/linear.js';
+import { graphingGenerators } from './lin/graphing.js';
 
 export const generators = {
   ...addSubGenerators,
@@ -39,6 +41,7 @@ export const generators = {
   ...expressionGenerators,
   ...multiStepGenerators,
   ...inequalityGenerators,
+  ...inequalityGraphGenerators,
   ...substituteGenerators,
   ...wholeAddSubGenerators,
   ...wholeMultDivGenerators,
@@ -46,6 +49,7 @@ export const generators = {
   ...decimalGenerators,
   ...ratioGenerators,
   ...linearGenerators,
+  ...graphingGenerators,
 };
 
 export const DIFFICULTIES = [1, 2, 3];

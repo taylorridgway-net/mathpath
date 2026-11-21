@@ -257,6 +257,44 @@
           ]
         }
       ]
+    },
+    {
+      "id": "lin.graphing",
+      "name": "Graph points and lines",
+      "summary": "Plot points (x, y) on the coordinate grid, and graph a line from y = mx + b: start at b on the y-axis, then rise over run.",
+      "typicalGrade": 8,
+      "standards": [
+        "5.G.A.1",
+        "6.NS.C.6c",
+        "8.F.A.3"
+      ],
+      "status": "draft",
+      "prerequisites": [],
+      "subskills": [
+        {
+          "id": "lin.graphing.points",
+          "name": "Plot points on the coordinate grid",
+          "prerequisites": []
+        },
+        {
+          "id": "lin.graphing.line",
+          "name": "Graph a line from y = mx + b",
+          "prerequisites": [
+            {
+              "id": "lin.graphing.points",
+              "strength": "essential"
+            },
+            {
+              "id": "lin.slope-intercept.read",
+              "strength": "essential"
+            },
+            {
+              "id": "lin.slope.graph",
+              "strength": "essential"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

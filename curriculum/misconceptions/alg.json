@@ -211,6 +211,26 @@
       "id": "alg.eval-swapped",
       "description": "Puts each number in for the wrong letter.",
       "pointsTo": "alg.evaluate.two-letters"
+    },
+    {
+      "id": "alg.ineq-graph-dot",
+      "description": "Mixes up open and closed dots (a closed dot for <, an open one for ≤).",
+      "pointsTo": "alg.inequality-graphs.graph"
+    },
+    {
+      "id": "alg.ineq-graph-direction",
+      "description": "Shades the wrong way (x > 3 shaded toward smaller numbers).",
+      "pointsTo": "alg.inequality-graphs.graph"
+    },
+    {
+      "id": "alg.ineq-graph-reversed",
+      "description": "Reads 3 < x as if x were on the left: shades toward the numbers less than 3.",
+      "pointsTo": "alg.inequality-graphs.graph"
+    },
+    {
+      "id": "alg.compound-and-or",
+      "description": "Mixes up 'and' (between the dots) with 'or' (outward from both dots).",
+      "pointsTo": "alg.inequality-graphs.compound"
     }
   ]
 }

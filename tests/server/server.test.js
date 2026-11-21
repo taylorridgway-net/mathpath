@@ -295,7 +295,7 @@ test('catch-up check: only the new skills; re-graded from the saved result; the 
   assert.equal(res.summary.diagnostic.catchUp, true);
   assert.deepEqual(store.data.records.diagnostics.at(-1).targets, targets);
   // Next comes the pre-algebra check (one check at a time).
-  assert.deepEqual(catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior: after }), ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.equations', 'alg.expressions', 'alg.multi-step', 'alg.inequalities']);
+  assert.deepEqual(catchUpTargets({ graph: setup.graph, generators: setup.generators, config: setup.diagnosticConfig, prior: after }), ['alg.order-ops', 'alg.exponents', 'alg.evaluate', 'alg.equations', 'alg.expressions', 'alg.multi-step', 'alg.inequalities', 'alg.inequality-graphs']);
 });
 
 test('catch-up answers re-graded as a full diagnostic (or the other way round) are refused', () => {

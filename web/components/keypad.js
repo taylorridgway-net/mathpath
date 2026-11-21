@@ -11,6 +11,8 @@
 import { createAnswerState, applyKey, toRawAnswer, describeAnswer, fieldsFor, canSubmit } from './answer-editor.js';
 import { readAnswer } from '../../engine/grading/check-answer.js';
 import { createChoicePad } from './choice-pad.js';
+import { createNumberLinePad } from './number-line.js';
+import { createGridPad } from './grid-pad.js';
 
 // The two tool keys under backspace depend on the kind of answer.
 const TOOLS = {
@@ -43,6 +45,8 @@ export function keypadOptionsFor(problem) {
 function keypadKindFor(problem) {
   const type = problem.answer.type;
   if (type === 'choice') return { answerKind: 'choice', options: problem.answer.options };
+  if (type === 'gridpoints') return { answerKind: 'grid', count: problem.answer.count, line: problem.answer.mode === 'line' };
+  if (type === 'numline') return { answerKind: 'numline', lo: problem.answer.lo, hi: problem.answer.hi, count: problem.answer.points.length };
   if (type === 'quotient-remainder') return { answerKind: 'remainder' };
   if (type === 'linear') return { answerKind: 'linear', allowNegative: true };
   if (type === 'inequality') return { answerKind: 'inequality', allowFractions: true, allowNegative: true };
@@ -53,8 +57,11 @@ function keypadKindFor(problem) {
 
 export function createKeypad({
   host, allowFractions = false, allowNegative = false, answerKind = 'standard', separator = ',', options, onSubmit, onSkip, prefix = '', suffix = '',
+  lo, hi, count, line,
 }) {
   if (answerKind === 'choice') return createChoicePad({ host, options, onSubmit, onSkip });
+  if (answerKind === 'numline') return createNumberLinePad({ host, lo, hi, count, onSubmit, onSkip });
+  if (answerKind === 'grid') return createGridPad({ host, count, line, onSubmit, onSkip });
   let state = createAnswerState({ allowFractions, allowNegative, kind: answerKind });
   const keyRows = [
     ['7', '8', '9', 'backspace'],

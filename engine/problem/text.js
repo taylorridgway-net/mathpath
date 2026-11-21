@@ -87,7 +87,13 @@ export function toText(node) {
     case 'ineq':
       return `${toText(node.left)} ${node.op} ${toText(node.right)}`;
     case 'list':
-      return node.items.map(toText).join(' and ');
+      return node.items.map(toText).join(` ${node.word || 'and'} `);
+    case 'gridanswer':
+      return `[a grid: ${node.points.map(([a, b]) => `(${a}, ${b})`).join(' and ')}${node.line ? ' and the line through them' : ''}]`;
+    case 'numline': {
+      const dots = node.points.map((p) => `${p.closed ? 'closed' : 'open'} dot at ${p.v}`).join(', ');
+      return `[a number line: ${dots}, shaded ${node.shade}]`;
+    }
     case 'model': {
       const what = { bar: 'a bar cut into', area: 'a rectangle cut into', set: 'a group of' }[node.shape];
       const unit = node.shape === 'set' ? 'dots' : 'equal parts';

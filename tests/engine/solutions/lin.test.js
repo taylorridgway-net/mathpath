@@ -24,7 +24,11 @@ test('every stated calculation is right; the answer is in the last step', () => 
     }
     const a = p.answer;
     const last = steps.at(-1).say;
-    if (a.type === 'choice') {
+    if (a.type === 'gridpoints') {
+      const show = steps.at(-1).show;
+      assert.equal(show?.type, 'gridanswer', toText(p.expression));
+      assert.deepEqual(show.points, a.mode === 'line' ? a.example : a.points);
+    } else if (a.type === 'choice') {
       assert.ok(last.includes(a.options[a.correct]), `${toText(p.expression)}: ${last}`);
     } else if (a.type === 'linear') {
       const m = a.coef; const b = a.constant;

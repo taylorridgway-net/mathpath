@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.inequality-graphs",
+  "title": "Graph inequalities",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. Students draw graphs on paper, so a graph key is written in words in one fixed format: 'closed dot at −3, shaded right' (one dot: shaded left or right), or 'closed dot at −1 and open dot at 4, shaded between' (two dots, smaller first: shaded between or outward). An inequality key is 'x ≥ 48', '−2 ≤ x < 3' or 'x < −3 or x ≥ 2' (x on the left of a single inequality). 'Solve, then graph' keys give both: 'inequality; graph'. Anything after ' (' is a note for the teacher. 'math' is used only by the test that checks the answer key: 'graph INEQ' (the graph of INEQ), 'solve-graph INEQ' (solve INEQ, then its graph), 'read DOT N SHADE' or 'read DOT A DOT B SHADE' (the inequality a graph shows; DOT is open or closed, SHADE is left, right, between or outward). INEQ is written like 'x>3', '5>x', '-1<=x<4', 'x<-2 or x>=1', '1<5-2x<=9'.",
+  "directions": "Draw each graph on a number line: a closed (filled) dot for ≤ or ≥, an open dot for < or >, then shade the numbers that work. Show your work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        {
+          "id": "A1",
+          "kind": "computation",
+          "prompt": "Graph on a number line:  x ≥ −3",
+          "math": "graph x>=-3",
+          "answer": "closed dot at −3, shaded right"
+        },
+        {
+          "id": "A2",
+          "kind": "computation",
+          "prompt": "Graph on a number line:  5 > x",
+          "math": "graph 5>x",
+          "answer": "open dot at 5, shaded left (5 > x means x < 5)"
+        },
+        {
+          "id": "A3",
+          "kind": "computation",
+          "prompt": "A number line has a closed dot at −1 and an open dot at 4, with the part between them shaded. Write the inequality it shows.",
+          "math": "read closed -1 open 4 between",
+          "answer": "−1 ≤ x < 4"
+        },
+        {
+          "id": "A4",
+          "kind": "computation",
+          "prompt": "Solve, then graph:  1 < 5 − 2x ≤ 9",
+          "math": "solve-graph 1<5-2x<=9",
+          "answer": "−2 ≤ x < 2; closed dot at −2 and open dot at 2, shaded between (dividing by −2 flips both signs)"
+        },
+        {
+          "id": "A5",
+          "kind": "word",
+          "prompt": "To ride the roller coaster, you must be at least 48 inches tall. Write an inequality for the heights x (in inches) that may ride, and graph it.",
+          "math": "solve-graph x>=48",
+          "answer": "x ≥ 48; closed dot at 48, shaded right"
+        },
+        {
+          "id": "A6",
+          "kind": "word",
+          "prompt": "Maya graphed x < −2 or x ≥ 1 with an open dot at −2, a closed dot at 1, and the part between them shaded. Is she right? Explain, and describe the correct graph.",
+          "math": "graph x<-2 or x>=1",
+          "answer": "open dot at −2 and closed dot at 1, shaded outward (No: the dots are right, but “or” shades outward, away from each other)"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        {
+          "id": "B1",
+          "kind": "computation",
+          "prompt": "Graph on a number line:  x < 2",
+          "math": "graph x<2",
+          "answer": "open dot at 2, shaded left"
+        },
+        {
+          "id": "B2",
+          "kind": "computation",
+          "prompt": "Graph on a number line:  −4 ≤ x",
+          "math": "graph -4<=x",
+          "answer": "closed dot at −4, shaded right (−4 ≤ x means x ≥ −4)"
+        },
+        {
+          "id": "B3",
+          "kind": "computation",
+          "prompt": "A number line has an open dot at −3 and a closed dot at 2, with the line shaded outward from each dot (left of −3 and right of 2). Write the inequality it shows.",
+          "math": "read open -3 closed 2 outward",
+          "answer": "x < −3 or x ≥ 2"
+        },
+        {
+          "id": "B4",
+          "kind": "computation",
+          "prompt": "Solve, then graph:  −9 ≤ 4x − 1 < 11",
+          "math": "solve-graph -9<=4x-1<11",
+          "answer": "−2 ≤ x < 3; closed dot at −2 and open dot at 3, shaded between"
+        },
+        {
+          "id": "B5",
+          "kind": "word",
+          "prompt": "Tomorrow’s temperature will be between 20°F and 35°F, including 20 and 35. Write a compound inequality for the temperature x, and graph it.",
+          "math": "solve-graph 20<=x<=35",
+          "answer": "20 ≤ x ≤ 35; closed dot at 20 and closed dot at 35, shaded between"
+        },
+        {
+          "id": "B6",
+          "kind": "word",
+          "prompt": "Jordan solved −3x + 2 > 8 and graphed it with an open dot at −2, shaded right. Is he right? Explain, and give the correct answer and graph.",
+          "math": "solve-graph -3x+2>8",
+          "answer": "x < −2; open dot at −2, shaded left (No: dividing by −3 flips the sign, so shade left)"
+        }
+      ]
+    }
+  ]
+}

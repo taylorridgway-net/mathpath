@@ -126,6 +126,16 @@
       "id": "lin.parallel-copied",
       "description": "Keeps the given line's y-intercept instead of finding the new line's from the point.",
       "pointsTo": "lin.parallel.equation"
+    },
+    {
+      "id": "lin.plot-swapped",
+      "description": "Plots (x, y) the wrong way round: goes up first, then across ((3, −2) plotted at (−2, 3)).",
+      "pointsTo": "lin.graphing.points"
+    },
+    {
+      "id": "lin.plot-sign",
+      "description": "Goes the wrong way for a negative coordinate (left for positive x, or up for negative y).",
+      "pointsTo": "lin.graphing.points"
     }
   ]
 }

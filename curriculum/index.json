@@ -29,6 +29,7 @@
     "alg.expressions",
     "alg.multi-step",
     "alg.inequalities",
+    "alg.inequality-graphs",
     "alg.evaluate",
     "dec.place-value",
     "dec.convert",
@@ -43,7 +44,8 @@
     "lin.slope",
     "lin.slope-intercept",
     "lin.forms",
-    "lin.parallel"
+    "lin.parallel",
+    "lin.graphing"
   ],
   "papers": [
     "whole.add-sub",
@@ -64,6 +66,7 @@
     "alg.expressions",
     "alg.multi-step",
     "alg.inequalities",
+    "alg.inequality-graphs",
     "alg.evaluate",
     "dec.place-value",
     "dec.convert",
@@ -78,6 +81,7 @@
     "lin.slope",
     "lin.slope-intercept",
     "lin.forms",
-    "lin.parallel"
+    "lin.parallel",
+    "lin.graphing"
   ]
 }

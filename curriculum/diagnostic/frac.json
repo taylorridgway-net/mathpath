@@ -27,7 +27,8 @@
         "alg.equations",
         "alg.expressions",
         "alg.multi-step",
-        "alg.inequalities"
+        "alg.inequalities",
+        "alg.inequality-graphs"
       ]
     },
     {
@@ -59,7 +60,8 @@
         "lin.slope",
         "lin.slope-intercept",
         "lin.forms",
-        "lin.parallel"
+        "lin.parallel",
+        "lin.graphing"
       ]
     }
   ]

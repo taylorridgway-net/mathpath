@@ -283,6 +283,7 @@ const shortName = (id) => ({
   'alg.evaluate': 'Evaluate expressions',
   'alg.multi-step': 'Multi-step equations',
   'alg.inequalities': 'Inequalities',
+  'alg.inequality-graphs': 'Graph inequalities',
   'frac.multiply': 'Multiply',
   'frac.divide': 'Divide',
   'frac.signed': 'Negative fractions',
@@ -300,6 +301,7 @@ const shortName = (id) => ({
   'lin.slope-intercept': 'y = mx + b',
   'lin.forms': 'Point-slope & standard',
   'lin.parallel': 'Parallel & perpendicular',
+  'lin.graphing': 'Graph points & lines',
 }[id] || graph.get(id).name);
 
 // ---------- Class overview ----------

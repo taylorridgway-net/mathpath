@@ -68,3 +68,10 @@ test with checked keys, and diagnostic tests with pretend students.
 3. **Equations with fractions:** include ⅔x = 10 and x/4 = 6 at the hardest
    level? Recommendation: yes; the fractions skills are built, so a miss there
    can be traced to its cause.
+
+- **Graphing inequalities built (2026-11-21, owner: "pre algebra ... sounds good to build next"):** `alg.inequality-graphs`
+  (graph x > 3 and 3 < x; write the inequality a graph shows; compound inequalities with "and" (between), "or" (outward),
+  and solving −3 ≤ 2x + 1 < 7 first). New answer input: the number-line pad (`web/components/number-line.js`): tap the
+  line for a dot, tap the dot to make it open (again to remove it), then pick the shading (left/right, or between/outside);
+  answer type `numline`. One compound inequality screens graphing in the diagnostic; reading a graph is asked on its own.
+  Pre-algebra check: median 14 questions, max 22; knows everything: 12.

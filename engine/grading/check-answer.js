@@ -91,6 +91,10 @@ export function checkAnswer(problem, raw) {
       return checkDecimal(problem, raw);
     case 'inequality':
       return checkInequality(problem, raw);
+    case 'numline':
+      return checkNumberLine(problem, raw);
+    case 'gridpoints':
+      return checkGridPoints(problem, raw);
     default:
       throw new Error(`checkAnswer: unknown answer type "${expected.type}"`);
   }
@@ -170,6 +174,41 @@ function checkInequality(problem, raw) {
   const { sign, value } = problem.answer;
   if (raw.sign === sign && equals(read.value, value)) return read.simplest ? { status: 'correct' } : { status: 'not-simplified', hint: 'simplify' };
   return wrong(problem, (m) => m.sign === raw.sign && equals(fraction(m.value.n, m.value.d), read.value));
+}
+
+// A graph on the number line: raw { points: [{ v, closed }], shade }. Dots in any order.
+const SHADES = ['left', 'right', 'between', 'outside'];
+function graphOf(raw) {
+  if (!raw || !Array.isArray(raw.points) || !SHADES.includes(raw.shade)) return null;
+  if (!raw.points.every((p) => Number.isSafeInteger(p?.v) && typeof p.closed === 'boolean')) return null;
+  return { points: [...raw.points].sort((a, b) => a.v - b.v), shade: raw.shade };
+}
+const sameGraph = (g, h) => g.shade === h.shade && g.points.length === h.points.length
+  && g.points.every((p, i) => p.v === h.points[i].v && p.closed === h.points[i].closed);
+function checkNumberLine(problem, raw) {
+  const g = graphOf(raw);
+  if (!g || g.points.length !== problem.answer.points.length) return { status: 'invalid', reason: 'empty' };
+  if (sameGraph(g, problem.answer)) return { status: 'correct' };
+  return wrong(problem, (m) => m.value && sameGraph(g, m.value));
+}
+
+// Points tapped on the coordinate grid: raw { points: [[x, y], ...] }.
+// mode 'points': exactly these points (any order). mode 'line': two different points,
+// both on y = m x + b (wherever the student put them). A misconception's line or
+// points match the same way.
+const onLine = ([px, py], m, b) => (py * b.d - b.n) * m.d * b.d === m.n * px * b.d * b.d;
+function checkGridPoints(problem, raw) {
+  const a = problem.answer;
+  const pts = Array.isArray(raw?.points) ? raw.points : null;
+  if (!pts || pts.length !== a.count || !pts.every((p) => Array.isArray(p) && p.every(Number.isSafeInteger))) return { status: 'invalid', reason: 'empty' };
+  if (a.mode === 'line') {
+    if (pts[0][0] === pts[1][0] && pts[0][1] === pts[1][1]) return { status: 'invalid', reason: 'same-point' };
+    if (pts.every((p) => onLine(p, a.m, a.b))) return { status: 'correct' };
+    return wrong(problem, (m) => m.value?.m && pts.every((p) => onLine(p, m.value.m, m.value.b)));
+  }
+  const key = (list) => list.map((p) => p.join(',')).sort().join(' ');
+  if (key(pts) === key(a.points)) return { status: 'correct' };
+  return wrong(problem, (m) => m.value?.points && key(m.value.points) === key(pts));
 }
 
 // One of the answer buttons (<, =, >; or 0, 1/2, 1). A wrong button may match a

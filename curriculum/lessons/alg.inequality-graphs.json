@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "skill": "alg.inequality-graphs",
+  "title": "Graph inequalities",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "alg.inequality-graphs.graph": "Dot at the number: closed (filled) for ≤ or ≥, open for < or >. Shade toward the numbers that make it true: right for greater, left for less. If the number comes first (3 < x), read it from x's side (x > 3).",
+    "alg.inequality-graphs.read": "Open dot: < or >. Closed dot: ≤ or ≥. Shaded right: x is greater; shaded left: x is less.",
+    "alg.inequality-graphs.compound": "\"And\" (or a chain like −2 < x ≤ 4): shade between the dots. \"Or\": shade outward from each dot. Closed dots for ≤ and ≥.",
+    "alg.inequality-graphs": "Closed dot for ≤ or ≥, open for < or >. Shade toward the numbers that work; between for and, outward for or."
+  },
+  "misconceptionMessages": {
+    "alg.ineq-graph-dot": "Check the dots: closed (filled) means the number is included (≤ or ≥); open means it isn't (< or >).",
+    "alg.ineq-graph-direction": "Check the shading: greater than goes right (bigger numbers); less than goes left.",
+    "alg.ineq-graph-reversed": "The number comes first here. 3 < x means x > 3: read it from x's side, then shade.",
+    "alg.compound-and-or": "\"And\" means both are true at once: between the dots. \"Or\" means either one: outward from both dots."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "alg.inequality-graphs.graph",
+      "forGap": "alg.inequality-graphs.graph",
+      "title": "Graph an inequality",
+      "objective": "Graph x > 3 or −2 ≥ x on a number line.",
+      "mode": "section",
+      "generator": "alg.inequality-graphs.graph",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "An inequality has many answers: every number on one side of a boundary. The graph shows them all.",
+        "Tap the line to put a dot, tap the dot again to make it open, then choose the shading."
+      ],
+      "visual": {
+        "widget": "ineq-line",
+        "params": {
+          "lo": -6,
+          "hi": 6,
+          "examples": [
+            {
+              "text": "x > 3",
+              "points": [
+                {
+                  "v": 3,
+                  "closed": false
+                }
+              ],
+              "shade": "right",
+              "why": "Open dot: 3 itself isn't more than 3. Shade right: 4, 5, 3.5 … all work."
+            },
+            {
+              "text": "x ≤ −2",
+              "points": [
+                {
+                  "v": -2,
+                  "closed": true
+                }
+              ],
+              "shade": "left",
+              "why": "Closed dot: −2 is included (or equal to). Shade left, toward smaller numbers."
+            },
+            {
+              "text": "1 < x  (the same as x > 1)",
+              "points": [
+                {
+                  "v": 1,
+                  "closed": false
+                }
+              ],
+              "shade": "right",
+              "why": "The number comes first: read it from x's side. x is bigger than 1, so shade right."
+            }
+          ]
+        },
+        "caption": "Tap for the next example."
+      },
+      "key": "Dot at the number: closed for ≤ or ≥ (included), open for < or > (not included). Shade toward the numbers that work: right for greater, left for less."
+    },
+    {
+      "id": "alg.inequality-graphs.read",
+      "forGap": "alg.inequality-graphs.read",
+      "title": "Read a graph",
+      "objective": "Write the inequality a graph shows.",
+      "mode": "section",
+      "generator": "alg.inequality-graphs.read",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Work backwards: the dot gives the number, open or closed gives < or ≤, and the shading gives the direction."
+      ],
+      "visual": null,
+      "key": "Open dot: < or >. Closed dot: ≤ or ≥. Shaded right: x is greater. Shaded left: x is less.",
+      "worked": [
+        {
+          "math": "open dot at 2, shaded right",
+          "note": ""
+        },
+        {
+          "math": "x [[>]] 2",
+          "note": "open: not included; right: greater"
+        },
+        {
+          "math": "closed dot at −1, shaded left",
+          "note": ""
+        },
+        {
+          "math": "x [[≤]] −1",
+          "note": "closed: included; left: less"
+        }
+      ]
+    },
+    {
+      "id": "alg.inequality-graphs.compound",
+      "forGap": "alg.inequality-graphs.compound",
+      "title": "Compound inequalities",
+      "objective": "Graph −2 < x ≤ 4 and x < −1 or x ≥ 3, solving first when needed.",
+      "mode": "section",
+      "generator": "alg.inequality-graphs.compound",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "A compound inequality joins two: \"and\" means both must be true (between), \"or\" means either one (outward).",
+        "To solve −3 ≤ 2x + 1 < 7, do the same to all three parts."
+      ],
+      "visual": {
+        "widget": "ineq-line",
+        "params": {
+          "lo": -6,
+          "hi": 6,
+          "examples": [
+            {
+              "text": "−2 < x ≤ 4",
+              "points": [
+                {
+                  "v": -2,
+                  "closed": false
+                },
+                {
+                  "v": 4,
+                  "closed": true
+                }
+              ],
+              "shade": "between",
+              "why": "Both at once: x is between −2 and 4. Open at −2, closed at 4."
+            },
+            {
+              "text": "x < −1 or x ≥ 3",
+              "points": [
+                {
+                  "v": -1,
+                  "closed": false
+                },
+                {
+                  "v": 3,
+                  "closed": true
+                }
+              ],
+              "shade": "outside",
+              "why": "Either one: everything left of −1 and everything from 3 up. The middle doesn't work."
+            },
+            {
+              "text": "−3 ≤ 2x + 1 < 7  →  −2 ≤ x < 3",
+              "points": [
+                {
+                  "v": -2,
+                  "closed": true
+                },
+                {
+                  "v": 3,
+                  "closed": false
+                }
+              ],
+              "shade": "between",
+              "why": "Subtract 1 from all three parts, then divide all three by 2."
+            }
+          ]
+        },
+        "caption": "Tap for the next example."
+      },
+      "key": "\"And\" (or a chain like −2 < x ≤ 4): shade between the dots. \"Or\": shade outward from both. Closed dots for ≤ and ≥, open for < and >."
+    },
+    {
+      "id": "alg.inequality-graphs.whole",
+      "forGap": "alg.inequality-graphs",
+      "title": "Putting it together",
+      "objective": "Graphing, reading and compound inequalities, mixed.",
+      "mode": "skill",
+      "generator": "alg.inequality-graphs",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Closed dot for ≤ or ≥, open for < or >. Shade toward the numbers that work: between for and, outward for or.",
+      "worked": [
+        {
+          "math": "4 < 3x + 4 < 22",
+          "note": ""
+        },
+        {
+          "math": "0 < 3x < 18",
+          "note": "subtract 4 from all three parts"
+        },
+        {
+          "math": "[[0 < x < 6]]",
+          "note": "divide all three by 3"
+        },
+        {
+          "math": "open dots at 0 and 6, shade between",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

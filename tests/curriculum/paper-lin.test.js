@@ -19,13 +19,17 @@
 //   relation M1 M2           lines with slopes M1 and M2             key: "Parallel", "Perpendicular" or "Neither"
 //   linear table X Y X Y ... is the table linear? (x may jump unevenly) key: "Linear" or "Not linear"
 //   linear eq RULE           is y = RULE linear? (^ for powers)      key: "Linear" or "Not linear"
+//   plot X Y                 plot one point                          key: "(3, −2): right 3, down 2"
+//   plot-many X Y X Y ...    plot several points, in that order      key: those, joined by "; "
+//   graph M B                graph y = Mx + B                        key: "line through (0, B) and (Q, B + P)"
+//                            (M = P/Q in simplest form, Q > 0: the y-intercept, then one slope step)
 // M, X, Y, A, B, C may be fractions like -1/2.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
 const rules = JSON.parse(readFileSync(new URL('../../curriculum/mastery.json', import.meta.url), 'utf8')).default.verification;
-const skills = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel'];
+const skills = ['lin.functions', 'lin.slope', 'lin.slope-intercept', 'lin.forms', 'lin.parallel', 'lin.graphing'];
 const papers = skills.map((s) => JSON.parse(readFileSync(new URL(`../../curriculum/paper/${s}.json`, import.meta.url), 'utf8')));
 
 // Exact fractions as [n, d], d > 0, reduced.
@@ -112,6 +116,28 @@ function interceptsKey(answer) {
   const [x, y] = [num(m[1]), num(m[2])];
   return show(x) === m[1] && show(y) === m[2] ? { x, y } : null;
 }
+// Points: "(3, −2): right 3, down 2; (0, −4): down 4". Each point's moves must match its
+// coordinates: right/left first, then up/down, a 0 left out; (0, 0) is "at the origin".
+const moves = ([x, y]) => [x > 0 ? `right ${x}` : x < 0 ? `left ${-x}` : '', y > 0 ? `up ${y}` : y < 0 ? `down ${-y}` : '']
+  .filter(Boolean).join(', ') || 'at the origin';
+function pointsKey(answer) {
+  const body = norm(answer).split(' (')[0];
+  const out = [];
+  for (const part of body.split('; ')) {
+    const m = /^\((-?\d+), (-?\d+)\): (.+)$/.exec(part);
+    if (!m) return null;
+    const p = [Number(m[1]), Number(m[2])];
+    if (moves(p) !== m[3]) return null; // the words don't match the point
+    out.push(p);
+  }
+  return out;
+}
+// Lines: "line through (0, −3) and (1, −1)".
+function graphKey(answer) {
+  const m = /^line through \((-?\d+), (-?\d+)\) and \((-?\d+), (-?\d+)\)(?: \(|$)/.exec(norm(answer));
+  return m ? [[F(Number(m[1])), F(Number(m[2]))], [F(Number(m[3])), F(Number(m[4]))]] : null;
+}
+
 // One of a few words at the start: "Neither (No: ...)".
 const wordKey = (answer, words) => words.find((w) => new RegExp(`^${w}(?: \\(|$)`).test(answer)) ?? null;
 
@@ -186,6 +212,29 @@ function check(math, answer) {
     const want = yes ? 'Linear' : 'Not linear';
     return [wordKey(answer, ['Linear', 'Not linear']) === want, want];
   }
+  if (kind === 'plot' || kind === 'plot-many') { // plot X Y | plot-many X Y X Y ...
+    assert.ok(args.length % 2 === 0 && (kind === 'plot' ? args.length === 2 : args.length >= 4), math);
+    const want = [];
+    for (let i = 0; i < args.length; i += 2) want.push([Number(args[i]), Number(args[i + 1])]);
+    assert.ok(want.flat().every(Number.isInteger), `${math}: whole-number points`);
+    const key = pointsKey(answer);
+    const text = want.map((p) => `(${p[0]}, ${p[1]}): ${moves(p)}`).join('; ');
+    return [key !== null && key.length === want.length && key.every((p, i) => p[0] === want[i][0] && p[1] === want[i][1]), text];
+  }
+  if (kind === 'graph') { // graph M B
+    assert.equal(args.length, 2, math);
+    const [m, b] = args.map(num);
+    assert.equal(show(m), norm(args[0]).replace(/^\+/, ''), `${math}: slope in simplest form`);
+    const on = ([x, y]) => same(y, add(mul(m, x), b));
+    const [rise, run] = m; // run = the slope's denominator (> 0)
+    const want = [[F(0), b], [F(run), add(b, F(rise))]];
+    const key = graphKey(answer);
+    const ok = key !== null
+      && key.every(on) // both points on y = mx + b
+      && same(key[0][0], F(0)) && same(key[0][1], b) // first: the y-intercept (0, b)
+      && same(key[1][0], F(run)) && same(key[1][1], add(b, F(rise))); // second: one slope step on
+    return [ok, `line through (${want[0].map(show).join(', ')}) and (${want[1].map(show).join(', ')})`];
+  }
   throw new Error(`unknown calculation: ${math}`);
 }
 
@@ -255,4 +304,13 @@ test('the key readers catch wrong and unsimplified keys', () => {
   assert.ok(!check('linear table 1 5 2 8 3 11 5 14', 'Linear')[0]);
   assert.ok(check('linear eq x^2+1', 'Not linear')[0]);
   assert.ok(check('linear eq 5-2*x', 'Linear')[0]);
+  assert.ok(check('plot 3 -2', '(3, −2): right 3, down 2')[0]);
+  assert.ok(!check('plot 3 -2', '(−2, 3): left 2, up 3')[0], 'point swapped');
+  assert.ok(!check('plot 3 -2', '(3, −2): up 3, left 2')[0], 'words do not match the point');
+  assert.ok(check('plot-many 1 4 -2 3 0 -5', '(1, 4): right 1, up 4; (−2, 3): left 2, up 3; (0, −5): down 5')[0]);
+  assert.ok(!check('plot-many 1 4 -2 3 0 -5', '(1, 4): right 1, up 4; (−2, 3): left 2, up 3')[0], 'a point left out');
+  assert.ok(check('graph -2/3 1', 'line through (0, 1) and (3, −1)')[0]);
+  assert.ok(!check('graph -2/3 1', 'line through (0, 1) and (−3, 3)')[0], 'on the line, but not the next step');
+  assert.ok(!check('graph -2/3 1', 'line through (0, 1) and (2, −2)')[0], 'run over rise');
+  assert.ok(!check('graph 2 -3', 'line through (−3, 0) and (−2, 2)')[0], 'started on the x-axis');
 });

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.graphing",
+  "title": "Graph points and lines",
+  "status": "draft: written by Claude, waiting for owner review",
+  "about": "Teacher-verified mastery check. Written separately from the practice generators: different wordings, word problems, and an 'is this right?' item. Each item is worth 1 point. Students draw on paper, so a key is written in words in one fixed format. A point: '(3, −2): right 3, down 2' (from the origin: right or left first, then up or down; a 0 is left out, as in '(0, −4): down 4'); several points are listed in the order asked, separated by '; '. A line: 'line through (0, −3) and (1, −1)': the y-intercept first, then the next point found with the slope (run = the slope's denominator, rise = its numerator). Anything after ' (' is a note for the teacher. 'math' is used only by the test that checks the answer key: 'plot X Y' (one point), 'plot-many X Y X Y ...' (several points, in order), 'graph M B' (the line y = Mx + B; M may be a fraction like -2/3).",
+  "directions": "Use a coordinate grid for each item. Label every point you plot. For a line, plot at least two points, then draw the line through them with a ruler. Show your work.",
+  "versions": [
+    {
+      "id": "A",
+      "items": [
+        { "id": "A1", "kind": "computation", "prompt": "Plot and label the points A(−5, 1) and B(0, −4).", "math": "plot-many -5 1 0 -4", "answer": "(−5, 1): left 5, up 1; (0, −4): down 4" },
+        { "id": "A2", "kind": "computation", "prompt": "Graph the line y = 2x − 3.", "math": "graph 2 -3", "answer": "line through (0, −3) and (1, −1)" },
+        { "id": "A3", "kind": "computation", "prompt": "Graph the line y = −(2/3)x + 1.", "math": "graph -2/3 1", "answer": "line through (0, 1) and (3, −1)" },
+        { "id": "A4", "kind": "word", "prompt": "A taxi charges $3 when you get in, plus $2 for each mile. The total cost is y = 2x + 3 dollars for a ride of x miles. Graph this line.", "math": "graph 2 3", "answer": "line through (0, 3) and (1, 5) (only the part with x ≥ 0 makes sense for miles; a ray starting at (0, 3) is fine)" },
+        { "id": "A5", "kind": "word", "prompt": "A town map is drawn on a coordinate grid, with 1 square = 1 block. The library is at (−4, 3), the school is at (2, −5), and the pool is at (6, 0). Plot and label all three places.", "math": "plot-many -4 3 2 -5 6 0", "answer": "(−4, 3): left 4, up 3; (2, −5): right 2, down 5; (6, 0): right 6" },
+        { "id": "A6", "kind": "word", "prompt": "Jamal plots the point (−4, 2) by starting at the origin, going up 4, and then going left 2. Is he right? Explain, and plot the point correctly.", "math": "plot -4 2", "answer": "(−4, 2): left 4, up 2 (No: the first number tells how far to go left or right, the second how far up or down; he swapped them and plotted (−2, 4))" }
+      ]
+    },
+    {
+      "id": "B",
+      "items": [
+        { "id": "B1", "kind": "computation", "prompt": "Plot and label the points C(−3, −6) and D(0, 5).", "math": "plot-many -3 -6 0 5", "answer": "(−3, −6): left 3, down 6; (0, 5): up 5" },
+        { "id": "B2", "kind": "computation", "prompt": "Graph the line y = −3x + 4.", "math": "graph -3 4", "answer": "line through (0, 4) and (1, 1)" },
+        { "id": "B3", "kind": "computation", "prompt": "Graph the line y = (3/4)x − 2.", "math": "graph 3/4 -2", "answer": "line through (0, −2) and (4, 1)" },
+        { "id": "B4", "kind": "word", "prompt": "A climbing gym charges a $5 sign-up fee plus $4 for each visit. The total cost is y = 4x + 5 dollars for x visits. Graph this line.", "math": "graph 4 5", "answer": "line through (0, 5) and (1, 9) (only x ≥ 0 makes sense for visits; dots at whole numbers or a ray from (0, 5) are both fine)" },
+        { "id": "B5", "kind": "word", "prompt": "A treasure map is drawn on a coordinate grid. The ship is at (−6, −2), the cave is at (3, 4), and the palm tree is at (0, −5). Plot and label all three places.", "math": "plot-many -6 -2 3 4 0 -5", "answer": "(−6, −2): left 6, down 2; (3, 4): right 3, up 4; (0, −5): down 5" },
+        { "id": "B6", "kind": "word", "prompt": "Lena graphs y = −(1/2)x + 3. She puts a dot at (0, 3), then goes right 1 and down 2 to put her next dot. Is she right? Explain, and graph the line correctly.", "math": "graph -1/2 3", "answer": "line through (0, 3) and (2, 2) (No: her start is right, but right 1, down 2 is a slope of −2; a slope of −1/2 means right 2, down 1)" }
+      ]
+    }
+  ]
+}

@@ -7378,6 +7378,2283 @@
    }
   ]
  },
+ "alg.inequality-graphs": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "ineq",
+      "op": "<",
+      "left": {
+       "type": "int",
+       "value": 1
+      },
+      "right": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 1,
+       "closed": false
+      },
+      {
+       "v": 4,
+       "closed": true
+      }
+     ],
+     "shade": "between",
+     "lo": -3,
+     "hi": 9
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": 1,
+         "closed": false
+        },
+        {
+         "v": 4,
+         "closed": true
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 1,
+         "closed": true
+        },
+        {
+         "v": 4,
+         "closed": false
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.compound"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "ineq",
+      "op": "<",
+      "left": {
+       "type": "int",
+       "value": -5
+      },
+      "right": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 0
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -5,
+       "closed": false
+      },
+      {
+       "v": 0,
+       "closed": false
+      }
+     ],
+     "shade": "between",
+     "lo": -8,
+     "hi": 4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -5,
+         "closed": false
+        },
+        {
+         "v": 0,
+         "closed": false
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -5,
+         "closed": true
+        },
+        {
+         "v": 0,
+         "closed": true
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.compound"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -6,
+     "hi": 6,
+     "points": [
+      {
+       "v": 0,
+       "closed": true
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 0,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": ">",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "≤",
+      "value": {
+       "n": 0,
+       "d": 1
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.read"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -3,
+     "hi": 9,
+     "points": [
+      {
+       "v": 3,
+       "closed": false
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 3,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": "≥",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "<",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.read"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "list",
+     "word": "or",
+     "items": [
+      {
+       "type": "ineq",
+       "op": "<",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": -3
+       }
+      },
+      {
+       "type": "ineq",
+       "op": ">",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 4
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -3,
+       "closed": false
+      },
+      {
+       "v": 4,
+       "closed": false
+      }
+     ],
+     "shade": "outside",
+     "lo": -5,
+     "hi": 7
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": false
+        },
+        {
+         "v": 4,
+         "closed": false
+        }
+       ],
+       "shade": "between"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": true
+        },
+        {
+         "v": 4,
+         "closed": true
+        }
+       ],
+       "shade": "outside"
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.compound"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -10,
+     "hi": 2,
+     "points": [
+      {
+       "v": -4,
+       "closed": false
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": -4,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": "≥",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "<",
+      "value": {
+       "n": -4,
+       "d": 1
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.read"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 0
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 1,
+       "closed": false
+      }
+     ],
+     "shade": "left",
+     "lo": -5,
+     "hi": 7
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 1,
+         "closed": true
+        }
+       ],
+       "shade": "left"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "value": {
+       "points": [
+        {
+         "v": 1,
+         "closed": false
+        }
+       ],
+       "shade": "right"
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.graph"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": "≥",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 3,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 5
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 14
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 3,
+       "closed": true
+      }
+     ],
+     "shade": "right",
+     "lo": -3,
+     "hi": 9
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 3,
+         "closed": false
+        }
+       ],
+       "shade": "right"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "value": {
+       "points": [
+        {
+         "v": 3,
+         "closed": true
+        }
+       ],
+       "shade": "left"
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.graph"
+   },
+   {
+    "generator": "alg.inequality-graphs",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -11,
+     "hi": 1,
+     "points": [
+      {
+       "v": -5,
+       "closed": false
+      }
+     ],
+     "shade": "left"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "<",
+     "value": {
+      "n": -5,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": "≤",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": ">",
+      "value": {
+       "n": -5,
+       "d": 1
+      }
+     }
+    ],
+    "part": "alg.inequality-graphs.read"
+   }
+  ]
+ },
+ "alg.inequality-graphs.compound": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "ineq",
+      "op": "≤",
+      "left": {
+       "type": "int",
+       "value": -6
+      },
+      "right": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -1
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -6,
+       "closed": true
+      },
+      {
+       "v": -1,
+       "closed": true
+      }
+     ],
+     "shade": "between",
+     "lo": -9,
+     "hi": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -6,
+         "closed": true
+        },
+        {
+         "v": -1,
+         "closed": true
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -6,
+         "closed": false
+        },
+        {
+         "v": -1,
+         "closed": false
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "ineq",
+      "op": "<",
+      "left": {
+       "type": "int",
+       "value": 2
+      },
+      "right": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 2,
+       "closed": false
+      },
+      {
+       "v": 9,
+       "closed": false
+      }
+     ],
+     "shade": "between",
+     "lo": 0,
+     "hi": 12
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": 2,
+         "closed": false
+        },
+        {
+         "v": 9,
+         "closed": false
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 2,
+         "closed": true
+        },
+        {
+         "v": 9,
+         "closed": true
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "ineq",
+      "op": "≤",
+      "left": {
+       "type": "int",
+       "value": -6
+      },
+      "right": {
+       "type": "var",
+       "name": "x"
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 0
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -6,
+       "closed": true
+      },
+      {
+       "v": 0,
+       "closed": false
+      }
+     ],
+     "shade": "between",
+     "lo": -9,
+     "hi": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -6,
+         "closed": true
+        },
+        {
+         "v": 0,
+         "closed": false
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -6,
+         "closed": false
+        },
+        {
+         "v": 0,
+         "closed": true
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "list",
+     "word": "or",
+     "items": [
+      {
+       "type": "ineq",
+       "op": "<",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      },
+      {
+       "type": "ineq",
+       "op": ">",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 1,
+       "closed": false
+      },
+      {
+       "v": 3,
+       "closed": false
+      }
+     ],
+     "shade": "outside",
+     "lo": -4,
+     "hi": 8
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": 1,
+         "closed": false
+        },
+        {
+         "v": 3,
+         "closed": false
+        }
+       ],
+       "shade": "between"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 1,
+         "closed": true
+        },
+        {
+         "v": 3,
+         "closed": true
+        }
+       ],
+       "shade": "outside"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "list",
+     "word": "and",
+     "items": [
+      {
+       "type": "ineq",
+       "op": ">",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": -3
+       }
+      },
+      {
+       "type": "ineq",
+       "op": "≤",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": -1
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -3,
+       "closed": false
+      },
+      {
+       "v": -1,
+       "closed": true
+      }
+     ],
+     "shade": "between",
+     "lo": -8,
+     "hi": 4
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": false
+        },
+        {
+         "v": -1,
+         "closed": true
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": true
+        },
+        {
+         "v": -1,
+         "closed": false
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "list",
+     "word": "and",
+     "items": [
+      {
+       "type": "ineq",
+       "op": ">",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": -2
+       }
+      },
+      {
+       "type": "ineq",
+       "op": "≤",
+       "left": {
+        "type": "var",
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     ]
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -2,
+       "closed": false
+      },
+      {
+       "v": 3,
+       "closed": true
+      }
+     ],
+     "shade": "between",
+     "lo": -5,
+     "hi": 7
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -2,
+         "closed": false
+        },
+        {
+         "v": 3,
+         "closed": true
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -2,
+         "closed": true
+        },
+        {
+         "v": 3,
+         "closed": false
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "ineq",
+      "op": "<",
+      "left": {
+       "type": "int",
+       "value": 3
+      },
+      "right": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 3
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 18
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 2,
+       "closed": false
+      },
+      {
+       "v": 7,
+       "closed": true
+      }
+     ],
+     "shade": "between",
+     "lo": -1,
+     "hi": 11
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": 2,
+         "closed": false
+        },
+        {
+         "v": 7,
+         "closed": true
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 2,
+         "closed": true
+        },
+        {
+         "v": 7,
+         "closed": false
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "ineq",
+      "op": "≤",
+      "left": {
+       "type": "int",
+       "value": -5
+      },
+      "right": {
+       "type": "op",
+       "op": "-",
+       "left": {
+        "type": "term",
+        "coef": 2,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 1
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -2,
+       "closed": true
+      },
+      {
+       "v": 5,
+       "closed": false
+      }
+     ],
+     "shade": "between",
+     "lo": -4,
+     "hi": 8
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -2,
+         "closed": true
+        },
+        {
+         "v": 5,
+         "closed": false
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -2,
+         "closed": false
+        },
+        {
+         "v": 5,
+         "closed": true
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.compound",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": "<",
+     "left": {
+      "type": "ineq",
+      "op": "<",
+      "left": {
+       "type": "int",
+       "value": -4
+      },
+      "right": {
+       "type": "op",
+       "op": "+",
+       "left": {
+        "type": "term",
+        "coef": 3,
+        "name": "x"
+       },
+       "right": {
+        "type": "int",
+        "value": 5
+       }
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 17
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -3,
+       "closed": false
+      },
+      {
+       "v": 4,
+       "closed": false
+      }
+     ],
+     "shade": "between",
+     "lo": -5,
+     "hi": 7
+    },
+    "misconceptions": [
+     {
+      "id": "alg.compound-and-or",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": false
+        },
+        {
+         "v": 4,
+         "closed": false
+        }
+       ],
+       "shade": "outside"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": true
+        },
+        {
+         "v": 4,
+         "closed": true
+        }
+       ],
+       "shade": "between"
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.inequality-graphs.graph": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "var",
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": -1
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -1,
+       "closed": true
+      }
+     ],
+     "shade": "left",
+     "lo": -7,
+     "hi": 5
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -1,
+         "closed": false
+        }
+       ],
+       "shade": "left"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "value": {
+       "points": [
+        {
+         "v": -1,
+         "closed": true
+        }
+       ],
+       "shade": "right"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "var",
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": 2
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 2,
+       "closed": false
+      }
+     ],
+     "shade": "right",
+     "lo": -4,
+     "hi": 8
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 2,
+         "closed": true
+        }
+       ],
+       "shade": "right"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "value": {
+       "points": [
+        {
+         "v": 2,
+         "closed": false
+        }
+       ],
+       "shade": "left"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "var",
+      "name": "x"
+     },
+     "right": {
+      "type": "int",
+      "value": -3
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -3,
+       "closed": true
+      }
+     ],
+     "shade": "left",
+     "lo": -9,
+     "hi": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": false
+        }
+       ],
+       "shade": "left"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": true
+        }
+       ],
+       "shade": "right"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "int",
+      "value": 0
+     },
+     "right": {
+      "type": "var",
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 0,
+       "closed": false
+      }
+     ],
+     "shade": "left",
+     "lo": -6,
+     "hi": 6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 0,
+         "closed": true
+        }
+       ],
+       "shade": "left"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-reversed",
+      "value": {
+       "points": [
+        {
+         "v": 0,
+         "closed": false
+        }
+       ],
+       "shade": "right"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "int",
+      "value": -3
+     },
+     "right": {
+      "type": "var",
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -3,
+       "closed": false
+      }
+     ],
+     "shade": "left",
+     "lo": -9,
+     "hi": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": true
+        }
+       ],
+       "shade": "left"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-reversed",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": false
+        }
+       ],
+       "shade": "right"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Graph the inequality.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "int",
+      "value": -1
+     },
+     "right": {
+      "type": "var",
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -1,
+       "closed": true
+      }
+     ],
+     "shade": "right",
+     "lo": -7,
+     "hi": 5
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -1,
+         "closed": false
+        }
+       ],
+       "shade": "right"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-reversed",
+      "value": {
+       "points": [
+        {
+         "v": -1,
+         "closed": true
+        }
+       ],
+       "shade": "left"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": "≤",
+     "left": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": 4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 7
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 9
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 4,
+       "closed": true
+      }
+     ],
+     "shade": "left",
+     "lo": -2,
+     "hi": 10
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 4,
+         "closed": false
+        }
+       ],
+       "shade": "left"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "value": {
+       "points": [
+        {
+         "v": 4,
+         "closed": true
+        }
+       ],
+       "shade": "right"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": 5,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 6
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": -9
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": -3,
+       "closed": false
+      }
+     ],
+     "shade": "right",
+     "lo": -9,
+     "hi": 3
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": true
+        }
+       ],
+       "shade": "right"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "value": {
+       "points": [
+        {
+         "v": -3,
+         "closed": false
+        }
+       ],
+       "shade": "left"
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.graph",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Solve, then graph.",
+    "expression": {
+     "type": "ineq",
+     "op": ">",
+     "left": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -4,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 4
+      }
+     },
+     "right": {
+      "type": "int",
+      "value": 4
+     }
+    },
+    "answer": {
+     "type": "numline",
+     "points": [
+      {
+       "v": 0,
+       "closed": false
+      }
+     ],
+     "shade": "left",
+     "lo": -6,
+     "hi": 6
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-no-flip",
+      "value": {
+       "points": [
+        {
+         "v": 0,
+         "closed": false
+        }
+       ],
+       "shade": "right"
+      }
+     },
+     {
+      "id": "alg.ineq-graph-dot",
+      "value": {
+       "points": [
+        {
+         "v": 0,
+         "closed": true
+        }
+       ],
+       "shade": "left"
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "alg.inequality-graphs.read": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -3,
+     "hi": 9,
+     "points": [
+      {
+       "v": 3,
+       "closed": true
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 3,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": ">",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "≤",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -5,
+     "hi": 7,
+     "points": [
+      {
+       "v": 1,
+       "closed": true
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 1,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": ">",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "≤",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -3,
+     "hi": 9,
+     "points": [
+      {
+       "v": 3,
+       "closed": true
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 3,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": ">",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "≤",
+      "value": {
+       "n": 3,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": 0,
+     "hi": 12,
+     "points": [
+      {
+       "v": 6,
+       "closed": false
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 6,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": "≥",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "<",
+      "value": {
+       "n": 6,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -8,
+     "hi": 4,
+     "points": [
+      {
+       "v": -2,
+       "closed": false
+      }
+     ],
+     "shade": "left"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "<",
+     "value": {
+      "n": -2,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": "≤",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": ">",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -5,
+     "hi": 7,
+     "points": [
+      {
+       "v": 1,
+       "closed": true
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 1,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": ">",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "≤",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -8,
+     "hi": 4,
+     "points": [
+      {
+       "v": -2,
+       "closed": true
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": -2,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": ">",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "≤",
+      "value": {
+       "n": -2,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -5,
+     "hi": 7,
+     "points": [
+      {
+       "v": 1,
+       "closed": true
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": "≥",
+     "value": {
+      "n": 1,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": ">",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "≤",
+      "value": {
+       "n": 1,
+       "d": 1
+      }
+     }
+    ]
+   },
+   {
+    "generator": "alg.inequality-graphs.read",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Write the inequality the graph shows.",
+    "expression": {
+     "type": "numline",
+     "lo": -2,
+     "hi": 10,
+     "points": [
+      {
+       "v": 4,
+       "closed": false
+      }
+     ],
+     "shade": "right"
+    },
+    "answer": {
+     "type": "inequality",
+     "sign": ">",
+     "value": {
+      "n": 4,
+      "d": 1
+     }
+    },
+    "misconceptions": [
+     {
+      "id": "alg.ineq-graph-dot",
+      "sign": "≥",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     },
+     {
+      "id": "alg.ineq-graph-direction",
+      "sign": "<",
+      "value": {
+       "n": 4,
+       "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
  "alg.multi-step": {
   "version": 1,
   "problems": [
@@ -31637,6 +33914,1991 @@
       "value": {
        "n": -9,
        "d": 1
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.graphing": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 3,
+     "y": 5
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       3,
+       5
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         5,
+         3
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -3,
+         5
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         3,
+         -5
+        ]
+       ]
+      }
+     }
+    ],
+    "part": "lin.graphing.points"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 4,
+     "y": 2
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       4,
+       2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         2,
+         4
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -4,
+         2
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         4,
+         -2
+        ]
+       ]
+      }
+     }
+    ],
+    "part": "lin.graphing.points"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 2,
+     "y": 1
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       2,
+       1
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         1,
+         2
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -2,
+         1
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         2,
+         -1
+        ]
+       ]
+      }
+     }
+    ],
+    "part": "lin.graphing.points"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": -5,
+     "y": 4
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       -5,
+       4
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         4,
+         -5
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         5,
+         4
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -5,
+         -4
+        ]
+       ]
+      }
+     }
+    ],
+    "part": "lin.graphing.points"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": -1,
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": -1,
+      "d": 1
+     },
+     "b": {
+      "n": 1,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       0
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 1
+       },
+       "b": {
+        "n": -1,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 1
+       },
+       "b": {
+        "n": 1,
+        "d": 1
+       }
+      }
+     }
+    ],
+    "part": "lin.graphing.line"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 3,
+     "y": -5
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       3,
+       -5
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         -5,
+         3
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -3,
+         -5
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         3,
+         5
+        ]
+       ]
+      }
+     }
+    ],
+    "part": "lin.graphing.points"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 0,
+     "y": 5
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       0,
+       5
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         5,
+         0
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         0,
+         -5
+        ]
+       ]
+      }
+     }
+    ],
+    "part": "lin.graphing.points"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 1,
+        "d": 2
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": 1,
+      "d": 2
+     },
+     "b": {
+      "n": -1,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       -1
+      ],
+      [
+       2,
+       0
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 1
+       },
+       "b": {
+        "n": 1,
+        "d": 2
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": 2,
+        "d": 1
+       },
+       "b": {
+        "n": -1,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 2
+       },
+       "b": {
+        "n": -1,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 2
+       },
+       "b": {
+        "n": 1,
+        "d": 2
+       }
+      }
+     }
+    ],
+    "part": "lin.graphing.line"
+   },
+   {
+    "generator": "lin.graphing",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": -3,
+     "y": 0
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       -3,
+       0
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         0,
+         -3
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         3,
+         0
+        ]
+       ]
+      }
+     }
+    ],
+    "part": "lin.graphing.points"
+   }
+  ]
+ },
+ "lin.graphing.line": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": 1,
+      "d": 1
+     },
+     "b": {
+      "n": -3,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       -3
+      ],
+      [
+       1,
+       -2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": -3,
+        "d": 1
+       },
+       "b": {
+        "n": 1,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 1
+       },
+       "b": {
+        "n": -3,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 1
+       },
+       "b": {
+        "n": 3,
+        "d": 1
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "term",
+      "coef": 2,
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": 2,
+      "d": 1
+     },
+     "b": {
+      "n": 0,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       0
+      ],
+      [
+       1,
+       2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": 0,
+        "d": 1
+       },
+       "b": {
+        "n": 2,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 2
+       },
+       "b": {
+        "n": 0,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": -2,
+        "d": 1
+       },
+       "b": {
+        "n": 0,
+        "d": 1
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "var",
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": 1,
+      "d": 1
+     },
+     "b": {
+      "n": -3,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       -3
+      ],
+      [
+       1,
+       -2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": -3,
+        "d": 1
+       },
+       "b": {
+        "n": 1,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 1
+       },
+       "b": {
+        "n": -3,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 1
+       },
+       "b": {
+        "n": 3,
+        "d": 1
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 2
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": -1,
+      "d": 2
+     },
+     "b": {
+      "n": 3,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       3
+      ],
+      [
+       2,
+       2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": 3,
+        "d": 1
+       },
+       "b": {
+        "n": -1,
+        "d": 2
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": -2,
+        "d": 1
+       },
+       "b": {
+        "n": 3,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 2
+       },
+       "b": {
+        "n": 3,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 2
+       },
+       "b": {
+        "n": 3,
+        "d": 2
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "+",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 2
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": -1,
+      "d": 2
+     },
+     "b": {
+      "n": 2,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       2
+      ],
+      [
+       2,
+       1
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": 2,
+        "d": 1
+       },
+       "b": {
+        "n": -1,
+        "d": 2
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": -2,
+        "d": 1
+       },
+       "b": {
+        "n": 2,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 2
+       },
+       "b": {
+        "n": 2,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 2
+       },
+       "b": {
+        "n": 1,
+        "d": 1
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "term",
+      "coef": {
+       "type": "neg",
+       "of": {
+        "type": "frac",
+        "n": 1,
+        "d": 2
+       }
+      },
+      "name": "x"
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": -1,
+      "d": 2
+     },
+     "b": {
+      "n": 0,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       0
+      ],
+      [
+       2,
+       -1
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": 0,
+        "d": 1
+       },
+       "b": {
+        "n": -1,
+        "d": 2
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": -2,
+        "d": 1
+       },
+       "b": {
+        "n": 0,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 2
+       },
+       "b": {
+        "n": 0,
+        "d": 1
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "neg",
+        "of": {
+         "type": "frac",
+         "n": 1,
+         "d": 3
+        }
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 2
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": -1,
+      "d": 3
+     },
+     "b": {
+      "n": -2,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       -2
+      ],
+      [
+       3,
+       -3
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": -2,
+        "d": 1
+       },
+       "b": {
+        "n": -1,
+        "d": 3
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": -3,
+        "d": 1
+       },
+       "b": {
+        "n": -2,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 3
+       },
+       "b": {
+        "n": -2,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 3
+       },
+       "b": {
+        "n": -2,
+        "d": 3
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 3,
+        "d": 2
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 1
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": 3,
+      "d": 2
+     },
+     "b": {
+      "n": -1,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       -1
+      ],
+      [
+       2,
+       2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 1
+       },
+       "b": {
+        "n": 3,
+        "d": 2
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": 2,
+        "d": 3
+       },
+       "b": {
+        "n": -1,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": -3,
+        "d": 2
+       },
+       "b": {
+        "n": -1,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": 3,
+        "d": 2
+       },
+       "b": {
+        "n": 3,
+        "d": 2
+       }
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.line",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Graph the line: tap two points on it.",
+    "expression": {
+     "type": "eq",
+     "left": {
+      "type": "var",
+      "name": "y"
+     },
+     "right": {
+      "type": "op",
+      "op": "-",
+      "left": {
+       "type": "term",
+       "coef": {
+        "type": "frac",
+        "n": 1,
+        "d": 2
+       },
+       "name": "x"
+      },
+      "right": {
+       "type": "int",
+       "value": 3
+      }
+     }
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "line",
+     "count": 2,
+     "m": {
+      "n": 1,
+      "d": 2
+     },
+     "b": {
+      "n": -3,
+      "d": 1
+     },
+     "example": [
+      [
+       0,
+       -3
+      ],
+      [
+       2,
+       -2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.mb-swapped",
+      "value": {
+       "m": {
+        "n": -3,
+        "d": 1
+       },
+       "b": {
+        "n": 1,
+        "d": 2
+       }
+      }
+     },
+     {
+      "id": "lin.slope-run-over-rise",
+      "value": {
+       "m": {
+        "n": 2,
+        "d": 1
+       },
+       "b": {
+        "n": -3,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.slope-mixed-order",
+      "value": {
+       "m": {
+        "n": -1,
+        "d": 2
+       },
+       "b": {
+        "n": -3,
+        "d": 1
+       }
+      }
+     },
+     {
+      "id": "lin.intercept-x",
+      "value": {
+       "m": {
+        "n": 1,
+        "d": 2
+       },
+       "b": {
+        "n": 3,
+        "d": 2
+       }
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "lin.graphing.points": {
+  "version": 1,
+  "problems": [
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-1",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 4,
+     "y": 6
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       4,
+       6
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         6,
+         4
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -4,
+         6
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         4,
+         -6
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-2",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 4,
+     "y": 3
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       4,
+       3
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         3,
+         4
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -4,
+         3
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         4,
+         -3
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 1,
+    "seed": "golden-3",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 3,
+     "y": 5
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       3,
+       5
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         5,
+         3
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -3,
+         5
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         3,
+         -5
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-1",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 6,
+     "y": -5
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       6,
+       -5
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         -5,
+         6
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -6,
+         -5
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         6,
+         5
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-2",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": -6,
+     "y": -2
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       -6,
+       -2
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         -2,
+         -6
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         6,
+         -2
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -6,
+         2
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 2,
+    "seed": "golden-3",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 5,
+     "y": -6
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       5,
+       -6
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         -6,
+         5
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         -5,
+         -6
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         5,
+         6
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-1",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 0,
+     "y": 6
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       0,
+       6
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         6,
+         0
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         0,
+         -6
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-2",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 0,
+     "y": 3
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       0,
+       3
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         3,
+         0
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         0,
+         -3
+        ]
+       ]
+      }
+     }
+    ]
+   },
+   {
+    "generator": "lin.graphing.points",
+    "version": 1,
+    "difficulty": 3,
+    "seed": "golden-3",
+    "instruction": "Plot the point.",
+    "expression": {
+     "type": "point",
+     "x": 0,
+     "y": 1
+    },
+    "answer": {
+     "type": "gridpoints",
+     "mode": "points",
+     "count": 1,
+     "points": [
+      [
+       0,
+       1
+      ]
+     ]
+    },
+    "misconceptions": [
+     {
+      "id": "lin.plot-swapped",
+      "value": {
+       "points": [
+        [
+         1,
+         0
+        ]
+       ]
+      }
+     },
+     {
+      "id": "lin.plot-sign",
+      "value": {
+       "points": [
+        [
+         0,
+         -1
+        ]
+       ]
       }
      }
     ]

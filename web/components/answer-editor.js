@@ -219,6 +219,9 @@ export function describeAnswer(state) {
 // Text form of a raw answer, e.g. "2 3/4", for logs.
 export function rawToText(raw) {
   if (raw && Number.isInteger(raw.choice)) return raw.label ?? `choice ${raw.choice + 1}`;
+  // A number-line graph: "open dot at 3, shaded right"; grid points: "(1, 2) and (3, 4)".
+  if (raw && Array.isArray(raw.points) && raw.shade) return `${raw.points.map((p) => `${p.closed ? 'closed' : 'open'} dot at ${p.v}`).join(' and ')}, shaded ${raw.shade}`;
+  if (raw && Array.isArray(raw.points)) return raw.points.length ? raw.points.map(([a, b]) => `(${a}, ${b})`).join(' and ') : '(blank)';
   if (raw && raw.sign) return `x ${raw.sign} ${rawToText({ ...raw, sign: undefined })}`;
   if (raw && typeof raw.decimal === 'string') return `${raw.negative ? '-' : ''}${raw.decimal}`;
   if (raw && Array.isArray(raw.list)) return raw.list.length ? raw.list.join(', ') : '(blank)';

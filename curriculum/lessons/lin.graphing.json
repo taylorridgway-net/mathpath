@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "skill": "lin.graphing",
+  "title": "Graph points and lines",
+  "status": "draft: written by Claude, waiting for owner review",
+  "hints": {
+    "lin.graphing.points": "(x, y): x first, across (right for positive, left for negative); then y, up or down.",
+    "lin.graphing.line": "Start at b on the y-axis. Then use the slope: rise over run (go right by the run, up or down by the rise). Tap those two points.",
+    "lin.graphing": "Points: across first, then up or down. Lines: start at b, then rise over run."
+  },
+  "misconceptionMessages": {
+    "lin.plot-swapped": "x comes first: go across first, then up or down. (3, −2) is right 3, down 2.",
+    "lin.plot-sign": "Check the signs: negative x goes left, negative y goes down."
+  },
+  "similarProblemIntro": "Here's the worked solution. Now try one like it.",
+  "sections": [
+    {
+      "id": "lin.graphing.points",
+      "forGap": "lin.graphing.points",
+      "title": "Plot points",
+      "objective": "Plot points like (3, −2) on the coordinate grid.",
+      "mode": "section",
+      "generator": "lin.graphing.points",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "The grid has two number lines: x goes across, y goes up and down. They cross at (0, 0).",
+        "A point (x, y) tells you how far across, then how far up or down."
+      ],
+      "visual": null,
+      "key": "(x, y): start at (0, 0). Go across by x (right if positive, left if negative), then up or down by y.",
+      "worked": [
+        {
+          "math": "(3, −2)",
+          "note": ""
+        },
+        {
+          "math": "right [[3]]",
+          "note": "x is 3"
+        },
+        {
+          "math": "down [[2]]",
+          "note": "y is −2"
+        },
+        {
+          "math": "(−4, 0): left 4, [[stay on the x-axis]]",
+          "note": "y is 0"
+        },
+        {
+          "math": "(0, 5): [[stay on the y-axis]], up 5",
+          "note": "x is 0"
+        }
+      ]
+    },
+    {
+      "id": "lin.graphing.line",
+      "forGap": "lin.graphing.line",
+      "title": "Graph a line",
+      "objective": "Graph y = mx + b: start at b, then rise over run.",
+      "mode": "section",
+      "generator": "lin.graphing.line",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "y = mx + b gives a starting point and directions. b is where the line crosses the y-axis.",
+        "From there, the slope m says how to get to the next point: rise over run."
+      ],
+      "visual": {
+        "widget": "slope-graph",
+        "params": {
+          "points": [
+            [
+              0,
+              -3
+            ],
+            [
+              1,
+              -1
+            ]
+          ],
+          "intercept": true
+        },
+        "caption": "y = 2x − 3: start at −3, then right 1, up 2."
+      },
+      "key": "Start at (0, b) on the y-axis. Then go right by the run and up (or down) by the rise. Two points make the line."
+    },
+    {
+      "id": "lin.graphing.whole",
+      "forGap": "lin.graphing",
+      "title": "Putting it together",
+      "objective": "Plotting points and graphing lines, mixed.",
+      "mode": "skill",
+      "generator": "lin.graphing",
+      "example": {
+        "difficulty": 2
+      },
+      "explain": [
+        "Now the problems are mixed."
+      ],
+      "visual": null,
+      "key": "Points: across, then up or down. Lines: start at b on the y-axis, then rise over run.",
+      "worked": [
+        {
+          "math": "y = −{2/3}x + 1",
+          "note": ""
+        },
+        {
+          "math": "start at [[(0, 1)]]",
+          "note": "b = 1"
+        },
+        {
+          "math": "right 3, down 2: [[(3, −1)]]",
+          "note": "slope −2/3"
+        },
+        {
+          "math": "draw the line through them",
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

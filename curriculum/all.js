@@ -37,6 +37,7 @@ import algEquationsLesson from './lessons/alg.equations.json';
 import algExpressionsLesson from './lessons/alg.expressions.json';
 import algMultiStepLesson from './lessons/alg.multi-step.json';
 import algInequalitiesLesson from './lessons/alg.inequalities.json';
+import algInequalityGraphsLesson from './lessons/alg.inequality-graphs.json';
 import algEvaluateLesson from './lessons/alg.evaluate.json';
 import decPlaceValueLesson from './lessons/dec.place-value.json';
 import decConvertLesson from './lessons/dec.convert.json';
@@ -52,8 +53,9 @@ import linSlopeLesson from './lessons/lin.slope.json';
 import linSlopeInterceptLesson from './lessons/lin.slope-intercept.json';
 import linFormsLesson from './lessons/lin.forms.json';
 import linParallelLesson from './lessons/lin.parallel.json';
+import linGraphingLesson from './lessons/lin.graphing.json';
 
 export { domainsIndex, diagnosticConfig, masteryRules };
 export const graphFiles = { 'whole.json': wholeGraph, 'int.json': intGraph, 'frac.json': fracGraph, 'alg.json': algGraph, 'dec.json': decGraph, 'rat.json': ratGraph, 'lin.json': linGraph };
 export const misconceptionList = [...wholeMisconceptions.misconceptions, ...intMisconceptions.misconceptions, ...fracMisconceptions.misconceptions, ...algMisconceptions.misconceptions, ...decMisconceptions.misconceptions, ...ratMisconceptions.misconceptions, ...linMisconceptions.misconceptions];
-export const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsMultiplesLesson, fracMeaningLesson, fracEquivalentLesson, fracCompareLesson, fracAddSubLesson, fracMultiplyLesson, fracDivideLesson, intAddSubLesson, intMultDivLesson, fracSignedLesson, algOrderOpsLesson, algExponentsLesson, algEquationsLesson, algExpressionsLesson, algMultiStepLesson, algInequalitiesLesson, algEvaluateLesson, decPlaceValueLesson, decConvertLesson, decAddSubLesson, decMultiplyLesson, decDivideLesson, decSignedLesson, ratRatiosLesson, ratPercentLesson, ratPercentChangeLesson, linFunctionsLesson, linSlopeLesson, linSlopeInterceptLesson, linFormsLesson, linParallelLesson];
+export const lessons = [wholeAddSubLesson, wholeMultDivLesson, wholeFactorsMultiplesLesson, fracMeaningLesson, fracEquivalentLesson, fracCompareLesson, fracAddSubLesson, fracMultiplyLesson, fracDivideLesson, intAddSubLesson, intMultDivLesson, fracSignedLesson, algOrderOpsLesson, algExponentsLesson, algEquationsLesson, algExpressionsLesson, algMultiStepLesson, algInequalitiesLesson, algInequalityGraphsLesson, algEvaluateLesson, decPlaceValueLesson, decConvertLesson, decAddSubLesson, decMultiplyLesson, decDivideLesson, decSignedLesson, ratRatiosLesson, ratPercentLesson, ratPercentChangeLesson, linFunctionsLesson, linSlopeLesson, linSlopeInterceptLesson, linFormsLesson, linParallelLesson, linGraphingLesson];
